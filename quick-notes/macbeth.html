@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Teacher Vault — Macbeth QuickNotes</title>
+<style>
+:root{
+  --ink:#1B2A4A;
+  --ink-light:#33456e;
+  --parchment:#F7F4EB;
+  --parchment-dark:#EDE7D6;
+  --blood:#8C2F1E;
+  --blood-bright:#B5432B;
+  --gold:#B4922F;
+  --text:#232426;
+  --text-soft:#5b5d63;
+  --card:#FFFFFF;
+  --line:#E2DCC8;
+  --radius:10px;
+  --serif: Georgia, 'Times New Roman', Times, serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --mono: 'Courier New', Courier, monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--parchment);
+  color:var(--text);
+  font-family:var(--sans);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--gold);color:#fff;}
+a{color:var(--blood-bright);}
+button{font-family:inherit;cursor:pointer;}
+h1,h2,h3,h4{font-family:var(--serif);color:var(--ink);margin:0 0 .5em 0;}
+p{margin:0 0 .8em 0;}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+
+/* ===== Skip to content ===== */
+.skip-link{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:.6em 1em;z-index:999;}
+.skip-link:focus{left:8px;top:8px;}
+
+/* ===== App shell ===== */
+.app{display:flex;min-height:100vh;}
+
+/* Sidebar */
+.sidebar{
+  width:250px;flex-shrink:0;background:var(--ink);color:#EDE9DA;
+  display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;
+}
+.brand{padding:22px 20px 14px 20px;border-bottom:1px solid rgba(255,255,255,.12);}
+.brand .tv-name{font-family:var(--serif);font-size:1.05rem;letter-spacing:.02em;color:#fff;font-weight:700;}
+.brand .tv-sub{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-top:2px;}
+.brand .play-title{margin-top:14px;font-family:var(--serif);font-size:1.9rem;color:#fff;line-height:1;}
+.brand .play-sub{font-size:.78rem;color:#c9c4ac;margin-top:6px;line-height:1.4;}
+
+nav.mainnav{padding:10px 0;flex:1;}
+nav.mainnav button.navlink{
+  display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:none;
+  color:#d9d5c3;padding:11px 20px;font-size:.92rem;border-left:3px solid transparent;
+}
+nav.mainnav button.navlink .num{font-family:var(--mono);font-size:.72rem;color:var(--gold);width:18px;flex-shrink:0;}
+nav.mainnav button.navlink:hover{background:rgba(255,255,255,.06);color:#fff;}
+nav.mainnav button.navlink.active{background:rgba(181,67,43,.25);border-left-color:var(--blood-bright);color:#fff;font-weight:600;}
+nav.mainnav button.navlink:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
+
+.sidebar-footer{padding:14px 20px;font-size:.7rem;color:#8b876f;border-top:1px solid rgba(255,255,255,.1);}
+
+/* Mobile top bar */
+.topbar{display:none;position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;padding:12px 16px;align-items:center;justify-content:space-between;}
+.topbar .tv-inline{font-family:var(--serif);font-size:1rem;}
+.topbar .tv-inline span{display:block;font-size:.65rem;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;}
+.hamburger{background:none;border:1px solid rgba(255,255,255,.4);color:#fff;padding:8px 10px;border-radius:6px;font-size:.85rem;}
+
+.mobile-nav-drawer{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.5);}
+.mobile-nav-drawer.open{display:block;}
+.mobile-nav-panel{position:absolute;top:0;left:0;bottom:0;width:78%;max-width:300px;background:var(--ink);overflow-y:auto;padding-bottom:20px;}
+
+/* Main content */
+main{flex:1;min-width:0;padding:36px 44px 80px 44px;max-width:980px;}
+.section{display:none;animation:fadein .25s ease;}
+.section.active{display:block;}
+@keyframes fadein{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+
+.section-header{margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid var(--ink);}
+.section-header .eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blood-bright);font-weight:700;margin-bottom:4px;}
+.section-header h1{font-size:2rem;margin-bottom:4px;}
+.section-header .desc{color:var(--text-soft);font-size:.95rem;max-width:640px;}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-bottom:16px;}
+.card h3{font-size:1.1rem;margin-bottom:8px;}
+.subtle{color:var(--text-soft);font-size:.88rem;}
+.tag{display:inline-block;background:var(--parchment-dark);color:var(--ink);border-radius:999px;padding:2px 10px;font-size:.72rem;margin:2px 4px 2px 0;font-weight:600;}
+.tag.blood{background:#f3e0da;color:var(--blood);}
+.tag.gold{background:#f3ecd6;color:#7a621c;}
+
+/* Buttons */
+.btn{display:inline-block;background:var(--ink);color:#fff;border:none;padding:9px 16px;border-radius:7px;font-size:.85rem;font-weight:600;}
+.btn:hover{background:var(--ink-light);}
+.btn.secondary{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+.btn.blood{background:var(--blood-bright);}
+.btn.blood:hover{background:var(--blood);}
+.btn:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+
+/* Expand/collapse */
+.disclosure{border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;background:var(--card);overflow:hidden;}
+.disclosure > .d-head{width:100%;background:none;border:none;text-align:left;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;font-weight:700;color:var(--ink);font-family:var(--serif);font-size:1.02rem;}
+.disclosure > .d-head:hover{background:var(--parchment);}
+.disclosure > .d-head .chev{transition:transform .2s;color:var(--blood-bright);font-size:1.1rem;}
+.disclosure.open > .d-head .chev{transform:rotate(90deg);}
+.disclosure > .d-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.disclosure.open > .d-body{max-height:4000px;}
+.disclosure > .d-body .inner{padding:0 18px 16px 18px;}
+
+.d-body .mini-label{font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--blood-bright);margin:12px 0 4px 0;}
+.d-body .mini-label:first-child{margin-top:0;}
+.quote-line{font-family:var(--serif);font-style:italic;color:var(--ink);background:var(--parchment);border-left:3px solid var(--gold);padding:8px 12px;margin:6px 0;font-size:.94rem;}
+
+/* Grid */
+.grid{display:grid;gap:14px;}
+.grid.two{grid-template-columns:1fr 1fr;}
+.grid.three{grid-template-columns:repeat(3,1fr);}
+@media(max-width:800px){.grid.two,.grid.three{grid-template-columns:1fr;}}
+
+/* Character cards */
+.char-card{cursor:pointer;}
+.char-card .cname{font-size:1.2rem;}
+.char-card .crole{color:var(--text-soft);font-size:.85rem;margin-bottom:8px;}
+
+/* Quote vault */
+.qv-controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;align-items:center;}
+.qv-controls input[type=text], .qv-controls select{padding:9px 12px;border:1px solid var(--line);border-radius:7px;font-size:.9rem;background:#fff;}
+.qv-controls input[type=text]{flex:1;min-width:180px;}
+.qv-count{font-size:.82rem;color:var(--text-soft);margin-bottom:10px;}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-bottom:12px;}
+.qcard .qtext{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);margin-bottom:6px;}
+.qcard .qmeta{font-size:.78rem;color:var(--text-soft);margin-bottom:10px;}
+.qcard .qreveal-btn{font-size:.8rem;background:var(--parchment-dark);border:none;padding:6px 12px;border-radius:6px;color:var(--ink);font-weight:600;}
+.qcard .qdetail{display:none;margin-top:12px;border-top:1px dashed var(--line);padding-top:10px;}
+.qcard.open .qdetail{display:block;}
+.qdetail .row{margin-bottom:8px;}
+.qdetail .row b{color:var(--blood-bright);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:2px;}
+.level-toggle{display:flex;gap:6px;margin:10px 0;}
+.level-toggle button{font-size:.75rem;padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:#fff;}
+.level-toggle button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.level-block{display:none;font-size:.9rem;}
+.level-block.active{display:block;}
+
+/* Quiz */
+.quiz-progress{height:8px;background:var(--parchment-dark);border-radius:6px;overflow:hidden;margin-bottom:18px;}
+.quiz-progress-bar{height:100%;background:var(--blood-bright);width:0%;transition:width .3s;}
+.quiz-q{font-family:var(--serif);font-size:1.15rem;margin-bottom:14px;}
+.quiz-opts{display:flex;flex-direction:column;gap:8px;}
+.quiz-opt{text-align:left;padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;background:#fff;font-size:.95rem;}
+.quiz-opt:hover{border-color:var(--ink);}
+.quiz-opt.correct{background:#e4f2e6;border-color:#4c9a5f;}
+.quiz-opt.incorrect{background:#f7e4e0;border-color:var(--blood-bright);}
+.quiz-opt[disabled]{cursor:default;}
+.quiz-explain{margin-top:12px;padding:12px 14px;background:var(--parchment);border-radius:8px;font-size:.9rem;display:none;}
+.quiz-explain.show{display:block;}
+.quiz-result{text-align:center;padding:30px 10px;}
+.quiz-result .score{font-family:var(--serif);font-size:3rem;color:var(--ink);}
+
+/* Weak vs strong */
+.wvs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+@media(max-width:700px){.wvs{grid-template-columns:1fr;}}
+.wvs .weak{border:1.5px solid #c9776a;background:#fbeeeb;border-radius:8px;padding:14px;}
+.wvs .strong{border:1.5px solid #6a9c76;background:#eef6ef;border-radius:8px;padding:14px;}
+.wvs .lbl{font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+.wvs .weak .lbl{color:#a1392a;}
+.wvs .strong .lbl{color:#3f7a4c;}
+
+/* Last minute */
+.lm-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:760px){.lm-grid{grid-template-columns:1fr;}}
+.lm-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;}
+.lm-card h3{font-size:1rem;color:var(--blood-bright);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:10px;}
+.lm-card ol,.lm-card ul{margin:0;padding-left:20px;font-size:.88rem;}
+.lm-card li{margin-bottom:6px;}
+.print-btn{margin-bottom:16px;}
+@media print{
+  .sidebar,.topbar,.print-btn,nav,.section-header .desc{display:none !important;}
+  main{padding:0;max-width:100%;}
+  .section{display:block !important;}
+  #section-lastminute{display:block !important;}
+  .section:not(#section-lastminute){display:none !important;}
+  body{background:#fff;}
+}
+
+/* Sixty seconds box */
+.sixty{background:var(--ink);color:#f2efe2;border-radius:var(--radius);padding:20px 22px;margin:18px 0;}
+.sixty h3{color:var(--gold);font-size:.85rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;}
+.sixty p{font-size:.95rem;line-height:1.6;}
+
+/* checklist */
+.checklist label{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line);font-size:.92rem;}
+.checklist input{margin-top:3px;}
+
+footer.app-footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);color:var(--text-soft);font-size:.78rem;}
+
+@media(max-width:900px){
+  .sidebar{display:none;}
+  .topbar{display:flex;}
+  main{padding:24px 18px 60px 18px;}
+  .section-header h1{font-size:1.6rem;}
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<div class="app">
+
+  <!-- Desktop sidebar -->
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <div class="brand">
+      <div class="tv-name">The Teacher Vault</div>
+      <div class="tv-sub">QuickNotes</div>
+      <div class="play-title">Macbeth</div>
+      <div class="play-sub">Everything you actually need for GCSE English Literature.</div>
+    </div>
+    <nav class="mainnav" id="navList" aria-label="Sections"></nav>
+    <div class="sidebar-footer">Free GCSE revision resource.<br>Works fully offline.</div>
+  </aside>
+
+  <!-- Mobile topbar -->
+  <div class="topbar">
+    <div class="tv-inline"><span>The Teacher Vault · QuickNotes</span>Macbeth</div>
+    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobileDrawer">☰ Menu</button>
+  </div>
+  <div class="mobile-nav-drawer" id="mobileDrawer">
+    <div class="mobile-nav-panel">
+      <div class="brand">
+        <div class="tv-name">The Teacher Vault</div>
+        <div class="tv-sub">QuickNotes</div>
+        <div class="play-title">Macbeth</div>
+      </div>
+      <nav class="mainnav" id="navListMobile" aria-label="Sections (mobile)"></nav>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <!-- Sections are rendered by JS into #sectionsRoot -->
+    <div id="sectionsRoot"></div>
+    <footer class="app-footer">The Teacher Vault · Macbeth QuickNotes — a free GCSE English Literature revision resource. All explanatory content is original. Text of Macbeth is public domain.</footer>
+  </main>
+</div>
+
+<script>
+/* =========================================================
+   THE TEACHER VAULT — MACBETH QUICKNOTES
+   Single-file offline revision app. No external dependencies.
+   ========================================================= */
+(function(){
+"use strict";
+
+/* ---------- Storage helper (safe if localStorage unavailable) ---------- */
+const Store = {
+  available: (function(){ try{ const k='__tv_test__'; localStorage.setItem(k,'1'); localStorage.removeItem(k); return true; }catch(e){ return false; } })(),
+  get(key, fallback){ if(!Store.available) return fallback; try{ const v = localStorage.getItem('tv_macbeth_'+key); return v===null?fallback:JSON.parse(v); }catch(e){ return fallback; } },
+  set(key, val){ if(!Store.available) return; try{ localStorage.setItem('tv_macbeth_'+key, JSON.stringify(val)); }catch(e){} }
+};
+
+/* ---------- Section registry ---------- */
+const SECTIONS = [
+  {id:'overview', label:'Overview'},
+  {id:'plot', label:'Plot'},
+  {id:'characters', label:'Characters'},
+  {id:'themes', label:'Themes'},
+  {id:'quotes', label:'Quote Vault'},
+  {id:'context', label:'Context'},
+  {id:'techniques', label:'Techniques'},
+  {id:'exam', label:'Exam'},
+  {id:'quiz', label:'Quiz'},
+  {id:'lastminute', label:'Last Minute'}
+];
+
+/* ================= DATA: CHARACTERS ================= */
+const CHARACTERS = [
+{
+  id:'macbeth', name:'Macbeth', role:'Tragic hero; Thane of Glamis, later Thane of Cawdor and King of Scotland',
+  who:"A brave and successful general in King Duncan's army who is transformed, over the course of the play, from a loyal nobleman into a tyrannical murderer.",
+  journey:"Begins as a celebrated warrior praised by everyone for his courage. After meeting the witches and hearing their prophecy, ambition takes hold. He murders Duncan, then Banquo, then Macduff's family, growing more isolated and paranoid with each killing. By Act 5 he is a hollow, nihilistic tyrant who has lost all capacity to feel, and he is killed by Macduff.",
+  relationships:"Husband to Lady Macbeth, whose ambition and taunts push him toward regicide; former friend to Banquo, whom he has murdered out of fear; rival to Macduff, who ultimately kills him; subject and then usurper of King Duncan.",
+  themes:['Ambition','Guilt','Power','Fate vs Free Will','Masculinity','Violence'],
+  quotes:[
+    "If it were done when 'tis done, then 'twere well it were done quickly",
+    "I have no spur to prick the sides of my intent, but only vaulting ambition",
+    "Is this a dagger which I see before me",
+    "Will all great Neptune's ocean wash this blood clean from my hand?",
+    "I am in blood stepped in so far",
+    "Life's but a walking shadow, a poor player that struts and frets his hour upon the stage"
+  ],
+  message:"Shakespeare uses Macbeth to explore how unchecked ambition corrupts a fundamentally capable man, and to ask whether evil is fated or chosen — Macbeth repeatedly acknowledges the wrongness of his actions before committing them, suggesting free will remains central even under supernatural influence.",
+  examArgs:[
+    "Macbeth is not simply evil from the outset; Shakespeare presents a gradual moral corruption, inviting the audience to see how ambition can dismantle a good man's conscience.",
+    "Macbeth's soliloquies reveal an active, rational mind aware of consequence, which supports a reading that he retains free will despite the witches' prophecy.",
+    "Macbeth's language shifts from measured verse early in the play to disordered, nihilistic prose-like rhythms by Act 5, mirroring his psychological disintegration.",
+    "Macbeth can be read as a study of toxic masculinity, in which Macbeth associates violence with manhood, partly because Lady Macbeth repeatedly questions his courage."
+  ]
+},
+{
+  id:'ladymacbeth', name:'Lady Macbeth', role:"Macbeth's wife; later Queen of Scotland",
+  who:"An ambitious, commanding figure who is initially the driving force behind Duncan's murder, and who rejects conventional feminine qualities in pursuit of power.",
+  journey:"Opens the play forcefully invoking dark powers to 'unsex' her so she can act without pity or remorse. She manipulates and goads Macbeth into killing Duncan. After the murder her confidence unravels; by Act 5 she is consumed by guilt, sleepwalking and obsessively trying to wash imagined blood from her hands, and she dies (implied suicide) offstage.",
+  relationships:"Wife and closest confidante to Macbeth, whom she manipulates using appeals to his masculinity; has no meaningful relationships with other characters, reflecting her isolation.",
+  themes:['Ambition','Guilt','Masculinity','Appearance vs Reality','Power'],
+  quotes:[
+    "Unsex me here",
+    "Look like the innocent flower, but be the serpent under't",
+    "Screw your courage to the sticking-place",
+    "A little water clears us of this deed",
+    "Out, damned spot! Out, I say!",
+    "What's done cannot be undone"
+  ],
+  message:"Shakespeare uses Lady Macbeth to interrogate Jacobean ideas of gender: her attempt to reject 'feminine' compassion in favour of ruthless ambition ultimately fails, as her repressed conscience resurfaces as guilt she cannot control, suggesting conscience cannot be permanently silenced.",
+  examArgs:[
+    "Lady Macbeth's collapse into guilt by Act 5 undercuts her Act 1 rejection of conscience, implying Shakespeare presents guilt as an inescapable natural force rather than a weakness she can simply reason away.",
+    "Her manipulation of Macbeth through his masculinity exposes how Jacobean ideas of manhood (linked to violence and dominance) are dangerous and destabilising.",
+    "The contrast between her fearless, commanding language in Act 1 and her broken, fragmented prose in the sleepwalking scene charts her psychological destruction and can be used to discuss form and structure.",
+    "Some critics read her as a victim of a patriarchal society that only grants her power through manipulation, since she has no legitimate path to influence."
+  ]
+},
+{
+  id:'banquo', name:'Banquo', role:"General; Macbeth's friend and fellow military commander",
+  who:"A noble, loyal soldier who, unlike Macbeth, hears the witches' prophecy (that his descendants will be kings) but resists acting on it.",
+  journey:"Present alongside Macbeth when the witches deliver their prophecies. He grows suspicious of Macbeth after Duncan's murder but does not act on his suspicions. Macbeth, fearing Banquo's descendants will take the throne, has him murdered; his son Fleance escapes. Banquo's ghost later haunts Macbeth at the banquet.",
+  relationships:"Close friend and fellow general to Macbeth, whose ambition Banquo does not share; father to Fleance, whose survival ensures the prophecy's fulfilment beyond the play's events.",
+  themes:['Fate vs Free Will','Ambition','The Supernatural','Loyalty'],
+  quotes:[
+    "Thou hast it now: king, Cawdor, Glamis, all, as the weird women promised",
+    "In the great hand of God I stand",
+    "Thou canst not say I did it: never shake thy gory locks at me"
+  ],
+  message:"Shakespeare uses Banquo as a foil to Macbeth: both receive supernatural temptation, but Banquo chooses restraint and integrity, implying that the witches' prophecies do not force action — they merely reveal existing desires.",
+  examArgs:[
+    "Banquo functions as a moral contrast to Macbeth, proving that hearing a prophecy does not necessitate acting on it, which strengthens a free-will reading of the play.",
+    "Banquo's murder and his returning ghost can be used to discuss the supernatural as a manifestation of Macbeth's guilt rather than purely external evil.",
+    "Banquo's caution can be linked to Jacobean ideas about loyalty and the Great Chain of Being, since he refuses to disrupt the natural order despite temptation."
+  ]
+},
+{
+  id:'macduff', name:'Macduff', role:'Thane of Fife; avenger; instrument of Macbeth\'s downfall',
+  who:"A loyal nobleman who becomes suspicious of Macbeth early on and ultimately leads the rebellion against him, driven by grief and a desire for justice after his family is murdered.",
+  journey:"Refuses to attend Macbeth's coronation feast and later flees to England to enlist Malcolm's help. In his absence, Macbeth orders the murder of his wife and children. Devastated, Macduff channels his grief into determination, eventually killing Macbeth in single combat and revealing he was 'from his mother's womb untimely ripped' — fulfilling the witches' final prophecy.",
+  relationships:"Loyal subject to King Duncan and later Malcolm; husband to Lady Macduff and father to their children, whose murders motivate his revenge; Macbeth's ultimate killer.",
+  themes:['Kingship','Masculinity','Violence','Fate vs Free Will','Guilt'],
+  quotes:[
+    "O horror, horror, horror!",
+    "He has no children",
+    "Macduff was from his mother's womb untimely ripped",
+    "I must also feel it as a man"
+  ],
+  message:"Shakespeare uses Macduff to present an alternative model of masculinity to Macbeth's — one that permits grief and emotion alongside courage — challenging the play's association of manhood with violence alone.",
+  examArgs:[
+    "Macduff's insistence that he must 'feel it as a man' before acting directly challenges Lady Macbeth and Macbeth's narrower definitions of manhood, offering a more balanced model of masculinity.",
+    "As the character who fulfils the witches' riddling final prophecy, Macduff embodies the idea that fate operates through natural events, not supernatural trickery alone.",
+    "Macduff's decision to leave his family to fight for Scotland can be read as prioritising the state over the domestic sphere, inviting debate about his culpability in their deaths."
+  ]
+},
+{
+  id:'duncan', name:'King Duncan', role:'King of Scotland at the start of the play',
+  who:"A kind, trusting and generous king, seen by many critics as representing ideal, divinely-sanctioned kingship.",
+  journey:"Rewards Macbeth generously for his bravery in battle and names him Thane of Cawdor. He visits Macbeth's castle as an honoured guest and is murdered in his sleep by Macbeth, an act that violates hospitality, kinship and the natural order.",
+  relationships:"King and generous patron to Macbeth and Banquo; father to Malcolm and Donalbain; guest and victim of the Macbeths.",
+  themes:['Kingship','Divine Right','Appearance vs Reality','Violence'],
+  quotes:[
+    "There's no art to find the mind's construction in the face",
+    "This castle hath a pleasant seat",
+    "Signs of nobleness, like stars, shall shine on all deservers"
+  ],
+  message:"Shakespeare presents Duncan as an idealised, virtuous king to make Macbeth's regicide feel especially monstrous, reinforcing Jacobean anxieties about the sanctity of the monarch.",
+  examArgs:[
+    "Duncan's misplaced trust ('no art to find the mind's construction in the face') foreshadows the play's exploration of appearance versus reality and sets up dramatic irony for his own murder.",
+    "Duncan represents the 'natural order' and Divine Right of Kings; his murder disrupts nature itself (storms, strange omens), reflecting Jacobean beliefs that regicide corrupts the whole kingdom.",
+    "Duncan's generosity towards Macbeth can be used to increase the audience's sense of betrayal and to explore the theme of ingratitude."
+  ]
+},
+{
+  id:'malcolm', name:'Malcolm', role:"Duncan's elder son; heir to the throne; King at the play's end",
+  who:"A cautious, intelligent prince who flees to England after his father's murder and later returns to reclaim the throne.",
+  journey:"Fears he will be blamed for Duncan's murder and flees to England. There, he tests Macduff's loyalty by falsely describing himself as full of vices before revealing this was a trick to ensure Macduff's sincerity. He leads the English army against Macbeth and is crowned king at the play's close.",
+  relationships:"Son of Duncan, brother to Donalbain; forms an alliance with Macduff and the English lord Siward against Macbeth.",
+  themes:['Kingship','Appearance vs Reality','Fate vs Free Will'],
+  quotes:[
+    "Angels are bright still, though the brightest fell",
+    "The king-becoming graces...I have none",
+    "What's more to do, which would be planted newly with the time"
+  ],
+  message:"Shakespeare uses Malcolm to define, by contrast, what makes a good king — listing virtues Macbeth conspicuously lacks — and to restore order and legitimate succession at the play's conclusion.",
+  examArgs:[
+    "Malcolm's testing of Macduff demonstrates political caution learned directly from his father's misplaced trust, showing character development shaped by the play's events.",
+    "Malcolm's list of 'king-becoming graces' provides a direct checklist against which Macbeth's kingship can be measured and found wanting.",
+    "The restoration of order under Malcolm at the play's end reassures a Jacobean audience that legitimate, divinely-sanctioned rule always prevails."
+  ]
+},
+{
+  id:'witches', name:'The Three Witches (Weird Sisters)', role:'Supernatural prophetesses',
+  who:"Ambiguous supernatural figures who deliver the prophecies that set the play's tragedy in motion. Shakespeare deliberately keeps their true nature and motives unclear.",
+  journey:"Appear in Act 1 to prophesy Macbeth's rise to Thane of Cawdor and King, and Banquo's descendants' future kingship. They reappear in Act 4 with further, riddling prophecies (beware Macduff; none of woman born shall harm Macbeth; Macbeth shall not be vanquished until Great Birnam Wood comes to Dunsinane) that give Macbeth false confidence and ultimately lead to his downfall.",
+  relationships:"Address Macbeth and Banquo directly; controlled by, or working alongside, Hecate, goddess of witchcraft, in some versions of the text.",
+  themes:['The Supernatural','Fate vs Free Will','Appearance vs Reality'],
+  quotes:[
+    "Fair is foul, and foul is fair",
+    "All hail, Macbeth, that shalt be king hereafter!",
+    "Double, double toil and trouble; fire burn and cauldron bubble",
+    "None of woman born shall harm Macbeth"
+  ],
+  message:"Shakespeare deliberately leaves the witches' power ambiguous — do they control fate, or merely reveal desires already present in Macbeth? — inviting the audience to debate the play's central question of fate versus free will.",
+  examArgs:[
+    "The witches never instruct Macbeth to murder anyone; they only prophesy, which supports a reading that Macbeth's choices, not supernatural coercion, drive the tragedy.",
+    "The witches' equivocal, riddling language ('none of woman born') mirrors the play's wider theme of appearance versus reality and shows how ambiguous language can be dangerous when acted upon literally.",
+    "To a Jacobean audience, genuinely fearful of witchcraft under James I, the witches would have carried real, visceral menace, heightening the play's supernatural terror."
+  ]
+}
+];
+
+/* ================= DATA: THEMES ================= */
+const THEMES = [
+{name:'Ambition', explanation:"The desire for power that drives Macbeth and Lady Macbeth to murder, and which Shakespeare presents as a corrupting, almost addictive force once acted upon.",
+ where:"Macbeth's 'vaulting ambition' soliloquy (Act 1, Scene 7); Lady Macbeth's invocation to be 'unsexed' (Act 1, Scene 5); Macbeth's decision to kill Banquo to secure the throne (Act 3).",
+ characters:['Macbeth','Lady Macbeth'],
+ quotes:["I have no spur to prick the sides of my intent, but only vaulting ambition","Stars, hide your fires; let not light see my black and deep desires"],
+ message:"Shakespeare suggests ambition itself is not inherently evil, but ambition unrestrained by moral conscience ('vaulting ambition, which o'erleaps itself') inevitably leads to self-destruction.",
+ context:"To a Jacobean audience, ambition that threatened the divinely-ordained social order was viewed as especially dangerous and sinful.",
+ thesis:["Shakespeare presents ambition as a destructive, almost supernatural force that consumes moral restraint once given a target.","Shakespeare uses the imagery of clothing that does not fit ('borrowed robes') to suggest ambition leads Macbeth to a position he is not naturally suited for."]},
+{name:'Power', explanation:"The play explores how power is gained, exercised, defended and lost, contrasting legitimate, divinely-sanctioned rule with tyranny seized by violence.",
+ where:"Duncan's rightful kingship (Act 1); Macbeth's tyrannical reign (Act 4-5), where Scotland is described as 'bleeding'; the restoration of order under Malcolm (Act 5).",
+ characters:['Macbeth','Duncan','Malcolm'],
+ quotes:["Bleed, bleed, poor country!","The king-becoming graces...I have none"],
+ message:"Shakespeare contrasts power gained through legitimate succession with power seized through violence, implying that illegitimate power is inherently unstable and self-destructive.",
+ context:"James I's own writings on kingship (Basilikon Doron) argued that legitimate monarchs ruled by divine right; usurpers could never truly possess lasting authority.",
+ thesis:["Shakespeare presents illegitimate power as inherently unstable, doomed to collapse under the weight of the violence used to obtain it.","Shakespeare uses the imagery of disease and sickness to suggest that Macbeth's rule is a corruption of the natural, healthy body politic."]},
+{name:'Guilt', explanation:"Psychological guilt manifests physically and supernaturally throughout the play, most famously through blood imagery and hallucination.",
+ where:"Macbeth's hallucinated dagger (Act 2, Scene 1); the hand-washing imagery after Duncan's murder (Act 2, Scene 2); Lady Macbeth's sleepwalking scene (Act 5, Scene 1); Banquo's ghost (Act 3, Scene 4).",
+ characters:['Macbeth','Lady Macbeth'],
+ quotes:["Will all great Neptune's ocean wash this blood clean from my hand?","Out, damned spot! Out, I say!"],
+ message:"Shakespeare presents guilt as an inescapable, almost physical force that punishes the Macbeths psychologically even when they evade earthly justice.",
+ context:"Jacobean audiences believed strongly in conscience as evidence of the soul; unpunished sin was expected to manifest through supernatural or psychological torment.",
+ thesis:["Shakespeare suggests that guilt operates as a form of self-inflicted, inescapable punishment that no external power can suppress.","The recurring blood imagery charts the psychological deterioration of both Macbeths, showing that guilt intensifies rather than fades with time."]},
+{name:'The Supernatural', explanation:"Witches, prophecies, apparitions and ghosts create dramatic tension and raise questions about fate, evil and the limits of human control.",
+ where:"The witches' prophecies (Act 1, Scene 3; Act 4, Scene 1); Banquo's ghost at the banquet (Act 3, Scene 4); the floating dagger (Act 2, Scene 1).",
+ characters:['The Witches','Macbeth','Banquo'],
+ quotes:["Fair is foul, and foul is fair","Is this a dagger which I see before me"],
+ message:"Shakespeare uses the supernatural to blur the line between external evil and internal psychological breakdown, leaving genuinely ambiguous whether events are truly supernatural or projections of guilt.",
+ context:"King James I wrote 'Daemonologie', a treatise on witchcraft, and genuinely believed in and feared witches, making this material especially charged for its original audience.",
+ thesis:["Shakespeare deliberately blurs the boundary between supernatural intervention and psychological guilt, refusing to give the audience a clear answer.","The supernatural elements can be read as externalising Macbeth's internal moral corruption rather than causing it."]},
+{name:'Masculinity', explanation:"The play repeatedly questions what 'true' manhood consists of — violence and ruthlessness, or conscience and emotional honesty.",
+ where:"Lady Macbeth's taunts that question Macbeth's manhood (Act 1, Scene 7); Macduff's insistence he must 'feel it as a man' (Act 4, Scene 3).",
+ characters:['Macbeth','Lady Macbeth','Macduff'],
+ quotes:["When you durst do it, then you were a man","I must also feel it as a man"],
+ message:"Shakespeare critiques a narrow, violent definition of masculinity by showing it leads Macbeth to atrocity, while offering Macduff's grief-inclusive manhood as a healthier alternative.",
+ context:"Jacobean society linked masculinity closely to honour, aggression and public reputation, but also increasingly debated the role of emotion and reason in a 'civilised' man.",
+ thesis:["Shakespeare uses Lady Macbeth's manipulation of gender expectations to critique a society that equates manhood purely with violence.","Macduff's emotional response to his family's murder offers a corrective model of masculinity that includes vulnerability."]},
+{name:'Kingship', explanation:"The play sets out, largely through Malcolm and Duncan, a model of ideal, divinely-sanctioned kingship against which Macbeth's tyranny is measured.",
+ where:"Duncan's generosity and trust (Act 1); Malcolm's list of 'king-becoming graces' (Act 4, Scene 3); Macbeth's tyranny, described through disease imagery (Act 4-5).",
+ characters:['Duncan','Malcolm','Macbeth'],
+ quotes:["The king-becoming graces...I have none","Bleed, bleed, poor country!"],
+ message:"Shakespeare presents legitimate kingship as a moral, almost sacred responsibility, and tyranny as a sickness that harms the entire nation, not just the throne.",
+ context:"Written for James I, who had recently united the English and Scottish crowns, the play flatters Stuart ideas of divinely-ordained, legitimate rule.",
+ thesis:["Shakespeare structures the play around a clear contrast between legitimate kingship (Duncan, Malcolm) and illegitimate tyranny (Macbeth) to reinforce Jacobean political ideology."]},
+{name:'Violence', explanation:"Violence escalates throughout the play, from battlefield heroism to domestic murder to indiscriminate slaughter, tracking Macbeth's moral decline.",
+ where:"Macbeth's celebrated battlefield violence (Act 1, Scene 2); Duncan's murder (Act 2); the massacre of Macduff's family (Act 4, Scene 2).",
+ characters:['Macbeth'],
+ quotes:["He unseamed him from the nave to th' chops","Wife, children, servants, all that could be found"],
+ message:"Shakespeare charts a shift from socially sanctioned violence (war) to unsanctioned, monstrous violence (regicide, the murder of innocents), asking where society draws that moral line.",
+ context:"Jacobean society valorised martial violence in war but viewed regicide and the murder of women and children as uniquely horrific and unnatural.",
+ thesis:["Shakespeare presents a spectrum of violence, using its escalation to chart Macbeth's increasing moral corruption from soldier to tyrant."]},
+{name:'Fate vs Free Will', explanation:"The central philosophical question of the play: are the Macbeths doomed by prophecy, or do they choose their own destruction?",
+ where:"The witches' initial prophecy (Act 1, Scene 3); Macbeth's soliloquies weighing consequence before acting (Act 1, Scene 7); Banquo's contrasting restraint.",
+ characters:['Macbeth','Banquo','The Witches'],
+ quotes:["If chance will have me king, why, chance may crown me, without my stir","We but teach bloody instructions, which, being taught, return to plague th' inventor"],
+ message:"Shakespeare deliberately leaves this question open, but leans towards free will: the witches only prophesy, they never compel, and Macbeth deliberates rationally before every murder.",
+ context:"Jacobean Christian theology generally held that while God had foreknowledge of events, humans still possessed free will and moral responsibility for their sins.",
+ thesis:["Shakespeare presents the witches' prophecies as catalysts rather than causes, placing ultimate responsibility for the tragedy on Macbeth's own choices."]},
+{name:'Appearance vs Reality', explanation:"Deception, equivocation and the gap between how things seem and how they truly are run throughout the play, from the witches' riddles to the Macbeths' false hospitality.",
+ where:"'Fair is foul, and foul is fair' (Act 1, Scene 1); 'Look like the innocent flower, but be the serpent under't' (Act 1, Scene 5); Duncan's misplaced trust in Macbeth.",
+ characters:['The Witches','Lady Macbeth','Macbeth','Duncan'],
+ quotes:["Fair is foul, and foul is fair","False face must hide what the false heart doth know"],
+ message:"Shakespeare uses this theme to warn of the dangers of trusting outward appearances, and to suggest moral chaos ('fair is foul') destabilises a society's ability to judge truth from lies.",
+ context:"The equivocation on trial at the real 1606 trial of Jesuit priest Henry Garnet (linked to the Gunpowder Plot) made 'equivocation' a topical and politically loaded idea for Shakespeare's audience.",
+ thesis:["Shakespeare uses dramatic irony and deceptive language throughout to show how appearance and reality collapse under the pressure of ambition and guilt."]}
+];
+
+/* ================= DATA: TECHNIQUES ================= */
+const TECHNIQUES = [
+{name:'Metaphor', def:"A direct comparison between two things without using 'like' or 'as', implying one thing is another.",
+ example:"Macbeth describes his ambition as 'vaulting ambition, which o'erleaps itself' — comparing ambition to a rider leaping too high and falling.",
+ effect:"Presents ambition as an uncontrollable physical force with its own dangerous momentum, foreshadowing Macbeth's downfall.",
+ howto:"Identify exactly what two things are being compared, then explain what specific quality is being transferred between them and why that comparison suits this moment in the play."},
+{name:'Imagery', def:"Descriptive language that creates vivid sensory pictures, often to reinforce a theme (Macbeth uses blood, darkness and clothing imagery extensively).",
+ example:"'Will all great Neptune's ocean wash this blood clean from my hand?' uses visceral blood imagery to represent guilt.",
+ effect:"Makes abstract guilt feel physical and inescapable, suggesting no amount of literal or figurative cleansing can undo the murder.",
+ howto:"Group images by pattern (blood, darkness, disease, clothing) across the whole play, and track how the imagery develops or intensifies to show character change."},
+{name:'Symbolism', def:"An object, image or action that represents a deeper idea beyond its literal meaning.",
+ example:"Blood symbolises guilt throughout the play; ill-fitting clothing (Macbeth in 'borrowed robes') symbolises his unsuitability for kingship.",
+ effect:"Allows Shakespeare to communicate psychological and moral ideas visually and repeatedly on stage.",
+ howto:"Explain what the symbol represents, then trace how its meaning develops across the play rather than only analysing a single instance."},
+{name:'Dramatic irony', def:"When the audience knows something a character does not, creating tension or unease.",
+ example:"Duncan praises Macbeth's castle as having a 'pleasant seat' moments before he is murdered there.",
+ effect:"Builds dramatic tension and horror, and reinforces the theme of appearance versus reality, since the audience sees the danger the character cannot.",
+ howto:"State clearly what the audience knows that the character does not, and explain the emotional or thematic effect that gap creates."},
+{name:'Soliloquy', def:"A speech in which a character, alone on stage, reveals their private thoughts directly to the audience.",
+ example:"Macbeth's 'Is this a dagger which I see before me' soliloquy reveals his psychological turmoil before killing Duncan.",
+ effect:"Gives the audience privileged access to a character's true, unfiltered thoughts, often exposing the gap between public performance and private conscience.",
+ howto:"Use soliloquies as reliable evidence of a character's inner state, and track how their content and tone shift across the play to show development."},
+{name:'Foreshadowing', def:"Hints or clues early in the text that anticipate later events.",
+ example:"The witches' 'fair is foul, and foul is fair' foreshadows the play's recurring inversion of appearance and reality.",
+ effect:"Builds tension and dramatic irony, and creates a sense of inevitability that supports a fate-driven reading of the play.",
+ howto:"Identify the later event being anticipated, then explain how the earlier hint shapes audience expectation or unease."},
+{name:'Juxtaposition', def:"Placing two contrasting ideas, images or characters close together to highlight their differences.",
+ example:"Duncan's trusting, generous nature is juxtaposed with Macbeth's calculating ambition in Act 1.",
+ effect:"Sharpens characterisation by contrast and can highlight a moral argument, such as legitimate versus illegitimate kingship.",
+ howto:"Name both elements being contrasted explicitly, then explain what the contrast reveals about theme or character."},
+{name:'Repetition', def:"Deliberate reuse of a word or phrase for emphasis.",
+ example:"Lady Macbeth's repeated 'Out, damned spot! Out, I say!' in her sleepwalking scene.",
+ effect:"Suggests obsession and psychological breakdown; the repeated command that fails to work emphasises guilt's inescapability.",
+ howto:"Explain not just that repetition occurs, but why the specific repeated word or phrase matters and what emotional state it conveys."},
+{name:'Imperatives', def:"Commanding verb forms used to give orders.",
+ example:"Lady Macbeth's 'Screw your courage to the sticking-place' commands Macbeth into action.",
+ effect:"Shows Lady Macbeth's dominance and control over Macbeth early in the play, subverting typical Jacobean gender expectations.",
+ howto:"Link imperative language directly to power dynamics between characters in the specific scene being analysed."},
+{name:'Semantic field', def:"A group of words related to the same topic or idea running through a text (e.g. blood, disease, darkness).",
+ example:"The recurring semantic field of blood spans the whole play, from 'brave Macbeth' on the battlefield to Lady Macbeth's hands.",
+ effect:"Reinforces a theme persistently and cumulatively, rather than through a single isolated image.",
+ howto:"Track a semantic field across multiple scenes or acts to show how Shakespeare develops a theme over the course of the whole play, not just one moment."},
+{name:'Blank verse', def:"Unrhymed iambic pentameter (ten syllables per line, alternating unstressed/stressed), the standard form for noble characters' speech.",
+ example:"Macbeth's soliloquies are largely in blank verse, reflecting his noble status and ordered thought — until his verse becomes increasingly broken as he unravels.",
+ effect:"A regular rhythm reflects order and control; disrupted rhythm (extra or missing syllables) can mirror emotional or psychological disturbance.",
+ howto:"Notice when characters break from regular blank verse, and connect that structural disruption to a moment of emotional crisis."},
+{name:'Prose', def:"Ordinary language without a regular verse structure, often used for lower-status characters, comic moments, or breakdowns in order.",
+ example:"Lady Macbeth speaks in prose during her sleepwalking scene, a marked shift from her earlier controlled verse.",
+ effect:"The Porter's comic prose in Act 2 provides tonal relief immediately after Duncan's murder while also darkly echoing ideas of hell and damnation; Lady Macbeth's shift to prose signals loss of control.",
+ howto:"Note the contrast with a character's usual verse form, and explain what the shift to prose reveals about status, control or mental state."},
+{name:'Equivocation', def:"Deliberately ambiguous language that can be true in more than one sense, used to mislead without technically lying.",
+ example:"The witches' prophecy that 'none of woman born' can harm Macbeth technically excludes Macduff, who was delivered by caesarean section.",
+ effect:"Creates dramatic irony and false confidence, and reflects contemporary Jacobean anxieties about equivocation linked to the Gunpowder Plot trials.",
+ howto:"Show both possible meanings of the equivocal language and explain how the character's misreading drives the plot toward tragedy."}
+];
+
+/* ================= DATA: QUOTE VAULT ================= */
+const QUOTES = [
+{text:"Fair is foul, and foul is fair", speaker:"The Witches", act:"1.1", characters:['The Witches'], themes:['The Supernatural','Appearance vs Reality'],
+ meaning:"The witches declare that moral categories will be inverted throughout the play — what seems good may be evil, and vice versa.",
+ technique:"Paradox / chiasmus (mirrored word order).",
+ solid:"This quote shows the witches are confusing and mysterious, which makes the audience feel unsettled from the very start of the play.",
+ deep:"The chiastic structure (fair/foul, foul/fair) enacts the very inversion it describes, structurally embedding moral confusion into the play's opening line. This sets up a recurring motif where characters, especially Macbeth, mistake foul acts for fair opportunities, most explicitly when Macbeth later echoes the phrase almost word for word ('So foul and fair a day I have not seen'), linking him thematically to the witches from his very first line.",
+ context:"Reflects Jacobean fears about witches' power to invert natural and moral order.",
+ useFor:"Opening paragraphs on the supernatural, or discussing appearance vs reality as a structural device."},
+{text:"If it were done when 'tis done, then 'twere well it were done quickly", speaker:"Macbeth", act:"1.7", characters:['Macbeth'], themes:['Ambition','Fate vs Free Will'],
+ meaning:"Macbeth reasons that if killing Duncan could be a single, consequence-free act, he should do it immediately.",
+ technique:"Repetition of 'done'; conditional syntax.",
+ solid:"The repetition of 'done' shows Macbeth is anxious and trying to convince himself to act quickly before he changes his mind.",
+ deep:"The triple repetition of 'done' within a single line exposes the gap between Macbeth's desire for a clean, consequence-free act and the reality he goes on to articulate in the same soliloquy — that murder inevitably 'returns to plague th' inventor'. The conditional, almost legalistic syntax reveals a rational mind attempting to bargain with its own conscience, undermining any reading of Macbeth as simply fated or coerced.",
+ context:"Can be linked to Jacobean beliefs in an ordered moral universe where sin always has consequence.",
+ useFor:"Essays on free will, or on Macbeth's psychological complexity before the murder."},
+{text:"I have no spur to prick the sides of my intent, but only vaulting ambition, which o'erleaps itself and falls on th' other", speaker:"Macbeth", act:"1.7", characters:['Macbeth'], themes:['Ambition'],
+ meaning:"Macbeth admits he has no real justification for killing Duncan except his own ambition, which he recognises may destroy him.",
+ technique:"Extended metaphor (horse-riding/spurs); self-aware foreshadowing.",
+ solid:"Macbeth compares his ambition to a horse rider who jumps too high and falls, showing he knows ambition could be his downfall.",
+ deep:"The equestrian metaphor casts ambition as a force Macbeth cannot fully control, positioning him as a rider rather than the horse itself — subtly displacing agency even as the line is delivered with striking self-awareness. This tension between insight and inevitability is central to a free-will reading: Macbeth diagnoses his own fatal flaw accurately, yet proceeds regardless, which arguably makes his culpability greater, not less.",
+ context:"Ambition disrupting the 'natural order' was viewed as dangerous and sinful in Jacobean thought.",
+ useFor:"Essays on ambition as a self-destructive force, or Macbeth's self-awareness."},
+{text:"Look like the innocent flower, but be the serpent under't", speaker:"Lady Macbeth", act:"1.5", characters:['Lady Macbeth'], themes:['Appearance vs Reality','Ambition'],
+ meaning:"Lady Macbeth instructs Macbeth to hide his murderous intentions behind an innocent appearance.",
+ technique:"Biblical allusion (Eden/serpent); imperative; juxtaposition.",
+ solid:"The comparison to a flower and a serpent shows Lady Macbeth wants Macbeth to look innocent while planning something evil.",
+ deep:"The biblical allusion to the serpent in Eden casts Lady Macbeth as a tempter figure and Duncan's murder as a kind of original sin against the natural, divinely-ordained order. The juxtaposition of 'innocent flower' and 'serpent' encapsulates the play's broader appearance-versus-reality theme in miniature, and positions Lady Macbeth, not the witches, as the more direct architect of deception in the domestic sphere.",
+ context:"Would resonate strongly with a Christian Jacobean audience familiar with the Genesis narrative.",
+ useFor:"Essays on Lady Macbeth's manipulation, deception, or the theme of appearance vs reality."},
+{text:"Is this a dagger which I see before me, the handle toward my hand?", speaker:"Macbeth", act:"2.1", characters:['Macbeth'], themes:['The Supernatural','Guilt','Ambition'],
+ meaning:"Macbeth hallucinates a floating dagger leading him toward Duncan's chamber, moments before the murder.",
+ technique:"Rhetorical question; visual imagery; symbolism.",
+ solid:"The dagger shows Macbeth is imagining things because he is so nervous and guilty about what he's about to do.",
+ deep:"The unanswered rhetorical question destabilises the audience's certainty about what is real, mirroring Macbeth's own crumbling grip on reality. Whether the dagger is supernatural or a projection of guilt is left deliberately ambiguous, which is itself thematically significant: it suggests the boundary between external evil (the witches) and internal moral corruption is porous, and that Macbeth's mind may already be doing the witches' work for them.",
+ context:"Ties into Jacobean fascination with the supernatural and psychological explanations for visions.",
+ useFor:"Essays on the supernatural, guilt before the crime, or ambiguity of evil's source."},
+{text:"Will all great Neptune's ocean wash this blood clean from my hand?", speaker:"Macbeth", act:"2.2", characters:['Macbeth'], themes:['Guilt'],
+ meaning:"Immediately after murdering Duncan, Macbeth realises the guilt he feels can never be washed away, however much water is used.",
+ technique:"Hyperbole; rhetorical question; blood imagery.",
+ solid:"Macbeth exaggerates by saying not even the whole ocean could wash away his guilt, showing how enormous he feels his crime is.",
+ deep:"The hyperbolic scale of 'great Neptune's ocean' immediately establishes guilt as a force beyond physical or even mythological cleansing, foreshadowing Lady Macbeth's parallel and equally futile hand-washing in Act 5. The classical allusion to Neptune also elevates the murder to a cosmic scale, suggesting the crime has disrupted an order far greater than a single household or kingdom.",
+ context:"Reflects the idea that regicide was considered a crime against the divinely-ordained order of the universe itself.",
+ useFor:"Essays on guilt, blood imagery, or parallels between Macbeth and Lady Macbeth."},
+{text:"Out, damned spot! Out, I say!", speaker:"Lady Macbeth", act:"5.1", characters:['Lady Macbeth'], themes:['Guilt'],
+ meaning:"In her sleepwalking scene, Lady Macbeth obsessively tries to wash imagined blood from her hands.",
+ technique:"Imperative; repetition; prose (not verse); fragmented syntax.",
+ solid:"The short, urgent commands show Lady Macbeth has lost control and is desperately trying to escape her guilt, even in her sleep.",
+ deep:"The shift into prose after a play largely dominated by regular blank verse formally enacts Lady Macbeth's psychological collapse — the loss of poetic order mirrors the loss of mental order. The imperative 'Out' echoes her earlier commanding language to Macbeth in Act 1, but where her commands once controlled others, she now issues commands her own body and mind cannot obey, a bitter reversal of her earlier power.",
+ context:"Sleepwalking and confession under psychological distress reflected contemporary beliefs that guilt could not remain hidden.",
+ useFor:"Essays on Lady Macbeth's downfall, guilt, or dramatic form/structure."},
+{text:"None of woman born shall harm Macbeth", speaker:"Second Apparition (Witches)", act:"4.1", characters:['The Witches','Macbeth'], themes:['The Supernatural','Fate vs Free Will','Appearance vs Reality'],
+ meaning:"An apparition conjured by the witches assures Macbeth he cannot be killed by anyone born naturally, giving him false confidence.",
+ technique:"Equivocation; dramatic irony; prophecy.",
+ solid:"This prophecy makes Macbeth feel invincible, but the audience later learns it is a trick because Macduff was born by caesarean section.",
+ deep:"The equivocal phrasing exploits a literal loophole (Macduff being 'from his mother's womb untimely ripped') that Macbeth fails to interrogate, reflecting the broader danger of taking equivocal language at face value — a live political anxiety following the 1606 Gunpowder Plot trials. Macbeth's overconfident reliance on a literal reading, rather than probing the prophecy's ambiguity, arguably represents his final and fatal lapse of the critical judgement he showed earlier in the play.",
+ context:"Directly connects to Jacobean anxieties about 'equivocation' following the Gunpowder Plot and the trial of Henry Garnet.",
+ useFor:"Essays on fate vs free will, dramatic irony, or the witches' ambiguous power."},
+{text:"Life's but a walking shadow, a poor player that struts and frets his hour upon the stage and then is heard no more", speaker:"Macbeth", act:"5.5", characters:['Macbeth'], themes:['Fate vs Free Will','Guilt'],
+ meaning:"On hearing of Lady Macbeth's death, Macbeth reflects nihilistically that life is meaningless and fleeting.",
+ technique:"Metaphor (theatre/acting); metatheatre; existential tone.",
+ solid:"Macbeth compares life to an actor performing briefly on stage, showing he now feels nothing matters anymore.",
+ deep:"The theatrical metaphor is strikingly metatheatrical, drawing attention to the actors literally performing before a live audience, which collapses the distance between Macbeth's nihilism and the audience's own experience of watching a temporary performance. This moment marks the endpoint of Macbeth's moral and emotional journey: from a man capable of vivid guilt-driven hallucination in Act 2 to one numb even to his wife's death, suggesting repeated violence has eroded his capacity to feel.",
+ context:"Reflects contemporary theatrical self-awareness (the Globe's motto was reputedly 'totus mundus agit histrionem' — the whole world is a playhouse).",
+ useFor:"Essays on Macbeth's psychological deterioration, nihilism, or the play's ending."},
+{text:"Bleed, bleed, poor country!", speaker:"Macduff", act:"4.3", characters:['Macduff'], themes:['Kingship','Power','Violence'],
+ meaning:"Macduff laments the suffering of Scotland under Macbeth's tyrannical rule.",
+ technique:"Personification; blood imagery; imperative.",
+ solid:"Macduff personifies Scotland as bleeding, showing how much the whole country is suffering because of Macbeth.",
+ deep:"By personifying Scotland as a wounded body, Shakespeare extends the play's blood imagery from the individual (Macbeth's hands, Lady Macbeth's guilt) to the national scale, suggesting tyranny is a sickness that infects the entire body politic, not merely the tyrant's conscience. This links directly to the Jacobean political theory of the king's 'two bodies' — natural and political — implying Macbeth's corruption has poisoned Scotland itself.",
+ context:"Reflects Jacobean political theory that a monarch's moral state directly affected the health of the nation.",
+ useFor:"Essays on kingship, tyranny, or the impact of Macbeth's actions on Scotland."},
+{text:"Screw your courage to the sticking-place", speaker:"Lady Macbeth", act:"1.7", characters:['Lady Macbeth','Macbeth'], themes:['Masculinity','Ambition'],
+ meaning:"Lady Macbeth urges Macbeth to steel his resolve and commit to murdering Duncan.",
+ technique:"Metaphor (drawing a crossbow/tuning an instrument); imperative.",
+ solid:"Lady Macbeth uses a metaphor to tell Macbeth to be brave and commit fully to the murder.",
+ deep:"The mechanical metaphor (likely referencing tightening a crossbow string to its 'sticking-place') reduces Macbeth's courage to something that can be manually adjusted by another person, emphasising Lady Macbeth's controlling role at this stage of the play. This dominance is later inverted, since it is Lady Macbeth, not Macbeth, whose resolve ultimately breaks first.",
+ context:"Reflects Jacobean expectations that wives should be subordinate — making Lady Macbeth's dominance here transgressive and unsettling for the original audience.",
+ useFor:"Essays on Lady Macbeth's manipulation, masculinity, or power dynamics in their marriage."},
+{text:"He unseamed him from the nave to th' chops", speaker:"Captain (describing Macbeth)", act:"1.2", characters:['Macbeth'], themes:['Violence'],
+ meaning:"A captain describes, admiringly, how Macbeth brutally killed a rebel in battle.",
+ technique:"Graphic imagery; sibilance; heroic tone.",
+ solid:"This violent, graphic description shows Macbeth is already capable of extreme violence, even before he commits any murders.",
+ deep:"Establishing Macbeth's capacity for extreme violence within the play's opening scenes is a crucial dramatic choice: his brutality is not new in Act 2, only its target and sanction have changed, from state-approved warfare to unsanctioned regicide. This complicates any reading of Macbeth as a fundamentally gentle man corrupted from nothing, instead suggesting Shakespeare is interested in how society legitimises certain violence while condemning other forms.",
+ context:"Martial violence was celebrated in Jacobean society when directed at the king's enemies, unlike domestic or regicidal violence.",
+ useFor:"Essays on violence, Macbeth's character before the murders, or society's sanctioning of violence."},
+{text:"What's done cannot be undone", speaker:"Lady Macbeth", act:"5.1", characters:['Lady Macbeth'], themes:['Guilt'],
+ meaning:"In her sleepwalking scene, Lady Macbeth despairs that Duncan's murder can never be reversed.",
+ technique:"Echo/repetition of earlier language ('what's done is done'); short, fragmented syntax.",
+ solid:"This short, sad line shows Lady Macbeth now regrets what she did and knows she cannot fix it.",
+ deep:"This line bitterly echoes her own earlier reassurance to Macbeth in Act 3 ('what's done is done'), and the shift from confident dismissal to despairing repetition traces her psychological collapse across the play. The echo device invites the examiner to see structural, not just verbal, patterning: Shakespeare deliberately returns to near-identical phrasing to measure how far a character has fallen.",
+ context:"Reinforces Jacobean beliefs that sin, once committed, carried permanent spiritual consequence.",
+ useFor:"Essays tracking Lady Macbeth's development across the play, or structural echoes in the text."},
+{text:"I am in blood stepped in so far that, should I wade no more, returning were as tedious as go o'er", speaker:"Macbeth", act:"3.4", characters:['Macbeth'], themes:['Guilt','Violence','Fate vs Free Will'],
+ meaning:"Macbeth reflects that he has committed so much violence that continuing is now as easy as stopping.",
+ technique:"Extended metaphor (wading through a river of blood); tricolon rhythm.",
+ solid:"Macbeth compares himself to someone wading through blood, showing he feels he has gone too far to turn back now.",
+ deep:"The river-wading metaphor presents moral choice as a kind of physics problem — the effort to go back equals the effort to go forward — subtly reframing what is actually still a choice as an inevitability. This self-justifying logic is significant for a fate-versus-free-will argument: Macbeth constructs his own sense of fatedness through rhetoric, rather than the witches or fate genuinely removing his agency.",
+ context:"Can be linked to Jacobean ideas about the corrupting, escalating nature of sin once begun.",
+ useFor:"Essays on free will vs fate, or Macbeth's self-justification and moral decline."},
+{text:"Double, double toil and trouble; fire burn and cauldron bubble", speaker:"The Witches", act:"4.1", characters:['The Witches'], themes:['The Supernatural'],
+ meaning:"The witches chant while preparing a potion of grotesque ingredients to summon apparitions for Macbeth.",
+ technique:"Trochaic tetrameter; rhyme; repetition; grotesque imagery.",
+ solid:"The witches' chanting rhythm and rhyme make this feel like a spell, adding to the eerie supernatural atmosphere.",
+ deep:"The trochaic tetrameter (stressed-unstressed rhythm) contrasts sharply with the iambic pentameter used by noble characters, marking the witches as linguistically 'other' and unnatural even in the metrical structure of their speech, not just their content. This formal distinction reinforces the play's broader association between disrupted natural order (unnatural rhythm) and supernatural evil.",
+ context:"Ingredients listed ('eye of newt', 'toe of frog') draw on contemporary folklore about witches' rituals, feeding Jacobean fears.",
+ useFor:"Essays on the supernatural, dramatic atmosphere, or form and structure."},
+{text:"Angels are bright still, though the brightest fell", speaker:"Malcolm", act:"4.3", characters:['Malcolm','Macbeth'], themes:['Appearance vs Reality','Kingship'],
+ meaning:"Malcolm reflects that even a formerly admirable figure (alluding to Lucifer, and by extension Macbeth) can fall into evil.",
+ technique:"Biblical allusion (fall of Lucifer); aphorism.",
+ solid:"This line compares Macbeth to a fallen angel, showing that someone who was once good and admired can still become evil.",
+ deep:"The allusion to Lucifer's fall from heaven elevates Macbeth's corruption to a near-cosmic scale, aligning his story with the archetypal narrative of pride leading to a catastrophic fall from grace. Malcolm's cautious, aphoristic wisdom here also demonstrates his development into a shrewd political leader, directly contrasting with his father Duncan's naive trust in appearances.",
+ context:"A direct allusion familiar to a Christian Jacobean audience, reinforcing Macbeth's fall as a moral and spiritual, not just political, catastrophe.",
+ useFor:"Essays on Macbeth's corruption, Malcolm's development, or biblical/religious allusion."},
+{text:"Macduff was from his mother's womb untimely ripped", speaker:"Macduff", act:"5.8", characters:['Macduff','Macbeth'], themes:['Fate vs Free Will','Appearance vs Reality'],
+ meaning:"Macduff reveals he was delivered by what is understood as a caesarean birth, technically fulfilling the witches' prophecy and sealing Macbeth's fate.",
+ technique:"Equivocation resolved; dramatic climax; dramatic irony revealed.",
+ solid:"This reveals the witches' prophecy was a trick, and Macbeth realises too late that he cannot escape his fate.",
+ deep:"This revelation is the play's final and most devastating act of equivocation resolved: Macbeth's confidence, built on a literal misreading of ambiguous prophecy, collapses in a single line, dramatizing the danger of trusting appearances over interrogated reality. Macbeth's despairing response ('I'll not fight with thee') briefly threatens a loss of the courage that defined him at the play's opening, before he ultimately chooses to die fighting — a final, ambiguous assertion of agency even in defeat.",
+ context:"Caesarean delivery was rare and dangerous in this period, adding to the sense of Macduff as an unnatural, fate-marked figure.",
+ useFor:"Essays on the play's climax, dramatic irony, or the resolution of fate vs free will."}
+];
+
+/* ================= DATA: QUIZ ================= */
+const QUIZ_BANK = [
+{q:"Who is the first person to hear the witches' prophecies alongside Macbeth?",opts:["Duncan","Banquo","Macduff","Malcolm"],a:1,exp:"Banquo is present with Macbeth in Act 1, Scene 3 when the witches deliver their prophecies."},
+{q:"What does Lady Macbeth ask the spirits to do to her in Act 1, Scene 5?",opts:["Give her strength to flee","'Unsex' her and remove her compassion","Make her invisible","Give her the power of prophecy"],a:1,exp:"She asks to be 'unsexed', rejecting traditionally feminine compassion so she can act ruthlessly."},
+{q:"Who actually murders King Duncan?",opts:["Lady Macbeth","Banquo","Macbeth","The Witches"],a:2,exp:"Macbeth kills Duncan himself in Act 2, Scene 2, though Lady Macbeth plans and enables the murder."},
+{q:"What does Macbeth see leading him toward Duncan's chamber?",opts:["A ghost","A floating crown","A hallucinated dagger","A raven"],a:2,exp:"Macbeth hallucinates a dagger in his famous Act 2, Scene 1 soliloquy: 'Is this a dagger which I see before me'."},
+{q:"Who escapes when Macbeth's hired murderers attack Banquo?",opts:["Banquo himself","Fleance, Banquo's son","Macduff","Lennox"],a:1,exp:"Fleance escapes, meaning Banquo's line may still fulfil the witches' prophecy that his descendants will be kings."},
+{q:"Whose ghost appears at the banquet in Act 3?",opts:["Duncan's","Banquo's","Lady Macduff's","The Witches'"],a:1,exp:"Banquo's ghost appears, visible only to Macbeth, causing him to publicly panic in front of his guests."},
+{q:"According to the second apparition, who can harm Macbeth?",opts:["No one at all","Anyone with a sword","None of woman born","Only Banquo's descendants"],a:2,exp:"The apparition says 'none of woman born shall harm Macbeth' — a prophecy that misleads him about Macduff."},
+{q:"What happens to Macduff's family while he is in England?",opts:["They flee to safety","They are murdered on Macbeth's orders","They join Malcolm's army","They are imprisoned"],a:1,exp:"Macbeth orders the murder of Lady Macduff and her children in Act 4, Scene 2, in revenge for Macduff's defection."},
+{q:"What does Lady Macbeth do repeatedly in her sleepwalking scene?",opts:["Recite the witches' prophecy","Try to wash imagined blood from her hands","Call for Macbeth","Sing"],a:1,exp:"She obsessively rubs her hands, saying 'Out, damned spot!', tormented by guilt over Duncan's murder."},
+{q:"What is unusual about how Macduff was born, revealed at the play's climax?",opts:["He was born a twin","He was delivered by what is understood as caesarean section","He was born abroad","He was adopted"],a:1,exp:"Macduff was 'from his mother's womb untimely ripped', meaning he was not 'of woman born' in the natural sense the prophecy implied."},
+{q:"What must happen, according to the witches, before Macbeth can be defeated?",opts:["Duncan's ghost must appear","Great Birnam Wood must come to Dunsinane","Lady Macbeth must confess","Scotland must be invaded by sea"],a:1,exp:"The witches say Macbeth is safe 'until Great Birnam wood... come against him' — which Malcolm's army achieves by camouflaging themselves with branches."},
+{q:"Who kills Macbeth at the end of the play?",opts:["Malcolm","Banquo's ghost","Macduff","Lennox"],a:2,exp:"Macduff kills Macbeth in single combat in Act 5, Scene 8, and displays his head to the assembled army."},
+{q:"Who becomes King of Scotland at the play's end?",opts:["Macduff","Fleance","Malcolm","Donalbain"],a:2,exp:"Malcolm, Duncan's eldest son, is crowned King of Scotland, restoring legitimate succession."},
+{q:"What is the primary theme explored through the imagery of blood throughout the play?",opts:["Violence only","Guilt","Family loyalty","The supernatural only"],a:1,exp:"Blood imagery is used consistently to represent inescapable guilt, most famously in the hand-washing motifs."},
+{q:"Which theme is most directly explored through the witches' ambiguous prophecies?",opts:["Fate vs Free Will","Masculinity","Kingship","Appearance vs Reality only"],a:0,exp:"The prophecies raise the central question of whether Macbeth's actions are fated or freely chosen."},
+{q:"Which technique describes 'Fair is foul, and foul is fair'?",opts:["Simile","Chiasmus/paradox","Alliteration only","Blank verse"],a:1,exp:"It is a paradoxical, mirrored (chiastic) statement that inverts moral opposites."},
+{q:"What poetic form do noble characters like Macbeth typically speak in?",opts:["Free verse","Blank verse (iambic pentameter)","Rhyming couplets throughout","Prose"],a:1,exp:"Noble characters typically speak in unrhymed iambic pentameter, or blank verse, reflecting order and status."},
+{q:"What does it mean when a character's speech shifts from verse to prose?",opts:["Nothing significant","It often signals a loss of control or status","It shows they are lying","It shows comic relief only"],a:1,exp:"A shift to prose (as with Lady Macbeth's sleepwalking scene) often signals psychological breakdown or loss of control."},
+{q:"What is 'equivocation' in the context of the play?",opts:["Speaking two languages","Deliberately ambiguous language that can mislead without technically lying","A type of soliloquy","A stage direction"],a:1,exp:"Equivocation is ambiguous language, exemplified by the witches' prophecies, which technically true but misleading."},
+{q:"Which real historical event is often linked to the play's interest in equivocation?",opts:["The Spanish Armada","The Gunpowder Plot (1605) and Henry Garnet's trial","The English Civil War","The Great Fire of London"],a:1,exp:"The 1606 trial of Jesuit priest Henry Garnet, linked to the Gunpowder Plot, made equivocation a topical concern."},
+{q:"Who was King of England when Macbeth was likely written and performed?",opts:["Elizabeth I","James I","Henry VIII","Charles I"],a:1,exp:"Macbeth was likely written around 1606, during the reign of James I, who had a personal interest in witchcraft and Scottish history."},
+{q:"Why is Duncan's murder considered especially horrific to a Jacobean audience?",opts:["He was unpopular","Kings were believed to rule by Divine Right, making regicide a crime against God","He was a foreign king","He had no heirs"],a:1,exp:"The Divine Right of Kings held that monarchs were appointed by God, making regicide both a political and spiritual crime."},
+{q:"What is the 'Great Chain of Being'?",opts:["A type of sword","A Jacobean belief in a fixed, divinely-ordained hierarchy of all existence","A witches' spell","A type of poetic metre"],a:1,exp:"It was the belief that all things had a fixed place in a divinely-ordained hierarchy, from God down to inanimate objects; disrupting it (as Macbeth does) was seen as deeply unnatural."},
+{q:"What does Macbeth mean by describing his ambition as 'vaulting'?",opts:["Ambition that is calm and measured","Ambition that leaps too far and risks falling","Ambition inherited from his father","Ambition shared equally with Banquo"],a:1,exp:"The image is of a rider who leaps too high onto a horse and overbalances, suggesting ambition will cause his own downfall."},
+{q:"Which of these is NOT one of the witches' prophecies to Macbeth?",opts:["Thane of Cawdor","King hereafter","Beware Macduff","He will live to old age peacefully"],a:3,exp:"The witches never promise Macbeth a peaceful old age; in fact their prophecies contribute directly to his violent downfall."},
+{q:"What does Malcolm do to test Macduff's loyalty in Act 4?",opts:["Asks him to kill someone","Falsely claims to be full of vices unfit to rule","Sends him to fight Macbeth alone","Asks him to swear an oath on the Bible"],a:1,exp:"Malcolm falsely describes himself as greedy, lustful and unfit to rule, to see whether Macduff will still support him."},
+{q:"What is dramatic irony?",opts:["When a character makes a joke","When the audience knows something a character does not","When two characters argue","When a character lies to the audience"],a:1,exp:"Dramatic irony occurs when the audience has knowledge that a character on stage lacks, often creating tension."},
+{q:"Which character says 'I have no children' upon hearing of his family's murder?",opts:["Malcolm","Duncan","Macduff","Ross"],a:2,exp:"Macduff says this in his grief upon learning his wife and children have been murdered."},
+{q:"How does the play end in terms of political order?",opts:["Scotland remains in chaos","Legitimate order is restored under King Malcolm","The witches take control","Banquo's ghost becomes king"],a:1,exp:"Malcolm is crowned king, restoring the legitimate line of succession and political order to Scotland."},
+{q:"What does the recurring disease/sickness imagery in Acts 4-5 most likely represent?",opts:["Macbeth's literal illness","The corrupting effect of Macbeth's tyranny on Scotland","Lady Macbeth's pregnancy","The witches' curse on the land"],a:1,exp:"Scotland is repeatedly described as sick or bleeding under Macbeth's tyrannical rule, symbolising the damage his illegitimate power causes the nation."}
+];
+
+/* ================= RENDER: NAVIGATION ================= */
+let currentSection = Store.get('lastSection','overview');
+
+function renderNav(){
+  const html = SECTIONS.map((s,i)=>`<button class="navlink" data-target="${s.id}" role="tab"><span class="num">${String(i+1).padStart(2,'0')}</span>${s.label}</button>`).join('');
+  document.getElementById('navList').innerHTML = html;
+  document.getElementById('navListMobile').innerHTML = html;
+  document.querySelectorAll('.navlink').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ showSection(btn.getAttribute('data-target')); closeDrawer(); });
+  });
+}
+
+function showSection(id){
+  currentSection = id;
+  Store.set('lastSection', id);
+  document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active', s.id === 'section-'+id));
+  document.querySelectorAll('.navlink').forEach(b=>b.classList.toggle('active', b.getAttribute('data-target')===id));
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+}
+
+/* Mobile drawer */
+function closeDrawer(){
+  document.getElementById('mobileDrawer').classList.remove('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded','false');
+}
+document.getElementById('hamburgerBtn').addEventListener('click', ()=>{
+  const d = document.getElementById('mobileDrawer');
+  const open = d.classList.toggle('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded', open?'true':'false');
+});
+document.getElementById('mobileDrawer').addEventListener('click', (e)=>{
+  if(e.target.id === 'mobileDrawer') closeDrawer();
+});
+
+/* ================= BUILD SECTIONS HTML ================= */
+const root = document.getElementById('sectionsRoot');
+
+function el(html){ const d=document.createElement('div'); d.innerHTML=html; return d.firstElementChild; }
+
+/* ---- 1. OVERVIEW ---- */
+function buildOverview(){
+  const s = el(`<section class="section" id="section-overview">
+    <div class="section-header">
+      <div class="eyebrow">Section 01</div>
+      <h1>Overview</h1>
+      <div class="desc">Get your bearings before you dive into detail.</div>
+    </div>
+
+    <div class="grid two">
+      <div class="card"><h3>Key facts</h3>
+        <p><b>Author:</b> William Shakespeare<br>
+        <b>Approximate date:</b> Written and first performed around 1606<br>
+        <b>Genre:</b> Tragedy (specifically a Jacobean revenge/political tragedy)<br>
+        <b>Setting:</b> Scotland (and briefly England), in a vague, semi-legendary medieval past</p>
+      </div>
+      <div class="card"><h3>Why the play matters for GCSE</h3>
+        <p>Macbeth is one of Shakespeare's shortest and most tightly-plotted tragedies, making it ideal for close analysis. It rewards students who can track how language, character and theme develop across the whole play, not just in isolated extracts.</p>
+      </div>
+    </div>
+
+    <div class="card"><h3>Basic premise</h3>
+      <p>A celebrated Scottish general, Macbeth, receives a prophecy from three witches that he will become king. Spurred on by his own ambition and his wife's manipulation, he murders King Duncan to seize the throne. Guilt, paranoia and further violence follow as Macbeth tries to secure his power, and he is eventually overthrown and killed, restoring rightful order to Scotland.</p>
+    </div>
+
+    <div class="card"><h3>Major themes at a glance</h3>
+      <p><span class="tag blood">Ambition</span><span class="tag blood">Power</span><span class="tag blood">Guilt</span><span class="tag gold">The Supernatural</span><span class="tag gold">Masculinity</span><span class="tag gold">Kingship</span><span class="tag">Violence</span><span class="tag">Fate vs Free Will</span><span class="tag">Appearance vs Reality</span></p>
+    </div>
+
+    <div class="card"><h3>What GCSE students need to understand</h3>
+      <ul>
+        <li>How Macbeth changes across the play — from celebrated hero to isolated tyrant.</li>
+        <li>How Shakespeare uses language, structure and form (verse, imagery, soliloquy) to build meaning, not just what happens in the plot.</li>
+        <li>How the play reflects Jacobean context: beliefs about kingship, witchcraft, gender and the natural order.</li>
+        <li>That exam boards want analytical arguments about the writer's methods and intentions, not just retelling of the story.</li>
+      </ul>
+    </div>
+
+    <div class="sixty">
+      <h3>Macbeth in 60 Seconds</h3>
+      <p>Macbeth, a brave general, meets three witches who prophesy he will become king. Egged on by his ambitious wife, he murders King Duncan and seizes the throne. Consumed by guilt and paranoia, he murders his friend Banquo and Macduff's entire family to protect his power. Lady Macbeth, wracked with guilt, loses her mind and dies. Macduff, seeking revenge, kills Macbeth in battle, and Duncan's son Malcolm is restored as the rightful king. The play explores ambition, guilt, fate and what it truly means to be powerful.</p>
+    </div>
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 2. PLOT ---- */
+const PLOT = [
+{act:"Act 1", scenes:[
+ {t:"Scene 1 — The Witches", happens:"Three witches meet on a heath amid thunder and lightning, agreeing to meet Macbeth after a battle.", why:"Immediately establishes a supernatural, disordered world and introduces the play's central paradox.", chars:["The Witches"], themes:["The Supernatural","Appearance vs Reality"], quote:"Fair is foul, and foul is fair."},
+ {t:"Scene 2 — The Bleeding Captain", happens:"A wounded captain reports Macbeth's heroic, brutal victory in battle; Duncan orders the traitorous Thane of Cawdor executed and his title given to Macbeth.", why:"Establishes Macbeth's initial status as a loyal, celebrated hero, making his later fall more dramatic.", chars:["Duncan","Macbeth (reported)"], themes:["Violence","Kingship"], quote:"He unseamed him from the nave to th' chops."},
+ {t:"Scene 3 — The Prophecy", happens:"The witches greet Macbeth as Thane of Glamis, Thane of Cawdor, and future king; they tell Banquo his descendants will be kings. Macbeth is soon after confirmed as Thane of Cawdor.", why:"The inciting incident of the whole tragedy — Macbeth's ambition is ignited by a prophecy that begins coming true.", chars:["Macbeth","Banquo","The Witches"], themes:["Ambition","Fate vs Free Will","The Supernatural"], quote:"All hail, Macbeth, that shalt be king hereafter!"},
+ {t:"Scene 4 — Duncan's Court", happens:"Duncan rewards Macbeth and names his own son Malcolm as heir (Prince of Cumberland), which Macbeth sees as an obstacle.", why:"Gives Macbeth a specific reason to feel his path to the throne is blocked, sharpening his ambition.", chars:["Duncan","Malcolm","Macbeth"], themes:["Kingship","Ambition"], quote:"Stars, hide your fires; let not light see my black and deep desires."},
+ {t:"Scene 5 — Lady Macbeth", happens:"Lady Macbeth reads Macbeth's letter about the prophecy and resolves to push him toward murder, invoking spirits to strip her of compassion.", why:"Introduces Lady Macbeth as the play's most ruthless character and establishes her influence over Macbeth.", chars:["Lady Macbeth"], themes:["Ambition","Masculinity","Guilt"], quote:"Unsex me here."},
+ {t:"Scene 6 — Arrival at Inverness", happens:"Duncan arrives at Macbeth's castle, praising its pleasant setting, unaware of the danger awaiting him.", why:"Creates dramatic irony — the audience feels the danger Duncan cannot see.", chars:["Duncan","Lady Macbeth"], themes:["Appearance vs Reality"], quote:"This castle hath a pleasant seat."},
+ {t:"Scene 7 — Macbeth Hesitates", happens:"Macbeth privately weighs the moral consequences of murdering Duncan and decides against it, but Lady Macbeth taunts his manhood and persuades him to proceed.", why:"The key turning point of Act 1 — shows Macbeth's conscience clearly, then his capitulation to manipulation.", chars:["Macbeth","Lady Macbeth"], themes:["Ambition","Masculinity","Fate vs Free Will"], quote:"I have no spur to prick the sides of my intent, but only vaulting ambition."}
+]},
+{act:"Act 2", scenes:[
+ {t:"Scene 1 — The Dagger", happens:"Alone, Macbeth hallucinates a floating dagger guiding him toward Duncan's chamber.", why:"Reveals Macbeth's guilt and psychological turmoil before he has even committed the murder.", chars:["Macbeth","Banquo"], themes:["The Supernatural","Guilt"], quote:"Is this a dagger which I see before me?"},
+ {t:"Scene 2 — The Murder", happens:"Macbeth murders Duncan offstage; he returns shaken, and Lady Macbeth has to plant the daggers on the sleeping guards herself.", why:"The central act of the tragedy — the murder that sets everything else in motion.", chars:["Macbeth","Lady Macbeth"], themes:["Guilt","Violence"], quote:"Will all great Neptune's ocean wash this blood clean from my hand?"},
+ {t:"Scene 3 — The Porter and Discovery", happens:"A drunken Porter provides dark comic relief before Macduff discovers Duncan's body; chaos ensues and Malcolm and Donalbain flee, fearing for their lives.", why:"The Porter's 'hell-gate' imagery darkly reinforces the moral horror of the murder; Malcolm and Donalbain's flight makes them appear suspicious.", chars:["Macduff","Malcolm","Donalbain","Lennox"], themes:["Appearance vs Reality","Guilt"], quote:"Knock, knock, knock! Who's there, i' th' name of Beelzebub?"},
+ {t:"Scene 4 — Aftermath", happens:"Ross and an old man discuss unnatural omens (darkness at midday, a falcon killed by an owl) following the murder. Macbeth is confirmed as king.", why:"Shows how Duncan's murder has disrupted the natural order itself, reflecting Jacobean beliefs about regicide.", chars:["Ross","Macduff"], themes:["The Supernatural","Kingship"], quote:"Thou seest the heavens, as troubled with man's act."}
+]},
+{act:"Act 3", scenes:[
+ {t:"Scene 1 — Macbeth Fears Banquo", happens:"Now king, Macbeth grows anxious about Banquo's prophecy and hires murderers to kill Banquo and his son Fleance.", why:"Shows Macbeth's shift from reluctant killer to calculating tyrant, driven by paranoia rather than necessity.", chars:["Macbeth","Banquo"], themes:["Ambition","Fate vs Free Will","Guilt"], quote:"To be thus is nothing, but to be safely thus."},
+ {t:"Scene 2 — A Troubled Marriage", happens:"Macbeth and Lady Macbeth reveal growing distance; Macbeth hints at his murderous plan for Banquo without telling her details.", why:"Marks a shift in their relationship — Macbeth begins acting independently, foreshadowing Lady Macbeth's later isolation.", chars:["Macbeth","Lady Macbeth"], themes:["Guilt","Ambition"], quote:"We have scorched the snake, not killed it."},
+ {t:"Scene 3 — Banquo's Murder", happens:"Murderers kill Banquo, but Fleance escapes into the darkness.", why:"Fleance's survival keeps the witches' prophecy about Banquo's descendants alive, sustaining dramatic tension.", chars:["Banquo","Fleance"], themes:["Fate vs Free Will","Violence"], quote:"O, treachery! Fly, good Fleance, fly, fly, fly!"},
+ {t:"Scene 4 — The Banquet Scene", happens:"Banquo's ghost appears to Macbeth alone at a state banquet, causing him to publicly panic; Lady Macbeth tries to cover for him.", why:"A key moment of guilt manifesting supernaturally and publicly, threatening to expose Macbeth's crimes.", chars:["Macbeth","Lady Macbeth","Banquo's ghost"], themes:["The Supernatural","Guilt"], quote:"Thou canst not say I did it: never shake thy gory locks at me."},
+ {t:"Scene 5 — Hecate", happens:"Hecate, goddess of witchcraft, rebukes the witches and plans further deception of Macbeth.", why:"(Often considered a later addition) Reinforces the witches' role in Macbeth's downfall.", chars:["The Witches","Hecate"], themes:["The Supernatural"], quote:"He shall spurn fate, scorn death."},
+ {t:"Scene 6 — Suspicion Grows", happens:"Lennox and another lord discuss their suspicions of Macbeth and reveal Macduff has gone to England to seek Malcolm's help.", why:"Shows opposition to Macbeth's rule is forming, setting up the play's final conflict.", chars:["Lennox","Macduff (reported)"], themes:["Kingship"], quote:"This report hath so exasperate the king."}
+]},
+{act:"Act 4", scenes:[
+ {t:"Scene 1 — The Apparitions", happens:"Macbeth visits the witches again and receives three cryptic prophecies from apparitions: beware Macduff; none of woman born shall harm him; he is safe until Birnam Wood comes to Dunsinane. He also sees a vision of Banquo's descendants as future kings.", why:"Gives Macbeth false confidence that ultimately leads directly to his downfall.", chars:["Macbeth","The Witches"], themes:["The Supernatural","Fate vs Free Will","Appearance vs Reality"], quote:"None of woman born shall harm Macbeth."},
+ {t:"Scene 2 — Murder of the Macduffs", happens:"Macbeth's men murder Lady Macduff and her children.", why:"The play's most shocking act of violence, showing Macbeth has become a tyrant who targets innocents.", chars:["Lady Macduff","Macduff's son"], themes:["Violence","Kingship"], quote:"He has killed me, mother: run away, I pray you!"},
+ {t:"Scene 3 — Malcolm Tests Macduff", happens:"In England, Malcolm tests Macduff's loyalty by falsely claiming to be unfit to rule, before revealing the truth and learning of his family's murder.", why:"Shows Malcolm's political caution and sets up the final alliance against Macbeth.", chars:["Malcolm","Macduff"], themes:["Kingship","Masculinity"], quote:"I must also feel it as a man."}
+]},
+{act:"Act 5", scenes:[
+ {t:"Scene 1 — Sleepwalking", happens:"Lady Macbeth sleepwalks, obsessively trying to wash imagined blood from her hands and confessing fragments of her guilt.", why:"Shows Lady Macbeth's total psychological collapse, contrasting sharply with her Act 1 confidence.", chars:["Lady Macbeth"], themes:["Guilt"], quote:"Out, damned spot! Out, I say!"},
+ {t:"Scene 3-4 — Preparations for War", happens:"Macbeth prepares to defend Dunsinane, increasingly nihilistic, while Malcolm's army approaches, camouflaged with branches from Birnam Wood.", why:"Sets up the fulfilment of the witches' second prophecy in a natural, non-supernatural way.", chars:["Macbeth","Malcolm"], themes:["Fate vs Free Will","Kingship"], quote:"I have almost forgot the taste of fears."},
+ {t:"Scene 5 — Lady Macbeth's Death", happens:"Macbeth learns of Lady Macbeth's death and delivers his nihilistic 'tomorrow and tomorrow and tomorrow' soliloquy.", why:"Marks Macbeth's total emotional numbness — the endpoint of his moral and psychological decline.", chars:["Macbeth"], themes:["Guilt","Fate vs Free Will"], quote:"Life's but a walking shadow, a poor player."},
+ {t:"Scene 8 — Macbeth's Death", happens:"Macduff reveals he was not 'of woman born' in the natural sense and kills Macbeth in single combat; Malcolm is proclaimed king.", why:"Resolves the witches' final prophecy and restores legitimate order to Scotland.", chars:["Macduff","Macbeth","Malcolm"], themes:["Fate vs Free Will","Kingship"], quote:"Macduff was from his mother's womb untimely ripped."}
+]}
+];
+
+function buildPlot(){
+  let actsHtml = '';
+  PLOT.forEach((a,ai)=>{
+    let scenesHtml = '';
+    a.scenes.forEach((sc,si)=>{
+      scenesHtml += `<div class="disclosure" data-d>
+        <button class="d-head"><span>${sc.t}</span><span class="chev">›</span></button>
+        <div class="d-body"><div class="inner">
+          <div class="mini-label">What happens</div><p>${sc.happens}</p>
+          <div class="mini-label">Why it matters</div><p>${sc.why}</p>
+          <div class="mini-label">Characters involved</div><p>${sc.chars.map(c=>`<span class="tag">${c}</span>`).join('')}</p>
+          <div class="mini-label">Themes</div><p>${sc.themes.map(t=>`<span class="tag blood">${t}</span>`).join('')}</p>
+          <div class="mini-label">Useful quotation</div><div class="quote-line">"${sc.quote}"</div>
+        </div></div>
+      </div>`;
+    });
+    actsHtml += `<div class="card"><h3>${a.act}</h3>${scenesHtml}</div>`;
+  });
+
+  const tenEvents = ["The witches prophesy Macbeth will become king.","Macbeth is named Thane of Cawdor, and the first prophecy comes true.","Lady Macbeth persuades a hesitant Macbeth to murder Duncan.","Macbeth murders King Duncan; Malcolm and Donalbain flee, and Macbeth becomes king.","Macbeth, fearing Banquo's prophesied descendants, has Banquo murdered; Fleance escapes.","Banquo's ghost appears at the banquet, and Macbeth's guilt becomes publicly visible.","The witches give Macbeth three new, misleading prophecies.","Macbeth orders the murder of Macduff's wife and children.","Lady Macbeth, consumed by guilt, sleepwalks and later dies.","Macduff kills Macbeth in battle, and Malcolm is crowned the rightful king."];
+
+  const s = el(`<section class="section" id="section-plot">
+    <div class="section-header"><div class="eyebrow">Section 02</div><h1>Plot</h1><div class="desc">All five acts, scene by scene. Tap any scene to expand it.</div></div>
+    <div class="card"><h3>Whole Play in 10 Events</h3><ol>${tenEvents.map(e=>`<li>${e}</li>`).join('')}</ol></div>
+    ${actsHtml}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 3. CHARACTERS ---- */
+function buildCharacters(){
+  let cards = CHARACTERS.map(c=>`
+    <div class="disclosure" data-d>
+      <button class="d-head"><span>${c.name}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <p class="subtle" style="margin-top:10px;">${c.role}</p>
+        <div class="mini-label">Who are they?</div><p>${c.who}</p>
+        <div class="mini-label">Character journey</div><p>${c.journey}</p>
+        <div class="mini-label">Key relationships</div><p>${c.relationships}</p>
+        <div class="mini-label">Themes connected to this character</div><p>${c.themes.map(t=>`<span class="tag blood">${t}</span>`).join('')}</p>
+        <div class="mini-label">Essential quotes</div>${c.quotes.map(q=>`<div class="quote-line">"${q}"</div>`).join('')}
+        <div class="mini-label">What Shakespeare may be saying</div><p>${c.message}</p>
+        <div class="mini-label">Exam arguments to develop</div><ul>${c.examArgs.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-characters">
+    <div class="section-header"><div class="eyebrow">Section 03</div><h1>Characters</h1><div class="desc">Tap a character to see their full profile: journey, relationships, quotes and exam arguments.</div></div>
+    <div class="card"><h3>Secondary characters worth knowing</h3>
+      <p><b>Lady Macduff</b> — Macduff's wife, murdered with her children; her brief scene highlights the human cost of Macbeth's tyranny and questions Macduff's decision to leave his family.<br>
+      <b>Fleance</b> — Banquo's son, who escapes his father's murder, keeping the witches' prophecy about Banquo's line alive.<br>
+      <b>Ross &amp; Lennox</b> — Scottish thanes whose shifting loyalties and dialogue (e.g. discussing unnatural omens) provide commentary on the political and natural disorder Macbeth causes.<br>
+      <b>Hecate</b> — Goddess of witchcraft who oversees the witches in Act 3, Scene 5 (a scene some scholars believe was added by another writer).</p>
+    </div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 4. THEMES ---- */
+function buildThemes(){
+  let cards = THEMES.map(t=>`
+    <div class="disclosure" data-d>
+      <button class="d-head"><span>${t.name}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <div class="mini-label">Simple explanation</div><p>${t.explanation}</p>
+        <div class="mini-label">Where it appears</div><p>${t.where}</p>
+        <div class="mini-label">Relevant characters</div><p>${t.characters.map(c=>`<span class="tag">${c}</span>`).join('')}</p>
+        <div class="mini-label">Essential quotations</div>${t.quotes.map(q=>`<div class="quote-line">"${q}"</div>`).join('')}
+        <div class="mini-label">Shakespeare's possible message</div><p>${t.message}</p>
+        <div class="mini-label">Useful contextual link</div><p>${t.context}</p>
+        <div class="mini-label">Potential thesis statements</div><ul>${t.thesis.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-themes">
+    <div class="section-header"><div class="eyebrow">Section 04</div><h1>Themes</h1><div class="desc">Nine core themes, each with quotations, context and ready-to-adapt thesis statements.</div></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 5. QUOTE VAULT ---- */
+function buildQuoteVault(){
+  const allChars = Array.from(new Set(QUOTES.flatMap(q=>q.characters))).sort();
+  const allThemes = Array.from(new Set(QUOTES.flatMap(q=>q.themes))).sort();
+
+  const s = el(`<section class="section" id="section-quotes">
+    <div class="section-header"><div class="eyebrow">Section 05</div><h1>Quote Vault</h1><div class="desc">Search and filter the play's most important quotations. Reveal meaning, technique, analysis and context for each.</div></div>
+    <div class="qv-controls">
+      <input type="text" id="qvSearch" placeholder="Search quotations..." aria-label="Search quotations">
+      <select id="qvCharFilter" aria-label="Filter by character"><option value="">All characters</option>${allChars.map(c=>`<option value="${c}">${c}</option>`).join('')}</select>
+      <select id="qvThemeFilter" aria-label="Filter by theme"><option value="">All themes</option>${allThemes.map(t=>`<option value="${t}">${t}</option>`).join('')}</select>
+    </div>
+    <div class="qv-count" id="qvCount"></div>
+    <div id="qvResults"></div>
+  </section>`);
+  root.appendChild(s);
+
+  function renderQuotes(){
+    const search = document.getElementById('qvSearch').value.toLowerCase().trim();
+    const charF = document.getElementById('qvCharFilter').value;
+    const themeF = document.getElementById('qvThemeFilter').value;
+    const filtered = QUOTES.filter(q=>{
+      const matchesSearch = !search || q.text.toLowerCase().includes(search) || q.speaker.toLowerCase().includes(search);
+      const matchesChar = !charF || q.characters.includes(charF);
+      const matchesTheme = !themeF || q.themes.includes(themeF);
+      return matchesSearch && matchesChar && matchesTheme;
+    });
+    document.getElementById('qvCount').textContent = filtered.length + (filtered.length===1 ? ' quotation found':' quotations found');
+    const container = document.getElementById('qvResults');
+    container.innerHTML = filtered.map((q,i)=>`
+      <div class="qcard" data-idx="${i}">
+        <div class="qtext">"${q.text}"</div>
+        <div class="qmeta">${q.speaker} · Act ${q.act} · ${q.themes.join(', ')}</div>
+        <button class="qreveal-btn" type="button">Reveal analysis</button>
+        <div class="qdetail">
+          <div class="row"><b>Meaning</b>${q.meaning}</div>
+          <div class="row"><b>Technique</b>${q.technique}</div>
+          <div class="level-toggle">
+            <button type="button" class="lvl-btn active" data-lvl="solid">Solid (Grade 5–6)</button>
+            <button type="button" class="lvl-btn" data-lvl="deep">Deeper (Grade 7–9)</button>
+          </div>
+          <div class="level-block active" data-lvl="solid">${q.solid}</div>
+          <div class="level-block" data-lvl="deep">${q.deep}</div>
+          <div class="row" style="margin-top:10px;"><b>Context</b>${q.context}</div>
+          <div class="row"><b>Use this for</b>${q.useFor}</div>
+        </div>
+      </div>`).join('') || '<p class="subtle">No quotations match your search. Try different filters.</p>';
+
+    container.querySelectorAll('.qreveal-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.qcard');
+        const open = card.classList.toggle('open');
+        btn.textContent = open ? 'Hide analysis' : 'Reveal analysis';
+      });
+    });
+    container.querySelectorAll('.lvl-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.qcard');
+        const lvl = btn.getAttribute('data-lvl');
+        card.querySelectorAll('.lvl-btn').forEach(b=>b.classList.toggle('active', b===btn));
+        card.querySelectorAll('.level-block').forEach(b=>b.classList.toggle('active', b.getAttribute('data-lvl')===lvl));
+      });
+    });
+  }
+  document.getElementById('qvSearch').addEventListener('input', renderQuotes);
+  document.getElementById('qvCharFilter').addEventListener('change', renderQuotes);
+  document.getElementById('qvThemeFilter').addEventListener('change', renderQuotes);
+  renderQuotes();
+}
+
+/* ---- 6. CONTEXT ---- */
+function buildContext(){
+  const items = [
+  {t:"James I and the Scottish Play", body:"James I was crowned King of England in 1603, uniting the English and Scottish crowns; Shakespeare's company became the 'King's Men' under his patronage. Macbeth's Scottish setting and its flattering portrayal of Banquo (from whom James I claimed descent) likely aimed to please the new king.",
+   use:"Use this to explain why Banquo is portrayed positively despite hearing the same prophecy as Macbeth — Shakespeare needed to avoid suggesting the King's own ancestor was morally compromised."},
+  {t:"Divine Right of Kings", body:"A widely-held Jacobean belief that monarchs were appointed directly by God, making them answerable only to God and making regicide a crime against the divine order, not just the state.",
+   use:"Use this to explain why Duncan's murder disrupts the natural world (storms, strange omens) — Shakespeare shows regicide corrupting the whole cosmos, not just Scotland's politics."},
+  {t:"The Great Chain of Being", body:"A belief in a fixed, divinely-ordained hierarchy running from God down through angels, kings, nobles, commoners, animals and objects. Disrupting any link (such as usurping a king) was believed to destabilise the entire order.",
+   use:"Use this to explain the unnatural omens after Duncan's murder (a falcon killed by an owl, horses eating each other) as symbolic of the Chain of Being being violently disrupted."},
+  {t:"Witchcraft and King James's Daemonologie", body:"James I genuinely believed in witchcraft and wrote 'Daemonologie' (1597), a treatise on demonology, following his involvement in Scottish witch trials. Witchcraft was a criminal offence, and fear of witches was widespread and sincere.",
+   use:"Use this to explain why the witches would have provoked real fear and fascination in a 1606 audience, rather than being seen as fantastical or comic figures."},
+  {t:"The Gunpowder Plot (1605)", body:"A failed Catholic conspiracy to assassinate James I by blowing up Parliament. The subsequent trial of Jesuit priest Henry Garnet made 'equivocation' — deliberately ambiguous, misleading language — a topical and politically charged concept.",
+   use:"Use this to explain the Porter's reference to an 'equivocator' in Act 2, Scene 3, and to deepen analysis of the witches' equivocal prophecies later in the play."},
+  {t:"Jacobean attitudes to gender", body:"Women were expected to be passive, nurturing and subordinate to men. A woman actively pursuing power, as Lady Macbeth does, would have been seen as deeply transgressive and unnatural.",
+   use:"Use this to explain why Lady Macbeth's request to be 'unsexed' would have shocked a Jacobean audience, and why her eventual guilt and collapse may have been read as a restoration of 'natural' order."},
+  {t:"Ideas about kingship", body:"Good kingship was associated with generosity, wisdom, justice and care for subjects (embodied by Duncan and later Malcolm); tyranny was associated with fear, violence and self-interest (embodied by Macbeth).",
+   use:"Use this to structure comparisons between Duncan/Malcolm and Macbeth as kings, particularly using Malcolm's list of 'king-becoming graces' in Act 4, Scene 3."},
+  {t:"Shakespeare's original audience", body:"Performed at the Globe (and possibly at court for James I himself), the play would have been watched by a socially mixed audience including groundlings and nobility, all sharing broadly similar religious and political assumptions about order, kingship and the supernatural.",
+   use:"Use this to explain why Shakespeare could rely on shared assumptions (e.g. that regicide was uniquely horrific) without needing to explain them within the text."}
+  ];
+  const cards = items.map(i=>`<div class="disclosure" data-d>
+    <button class="d-head"><span>${i.t}</span><span class="chev">›</span></button>
+    <div class="d-body"><div class="inner">
+      <p style="margin-top:10px;">${i.body}</p>
+      <div class="mini-label">How can I actually use this in an essay?</div><p>${i.use}</p>
+    </div></div>
+  </div>`).join('');
+
+  const s = el(`<section class="section" id="section-context">
+    <div class="section-header"><div class="eyebrow">Section 06</div><h1>Context</h1><div class="desc">Only the context you can actually use — always paired with a real essay application.</div></div>
+    <div class="card"><p><b>Important:</b> Never bolt on a historical fact just to prove you know it. Only use context when it genuinely deepens your interpretation of the writer's choices in that moment.</p></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 7. TECHNIQUES ---- */
+function buildTechniques(){
+  const cards = TECHNIQUES.map(t=>`<div class="disclosure" data-d>
+    <button class="d-head"><span>${t.name}</span><span class="chev">›</span></button>
+    <div class="d-body"><div class="inner">
+      <div class="mini-label">Definition</div><p>${t.def}</p>
+      <div class="mini-label">Macbeth example</div><p>${t.example}</p>
+      <div class="mini-label">Effect</div><p>${t.effect}</p>
+      <div class="mini-label">How to analyse it</div><p>${t.howto}</p>
+    </div></div>
+  </div>`).join('');
+
+  const s = el(`<section class="section" id="section-techniques">
+    <div class="section-header"><div class="eyebrow">Section 07</div><h1>Techniques</h1><div class="desc">The key literary and dramatic techniques Shakespeare uses, with clear examples and analysis guidance.</div></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 8. EXAM ---- */
+function buildExam(){
+  const s = el(`<section class="section" id="section-exam">
+    <div class="section-header"><div class="eyebrow">Section 08</div><h1>Exam Survival</h1><div class="desc">How to actually approach a Macbeth exam question, step by step.</div></div>
+
+    <div class="card"><p>Exam boards differ in exact format — some give you an extract and ask you to connect it to the whole play; others ask a discursive essay question without a printed extract. Always check your own exam board's format with your teacher, but the analytical skills below apply broadly.</p></div>
+
+    <div class="disclosure open" data-d><button class="d-head"><span>1. Understanding the question</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <p>Underline the key words in the question — usually a theme, character or idea, plus a command word (e.g. 'explore', 'how does Shakespeare present'). Every part of your essay should keep answering that exact question, not the play in general.</p>
+      </div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>2. Analysing an extract</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <p>Read the extract twice. First for meaning, second hunting for specific techniques (imagery, form, structure, punctuation). Annotate briefly rather than writing full sentences at this stage — you are building a bank of evidence, not writing your essay yet.</p>
+      </div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>3. Connecting extract to whole text</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <p>Always show how the extract's ideas develop elsewhere in the play. For example, if the extract shows Macbeth's guilt after Duncan's murder, connect it to Lady Macbeth's guilt in Act 5 to show a developing pattern across the whole text, not just an isolated moment.</p>
+      </div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>4. Selecting quotations</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <p>Choose short, precise quotations you can analyse word-by-word rather than long quotations you only summarise. One well-analysed short quote beats three unanalysed long ones.</p>
+      </div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>5. Creating a thesis</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <p>Your introduction should state a clear, arguable position on the question — not just restate it. For example, rather than "Shakespeare presents ambition in Macbeth", argue "Shakespeare presents ambition as a corrupting force that ultimately destroys the very identity it was meant to elevate."</p>
+      </div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>6. Paragraph structure</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <p>A reliable structure: Point (your argument) → Evidence (short quotation) → Analysis (technique + effect + why the writer chose this) → Context (only if it adds insight) → Link back to the question. Do not force every letter of an acronym into every paragraph if it doesn't fit naturally.</p>
+      </div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>7. Analysing language precisely</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <p>Always ask: why this specific word, not a similar one? What connotations does it carry? Zoom in on individual word choices rather than making broad, generic claims about "descriptive language".</p>
+      </div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>8. Incorporating context</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <p>Context should illuminate the writer's choices, not replace analysis of them. A single well-placed contextual point is worth more than a paragraph of historical background with no link to the text.</p>
+      </div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>9. Writing conclusions</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <p>Don't simply repeat your introduction. Briefly synthesise your strongest points and, where relevant, comment on the play's overall message or Shakespeare's broader intention.</p>
+      </div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>10. Timing</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <p>Spend a few minutes planning before you write — a rushed plan is almost always faster than an unplanned essay that goes off-track. Leave a couple of minutes at the end to check for missing words and unclear sentences.</p>
+      </div></div></div>
+
+    <h2 style="margin-top:28px;">Weak vs Strong Analysis</h2>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"Shakespeare uses a metaphor which makes the reader interested."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"Shakespeare's metaphor of 'vaulting ambition' presents Macbeth's desire for power as an uncontrollable physical force, one that 'o'erleaps itself' — foreshadowing, through the imagery of a rider who overreaches and falls, that his ambition will ultimately cause his own downfall."</p></div>
+    </div>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"Lady Macbeth is evil because she wants Macbeth to kill Duncan."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"Lady Macbeth's imperative 'screw your courage to the sticking-place' reveals a woman actively rejecting the passive role expected of Jacobean women, positioning her, rather than Macbeth, as the dominant force driving the murder in this scene."</p></div>
+    </div>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"The witches are scary and mysterious."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"The witches' paradoxical chant 'fair is foul, and foul is fair' destabilises the audience's moral certainty from the play's opening line, establishing an atmosphere of inverted values that Macbeth later inhabits when he begins to mistake foul acts for fair opportunities."</p></div>
+    </div>
+
+    <h2 style="margin-top:28px;">Practice questions</h2>
+    <div id="practiceQs"></div>
+  </section>`);
+  root.appendChild(s);
+
+  const practice = [
+   {q:"How does Shakespeare present the theme of guilt in Macbeth?", plan:["Introduce guilt as an inescapable, almost physical force in the play.","P1: Macbeth's hallucinated dagger before the murder — guilt appearing before the crime.","P2: Blood imagery immediately after the murder ('Neptune's ocean').","P3: Lady Macbeth's sleepwalking scene — guilt resurfacing after being suppressed.","Context: Jacobean beliefs in conscience as evidence of the soul.","Conclusion: guilt punishes the Macbeths psychologically even without earthly justice."]},
+   {q:"How does Shakespeare present Lady Macbeth as a powerful character?", plan:["Introduce her as initially the play's most dominant character, subverting gender norms.","P1: 'Unsex me here' — rejecting feminine compassion.","P2: Imperatives used to control Macbeth ('screw your courage').","P3: Her collapse in Act 5 as an ironic loss of the control she once had.","Context: Jacobean expectations of female subordination.","Conclusion: her power is transgressive but ultimately unsustainable."]},
+   {q:"Explore how Shakespeare presents the consequences of ambition in the play.", plan:["Introduce ambition as initially admirable, then corrupting.","P1: Macbeth's self-aware 'vaulting ambition' soliloquy.","P2: Escalating violence (Banquo, the Macduffs) driven by ambition's demands.","P3: The eventual collapse of both Macbeths as the cost of that ambition.","Context: Jacobean anxieties about ambition disrupting divine order.","Conclusion: Shakespeare presents ambition as self-destructive once acted upon without restraint."]},
+   {q:"How does Shakespeare use the supernatural to create tension in the play?", plan:["Introduce the supernatural as a source of both external threat and psychological ambiguity.","P1: The witches' opening paradox and eerie form (trochaic rhythm).","P2: The floating dagger blurring reality and hallucination.","P3: Banquo's ghost at the banquet publicly exposing Macbeth's guilt.","Context: James I's Daemonologie and genuine contemporary fear of witchcraft.","Conclusion: the supernatural's ambiguity is central to the play's unsettling atmosphere."]}
+  ];
+  const container = document.getElementById('practiceQs');
+  container.innerHTML = practice.map((p,i)=>`<div class="card">
+    <h3>${p.q}</h3>
+    <button class="btn secondary" type="button" data-plan="${i}">Reveal planning points</button>
+    <div class="plan-reveal" data-plan-body="${i}" style="display:none;margin-top:12px;">
+      <ol>${p.plan.map(x=>`<li>${x}</li>`).join('')}</ol>
+    </div>
+  </div>`).join('');
+  container.querySelectorAll('[data-plan]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const idx = btn.getAttribute('data-plan');
+      const body = container.querySelector(`[data-plan-body="${idx}"]`);
+      const showing = body.style.display !== 'none';
+      body.style.display = showing ? 'none' : 'block';
+      btn.textContent = showing ? 'Reveal planning points' : 'Hide planning points';
+    });
+  });
+}
+
+/* ---- 9. QUIZ ---- */
+let quizState = { order: [], idx:0, score:0, answered:false };
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+function buildQuiz(){
+  const s = el(`<section class="section" id="section-quiz">
+    <div class="section-header"><div class="eyebrow">Section 09</div><h1>Quiz</h1><div class="desc">Self-marking revision quiz covering plot, characters, quotations, themes, context and techniques.</div></div>
+    <div class="card">
+      <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
+      <div id="quizArea"></div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  startQuiz();
+}
+
+function startQuiz(){
+  quizState = { order: shuffle(QUIZ_BANK.map((_,i)=>i)), idx:0, score:0, answered:false };
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion(){
+  const area = document.getElementById('quizArea');
+  const total = quizState.order.length;
+  if(quizState.idx >= total){
+    const pct = Math.round((quizState.score/total)*100);
+    document.getElementById('quizProgressBar').style.width = '100%';
+    area.innerHTML = `<div class="quiz-result">
+      <div class="score">${quizState.score}/${total}</div>
+      <p class="subtle">${pct}% correct</p>
+      <button class="btn blood" id="tryAgainBtn" type="button">Try Again</button>
+      <button class="btn secondary" id="newQuizBtn" type="button" style="margin-left:8px;">New Quiz</button>
+    </div>`;
+    document.getElementById('tryAgainBtn').addEventListener('click', ()=>{ quizState.idx=0; quizState.score=0; quizState.answered=false; renderQuizQuestion(); });
+    document.getElementById('newQuizBtn').addEventListener('click', startQuiz);
+    return;
+  }
+  document.getElementById('quizProgressBar').style.width = ((quizState.idx/total)*100)+'%';
+  const item = QUIZ_BANK[quizState.order[quizState.idx]];
+  const optOrder = shuffle(item.opts.map((o,i)=>i));
+  quizState.answered = false;
+  area.innerHTML = `
+    <p class="subtle">Question ${quizState.idx+1} of ${total}</p>
+    <div class="quiz-q">${item.q}</div>
+    <div class="quiz-opts">${optOrder.map(oi=>`<button class="quiz-opt" data-oi="${oi}" type="button">${item.opts[oi]}</button>`).join('')}</div>
+    <div class="quiz-explain" id="quizExplain"></div>
+    <div style="margin-top:14px;"><button class="btn" id="quizNextBtn" type="button" style="display:none;">Next question</button></div>
+  `;
+  area.querySelectorAll('.quiz-opt').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(quizState.answered) return;
+      quizState.answered = true;
+      const chosen = parseInt(btn.getAttribute('data-oi'));
+      area.querySelectorAll('.quiz-opt').forEach(b=>{
+        b.setAttribute('disabled','true');
+        const oi = parseInt(b.getAttribute('data-oi'));
+        if(oi === item.a) b.classList.add('correct');
+        else if(oi === chosen) b.classList.add('incorrect');
+      });
+      if(chosen === item.a) quizState.score++;
+      const exp = document.getElementById('quizExplain');
+      exp.textContent = item.exp;
+      exp.classList.add('show');
+      document.getElementById('quizNextBtn').style.display = 'inline-block';
+    });
+  });
+  document.getElementById('quizNextBtn').addEventListener('click', ()=>{ quizState.idx++; renderQuizQuestion(); });
+}
+
+/* ---- 10. LAST MINUTE ---- */
+function buildLastMinute(){
+  const plot10 = ["Witches prophesy Macbeth will be king.","Macbeth becomes Thane of Cawdor — prophecy #1 comes true.","Lady Macbeth persuades Macbeth to murder Duncan.","Macbeth murders Duncan and becomes king.","Macbeth has Banquo murdered; Fleance escapes.","Banquo's ghost appears at the banquet.","The witches give Macbeth three new, misleading prophecies.","Macbeth orders the murder of Macduff's family.","Lady Macbeth sleepwalks, confesses guilt, and dies.","Macduff kills Macbeth; Malcolm becomes king."];
+  const fiveChars = [
+   ["Macbeth","Brave general → ambitious murderer → paranoid tyrant → nihilistic, isolated figure."],
+   ["Lady Macbeth","Ruthlessly ambitious → manipulative → guilt-ridden → mentally destroyed."],
+   ["Banquo","Macbeth's loyal foil — resists the same temptation Macbeth gives in to."],
+   ["Macduff","Suspicious of Macbeth → grieving father → determined avenger who kills Macbeth."],
+   ["The Witches","Ambiguous supernatural figures whose prophecies catalyse the whole tragedy."]
+  ];
+  const fiveThemes = [
+   ["Ambition","Drives the murders; presented as self-destructive once unrestrained."],
+   ["Guilt","Manifests physically (blood, hallucination) and cannot be escaped."],
+   ["The Supernatural","Ambiguous — real evil, or a mirror for guilt? Left deliberately unclear."],
+   ["Kingship","Contrasts legitimate rule (Duncan, Malcolm) with tyranny (Macbeth)."],
+   ["Fate vs Free Will","The witches only prophesy — Macbeth's choices drive the tragedy."]
+  ];
+  const quotes15 = ["Fair is foul, and foul is fair.","All hail, Macbeth, that shalt be king hereafter!","Stars, hide your fires; let not light see my black and deep desires.","Unsex me here.","I have no spur to prick the sides of my intent, but only vaulting ambition.","Is this a dagger which I see before me?","Will all great Neptune's ocean wash this blood clean from my hand?","Look like the innocent flower, but be the serpent under't.","Thou canst not say I did it: never shake thy gory locks at me.","None of woman born shall harm Macbeth.","Out, damned spot! Out, I say!","I am in blood stepped in so far.","Life's but a walking shadow, a poor player.","Bleed, bleed, poor country!","Macduff was from his mother's womb untimely ripped."];
+  const fiveContext = ["James I believed in witchcraft and wrote Daemonologie.","Divine Right of Kings made regicide a crime against God, not just the state.","The Great Chain of Being — disrupting order (killing a king) was 'unnatural'.","The Gunpowder Plot (1605) made 'equivocation' a topical, loaded idea.","Jacobean society expected women to be passive — Lady Macbeth transgresses this."];
+  const fiveTech = [
+   ["Soliloquy","Reveals private thoughts directly to the audience."],
+   ["Blood imagery / symbolism","Represents inescapable guilt throughout the play."],
+   ["Dramatic irony","Audience knows danger a character does not (e.g. Duncan at Inverness)."],
+   ["Equivocation","Ambiguous language that misleads without technically lying."],
+   ["Verse-to-prose shift","Marks a character's loss of control (Lady Macbeth's sleepwalking)."]
+  ];
+  const checklist = ["Answer the actual question, not just 'the play in general'.","Analyse specific word choices, not just 'the writer uses language'.","Only include context that adds genuine insight.","Use short, precise quotations you can analyse in detail.","Track how a theme or character develops across the WHOLE play."];
+  const dontDo = ["Don't simply retell the plot instead of analysing it.","Don't use context as a history lecture disconnected from the text.","Don't make vague claims like 'this makes the reader interested'.","Don't ignore form and structure (verse, prose, soliloquy, act placement).","Don't forget to answer the specific question asked."];
+
+  const s = el(`<section class="section" id="section-lastminute">
+    <div class="section-header"><div class="eyebrow">Section 10</div><h1>Macbeth — Last Minute</h1><div class="desc">Exam tomorrow? Start here.</div></div>
+    <button class="btn secondary print-btn" id="printBtn" type="button">Print this page</button>
+
+    <div class="lm-grid">
+      <div class="lm-card"><h3>Plot in 10 points</h3><ol>${plot10.map(x=>`<li>${x}</li>`).join('')}</ol></div>
+      <div class="lm-card"><h3>5 characters you must understand</h3><ul>${fiveChars.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 themes you must understand</h3><ul>${fiveThemes.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>15 quotations worth remembering</h3><ul>${quotes15.map(x=>`<li>"${x}"</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 contextual ideas</h3><ul>${fiveContext.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 techniques worth recognising</h3><ul>${fiveTech.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>Essay checklist</h3><ul>${checklist.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>Five things NOT to do</h3><ul>${dontDo.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  document.getElementById('printBtn').addEventListener('click', ()=> window.print());
+}
+
+/* ================= DISCLOSURE BEHAVIOUR (shared) ================= */
+function wireDisclosures(){
+  document.querySelectorAll('.disclosure > .d-head').forEach(head=>{
+    head.addEventListener('click', ()=>{
+      head.parentElement.classList.toggle('open');
+    });
+  });
+}
+
+/* ================= INIT ================= */
+buildOverview();
+buildPlot();
+buildCharacters();
+buildThemes();
+buildQuoteVault();
+buildContext();
+buildTechniques();
+buildExam();
+buildQuiz();
+buildLastMinute();
+renderNav();
+wireDisclosures();
+showSection(SECTIONS.some(s=>s.id===currentSection) ? currentSection : 'overview');
+
+})();
+</script>
+</body>
+</html>

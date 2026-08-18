@@ -92,7 +92,7 @@ const NAV_LINKS = [
   { href: "index.html", label: "Home" },
   { href: "teacher-tools.html", label: "Teacher Tools" },
   { href: "revision.html", label: "Revision Apps" },
-  { href: "cliff-notes.html", label: "Cliff Notes" },
+  { href: "quick-notes.html", label: "Quick Notes" },
   { href: "apps.html?tier=pro", label: "Pro Apps" },
   { href: "about.html", label: "About" },
   { href: "faq.html", label: "FAQ" }
@@ -140,14 +140,14 @@ function renderFooter() {
         '<div class="footer-col">' +
           chalkLogo("footer") +
           '<p class="footer-desc">Practical tools for teachers. Free revision resources for students.</p>' +
-          '<p class="gumroad-note">Teacher tools are fulfilled through Gumroad. Revision apps and Cliff Notes open or download directly from this site.</p>' +
+          '<p class="gumroad-note">Teacher tools are fulfilled through Gumroad. Revision apps and Quick Notes open or download directly from this site.</p>' +
         '</div>' +
         '<div class="footer-col">' +
           '<h4>Explore</h4>' +
           '<ul>' +
             '<li><a href="teacher-tools.html">Teacher Tools</a></li>' +
             '<li><a href="revision.html">Revision Apps</a></li>' +
-            '<li><a href="cliff-notes.html">Cliff Notes</a></li>' +
+            '<li><a href="quick-notes.html">Quick Notes</a></li>' +
             '<li><a href="apps.html?tier=free">Free Apps</a></li>' +
             '<li><a href="apps.html?tier=pro">Pro Apps</a></li>' +
           '</ul>' +
@@ -225,7 +225,7 @@ function tierBadge(app) {
 
 function categoryLabel(app) {
   if (app.category === "teacher") return "Teacher Tool";
-  if (app.category === "cliffnotes") return "Cliff Notes";
+  if (app.category === "quicknotes") return "Quick Notes";
   return "Revision App";
 }
 
@@ -275,7 +275,7 @@ function renderAppCard(app) {
 
   return (
     '<article class="app-card" data-id="' + app.id + '" data-category="' + app.category + '" data-tier="' + app.tier + '" data-subject="' + (app.subject || "") + '" data-comingsoon="' + !!app.comingSoon + '">' +
-      '<a href="app.html?id=' + app.id + '" class="app-card__thumb' + (!app.image && app.category === "cliffnotes" ? " app-card__thumb--board" : "") + '" aria-hidden="true" tabindex="-1">' +
+      '<a href="app.html?id=' + app.id + '" class="app-card__thumb' + (!app.image && app.category === "quicknotes" ? " app-card__thumb--board" : "") + '" aria-hidden="true" tabindex="-1">' +
         thumbMedia(app) +
         '<span class="app-card__badges">' + tierBadge(app) + newBadge + '</span>' +
       '</a>' +

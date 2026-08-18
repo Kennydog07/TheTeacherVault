@@ -132,8 +132,8 @@
   document.getElementById("canonicalLink").setAttribute("href", "https://www.theteachervault.com/app.html?id=" + app.id);
 
   // --- Breadcrumb ---
-  var catHref = { teacher: "teacher-tools.html", revision: "revision.html", cliffnotes: "cliff-notes.html" }[app.category];
-  var catName = { teacher: "Teacher Tools", revision: "Revision Apps", cliffnotes: "Cliff Notes" }[app.category];
+  var catHref = { teacher: "teacher-tools.html", revision: "revision.html", quicknotes: "quick-notes.html" }[app.category];
+  var catName = { teacher: "Teacher Tools", revision: "Revision Apps", quicknotes: "Quick Notes" }[app.category];
   document.getElementById("breadcrumb").innerHTML =
     '<a href="index.html">Home</a> / <a href="' + catHref + '">' + catName + '</a> / ' + app.title;
 
@@ -149,7 +149,7 @@
 
   var previewEl = document.getElementById("previewArea");
   previewEl.innerHTML = thumbMedia(app);
-  if (!app.image && app.category === "cliffnotes") previewEl.classList.add("app-detail__preview--board");
+  if (!app.image && app.category === "quicknotes") previewEl.classList.add("app-detail__preview--board");
 
   // --- CTA ---
   var ctaHtml = ctaFor(app);

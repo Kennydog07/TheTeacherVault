@@ -64,7 +64,7 @@
    title         product name shown everywhere
    tagline       short one-line hook shown on cards
    description   1-3 sentence description shown on cards and detail pages
-   category      "teacher"  |  "revision"  |  "cliffnotes"
+   category      "teacher"  |  "revision"  |  "quicknotes"
    subject       "Maths" | "Science" | "History" | "Business" | "English" |
                  "Languages" | "Primary" | "General" | "" (blank = none)
    audience      who it's for, e.g. "Secondary teachers", "GCSE students"
@@ -73,13 +73,13 @@
    gumroadUrl    the Gumroad product link (or a GUMROAD_..._URL placeholder).
                  Leave blank ("") for apps that use "fileUrl" instead.
    fileUrl       path to a file hosted directly on this site, e.g.
-                 "downloads/macbeth-cliff-notes.pdf" or
+                 "downloads/macbeth-quick-notes.pdf" or
                  "revision-apps/gcse-maths.html". When this is set, the
                  card/detail page shows a direct button instead of a
                  Gumroad button — no gumroadUrl needed.
    fileType      "pdf"  |  "app"  — only used alongside fileUrl.
                  "pdf" shows a "Download PDF" button that saves the file
-                 (used for Cliff Notes study guides).
+                 (used for Quick Notes study guides).
                  "app" shows an "Open App" button that opens the file in
                  a new browser tab instead of downloading it (used for the
                  GCSE revision apps, which are self-contained HTML apps).
@@ -556,25 +556,26 @@ const APPS = [
     noAccount: true
   },
 
-  /* ------------------------------ CLIFF NOTES ------------------------------
-     Study guide PDFs. These download directly from this website (see
-     "fileUrl" above) rather than through Gumroad, so gumroadUrl is left
-     blank on these entries. */
+  /* ------------------------------ QUICK NOTES ------------------------------
+     Study guides. Some are PDFs, some are self-contained HTML apps that
+     open in a new tab (see "fileUrl"/"fileType" above) — either way they
+     come straight from this website rather than through Gumroad, so
+     gumroadUrl is left blank on these entries. */
 
   {
-    id: "cliffnotes-jekyll-and-hyde",
-    title: "Jekyll & Hyde Cliff Notes",
+    id: "quicknotes-jekyll-and-hyde",
+    title: "Jekyll & Hyde Quick Notes",
     tagline: "A clear, exam-focused study guide to Stevenson's novella.",
     description: "A concise study guide to Strange Case of Dr Jekyll and Mr Hyde, covering plot, characters, themes and key quotations for GCSE English Literature.",
-    category: "cliffnotes",
+    category: "quicknotes",
     subject: "English",
     audience: "GCSE English Literature students",
     tier: "free",
     price: "Free",
     gumroadUrl: "",
-    fileUrl: "downloads/jekyll-and-hyde-cliff-notes.pdf",
+    fileUrl: "downloads/jekyll-and-hyde-quick-notes.pdf",
     fileType: "pdf",
-    image: "images/cliffnotes-jekyll-and-hyde.jpg",
+    image: "images/quicknotes-jekyll-and-hyde.jpg",
     icon: "potion",
     featured: false,
     isNew: true,
@@ -590,19 +591,19 @@ const APPS = [
     noAccount: true
   },
   {
-    id: "cliffnotes-an-inspector-calls",
-    title: "An Inspector Calls Cliff Notes",
+    id: "quicknotes-an-inspector-calls",
+    title: "An Inspector Calls Quick Notes",
     tagline: "A clear, exam-focused study guide to Priestley's play.",
     description: "A concise study guide to An Inspector Calls, covering plot, characters, themes and key quotations for GCSE English Literature.",
-    category: "cliffnotes",
+    category: "quicknotes",
     subject: "English",
     audience: "GCSE English Literature students",
     tier: "free",
     price: "Free",
     gumroadUrl: "",
-    fileUrl: "downloads/an-inspector-calls-cliff-notes.pdf",
+    fileUrl: "downloads/an-inspector-calls-quick-notes.pdf",
     fileType: "pdf",
-    image: "images/cliffnotes-an-inspector-calls.jpg",
+    image: "images/quicknotes-an-inspector-calls.jpg",
     icon: "pocketWatch",
     featured: false,
     isNew: true,
@@ -618,19 +619,19 @@ const APPS = [
     noAccount: true
   },
   {
-    id: "cliffnotes-macbeth",
-    title: "Macbeth Cliff Notes",
+    id: "quicknotes-macbeth",
+    title: "Macbeth Quick Notes",
     tagline: "A clear, exam-focused study guide to Shakespeare's tragedy.",
     description: "A concise study guide to Macbeth, covering plot, characters, themes and key quotations for GCSE English Literature.",
-    category: "cliffnotes",
+    category: "quicknotes",
     subject: "English",
     audience: "GCSE English Literature students",
     tier: "free",
     price: "Free",
     gumroadUrl: "",
-    fileUrl: "downloads/macbeth-cliff-notes.pdf",
-    fileType: "pdf",
-    image: "images/cliffnotes-macbeth.jpg",
+    fileUrl: "quick-notes/macbeth.html",
+    fileType: "app",
+    image: "images/quicknotes-macbeth.jpg",
     icon: "skull",
     featured: false,
     isNew: true,
@@ -640,17 +641,17 @@ const APPS = [
       "Key characters and their significance",
       "Core themes and context",
       "Selected quotations with brief analysis",
-      "Downloads instantly as a PDF"
+      "Opens instantly in a new browser tab"
     ],
     worksOffline: true,
     noAccount: true
   },
   {
-    id: "cliffnotes-christmas-carol",
-    title: "A Christmas Carol Cliff Notes",
+    id: "quicknotes-christmas-carol",
+    title: "A Christmas Carol Quick Notes",
     tagline: "A clear, exam-focused study guide to Dickens' novella.",
     description: "A concise study guide to A Christmas Carol, covering plot, characters, themes and key quotations for GCSE English Literature.",
-    category: "cliffnotes",
+    category: "quicknotes",
     subject: "English",
     audience: "GCSE English Literature students",
     tier: "free",
@@ -666,11 +667,11 @@ const APPS = [
     noAccount: true
   },
   {
-    id: "cliffnotes-romeo-and-juliet",
-    title: "Romeo and Juliet Cliff Notes",
+    id: "quicknotes-romeo-and-juliet",
+    title: "Romeo and Juliet Quick Notes",
     tagline: "A clear, exam-focused study guide to Shakespeare's tragedy.",
     description: "A concise study guide to Romeo and Juliet, covering plot, characters, themes and key quotations for GCSE English Literature.",
-    category: "cliffnotes",
+    category: "quicknotes",
     subject: "English",
     audience: "GCSE English Literature students",
     tier: "free",

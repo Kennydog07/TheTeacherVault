@@ -66,17 +66,17 @@
     </div>
   </section>
 
-  <!-- ============================== CLIFF NOTES ============================== -->
+  <!-- ============================== QUICK NOTES ============================== -->
   <section class="section">
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">New in the Vault</span>
-        <h2>Cliff Notes study guides</h2>
-        <p class="lede">Clear, exam-focused study guides for GCSE English Literature texts. Free, and downloads straight from this site as a PDF — no Gumroad step.</p>
+        <h2>Quick Notes study guides</h2>
+        <p class="lede">Clear, exam-focused study guides for GCSE English Literature texts. Free, and opens or downloads straight from this site — no Gumroad step.</p>
       </div>
-      <div class="card-grid" id="cliffNotesHomeGrid"></div>
+      <div class="card-grid" id="quickNotesHomeGrid"></div>
       <div class="text-center mt-lg">
-        <a href="cliff-notes.html" class="btn btn--outline-dark">Browse Cliff Notes</a>
+        <a href="quick-notes.html" class="btn btn--outline-dark">Browse Quick Notes</a>
       </div>
     </div>
   </section>
@@ -95,7 +95,7 @@
         </div>
         <div class="step">
           <h3>Get it from Gumroad — or download it directly</h3>
-          <p>Free apps are £0. Pro apps are purchased individually. Teacher tools go through Gumroad; GCSE revision apps and Cliff Notes study guides open or download straight from this site.</p>
+          <p>Free apps are £0. Pro apps are purchased individually. Teacher tools go through Gumroad; GCSE revision apps and Quick Notes study guides open or download straight from this site.</p>
         </div>
         <div class="step">
           <h3>Open and use</h3>
@@ -161,7 +161,7 @@
 
   renderCardGrid(document.getElementById("freeStripGrid"), getFeaturedApps().filter(function(a){return a.tier!=="pro";}).slice(0,4));
   renderCardGrid(document.getElementById("featuredGrid"), getFeaturedApps());
-  renderCardGrid(document.getElementById("cliffNotesHomeGrid"), getAppsByCategory("cliffnotes").slice(0,3));
+  renderCardGrid(document.getElementById("quickNotesHomeGrid"), getAppsByCategory("quicknotes").slice(0,3));
 
   var soon = getComingSoonApps();
   document.getElementById("comingSoonGrid").innerHTML = soon.map(function(app){
