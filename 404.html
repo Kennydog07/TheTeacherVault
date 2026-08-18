@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page not found — The Teacher Vault</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="404">
+<div class="chalk-texture" aria-hidden="true"></div>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+  <section class="section text-center">
+    <div class="container">
+      <div class="hero__logo" id="heroLogo" style="margin-bottom:24px;"></div>
+      <h1>Page not found</h1>
+      <p class="lede" style="margin:0 auto 24px;">This page doesn't exist, or may have moved. Let's get you back to the library.</p>
+      <div class="row-ctas flex-center">
+        <a href="index.html" class="btn btn--primary">Back to Home</a>
+        <a href="apps.html" class="btn btn--ghost">Browse All Apps</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="apps-data.js"></script>
+<script src="script.js"></script>
+<script>
+  document.getElementById("heroLogo").innerHTML = chalkLogo("lg");
+</script>
+</body>
+</html>

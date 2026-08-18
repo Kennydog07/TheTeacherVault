@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Browse All Apps — The Teacher Vault</title>
+<meta name="description" content="Search and filter every app in The Teacher Vault library — free teacher tools, Pro upgrades and free GCSE revision apps, all in one place.">
+<link rel="canonical" href="https://www.theteachervault.com/apps.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Browse All Apps — The Teacher Vault">
+<meta property="og:description" content="Search and filter every app in The Teacher Vault library.">
+<meta property="og:image" content="images/og-image.jpg">
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="apps">
+<div class="chalk-texture" aria-hidden="true"></div>
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="section" style="padding-bottom:20px;">
+    <div class="container">
+      <p class="breadcrumb"><a href="index.html">Home</a> / Browse All Apps</p>
+      <span class="eyebrow">The full library</span>
+      <h1>Browse All Apps</h1>
+      <p class="lede">Every teacher tool and revision app in The Teacher Vault, in one place. Search by name, or filter by type, tier and subject.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+
+      <form class="filter-bar" id="filterForm" role="search">
+        <div class="search-input-wrap">
+          <label for="searchInput" class="sr-only">Search The Teacher Vault</label>
+          <span aria-hidden="true" id="searchIcon"></span>
+          <input type="search" id="searchInput" class="search-input" placeholder="Search The Teacher Vault&hellip;">
+        </div>
+
+        <div class="filter-groups">
+          <div class="filter-group" data-group="category">
+            <span class="filter-group__label">Type</span>
+            <div class="filter-group__options">
+              <button type="button" class="chip" data-value="all" aria-pressed="true">All</button>
+              <button type="button" class="chip" data-value="teacher" aria-pressed="false">Teacher Tools</button>
+              <button type="button" class="chip" data-value="revision" aria-pressed="false">Revision</button>
+              <button type="button" class="chip" data-value="cliffnotes" aria-pressed="false">Cliff Notes</button>
+            </div>
+          </div>
+
+          <div class="filter-group" data-group="tier">
+            <span class="filter-group__label">Tier</span>
+            <div class="filter-group__options">
+              <button type="button" class="chip" data-value="all" aria-pressed="true">All</button>
+              <button type="button" class="chip" data-value="free" aria-pressed="false">Free</button>
+              <button type="button" class="chip" data-value="lite" aria-pressed="false">Lite</button>
+              <button type="button" class="chip" data-value="pro" aria-pressed="false">Pro</button>
+            </div>
+          </div>
+
+          <div class="filter-group" data-group="subject">
+            <span class="filter-group__label">Subject</span>
+            <div class="filter-group__options" id="subjectOptions">
+              <button type="button" class="chip" data-value="all" aria-pressed="true">All</button>
+              <button type="button" class="chip" data-value="Maths" aria-pressed="false">Maths</button>
+              <button type="button" class="chip" data-value="Science" aria-pressed="false">Science</button>
+              <button type="button" class="chip" data-value="History" aria-pressed="false">History</button>
+              <button type="button" class="chip" data-value="Business" aria-pressed="false">Business</button>
+              <button type="button" class="chip" data-value="English" aria-pressed="false">English</button>
+              <button type="button" class="chip" data-value="Languages" aria-pressed="false">Languages</button>
+              <button type="button" class="chip" data-value="Primary" aria-pressed="false">Primary</button>
+              <button type="button" class="chip" data-value="Other" aria-pressed="false">Other</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <p class="results-count" id="resultsCount" aria-live="polite"></p>
+      <div class="card-grid" id="allAppsGrid"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="apps-data.js"></script>
+<script src="script.js"></script>
+<script>
+  var state = { q: "", category: "all", tier: "all", subject: "all" };
+
+  var params = new URLSearchParams(window.location.search);
+  if (params.get("category")) state.category = params.get("category");
+  if (params.get("tier")) state.tier = params.get("tier");
+  if (params.get("subject")) state.subject = params.get("subject");
+  if (params.get("q")) state.q = params.get("q");
+
+  document.getElementById("searchInput").value = state.q;
+  document.getElementById("searchIcon").innerHTML = ICONS.search;
+
+  function syncChips() {
+    document.querySelectorAll(".filter-group").forEach(function (group) {
+      var key = group.getAttribute("data-group");
+      group.querySelectorAll(".chip").forEach(function (chip) {
+        chip.setAttribute("aria-pressed", chip.getAttribute("data-value") === state[key] ? "true" : "false");
+      });
+    });
+  }
+
+  function applyFilters() {
+    var q = state.q.trim().toLowerCase();
+    var results = APPS.filter(function (app) {
+      if (state.category !== "all" && app.category !== state.category) return false;
+      if (state.tier !== "all" && app.tier !== state.tier) return false;
+      if (state.subject !== "all" && app.subject !== state.subject) return false;
+      if (q) {
+        var haystack = (app.title + " " + app.tagline + " " + app.description + " " + app.subject).toLowerCase();
+        if (haystack.indexOf(q) === -1) return false;
+      }
+      return true;
+    });
+
+    document.getElementById("resultsCount").textContent =
+      results.length + (results.length === 1 ? " app found" : " apps found");
+    renderCardGrid(document.getElementById("allAppsGrid"), results);
+  }
+
+  document.querySelectorAll(".filter-group").forEach(function (group) {
+    var key = group.getAttribute("data-group");
+    group.querySelectorAll(".chip").forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        state[key] = chip.getAttribute("data-value");
+        syncChips();
+        applyFilters();
+      });
+    });
+  });
+
+  document.getElementById("searchInput").addEventListener("input", function (e) {
+    state.q = e.target.value;
+    applyFilters();
+  });
+
+  document.getElementById("filterForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+  });
+
+  syncChips();
+  applyFilters();
+</script>
+</body>
+</html>

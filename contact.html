@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — The Teacher Vault</title>
+<meta name="description" content="Questions, suggestions or a problem with one of the apps? Get in touch with The Teacher Vault.">
+<link rel="canonical" href="https://www.theteachervault.com/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Contact — The Teacher Vault">
+<meta property="og:description" content="Questions, suggestions or a problem with one of the apps? Get in touch.">
+<meta property="og:image" content="images/og-image.jpg">
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="contact">
+<div class="chalk-texture" aria-hidden="true"></div>
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="section" style="padding-bottom:20px;">
+    <div class="container">
+      <p class="breadcrumb"><a href="index.html">Home</a> / Contact</p>
+      <span class="eyebrow">Get in touch</span>
+      <h1>Contact The Teacher Vault</h1>
+      <p class="lede">Questions, suggestions or found a problem with one of the apps? We'd like to hear from you.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container contact-grid">
+
+      <div>
+        <h2>Ways to reach us</h2>
+        <ul class="contact-list mt-md">
+          <li class="contact-list__item">
+            <span class="icon" id="iconMail"></span>
+            <div>
+              <strong>Email</strong><br>
+              <a href="mailto:REPLACE_WITH_SUPPORT_EMAIL@example.com" id="supportEmailLink">REPLACE_WITH_SUPPORT_EMAIL@example.com</a>
+              <p style="font-size:0.85rem;margin-top:4px;">Placeholder — replace with your real support address in contact.html and the footer.</p>
+            </div>
+          </li>
+          <li class="contact-list__item">
+            <span class="icon" id="iconShare"></span>
+            <div>
+              <strong>Social media</strong><br>
+              <a href="#" id="socialLink">REPLACE_WITH_SOCIAL_LINK</a>
+              <p style="font-size:0.85rem;margin-top:4px;">Placeholder — add your Instagram, X/Twitter, TikTok or similar profile.</p>
+            </div>
+          </li>
+          <li class="contact-list__item">
+            <span class="icon" id="iconGumroad"></span>
+            <div>
+              <strong>Gumroad profile</strong><br>
+              <a href="#" id="gumroadProfileLink">REPLACE_WITH_GUMROAD_PROFILE_URL</a>
+              <p style="font-size:0.85rem;margin-top:4px;">Placeholder — add your Gumroad storefront link, e.g. gumroad.com/theteachervault.</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <h2>Suggest an app</h2>
+        <p class="mt-sm">Have an idea for a teacher tool, GCSE subject or revision topic? Use the message field to tell us — it's the quickest way to influence what gets built next.</p>
+      </div>
+
+      <div class="panel">
+        <h2>Send a message</h2>
+        <p style="font-size:0.9rem;">This form doesn't submit anywhere directly — pressing send opens your email app with the message pre-filled, addressed to the support email above.</p>
+        <form id="contactForm" class="mt-md">
+          <div class="form-field">
+            <label for="cf-name">Name</label>
+            <input type="text" id="cf-name" name="name" required>
+          </div>
+          <div class="form-field">
+            <label for="cf-email">Your email</label>
+            <input type="email" id="cf-email" name="email" required>
+          </div>
+          <div class="form-field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" required placeholder="Question, suggestion, or an app idea..."></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--block">Send message</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="apps-data.js"></script>
+<script src="script.js"></script>
+<script>
+  /* -----------------------------------------------------------------------
+     EASY-EDIT CONTACT DETAILS — change these three lines, nothing else.
+     ----------------------------------------------------------------------- */
+  var SUPPORT_EMAIL = "REPLACE_WITH_SUPPORT_EMAIL@example.com";
+  var SOCIAL_URL = "https://example.com/REPLACE_WITH_SOCIAL_PROFILE";
+  var GUMROAD_PROFILE_URL = "https://gumroad.com/REPLACE_WITH_GUMROAD_PROFILE";
+
+  document.getElementById("supportEmailLink").textContent = SUPPORT_EMAIL;
+  document.getElementById("supportEmailLink").href = "mailto:" + SUPPORT_EMAIL;
+  document.getElementById("socialLink").textContent = SOCIAL_URL;
+  document.getElementById("socialLink").href = SOCIAL_URL;
+  document.getElementById("gumroadProfileLink").textContent = GUMROAD_PROFILE_URL;
+  document.getElementById("gumroadProfileLink").href = GUMROAD_PROFILE_URL;
+
+  document.getElementById("iconMail").innerHTML = ICONS.mail;
+  document.getElementById("iconShare").innerHTML = ICONS.share;
+  document.getElementById("iconGumroad").innerHTML = ICONS.gumroadMark;
+
+  document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = document.getElementById("cf-name").value;
+    var email = document.getElementById("cf-email").value;
+    var message = document.getElementById("cf-message").value;
+    var subject = "Message from " + name + " via The Teacher Vault";
+    var body = message + "\n\n---\nFrom: " + name + " (" + email + ")";
+    window.location.href = "mailto:" + SUPPORT_EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+  });
+</script>
+</body>
+</html>

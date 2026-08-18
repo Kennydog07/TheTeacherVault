@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">App — The Teacher Vault</title>
+<meta id="metaDesc" name="description" content="A mini app from The Teacher Vault.">
+<link rel="canonical" id="canonicalLink" href="https://www.theteachervault.com/app.html">
+<meta id="ogTitle" property="og:type" content="website">
+<meta id="ogTitleTag" property="og:title" content="The Teacher Vault">
+<meta id="ogDescTag" property="og:description" content="A mini app from The Teacher Vault.">
+<meta property="og:image" content="images/og-image.jpg">
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="app-detail">
+<div class="chalk-texture" aria-hidden="true"></div>
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <!-- Shown only if the requested app id doesn't exist -->
+  <section class="section" id="notFoundView" hidden>
+    <div class="container text-center">
+      <h1>App not found</h1>
+      <p class="lede" style="margin:0 auto 20px;">We couldn't find that app. It may have been renamed, or the link may be out of date.</p>
+      <a href="apps.html" class="btn btn--primary">Browse All Apps</a>
+    </div>
+  </section>
+
+  <!-- Populated by JS once the app is found -->
+  <div id="appView" hidden>
+
+    <section class="section" style="padding-bottom:20px;">
+      <div class="container">
+        <p class="breadcrumb" id="breadcrumb"></p>
+
+        <div class="app-detail__header">
+          <div>
+            <div class="badge-row" id="badgeRow"></div>
+            <span class="eyebrow" id="categoryLabel"></span>
+            <h1 id="appTitle"></h1>
+            <p class="lede" id="appTagline"></p>
+            <div class="row-ctas mt-md" id="ctaRow"></div>
+            <p class="mt-sm" id="browserNote"></p>
+          </div>
+          <div class="app-detail__preview" id="previewArea"></div>
+        </div>
+
+        <dl class="info-strip" id="infoStrip"></dl>
+
+        <div class="two-col">
+          <div>
+            <h2>What it does</h2>
+            <p id="appDescription" class="mt-sm"></p>
+
+            <h2 class="mt-lg">Features</h2>
+            <ul class="detail-list mt-sm" id="featuresList"></ul>
+          </div>
+          <div>
+            <h2>Who it's for</h2>
+            <p class="mt-sm" id="audienceText"></p>
+
+            <h2 class="mt-lg">How it works</h2>
+            <div class="steps mt-sm" style="grid-template-columns:1fr;gap:16px;">
+              <div class="step">
+                <h3>Get it from Gumroad</h3>
+                <p id="howGumroad"></p>
+              </div>
+              <div class="step">
+                <h3>Open and use</h3>
+                <p id="howOpen"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== NEED MORE? (Pro upsell) ============================== -->
+    <section class="section paper-section" id="needMoreSection" hidden>
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Need more?</span>
+          <h2 id="needMoreHeading">The Pro version adds more</h2>
+        </div>
+        <div id="needMoreCard"></div>
+      </div>
+    </section>
+
+    <!-- ============================== RELATED APPS ============================== -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Keep exploring</span>
+          <h2>Related apps</h2>
+        </div>
+        <div class="card-grid" id="relatedGrid"></div>
+      </div>
+    </section>
+
+  </div>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="apps-data.js"></script>
+<script src="script.js"></script>
+<script>
+(function () {
+  var id = new URLSearchParams(window.location.search).get("id");
+  var app = id ? getAppById(id) : null;
+
+  if (!app) {
+    document.getElementById("notFoundView").hidden = false;
+    return;
+  }
+
+  document.getElementById("appView").hidden = false;
+
+  // --- SEO ---
+  document.getElementById("pageTitle").textContent = app.title + " — The Teacher Vault";
+  document.getElementById("metaDesc").setAttribute("content", app.description);
+  document.getElementById("ogTitleTag").setAttribute("content", app.title + " — The Teacher Vault");
+  document.getElementById("ogDescTag").setAttribute("content", app.description);
+  document.getElementById("canonicalLink").setAttribute("href", "https://www.theteachervault.com/app.html?id=" + app.id);
+
+  // --- Breadcrumb ---
+  var catHref = { teacher: "teacher-tools.html", revision: "revision.html", cliffnotes: "cliff-notes.html" }[app.category];
+  var catName = { teacher: "Teacher Tools", revision: "Revision Apps", cliffnotes: "Cliff Notes" }[app.category];
+  document.getElementById("breadcrumb").innerHTML =
+    '<a href="index.html">Home</a> / <a href="' + catHref + '">' + catName + '</a> / ' + app.title;
+
+  // --- Header ---
+  document.getElementById("categoryLabel").textContent = categoryLabel(app);
+  document.getElementById("appTitle").textContent = app.title;
+  document.getElementById("appTagline").textContent = app.tagline;
+
+  var badges = tierBadge(app);
+  if (app.subject && app.subject !== "General") badges += '<span class="badge badge--subject">' + app.subject + '</span>';
+  if (app.isNew) badges += '<span class="badge badge--new">New</span>';
+  document.getElementById("badgeRow").innerHTML = badges;
+
+  var previewEl = document.getElementById("previewArea");
+  previewEl.innerHTML = thumbMedia(app);
+  if (!app.image && app.category === "cliffnotes") previewEl.classList.add("app-detail__preview--board");
+
+  // --- CTA ---
+  var ctaHtml = ctaFor(app);
+  ctaHtml += '<button class="btn btn--ghost" id="shareBtn" type="button">' + ICONS.share + ' Share</button>';
+  document.getElementById("ctaRow").innerHTML = ctaHtml;
+
+  var noteBits = [];
+  if (app.noAccount) noteBits.push("No account needed");
+  if (app.worksOffline) noteBits.push("Works offline once downloaded");
+  if (!app.comingSoon) noteBits.push("Works in your browser");
+  document.getElementById("browserNote").innerHTML = noteBits.length
+    ? '<span class="browser-note">' + ICONS.check + ' ' + noteBits.join(" &middot; ") + '</span>' : "";
+
+  document.getElementById("shareBtn").addEventListener("click", function () {
+    var url = window.location.href;
+    if (navigator.share) {
+      navigator.share({ title: app.title + " — The Teacher Vault", url: url }).catch(function () {});
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).then(function () {
+        var btn = document.getElementById("shareBtn");
+        var original = btn.innerHTML;
+        btn.innerHTML = ICONS.check + " Link copied";
+        setTimeout(function () { btn.innerHTML = original; }, 2000);
+      });
+    }
+  });
+
+  // --- Info strip ---
+  var infoItems = [
+    ["Category", categoryLabel(app)],
+    ["Audience", app.audience],
+    ["Price", app.comingSoon ? "Coming soon" : app.price]
+  ];
+  if (app.subject && app.subject !== "General") infoItems.push(["Subject", app.subject]);
+  if (app.questionCount) infoItems.push(["Questions", app.questionCount]);
+  document.getElementById("infoStrip").innerHTML = infoItems.map(function (i) {
+    return '<div class="info-strip__item"><dt>' + i[0] + '</dt><dd>' + i[1] + '</dd></div>';
+  }).join("");
+
+  // --- Description / features / audience ---
+  document.getElementById("appDescription").textContent = app.description;
+  document.getElementById("audienceText").textContent =
+    "Built for " + app.audience.toLowerCase() + ". If that's not quite you, it may still be useful — take a look at the features below.";
+
+  document.getElementById("featuresList").innerHTML = (app.features || []).map(function (f) {
+    return '<li>' + ICONS.check + ' <span>' + f + '</span></li>';
+  }).join("");
+
+  document.getElementById("howGumroad").textContent = app.comingSoon
+    ? "This app isn't available yet — check back as The Vault grows."
+    : (app.tier === "pro" ? "Purchase " + app.title + " securely through Gumroad." : "Download " + app.title + " for free (£0) through Gumroad.");
+  document.getElementById("howOpen").textContent = app.comingSoon
+    ? "In the meantime, browse what's already available in the library."
+    : "Most Teacher Vault mini apps open directly in a modern browser — no installation, no account, no API key.";
+
+  // --- Need more? (Lite -> Pro, or Pro -> Lite) ---
+  var pairId = app.proVersionId || app.liteVersionId;
+  if (pairId) {
+    var pair = getAppById(pairId);
+    if (pair) {
+      document.getElementById("needMoreSection").hidden = false;
+      document.getElementById("needMoreHeading").textContent = app.proVersionId
+        ? "Need more? Meet " + pair.title
+        : "Just need the basics? Try " + pair.title + " for free";
+
+      document.getElementById("needMoreCard").innerHTML =
+        '<div class="pro-card" style="max-width:560px;">' +
+          '<div class="badge-row">' + tierBadge(pair) + '</div>' +
+          '<div class="pro-card__title">' + pair.title + '</div>' +
+          '<p style="color:var(--chalk-dim);margin:0;">' + pair.description + '</p>' +
+          '<ul>' + (pair.features || []).slice(0, 4).map(function (f) {
+            return '<li>' + ICONS.check + ' <span>' + f + '</span></li>';
+          }).join("") + '</ul>' +
+          '<div class="row-ctas">' +
+            '<a class="btn btn--primary" href="app.html?id=' + pair.id + '">View ' + pair.title + '</a>' +
+          '</div>' +
+        '</div>';
+    }
+  }
+
+  // --- Related apps ---
+  var related = getRelatedApps(app, 3);
+  renderCardGrid(document.getElementById("relatedGrid"), related);
+})();
+</script>
+</body>
+</html>

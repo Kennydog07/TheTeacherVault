@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Cliff Notes Study Guides — The Teacher Vault</title>
+<meta name="description" content="Free, exam-focused Cliff Notes study guides for GCSE English Literature texts — plot summaries, characters, themes and key quotations. Downloads instantly as a PDF, straight from this site.">
+<link rel="canonical" href="https://www.theteachervault.com/cliff-notes.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Cliff Notes Study Guides — The Teacher Vault">
+<meta property="og:description" content="Free, exam-focused Cliff Notes study guides for GCSE English Literature texts. Downloads instantly as a PDF.">
+<meta property="og:image" content="images/og-image.jpg">
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="cliff-notes">
+<div class="chalk-texture" aria-hidden="true"></div>
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="section" style="padding-bottom:20px;">
+    <div class="container">
+      <p class="breadcrumb"><a href="index.html">Home</a> / Cliff Notes</p>
+      <span class="eyebrow">Free study guides</span>
+      <h1>Cliff Notes</h1>
+      <p class="lede">Clear, exam-focused study guides for GCSE English Literature texts — plot summaries, characters, themes and key quotations, without the padding. Each guide downloads instantly as a PDF, straight from this website. No Gumroad, no login, nothing to set up.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="card-grid" id="cliffNotesGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============================== COMING SOON TEXTS ============================== -->
+  <section class="section paper-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Growing the library</span>
+        <h2>More texts on the way</h2>
+        <p class="lede">The Cliff Notes shelf is expanding. Here's what's planned next.</p>
+      </div>
+      <div class="card-grid" id="cliffNotesSoonGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============================== WHAT'S INSIDE ============================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">What to expect</span>
+        <h2>What's inside a Cliff Notes guide</h2>
+      </div>
+      <div class="feature-grid" id="cliffNotesFeaturesGrid"></div>
+      <p class="text-center mt-lg" style="color:var(--chalk-dim);font-size:0.9rem;">Cliff Notes are a revision aid, not a replacement for reading the text or your teacher's own materials — use them alongside your usual study.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="apps-data.js"></script>
+<script src="script.js"></script>
+<script>
+  renderCardGrid(document.getElementById("cliffNotesGrid"), getAppsByCategory("cliffnotes"));
+
+  var cliffNotesFeatures = [
+    { icon: "book", title: "Plot summary", text: "A clear walk-through of the text, act by act or chapter by chapter." },
+    { icon: "student", title: "Characters & themes", text: "The people and ideas examiners actually ask about, explained simply." },
+    { icon: "check", title: "Key quotations", text: "Selected quotations with brief analysis, ready to revise from." },
+    { icon: "download", title: "Instant PDF download", text: "Downloads straight from this site — no account, no waiting." }
+  ];
+  document.getElementById("cliffNotesFeaturesGrid").innerHTML = cliffNotesFeatures.map(function(f){
+    return '<div class="feature-card"><div class="feature-card__icon">' + ICONS[f.icon] + '</div><h3>' + f.title + '</h3><p>' + f.text + '</p></div>';
+  }).join("");
+
+  var cliffNotesSoon = getComingSoonApps().filter(function(a){ return a.category === "cliffnotes"; });
+  document.getElementById("cliffNotesSoonGrid").innerHTML = cliffNotesSoon.map(function(app){
+    return '<div class="soon-card" style="background:#fff;border-color:rgba(20,36,29,0.15);">' +
+      '<span class="badge badge--soon" style="align-self:flex-start;">Coming Soon</span>' +
+      '<h3 style="color:var(--ink);">' + app.title + '</h3>' +
+      '<p style="color:var(--ink-soft);">' + app.description + '</p>' +
+    '</div>';
+  }).join("");
+</script>
+</body>
+</html>

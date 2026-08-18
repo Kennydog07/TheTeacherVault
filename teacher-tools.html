@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Teacher Tools &amp; Pro Upgrades — The Teacher Vault</title>
+<meta name="description" content="Free Lite teacher tools for report writing, lesson planning and more, plus optional Pro upgrades for regular use. Downloaded through Gumroad.">
+<link rel="canonical" href="https://www.theteachervault.com/teacher-tools.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Teacher Tools & Pro Upgrades — The Teacher Vault">
+<meta property="og:description" content="Free Lite teacher tools plus optional Pro upgrades for regular use. Downloaded through Gumroad.">
+<meta property="og:image" content="images/og-image.jpg">
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="teacher-tools">
+<div class="chalk-texture" aria-hidden="true"></div>
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="section" style="padding-bottom:20px;">
+    <div class="container">
+      <p class="breadcrumb"><a href="index.html">Home</a> / Teacher Tools</p>
+      <span class="eyebrow">Teacher productivity</span>
+      <h1>Teacher tools for everyday admin</h1>
+      <p class="lede">Lesson planning, report writing and other classroom admin — built as small, focused tools rather than one huge platform. Start free. Upgrade only if you need more.</p>
+    </div>
+  </section>
+
+  <!-- ============================== FREE LITE APPS ============================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Free, no catch</span>
+        <h2>Free Lite apps</h2>
+        <p class="lede">Lite versions are completely free and downloaded through Gumroad. Each one is a genuinely usable tool on its own — not a crippled trial.</p>
+      </div>
+      <div class="card-grid" id="liteGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============================== PRO APPS ============================== -->
+  <section class="section paper-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">For regular use</span>
+        <h2>Pro tools</h2>
+        <p class="lede">Each Pro version is its own separate Gumroad listing — never bundled with the Lite version. Pro adds extra depth for teachers who use a tool often.</p>
+      </div>
+      <div class="card-grid" id="proGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============================== LITE VS PRO ============================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Which one do I need?</span>
+        <h2>Lite vs Pro</h2>
+        <p class="lede" style="margin:0 auto;">Where both versions exist, here's the general difference. Exact features vary by app — check the individual product page for details.</p>
+      </div>
+      <div class="compare-table-wrap">
+        <table class="compare">
+          <thead>
+            <tr>
+              <th scope="col">Lite</th>
+              <th scope="col">Pro</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Core functionality</td><td>Full functionality</td></tr>
+            <tr><td>Free</td><td>Premium, one-off purchase</td></tr>
+            <tr><td>Ideal for occasional use</td><td>Designed for regular use</td></tr>
+            <tr><td>Basic options</td><td>Advanced controls</td></tr>
+            <tr><td>Download from Gumroad</td><td>Purchase from Gumroad</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-center mt-md" style="color:var(--chalk-dim);">Start free. Upgrade only if you need more.</p>
+    </div>
+  </section>
+
+  <!-- ============================== COMING SOON ============================== -->
+  <section class="section paper-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">In progress</span>
+        <h2>More teacher tools on the way</h2>
+      </div>
+      <div class="card-grid" id="teacherSoonGrid"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="apps-data.js"></script>
+<script src="script.js"></script>
+<script>
+  var teacherApps = getAppsByCategory("teacher");
+  renderCardGrid(document.getElementById("liteGrid"), teacherApps.filter(function(a){ return a.tier === "lite"; }));
+  renderCardGrid(document.getElementById("proGrid"), teacherApps.filter(function(a){ return a.tier === "pro"; }));
+
+  var teacherSoon = getComingSoonApps().filter(function(a){ return a.category === "teacher"; });
+  document.getElementById("teacherSoonGrid").innerHTML = teacherSoon.map(function(app){
+    return '<div class="soon-card" style="background:#fff;border-color:rgba(20,36,29,0.15);">' +
+      '<span class="badge badge--soon" style="align-self:flex-start;">Coming Soon</span>' +
+      '<h3 style="color:var(--ink);">' + app.title + '</h3>' +
+      '<p style="color:var(--ink-soft);">' + app.description + '</p>' +
+    '</div>';
+  }).join("");
+</script>
+</body>
+</html>

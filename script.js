@@ -1,0 +1,308 @@
+/* ==========================================================================
+   THE TEACHER VAULT — SITE SCRIPT
+   Handles the shared header/footer, navigation, app card rendering and the
+   filtering on the Browse All Apps page. No build step, no dependencies.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Small inline icon set (currentColor, no external requests)
+   -------------------------------------------------------------------------- */
+
+const ICONS = {
+  external: '<svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>',
+  gumroad: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5a3.5 3.5 0 1 0 3.2-3.48"/></svg>',
+  check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>',
+  search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
+  menu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>',
+  close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
+  arrowUp: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>',
+  book: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
+  clipboard: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-3"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="13" y2="16"/></svg>',
+  mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>',
+  share: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg>',
+  gumroadMark: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8"/><path d="M9 11h6"/></svg>',
+  bolt: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 11 14 10 22 21 10 13 10 13 2"/></svg>',
+  target: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>',
+  coin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 15.2c.5.6 1.4 1 2.5 1 1.7 0 3-.8 3-2s-1.3-1.7-3-2-3-.8-3-2 1.3-2 3-2c1.1 0 2 .4 2.5 1"/><path d="M12 6.5v11"/></svg>',
+  noSub: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 10h18"/><line x1="6" y1="14.5" x2="10" y2="14.5"/><line x1="4" y1="3" x2="20" y2="20"/></svg>',
+  teacher: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/><path d="M7.5 12.5l2.5-3 2 2 3.5-4"/></svg>',
+  student: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-4 10 4-10 4-10-4z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v6"/></svg>',
+  chart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M12 20V4M20 20v-7"/><path d="M2 20h20"/></svg>',
+  repeat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 2l4 4-4 4"/><path d="M3 12v-2a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 12v2a4 4 0 0 1-4 4H3"/></svg>',
+  download: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><polyline points="7 10 12 15 17 10"/><path d="M4 19h16"/></svg>',
+  skull: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3C7.6 3 4.5 6.2 4.5 10.2c0 2.6 1.3 4.4 2.5 5.6V19a1 1 0 0 0 1 1h1.5v-2h1v2h3v-2h1v2H16a1 1 0 0 0 1-1v-3.2c1.2-1.2 2.5-3 2.5-5.6C19.5 6.2 16.4 3 12 3z"/><circle cx="9.2" cy="10.5" r="1.4"/><circle cx="14.8" cy="10.5" r="1.4"/><path d="M11 13.2h2l-1 1.6-1-1.6z"/></svg>',
+  potion: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2h4"/><path d="M10.5 2v4.2L7 12.5c-.9 1.6-1.1 2.7-1.1 3.8 0 3 2.7 5.2 6.1 5.2s6.1-2.2 6.1-5.2c0-1.1-.2-2.2-1.1-3.8L13.5 6.2V2"/><path d="M8 15.5c1 .8 2.3 1.2 4 1.2s3-.4 4-1.2"/><circle cx="10.5" cy="12.5" r="0.6" fill="currentColor" stroke="none"/><circle cx="13" cy="14" r="0.5" fill="currentColor" stroke="none"/><circle cx="11.5" cy="15.5" r="0.5" fill="currentColor" stroke="none"/></svg>',
+  pocketWatch: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5v1.8"/><path d="M10.3 2.5h3.4"/><circle cx="12" cy="13" r="8.5"/><path d="M12 8v5l3 2"/><path d="M9 5.5 7 3.5"/></svg>'
+};
+
+const WHY_CARDS = [
+  { icon: "bolt", title: "Simple", text: "Open the tool and get started. No unnecessary setup." },
+  { icon: "target", title: "Useful", text: "Every app is built to solve one specific problem well." },
+  { icon: "coin", title: "Affordable", text: "Many apps are free, with optional paid Pro tools for regular use." },
+  { icon: "noSub", title: "No subscriptions", text: "Products are purchased individually unless explicitly stated otherwise." },
+  { icon: "teacher", title: "Teacher-focused", text: "Designed around actual everyday education tasks." },
+  { icon: "student", title: "Student-friendly", text: "Revision apps are straightforward and distraction-free." }
+];
+
+const TRUST_ITEMS = [
+  "Free revision apps",
+  "No subscription required for free resources",
+  "Instant, browser-based tools",
+  "Growing app library"
+];
+
+function renderWhyGrid(container, lightCards) {
+  if (!container) return;
+  container.innerHTML = WHY_CARDS.map(function (c) {
+    return '<div class="feature-card"' + (lightCards ? ' style="background:#fff;border-color:rgba(20,36,29,0.08);"' : '') + '>' +
+      '<div class="feature-card__icon">' + ICONS[c.icon] + '</div>' +
+      '<h3>' + c.title + '</h3>' +
+      '<p>' + c.text + '</p>' +
+    '</div>';
+  }).join("");
+}
+
+function renderTrustStrip(container) {
+  if (!container) return;
+  container.innerHTML = TRUST_ITEMS.map(function (t) {
+    return '<span class="trust-strip__item">' + ICONS.check + ' ' + t + '</span>';
+  }).join("");
+}
+
+/* --------------------------------------------------------------------------
+   Chalk logo markup — one function, used in header / hero / footer
+   -------------------------------------------------------------------------- */
+
+function chalkLogo(size) {
+  size = size || "md";
+  return (
+    '<span class="chalk-logo chalk-logo--' + size + '">' +
+      '<img src="images/logo.png" alt="The Teacher Vault" class="chalk-logo__img" width="320" height="320">' +
+    '</span>'
+  );
+}
+
+/* --------------------------------------------------------------------------
+   Header + footer templates
+   -------------------------------------------------------------------------- */
+
+const NAV_LINKS = [
+  { href: "index.html", label: "Home" },
+  { href: "teacher-tools.html", label: "Teacher Tools" },
+  { href: "revision.html", label: "Revision Apps" },
+  { href: "cliff-notes.html", label: "Cliff Notes" },
+  { href: "apps.html?tier=pro", label: "Pro Apps" },
+  { href: "about.html", label: "About" },
+  { href: "faq.html", label: "FAQ" }
+];
+
+function currentFile() {
+  const path = window.location.pathname.split("/").pop();
+  return path === "" ? "index.html" : path;
+}
+
+function renderHeader() {
+  const here = currentFile();
+  const hereWithQuery = here + window.location.search;
+  const linkHtml = function (extra) {
+    return NAV_LINKS.map(function (l) {
+      const active = l.href.indexOf("?") > -1 ? l.href === hereWithQuery : l.href === here;
+      return '<a href="' + l.href + '"' + (active ? ' aria-current="page"' : '') + '>' + l.label + '</a>';
+    }).join("");
+  };
+
+  return (
+    '<div class="site-header__inner">' +
+      '<a href="index.html" aria-label="The Teacher Vault — home">' + chalkLogo("sm") + '</a>' +
+      '<nav class="main-nav" aria-label="Primary">' +
+        '<div class="main-nav__links">' + linkHtml() + '</div>' +
+      '</nav>' +
+      '<div class="header-cta">' +
+        '<a href="apps.html" class="btn btn--ghost btn--sm">Browse All Apps</a>' +
+        '<button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">' + ICONS.menu + '</button>' +
+      '</div>' +
+    '</div>' +
+    '<div class="mobile-nav" id="mobileNav">' +
+      linkHtml() +
+      '<a href="contact.html"' + (here === "contact.html" ? ' aria-current="page"' : '') + '>Contact</a>' +
+      '<a href="apps.html" class="btn btn--primary btn--sm">Browse All Apps</a>' +
+    '</div>'
+  );
+}
+
+function renderFooter() {
+  const year = new Date().getFullYear();
+  return (
+    '<div class="container">' +
+      '<div class="footer-grid">' +
+        '<div class="footer-col">' +
+          chalkLogo("footer") +
+          '<p class="footer-desc">Practical tools for teachers. Free revision resources for students.</p>' +
+          '<p class="gumroad-note">Most downloads and purchases are fulfilled through Gumroad. Cliff Notes download directly from this site.</p>' +
+        '</div>' +
+        '<div class="footer-col">' +
+          '<h4>Explore</h4>' +
+          '<ul>' +
+            '<li><a href="teacher-tools.html">Teacher Tools</a></li>' +
+            '<li><a href="revision.html">Revision Apps</a></li>' +
+            '<li><a href="cliff-notes.html">Cliff Notes</a></li>' +
+            '<li><a href="apps.html?tier=free">Free Apps</a></li>' +
+            '<li><a href="apps.html?tier=pro">Pro Apps</a></li>' +
+          '</ul>' +
+        '</div>' +
+        '<div class="footer-col">' +
+          '<h4>Company</h4>' +
+          '<ul>' +
+            '<li><a href="about.html">About</a></li>' +
+            '<li><a href="faq.html">FAQ</a></li>' +
+            '<li><a href="contact.html">Contact</a></li>' +
+          '</ul>' +
+        '</div>' +
+        '<div class="footer-col">' +
+          '<h4>Legal</h4>' +
+          '<ul>' +
+            '<li><a href="privacy.html">Privacy</a></li>' +
+            '<li><a href="terms.html">Terms</a></li>' +
+          '</ul>' +
+        '</div>' +
+      '</div>' +
+      '<div class="footer-bottom">' +
+        '<span>&copy; ' + year + ' The Teacher Vault. All rights reserved.</span>' +
+        '<span>Built for teachers and students &mdash; not a faceless platform.</span>' +
+      '</div>' +
+    '</div>'
+  );
+}
+
+function mountLayout() {
+  const headerEl = document.getElementById("site-header");
+  const footerEl = document.getElementById("site-footer");
+  if (headerEl) headerEl.innerHTML = renderHeader();
+  if (footerEl) footerEl.innerHTML = renderFooter();
+
+  const toggle = document.getElementById("navToggle");
+  if (toggle) {
+    toggle.addEventListener("click", function () {
+      const open = document.body.classList.toggle("nav-open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.innerHTML = open ? ICONS.close : ICONS.menu;
+    });
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Back to top button
+   -------------------------------------------------------------------------- */
+
+function mountBackToTop() {
+  const btn = document.createElement("button");
+  btn.className = "back-to-top";
+  btn.id = "backToTop";
+  btn.setAttribute("aria-label", "Back to top");
+  btn.innerHTML = ICONS.arrowUp;
+  document.body.appendChild(btn);
+
+  window.addEventListener("scroll", function () {
+    btn.classList.toggle("visible", window.scrollY > 500);
+  });
+  btn.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+/* --------------------------------------------------------------------------
+   App card rendering — used on home, teacher-tools, revision, apps pages
+   -------------------------------------------------------------------------- */
+
+function tierBadge(app) {
+  if (app.comingSoon) return '<span class="badge badge--soon">Coming Soon</span>';
+  if (app.tier === "pro") return '<span class="badge badge--pro">Pro</span>';
+  if (app.tier === "lite") return '<span class="badge badge--lite">Lite &middot; Free</span>';
+  return '<span class="badge badge--free">Free</span>';
+}
+
+function categoryLabel(app) {
+  if (app.category === "teacher") return "Teacher Tool";
+  if (app.category === "cliffnotes") return "Cliff Notes";
+  return "Revision App";
+}
+
+function thumbIcon(app) {
+  if (app.icon && ICONS[app.icon]) return ICONS[app.icon];
+  if (app.category === "teacher") return ICONS.clipboard;
+  return ICONS.book;
+}
+
+function thumbMedia(app) {
+  if (app.image) {
+    return '<img src="' + app.image + '" alt="" loading="lazy" class="app-card__thumb-img">';
+  }
+  return thumbIcon(app);
+}
+
+function ctaFor(app) {
+  if (app.comingSoon) {
+    return '<span class="btn btn--dark btn--block" aria-disabled="true">Coming Soon</span>';
+  }
+  if (app.fileUrl) {
+    return '<a class="btn btn--dark btn--block" href="' + app.fileUrl + '" download>Download PDF ' + ICONS.download + '</a>';
+  }
+  const label = app.tier === "pro" ? "Get Pro on Gumroad" : "Download Free on Gumroad";
+  return '<a class="btn ' + (app.tier === "pro" ? "btn--primary" : "btn--dark") + ' btn--block" href="' + app.gumroadUrl + '" target="_blank" rel="noopener">' + label + ' ' + ICONS.external + '</a>';
+}
+
+function proNote(app) {
+  if (app.tier === "lite" && app.proVersionId) {
+    const pro = getAppById(app.proVersionId);
+    if (pro) return '<p class="app-card__pro-note">Pro version available &mdash; <a href="app.html?id=' + pro.id + '">' + pro.title + '</a></p>';
+  }
+  if (app.tier === "pro" && app.liteVersionId) {
+    const lite = getAppById(app.liteVersionId);
+    if (lite) return '<p class="app-card__pro-note">Free Lite version available &mdash; <a href="app.html?id=' + lite.id + '">' + lite.title + '</a></p>';
+  }
+  return "";
+}
+
+function renderAppCard(app) {
+  const subjectBadge = (app.subject && app.subject !== "General")
+    ? '<span class="badge badge--subject">' + app.subject + '</span>' : "";
+  const newBadge = app.isNew ? '<span class="badge badge--new">New</span>' : "";
+
+  return (
+    '<article class="app-card" data-id="' + app.id + '" data-category="' + app.category + '" data-tier="' + app.tier + '" data-subject="' + (app.subject || "") + '" data-comingsoon="' + !!app.comingSoon + '">' +
+      '<a href="app.html?id=' + app.id + '" class="app-card__thumb' + (!app.image && app.category === "cliffnotes" ? " app-card__thumb--board" : "") + '" aria-hidden="true" tabindex="-1">' +
+        thumbMedia(app) +
+        '<span class="app-card__badges">' + tierBadge(app) + newBadge + '</span>' +
+      '</a>' +
+      '<div class="app-card__body">' +
+        '<span class="app-card__category">' + categoryLabel(app) + '</span>' +
+        '<h3 class="app-card__title"><a href="app.html?id=' + app.id + '">' + app.title + '</a></h3>' +
+        '<p class="app-card__desc">' + app.tagline + '</p>' +
+        '<div class="app-card__meta">' + subjectBadge + '</div>' +
+        '<div class="app-card__foot">' +
+          ctaFor(app) +
+          '<a href="app.html?id=' + app.id + '" class="btn btn--outline-dark btn--sm btn--block">View details</a>' +
+          proNote(app) +
+        '</div>' +
+      '</div>' +
+    '</article>'
+  );
+}
+
+function renderCardGrid(container, apps) {
+  if (!container) return;
+  if (!apps.length) {
+    container.innerHTML = '<div class="empty-state"><p>No apps match those filters yet. Try clearing a filter or search term.</p></div>';
+    return;
+  }
+  container.innerHTML = apps.map(renderAppCard).join("");
+}
+
+/* --------------------------------------------------------------------------
+   Init
+   -------------------------------------------------------------------------- */
+
+document.addEventListener("DOMContentLoaded", function () {
+  mountLayout();
+  mountBackToTop();
+});
