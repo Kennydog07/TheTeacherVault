@@ -267,7 +267,7 @@ const APPS = [
     audience: "Teachers who regularly analyse assessment data",
     tier: "pro",
     price: "£9.99",
-    gumroadUrl: "GUMROAD_MARK_MY_CLASS_PRO_URL",
+    gumroadUrl: "https://idamaemann.gumroad.com/l/ftfzhu",
     image: "images/mark-my-class-pro.jpg",
     featured: false,
     isNew: true,
