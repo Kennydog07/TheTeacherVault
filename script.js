@@ -1,7 +1,7 @@
 /* ==========================================================================
    THE TEACHER VAULT — SITE SCRIPT
    Handles the shared header/footer, navigation, app card rendering and the
-   filtering on the Browse All Apps page. No build step, no dependencies.
+   filtering on the Browse All page. No build step, no dependencies.
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -120,14 +120,12 @@ function renderHeader() {
         '<div class="main-nav__links">' + linkHtml() + '</div>' +
       '</nav>' +
       '<div class="header-cta">' +
-        '<a href="apps.html" class="btn btn--ghost btn--sm">Browse All Apps</a>' +
         '<button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">' + ICONS.menu + '</button>' +
       '</div>' +
     '</div>' +
     '<div class="mobile-nav" id="mobileNav">' +
       linkHtml() +
       '<a href="contact.html"' + (here === "contact.html" ? ' aria-current="page"' : '') + '>Contact</a>' +
-      '<a href="apps.html" class="btn btn--primary btn--sm">Browse All Apps</a>' +
     '</div>'
   );
 }

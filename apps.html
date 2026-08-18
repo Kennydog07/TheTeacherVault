@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Browse All Apps — The Teacher Vault</title>
-<meta name="description" content="Search and filter every app in The Teacher Vault library — free teacher tools, Pro upgrades and free GCSE revision apps, all in one place.">
+<title>Browse All — The Teacher Vault</title>
+<meta name="description" content="Search and filter every app in The Teacher Vault library — free teacher tools, Pro upgrades, free GCSE revision apps and Quick Notes study guides, all in one place.">
 <link rel="canonical" href="https://www.theteachervault.com/apps.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Browse All Apps — The Teacher Vault">
+<meta property="og:title" content="Browse All — The Teacher Vault">
 <meta property="og:description" content="Search and filter every app in The Teacher Vault library.">
 <meta property="og:image" content="images/og-image.jpg">
 <link rel="icon" type="image/png" href="images/logo.png">
@@ -26,10 +26,10 @@
 
   <section class="section" style="padding-bottom:20px;">
     <div class="container">
-      <p class="breadcrumb"><a href="index.html">Home</a> / Browse All Apps</p>
+      <p class="breadcrumb"><a href="index.html">Home</a> / Browse All</p>
       <span class="eyebrow">The full library</span>
-      <h1>Browse All Apps</h1>
-      <p class="lede">Every teacher tool and revision app in The Teacher Vault, in one place. Search by name, or filter by type, tier and subject.</p>
+      <h1>Browse All</h1>
+      <p class="lede">Every teacher tool, revision app and Quick Notes guide in The Teacher Vault, in one place. Search by name, subject or who it's for — or filter by type, tier and subject.</p>
     </div>
   </section>
 
@@ -120,7 +120,10 @@
       if (state.tier !== "all" && app.tier !== state.tier) return false;
       if (state.subject !== "all" && app.subject !== state.subject) return false;
       if (q) {
-        var haystack = (app.title + " " + app.tagline + " " + app.description + " " + app.subject).toLowerCase();
+        var haystack = (
+          app.title + " " + app.tagline + " " + app.description + " " +
+          app.subject + " " + app.audience + " " + categoryLabel(app)
+        ).toLowerCase();
         if (haystack.indexOf(q) === -1) return false;
       }
       return true;
