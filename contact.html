@@ -43,16 +43,21 @@
             <span class="icon" id="iconMail"></span>
             <div>
               <strong>Email</strong><br>
-              <a href="mailto:REPLACE_WITH_SUPPORT_EMAIL@example.com" id="supportEmailLink">REPLACE_WITH_SUPPORT_EMAIL@example.com</a>
-              <p style="font-size:0.85rem;margin-top:4px;">Placeholder — replace with your real support address in contact.html and the footer.</p>
+              <a href="mailto:theteachervault@gmail.com" id="supportEmailLink">theteachervault@gmail.com</a>
             </div>
           </li>
           <li class="contact-list__item">
-            <span class="icon" id="iconShare"></span>
+            <span class="icon" id="iconFacebook"></span>
             <div>
-              <strong>Social media</strong><br>
-              <a href="#" id="socialLink">REPLACE_WITH_SOCIAL_LINK</a>
-              <p style="font-size:0.85rem;margin-top:4px;">Placeholder — add your Instagram, X/Twitter, TikTok or similar profile.</p>
+              <strong>Facebook</strong><br>
+              <a href="https://www.facebook.com/profile.php?id=61587245637113" id="facebookLink" target="_blank" rel="noopener">The Teachers Vault</a>
+            </div>
+          </li>
+          <li class="contact-list__item">
+            <span class="icon" id="iconPinterest"></span>
+            <div>
+              <strong>Pinterest</strong><br>
+              <a href="https://www.pinterest.com/theteachervault/" id="pinterestLink" target="_blank" rel="noopener">theteachervault</a>
             </div>
           </li>
           <li class="contact-list__item">
@@ -102,21 +107,19 @@
 <script src="script.js"></script>
 <script>
   /* -----------------------------------------------------------------------
-     EASY-EDIT CONTACT DETAILS — change these three lines, nothing else.
+     EASY-EDIT CONTACT DETAILS — change these lines, nothing else.
      ----------------------------------------------------------------------- */
-  var SUPPORT_EMAIL = "REPLACE_WITH_SUPPORT_EMAIL@example.com";
-  var SOCIAL_URL = "https://example.com/REPLACE_WITH_SOCIAL_PROFILE";
+  var SUPPORT_EMAIL = "theteachervault@gmail.com";
   var GUMROAD_PROFILE_URL = "https://gumroad.com/REPLACE_WITH_GUMROAD_PROFILE";
 
   document.getElementById("supportEmailLink").textContent = SUPPORT_EMAIL;
   document.getElementById("supportEmailLink").href = "mailto:" + SUPPORT_EMAIL;
-  document.getElementById("socialLink").textContent = SOCIAL_URL;
-  document.getElementById("socialLink").href = SOCIAL_URL;
   document.getElementById("gumroadProfileLink").textContent = GUMROAD_PROFILE_URL;
   document.getElementById("gumroadProfileLink").href = GUMROAD_PROFILE_URL;
 
   document.getElementById("iconMail").innerHTML = ICONS.mail;
-  document.getElementById("iconShare").innerHTML = ICONS.share;
+  document.getElementById("iconFacebook").innerHTML = ICONS.facebook;
+  document.getElementById("iconPinterest").innerHTML = ICONS.pinterest;
   document.getElementById("iconGumroad").innerHTML = ICONS.gumroadMark;
 
   document.getElementById("contactForm").addEventListener("submit", function (e) {
