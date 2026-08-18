@@ -557,8 +557,9 @@ const APPS = [
   },
 
   /* ------------------------------ QUICK NOTES ------------------------------
-     Study guides. Some are PDFs, some are self-contained HTML apps that
-     open in a new tab (see "fileUrl"/"fileType" above) — either way they
+     Study guides. Most are self-contained HTML apps that open in a new
+     tab (fileType: "app"); some may instead be a downloadable PDF
+     (fileType: "pdf") — see "fileUrl"/"fileType" above. Either way they
      come straight from this website rather than through Gumroad, so
      gumroadUrl is left blank on these entries. */
 
@@ -573,8 +574,8 @@ const APPS = [
     tier: "free",
     price: "Free",
     gumroadUrl: "",
-    fileUrl: "downloads/jekyll-and-hyde-quick-notes.pdf",
-    fileType: "pdf",
+    fileUrl: "quick-notes/jekyll-and-hyde.html",
+    fileType: "app",
     image: "images/quicknotes-jekyll-and-hyde.jpg",
     icon: "potion",
     featured: false,
@@ -585,7 +586,7 @@ const APPS = [
       "Key characters and their significance",
       "Core themes and context",
       "Selected quotations with brief analysis",
-      "Downloads instantly as a PDF"
+      "Opens instantly in a new browser tab"
     ],
     worksOffline: true,
     noAccount: true
@@ -601,8 +602,8 @@ const APPS = [
     tier: "free",
     price: "Free",
     gumroadUrl: "",
-    fileUrl: "downloads/an-inspector-calls-quick-notes.pdf",
-    fileType: "pdf",
+    fileUrl: "quick-notes/an-inspector-calls.html",
+    fileType: "app",
     image: "images/quicknotes-an-inspector-calls.jpg",
     icon: "pocketWatch",
     featured: false,
@@ -613,7 +614,7 @@ const APPS = [
       "Key characters and their significance",
       "Core themes and historical context",
       "Selected quotations with brief analysis",
-      "Downloads instantly as a PDF"
+      "Opens instantly in a new browser tab"
     ],
     worksOffline: true,
     noAccount: true

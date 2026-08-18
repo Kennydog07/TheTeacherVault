@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Teacher Vault — Jekyll &amp; Hyde QuickNotes</title>
+<style>
+:root{
+  --ink:#1B2A4A;
+  --ink-light:#33456e;
+  --parchment:#F7F4EB;
+  --parchment-dark:#EDE7D6;
+  --blood:#8C2F1E;
+  --blood-bright:#B5432B;
+  --gold:#B4922F;
+  --fog:#4A5A6A;
+  --text:#232426;
+  --text-soft:#5b5d63;
+  --card:#FFFFFF;
+  --line:#E2DCC8;
+  --radius:10px;
+  --serif: Georgia, 'Times New Roman', Times, serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --mono: 'Courier New', Courier, monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--parchment);
+  color:var(--text);
+  font-family:var(--sans);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--gold);color:#fff;}
+a{color:var(--blood-bright);}
+button{font-family:inherit;cursor:pointer;}
+h1,h2,h3,h4{font-family:var(--serif);color:var(--ink);margin:0 0 .5em 0;}
+p{margin:0 0 .8em 0;}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+
+.skip-link{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:.6em 1em;z-index:999;}
+.skip-link:focus{left:8px;top:8px;}
+
+.app{display:flex;min-height:100vh;}
+
+.sidebar{
+  width:250px;flex-shrink:0;background:var(--ink);color:#EDE9DA;
+  display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;
+}
+.brand{padding:22px 20px 14px 20px;border-bottom:1px solid rgba(255,255,255,.12);}
+.brand .tv-name{font-family:var(--serif);font-size:1.05rem;letter-spacing:.02em;color:#fff;font-weight:700;}
+.brand .tv-sub{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-top:2px;}
+.brand .play-title{margin-top:14px;font-family:var(--serif);font-size:1.5rem;color:#fff;line-height:1.15;}
+.brand .play-sub{font-size:.78rem;color:#c9c4ac;margin-top:6px;line-height:1.4;}
+
+nav.mainnav{padding:10px 0;flex:1;}
+nav.mainnav button.navlink{
+  display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:none;
+  color:#d9d5c3;padding:10px 20px;font-size:.88rem;border-left:3px solid transparent;
+}
+nav.mainnav button.navlink .num{font-family:var(--mono);font-size:.7rem;color:var(--gold);width:18px;flex-shrink:0;}
+nav.mainnav button.navlink:hover{background:rgba(255,255,255,.06);color:#fff;}
+nav.mainnav button.navlink.active{background:rgba(181,67,43,.25);border-left-color:var(--blood-bright);color:#fff;font-weight:600;}
+nav.mainnav button.navlink:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
+
+.sidebar-footer{padding:14px 20px;font-size:.7rem;color:#8b876f;border-top:1px solid rgba(255,255,255,.1);}
+
+.topbar{display:none;position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;padding:12px 16px;align-items:center;justify-content:space-between;}
+.topbar .tv-inline{font-family:var(--serif);font-size:1rem;}
+.topbar .tv-inline span{display:block;font-size:.65rem;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;}
+.hamburger{background:none;border:1px solid rgba(255,255,255,.4);color:#fff;padding:8px 10px;border-radius:6px;font-size:.85rem;}
+
+.mobile-nav-drawer{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.5);}
+.mobile-nav-drawer.open{display:block;}
+.mobile-nav-panel{position:absolute;top:0;left:0;bottom:0;width:80%;max-width:300px;background:var(--ink);overflow-y:auto;padding-bottom:20px;}
+
+main{flex:1;min-width:0;padding:36px 44px 80px 44px;max-width:980px;}
+.section{display:none;animation:fadein .25s ease;}
+.section.active{display:block;}
+@keyframes fadein{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+
+.section-header{margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid var(--ink);}
+.section-header .eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blood-bright);font-weight:700;margin-bottom:4px;}
+.section-header h1{font-size:1.9rem;margin-bottom:4px;}
+.section-header .desc{color:var(--text-soft);font-size:.95rem;max-width:640px;}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-bottom:16px;}
+.card h3{font-size:1.1rem;margin-bottom:8px;}
+.subtle{color:var(--text-soft);font-size:.88rem;}
+.tag{display:inline-block;background:var(--parchment-dark);color:var(--ink);border-radius:999px;padding:2px 10px;font-size:.72rem;margin:2px 4px 2px 0;font-weight:600;}
+.tag.blood{background:#f3e0da;color:var(--blood);}
+.tag.gold{background:#f3ecd6;color:#7a621c;}
+.tag.fog{background:#e4e9ee;color:var(--fog);}
+
+.btn{display:inline-block;background:var(--ink);color:#fff;border:none;padding:9px 16px;border-radius:7px;font-size:.85rem;font-weight:600;}
+.btn:hover{background:var(--ink-light);}
+.btn.secondary{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+.btn.blood{background:var(--blood-bright);}
+.btn.blood:hover{background:var(--blood);}
+.btn:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+
+.disclosure{border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;background:var(--card);overflow:hidden;}
+.disclosure > .d-head{width:100%;background:none;border:none;text-align:left;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;font-weight:700;color:var(--ink);font-family:var(--serif);font-size:1.02rem;}
+.disclosure > .d-head:hover{background:var(--parchment);}
+.disclosure > .d-head .chev{transition:transform .2s;color:var(--blood-bright);font-size:1.1rem;}
+.disclosure.open > .d-head .chev{transform:rotate(90deg);}
+.disclosure > .d-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.disclosure.open > .d-body{max-height:4000px;}
+.disclosure > .d-body .inner{padding:0 18px 16px 18px;}
+
+.d-body .mini-label{font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--blood-bright);margin:12px 0 4px 0;}
+.d-body .mini-label:first-child{margin-top:0;}
+.quote-line{font-family:var(--serif);font-style:italic;color:var(--ink);background:var(--parchment);border-left:3px solid var(--gold);padding:8px 12px;margin:6px 0;font-size:.94rem;}
+
+.grid{display:grid;gap:14px;}
+.grid.two{grid-template-columns:1fr 1fr;}
+.grid.three{grid-template-columns:repeat(3,1fr);}
+@media(max-width:800px){.grid.two,.grid.three{grid-template-columns:1fr;}}
+
+.char-card{cursor:pointer;}
+
+.qv-controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;align-items:center;}
+.qv-controls input[type=text], .qv-controls select{padding:9px 12px;border:1px solid var(--line);border-radius:7px;font-size:.9rem;background:#fff;}
+.qv-controls input[type=text]{flex:1;min-width:180px;}
+.qv-count{font-size:.82rem;color:var(--text-soft);margin-bottom:10px;}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-bottom:12px;}
+.qcard .qtext{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);margin-bottom:6px;}
+.qcard .qmeta{font-size:.78rem;color:var(--text-soft);margin-bottom:10px;}
+.qcard .qreveal-btn{font-size:.8rem;background:var(--parchment-dark);border:none;padding:6px 12px;border-radius:6px;color:var(--ink);font-weight:600;}
+.qcard .qdetail{display:none;margin-top:12px;border-top:1px dashed var(--line);padding-top:10px;}
+.qcard.open .qdetail{display:block;}
+.qdetail .row{margin-bottom:8px;}
+.qdetail .row b{color:var(--blood-bright);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:2px;}
+.level-toggle{display:flex;gap:6px;margin:10px 0;}
+.level-toggle button{font-size:.75rem;padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:#fff;}
+.level-toggle button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.level-block{display:none;font-size:.9rem;}
+.level-block.active{display:block;}
+
+.quiz-progress{height:8px;background:var(--parchment-dark);border-radius:6px;overflow:hidden;margin-bottom:18px;}
+.quiz-progress-bar{height:100%;background:var(--blood-bright);width:0%;transition:width .3s;}
+.quiz-q{font-family:var(--serif);font-size:1.15rem;margin-bottom:14px;}
+.quiz-opts{display:flex;flex-direction:column;gap:8px;}
+.quiz-opt{text-align:left;padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;background:#fff;font-size:.95rem;}
+.quiz-opt:hover{border-color:var(--ink);}
+.quiz-opt.correct{background:#e4f2e6;border-color:#4c9a5f;}
+.quiz-opt.incorrect{background:#f7e4e0;border-color:var(--blood-bright);}
+.quiz-opt[disabled]{cursor:default;}
+.quiz-explain{margin-top:12px;padding:12px 14px;background:var(--parchment);border-radius:8px;font-size:.9rem;display:none;}
+.quiz-explain.show{display:block;}
+.quiz-result{text-align:center;padding:30px 10px;}
+.quiz-result .score{font-family:var(--serif);font-size:3rem;color:var(--ink);}
+.quiz-result .weak-areas{text-align:left;max-width:420px;margin:16px auto;}
+
+.wvs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+@media(max-width:700px){.wvs{grid-template-columns:1fr;}}
+.wvs .weak{border:1.5px solid #c9776a;background:#fbeeeb;border-radius:8px;padding:14px;}
+.wvs .strong{border:1.5px solid #6a9c76;background:#eef6ef;border-radius:8px;padding:14px;}
+.wvs .lbl{font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+.wvs .weak .lbl{color:#a1392a;}
+.wvs .strong .lbl{color:#3f7a4c;}
+
+.lm-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:760px){.lm-grid{grid-template-columns:1fr;}}
+.lm-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;}
+.lm-card h3{font-size:1rem;color:var(--blood-bright);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:10px;}
+.lm-card ol,.lm-card ul{margin:0;padding-left:20px;font-size:.88rem;}
+.lm-card li{margin-bottom:6px;}
+.print-btn{margin-bottom:16px;}
+@media print{
+  .sidebar,.topbar,.print-btn,nav,.section-header .desc{display:none !important;}
+  main{padding:0;max-width:100%;}
+  .section{display:block !important;}
+  #section-lastminute{display:block !important;}
+  .section:not(#section-lastminute){display:none !important;}
+  body{background:#fff;}
+}
+
+.sixty{background:var(--ink);color:#f2efe2;border-radius:var(--radius);padding:20px 22px;margin:18px 0;}
+.sixty h3{color:var(--gold);font-size:.85rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;}
+.sixty p{font-size:.95rem;line-height:1.6;}
+
+.checklist label{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line);font-size:.92rem;}
+.checklist input{margin-top:3px;}
+
+footer.app-footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);color:var(--text-soft);font-size:.78rem;}
+
+/* Timeline */
+.timeline{display:flex;flex-direction:column;gap:0;margin:16px 0;border-left:3px solid var(--gold);padding-left:18px;}
+.timeline .t-item{position:relative;padding:6px 0 18px 14px;}
+.timeline .t-item::before{content:'';position:absolute;left:-25px;top:9px;width:10px;height:10px;border-radius:50%;background:var(--blood-bright);border:2px solid var(--parchment);}
+.timeline .t-item .t-num{font-family:var(--mono);font-size:.72rem;color:var(--blood-bright);font-weight:700;}
+.timeline .t-item p{margin:2px 0 0 0;font-size:.92rem;}
+
+/* Jekyll or Hyde game */
+.jh-game{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;text-align:center;}
+.jh-quote{font-family:var(--serif);font-style:italic;font-size:1.2rem;color:var(--ink);min-height:90px;display:flex;align-items:center;justify-content:center;padding:0 10px;}
+.jh-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0;}
+@media(max-width:640px){.jh-opts{grid-template-columns:1fr 1fr;}}
+.jh-opts button{padding:12px 8px;border-radius:8px;border:1.5px solid var(--line);background:#fff;font-weight:600;font-size:.88rem;}
+.jh-opts button:hover{border-color:var(--ink);}
+.jh-opts button.correct{background:#e4f2e6;border-color:#4c9a5f;}
+.jh-opts button.incorrect{background:#f7e4e0;border-color:var(--blood-bright);}
+.jh-feedback{background:var(--parchment);border-radius:8px;padding:14px;margin-top:14px;font-size:.9rem;display:none;text-align:left;}
+.jh-feedback.show{display:block;}
+.jh-score{font-size:.85rem;color:var(--text-soft);margin-bottom:10px;}
+
+/* Duality map */
+.duality-grid{display:grid;grid-template-columns:1fr;gap:10px;}
+.dual-pair{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+.dual-pair .dp-head{width:100%;background:none;border:none;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.dual-pair .dp-sides{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:1.1rem;color:var(--ink);font-weight:700;}
+.dual-pair .dp-sides .side-a{color:var(--ink);}
+.dual-pair .dp-sides .arrow{color:var(--gold);font-size:1rem;}
+.dual-pair .dp-sides .side-b{color:var(--blood-bright);}
+.dual-pair .dp-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.dual-pair.open .dp-body{max-height:600px;}
+.dual-pair .dp-inner{padding:0 18px 16px 18px;font-size:.92rem;}
+
+@media(max-width:900px){
+  .sidebar{display:none;}
+  .topbar{display:flex;}
+  main{padding:24px 18px 60px 18px;}
+  .section-header h1{font-size:1.5rem;}
+  .jh-opts{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <div class="brand">
+      <div class="tv-name">The Teacher Vault</div>
+      <div class="tv-sub">QuickNotes</div>
+      <div class="play-title">The Strange Case of Dr Jekyll and Mr Hyde</div>
+      <div class="play-sub">Everything you actually need for GCSE English Literature.</div>
+    </div>
+    <nav class="mainnav" id="navList" aria-label="Sections"></nav>
+    <div class="sidebar-footer">Free GCSE revision resource.<br>Works fully offline.</div>
+  </aside>
+
+  <div class="topbar">
+    <div class="tv-inline"><span>The Teacher Vault · QuickNotes</span>Jekyll &amp; Hyde</div>
+    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobileDrawer">☰ Menu</button>
+  </div>
+  <div class="mobile-nav-drawer" id="mobileDrawer">
+    <div class="mobile-nav-panel">
+      <div class="brand">
+        <div class="tv-name">The Teacher Vault</div>
+        <div class="tv-sub">QuickNotes</div>
+        <div class="play-title">Jekyll &amp; Hyde</div>
+      </div>
+      <nav class="mainnav" id="navListMobile" aria-label="Sections (mobile)"></nav>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <div id="sectionsRoot"></div>
+    <footer class="app-footer">The Teacher Vault · Jekyll &amp; Hyde QuickNotes — a free GCSE English Literature revision resource. All explanatory content is original. The text of Stevenson's novella is public domain; quotations have been checked against the original 1886 text.</footer>
+  </main>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------- Storage helper ---------- */
+const Store = {
+  available: (function(){ try{ const k='__tv_test__'; localStorage.setItem(k,'1'); localStorage.removeItem(k); return true; }catch(e){ return false; } })(),
+  get(key, fallback){ if(!Store.available) return fallback; try{ const v = localStorage.getItem('tv_jh_'+key); return v===null?fallback:JSON.parse(v); }catch(e){ return fallback; } },
+  set(key, val){ if(!Store.available) return; try{ localStorage.setItem('tv_jh_'+key, JSON.stringify(val)); }catch(e){} }
+};
+
+const SECTIONS = [
+  {id:'overview', label:'Overview'},
+  {id:'plot', label:'Plot'},
+  {id:'characters', label:'Characters'},
+  {id:'themes', label:'Themes'},
+  {id:'quotes', label:'Quote Vault'},
+  {id:'context', label:'Context'},
+  {id:'techniques', label:'Techniques'},
+  {id:'exam', label:'Exam'},
+  {id:'quiz', label:'Quiz'},
+  {id:'jekyllorhyde', label:'Jekyll or Hyde?'},
+  {id:'dualitymap', label:'Duality Map'},
+  {id:'lastminute', label:'Last Minute'}
+];
+
+/* ================= CHARACTERS ================= */
+const CHARACTERS = [
+{id:'jekyll', name:'Dr Henry Jekyll', role:'Respected physician and scientist; creator of the transformative potion',
+ who:"A wealthy, respectable Victorian doctor who, driven by scientific ambition and a wish to separate his 'good' and 'bad' impulses, invents a potion that releases his darker self as the physically distinct Edward Hyde.",
+ journey:"Introduced only through others' descriptions and increasingly worried letters, Jekyll is initially seen as a well-regarded but strangely secretive gentleman. His confession in Chapter 10 reveals a lifelong double life: a respectable public self concealing 'undignified' pleasures. His experiment begins as an attempt to indulge those pleasures without consequence, but Hyde gradually grows stronger and less controllable, and Jekyll's suicide (or self-destruction) becomes the only way to prevent Hyde from taking over permanently.",
+ relationships:"Close friend to Mr Utterson, who spends much of the novella trying to protect him; former close friend and now scientific rival of Dr Lanyon; creator of, and eventually victim to, Edward Hyde.",
+ themes:['Duality of Human Nature','Repression','Secrecy','Science','Reputation','Temptation','Responsibility'],
+ quotes:["Man is not truly one, but truly two","I concealed my pleasures","I learned to recognise the thorough and primitive duality of man","My devil had been long caged, he came out roaring","I bring the life of that unhappy Henry Jekyll to an end"],
+ message:"Stevenson may use Jekyll to suggest that repressing, rather than honestly acknowledging, one's darker impulses is itself dangerous — Hyde does not appear from nowhere but emerges from desires Jekyll had suppressed for years, implying repression concentrates and intensifies what it tries to hide.",
+ examArgs:[
+  "Jekyll's confession reveals that his experiment was as much a moral evasion as a scientific one: by separating his identities, he initially hoped to enjoy his 'pleasures' without damaging his 'respectability', suggesting a reader might interpret his downfall as originating in a failure to take responsibility rather than in Hyde himself.",
+  "The novella's structure, which withholds Jekyll's own account until the final chapter, arguably forces readers to first judge Jekyll through Victorian ideas of respectability (via Utterson and Lanyon) before revealing the more complex truth beneath — this could be seen as Stevenson critiquing how readily society trusts outward appearance.",
+  "Jekyll's scientific ambition can be read as a Faustian pursuit of forbidden knowledge, connecting the novella to a longer Gothic tradition of characters destroyed by overreaching curiosity."
+ ]},
+{id:'hyde', name:'Mr Edward Hyde', role:"Jekyll's alter ego; a physically smaller, unsettling figure associated with violence",
+ who:"The physical embodiment of Jekyll's repressed, uninhibited impulses, deliberately described by Stevenson in vague, unsettling terms that other characters cannot quite pin down.",
+ journey:"First appears trampling a young girl in the street, then becomes the prime suspect in the brutal murder of Sir Danvers Carew. As the novella progresses and Jekyll relies on the potion more heavily, Hyde grows physically stronger and begins appearing involuntarily, without the potion, suggesting he is gradually overtaking Jekyll's identity. Hyde is discovered dead by his own hand (having taken poison) at the novella's climax, wearing Jekyll's clothes.",
+ relationships:"Created by, and effectively an extension of, Jekyll; feared and despised by Utterson, Enfield and Poole; indirectly responsible for Lanyon's death from shock.",
+ themes:['Duality of Human Nature','Violence','Evil','Identity','The Supernatural','Appearance vs Reality'],
+ quotes:["The man trampled calmly over the child's body and left her screaming on the ground","It wasn't like a man; it was like some damned Juggernaut","God bless me, the man seems hardly human!","With ape-like fury, he was trampling his victim under foot","O my poor old Harry Jekyll, if ever I read Satan's signature upon a face, it is on that of your new friend","Edward Hyde, alone in the ranks of mankind, was pure evil"],
+ message:"Stevenson deliberately makes Hyde impossible for any character to describe precisely, which could suggest that pure, unrestrained evil resists the neat categorisation Victorian society relied on (physiognomy, class, manners) to judge character.",
+ examArgs:[
+  "The recurring animalistic and 'ape-like' imagery used to describe Hyde connects to Victorian anxieties about Darwinian evolution and the fear that civilisation was only a thin veneer over a more primitive nature.",
+  "Because every character who describes Hyde struggles to say exactly what is wrong with him, a reader might argue Stevenson presents evil as something felt intuitively rather than something that can be rationally or visually identified — challenging the pseudo-science of physiognomy popular at the time.",
+  "Hyde's escalating violence (from trampling a child to a brutal, unprovoked murder) can be read as depicting the corrupting effect of unrestrained freedom, suggesting Stevenson is sceptical that Hyde's 'freedom' is genuinely liberating rather than destructive."
+ ]},
+{id:'utterson', name:'Mr Gabriel John Utterson', role:"Lawyer; Jekyll's friend; the novella's principal investigator",
+ who:"A reserved, rational, unimaginative but deeply loyal Victorian gentleman lawyer, through whose limited perspective most of the novella's mystery unfolds.",
+ journey:"Begins the novella troubled by Jekyll's will (which leaves everything to the mysterious Hyde) and spends much of the story quietly investigating the connection between the two men, always assuming a rational explanation (most often blackmail) rather than anything supernatural. His restrained, dutiful loyalty to Jekyll means he represses his own suspicions for much of the novella, only learning the full truth when he reads Lanyon's and then Jekyll's written confessions after both men are dead.",
+ relationships:"Longstanding friend to both Jekyll and Lanyon; regular walking companion of his distant relative Mr Enfield; ultimately the recipient of both men's written confessions.",
+ themes:['Secrecy','Reputation','Rationality','Victorian Respectability','Friendship'],
+ quotes:["I incline to Cain's heresy...I let my brother go to the devil in his own way","If he be Mr Hyde...I shall be Mr Seek","O my poor old Harry Jekyll, if ever I read Satan's signature upon a face, it is on that of your new friend"],
+ message:"Stevenson may use Utterson's limited, rational perspective to control what the reader is allowed to know, meaning the audience experiences the same frustrating uncertainty and mounting dread that Utterson does, rather than being given privileged access to the truth.",
+ examArgs:[
+  "Utterson's insistence on discretion and his reluctance to interfere in Jekyll's private affairs ('I let my brother go to the devil in his own way') can be read as a critique of a Victorian culture of repression, where loyalty to reputation is prioritised over open, honest concern.",
+  "Because the reader experiences most of the novella's events through Utterson's restricted, investigative point of view, a strong argument can be made that the novella's mystery and suspense are structural choices as much as plot ones.",
+  "Utterson's cautious rationalism (he repeatedly seeks logical explanations, such as blackmail, before considering anything stranger) makes his eventual confrontation with the supernatural truth more shocking, and can be used to discuss the tension between reason and the Gothic."
+ ]},
+{id:'lanyon', name:'Dr Hastie Lanyon', role:"Physician; former close friend of Jekyll; representative of conventional science",
+ who:"A hearty, conventional doctor who once studied alongside Jekyll but has grown estranged from him over what Lanyon dismisses as Jekyll's 'unscientific' and 'fanciful' research.",
+ journey:"Initially presented as robust and full of life ('a hearty, healthy, dapper, red-faced gentleman'). His fatal encounter with the truth, when he witnesses Hyde transform into Jekyll before his eyes, permanently shatters his rigid, rationalist worldview. He falls into a swift physical and mental decline and dies within weeks, leaving a written account (opened only after his death) that provides the reader's first confirmation of the connection between Jekyll and Hyde.",
+ relationships:"Former close friend and now scientific rival of Jekyll; loyal friend to Utterson, to whom he leaves his written account.",
+ themes:['Science','Rationality vs the Supernatural','Shock','Secrecy'],
+ quotes:["Such unscientific balderdash","He began to go wrong, wrong in mind","I must die, and yet I shall die incredulous","The most racking pangs succeeded"],
+ message:"Stevenson may use Lanyon's death to suggest that a purely rational, materialist worldview is dangerously unprepared for confronting the darker, irrational aspects of human nature — his death is caused by psychological shock, not physical harm, implying knowledge itself can be destructive.",
+ examArgs:[
+  "Lanyon's death from shock rather than violence positions him as a cautionary figure: Stevenson may be suggesting that clinging rigidly to conventional scientific rationalism leaves a person unable to cope when confronted with evidence that contradicts it.",
+  "The conflict between Lanyon's conventional medicine and Jekyll's 'transcendental' research dramatises a genuine late-Victorian tension between materialist science and more mystical or spiritual investigations into the human mind.",
+  "Lanyon's physical decline (from ruddy and hearty to pale and wasted) mirrors Jekyll's own transformations, suggesting Stevenson uses physical description throughout the novella to externalise inner psychological states."
+ ]},
+{id:'enfield', name:'Mr Richard Enfield', role:"Utterson's distant relative and regular walking companion",
+ who:"A man 'about town', worldly and observant, whose account of witnessing Hyde trample a young girl opens the novella and sets its central mystery in motion.",
+ journey:"Appears mainly in Chapter 1 (and briefly later) to deliver his eyewitness account of Hyde, then repeatedly declines to speculate further, embodying a Victorian reluctance to pry into other gentlemen's private affairs.",
+ relationships:"Distant relative and walking companion of Utterson; witness to Hyde's violence, though never directly connected to Jekyll himself.",
+ themes:['Reputation','Secrecy','Victorian Respectability'],
+ quotes:["The man trampled calmly over the child's body and left her screaming on the ground","I was reminded that I was on Cain's heresy","The very pink of the proprieties"],
+ message:"Stevenson may use Enfield's refusal to ask further questions ('the more it looks like Queer Street, the less I ask') to satirise a Victorian culture that valued discretion and avoided scandal even at the expense of curiosity about real wrongdoing.",
+ examArgs:[
+  "Enfield's studied incuriosity ('I make it a rule of mine: the more it looks like Queer Street, the less I ask') can be used to explore how Victorian respectability discouraged interference in others' private business, even when that business is clearly troubling."
+ ]},
+{id:'carew', name:'Sir Danvers Carew', role:'Elderly, well-respected Member of Parliament; Hyde\'s murder victim',
+ who:'A courteous, respected public figure whose brutal, unprovoked murder by Hyde forms the novella\'s central act of violence.',
+ journey:"Appears only in Chapter 4, where he is observed by a maid politely asking Hyde for directions before Hyde, without any apparent provocation, beats him to death with a cane.",
+ relationships:"No prior connection to Jekyll or Hyde; his murder is investigated by the police and drives Utterson's suspicion of Hyde into open alarm.",
+ themes:['Violence','Appearance vs Reality','Victorian Respectability'],
+ quotes:["With ape-like fury, he was trampling his victim under foot"],
+ message:"Stevenson's choice of an elderly, respected MP as the victim of senseless violence may be intended to shock a Victorian readership by showing that respectability offers no genuine protection from the destructive forces the novella explores.",
+ examArgs:[
+  "Carew's status as a well-regarded public figure, contrasted with the senselessness of his murder, can be used to discuss how Stevenson undermines the Victorian assumption that virtue and social standing provide real protection or predictability."
+ ]},
+{id:'poole', name:'Poole', role:"Jekyll's loyal butler",
+ who:'A long-serving, devoted servant whose growing alarm at his master\'s strange behaviour drives the tense climax of the novella.',
+ journey:"Initially a minor, background presence, Poole becomes central in Chapter 8 when his terror at the voice and behaviour coming from Jekyll's cabinet convinces Utterson that something is gravely wrong, leading the two men to break down the door and discover Hyde's body.",
+ relationships:"Devoted servant to Jekyll for many years; brings his fears to Utterson rather than the police, reflecting his loyalty and desire to protect his master's reputation.",
+ themes:['Loyalty','Secrecy','Fear'],
+ quotes:["That is not my master's voice","I have seen that thing like a monkey among the chemicals"],
+ message:"Stevenson may use Poole's servant's-eye view to demonstrate that even those closest to Jekyll, who observe him daily, cannot fully see through the secrecy that defines his life, reinforcing how completely he has hidden his double identity.",
+ examArgs:[
+  "Poole's decision to seek Utterson's help rather than the authorities reflects a Victorian instinct to protect a respected household's reputation even in a moment of genuine crisis, reinforcing the novella's wider theme of secrecy."
+ ]}
+];
+
+/* ================= THEMES ================= */
+const THEMES = [
+{name:'Duality of Human Nature', explanation:"The novella's central idea: that every person contains opposing impulses (moral and immoral, civilised and primitive) rather than being simply good or simply bad.",
+ where:"Jekyll's Chapter 10 confession ('man is not truly one, but truly two'); the physical contrast between Jekyll's large, handsome form and Hyde's small, unsettling one; the divided architecture of Jekyll's house itself (respectable front, sinister laboratory door at the rear).",
+ characters:['Jekyll','Hyde'],
+ quotes:["Man is not truly one, but truly two","I learned to recognise the thorough and primitive duality of man"],
+ message:"Stevenson does not present a simple battle between a wholly good Jekyll and a wholly evil Hyde. A more sophisticated reading is that Hyde is not a separate, invading force but a distillation of desires that already existed within Jekyll — Jekyll himself admits Hyde is 'racially both' with him, suggesting the duality is not between two beings but within a single one.",
+ context:"This connects to Victorian debates about the divided self, prompted partly by developments in psychology and partly by strict social codes that demanded a respectable public persona regardless of private feeling.",
+ thesis:["Stevenson presents duality not as a conflict between two separate beings, but as an internal division that already exists within a single self, one that Jekyll's experiment merely makes physically visible.","The novella's structural duality (respectable narrative voice vs shocking confession; front door vs back door) reinforces its thematic duality at every level of the text."]},
+{name:'Good vs Evil', explanation:"The novella interrogates whether good and evil exist as absolute, separable categories, or whether they are inseparably mixed within every person.",
+ where:"Jekyll's reflection that 'all human beings are commingled out of good and evil'; Hyde's description as 'pure evil', which some readers interpret ironically given he is only one part of a larger, mixed whole.",
+ characters:['Jekyll','Hyde','Utterson'],
+ quotes:["Edward Hyde, alone in the ranks of mankind, was pure evil","All human beings, as we meet them, are commingled out of good and evil"],
+ message:"Stevenson may suggest that while Hyde himself can be 'pure evil', no ordinary person (including Jekyll) is ever purely good or purely evil — moral experience is a mixture, and Jekyll's tragedy is his attempt to separate what cannot cleanly be separated.",
+ context:"Victorian Christian morality generally framed good and evil as a constant, effortful struggle within the individual soul, making Jekyll's shortcut of literal separation especially transgressive.",
+ thesis:["Stevenson's exploration of good and evil ultimately argues against their neat separation, showing that Jekyll's failure stems precisely from believing such separation was possible."]},
+{name:'Reputation', explanation:"Characters throughout the novella are driven by a desperate need to protect their public standing, often at the cost of honesty.",
+ where:"Utterson's reluctance to expose Jekyll to scandal; Jekyll's own lifelong effort to indulge his 'pleasures' without damaging his respectable image; the family's decision to blackmail rather than prosecute Hyde in Chapter 1.",
+ characters:['Jekyll','Utterson','Enfield'],
+ quotes:["The very pink of the proprieties","I concealed my pleasures"],
+ message:"Stevenson may critique a Victorian society so focused on outward respectability that it enables, rather than prevents, hidden wrongdoing — the family's blackmail in Chapter 1, rather than involving the police, shows reputation being protected instead of justice pursued.",
+ context:"Victorian gentlemen's reputations affected their professional, social and financial standing; scandal could be genuinely ruinous, encouraging concealment over confession.",
+ thesis:["Stevenson presents reputation as a form of social currency so valuable that characters will protect it even when doing so enables real harm to continue."]},
+{name:'Secrecy', explanation:"Concealment drives the novella's plot and atmosphere, from locked doors and sealed documents to characters' reluctance to voice their suspicions.",
+ where:"Utterson's safe containing Jekyll's will; the sealed envelope of Lanyon's account, not to be opened until Jekyll's 'death or disappearance'; Jekyll's private laboratory accessible only through a hidden back door.",
+ characters:['Jekyll','Utterson','Lanyon'],
+ quotes:["Utterson opened his safe...and took out an envelope"],
+ message:"Stevenson uses secrecy structurally as well as thematically: the reader, like Utterson, is kept from the truth until documents are finally opened, meaning the novella's form itself enacts the theme of concealment.",
+ context:"Secrecy about private conduct was often necessary for Victorian gentlemen to maintain the appearance of respectability demanded by society.",
+ thesis:["Stevenson structures the novella's mystery around literal, physical acts of concealment (locked doors, sealed letters), making secrecy both the novella's subject and its narrative method."]},
+{name:'Repression', explanation:"The suppression of natural desires and impulses beneath a controlled, respectable exterior, which the novella suggests may build toward eventual, uncontrollable release.",
+ where:"Jekyll's admission that he 'concealed his pleasures' for years before creating Hyde; the metaphor of Jekyll's 'devil' being 'long caged' before it 'came out roaring'.",
+ characters:['Jekyll'],
+ quotes:["My devil had been long caged, he came out roaring","I concealed my pleasures"],
+ message:"Stevenson may suggest that repression does not eliminate unwanted impulses but instead intensifies them, so that when they do emerge (as Hyde), they do so with disproportionate, uncontrollable force.",
+ context:"Strict Victorian social and religious codes demanded visible self-control, offering little socially acceptable outlet for desires considered improper.",
+ thesis:["Stevenson presents repression as a dangerous strategy that concentrates, rather than removes, the impulses a person tries to suppress."]},
+{name:'Science', explanation:"The novella reflects both excitement about scientific progress and anxiety about its ethical limits, particularly where science intrudes on the moral or spiritual realm.",
+ where:"Jekyll's transcendental research into the divided nature of man; Lanyon's dismissal of Jekyll's work as 'unscientific balderdash', reflecting a conflict between materialist and more speculative science.",
+ characters:['Jekyll','Lanyon'],
+ quotes:["Such unscientific balderdash"],
+ message:"Stevenson may present Jekyll's scientific ambition as a moral, not just intellectual, transgression — his experiment does not simply fail technically but causes real ethical catastrophe, suggesting some knowledge should not be pursued regardless of scientific curiosity.",
+ context:"The Victorian period saw rapid scientific advancement alongside real anxiety about its limits, including debates over vivisection, evolution and the boundaries of acceptable research.",
+ thesis:["Stevenson uses Jekyll's experiment to dramatise Victorian anxieties that scientific ambition, unchecked by ethical restraint, could have catastrophic personal and social consequences."]},
+{name:'Religion', explanation:"Religious language and imagery (the devil, sin, damnation, hell) run throughout the novella, framing Hyde's evil in explicitly moral, almost theological terms.",
+ where:"Utterson's description of 'Satan's signature upon a face'; Jekyll's description of his own 'devil'; the recurring language of damnation applied to Hyde.",
+ characters:['Jekyll','Hyde','Utterson'],
+ quotes:["O my poor old Harry Jekyll, if ever I read Satan's signature upon a face, it is on that of your new friend","My devil had been long caged, he came out roaring"],
+ message:"Stevenson's religious imagery may frame Jekyll's experiment as a kind of secular Faustian bargain, suggesting that scientific transgression carries the same moral weight as a spiritual or religious sin.",
+ context:"Victorian Britain remained a largely Christian society, and readers would have readily understood allusions to Satan, sin and damnation as serious moral condemnation.",
+ thesis:["Stevenson deliberately frames a scientific transgression in religious language, suggesting that Jekyll's sin is understood by the text in explicitly moral and spiritual, not just scientific, terms."]},
+{name:'Violence', explanation:"Hyde's violence escalates across the novella, from trampling a child to a brutal, unprovoked murder, tracking his increasing dominance over Jekyll.",
+ where:"The trampling of the girl (Chapter 1); the murder of Sir Danvers Carew (Chapter 4).",
+ characters:['Hyde','Carew'],
+ quotes:["The man trampled calmly over the child's body and left her screaming on the ground","With ape-like fury, he was trampling his victim under foot"],
+ message:"Stevenson may use escalating violence to chart Hyde's growing strength relative to Jekyll, implying that indulging repressed impulses does not satisfy them but instead allows them to grow more powerful and destructive over time.",
+ context:"Sensational, violent crime reporting was common in Victorian newspapers, and the novella draws on this appetite for shocking, detailed accounts of violence.",
+ thesis:["Stevenson presents violence as escalating in direct proportion to how much freedom Hyde is given, suggesting indulgence strengthens rather than satisfies destructive impulses."]},
+{name:'Victorian Respectability', explanation:"The novella is preoccupied with the performance of gentlemanly respectability — controlled manners, discretion and reputation — and what such performance conceals.",
+ where:"Utterson's description as 'lean, long, dusty, dreary and yet somehow lovable'; Jekyll's description as 'the very pink of the proprieties'; the physical contrast between Jekyll's grand front door and the shabby, sinister laboratory entrance.",
+ characters:['Jekyll','Utterson','Enfield'],
+ quotes:["The very pink of the proprieties"],
+ message:"Stevenson may suggest that Victorian respectability functioned as a kind of performance, a controlled public mask that, in Jekyll's case, concealed a genuinely divided and troubled interior life.",
+ context:"Victorian gentlemen were expected to display self-control, discretion and moral seriousness in public regardless of private conduct.",
+ thesis:["Stevenson presents respectability as a performance that can conceal, rather than reflect, a person's true inner life."]},
+{name:'Friendship', explanation:"Male friendship and loyalty (Utterson and Jekyll; Utterson and Lanyon; Jekyll and Lanyon's estrangement) structure much of the novella's emotional core.",
+ where:"Utterson's persistent loyalty and concern for Jekyll throughout; the collapse of Jekyll and Lanyon's friendship over scientific disagreement.",
+ characters:['Utterson','Jekyll','Lanyon'],
+ quotes:["I incline to Cain's heresy...I let my brother go to the devil in his own way"],
+ message:"Stevenson may present male friendship in the novella as loyal but emotionally restrained, reflecting Victorian norms of masculinity that discouraged open emotional expression even between close friends.",
+ context:"Victorian ideals of masculinity valued stoicism and self-restraint, which could limit how directly friends addressed each other's troubles, even out of genuine care.",
+ thesis:["Stevenson presents friendship as genuine but constrained by Victorian codes of masculine reserve, limiting how directly characters can help one another."]},
+{name:'Appearance vs Reality', explanation:"Characters and settings throughout the novella are not what they initially seem, from Jekyll's divided house to Hyde's indescribable, unplaceable wrongness.",
+ where:"The contrast between Jekyll's respectable front door and the sinister laboratory door at the back of the same building; the gap between Jekyll's public reputation and his private confession.",
+ characters:['Jekyll','Hyde'],
+ quotes:["An impression of deformity without any nameable malformation"],
+ message:"Stevenson may use the gap between appearance and reality to critique the reliability of Victorian physiognomy (the belief that character could be read from appearance), since characters repeatedly struggle to read Hyde's evil from his face alone, despite believing they should be able to.",
+ context:"Physiognomy, the pseudo-scientific belief that facial and bodily features reveal moral character, was a genuinely held (if already contested) Victorian idea.",
+ thesis:["Stevenson uses the unreadability of Hyde's face to challenge, rather than confirm, Victorian physiognomic assumptions about character and appearance."]},
+{name:'The Supernatural', explanation:"Although grounded in scientific language, Jekyll's transformation carries genuinely supernatural or Gothic weight, resisting full rational explanation.",
+ where:"The transformation scenes; Lanyon's death from the shock of witnessing something his rational worldview cannot accommodate.",
+ characters:['Jekyll','Hyde','Lanyon'],
+ quotes:["The most racking pangs succeeded: a grinding in the bones, deadly nausea"],
+ message:"Stevenson blurs scientific and supernatural registers, refusing to let the transformation feel purely medical, which sustains Gothic dread even within an ostensibly rational, modern London setting.",
+ context:"The Gothic tradition often set uncanny, supernatural events against recognisable, realistic settings to heighten their unsettling effect.",
+ thesis:["Stevenson deliberately blurs scientific and supernatural registers, refusing readers a fully rational explanation for Jekyll's transformation and sustaining Gothic unease throughout."]},
+{name:'Identity', explanation:"The novella questions whether identity is singular and stable, or fractured and multiple, as Jekyll's sense of self becomes genuinely uncertain by the novella's end.",
+ where:"Jekyll's growing confusion over which self is his 'true' one; his final admission that he can no longer reliably control which identity he will wake up as.",
+ characters:['Jekyll','Hyde'],
+ quotes:["I was slowly losing hold of my original and better self, and becoming slowly incorporated with my second and worse"],
+ message:"Stevenson may suggest that identity is not a fixed possession but something actively maintained through effort and choice, which Jekyll loses control of once he allows Hyde too much freedom.",
+ context:"Emerging Victorian psychological theory was beginning to question whether the self was a single, unified entity, a question the novella dramatises directly.",
+ thesis:["Stevenson presents identity as unstable and effortfully maintained, rather than as a fixed, guaranteed possession, which Jekyll discovers only once it is too late to reverse."]},
+{name:'Temptation', explanation:"Jekyll's initial decision to create Hyde stems from the temptation to enjoy forbidden pleasures without consequence to his reputation.",
+ where:"Jekyll's admission that the potion offered a way to indulge his 'pleasures' while keeping Jekyll's own reputation untouched.",
+ characters:['Jekyll'],
+ quotes:["I concealed my pleasures"],
+ message:"Stevenson may present temptation as most dangerous not when resisted or indulged openly, but when a person believes they have found a way to indulge it without consequence or responsibility.",
+ context:"Victorian moral and religious teaching typically framed temptation as something to be resisted through willpower and conscience, not evaded through external trickery.",
+ thesis:["Stevenson suggests that attempting to evade, rather than confront, temptation ultimately produces a far greater moral catastrophe than temptation honestly faced."]},
+{name:'Responsibility', explanation:"The novella interrogates whether Jekyll can escape moral responsibility for Hyde's actions by claiming Hyde is a separate being.",
+ where:"Jekyll's early belief that Hyde's crimes are not truly 'his'; his gradual, reluctant acceptance by Chapter 10 that he remains responsible for what Hyde does.",
+ characters:['Jekyll','Hyde'],
+ quotes:["I was Henry Jekyll still, on the most immoral side of me"],
+ message:"Stevenson ultimately closes down the possibility that Jekyll can evade responsibility: Hyde's actions remain Jekyll's own, since Hyde is a genuine part of him rather than a wholly separate entity, undermining Jekyll's initial hope of consequence-free indulgence.",
+ context:"Victorian legal and moral thought held individuals responsible for their actions regardless of claimed loss of control, a principle the novella's ending ultimately upholds.",
+ thesis:["Stevenson's ending affirms that moral responsibility cannot be evaded through claimed separation of self, since Hyde remains, in every meaningful sense, still Jekyll."]}
+];
+
+/* ================= TECHNIQUES ================= */
+const TECHNIQUES = [
+{name:'Symbolism', def:"An object, image or setting that represents a deeper idea beyond its literal meaning.", example:"Jekyll's house, with its respectable front door and shabby, blistered laboratory door at the rear, symbolises his own divided identity.", effect:"Allows Stevenson to communicate the theme of duality visually and repeatedly, embedding it into the novella's setting rather than only its plot.", howto:"Explain what the symbol represents and connect it explicitly to the novella's central themes, rather than simply identifying it."},
+{name:'Pathetic fallacy', def:"Attributing human emotion to weather, setting or the natural world to reflect a character's mood or the story's atmosphere.", example:"London's fog, described rolling over the city, contributes to the novella's mysterious, oppressive Gothic atmosphere, particularly around the Carew murder.", effect:"Creates unease and mirrors the moral 'fog' or confusion surrounding Jekyll and Hyde's true relationship.", howto:"Identify the emotional or thematic quality being projected onto the setting, and link it to the specific moment in the plot."},
+{name:'Foreshadowing', def:"Hints or clues that anticipate later events.", example:"Enfield's account in Chapter 1 of Hyde entering through Jekyll's back door with a cheque foreshadows the deeper, more disturbing connection between the two men revealed later.", effect:"Builds mystery and encourages readers to actively piece together clues, echoing the novella's structure as an investigation.", howto:"Identify the later event being anticipated and explain how the early hint shapes the reader's growing unease."},
+{name:'Imagery', def:"Descriptive language creating vivid sensory pictures.", example:"Animalistic imagery describing Hyde ('ape-like fury') and Gothic imagery describing London's fog-bound streets.", effect:"Builds a consistent atmosphere of threat and moral corruption throughout the novella.", howto:"Group images by pattern (animal, darkness, disease) and trace how they develop across chapters rather than analysing a single instance."},
+{name:'Metaphor', def:"A direct comparison between two things without using 'like' or 'as'.", example:"Jekyll describes his suppressed desires as 'my devil', later saying it had been 'long caged' before it 'came out roaring'.", effect:"Presents Jekyll's repressed impulses as an animalistic, uncontrollable force with its own will, foreshadowing Hyde's eventual dominance.", howto:"Identify exactly what is being compared, and explain what quality is transferred by that comparison."},
+{name:'Simile', def:"A comparison using 'like' or 'as'.", example:"Hyde is described as being 'like some damned Juggernaut' as he tramples the young girl.", effect:"The Juggernaut allusion (to an unstoppable, crushing force) emphasises Hyde's inhuman, relentless momentum and lack of restraint.", howto:"Explain the connotations of the specific comparison chosen, not just that a simile is present."},
+{name:'Animalistic imagery', def:"Language comparing a character to an animal, often to suggest a loss of civilised restraint.", example:"Hyde's 'ape-like fury' during Carew's murder.", effect:"Connects Hyde to Victorian anxieties about evolution and degeneration, suggesting civilisation is a thin veneer over more primitive instincts.", howto:"Link the specific animal or animalistic quality invoked to the wider context of Darwinian anxiety, rather than treating it as generic negative description."},
+{name:'Religious imagery', def:"Language drawing on Christian ideas of sin, the devil, damnation or Satan.", example:"Utterson's description of 'Satan's signature upon a face'; Jekyll's reference to his own 'devil'.", effect:"Frames Jekyll's transgression in explicitly moral, almost theological terms, elevating a scientific experiment into a spiritual failing.", howto:"Explain what specific moral weight the religious allusion adds, beyond simply labelling something 'evil'."},
+{name:'Setting', def:"The time and place in which the story occurs, used deliberately to support theme and atmosphere.", example:"Contrasted London locations: the respectable square of Jekyll's front door versus the sinister, decaying by-street of his laboratory entrance.", effect:"Reinforces the novella's central concern with divided, contradictory spaces mirroring divided, contradictory characters.", howto:"Connect specific setting details to the theme of duality or secrecy, rather than describing setting in isolation."},
+{name:'Contrast', def:"Placing two clearly different things side by side to highlight their differences.", example:"Jekyll's 'large, handsome' figure is contrasted with Hyde's 'pale and dwarfish' one.", effect:"Reinforces the physical embodiment of the novella's moral duality.", howto:"State both elements of the contrast explicitly, then explain what the contrast reveals about character or theme."},
+{name:'Juxtaposition', def:"Placing two contrasting ideas or images close together within a single phrase or scene.", example:"'Trampled calmly' juxtaposes violent action with an unnervingly calm manner.", effect:"The unsettling combination emphasises Hyde's total lack of remorse or human feeling.", howto:"Explain precisely how the juxtaposed elements clash, and what that clash reveals about character."},
+{name:'Semantic field', def:"A group of related words running through a text.", example:"A semantic field of concealment and secrecy (locked doors, sealed envelopes, safes, hidden rooms) runs throughout the novella.", effect:"Reinforces the theme of secrecy cumulatively across the whole text, not just in a single scene.", howto:"Track a semantic field across multiple chapters to show how Stevenson sustains a theme structurally."},
+{name:'Narrative perspective', def:"The point of view from which a story is told, and how much or little it reveals.", example:"Most of the novella is told through Utterson's limited third-person perspective, restricting the reader's knowledge to what he can observe or deduce.", effect:"Creates suspense and mystery by withholding the truth the reader (and Utterson) are trying to uncover.", howto:"Explain how the choice of narrator shapes what information is available at each stage, not just who is narrating."},
+{name:'Delayed revelation', def:"Deliberately withholding key information until late in the text.", example:"Jekyll's own explanation is withheld until the final chapter, after two full chapters of build-up (Lanyon's and Jekyll's own written accounts).", effect:"Sustains suspense and mirrors the theme of secrecy, since both the reader and most characters are kept from the truth until the very end.", howto:"Explain what effect withholding this specific information has on the reader's experience and understanding at that point in the text."},
+{name:'Mystery', def:"An unresolved question or puzzle that drives reader engagement.", example:"The central mystery of what connects the respectable Dr Jekyll to the sinister Mr Hyde.", effect:"Structures the novella as an investigative narrative, inviting the reader to piece together evidence alongside Utterson.", howto:"Identify what specific clues contribute to the mystery at each stage, and how they are eventually resolved."},
+{name:'Letters and documents', def:"Written texts (wills, letters, confessions) embedded within the novel's structure.", example:"Jekyll's will, Lanyon's sealed letter, and Jekyll's final written confession all form key structural documents.", effect:"Creates a layered, multi-voiced narrative and allows the delayed, dramatic revelation of the truth.", howto:"Explain how a specific document changes what the reader or a character knows, and why Stevenson chose written testimony over direct narration for this information."},
+{name:'Structural shifts', def:"Changes in narrative voice, form, or focus between sections of the text.", example:"The shift from Utterson's third-person investigation to Lanyon's first-person account and finally Jekyll's own first-person confession.", effect:"Moves the novella from external mystery to internal confession, mirroring the movement from appearance to hidden reality.", howto:"Identify exactly where and how the narrative voice shifts, and explain what new kind of knowledge that shift allows."},
+{name:'First-person narration', def:"Narration from the 'I' perspective of a character within the story.", example:"Lanyon's account and Jekyll's final statement are both first-person, offering direct access to their thoughts for the first time.", effect:"Creates a more intimate, urgent tone, especially in Jekyll's confession, contrasting with the detached, investigative tone of Utterson's sections.", howto:"Compare the intimacy or urgency of first-person sections to the more restrained third-person narration earlier in the novella."},
+{name:'Third-person limited narration', def:"Narration from outside the story, but restricted to one character's knowledge and perspective.", example:"Most of the novella follows Utterson's perspective, limiting the reader to what he can see, hear or deduce.", effect:"Builds suspense by withholding information the narrator (and reader) does not yet have access to.", howto:"Explain specifically what information is withheld from the reader because of this narrative choice."},
+{name:'Cyclical ideas', def:"Structural or thematic patterns that repeat or return across the text.", example:"Hyde's violence recurs and escalates (the girl, then Carew); Jekyll's transformations become increasingly involuntary and repetitive.", effect:"The repetition with escalation suggests a spiralling loss of control rather than a one-off event.", howto:"Identify the repeated pattern and explain how it changes or intensifies each time it recurs."},
+{name:'Gothic conventions', def:"Established features of Gothic fiction: darkness, mystery, fear, transgression, secrecy, doubling.", example:"Fog-bound London streets, a locked laboratory, a mysterious will, and Hyde as Jekyll's sinister double all draw on Gothic tradition.", effect:"Signals to readers, through familiar conventions, that the novella concerns transgression and the supernatural, heightening dread.", howto:"Name the specific Gothic convention used and explain what particular unease or expectation it creates for the reader."}
+];
+
+/* Why does Stevenson hide the truth - dedicated content built into Techniques section */
+
+/* ================= QUOTES ================= */
+const QUOTES = [
+{text:"The man trampled calmly over the child's body and left her screaming on the ground", speaker:"Mr Enfield (describing Hyde)", chapter:"1", characters:['Hyde'], themes:['Violence','Evil'],
+ meaning:"Enfield describes witnessing Hyde walk straight over a young girl in the street without stopping.",
+ technique:"Juxtaposition / oxymoron ('trampled calmly'); violent verb choice.",
+ solid:"The word 'trampled' shows how violent and forceful Hyde is, while 'calmly' shows he feels no guilt at all, which makes him seem frightening and unnatural.",
+ deep:"The oxymoronic pairing of the violent verb 'trampled' with the incongruous adverb 'calmly' is deliberately jarring, refusing the reader an easy emotional register for Hyde's cruelty. Rather than frantic or passionate violence, Stevenson presents something more disturbing: total emotional detachment from harm, which arguably makes Hyde seem less like an enraged animal and more like something that has never possessed a conscience at all.",
+ context:"Victorian sensationalist crime reporting often used similarly vivid, shocking detail, which this scene may deliberately echo to unsettle contemporary readers.",
+ useFor:"Essays on violence, Hyde's characterisation, or the novella's opening mystery."},
+{text:"There is something wrong with his appearance; something displeasing, something downright detestable", speaker:"Mr Enfield (describing Hyde)", chapter:"1", characters:['Hyde'], themes:['Appearance vs Reality','Evil'],
+ meaning:"Enfield struggles to explain exactly what is wrong with Hyde's appearance, only that it provokes strong revulsion.",
+ technique:"Vague, escalating adjectives; anaphora ('something...something').",
+ solid:"The repetition of 'something' shows that Enfield cannot properly explain what is wrong with Hyde, which makes him seem even more unsettling because his evil cannot be pinned down.",
+ deep:"Stevenson's deliberate vagueness here is a calculated technique: by refusing precise physical description, he denies the reader the reassurance of a clearly identifiable villain, instead locating Hyde's wrongness in an almost indescribable, instinctive register. This resists Victorian physiognomic assumptions that moral character could be straightforwardly read from appearance, suggesting evil might exceed the era's confident systems of visual classification.",
+ context:"Physiognomy, the belief that facial features revealed inner character, was a genuinely held Victorian pseudo-science that this ambiguity subtly undermines.",
+ useFor:"Essays on appearance vs reality, physiognomy, or the ambiguity of Hyde's evil."},
+{text:"God bless me, the man seems hardly human!", speaker:"Mr Utterson (about Hyde)", chapter:"2", characters:['Hyde','Utterson'], themes:['Evil','Identity'],
+ meaning:"Utterson, meeting Hyde for the first time, struggles to categorise him as fully human.",
+ technique:"Exclamation; religious interjection; dehumanising language.",
+ solid:"Calling Hyde 'hardly human' shows how strange and disturbing his presence is, even to a calm, rational man like Utterson.",
+ deep:"The exclamatory religious interjection 'God bless me' briefly cracks Utterson's characteristic restraint, signalling that Hyde provokes a reaction beyond ordinary rational assessment. Describing him as 'hardly human' rather than simply unpleasant suggests Utterson senses something categorically different about Hyde — not merely an unlikeable man, but a being that unsettles the boundary of what counts as human at all.",
+ context:"Connects to Victorian anxieties, partly stirred by Darwinian theory, about the fragile boundary between civilised man and a more primitive, animal ancestry.",
+ useFor:"Essays on evolution/degeneration context, Hyde's ambiguous nature, or Utterson's characterisation."},
+{text:"With ape-like fury, he was trampling his victim under foot", speaker:"Narrator (maid's account of Carew's murder)", chapter:"4", characters:['Hyde','Carew'], themes:['Violence','Evil'],
+ meaning:"A maid's eyewitness account describes Hyde's brutal, frenzied murder of Sir Danvers Carew.",
+ technique:"Animalistic simile ('ape-like'); violent imagery; escalation from earlier trampling in Chapter 1.",
+ solid:"Comparing Hyde to an ape suggests he has lost all human self-control, showing how dangerous and animal-like he has become.",
+ deep:"The 'ape-like' comparison directly invokes contemporary Darwinian anxiety about humanity's evolutionary origins, suggesting Hyde represents a regression to a more primitive ancestral state rather than simple moral wickedness. The deliberate echo of 'trampling' from the Chapter 1 incident with the girl also shows Hyde's violence escalating in both scale and brutality, implying that indulging Hyde's impulses has strengthened rather than satisfied them.",
+ context:"Charles Darwin's On the Origin of Species (1859) had unsettled Victorian confidence in humanity's separation from animals; this scene taps directly into that anxiety without the novella being simply 'about' Darwin.",
+ useFor:"Essays on violence, evolutionary/degeneration context, or the escalation of Hyde's power."},
+{text:"O my poor old Harry Jekyll, if ever I read Satan's signature upon a face, it is on that of your new friend", speaker:"Mr Utterson", chapter:"2", characters:['Hyde','Utterson','Jekyll'], themes:['Religion','Evil','Appearance vs Reality'],
+ meaning:"After meeting Hyde, Utterson concludes that his face bears the unmistakable mark of evil itself.",
+ technique:"Religious metaphor ('Satan's signature'); sibilance; direct address.",
+ solid:"Comparing Hyde's face to Satan's signature shows Utterson believes Hyde is deeply and visibly evil, almost as if the devil himself has marked him.",
+ deep:"The metaphor of a 'signature' implies evil is not merely present in Hyde but has been deliberately, almost artistically, inscribed upon him, framing his wrongness as something authored rather than accidental. The sibilance across 'Satan's signature' creates a hissing quality that subtly echoes serpent imagery, reinforcing biblical associations between evil and the snake in Eden, while the informal, affectionate 'Harry' underscores Utterson's genuine personal grief on Jekyll's behalf.",
+ context:"A predominantly Christian Victorian readership would have understood the Satanic allusion as a serious, not merely decorative, moral condemnation.",
+ useFor:"Essays on religious imagery, evil, or Utterson's perspective on Hyde."},
+{text:"I concealed my pleasures", speaker:"Dr Jekyll (his written confession)", chapter:"10", characters:['Jekyll'], themes:['Secrecy','Repression','Reputation'],
+ meaning:"Jekyll admits that, prior to creating Hyde, he had already spent years hiding his less respectable desires from public view.",
+ technique:"First-person confession; concise, unembellished admission.",
+ solid:"This shows that Jekyll was already living a double life, hiding parts of himself from other people, even before he invented the potion.",
+ deep:"The plainness of this admission, delivered without excuse or elaborate justification, is itself significant — it establishes that Jekyll's dual life predates his scientific experiment entirely. This complicates any reading of Hyde as something external suddenly imposed upon Jekyll; instead, Hyde is presented as the culmination of a much longer pattern of concealment, suggesting the experiment gave form to a duplicity that already existed.",
+ context:"Victorian social codes made concealment of 'improper' pleasures a common necessity for maintaining public respectability.",
+ useFor:"Essays on secrecy, repression, or Jekyll's culpability before Hyde's creation."},
+{text:"Man is not truly one, but truly two", speaker:"Dr Jekyll (his written confession)", chapter:"10", characters:['Jekyll'], themes:['Duality','Identity'],
+ meaning:"Jekyll articulates his central theory: that every human being contains two distinct natures rather than a single, unified self.",
+ technique:"Aphoristic statement; repetition of 'truly'; philosophical declaration.",
+ solid:"This is Jekyll's key idea about human nature — that everyone has two sides to them, not just one, which is the whole reason he tries to separate himself into two different people.",
+ deep:"The clipped, aphoristic phrasing gives this line the weight of a scientific law, yet Jekyll immediately qualifies it ('I say two, because the state of my own knowledge does not pass beyond that point'), hinting that even he suspects human nature may be more fractured than a simple duality. This self-aware limitation is significant: Stevenson may be using Jekyll's own uncertainty to suggest that the novella's exploration of duality is offered as one useful model of human nature, not a final, complete truth.",
+ context:"Reflects growing Victorian psychological interest in the divided or multiple self, predating later psychoanalytic theories of a similarly fractured psyche.",
+ useFor:"Essays on duality — arguably the single most essential quotation in the novella for this theme."},
+{text:"I learned to recognise the thorough and primitive duality of man", speaker:"Dr Jekyll (his written confession)", chapter:"10", characters:['Jekyll'], themes:['Duality','Science'],
+ meaning:"Jekyll describes his growing scientific and personal realisation of humanity's divided nature.",
+ technique:"Formal, scientific register; adjective choice ('primitive').",
+ solid:"The word 'primitive' suggests this duality is ancient and instinctive, not something new, implying every person has always contained this divide.",
+ deep:"The adjective 'primitive' does significant work here, connecting Jekyll's psychological theory to Darwinian ideas of evolutionary ancestry, implying the 'duality' he identifies is not a modern development but an ancient, animal inheritance beneath the civilised veneer of Victorian respectability. The formal, quasi-scientific register in which Jekyll frames this discovery also reflects his attempt to treat a profoundly moral and personal crisis as an objective, external phenomenon he can study dispassionately.",
+ context:"Connects to Victorian anxieties about evolutionary 'degeneration' — the fear that civilised humans might regress toward more primitive, animal states.",
+ useFor:"Essays on duality, evolutionary context, or Jekyll's scientific framing of his own moral crisis."},
+{text:"My devil had been long caged, he came out roaring", speaker:"Dr Jekyll (his written confession)", chapter:"10", characters:['Jekyll','Hyde'], themes:['Repression','Religion','Duality'],
+ meaning:"Jekyll describes the force and violence with which his suppressed impulses (personified as Hyde) emerge once finally released.",
+ technique:"Extended metaphor (caged animal); religious diction ('devil'); violent verb ('roaring').",
+ solid:"Comparing his darker side to a caged animal that 'comes out roaring' shows that repressing his impulses for so long only made them more dangerous once they were finally freed.",
+ deep:"The caged-animal metaphor directly critiques the Victorian strategy of repression as a means of moral control: rather than eliminating the 'devil' within, prolonged suppression appears to have concentrated and intensified it, so that its eventual release is disproportionately violent. The religious noun 'devil' fused with the animalistic verb 'roaring' collapses religious and evolutionary registers into a single image, suggesting Stevenson draws on both Christian and Darwinian anxieties simultaneously to characterise Hyde's emergence.",
+ context:"Reflects a broader Victorian tension between social expectations of self-control and psychological theories suggesting repressed impulses do not simply disappear.",
+ useFor:"Essays on repression, duality, or the relationship between religious and evolutionary imagery."},
+{text:"Edward Hyde, alone in the ranks of mankind, was pure evil", speaker:"Dr Jekyll (his written confession)", chapter:"10", characters:['Hyde'], themes:['Evil','Duality'],
+ meaning:"Jekyll describes Hyde as uniquely, completely evil, unlike ordinary people who possess a mixture of good and bad.",
+ technique:"Superlative absolute statement; isolating phrase ('alone in the ranks of mankind').",
+ solid:"This shows that Hyde is not like other people — while everyone else has some good and some bad in them, Hyde is described as entirely evil.",
+ deep:"The phrase 'alone in the ranks of mankind' is doubly significant: it isolates Hyde as uniquely evil among humanity, yet simultaneously insists he remains classified within 'mankind' rather than outside it, refusing to let Jekyll (or the reader) treat Hyde as wholly inhuman or separate. This tension supports a sophisticated reading of duality: Hyde's 'pure evil' is only possible because he represents one isolated half of a naturally mixed human nature, not because he is an alien or supernatural being unconnected to ordinary humanity.",
+ context:"Reflects Victorian Christian moral thought, which generally held that most people contained a mixture of virtue and sin rather than being wholly saintly or wholly wicked.",
+ useFor:"Essays on the nature of Hyde's evil, duality, or the limits of moral absolutism in the novella."},
+{text:"I bring the life of that unhappy Henry Jekyll to an end", speaker:"Dr Jekyll (final line of his written confession)", chapter:"10", characters:['Jekyll'], themes:['Identity','Responsibility'],
+ meaning:"In the novella's final line, Jekyll announces that he is ending his own life (and, by extension, Hyde's) as his written confession closes.",
+ technique:"First-person declarative statement; third-person self-reference ('that unhappy Henry Jekyll'); abrupt ending.",
+ solid:"Jekyll refers to himself almost as a separate person ('that unhappy Henry Jekyll'), showing how divided and lost his sense of identity has become by the end of the novella.",
+ deep:"Jekyll's choice to refer to himself in the third person at the very moment of ending his own life enacts, formally, the very fracture of identity his confession has been describing — even in his final act of self-authorship, he cannot fully claim a single, unified 'I'. The abruptness of the novella's ending, offering no further narrative resolution or authorial comment after this line, denies the reader any reassuring final perspective, leaving the horror and ambiguity of Jekyll's fate unresolved.",
+ context:"Victorian suicide carried significant moral and religious stigma, making this ending, and the ambiguity around whether it is understood as Jekyll's death or Hyde's, especially weighted.",
+ useFor:"Essays on the novella's ending, identity, or responsibility — an essential quotation for discussing structure and closure."},
+{text:"It wasn't like a man; it was like some damned Juggernaut", speaker:"Mr Enfield (describing Hyde)", chapter:"1", characters:['Hyde'], themes:['Violence','Evil','Identity'],
+ meaning:"Enfield struggles to describe Hyde as human at all, comparing him instead to an unstoppable, crushing force.",
+ technique:"Simile; allusion (Juggernaut, a Hindu religious procession popularly misunderstood in Victorian Britain as an unstoppable crushing vehicle); religious diction ('damned').",
+ solid:"Comparing Hyde to a 'Juggernaut' suggests he is like an unstoppable, crushing machine rather than a person, showing how frightening and inhuman he seems.",
+ deep:"The Juggernaut allusion, drawing on a (historically distorted) Victorian popular image of an unstoppable crushing force, dehumanises Hyde from his very first appearance in the text, denying him even the partial humanity of a conventional villain. Combined with the religious adjective 'damned', the simile fuses an exoticised, orientalist Victorian reference with Christian damnation, revealing something of the cultural assumptions available to Stevenson's narrators even as they attempt to describe genuinely new and unsettling evil.",
+ context:"'Juggernaut' entered Victorian English as a byword for an unstoppable crushing force, based on a distorted colonial-era account of a Hindu festival procession.",
+ useFor:"Essays on Hyde's introduction, dehumanisation, or the novella's opening atmosphere."},
+{text:"I was slowly losing hold of my original and better self, and becoming slowly incorporated with my second and worse", speaker:"Dr Jekyll (his written confession)", chapter:"10", characters:['Jekyll','Hyde'], themes:['Identity','Duality'],
+ meaning:"Jekyll describes his growing, involuntary loss of control over which identity dominates, as Hyde becomes stronger.",
+ technique:"Parallel structure ('original and better' / 'second and worse'); gradual, processual verbs ('slowly...slowly').",
+ solid:"The repetition of 'slowly' shows this change happened gradually over time, and the contrast between 'better' and 'worse' shows Jekyll is losing his good side to his bad side.",
+ deep:"The careful parallel structure balancing 'original and better' against 'second and worse' initially appears to reassert a simple moral hierarchy between the two identities, yet the passage's central admission is that this hierarchy is collapsing regardless of Jekyll's preference. The doubled adverb 'slowly...slowly' emphasises an insidious, almost undetectable process, suggesting the danger of repression and indulgence lies precisely in how gradually, rather than dramatically, control can be lost.",
+ context:"Reflects Victorian psychological anxiety about loss of self-control and the fragility of willpower against ingrained habit or compulsion.",
+ useFor:"Essays on identity, the gradual loss of control, or the ambiguity of Jekyll's moral hierarchy between his two selves."},
+{text:"Such unscientific balderdash", speaker:"Dr Lanyon (about Jekyll's research)", chapter:"2", characters:['Lanyon','Jekyll'], themes:['Science'],
+ meaning:"Lanyon dismisses Jekyll's research as nonsensical and unscientific, reflecting their professional and personal estrangement.",
+ technique:"Colloquial, dismissive noun ('balderdash'); direct speech revealing character.",
+ solid:"This shows that Lanyon strongly disagrees with Jekyll's scientific methods, which explains why the two former friends have grown apart.",
+ deep:"Lanyon's dismissive colloquialism reveals a rigid, materialist conception of legitimate science that has no room for Jekyll's more speculative, 'transcendental' research, foreshadowing Lanyon's catastrophic inability to cope when he later witnesses proof that Jekyll's methods worked. This early dismissal becomes deeply ironic once Lanyon's own rationalist worldview is shattered, suggesting Stevenson uses their scientific disagreement to dramatise a wider Victorian tension between conventional and more speculative science.",
+ context:"Reflects real late-Victorian tensions between established, materialist medical science and more speculative or 'transcendental' areas of scientific enquiry.",
+ useFor:"Essays on science, Lanyon's characterisation, or dramatic irony given his later fate."},
+{text:"The most racking pangs succeeded: a grinding in the bones, deadly nausea", speaker:"Dr Jekyll (his written confession)", chapter:"10", characters:['Jekyll'], themes:['Science','The Supernatural'],
+ meaning:"Jekyll describes the intense physical agony of transforming between his two identities.",
+ technique:"Visceral, physical imagery; asyndetic listing.",
+ solid:"This graphic description of pain shows that the transformation between Jekyll and Hyde is genuinely agonising, not easy or pleasant.",
+ deep:"The visceral physicality of this description grounds what might otherwise seem a purely fantastical transformation in convincing, almost medical detail, blurring the line between scientific and supernatural registers that runs throughout the novella. The asyndetic list (omitting connecting words) creates a breathless, overwhelming rhythm that mimics the sensation of pain itself, immersing the reader directly in Jekyll's physical suffering.",
+ context:"Detailed physical suffering was a common feature of Gothic fiction, used to make supernatural events feel visceral and real rather than abstract.",
+ useFor:"Essays on the supernatural, the physical cost of Jekyll's experiment, or Gothic bodily horror."}
+];
+
+/* ================= QUIZ BANK ================= */
+const QUIZ_BANK = [
+{type:'mc', q:"Who narrates most of the novella's events, giving the reader a limited perspective?", opts:["Dr Jekyll","Mr Utterson","Mr Hyde","Dr Lanyon"], a:1, exp:"Most of the novella follows Mr Utterson's third-person limited perspective, restricting what the reader knows."},
+{type:'mc', q:"What does Mr Enfield witness Hyde doing in Chapter 1?", opts:["Robbing a bank","Trampling a young girl in the street","Attacking Dr Lanyon","Breaking into Jekyll's house"], a:1, exp:"Enfield describes seeing Hyde trample calmly over a child in the street and leave her screaming."},
+{type:'tf', q:"True or False: Jekyll's will leaves everything to Utterson in the event of his death.", opts:["True","False"], a:1, exp:"False — Jekyll's will leaves everything to Edward Hyde, which is what first troubles Utterson."},
+{type:'mc', q:"Who does Hyde murder in Chapter 4?", opts:["Mr Enfield","Sir Danvers Carew","Dr Lanyon","Poole"], a:1, exp:"Hyde brutally murders the elderly MP Sir Danvers Carew in an unprovoked attack."},
+{type:'mc', q:"What does Dr Lanyon witness that causes his fatal shock?", opts:["Hyde's murder of Carew","Hyde transforming into Jekyll before his eyes","Jekyll's funeral","A fire at Jekyll's laboratory"], a:1, exp:"Lanyon watches Hyde drink the potion and transform into Jekyll, a shock so severe it leads to his death."},
+{type:'char', q:"Which character says: 'Such unscientific balderdash'?", opts:["Utterson","Lanyon","Enfield","Poole"], a:1, exp:"Dr Lanyon dismisses Jekyll's research this way, reflecting their scientific and personal estrangement."},
+{type:'char', q:"Which character discovers Hyde's body at the end of the novella, alongside Utterson?", opts:["Enfield and Utterson","Poole and Utterson","Lanyon and Utterson","The police alone"], a:1, exp:"Poole, Jekyll's loyal butler, breaks down the cabinet door together with Utterson, discovering Hyde's body."},
+{type:'quote', q:"Who says: 'God bless me, the man seems hardly human!'?", opts:["Utterson","Enfield","Lanyon","Poole"], a:0, exp:"Utterson says this after his first encounter with Hyde in Chapter 2."},
+{type:'quote', q:"Whose written confession makes up the novella's final chapter?", opts:["Utterson's","Lanyon's","Jekyll's","Hyde's"], a:2, exp:"Chapter 10, 'Henry Jekyll's Full Statement of the Case', is Jekyll's own first-person confession."},
+{type:'theme', q:"Which theme is most directly explored by the quote 'Man is not truly one, but truly two'?", opts:["Reputation","Duality of Human Nature","Science","Violence"], a:1, exp:"This is the novella's central statement of the duality of human nature theme."},
+{type:'theme', q:"What is the more sophisticated interpretation of Hyde's origin the novella supports?", opts:["Hyde is a completely separate, unrelated evil entity","Hyde represents desires and impulses that already existed within Jekyll","Hyde is entirely a hallucination","Hyde was created by the witches"], a:1, exp:"Jekyll's own confession makes clear Hyde is not external evil but a distillation of impulses Jekyll had already been repressing."},
+{type:'mc', q:"What is Jekyll's laboratory building originally used for, according to the text?", opts:["A church","A dissecting room, formerly used by a surgeon", "A prison","A school"], a:1, exp:"Jekyll's cabinet was formerly a dissecting room, adding to its unsettling, clinical Gothic atmosphere."},
+{type:'context', q:"What historical belief held that a person's character could be read from their facial features?", opts:["Phrenology only","Physiognomy","Alchemy","Astrology"], a:1, exp:"Physiognomy, a discredited historical belief, is relevant to how characters repeatedly struggle to 'read' Hyde's face."},
+{type:'context', q:"Which scientific theory contributed to Victorian anxieties about humanity's animal ancestry, relevant to Hyde's 'ape-like' descriptions?", opts:["Newton's laws of motion","Darwin's theory of evolution","Germ theory","Thermodynamics"], a:1, exp:"Darwin's evolutionary theory unsettled Victorian assumptions about humanity's separation from animals, informing Hyde's animalistic imagery."},
+{type:'context', q:"Why might Utterson be reluctant to involve the police when he suspects wrongdoing?", opts:["He dislikes the police","Protecting reputation and discretion was highly valued in Victorian gentlemanly culture","He is secretly guilty himself","He does not believe Hyde exists"], a:1, exp:"Victorian gentlemen prioritised discretion and reputation, often preferring private investigation to public scandal."},
+{type:'tech', q:"What technique is used in the phrase 'trampled calmly'?", opts:["Simile","Oxymoron/juxtaposition","Onomatopoeia","Alliteration"], a:1, exp:"The pairing of a violent verb with a peaceful adverb creates a jarring oxymoron/juxtaposition."},
+{type:'tech', q:"What is 'pathetic fallacy'?", opts:["A logical error in an argument","Attributing human emotion to weather or setting","A type of unreliable narrator","A rhyming pattern"], a:1, exp:"Pathetic fallacy projects human emotion onto nature or setting, such as London's oppressive fog."},
+{type:'tech', q:"Why does Stevenson delay Jekyll's own confession until the final chapter?", opts:["It was accidental","To build mystery and mirror the novella's themes of secrecy and concealment","Because Jekyll refused to speak earlier","There is no clear reason"], a:1, exp:"Delayed revelation sustains suspense and formally reinforces the novella's preoccupation with secrecy."},
+{type:'mc', q:"What happens to Hyde at the very end of the novella?", opts:["He is arrested by police","He is found dead, having taken poison, wearing Jekyll's clothes","He escapes to France","He is killed by Utterson"], a:1, exp:"Utterson and Poole break down the cabinet door and find Hyde dead from poison, wearing clothes too large for him."},
+{type:'mc', q:"What is the name of Jekyll's loyal, long-serving butler?", opts:["Guest","Poole","Bradshaw","Enfield"], a:1, exp:"Poole is Jekyll's devoted butler, whose alarm at his master's strange behaviour drives the novella's climax."},
+{type:'quote', q:"Complete the quote: 'My devil had been long caged, he came out ___'.", opts:["screaming","roaring","laughing","weeping"], a:1, exp:"The full quote is: 'My devil had been long caged, he came out roaring.'"},
+{type:'theme', q:"Which theme is most clearly explored through Jekyll's admission 'I concealed my pleasures'?", opts:["Science","Secrecy and repression","Friendship","Violence"], a:1, exp:"This admission reveals Jekyll's lifelong pattern of secrecy and repression, predating Hyde's creation."},
+{type:'mc', q:"What is the title of the novella's final chapter?", opts:["The Last Night","Dr Lanyon's Narrative","Henry Jekyll's Full Statement of the Case","Incident at the Window"], a:2, exp:"'Henry Jekyll's Full Statement of the Case' is the tenth and final chapter."},
+{type:'char', q:"Which character is described as 'the very pink of the proprieties'?", opts:["Utterson","Jekyll","Lanyon","Hyde"], a:1, exp:"This phrase, meaning the perfect model of respectability, is used to describe Jekyll."},
+{type:'mc', q:"What does Utterson initially assume is happening between Jekyll and Hyde, before he knows the truth?", opts:["They are brothers","Hyde is blackmailing Jekyll","They are business partners","Hyde is Jekyll's servant"], a:1, exp:"Utterson suspects blackmail, a rational, if incorrect, explanation typical of his cautious character."},
+{type:'tf', q:"True or False: Stevenson explicitly states the novella is a direct response to Darwin's theory of evolution.", opts:["True","False"], a:1, exp:"False — while the novella reflects Darwinian anxieties, it should not be reduced to being 'about' Darwin specifically."},
+{type:'mc', q:"Which chapter is titled 'The Carew Murder Case'?", opts:["Chapter 2","Chapter 4","Chapter 6","Chapter 8"], a:1, exp:"Chapter 4, 'The Carew Murder Case', describes Hyde's murder of Sir Danvers Carew."},
+{type:'context', q:"What genre conventions does the novella draw on, including mystery, doubling and transgression?", opts:["Romantic poetry","Gothic fiction","Pastoral literature","Epic poetry"], a:1, exp:"The novella draws heavily on Gothic conventions: darkness, secrecy, doubling and transgression."},
+{type:'theme', q:"According to Jekyll's confession, why did he originally want to separate his two natures?", opts:["To become more powerful","To indulge his pleasures without damaging his reputation","To cure a disease","To help Dr Lanyon"], a:1, exp:"Jekyll wanted to enjoy his 'pleasures' as Hyde without any consequence to his respectable public identity as Jekyll."},
+{type:'mc', q:"Who is the first character to describe Hyde in the novella?", opts:["Utterson","Enfield","Lanyon","Poole"], a:1, exp:"Mr Enfield describes his encounter with Hyde to Utterson in the opening chapter, 'Story of the Door'."}
+];
+
+/* ================= JEKYLL OR HYDE GAME DATA ================= */
+const JH_GAME = [
+{text:"Man is not truly one, but truly two", answer:'Jekyll', exp:"Spoken by Jekyll in his own confession, reflecting on human nature in general."},
+{text:"The man trampled calmly over the child's body", answer:'Hyde', exp:"This describes an action performed by Hyde, witnessed by Enfield."},
+{text:"I concealed my pleasures", answer:'Jekyll', exp:"Jekyll's own admission about his life before creating Hyde."},
+{text:"With ape-like fury, he was trampling his victim under foot", answer:'Hyde', exp:"This describes Hyde's murder of Sir Danvers Carew."},
+{text:"O my poor old Harry Jekyll, if ever I read Satan's signature upon a face, it is on that of your new friend", answer:'Other', exp:"Spoken by Utterson about Hyde — a narrator/other character's reaction, not Jekyll or Hyde speaking themselves."},
+{text:"My devil had been long caged, he came out roaring", answer:'Both', exp:"Jekyll says this about Hyde — it describes both of them, since Hyde is Jekyll's own repressed impulse given form."},
+{text:"Edward Hyde, alone in the ranks of mankind, was pure evil", answer:'Jekyll', exp:"This is Jekyll's own written assessment of Hyde in his confession."},
+{text:"Such unscientific balderdash", answer:'Other', exp:"Spoken by Dr Lanyon about Jekyll's research — a different character's judgement."},
+{text:"I bring the life of that unhappy Henry Jekyll to an end", answer:'Both', exp:"The novella's final line — Jekyll speaking, but ending both his own life and Hyde's, since they cannot be separated."},
+{text:"God bless me, the man seems hardly human!", answer:'Other', exp:"Spoken by Utterson upon first meeting Hyde — a narrator/other character's reaction."},
+{text:"I was slowly losing hold of my original and better self, and becoming slowly incorporated with my second and worse", answer:'Both', exp:"Jekyll describing the relationship between himself and Hyde — inherently about both identities."},
+{text:"It wasn't like a man; it was like some damned Juggernaut", answer:'Other', exp:"Spoken by Enfield describing Hyde — a narrator/other character's reaction, not Jekyll or Hyde."}
+];
+
+/* ================= DUALITY MAP DATA ================= */
+const DUALITY_PAIRS = [
+{a:'Jekyll', b:'Hyde', body:"The novella's central pairing. Rather than fully separate beings, Hyde represents impulses that already existed within Jekyll, distilled into a physically distinct form.", quote:"Man is not truly one, but truly two."},
+{a:'Respectability', b:'Desire', body:"Jekyll's Victorian public life demands respectability, while his private self harbours 'pleasures' he cannot indulge openly — the entire experiment exists to bridge this gap.", quote:"I concealed my pleasures."},
+{a:'Public', b:'Private', body:"Jekyll's grand, respectable front door contrasts with the shabby, hidden laboratory entrance at the rear of the same building, physically embodying his divided life.", quote:"A large, well-made, smooth-faced man of fifty (Jekyll's public appearance)."},
+{a:'Civilised', b:'Primitive', body:"Hyde's recurring 'ape-like' and animalistic descriptions connect him to Victorian anxieties about evolutionary regression beneath a thin civilised veneer.", quote:"With ape-like fury, he was trampling his victim under foot."},
+{a:'Science', b:'Religion', body:"Jekyll frames his experiment in scientific, 'transcendental' terms, yet the novella repeatedly describes Hyde using explicitly religious language of sin and damnation.", quote:"Satan's signature upon a face."},
+{a:'Control', b:'Freedom', body:"Jekyll initially believes he can control when he becomes Hyde, but loses this control as Hyde's transformations become involuntary, showing freedom without restraint becomes its own trap.", quote:"I was slowly losing hold of my original and better self."},
+{a:'Appearance', b:'Reality', body:"Characters repeatedly struggle to read Hyde's true nature from his appearance, challenging the Victorian belief (physiognomy) that character could be judged from the face alone.", quote:"Something wrong with his appearance; something displeasing, something downright detestable."}
+];
+
+/* ================= RENDER: NAVIGATION ================= */
+let currentSection = Store.get('lastSection','overview');
+
+function renderNav(){
+  const html = SECTIONS.map((s,i)=>`<button class="navlink" data-target="${s.id}" role="tab"><span class="num">${String(i+1).padStart(2,'0')}</span>${s.label}</button>`).join('');
+  document.getElementById('navList').innerHTML = html;
+  document.getElementById('navListMobile').innerHTML = html;
+  document.querySelectorAll('.navlink').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ showSection(btn.getAttribute('data-target')); closeDrawer(); });
+  });
+}
+
+function showSection(id){
+  currentSection = id;
+  Store.set('lastSection', id);
+  document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active', s.id === 'section-'+id));
+  document.querySelectorAll('.navlink').forEach(b=>b.classList.toggle('active', b.getAttribute('data-target')===id));
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+}
+
+function closeDrawer(){
+  document.getElementById('mobileDrawer').classList.remove('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded','false');
+}
+document.getElementById('hamburgerBtn').addEventListener('click', ()=>{
+  const d = document.getElementById('mobileDrawer');
+  const open = d.classList.toggle('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded', open?'true':'false');
+});
+document.getElementById('mobileDrawer').addEventListener('click', (e)=>{
+  if(e.target.id === 'mobileDrawer') closeDrawer();
+});
+
+const root = document.getElementById('sectionsRoot');
+function el(html){ const d=document.createElement('div'); d.innerHTML=html; return d.firstElementChild; }
+
+/* ---- 1. OVERVIEW ---- */
+function buildOverview(){
+  const s = el(`<section class="section" id="section-overview">
+    <div class="section-header">
+      <div class="eyebrow">Section 01</div>
+      <h1>Overview</h1>
+      <div class="desc">Get your bearings before you dive into detail.</div>
+    </div>
+
+    <div class="grid two">
+      <div class="card"><h3>Key facts</h3>
+        <p><b>Author:</b> Robert Louis Stevenson<br>
+        <b>Published:</b> 1886<br>
+        <b>Genre:</b> Gothic novella / mystery / psychological horror<br>
+        <b>Setting:</b> Late-Victorian London<br>
+        <b>Narrative structure:</b> Told largely through Mr Utterson's limited third-person perspective, before shifting to first-person written accounts from Dr Lanyon and finally Dr Jekyll himself.</p>
+      </div>
+      <div class="card"><h3>Why the novella matters for GCSE</h3>
+        <p>Its short length and layered, mystery-driven structure make it ideal for studying how a writer withholds and reveals information deliberately. It rewards students who can track how Stevenson builds suspense and meaning through structure, not only through plot events.</p>
+      </div>
+    </div>
+
+    <div class="card"><h3>Basic premise</h3>
+      <p>Respected lawyer Mr Utterson grows concerned about his old friend Dr Jekyll's connection to a sinister, violent man named Mr Hyde, who has been named as the sole beneficiary of Jekyll's will. As Utterson investigates a series of disturbing events, he is drawn deeper into a mystery that challenges his rational, ordered understanding of the world. The full explanation, when it finally emerges, forces both Utterson and the reader to reconsider everything they thought they understood about the two men.</p>
+    </div>
+
+    <div class="card"><h3>Major themes at a glance</h3>
+      <p><span class="tag blood">Duality of Human Nature</span><span class="tag blood">Good vs Evil</span><span class="tag blood">Reputation</span><span class="tag gold">Secrecy</span><span class="tag gold">Repression</span><span class="tag gold">Science</span><span class="tag">Religion</span><span class="tag">Violence</span><span class="tag">Identity</span><span class="tag fog">Appearance vs Reality</span><span class="tag fog">Temptation</span><span class="tag fog">Responsibility</span></p>
+    </div>
+
+    <div class="card"><h3>Why these ideas mattered to Victorian readers</h3>
+      <p><b>Secrecy and reputation</b> were closely linked in Victorian gentlemanly culture — protecting one's public image often meant hiding private conduct rather than confronting it.<br><br>
+      <b>Duality and repression</b> spoke to a society with strict codes of public behaviour, where 'improper' desires had to be suppressed rather than acknowledged.<br><br>
+      <b>Science</b> was a source of both excitement and anxiety, especially where it seemed to intrude on questions of morality or the soul.<br><br>
+      <b>Morality and religion</b> shaped how Victorian readers would have judged Jekyll's experiment as not just risky, but genuinely sinful.<br><br>
+      Together, these ideas make the novella less a simple horror story and more a study of what respectable Victorian society required people to hide.</p>
+    </div>
+
+    <div class="card"><h3>What GCSE students need to understand</h3>
+      <ul>
+        <li>That Hyde is not a wholly separate, external evil — he represents impulses that already existed within Jekyll.</li>
+        <li>How Stevenson's structure (withholding Jekyll's own account until the final chapter) builds mystery and reinforces the novella's themes of secrecy.</li>
+        <li>How the novella reflects genuine Victorian anxieties around science, evolution, religion and respectability.</li>
+        <li>That exam boards want analysis of Stevenson's methods and possible intentions, not simply a retelling of events.</li>
+      </ul>
+    </div>
+
+    <div class="sixty">
+      <h3>Jekyll &amp; Hyde in 60 Seconds</h3>
+      <p>Lawyer Mr Utterson becomes troubled when his friend Dr Jekyll leaves his entire estate to a disturbing, violent stranger named Mr Hyde. As Utterson investigates, Hyde is linked to a brutal murder and then seems to vanish, while Jekyll grows increasingly reclusive and anxious. Jekyll's former friend Dr Lanyon dies suddenly after a terrible shock, leaving a sealed letter. When Jekyll's butler Poole fears something is wrong, Utterson breaks into Jekyll's laboratory and discovers Hyde's body. Two written accounts, from Lanyon and finally from Jekyll himself, reveal the truth: Jekyll invented a potion to separate his respectable self from his darker impulses, creating Hyde — but lost control of the transformation, and ultimately of himself.</p>
+    </div>
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 2. PLOT ---- */
+const PLOT = [
+{n:'1', t:'Story of the Door', happens:"On a walk, Mr Enfield tells Mr Utterson about witnessing a sinister man, Hyde, trample a young girl. Hyde paid off the family with a cheque signed by Dr Jekyll, prompting Enfield and Utterson to speculate about blackmail.", why:"Introduces the novella's central mystery: what connects the respected Dr Jekyll to the disturbing Mr Hyde?", chars:["Enfield","Utterson","Hyde (reported)"], themes:["Secrecy","Reputation","Violence"], quote:"The man trampled calmly over the child's body and left her screaming on the ground."},
+{n:'2', t:'Search for Mr Hyde', happens:"Utterson studies Jekyll's will, which leaves everything to Hyde. He consults Dr Lanyon, who reveals he and Jekyll have fallen out over 'unscientific' research. Utterson finally meets Hyde in person and is deeply unsettled by him.", why:"Establishes Utterson's investigation and deepens the mystery through both the will and Lanyon's estrangement from Jekyll.", chars:["Utterson","Lanyon","Hyde"], themes:["Secrecy","Science","Appearance vs Reality"], quote:"God bless me, the man seems hardly human!"},
+{n:'3', t:'Dr Jekyll Was Quite at Ease', happens:"Utterson dines with Jekyll and raises his concerns about the will. Jekyll, though visibly uneasy, asks Utterson to let the matter rest and assures him he can be rid of Hyde whenever he chooses.", why:"Shows Jekyll's evasiveness and foreshadows that he is not as in control of the situation as he claims.", chars:["Jekyll","Utterson"], themes:["Secrecy","Duality"], quote:"I am painfully situated, Utterson; my position is a very strange one."},
+{n:'4', t:'The Carew Murder Case', happens:"A maid witnesses Hyde brutally murder the elderly MP Sir Danvers Carew. The police, using a broken cane found at the scene (a gift Utterson recognises), ask Utterson to identify Hyde, who has since disappeared.", why:"The novella's central act of violence, escalating Hyde's threat from an unpleasant nuisance to a confirmed murderer.", chars:["Hyde","Carew","Utterson"], themes:["Violence","Evil"], quote:"With ape-like fury, he was trampling his victim under foot."},
+{n:'5', t:'Incident of the Letter', happens:"Utterson visits a shaken Jekyll, who gives him a letter supposedly from Hyde, denying involvement further and disappearing. Utterson's clerk Mr Guest notices Hyde's handwriting closely resembles Jekyll's own.", why:"Plants a crucial structural clue (the matching handwriting) that a careful reader can use to suspect the truth.", chars:["Jekyll","Utterson","Guest"], themes:["Secrecy","Appearance vs Reality"], quote:"I was thinking of my own character, which this hateful business has rather exposed."},
+{n:'6', t:'Remarkable Incident of Dr Lanyon', happens:"Jekyll appears to recover and briefly become more sociable, but then abruptly withdraws from society again. Lanyon, meanwhile, falls into a sudden and severe physical decline, dying shortly after, having refused to explain why.", why:"Builds mystery around Lanyon's death and Jekyll's erratic behaviour, without yet revealing the connection between them.", chars:["Jekyll","Lanyon","Utterson"], themes:["Science","Secrecy"], quote:"I must die, and yet I shall die incredulous."},
+{n:'7', t:'Incident at the Window', happens:"Utterson and Enfield see Jekyll at his window during a walk; Jekyll's expression suddenly changes to one of horror before he abruptly closes the window, disturbing both men deeply.", why:"A brief, unsettling scene that heightens dread without providing explanation, reinforcing the reader's mounting unease.", chars:["Jekyll","Utterson","Enfield"], themes:["Secrecy","Appearance vs Reality"], quote:"The smile was struck out of his face and succeeded by an expression of such abject terror and despair."},
+{n:'8', t:'The Last Night', happens:"Jekyll's terrified butler Poole convinces Utterson that someone other than Jekyll is now in the locked laboratory. They break down the door and find Hyde's body, dead from poison, along with a letter from Jekyll.", why:"The novella's dramatic climax, resolving the immediate mystery of Hyde's fate while opening the deeper mystery Jekyll's letter promises to explain.", chars:["Poole","Utterson","Hyde"], themes:["Violence","Secrecy"], quote:"That is not my master's voice."},
+{n:'9', t:"Dr Lanyon's Narrative", happens:"Utterson reads Lanyon's sealed account, revealing that Lanyon watched Hyde drink a potion and transform into Jekyll before his eyes — the shock of which caused his fatal decline.", why:"The reader's first confirmation that Jekyll and Hyde are the same person, delivered through Lanyon's own shaken first-person voice.", chars:["Lanyon","Hyde","Jekyll"], themes:["The Supernatural","Science"], quote:"The most racking pangs succeeded: a grinding in the bones, deadly nausea."},
+{n:'10', t:"Henry Jekyll's Full Statement of the Case", happens:"Jekyll's own written confession reveals his lifelong double life, his invention of the transforming potion, his growing loss of control over Hyde, and his decision to end both their lives rather than let Hyde take over permanently.", why:"The novella's final structural shift into full first-person confession resolves the mystery and delivers its central ideas about duality and responsibility.", chars:["Jekyll","Hyde"], themes:["Duality","Repression","Responsibility"], quote:"Man is not truly one, but truly two."}
+];
+
+function buildPlot(){
+  let cards = '';
+  PLOT.forEach(p=>{
+    cards += `<div class="disclosure" data-d>
+      <button class="d-head"><span>Chapter ${p.n} — ${p.t}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <div class="mini-label">What happens</div><p>${p.happens}</p>
+        <div class="mini-label">Why it matters</div><p>${p.why}</p>
+        <div class="mini-label">Key characters</div><p>${p.chars.map(c=>`<span class="tag">${c}</span>`).join('')}</p>
+        <div class="mini-label">Key themes</div><p>${p.themes.map(t=>`<span class="tag blood">${t}</span>`).join('')}</p>
+        <div class="mini-label">Essential quotation</div><div class="quote-line">"${p.quote}"</div>
+      </div></div>
+    </div>`;
+  });
+
+  const tenEvents = [
+   "Enfield tells Utterson about Hyde trampling a young girl in the street.",
+   "Utterson discovers Jekyll's will leaves everything to Hyde and grows concerned.",
+   "Hyde brutally murders Sir Danvers Carew; Hyde disappears.",
+   "Utterson notices Hyde's handwriting resembles Jekyll's own.",
+   "Jekyll briefly recovers, then withdraws from society again.",
+   "Dr Lanyon dies suddenly after a severe shock, leaving a sealed account.",
+   "Utterson and Enfield glimpse a terrified Jekyll at his window.",
+   "Poole convinces Utterson something is wrong; they break into Jekyll's laboratory and find Hyde's body.",
+   "Lanyon's letter reveals he witnessed Hyde transform into Jekyll.",
+   "Jekyll's full written confession reveals the truth of his experiment and his decision to end his life."
+  ];
+
+  const s = el(`<section class="section" id="section-plot">
+    <div class="section-header"><div class="eyebrow">Section 02</div><h1>Plot</h1><div class="desc">All ten chapters. Tap any chapter to expand it.</div></div>
+    <div class="card"><h3>Whole Novella in 10 Events</h3>
+      <div class="timeline">${tenEvents.map((e,i)=>`<div class="t-item"><div class="t-num">${String(i+1).padStart(2,'0')}</div><p>${e}</p></div>`).join('')}</div>
+    </div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 3. CHARACTERS ---- */
+function buildCharacters(){
+  let cards = CHARACTERS.map(c=>`
+    <div class="disclosure" data-d>
+      <button class="d-head"><span>${c.name}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <p class="subtle" style="margin-top:10px;">${c.role}</p>
+        <div class="mini-label">Who are they?</div><p>${c.who}</p>
+        <div class="mini-label">Character journey</div><p>${c.journey}</p>
+        <div class="mini-label">Key relationships</div><p>${c.relationships}</p>
+        <div class="mini-label">Themes connected to this character</div><p>${c.themes.map(t=>`<span class="tag blood">${t}</span>`).join('')}</p>
+        <div class="mini-label">Essential quotes</div>${c.quotes.map(q=>`<div class="quote-line">"${q}"</div>`).join('')}
+        <div class="mini-label">What Stevenson may be saying</div><p>${c.message}</p>
+        <div class="mini-label">Exam arguments to develop</div><ul>${c.examArgs.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-characters">
+    <div class="section-header"><div class="eyebrow">Section 03</div><h1>Characters</h1><div class="desc">Tap a character to see their full profile: journey, relationships, quotes and exam arguments.</div></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 4. THEMES ---- */
+function buildThemes(){
+  let cards = THEMES.map(t=>`
+    <div class="disclosure" data-d>
+      <button class="d-head"><span>${t.name}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <div class="mini-label">Simple explanation</div><p>${t.explanation}</p>
+        <div class="mini-label">Where it appears</div><p>${t.where}</p>
+        <div class="mini-label">Relevant characters</div><p>${t.characters.map(c=>`<span class="tag">${c}</span>`).join('')}</p>
+        <div class="mini-label">Essential quotations</div>${t.quotes.map(q=>`<div class="quote-line">"${q}"</div>`).join('')}
+        <div class="mini-label">Stevenson's possible message</div><p>${t.message}</p>
+        <div class="mini-label">Useful contextual link</div><p>${t.context}</p>
+        <div class="mini-label">Potential thesis statements</div><ul>${t.thesis.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-themes">
+    <div class="section-header"><div class="eyebrow">Section 04</div><h1>Themes</h1><div class="desc">Fifteen core themes, each with quotations, context and ready-to-adapt thesis statements.</div></div>
+    <div class="card"><h3>A note on duality</h3><p>Stevenson does not simply present Jekyll as "good" and Hyde as "evil". A more sophisticated reading is that Hyde emerges from desires already present within Jekyll — Jekyll himself describes their natures as contending within a single consciousness, meaning Hyde is not an invading force but a distilled, uninhibited version of something that was always part of Jekyll. Keep this idea central whenever you write about duality.</p></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 5. QUOTE VAULT ---- */
+function buildQuoteVault(){
+  const allChars = ['Jekyll','Hyde','Utterson','Lanyon','Enfield','Poole','Carew'];
+  const allThemes = Array.from(new Set(QUOTES.flatMap(q=>q.themes))).sort();
+
+  const s = el(`<section class="section" id="section-quotes">
+    <div class="section-header"><div class="eyebrow">Section 05</div><h1>Quote Vault</h1><div class="desc">Search and filter the novella's most important quotations. All checked against the original 1886 text.</div></div>
+    <div class="qv-controls">
+      <input type="text" id="qvSearch" placeholder="Search quotations..." aria-label="Search quotations">
+      <select id="qvCharFilter" aria-label="Filter by character"><option value="">All characters</option>${allChars.map(c=>`<option value="${c}">${c}</option>`).join('')}</select>
+      <select id="qvThemeFilter" aria-label="Filter by theme"><option value="">All themes</option>${allThemes.map(t=>`<option value="${t}">${t}</option>`).join('')}</select>
+    </div>
+    <div class="qv-count" id="qvCount"></div>
+    <div id="qvResults"></div>
+  </section>`);
+  root.appendChild(s);
+
+  function renderQuotes(){
+    const search = document.getElementById('qvSearch').value.toLowerCase().trim();
+    const charF = document.getElementById('qvCharFilter').value;
+    const themeF = document.getElementById('qvThemeFilter').value;
+    const filtered = QUOTES.filter(q=>{
+      const matchesSearch = !search || q.text.toLowerCase().includes(search) || q.speaker.toLowerCase().includes(search);
+      const matchesChar = !charF || q.characters.includes(charF);
+      const matchesTheme = !themeF || q.themes.includes(themeF);
+      return matchesSearch && matchesChar && matchesTheme;
+    });
+    document.getElementById('qvCount').textContent = filtered.length + (filtered.length===1 ? ' quotation found':' quotations found');
+    const container = document.getElementById('qvResults');
+    container.innerHTML = filtered.map((q,i)=>`
+      <div class="qcard" data-idx="${i}">
+        <div class="qtext">"${q.text}"</div>
+        <div class="qmeta">${q.speaker} · Chapter ${q.chapter} · ${q.themes.join(', ')}</div>
+        <button class="qreveal-btn" type="button">Reveal analysis</button>
+        <div class="qdetail">
+          <div class="row"><b>Meaning</b>${q.meaning}</div>
+          <div class="row"><b>Technique</b>${q.technique}</div>
+          <div class="level-toggle">
+            <button type="button" class="lvl-btn active" data-lvl="solid">Solid (Grade 5–6)</button>
+            <button type="button" class="lvl-btn" data-lvl="deep">Deeper (Grade 7–9)</button>
+          </div>
+          <div class="level-block active" data-lvl="solid">${q.solid}</div>
+          <div class="level-block" data-lvl="deep">${q.deep}</div>
+          <div class="row" style="margin-top:10px;"><b>Context</b>${q.context}</div>
+          <div class="row"><b>Use this for</b>${q.useFor}</div>
+        </div>
+      </div>`).join('') || '<p class="subtle">No quotations match your search. Try different filters.</p>';
+
+    container.querySelectorAll('.qreveal-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.qcard');
+        const open = card.classList.toggle('open');
+        btn.textContent = open ? 'Hide analysis' : 'Reveal analysis';
+      });
+    });
+    container.querySelectorAll('.lvl-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.qcard');
+        const lvl = btn.getAttribute('data-lvl');
+        card.querySelectorAll('.lvl-btn').forEach(b=>b.classList.toggle('active', b===btn));
+        card.querySelectorAll('.level-block').forEach(b=>b.classList.toggle('active', b.getAttribute('data-lvl')===lvl));
+      });
+    });
+  }
+  document.getElementById('qvSearch').addEventListener('input', renderQuotes);
+  document.getElementById('qvCharFilter').addEventListener('change', renderQuotes);
+  document.getElementById('qvThemeFilter').addEventListener('change', renderQuotes);
+  renderQuotes();
+}
+
+/* ---- 6. CONTEXT ---- */
+function buildContext(){
+  const items = [
+  {t:"Victorian respectability", body:"Victorian gentlemen were expected to maintain a controlled, dignified public reputation, often regardless of their private conduct. Public status, professional standing and social acceptance depended heavily on maintaining this appearance.",
+   use:"Use this to explain why Jekyll goes to such extreme lengths (inventing an entire separate identity) rather than simply indulging his desires openly — the stakes of losing respectability were genuinely severe."},
+  {t:"Repression", body:"Victorian social and religious codes discouraged open expression of many desires and impulses, expecting individuals to display self-control and discretion rather than voice or act on 'improper' feelings.",
+   use:"Use this to explain Jekyll's admission that he 'concealed his pleasures' for years before creating Hyde, and to discuss whether Stevenson presents repression as a cause of, rather than a solution to, moral danger."},
+  {t:"Religion and morality", body:"Victorian Britain remained a largely Christian society, with sin, temptation and moral responsibility understood in explicitly religious terms. Concepts like damnation and the devil carried genuine, serious weight for contemporary readers.",
+   use:"Use this to explain the significance of religious language applied to Hyde ('Satan's signature', 'my devil') — these are not decorative comparisons but serious moral judgements a Victorian reader would take literally."},
+  {t:"Darwin and evolution", body:"Charles Darwin's On the Origin of Species (1859) unsettled Victorian confidence in humanity's clear separation from animals, and later ideas about 'degeneration' fed fears that civilisation might not be permanent or guaranteed. This does not mean Stevenson wrote the novella as a direct response to Darwin, but the cultural anxiety Darwin's ideas provoked is a useful context for Hyde's animalistic imagery.",
+   use:"Use this to explain 'ape-like fury' and similar animalistic descriptions of Hyde as tapping into a real contemporary fear of humanity's fragile grip on civilisation, without overstating a direct, singular link to Darwin himself."},
+  {t:"Science", body:"The Victorian period saw genuine excitement about scientific progress alongside real anxiety about its ethical limits, particularly around research that seemed to intrude on questions of morality, the soul, or the boundaries of acceptable experimentation.",
+   use:"Use this to explain the significance of Lanyon's rejection of Jekyll's 'unscientific balderdash' as reflecting a real Victorian tension between conventional, materialist science and more speculative research."},
+  {t:"Physiognomy", body:"A now fully discredited historical belief that a person's moral character could be read directly from their facial features or physical appearance.",
+   use:"Use this to explain why characters repeatedly struggle, and fail, to precisely describe what is wrong with Hyde's appearance — Stevenson may be deliberately undermining physiognomy's confident claims by making Hyde's evil resist straightforward visual identification."},
+  {t:"Gothic literature", body:"A literary tradition built around conventions including darkness, mystery, fear, transgression, secrecy and doubling (a character's sinister double or alternate self).",
+   use:"Use this to explain specific Gothic techniques Stevenson uses — fog-bound streets, locked doors, sealed documents, and Hyde as Jekyll's uncanny double — and how they build dread throughout the text."},
+  {t:"Victorian London", body:"Victorian London contained stark divisions between respectable, wealthy districts and disreputable, poorer ones, often located surprisingly close together.",
+   use:"Use this to explain the significance of Jekyll's laboratory being accessible via a shabby back street, situated just behind his own respectable front door — a literal and social divide within a single property."},
+  {t:"Stevenson and the novella's creation", body:"Stevenson reportedly wrote an early draft of the novella very rapidly, and it emerged from his long-standing interest in the idea of a divided human personality.",
+   use:"Use this sparingly — biographical detail about composition is rarely essential to strong textual analysis unless directly relevant to the point you are making."}
+  ];
+  const cards = items.map(i=>`<div class="disclosure" data-d>
+    <button class="d-head"><span>${i.t}</span><span class="chev">›</span></button>
+    <div class="d-body"><div class="inner">
+      <p style="margin-top:10px;">${i.body}</p>
+      <div class="mini-label">How can I actually use this in an essay?</div><p>${i.use}</p>
+    </div></div>
+  </div>`).join('');
+
+  const s = el(`<section class="section" id="section-context">
+    <div class="section-header"><div class="eyebrow">Section 06</div><h1>Context</h1><div class="desc">Only the context you can actually use — always paired with a real essay application.</div></div>
+    <div class="card"><p><b>Important:</b> Never bolt on a historical fact just to prove you know it. Only use context when it genuinely deepens your interpretation of Stevenson's choices in that specific moment.</p></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 7. TECHNIQUES ---- */
+function buildTechniques(){
+  const cards = TECHNIQUES.map(t=>`<div class="disclosure" data-d>
+    <button class="d-head"><span>${t.name}</span><span class="chev">›</span></button>
+    <div class="d-body"><div class="inner">
+      <div class="mini-label">Definition</div><p>${t.def}</p>
+      <div class="mini-label">Jekyll &amp; Hyde example</div><p>${t.example}</p>
+      <div class="mini-label">Effect</div><p>${t.effect}</p>
+      <div class="mini-label">How to analyse it</div><p>${t.howto}</p>
+    </div></div>
+  </div>`).join('');
+
+  const s = el(`<section class="section" id="section-techniques">
+    <div class="section-header"><div class="eyebrow">Section 07</div><h1>Techniques</h1><div class="desc">The key literary and structural methods Stevenson uses, with clear examples and analysis guidance.</div></div>
+
+    <div class="card"><h3>Why does Stevenson hide the truth?</h3>
+      <p>Stevenson structures the novella so that Jekyll's own explanation is withheld until the very final chapter, after nine chapters of mystery seen mostly through Utterson's limited perspective. This delayed revelation does two things at once: it creates genuine narrative suspense, keeping readers guessing about the connection between Jekyll and Hyde, and it formally reinforces the novella's central themes. Secrecy, concealment and the gap between public appearance and private reality are not just what the novella is about — they are how the novella is built. The reader's experience of being kept in the dark mirrors Utterson's own frustrated investigation, and even mirrors Jekyll's lifelong concealment of his 'pleasures' from the world. When Stevenson finally allows Jekyll to speak directly, in first person, the shift feels like a genuine confession — because structurally, it is one.</p>
+    </div>
+
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 8. EXAM ---- */
+function buildExam(){
+  const s = el(`<section class="section" id="section-exam">
+    <div class="section-header"><div class="eyebrow">Section 08</div><h1>Exam Survival</h1><div class="desc">How to actually approach a Jekyll &amp; Hyde exam question, step by step.</div></div>
+
+    <div class="card"><p>Exam boards differ in exact format — some give you a printed extract and ask you to connect it to the whole novella; others ask a discursive essay question without an extract. Always check your own exam board's format with your teacher, but the analytical skills below apply broadly.</p></div>
+
+    <div class="disclosure open" data-d><button class="d-head"><span>1. Understanding the question</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Underline the key words in the question — usually a theme, character or idea, plus a command word (e.g. 'explore', 'how does Stevenson present'). Every paragraph should keep answering that exact question, not the novella in general.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>2. Reading the extract carefully</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Read the extract twice — first for meaning, then hunting for specific techniques (imagery, structure, punctuation, narrative voice). Annotate briefly rather than writing full sentences at this stage.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>3. Identifying the focus</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Decide what the extract is really doing — building mystery, revealing character, escalating horror — and let that focus shape your argument rather than working through the extract line by line.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>4. Connecting extract to whole novella</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Always show how the extract's ideas develop elsewhere in the text. For example, if the extract shows Hyde's violence, connect it to the escalation of that violence across the whole novella, not just this one moment.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>5. Selecting evidence</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Choose short, precise quotations you can analyse word-by-word rather than long ones you only summarise. Never invent or misremember a quotation — an accurate short quote is always stronger than an inaccurate longer one.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>6. Creating a thesis</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>State a clear, arguable position rather than just restating the question. For example: "Stevenson presents Hyde not as an external evil, but as the physical manifestation of desires Jekyll had long repressed."</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>7. Paragraph structure</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>A reliable structure: Point → Evidence (short quotation) → Method (technique + effect) → Context (only if it adds insight) → Link back to the question and Stevenson's likely purpose.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>8. Analysing methods</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Always ask: why this specific word or technique, not a similar one? Zoom in on individual word choices and their connotations rather than making broad, generic claims.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>9. Considering structure</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Jekyll &amp; Hyde rewards structural analysis: consider why Stevenson delays certain revelations, shifts narrative voice, or places specific events in a particular chapter order.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>10. Incorporating context</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Context should illuminate Stevenson's choices, not replace analysis of them. One well-placed contextual point is worth more than a paragraph of Victorian history with no link to the text.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>11. Writing conclusions</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Don't simply repeat your introduction. Briefly synthesise your strongest points and, where relevant, comment on Stevenson's overall message about human nature.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>12. Managing time</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Spend a few minutes planning before you write. Leave a couple of minutes at the end to check for missing words and unclear sentences.</p></div></div></div>
+
+    <h2 style="margin-top:28px;">Extract → Whole Text</h2>
+    <div class="card"><p>Start with what the extract itself does — for example, an extract describing Hyde's violence might focus on animalistic imagery and juxtaposition. Then widen outward: does this violence connect to a pattern across the novella (the escalation from the girl to Carew)? Does it relate to a theme explored elsewhere (duality, repression)? Finally, connect to Stevenson's likely overall purpose — is he critiquing Victorian repression, exploring evolutionary anxiety, or both? This "zoom out" movement — extract detail, novella-wide pattern, authorial purpose — is a reliable way to structure a strong response.</p></div>
+
+    <h2 style="margin-top:28px;">Weak vs Strong Analysis</h2>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"Stevenson uses animal imagery to show Hyde is bad."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"Stevenson's description of Hyde's 'ape-like fury' during Carew's murder draws on contemporary Darwinian anxiety about humanity's animal ancestry — the simile suggests Hyde represents a regression to a more primitive state, implying that civilisation is a fragile veneer Stevenson believed could be stripped away under the right conditions."</p></div>
+    </div>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"Jekyll is a bad person because he creates Hyde."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"Jekyll's admission that he 'concealed his pleasures' reveals that his double life predates the creation of Hyde entirely, complicating any reading of Hyde as a wholly separate evil — Stevenson instead suggests Hyde is the culmination of a much longer pattern of repression and self-deception."</p></div>
+    </div>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"The novella is scary because of the setting."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"Stevenson's use of fog-bound, divided London settings, particularly the contrast between Jekyll's respectable front door and his shabby laboratory entrance, embeds the novella's central theme of duality into its physical geography before a single word of dialogue is spoken."</p></div>
+    </div>
+
+    <h2 style="margin-top:28px;">Practice questions</h2>
+    <div id="practiceQs"></div>
+  </section>`);
+  root.appendChild(s);
+
+  const practice = [
+   {q:"How does Stevenson present Hyde as frightening?", plan:["Introduce Hyde's fear as rooted partly in his indescribability.","P1: Enfield's inability to precisely describe what is wrong with him ('something displeasing, something downright detestable').","P2: Escalating violence — the trampling, then Carew's murder ('ape-like fury').","P3: The physical horror of his transformations, described by Jekyll himself.","Context: physiognomy and Darwinian anxiety.","Conclusion: Hyde's fear comes from resisting easy categorisation."]},
+   {q:"How does Stevenson present the theme of duality?", plan:["Introduce duality as the novella's central, structuring idea.","P1: Jekyll's direct statement — 'man is not truly one, but truly two'.","P2: The divided architecture of Jekyll's house (front door vs laboratory).","P3: The more sophisticated reading — Hyde as distilled Jekyll, not separate evil.","Context: Victorian repression and the divided self.","Conclusion: duality operates at every level of the text, not just plot."]},
+   {q:"How does Stevenson present Jekyll as a troubled character?", plan:["Introduce Jekyll's trouble as originating before Hyde's creation.","P1: 'I concealed my pleasures' — a lifelong pattern of secrecy.","P2: His growing loss of control ('losing hold of my original and better self').","P3: His final, desperate act of self-destruction as the only remaining solution.","Context: Victorian respectability and its psychological cost.","Conclusion: Jekyll's tragedy is one of self-deception as much as scientific overreach."]},
+   {q:"How does Stevenson present ideas about reputation?", plan:["Introduce reputation as a driving force behind multiple characters' behaviour.","P1: The family's decision to blackmail rather than prosecute Hyde in Chapter 1.","P2: Utterson's reluctance to expose Jekyll to scandal.","P3: Jekyll's entire experiment as an attempt to protect reputation while still indulging desire.","Context: the real professional and social cost of Victorian scandal.","Conclusion: reputation is protected throughout at the expense of honesty."]},
+   {q:"How does Stevenson present violence?", plan:["Introduce violence as escalating and closely tied to Hyde's growing power.","P1: The trampling of the girl — controlled, calm, unsettling.","P2: Carew's murder — frenzied, animalistic, uncontrolled.","P3: The violence Jekyll ultimately turns on himself at the novella's end.","Context: Victorian sensationalist crime reporting.","Conclusion: escalating violence charts Hyde's growing dominance over Jekyll."]},
+   {q:"How does Stevenson use setting to create mystery?", plan:["Introduce Gothic, divided London as central to the novella's atmosphere.","P1: Fog-bound streets obscuring clarity, echoing the novella's obscured truth.","P2: Jekyll's divided house — respectable front, sinister rear laboratory.","P3: Locked doors and sealed documents as recurring physical obstacles to knowledge.","Context: Gothic literary conventions.","Conclusion: setting embodies the novella's themes of concealment and duality."]},
+   {q:"How does Stevenson present science?", plan:["Introduce science as a source of both ambition and danger.","P1: Jekyll's 'transcendental' research contrasted with Lanyon's conventional medicine.","P2: The genuine physical agony of Jekyll's transformations, blurring science and Gothic horror.","P3: The catastrophic ethical consequences of Jekyll's experiment.","Context: Victorian scientific optimism and anxiety.","Conclusion: Stevenson presents unchecked scientific ambition as a serious moral risk."]},
+   {q:"How does Stevenson present secrecy?", plan:["Introduce secrecy as both theme and narrative method.","P1: Locked doors, sealed letters and safes recurring throughout the text.","P2: Utterson's limited perspective withholding information from the reader.","P3: Jekyll's lifelong concealment of his 'pleasures', predating Hyde entirely.","Context: Victorian respectability and discretion.","Conclusion: secrecy shapes not just the plot but the reader's entire experience of the novella."]}
+  ];
+  const container = document.getElementById('practiceQs');
+  container.innerHTML = practice.map((p,i)=>`<div class="card">
+    <h3>${p.q}</h3>
+    <button class="btn secondary" type="button" data-plan="${i}">Reveal planning points</button>
+    <div class="plan-reveal" data-plan-body="${i}" style="display:none;margin-top:12px;">
+      <ol>${p.plan.map(x=>`<li>${x}</li>`).join('')}</ol>
+    </div>
+  </div>`).join('');
+  container.querySelectorAll('[data-plan]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const idx = btn.getAttribute('data-plan');
+      const body = container.querySelector(`[data-plan-body="${idx}"]`);
+      const showing = body.style.display !== 'none';
+      body.style.display = showing ? 'none' : 'block';
+      btn.textContent = showing ? 'Reveal planning points' : 'Hide planning points';
+    });
+  });
+}
+
+/* ---- 9. QUIZ ---- */
+let quizState = { order: [], idx:0, score:0, answered:false, wrongTopics:{} };
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+const TYPE_LABEL = {mc:'Plot & detail', tf:'True / False', char:'Character', quote:'Quotation', theme:'Theme', context:'Context', tech:'Technique'};
+
+function buildQuiz(){
+  const s = el(`<section class="section" id="section-quiz">
+    <div class="section-header"><div class="eyebrow">Section 09</div><h1>Quiz</h1><div class="desc">Self-marking revision quiz covering plot, chapters, characters, quotations, themes, context and techniques.</div></div>
+    <div class="card">
+      <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
+      <div id="quizArea"></div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  startQuiz();
+}
+
+function startQuiz(){
+  quizState = { order: shuffle(QUIZ_BANK.map((_,i)=>i)), idx:0, score:0, answered:false, wrongTopics:{} };
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion(){
+  const area = document.getElementById('quizArea');
+  const total = quizState.order.length;
+  if(quizState.idx >= total){
+    const pct = Math.round((quizState.score/total)*100);
+    document.getElementById('quizProgressBar').style.width = '100%';
+    const weakList = Object.keys(quizState.wrongTopics).sort((a,b)=>quizState.wrongTopics[b]-quizState.wrongTopics[a]);
+    area.innerHTML = `<div class="quiz-result">
+      <div class="score">${quizState.score}/${total}</div>
+      <p class="subtle">${pct}% correct</p>
+      ${weakList.length ? `<div class="weak-areas"><p class="subtle"><b>Areas to revise:</b></p><p>${weakList.map(t=>`<span class="tag blood">${TYPE_LABEL[t]||t}</span>`).join('')}</p></div>` : `<p class="subtle">Strong across every question type — well done!</p>`}
+      <button class="btn blood" id="tryAgainBtn" type="button">Try Again</button>
+      <button class="btn secondary" id="newQuizBtn" type="button" style="margin-left:8px;">New Quiz</button>
+    </div>`;
+    document.getElementById('tryAgainBtn').addEventListener('click', ()=>{ quizState.idx=0; quizState.score=0; quizState.wrongTopics={}; quizState.answered=false; renderQuizQuestion(); });
+    document.getElementById('newQuizBtn').addEventListener('click', startQuiz);
+    return;
+  }
+  document.getElementById('quizProgressBar').style.width = ((quizState.idx/total)*100)+'%';
+  const item = QUIZ_BANK[quizState.order[quizState.idx]];
+  const optOrder = shuffle(item.opts.map((o,i)=>i));
+  quizState.answered = false;
+  area.innerHTML = `
+    <p class="subtle">Question ${quizState.idx+1} of ${total} · <span class="tag gold">${TYPE_LABEL[item.type]||''}</span></p>
+    <div class="quiz-q">${item.q}</div>
+    <div class="quiz-opts">${optOrder.map(oi=>`<button class="quiz-opt" data-oi="${oi}" type="button">${item.opts[oi]}</button>`).join('')}</div>
+    <div class="quiz-explain" id="quizExplain"></div>
+    <div style="margin-top:14px;"><button class="btn" id="quizNextBtn" type="button" style="display:none;">Next question</button></div>
+  `;
+  area.querySelectorAll('.quiz-opt').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(quizState.answered) return;
+      quizState.answered = true;
+      const chosen = parseInt(btn.getAttribute('data-oi'));
+      area.querySelectorAll('.quiz-opt').forEach(b=>{
+        b.setAttribute('disabled','true');
+        const oi = parseInt(b.getAttribute('data-oi'));
+        if(oi === item.a) b.classList.add('correct');
+        else if(oi === chosen) b.classList.add('incorrect');
+      });
+      if(chosen === item.a) quizState.score++;
+      else quizState.wrongTopics[item.type] = (quizState.wrongTopics[item.type]||0)+1;
+      const exp = document.getElementById('quizExplain');
+      exp.textContent = item.exp;
+      exp.classList.add('show');
+      document.getElementById('quizNextBtn').style.display = 'inline-block';
+    });
+  });
+  document.getElementById('quizNextBtn').addEventListener('click', ()=>{ quizState.idx++; renderQuizQuestion(); });
+}
+
+/* ---- 10. JEKYLL OR HYDE GAME ---- */
+let jhState = { order: [], idx:0, score:0, answered:false };
+
+function buildJekyllOrHyde(){
+  const s = el(`<section class="section" id="section-jekyllorhyde">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Jekyll or Hyde?</h1><div class="desc">A quick, game-like activity. For each quotation, decide whether it relates primarily to Jekyll, Hyde, Both, or Narrator/Other.</div></div>
+    <div class="jh-game">
+      <div class="jh-score" id="jhScore"></div>
+      <div class="jh-quote" id="jhQuoteText"></div>
+      <div class="jh-opts" id="jhOpts"></div>
+      <div class="jh-feedback" id="jhFeedback"></div>
+      <button class="btn" id="jhNextBtn" type="button" style="display:none;margin-top:14px;">Next quotation</button>
+      <button class="btn secondary" id="jhRestartBtn" type="button" style="display:none;margin-top:14px;">Play again</button>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  startJH();
+}
+
+function startJH(){
+  jhState = { order: shuffle(JH_GAME.map((_,i)=>i)), idx:0, score:0, answered:false };
+  renderJH();
+}
+
+function renderJH(){
+  const total = jhState.order.length;
+  const scoreEl = document.getElementById('jhScore');
+  const feedback = document.getElementById('jhFeedback');
+  const nextBtn = document.getElementById('jhNextBtn');
+  const restartBtn = document.getElementById('jhRestartBtn');
+  feedback.classList.remove('show');
+  feedback.textContent = '';
+  nextBtn.style.display = 'none';
+
+  if(jhState.idx >= total){
+    scoreEl.textContent = `Final score: ${jhState.score}/${total}`;
+    document.getElementById('jhQuoteText').textContent = "Round complete!";
+    document.getElementById('jhOpts').innerHTML = '';
+    restartBtn.style.display = 'inline-block';
+    restartBtn.onclick = startJH;
+    return;
+  }
+  restartBtn.style.display = 'none';
+  scoreEl.textContent = `Quotation ${jhState.idx+1} of ${total} · Score: ${jhState.score}`;
+  const item = JH_GAME[jhState.order[jhState.idx]];
+  document.getElementById('jhQuoteText').textContent = `"${item.text}"`;
+  const opts = ['Jekyll','Hyde','Both','Other'];
+  const optsEl = document.getElementById('jhOpts');
+  optsEl.innerHTML = opts.map(o=>`<button type="button" data-opt="${o}">${o}</button>`).join('');
+  jhState.answered = false;
+  optsEl.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(jhState.answered) return;
+      jhState.answered = true;
+      const chosen = btn.getAttribute('data-opt');
+      optsEl.querySelectorAll('button').forEach(b=>{
+        b.disabled = true;
+        if(b.getAttribute('data-opt') === item.answer) b.classList.add('correct');
+        else if(b === btn) b.classList.add('incorrect');
+      });
+      if(chosen === item.answer) jhState.score++;
+      feedback.textContent = item.exp;
+      feedback.classList.add('show');
+      nextBtn.style.display = 'inline-block';
+    });
+  });
+}
+document.addEventListener('click', function(e){
+  if(e.target && e.target.id === 'jhNextBtn'){ jhState.idx++; renderJH(); }
+});
+
+/* ---- 11. DUALITY MAP ---- */
+function buildDualityMap(){
+  const pairs = DUALITY_PAIRS.map(p=>`
+    <div class="dual-pair" data-d>
+      <button class="dp-head">
+        <span class="dp-sides"><span class="side-a">${p.a}</span><span class="arrow">↔</span><span class="side-b">${p.b}</span></span>
+        <span class="chev">›</span>
+      </button>
+      <div class="dp-body"><div class="dp-inner">
+        <p>${p.body}</p>
+        <div class="quote-line">"${p.quote}"</div>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-dualitymap">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Duality Map</h1><div class="desc">Tap each pair to reveal how these opposing ideas play out in the novella.</div></div>
+    <div class="duality-grid">${pairs}</div>
+  </section>`);
+  root.appendChild(s);
+
+  s.querySelectorAll('.dp-head').forEach(head=>{
+    head.addEventListener('click', ()=>{ head.parentElement.classList.toggle('open'); });
+  });
+}
+
+/* ---- 12. LAST MINUTE ---- */
+function buildLastMinute(){
+  const plot10 = ["Enfield tells Utterson about Hyde trampling a girl in the street.","Utterson discovers Jekyll's will leaves everything to Hyde.","Hyde murders Sir Danvers Carew and disappears.","Utterson notices Hyde's handwriting resembles Jekyll's.","Jekyll briefly recovers, then withdraws again.","Lanyon dies after witnessing a terrible shock, leaving a sealed letter.","Utterson and Enfield see a terrified Jekyll at his window.","Poole and Utterson break into the laboratory and find Hyde's body.","Lanyon's letter reveals Hyde transformed into Jekyll before his eyes.","Jekyll's full confession reveals the truth and ends with his decision to die."];
+  const fiveChars = [
+   ["Jekyll","Respectable doctor whose experiment to separate his 'good' and 'bad' selves ultimately destroys him."],
+   ["Hyde","Jekyll's uninhibited, violent alter ego — not a separate evil, but a distillation of Jekyll's own repressed desires."],
+   ["Utterson","Rational, loyal lawyer whose limited perspective drives the novella's mystery and investigation."],
+   ["Lanyon","Conventional scientist whose rigid worldview is fatally shattered by witnessing Jekyll's transformation."],
+   ["Enfield / Poole","Enfield's account opens the mystery; Poole's loyalty and fear trigger the climactic discovery of Hyde's body."]
+  ];
+  const fiveThemes = [
+   ["Duality","Hyde is not separate evil, but a distilled version of desires already within Jekyll."],
+   ["Repression","Suppressing desires for years, rather than confronting them, makes their eventual release more violent."],
+   ["Reputation","Characters repeatedly protect public image over honesty, including Jekyll's entire experiment."],
+   ["Science","Jekyll's ambition to master human nature scientifically becomes a moral, not just technical, catastrophe."],
+   ["Good vs Evil","Stevenson suggests most people are 'commingled' of both, rather than purely one or the other."]
+  ];
+  const quotes15 = [
+   ["Man is not truly one, but truly two.","Central quote for duality — use in almost any essay about human nature."],
+   ["I concealed my pleasures.","Shows Jekyll's secrecy predates Hyde's creation — use for repression/reputation."],
+   ["My devil had been long caged, he came out roaring.","Repression intensifying — use for repression/duality."],
+   ["The man trampled calmly over the child's body.","Hyde's introduction — use for violence/evil."],
+   ["With ape-like fury, he was trampling his victim under foot.","Escalating, animalistic violence — use for violence/Darwinian context."],
+   ["God bless me, the man seems hardly human!","Use for Hyde's ambiguous, unreadable evil."],
+   ["O my poor old Harry Jekyll, if ever I read Satan's signature upon a face.","Use for religious imagery/evil."],
+   ["Edward Hyde, alone in the ranks of mankind, was pure evil.","Use for good vs evil/duality — note Hyde is still called 'mankind'."],
+   ["I learned to recognise the thorough and primitive duality of man.","Use for duality/evolutionary context."],
+   ["I was slowly losing hold of my original and better self.","Use for identity/loss of control."],
+   ["It wasn't like a man; it was like some damned Juggernaut.","Use for dehumanisation of Hyde."],
+   ["Such unscientific balderdash.","Use for science/Lanyon's characterisation."],
+   ["I bring the life of that unhappy Henry Jekyll to an end.","Final line — use for structure/identity/responsibility."],
+   ["The most racking pangs succeeded: a grinding in the bones.","Use for the supernatural/Gothic bodily horror."],
+   ["There is something wrong with his appearance; something displeasing, something downright detestable.","Use for appearance vs reality/physiognomy."]
+  ];
+  const fiveContext = ["Divine Right — N/A; instead: Victorian respectability made public reputation extremely high-stakes.","Physiognomy (discredited): belief that character could be read from the face.","Darwin's evolution unsettled ideas of humanity's separation from animals (not a direct 'response to Darwin', but relevant anxiety).","Victorian science was exciting but ethically contested where it touched morality or the soul.","Christian morality framed sin and temptation as requiring resistance, not evasion — relevant to Jekyll's experiment."];
+  const fiveTech = [
+   ["Delayed revelation","Jekyll's confession withheld until Chapter 10, building mystery and mirroring secrecy."],
+   ["Animalistic imagery","Hyde repeatedly linked to animals ('ape-like'), suggesting evolutionary regression."],
+   ["Symbolism","Jekyll's divided house mirrors his divided identity."],
+   ["Narrative perspective","Limited third-person (Utterson) restricts reader knowledge, building suspense."],
+   ["Juxtaposition","'Trampled calmly' — jarring combination reinforcing Hyde's unnatural lack of remorse."]
+  ];
+  const checklist = ["Answer the actual question, not just the novella in general.","Use precise, accurate evidence — never invented quotations.","Analyse individual words, not just quote them.","Discuss Stevenson's methods, not just what happens.","Connect the extract to the whole text where relevant.","Include only context that adds genuine insight.","Keep returning to Stevenson's likely purpose."];
+  const dontDo = ["Don't simply retell the plot instead of analysing it.","Don't use made-up or misremembered quotations.","Don't bolt on context disconnected from the text.","Don't identify a technique without analysing its effect.","Don't forget to answer the specific question asked."];
+
+  const s = el(`<section class="section" id="section-lastminute">
+    <div class="section-header"><div class="eyebrow">Section 10</div><h1>Jekyll &amp; Hyde — Last Minute</h1><div class="desc">Exam tomorrow? Start here.</div></div>
+    <button class="btn secondary print-btn" id="printBtn" type="button">Print this page</button>
+
+    <div class="lm-grid">
+      <div class="lm-card"><h3>Plot in 10 points</h3><ol>${plot10.map(x=>`<li>${x}</li>`).join('')}</ol></div>
+      <div class="lm-card"><h3>5 characters you must understand</h3><ul>${fiveChars.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 themes you must understand</h3><ul>${fiveThemes.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>15 quotations worth remembering</h3><ul>${quotes15.map(x=>`<li>"${x[0]}" <br><span class="subtle">→ ${x[1]}</span></li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 contextual ideas</h3><ul>${fiveContext.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 techniques worth recognising</h3><ul>${fiveTech.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>Essay checklist</h3><ul>${checklist.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>Five things NOT to do</h3><ul>${dontDo.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  document.getElementById('printBtn').addEventListener('click', ()=> window.print());
+}
+
+/* ================= DISCLOSURE BEHAVIOUR (shared) ================= */
+function wireDisclosures(){
+  document.querySelectorAll('.disclosure > .d-head').forEach(head=>{
+    head.addEventListener('click', ()=>{
+      head.parentElement.classList.toggle('open');
+    });
+  });
+}
+
+/* ================= INIT ================= */
+buildOverview();
+buildPlot();
+buildCharacters();
+buildThemes();
+buildQuoteVault();
+buildContext();
+buildTechniques();
+buildExam();
+buildQuiz();
+buildJekyllOrHyde();
+buildDualityMap();
+buildLastMinute();
+renderNav();
+wireDisclosures();
+showSection(SECTIONS.some(s=>s.id===currentSection) ? currentSection : 'overview');
+
+})();
+</script>
+</body>
+</html>

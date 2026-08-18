@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Teacher Vault — An Inspector Calls QuickNotes</title>
+<style>
+:root{
+  --ink:#1B2A4A;
+  --ink-light:#33456e;
+  --parchment:#F7F4EB;
+  --parchment-dark:#EDE7D6;
+  --blood:#8C2F1E;
+  --blood-bright:#B5432B;
+  --gold:#B4922F;
+  --fog:#4A5A6A;
+  --text:#232426;
+  --text-soft:#5b5d63;
+  --card:#FFFFFF;
+  --line:#E2DCC8;
+  --radius:10px;
+  --serif: Georgia, 'Times New Roman', Times, serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --mono: 'Courier New', Courier, monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--parchment);color:var(--text);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased;}
+::selection{background:var(--gold);color:#fff;}
+a{color:var(--blood-bright);}
+button{font-family:inherit;cursor:pointer;}
+h1,h2,h3,h4{font-family:var(--serif);color:var(--ink);margin:0 0 .5em 0;}
+p{margin:0 0 .8em 0;}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:.6em 1em;z-index:999;}
+.skip-link:focus{left:8px;top:8px;}
+.app{display:flex;min-height:100vh;}
+.sidebar{width:250px;flex-shrink:0;background:var(--ink);color:#EDE9DA;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.brand{padding:22px 20px 14px 20px;border-bottom:1px solid rgba(255,255,255,.12);}
+.brand .tv-name{font-family:var(--serif);font-size:1.05rem;letter-spacing:.02em;color:#fff;font-weight:700;}
+.brand .tv-sub{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-top:2px;}
+.brand .play-title{margin-top:14px;font-family:var(--serif);font-size:1.65rem;color:#fff;line-height:1.15;}
+.brand .play-sub{font-size:.78rem;color:#c9c4ac;margin-top:6px;line-height:1.4;}
+nav.mainnav{padding:10px 0;flex:1;}
+nav.mainnav button.navlink{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:none;color:#d9d5c3;padding:10px 20px;font-size:.88rem;border-left:3px solid transparent;}
+nav.mainnav button.navlink .num{font-family:var(--mono);font-size:.7rem;color:var(--gold);width:18px;flex-shrink:0;}
+nav.mainnav button.navlink:hover{background:rgba(255,255,255,.06);color:#fff;}
+nav.mainnav button.navlink.active{background:rgba(181,67,43,.25);border-left-color:var(--blood-bright);color:#fff;font-weight:600;}
+nav.mainnav button.navlink:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
+.sidebar-footer{padding:14px 20px;font-size:.7rem;color:#8b876f;border-top:1px solid rgba(255,255,255,.1);}
+.topbar{display:none;position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;padding:12px 16px;align-items:center;justify-content:space-between;}
+.topbar .tv-inline{font-family:var(--serif);font-size:1rem;}
+.topbar .tv-inline span{display:block;font-size:.65rem;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;}
+.hamburger{background:none;border:1px solid rgba(255,255,255,.4);color:#fff;padding:8px 10px;border-radius:6px;font-size:.85rem;}
+.mobile-nav-drawer{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.5);}
+.mobile-nav-drawer.open{display:block;}
+.mobile-nav-panel{position:absolute;top:0;left:0;bottom:0;width:80%;max-width:300px;background:var(--ink);overflow-y:auto;padding-bottom:20px;}
+main{flex:1;min-width:0;padding:36px 44px 80px 44px;max-width:980px;}
+.section{display:none;animation:fadein .25s ease;}
+.section.active{display:block;}
+@keyframes fadein{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+.section-header{margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid var(--ink);}
+.section-header .eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blood-bright);font-weight:700;margin-bottom:4px;}
+.section-header h1{font-size:1.9rem;margin-bottom:4px;}
+.section-header .desc{color:var(--text-soft);font-size:.95rem;max-width:640px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-bottom:16px;}
+.card h3{font-size:1.1rem;margin-bottom:8px;}
+.subtle{color:var(--text-soft);font-size:.88rem;}
+.tag{display:inline-block;background:var(--parchment-dark);color:var(--ink);border-radius:999px;padding:2px 10px;font-size:.72rem;margin:2px 4px 2px 0;font-weight:600;}
+.tag.blood{background:#f3e0da;color:var(--blood);}
+.tag.gold{background:#f3ecd6;color:#7a621c;}
+.tag.fog{background:#e4e9ee;color:var(--fog);}
+.btn{display:inline-block;background:var(--ink);color:#fff;border:none;padding:9px 16px;border-radius:7px;font-size:.85rem;font-weight:600;}
+.btn:hover{background:var(--ink-light);}
+.btn.secondary{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+.btn.blood{background:var(--blood-bright);}
+.btn.blood:hover{background:var(--blood);}
+.btn:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+.disclosure{border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;background:var(--card);overflow:hidden;}
+.disclosure > .d-head{width:100%;background:none;border:none;text-align:left;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;font-weight:700;color:var(--ink);font-family:var(--serif);font-size:1.02rem;}
+.disclosure > .d-head:hover{background:var(--parchment);}
+.disclosure > .d-head .chev{transition:transform .2s;color:var(--blood-bright);font-size:1.1rem;}
+.disclosure.open > .d-head .chev{transform:rotate(90deg);}
+.disclosure > .d-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.disclosure.open > .d-body{max-height:4000px;}
+.disclosure > .d-body .inner{padding:0 18px 16px 18px;}
+.d-body .mini-label{font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--blood-bright);margin:12px 0 4px 0;}
+.d-body .mini-label:first-child{margin-top:0;}
+.quote-line{font-family:var(--serif);font-style:italic;color:var(--ink);background:var(--parchment);border-left:3px solid var(--gold);padding:8px 12px;margin:6px 0;font-size:.94rem;}
+.grid{display:grid;gap:14px;}
+.grid.two{grid-template-columns:1fr 1fr;}
+.grid.three{grid-template-columns:repeat(3,1fr);}
+@media(max-width:800px){.grid.two,.grid.three{grid-template-columns:1fr;}}
+.qv-controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;align-items:center;}
+.qv-controls input[type=text], .qv-controls select{padding:9px 12px;border:1px solid var(--line);border-radius:7px;font-size:.9rem;background:#fff;}
+.qv-controls input[type=text]{flex:1;min-width:180px;}
+.qv-count{font-size:.82rem;color:var(--text-soft);margin-bottom:10px;}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-bottom:12px;}
+.qcard .qtext{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);margin-bottom:6px;}
+.qcard .qmeta{font-size:.78rem;color:var(--text-soft);margin-bottom:10px;}
+.qcard .qreveal-btn{font-size:.8rem;background:var(--parchment-dark);border:none;padding:6px 12px;border-radius:6px;color:var(--ink);font-weight:600;}
+.qcard .qdetail{display:none;margin-top:12px;border-top:1px dashed var(--line);padding-top:10px;}
+.qcard.open .qdetail{display:block;}
+.qdetail .row{margin-bottom:8px;}
+.qdetail .row b{color:var(--blood-bright);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:2px;}
+.level-toggle{display:flex;gap:6px;margin:10px 0;}
+.level-toggle button{font-size:.75rem;padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:#fff;}
+.level-toggle button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.level-block{display:none;font-size:.9rem;}
+.level-block.active{display:block;}
+.quiz-progress{height:8px;background:var(--parchment-dark);border-radius:6px;overflow:hidden;margin-bottom:18px;}
+.quiz-progress-bar{height:100%;background:var(--blood-bright);width:0%;transition:width .3s;}
+.quiz-q{font-family:var(--serif);font-size:1.15rem;margin-bottom:14px;}
+.quiz-opts{display:flex;flex-direction:column;gap:8px;}
+.quiz-opt{text-align:left;padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;background:#fff;font-size:.95rem;}
+.quiz-opt:hover{border-color:var(--ink);}
+.quiz-opt.correct{background:#e4f2e6;border-color:#4c9a5f;}
+.quiz-opt.incorrect{background:#f7e4e0;border-color:var(--blood-bright);}
+.quiz-opt[disabled]{cursor:default;}
+.quiz-explain{margin-top:12px;padding:12px 14px;background:var(--parchment);border-radius:8px;font-size:.9rem;display:none;}
+.quiz-explain.show{display:block;}
+.quiz-result{text-align:center;padding:30px 10px;}
+.quiz-result .score{font-family:var(--serif);font-size:3rem;color:var(--ink);}
+.quiz-result .weak-areas{text-align:left;max-width:420px;margin:16px auto;}
+.wvs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+@media(max-width:700px){.wvs{grid-template-columns:1fr;}}
+.wvs .weak{border:1.5px solid #c9776a;background:#fbeeeb;border-radius:8px;padding:14px;}
+.wvs .strong{border:1.5px solid #6a9c76;background:#eef6ef;border-radius:8px;padding:14px;}
+.wvs .lbl{font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+.wvs .weak .lbl{color:#a1392a;}
+.wvs .strong .lbl{color:#3f7a4c;}
+.lm-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:760px){.lm-grid{grid-template-columns:1fr;}}
+.lm-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;}
+.lm-card h3{font-size:1rem;color:var(--blood-bright);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:10px;}
+.lm-card ol,.lm-card ul{margin:0;padding-left:20px;font-size:.88rem;}
+.lm-card li{margin-bottom:6px;}
+.print-btn{margin-bottom:16px;}
+@media print{
+  .sidebar,.topbar,.print-btn,nav,.section-header .desc{display:none !important;}
+  main{padding:0;max-width:100%;}
+  .section{display:block !important;}
+  #section-lastminute{display:block !important;}
+  .section:not(#section-lastminute){display:none !important;}
+  body{background:#fff;}
+}
+.sixty{background:var(--ink);color:#f2efe2;border-radius:var(--radius);padding:20px 22px;margin:18px 0;}
+.sixty h3{color:var(--gold);font-size:.85rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;}
+.sixty p{font-size:.95rem;line-height:1.6;}
+footer.app-footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);color:var(--text-soft);font-size:.78rem;}
+.timeline{display:flex;flex-direction:column;gap:0;margin:16px 0;border-left:3px solid var(--gold);padding-left:18px;}
+.timeline .t-item{position:relative;padding:6px 0 18px 14px;}
+.timeline .t-item::before{content:'';position:absolute;left:-25px;top:9px;width:10px;height:10px;border-radius:50%;background:var(--blood-bright);border:2px solid var(--parchment);}
+.timeline .t-item .t-num{font-family:var(--mono);font-size:.72rem;color:var(--blood-bright);font-weight:700;}
+.timeline .t-item p{margin:2px 0 0 0;font-size:.92rem;}
+.jh-game{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;text-align:center;}
+.jh-quote{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--ink);min-height:90px;display:flex;align-items:center;justify-content:center;padding:0 10px;}
+.jh-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0;}
+@media(max-width:640px){.jh-opts{grid-template-columns:1fr 1fr;}}
+.jh-opts button{padding:12px 8px;border-radius:8px;border:1.5px solid var(--line);background:#fff;font-weight:600;font-size:.85rem;}
+.jh-opts button:hover{border-color:var(--ink);}
+.jh-opts button.correct{background:#e4f2e6;border-color:#4c9a5f;}
+.jh-opts button.incorrect{background:#f7e4e0;border-color:var(--blood-bright);}
+.jh-feedback{background:var(--parchment);border-radius:8px;padding:14px;margin-top:14px;font-size:.9rem;display:none;text-align:left;}
+.jh-feedback.show{display:block;}
+.jh-score{font-size:.85rem;color:var(--text-soft);margin-bottom:10px;}
+.change-grid{display:grid;grid-template-columns:1fr;gap:10px;}
+.change-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+.change-card .cc-head{width:100%;background:none;border:none;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.change-card .cc-name{font-family:var(--serif);font-size:1.1rem;color:var(--ink);font-weight:700;}
+.change-card .cc-meter{display:flex;gap:3px;align-items:center;}
+.change-card .cc-meter .dot{width:10px;height:10px;border-radius:50%;background:var(--line);}
+.change-card .cc-meter .dot.on{background:var(--blood-bright);}
+.change-card .cc-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.change-card.open .cc-body{max-height:700px;}
+.change-card .cc-inner{padding:0 18px 16px 18px;font-size:.92rem;}
+.change-card .cc-note{font-style:italic;color:var(--text-soft);font-size:.82rem;margin-top:8px;}
+.chain{display:flex;flex-direction:column;gap:0;}
+.chain-step{position:relative;}
+.chain-btn{width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;font-family:var(--serif);font-size:1.05rem;color:var(--ink);font-weight:700;}
+.chain-arrow{text-align:center;color:var(--gold);font-size:1.3rem;padding:2px 0;}
+.chain-body{max-height:0;overflow:hidden;transition:max-height .25s ease;background:var(--parchment);border-radius:0 0 var(--radius) var(--radius);}
+.chain-step.open .chain-body{max-height:600px;}
+.chain-step.open .chain-btn{border-radius:var(--radius) var(--radius) 0 0;}
+.chain-inner{padding:14px 18px;font-size:.92rem;}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:700px){.compare-grid{grid-template-columns:1fr;}}
+.compare-col{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;}
+.compare-col h3{text-align:center;background:var(--ink);color:#fff;margin:-18px -18px 14px -18px;padding:12px;border-radius:var(--radius) var(--radius) 0 0;}
+.compare-col ul{padding-left:20px;font-size:.9rem;}
+.compare-col li{margin-bottom:10px;}
+.compare-why{font-size:.85rem;color:var(--text-soft);font-style:italic;margin-top:4px;}
+@media(max-width:900px){
+  .sidebar{display:none;}
+  .topbar{display:flex;}
+  main{padding:24px 18px 60px 18px;}
+  .section-header h1{font-size:1.5rem;}
+  .jh-opts{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div class="app">
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <div class="brand">
+      <div class="tv-name">The Teacher Vault</div>
+      <div class="tv-sub">QuickNotes</div>
+      <div class="play-title">An Inspector Calls</div>
+      <div class="play-sub">Everything you actually need for GCSE English Literature.</div>
+    </div>
+    <nav class="mainnav" id="navList" aria-label="Sections"></nav>
+    <div class="sidebar-footer">Free GCSE revision resource.<br>Works fully offline.</div>
+  </aside>
+
+  <div class="topbar">
+    <div class="tv-inline"><span>The Teacher Vault · QuickNotes</span>An Inspector Calls</div>
+    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobileDrawer">☰ Menu</button>
+  </div>
+  <div class="mobile-nav-drawer" id="mobileDrawer">
+    <div class="mobile-nav-panel">
+      <div class="brand">
+        <div class="tv-name">The Teacher Vault</div>
+        <div class="tv-sub">QuickNotes</div>
+        <div class="play-title">An Inspector Calls</div>
+      </div>
+      <nav class="mainnav" id="navListMobile" aria-label="Sections (mobile)"></nav>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <div id="sectionsRoot"></div>
+    <footer class="app-footer">The Teacher Vault · An Inspector Calls QuickNotes — a free GCSE English Literature revision resource. All explanatory content is original. J. B. Priestley's play is not in the public domain; quotations used here are kept brief and used only for educational analysis.</footer>
+  </main>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+const Store = {
+  available: (function(){ try{ const k='__tv_test__'; localStorage.setItem(k,'1'); localStorage.removeItem(k); return true; }catch(e){ return false; } })(),
+  get(key, fallback){ if(!Store.available) return fallback; try{ const v = localStorage.getItem('tv_aic_'+key); return v===null?fallback:JSON.parse(v); }catch(e){ return fallback; } },
+  set(key, val){ if(!Store.available) return; try{ localStorage.setItem('tv_aic_'+key, JSON.stringify(val)); }catch(e){} }
+};
+
+const SECTIONS = [
+  {id:'overview', label:'Overview'},
+  {id:'plot', label:'Plot'},
+  {id:'characters', label:'Characters'},
+  {id:'themes', label:'Themes'},
+  {id:'quotes', label:'Quote Vault'},
+  {id:'context', label:'Context'},
+  {id:'techniques', label:'Techniques'},
+  {id:'exam', label:'Exam'},
+  {id:'quiz', label:'Quiz'},
+  {id:'whosaidit', label:'Who Said It?'},
+  {id:'changemeter', label:'Who Changes?'},
+  {id:'responsibilitychain', label:'Responsibility Chain'},
+  {id:'compare', label:'1912 vs 1945'},
+  {id:'lastminute', label:'Last Minute'}
+];
+
+/* ================= CHARACTERS ================= */
+const CHARACTERS = [
+{id:'inspector', name:'Inspector Goole', role:"Mysterious police inspector investigating Eva Smith's death",
+ who:"An authoritative, controlled figure who arrives uninvited to interrogate the Birling family and Gerald about their connection to Eva Smith's suicide, gradually exposing each character's role in her death.",
+ journey:"Enters calmly but firmly, controlling the pace and order of the investigation throughout. He questions each character in turn, revealing photographs only he can see and refusing to be intimidated by Mr Birling's social status. He departs after delivering a powerful final speech about collective responsibility, and his identity is left ambiguous — a phone call afterwards reveals no Inspector Goole is registered with the local police.",
+ relationships:"Interrogates every member of the Birling family and Gerald in turn; never interacts with Eva Smith directly on stage, since she is already dead when the play begins.",
+ themes:['Responsibility','Morality','Power','Class'],
+ quotes:["Public men, Mr Birling, have responsibilities as well as privileges","We are members of one body. We are responsible for each other","fire and blood and anguish"],
+ message:"Priestley may use the Inspector as a mouthpiece for his own socialist beliefs about collective responsibility, though the character's ambiguous identity (moral force, socialist spokesman, supernatural figure, or dramatic device) means no single interpretation should be presented as the only correct one.",
+ examArgs:[
+  "The Inspector's calm, controlled manner and his ability to reveal exactly the right piece of evidence at exactly the right moment could support a supernatural or symbolic reading, since no ordinary detective would have such complete, pre-existing knowledge of every character's guilt.",
+  "The Inspector's insistence that 'we are responsible for each other' directly opposes Mr Birling's individualist philosophy from the play's opening, positioning the two men as representatives of socialism and capitalism respectively.",
+  "Because the Inspector controls who speaks, when, and for how long throughout the interrogation, a strong argument can be made that Priestley uses him as a structural device as much as a character, shaping the entire play's pacing and revelations."
+ ]},
+{id:'mrbirling', name:'Arthur Birling', role:'Wealthy factory owner; head of the Birling family',
+ who:"A self-made, socially ambitious businessman whose confident, complacent worldview is repeatedly undermined by dramatic irony as the play unfolds.",
+ journey:"Opens the play delivering confident speeches about prosperity, peace and progress, all of which a 1945 audience would know to be badly mistaken. He initially dismisses the Inspector's authority, admits to firing Eva Smith from his factory, and by the play's end shows no genuine change, dismissing the whole affair as a hoax once he suspects the Inspector was not real.",
+ relationships:"Father to Sheila and Eric; husband to Sybil; eager to secure a business alliance with Gerald's family through Sheila's engagement.",
+ themes:['Capitalism','Class','Responsibility','Appearance vs Reality'],
+ quotes:["a man has to mind his own business and look after himself","community and all that nonsense","unsinkable, absolutely unsinkable"],
+ message:"Priestley may use Mr Birling's repeated factual errors to systematically undermine his moral authority, suggesting an audience should be equally sceptical of his confident claims about social responsibility.",
+ examArgs:[
+  "Priestley's use of dramatic irony, particularly Mr Birling's confident but historically incorrect predictions, invites the audience to distrust his character from the outset, undermining his authority before the Inspector even arrives.",
+  "Mr Birling's refusal to change by the play's end, in contrast to Sheila and Eric, positions him as a representative of an older generation Priestley suggests society must move beyond.",
+  "His priority on reputation over genuine remorse reveals Priestley's critique of a capitalist class more concerned with consequences than morality itself."
+ ]},
+{id:'mrsbirling', name:'Sybil Birling', role:"Arthur Birling's wife; his social superior",
+ who:"A cold, status-conscious woman who prides herself on charitable work while showing little genuine compassion, and who refuses to accept any responsibility for her role in Eva Smith's death.",
+ journey:"Initially dismissive and superior in her questioning of the Inspector, she admits to using her influence on a charitable committee to deny Eva help shortly before her death, unaware that the father of Eva's unborn child is her own son Eric. She remains largely unrepentant by the play's end, showing the least capacity for change among the family.",
+ relationships:"Wife to Arthur; mother to Sheila and Eric; holds firm class prejudices that shape her treatment of Eva.",
+ themes:['Class','Gender','Responsibility','Hypocrisy'],
+ quotes:["girls of that class","I accept no blame for it at all"],
+ message:"Priestley may use Mrs Birling to critique a class of women whose charitable work masks, rather than addresses, genuine class prejudice and moral hypocrisy.",
+ examArgs:[
+  "The dramatic irony of Mrs Birling condemning the young man responsible for Eva's pregnancy, unaware it is her own son, exposes both her hypocrisy and her willingness to judge without full information.",
+  "Mrs Birling's refusal to accept any responsibility, even after Eric's confession, positions her as the character least capable of the moral growth Priestley advocates for.",
+  "Her class prejudice, referring dismissively to 'girls of that class', reveals how deeply social hierarchy shapes her capacity for empathy."
+ ]},
+{id:'sheila', name:'Sheila Birling', role:"Arthur and Sybil's daughter; engaged to Gerald",
+ who:"A young woman who begins the play excited about her engagement but undergoes the most significant moral development of any character, becoming genuinely remorseful and socially aware.",
+ journey:"Begins as somewhat spoiled and privileged, admitting she had Eva dismissed from Milwards out of jealousy. As the interrogation continues, she shows immediate and growing horror at her own actions and those of her family, eventually urging her parents not to dismiss the Inspector's message even after his identity is questioned.",
+ relationships:"Daughter to Arthur and Sybil; sister to Eric; engaged to Gerald, though she returns his ring after learning of his affair.",
+ themes:['Guilt','Responsibility','Change','Generation'],
+ quotes:["these girls aren't cheap labour – they're people","you mustn't try to build up a kind of wall"],
+ message:"Priestley may use Sheila to demonstrate that genuine, lasting social change is possible, particularly among a younger generation more willing to examine their own behaviour honestly.",
+ examArgs:[
+  "Sheila's rapid shift from jealous complainant to genuinely remorseful moral voice demonstrates Priestley's belief that individuals, and by extension society, can change for the better.",
+  "Her warning to her parents not to 'build up a kind of wall' between themselves and Eva can be read as Priestley's direct appeal to the audience not to dismiss the play's message.",
+  "Sheila's willingness to return Gerald's ring after his confession, despite still caring for him, suggests Priestley links genuine moral integrity to personal sacrifice."
+ ]},
+{id:'eric', name:'Eric Birling', role:"Arthur and Sybil's son",
+ who:"A young man whose immaturity and drinking problem lead him into an exploitative relationship with Eva Smith, and who shows genuine guilt once his role in her death is revealed.",
+ journey:"Present but relatively quiet for much of the early interrogation, Eric's own involvement (getting Eva pregnant and stealing money from his father's business to support her) emerges later in the play. His guilt and anger at his parents' refusal to accept responsibility make him, alongside Sheila, one of the characters most transformed by events.",
+ relationships:"Son to Arthur and Sybil; brother to Sheila; his relationship with Eva Smith is revealed as one of the play's central exploitative connections.",
+ themes:['Guilt','Exploitation','Generation','Responsibility'],
+ quotes:["you're beginning to pretend now that nothing's really happened at all"],
+ message:"Priestley may use Eric to show that genuine moral change is possible even for a deeply flawed character, while also suggesting his troubled behaviour reflects failures in his upbringing as much as personal weakness.",
+ examArgs:[
+  "Eric's anger at his parents' refusal to accept responsibility, despite his own serious wrongdoing, suggests Priestley presents him as more morally honest than Mr and Mrs Birling by the play's end.",
+  "Eric's theft from his father's business to support Eva can be read as a symbolic disruption of capitalist family loyalty in favour of a more socially responsible, if poorly executed, act.",
+  "Unlike Sheila's more composed moral awakening, Eric's guilt is expressed through anger and emotional immaturity, suggesting Priestley presents change as a messier, harder process for him."
+ ]},
+{id:'gerald', name:'Gerald Croft', role:"Sheila's fiancé; son of a rival business family",
+ who:"A charming, socially privileged young man whose affair with Eva Smith (under the name Daisy Renton) is revealed during the interrogation, and who shows some genuine remorse without fully embracing the Inspector's wider message.",
+ journey:"Initially aligned with Mr Birling's business-focused worldview, Gerald's composure breaks when Eva Smith's identity is revealed, admitting to a genuine, if ultimately temporary, relationship with her. By the play's end, he is relieved to learn the Inspector may not have been real and seems eager to return to how things were before, including proposing again to Sheila.",
+ relationships:"Engaged to Sheila; his family's business is a rival to Mr Birling's; had an affair with Eva Smith/Daisy Renton.",
+ themes:['Class','Exploitation','Reputation','Appearance vs Reality'],
+ quotes:["I didn't feel about her the way she felt about me"],
+ message:"Priestley may use Gerald to show that partial remorse is not the same as genuine change — Gerald feels real regret about Eva specifically, but ultimately seems to want to restore the social and personal status quo rather than examine his own privilege.",
+ examArgs:[
+  "Gerald's relief upon discovering the Inspector may not have been real, contrasted with Sheila's continued unease, marks a key structural moment separating characters capable of change from those who are not.",
+  "Although Gerald shows genuine emotion learning of Eva's death, his relationship with her also involved real power imbalance, complicating any reading of him as simply a sympathetic, romantic figure.",
+  "Gerald's desire to resume his engagement to Sheila at the play's end can be read as symbolic of a wider desire among the older, privileged characters to restore a social order the Inspector has disrupted."
+ ]},
+{id:'eva', name:'Eva Smith / Daisy Renton', role:"Young working-class woman; central to the play though she never appears on stage",
+ who:"A working-class woman whose death by suicide is being investigated throughout the play. She never appears on stage, and each character knew her under different circumstances, sometimes even different names.",
+ journey:"The audience learns about Eva only through the accounts of each character: dismissed from Mr Birling's factory for organising a pay protest, then dismissed from Milwards on Sheila's complaint, then in a relationship with Gerald (as 'Daisy Renton'), then exploited by Eric, and finally refused charitable help by Mrs Birling shortly before her death.",
+ relationships:"Connected in sequence to every member of the Birling family and to Gerald, though never seen interacting with any of them on stage.",
+ themes:['Exploitation','Class','Gender','Community'],
+ quotes:["millions and millions of Eva Smiths"],
+ message:"Priestley deliberately withholds Eva from the stage, which may prevent the audience from reducing her to a single simple victim; the Inspector's suggestion that there are millions of Eva Smiths implies she should be understood as representative of exploited working-class people generally, without losing her significance as an individual.",
+ examArgs:[
+  "Because Eva never speaks or appears on stage, Priestley denies the audience direct access to her perspective, which some critics argue keeps the focus firmly on the Birlings' moral responsibility rather than on Eva's individual story.",
+  "Eva's use of different names across different parts of the play could suggest how working-class women's identities were treated as disposable or interchangeable by the more privileged characters around her.",
+  "The Inspector's closing suggestion that there are 'millions and millions' of Eva Smiths broadens her significance from an individual case to a symbol of systemic exploitation, central to Priestley's wider social message."
+ ]},
+{id:'edna', name:'Edna', role:"The Birling family's maid",
+ who:"A minor but structurally useful character who appears briefly to announce visitors and serve at the family's dinner, quietly present throughout much of the play's action.",
+ journey:"Edna has no significant dialogue or plot involvement, but her constant, largely unacknowledged presence as a servant in the Birling household offers a subtle, ever-present contrast to the family's discussions about the working class.",
+ relationships:"Employed by the Birling family; largely invisible to them in the way Eva Smith initially was.",
+ themes:['Class','Community'],
+ quotes:[],
+ message:"Priestley may use Edna's silent, background presence to remind the audience that working-class people exist throughout the Birlings' comfortable world, largely unnoticed, reinforcing the play's wider critique of class blindness.",
+ examArgs:[
+  "Edna's near-total silence throughout the play could be read as a subtle structural echo of Eva Smith's absence — another working-class woman present in, but marginal to, the Birlings' world."
+ ]}
+];
+
+/* ================= THEMES ================= */
+const THEMES = [
+{name:'Responsibility', explanation:"The play's central theme, exploring the difference between individual responsibility (looking after only oneself) and collective responsibility (recognising a shared duty to others in society).",
+ where:"Mr Birling's opening insistence on self-reliance; the Inspector's closing declaration that everyone is responsible for one another.",
+ characters:['Inspector Goole','Arthur Birling','Sheila','Eric'],
+ quotes:["a man has to mind his own business and look after himself","we are members of one body"],
+ message:"Priestley structures the entire play as an argument for collective over individual responsibility, using each character's differing reaction to the Inspector's investigation to dramatise this central conflict.",
+ context:"Written shortly after the Second World War, when collectivist ideas were far more prominent than in the play's individualist 1912 setting.",
+ thesis:["Priestley presents individual responsibility (Mr and Mrs Birling's position) as morally inadequate, using the Inspector and the younger generation to argue for a more collective model of social duty.","The clear contrast between characters who accept responsibility (Sheila, Eric) and those who do not (Mr and Mrs Birling, and partially Gerald) structures the play's entire moral argument."]},
+{name:'Social Class', explanation:"The play examines how rigid class divisions in 1912 Britain enabled and excused the mistreatment of working-class people like Eva Smith.",
+ where:"Mrs Birling's dismissive references to Eva's class; the Birling family's comfortable dining room set against Eva's poverty.",
+ characters:['Sybil Birling','Eva Smith','Arthur Birling'],
+ quotes:["girls of that class"],
+ message:"Priestley may suggest that class prejudice allowed the privileged Birlings to treat working-class individuals as replaceable or beneath genuine concern, contributing directly to Eva's death.",
+ context:"1912 Britain had rigid, largely unquestioned class hierarchies with limited social mobility and minimal legal protection for workers.",
+ thesis:["Priestley presents class prejudice as a moral blindness that allows privileged characters to avoid recognising their own responsibility for harm caused to those below them socially."]},
+{name:'Capitalism', explanation:"An economic and social system prioritising private profit and individual self-interest, represented in the play primarily through Mr Birling.",
+ where:"Mr Birling's business-focused speeches in Act One, including his justification for firing Eva Smith to protect his factory's profits.",
+ characters:['Arthur Birling'],
+ quotes:["a man has to mind his own business and look after himself"],
+ message:"Priestley uses Mr Birling to critique capitalism's tendency to prioritise profit over the wellbeing of workers, particularly through his dismissive attitude toward Eva's pay protest.",
+ context:"Priestley held socialist political views and was involved in founding the Common Wealth Party, though the play critiques capitalist attitudes without functioning as a simple political pamphlet.",
+ thesis:["Priestley presents unchecked capitalist self-interest, embodied by Mr Birling, as directly complicit in the exploitation and suffering of working-class individuals like Eva Smith."]},
+{name:'Socialism', explanation:"A political philosophy emphasising collective responsibility and social duty, represented in the play primarily through the Inspector.",
+ where:"The Inspector's closing speech about shared responsibility and the consequences of ignoring it.",
+ characters:['Inspector Goole','Sheila','Eric'],
+ quotes:["we are responsible for each other"],
+ message:"Priestley may use the Inspector's rhetoric to promote a socialist vision of society built on mutual responsibility, positioning it as morally superior to the individualism voiced by Mr Birling.",
+ context:"The play's original 1945 audience had just voted in a Labour government promising a welfare state, making its socialist message especially timely.",
+ thesis:["Priestley uses the Inspector as a vehicle for socialist ideas about collective responsibility, deliberately contrasting this philosophy with the capitalist individualism voiced earlier in the play."]},
+{name:'Gender', explanation:"The play highlights unequal power between men and women in 1912 society, particularly through the vulnerability of working-class women like Eva.",
+ where:"Eva's limited options as a dismissed factory worker; Mrs Birling's assumptions about how 'respectable' women should behave; Sheila's growing independence as the play progresses.",
+ characters:['Eva Smith','Sheila','Sybil Birling'],
+ quotes:[],
+ message:"Priestley may highlight how limited economic and social power left working-class women like Eva especially vulnerable to exploitation by men with far greater social and financial power.",
+ context:"Women in 1912 Britain had far fewer legal, economic and political rights than men, including no right to vote in general elections.",
+ thesis:["Priestley presents gender inequality as compounding class inequality, leaving working-class women like Eva doubly vulnerable to exploitation."]},
+{name:'Age and Generation', explanation:"The play draws a clear contrast between the rigid, unrepentant older generation (Mr and Mrs Birling) and the more open, morally responsive younger generation (Sheila and Eric).",
+ where:"Mr Birling's mocking dismissal of the younger generation's guilt; Sheila and Eric's continued unease even after the Inspector's identity is questioned.",
+ characters:['Sheila','Eric','Arthur Birling','Sybil Birling'],
+ quotes:["the famous younger generation who know it all"],
+ message:"Priestley may suggest that genuine social change depends on a younger generation willing to critically examine inherited assumptions, rather than an older generation set in its ways.",
+ context:"Writing after two world wars had significantly reshaped British society, Priestley may have seen younger generations as more receptive to social change than their parents' generation.",
+ thesis:["Priestley presents generational divide as central to the play's hope for social change, positioning Sheila and Eric's openness against their parents' rigid refusal to reconsider their worldview."]},
+{name:'Power', explanation:"The play examines different forms of power — economic, social and moral — and how they are used or abused by different characters.",
+ where:"Mr Birling's economic power over Eva as her employer; the Inspector's moral and investigative power over the entire family.",
+ characters:['Arthur Birling','Inspector Goole','Gerald'],
+ quotes:["Public men, Mr Birling, have responsibilities as well as privileges"],
+ message:"Priestley may suggest that economic and social power carries moral responsibility that the privileged characters largely fail to recognise until confronted directly.",
+ context:"Employers in 1912 held near-total power over their workers' livelihoods, with minimal legal protections against unfair dismissal.",
+ thesis:["Priestley presents power without accompanying responsibility as a central moral failing of the privileged characters, one the Inspector directly challenges."]},
+{name:'Inequality', explanation:"The stark gap in wealth, opportunity and treatment between the privileged Birling family and working-class characters like Eva Smith.",
+ where:"The contrast between the Birlings' comfortable dinner party and Eva's desperate circumstances leading to her suicide.",
+ characters:['Eva Smith','Arthur Birling'],
+ quotes:[],
+ message:"Priestley may use the stark inequality between the Birlings and Eva to argue that social systems, not just individual choices, enable and sustain exploitation.",
+ context:"1912 Britain had minimal welfare provision, meaning dismissed workers like Eva had very few safety nets available to them.",
+ thesis:["Priestley presents inequality not simply as an unfortunate fact but as a structural condition that enables exploitation and requires active social responsibility to address."]},
+{name:'Morality', explanation:"The play repeatedly questions what genuine moral responsibility looks like, contrasting characters who accept guilt with those who evade it.",
+ where:"Sheila and Eric's growing horror at their own actions, contrasted with Mr and Mrs Birling's persistent denial.",
+ characters:['Sheila','Eric','Arthur Birling','Sybil Birling'],
+ quotes:["I accept no blame for it at all"],
+ message:"Priestley may suggest that genuine morality requires accepting responsibility even without legal compulsion or certain punishment, which several characters conspicuously fail to do.",
+ context:"The play functions partly as a morality play, a dramatic tradition designed to teach moral lessons through characters' choices and consequences.",
+ thesis:["Priestley uses each character's differing moral response to the Inspector's investigation to define genuine moral responsibility as active acceptance of guilt, not merely avoidance of legal consequence."]},
+{name:'Guilt', explanation:"Different characters experience and respond to guilt in markedly different ways, from Sheila's immediate remorse to Mrs Birling's persistent denial.",
+ where:"Sheila's horrified reaction upon learning of her role in Eva's dismissal from Milwards; Eric's angry outburst at his parents' refusal to feel genuine guilt.",
+ characters:['Sheila','Eric','Sybil Birling'],
+ quotes:["you're beginning to pretend now that nothing's really happened at all"],
+ message:"Priestley may present genuine guilt, rather than mere concern about consequences, as the necessary first step toward real social change.",
+ context:"A largely Christian audience in 1945 would likely have understood guilt and confession within a familiar moral and religious framework.",
+ thesis:["Priestley distinguishes between guilt over consequences (Mr and Mrs Birling's fear of scandal) and genuine moral guilt (Sheila and Eric's remorse), presenting only the latter as the basis for real change."]},
+{name:'Change', explanation:"The play questions whether people, and by extension society, are capable of genuine change, contrasting characters who learn from events with those who do not.",
+ where:"Sheila's transformation across the play; Mr Birling's dismissal of the entire experience once he suspects the Inspector was not real.",
+ characters:['Sheila','Eric','Arthur Birling'],
+ quotes:["you and I aren't the same people who sat down to dinner here"],
+ message:"Priestley may suggest that genuine change is possible but not guaranteed, and that some individuals, and by extension parts of society, resist the lessons events attempt to teach them.",
+ context:"Writing after significant social upheaval caused by two world wars, Priestley may have hoped his post-war audience would embrace genuine social change rather than reverting to pre-war attitudes.",
+ thesis:["Priestley uses the contrast between Sheila's genuine transformation and Mr Birling's regression to argue that social change requires active, sustained moral effort rather than temporary shock."]},
+{name:'Exploitation', explanation:"Each character exploits Eva Smith in a different way, from unfair dismissal to romantic and financial exploitation.",
+ where:"Mr Birling's dismissal of Eva for organising a pay protest; Eric's exploitative relationship with her; Mrs Birling's refusal of charitable assistance.",
+ characters:['Arthur Birling','Eric','Gerald','Sybil Birling'],
+ quotes:[],
+ message:"Priestley may use the cumulative, varied nature of the exploitation Eva experiences to suggest that harm can come from many different directions and forms of privilege, not from a single villain alone.",
+ context:"Working-class women in 1912 had very limited legal protection against exploitation by employers or more socially powerful individuals.",
+ thesis:["Priestley presents exploitation as systemic and cumulative, distributed across multiple characters and forms of privilege, rather than the fault of a single villain."]},
+{name:'Community', explanation:"The Inspector's central message promotes the idea of a shared, interconnected community responsible for one another's wellbeing.",
+ where:"The Inspector's metaphor describing society as one body; Mr Birling's dismissive rejection of community.",
+ characters:['Inspector Goole','Arthur Birling'],
+ quotes:["we are members of one body","community and all that nonsense"],
+ message:"Priestley may present genuine community, rather than isolated self-interest, as essential to a fair and functioning society.",
+ context:"Post-war Britain's growing welfare state reflected a renewed emphasis on collective, community-based social provision.",
+ thesis:["Priestley structures the play's central conflict around competing visions of community — Mr Birling's dismissive individualism against the Inspector's insistence on collective responsibility."]},
+{name:'Family', explanation:"The play examines how family loyalty can both support and obstruct genuine moral accountability.",
+ where:"Mr Birling's attempt to protect the family's reputation rather than confront its wrongdoing; Sheila and Eric's willingness to challenge their own parents.",
+ characters:['Arthur Birling','Sheila','Eric'],
+ quotes:[],
+ message:"Priestley may suggest that genuine moral responsibility sometimes requires challenging, rather than simply protecting, one's own family.",
+ context:"Victorian and Edwardian family structures typically emphasised loyalty and reputation over individual moral accountability.",
+ thesis:["Priestley uses the fracturing of family unity across the play to suggest that genuine moral progress may require breaking from, rather than protecting, inherited family attitudes."]},
+{name:'Reputation', explanation:"Several characters, particularly Mr and Mrs Birling, appear more concerned with protecting their public reputation than with genuine moral responsibility.",
+ where:"Mr Birling's anxiety about a public scandal once the Inspector's investigation begins.",
+ characters:['Arthur Birling','Sybil Birling'],
+ quotes:[],
+ message:"Priestley may critique a society in which protecting reputation is prioritised over confronting genuine wrongdoing, contrasting this with the younger generation's more honest response.",
+ context:"Public reputation carried significant social and business consequences for a family like the Birlings in 1912 provincial society.",
+ thesis:["Priestley presents concern for reputation as a barrier to genuine moral accountability, most clearly embodied by Mr and Mrs Birling's reactions throughout the play."]},
+{name:'Appearance vs Reality', explanation:"The play repeatedly questions what is genuinely true beneath a respectable surface, from the Birlings' outward respectability to the Inspector's own uncertain identity.",
+ where:"The contrast between the Birlings' comfortable, celebratory opening scene and the troubling truths the Inspector uncovers; the ambiguity around whether the Inspector was real.",
+ characters:['Inspector Goole','Arthur Birling'],
+ quotes:[],
+ message:"Priestley may use the gap between the Birlings' respectable appearance and the troubling reality beneath it to suggest that outward respectability can conceal, rather than reflect, genuine moral character.",
+ context:"Class-based Edwardian society placed significant value on maintaining outward appearances of respectability regardless of private conduct.",
+ thesis:["Priestley structures the entire play around exposing the gap between the Birlings' respectable appearance and the troubling reality of their actions, using the Inspector as the mechanism of that exposure."]}
+];
+
+/* ================= TECHNIQUES ================= */
+const TECHNIQUES = [
+{name:'Dramatic irony', def:"When the audience knows something a character does not, creating tension or, in this play, undermining a character's credibility.", example:"Mr Birling's confident claim that the Titanic is unsinkable, which the 1945 audience knows to be tragically false.", effect:"Systematically undermines Mr Birling's authority and judgement from the very start of the play, making the audience distrust his other confident claims, including his dismissal of social responsibility.", howto:"Identify what the audience knows that the character does not, and explain how that gap changes how the audience judges the character's credibility or authority."},
+{name:'Stage directions', def:"Written instructions describing setting, movement, tone or appearance, not spoken aloud but essential to performance.", example:"The instruction that lighting should be pink and intimate before the Inspector arrives, then brighter and harder once he does.", effect:"Signals a shift in mood and truth-telling, moving from comfortable illusion to harsh scrutiny.", howto:"Always analyse stage directions as authorial commentary, since Priestley uses them to guide directors and readers toward specific interpretations, especially of the Inspector's tone."},
+{name:'Lighting', def:"The use of stage lighting to create mood or symbolic meaning.", example:"The shift from soft, intimate lighting to brighter, harder lighting upon the Inspector's arrival.", effect:"Symbolically represents the shift from comfortable self-delusion to harsh moral scrutiny.", howto:"Connect specific lighting changes directly to the emotional or thematic shift occurring in that moment of the play."},
+{name:'Entrances and exits', def:"The staged movement of characters on and off stage, often used for dramatic timing.", example:"The Inspector's arrival interrupting Mr Birling's speech about self-interest, cut off mid-sentence by the doorbell.", effect:"Creates a sense of inevitability and disruption, as if the Inspector's arrival is a direct, almost fated response to Mr Birling's selfish philosophy.", howto:"Note the timing of an entrance or exit relative to what is being said or done, and explain what that timing suggests."},
+{name:'Interruption', def:"A character's speech being cut off, often by another character or a stage event.", example:"Mr Birling's philosophy speech is interrupted mid-sentence by the doorbell announcing the Inspector's arrival.", effect:"Structurally signals that Mr Birling's selfish worldview is about to be directly challenged and undermined.", howto:"Identify what idea is interrupted and by what, and explain the significance of that specific juxtaposition."},
+{name:'Repetition', def:"Deliberate reuse of a word or phrase for emphasis.", example:"Mr Birling's repeated insistence that the Titanic is unsinkable, absolutely unsinkable.", effect:"The repetition amplifies his overconfidence, making his later error even more damaging to his credibility.", howto:"Explain what specific quality (confidence, denial, insistence) the repetition emphasises, not just that repetition occurs."},
+{name:'Symbolism', def:"An object, image or event representing a deeper idea.", example:"The engagement ring Sheila returns to Gerald symbolises her rejection of the social and moral compromises the engagement represented.", effect:"Condenses a complex moral and emotional shift into a single, powerful stage image.", howto:"Explain what the symbol represents and connect it explicitly to the character's development or the play's themes."},
+{name:'Contrast', def:"Placing two clearly different things side by side to highlight their differences.", example:"The contrast between Sheila and Eric's growing remorse and Mr and Mrs Birling's persistent denial by Act Three.", effect:"Reinforces the play's central argument about generational differences in capacity for moral change.", howto:"State both elements of the contrast explicitly, then explain what it reveals about character or theme."},
+{name:'Foreshadowing', def:"Hints or clues that anticipate later events.", example:"Mr Birling's dismissive attitude to Eva's pay protest foreshadows the deeper exploitation later revealed by the Inspector.", effect:"Builds a growing sense of moral unease even before the full extent of each character's involvement is revealed.", howto:"Identify the later event being anticipated and explain how the earlier hint shapes audience expectation."},
+{name:'Cyclical structure', def:"A narrative structure that returns to its starting point, suggesting repetition or an unresolved cycle.", example:"The play ends with a telephone call announcing that a police inspector is on his way to ask questions about a girl's suicide, closely mirroring the play's opening.", effect:"Suggests that if the Birlings have not genuinely learned from events, they may be forced to relive the same lesson.", howto:"Explain what the repeated structural element suggests about whether real change has occurred by the play's end."},
+{name:'Dramatic tension', def:"A feeling of anticipation or unease built through pacing, revelation and conflict.", example:"The gradual, escalating revelation of each character's connection to Eva Smith throughout the interrogation.", effect:"Keeps the audience engaged while building toward the Inspector's climactic final speech.", howto:"Identify what specific technique (pacing, withheld information, escalating stakes) builds tension at a given moment."},
+{name:'Interrogation structure', def:"The play's structure as a sequential investigation, questioning one character at a time.", example:"The Inspector methodically questions Mr Birling, then Sheila, then Gerald, then Mrs Birling, then Eric in turn.", effect:"Creates a detective-thriller structure that gradually reveals the full picture of collective responsibility.", howto:"Explain what new information or moral development each stage of the interrogation reveals, and why Priestley places it in that specific order."},
+{name:'Characterisation', def:"The methods a writer uses to construct and reveal a character's personality and values.", example:"Mr Birling's opening speeches characterise him through his own words as complacent and self-interested before the Inspector even arrives.", effect:"Allows the audience to judge a character's worldview independently, before the plot itself confirms or challenges it.", howto:"Analyse how a character's own words, actions or stage directions reveal their values, rather than simply summarising what they do."},
+{name:'Speeches', def:"Extended, uninterrupted passages of dialogue delivered by a single character.", example:"The Inspector's final speech about collective responsibility and the consequences of ignoring it.", effect:"Gives a character's argument sustained rhetorical weight, positioning it as a central statement of the play's moral argument.", howto:"Analyse the structure and rhetorical techniques of a speech (repetition, escalation, direct address) alongside its content."},
+{name:'Pauses', def:"Moments of silence indicated in stage directions, often signalling emotional weight or hesitation.", example:"Pauses in the dialogue as characters absorb the Inspector's revelations, indicated through stage directions.", effect:"Slows the pace at key emotional moments, allowing the audience to register the weight of a revelation.", howto:"Explain what emotional or dramatic effect a specific pause creates at that moment in the scene."},
+{name:'Timing', def:"The precise placement of events, revelations or exits within the play's structure.", example:"The timing of the final telephone call, arriving just after the family (excluding Sheila and Eric) has relaxed into believing the Inspector's visit was a hoax.", effect:"Creates a final, unsettling twist that reopens the moral question the play has just seemed to resolve.", howto:"Explain why a specific event's placement, rather than simply its content, is dramatically significant."},
+{name:'Final telephone call', def:"The play's closing plot device, in which the family receives a call announcing a real inspector is coming to investigate a girl's suicide.", example:"The call arrives moments after Mr and Mrs Birling believe they have escaped consequence, having decided the Inspector was a hoax.", effect:"Creates a cyclical structure suggesting the family's lesson may have to be relearned, and leaves the audience with unresolved tension rather than a comfortable conclusion.", howto:"Discuss this device in terms of structure and audience effect, not simply as a plot twist — consider what it suggests about learning, consequence and repetition."}
+];
+
+/* ================= QUOTE VAULT ================= */
+const QUOTES = [
+{text:"a man has to mind his own business and look after himself", speaker:"Arthur Birling", act:"1", characters:['Arthur Birling'], themes:['Capitalism','Responsibility'],
+ meaning:"Mr Birling declares his belief that individuals are responsible only for themselves and their immediate family, not wider society.",
+ technique:"Modal verb 'has to' presenting selfishness as a rule; declarative statement.",
+ solid:"The phrase 'has to' makes selfishness sound like an obligation rather than a choice, showing how deeply Mr Birling believes in looking after only himself.",
+ deep:"By phrasing self-interest as something a man 'has to' do, rather than something he chooses to do, Priestley exposes how thoroughly Birling has internalised capitalist individualism as natural law rather than personal preference. The line is immediately and ironically interrupted by the Inspector's arrival, structurally signalling that this philosophy is about to be directly challenged.",
+ context:"Reflects a genuinely-held Edwardian capitalist ideology that prioritised individual self-interest over collective welfare.",
+ useFor:"Essays on capitalism, responsibility, or Mr Birling's characterisation."},
+{text:"community and all that nonsense", speaker:"Arthur Birling", act:"1", characters:['Arthur Birling'], themes:['Capitalism','Class'],
+ meaning:"Mr Birling dismisses the idea of collective social responsibility as foolish or unnecessary.",
+ technique:"Dismissive noun phrase; colloquial tone.",
+ solid:"Calling community 'nonsense' shows Mr Birling has no respect for the idea that people should look after each other.",
+ deep:"The dismissive, almost throwaway tone reveals how little serious thought Birling has given to an idea that directly opposes his own economic interests, suggesting his individualism is defensive rather than genuinely reasoned. This line directly anticipates, and is later answered by, the Inspector's insistence that society functions as one body.",
+ context:"Reflects capitalist scepticism toward emerging collectivist and socialist ideas gaining ground in early twentieth-century Britain.",
+ useFor:"Essays on capitalism vs socialism, or Mr Birling's dismissiveness."},
+{text:"unsinkable, absolutely unsinkable", speaker:"Arthur Birling", act:"1", characters:['Arthur Birling'], themes:['Power'],
+ meaning:"Mr Birling confidently declares the Titanic to be unsinkable, a claim the audience knows to be tragically false.",
+ technique:"Dramatic irony; repetition; emphatic intensifier 'absolutely'.",
+ solid:"The repetition of 'unsinkable' makes Mr Birling sound very confident, but the audience knows the Titanic sank, which makes him seem foolish and untrustworthy.",
+ deep:"This is arguably the play's clearest instance of dramatic irony, and Priestley uses it deliberately early in Act One to establish a pattern: whenever Birling speaks with total confidence, the audience should expect he is wrong. This primes the audience to distrust his later confident dismissal of social responsibility, even before the Inspector arrives to challenge it directly.",
+ context:"The Titanic sank in April 1912, shortly after the play's setting, an event the 1945 audience would know well but the on-stage characters could not yet know.",
+ useFor:"Essays on dramatic irony — arguably the single clearest example in the play."},
+{text:"these girls aren't cheap labour – they're people", speaker:"Sheila Birling", act:"2", characters:['Sheila'], themes:['Class','Responsibility'],
+ meaning:"Sheila insists that working-class women like Eva should be recognised as full human beings, not simply as an economic resource.",
+ technique:"Antithesis; direct, assertive statement.",
+ solid:"The contrast between 'cheap labour' and 'people' shows Sheila now understands that working-class women deserve to be treated with the same respect as anyone else.",
+ deep:"The antithetical structure directly challenges the language of economic utility used elsewhere in the play, asserting Eva's humanity in explicit opposition to how she has been treated. This marks a clear turning point in Sheila's development, showing her actively rejecting the class-based dehumanisation her family has practised.",
+ context:"Reflects genuine early-twentieth-century debates about the treatment and rights of female factory and shop workers.",
+ useFor:"Essays on Sheila's development, class, or the theme of responsibility."},
+{text:"we are members of one body", speaker:"Inspector Goole", act:"3", characters:['Inspector Goole'], themes:['Responsibility','Socialism','Community'],
+ meaning:"The Inspector argues that society functions as a single interconnected whole, where harm to one part affects everyone.",
+ technique:"Metaphor; biblical allusion; authoritative, declarative tone.",
+ solid:"Comparing society to one body shows the Inspector believes everyone is connected, so what happens to one person, like Eva, matters to everyone else too.",
+ deep:"The biblical allusion, echoing Christian teaching on community and shared belonging, lends the Inspector's socialist message a moral, almost sermon-like authority for a religiously-literate audience, while the body metaphor implies that ignoring one person's suffering, as the Birlings have done, damages the health of the whole social organism. This directly and deliberately opposes Mr Birling's earlier dismissal of community as nonsense.",
+ context:"Post-war Britain's growing welfare state reflected a similar collectivist vision of society as mutually interdependent.",
+ useFor:"Essays on responsibility, socialism, or the Inspector's rhetorical authority — a central quotation for this theme."},
+{text:"fire and blood and anguish", speaker:"Inspector Goole", act:"3", characters:['Inspector Goole'], themes:['Responsibility','Morality'],
+ meaning:"The Inspector warns that if society fails to learn the lesson of collective responsibility, it will be taught through devastating suffering.",
+ technique:"Tricolon; apocalyptic, almost biblical imagery; asyndeton.",
+ solid:"This dramatic, frightening phrase warns that terrible consequences will follow if people don't learn to care about each other.",
+ deep:"The apocalyptic, quasi-biblical imagery elevates the Inspector's warning beyond a single family's moral failing into a prophecy about wider societal consequence, which a 1945 audience, having just lived through two world wars, would likely read as a chillingly accurate prediction already fulfilled. The tricolon's escalating intensity mirrors the structure of a sermon's warning of judgement.",
+ context:"Written and first performed in 1945, this warning would resonate powerfully with an audience who had just experienced the devastation of the Second World War.",
+ useFor:"Essays on the Inspector's rhetorical power, the play's historical context, or its warning about the consequences of ignoring social responsibility."},
+{text:"Public men, Mr Birling, have responsibilities as well as privileges", speaker:"Inspector Goole", act:"2", characters:['Inspector Goole','Arthur Birling'], themes:['Power','Responsibility','Class'],
+ meaning:"The Inspector reminds Mr Birling that his social status and public standing carry moral obligations, not just benefits.",
+ technique:"Antithesis; direct address; formal, authoritative tone.",
+ solid:"This shows the Inspector believes that people with power and status, like Mr Birling, should also have extra responsibility to behave well, not just extra benefits.",
+ deep:"The antithetical balance of 'responsibilities' and 'privileges' directly challenges Birling's earlier individualist worldview, reframing his social position not as an entitlement but as a moral obligation he has consistently failed to meet. The Inspector's direct, formal address maintains a tone of calm authority that Birling, despite his social status, cannot successfully challenge or intimidate.",
+ context:"Reflects a wider Edwardian debate about the social obligations owed by employers and public figures to those less privileged than themselves.",
+ useFor:"Essays on power, responsibility, or the Inspector's moral authority over Mr Birling."},
+{text:"you mustn't try to build up a kind of wall", speaker:"Sheila Birling", act:"2", characters:['Sheila'], themes:['Class','Responsibility'],
+ meaning:"Sheila warns her mother against denying any connection to Eva Smith, insisting the family cannot simply distance themselves from responsibility.",
+ technique:"Extended metaphor; imperative warning.",
+ solid:"The metaphor of a wall shows Sheila believes her family shouldn't try to separate or protect themselves from the truth about Eva.",
+ deep:"The wall metaphor captures precisely the kind of social and psychological distancing Priestley critiques throughout the play — an attempt to protect oneself from moral discomfort by denying connection to those affected by one's actions. Sheila's warning that the Inspector will simply break it down shows she has already grasped what her mother has not: that such denial is both morally and practically futile.",
+ context:"Reflects the wider class-based social distancing Priestley critiques between the privileged and the working class throughout the play.",
+ useFor:"Essays on Sheila's development, class, or the theme of denial versus responsibility."},
+{text:"the famous younger generation who know it all", speaker:"Arthur Birling", act:"3", characters:['Arthur Birling','Sheila','Eric'], themes:['Generation'],
+ meaning:"Mr Birling mocks Sheila and Eric for continuing to feel guilty and take the Inspector's message seriously.",
+ technique:"Sarcasm; ironic phrasing; dismissive tone.",
+ solid:"The sarcastic phrase shows Mr Birling doesn't respect his children's new views and thinks they're being silly for still feeling guilty.",
+ deep:"The sarcastic irony is itself significant: by the play's end, it is precisely Sheila and Eric's willingness to know something their parents refuse to accept that Priestley presents as genuine moral insight, inverting Birling's mockery into an implicit compliment. This line crystallises the generational divide the play has been building since Act One.",
+ context:"Reflects a genuine post-war generational shift in attitudes toward social responsibility that Priestley may have hoped his audience would recognise in themselves.",
+ useFor:"Essays on the generational divide, or Mr Birling's continued lack of change by the play's end."},
+{text:"I accept no blame for it at all", speaker:"Sybil Birling", act:"2", characters:['Sybil Birling'], themes:['Responsibility','Guilt'],
+ meaning:"Mrs Birling flatly refuses to take any responsibility for her role in denying Eva charitable assistance.",
+ technique:"Emphatic negation; declarative, unyielding statement.",
+ solid:"This blunt statement shows Mrs Birling completely refuses to admit she did anything wrong, even though her actions contributed to Eva's death.",
+ deep:"The absolute, emphatic phrasing leaves no room for the nuance or self-reflection shown by Sheila and Eric, positioning Mrs Birling as the character most resistant to the moral growth Priestley advocates. This refusal becomes deeply ironic once it is revealed the father of Eva's child, whom Mrs Birling condemns, is her own son.",
+ context:"Reflects a wider Edwardian upper-class tendency to protect reputation and deny personal fault, especially regarding relations with the working class.",
+ useFor:"Essays on Mrs Birling's characterisation, responsibility, or dramatic irony."},
+{text:"you're beginning to pretend now that nothing's really happened at all", speaker:"Eric Birling", act:"3", characters:['Eric'], themes:['Guilt','Generation','Morality'],
+ meaning:"Eric angrily accuses his parents of trying to minimise and forget their role in Eva's death once they suspect the Inspector may not have been genuine.",
+ technique:"Direct accusation; present continuous tense suggesting an ongoing, active process of denial.",
+ solid:"This shows Eric is angry that his parents are trying to forget what happened just because the Inspector might not have been real, when the important thing is that a girl still died.",
+ deep:"Eric's use of the present continuous captures denial as an active, ongoing choice his parents are making in real time, rather than a passive state, sharpening his moral accusation. This line reinforces Priestley's argument that the factual reality of the Inspector's identity is ultimately less important than whether the family's guilt and Eva's suffering were genuine, which they undeniably were.",
+ context:"Reflects the play's wider argument that moral responsibility does not depend on legal or supernatural proof, but on the reality of harm caused.",
+ useFor:"Essays on Eric's moral development, guilt, or the significance of the play's ambiguous ending."}
+];
+
+/* ================= QUIZ BANK ================= */
+const QUIZ_BANK = [
+{type:'mc', q:"What event is being celebrated at the start of the play?", opts:["A wedding","Sheila and Gerald's engagement","Mr Birling's knighthood","Eric's graduation"], a:1, exp:"The play opens with a celebratory dinner for Sheila and Gerald's engagement."},
+{type:'mc', q:"What was Eva Smith doing when Mr Birling dismissed her from his factory?", opts:["Stealing money","Organising a protest for higher wages","Arriving late repeatedly","Damaging equipment"], a:1, exp:"Eva was dismissed for being a ringleader in asking for higher wages."},
+{type:'char', q:"Who had Eva dismissed from her job at Milwards?", opts:["Mrs Birling","Sheila","Eric","Gerald"], a:1, exp:"Sheila complained about Eva out of jealousy, having her dismissed."},
+{type:'mc', q:"Under what name does Eva Smith later appear in her relationship with Gerald?", opts:["Daisy Renton","Alice Chapman","Eva Renton","Rose Smith"], a:0, exp:"Eva used the name Daisy Renton during her relationship with Gerald."},
+{type:'char', q:"Which character got Eva pregnant and stole money to support her?", opts:["Gerald","Eric","Mr Birling","The Inspector"], a:1, exp:"Eric got Eva pregnant and stole money from his father's business to help her."},
+{type:'mc', q:"Why did Mrs Birling refuse to help Eva through her charitable committee?", opts:["Eva was not local","Eva used the name 'Mrs Birling', which offended her, and she disapproved of her situation","There was no money left","Eva never applied"], a:1, exp:"Mrs Birling was offended by Eva's use of the name 'Mrs Birling' and judged her situation harshly, using her influence to deny help."},
+{type:'quote', q:"Who says: 'a man has to mind his own business and look after himself'?", opts:["Mr Birling","The Inspector","Gerald","Eric"], a:0, exp:"Mr Birling states this in Act One, summarising his individualist worldview."},
+{type:'quote', q:"Who says: 'we are members of one body'?", opts:["Mr Birling","Sheila","Inspector Goole","Mrs Birling"], a:2, exp:"The Inspector delivers this line as part of his powerful final speech."},
+{type:'quote', q:"Complete the quote: 'these girls aren't cheap labour – they're ___'.", opts:["workers","people","victims","poor"], a:1, exp:"Sheila's full line is: 'these girls aren't cheap labour – they're people.'"},
+{type:'quote', q:"Who says: 'I accept no blame for it at all'?", opts:["Mrs Birling","Mr Birling","Gerald","Eric"], a:0, exp:"Mrs Birling says this while denying responsibility for refusing Eva assistance."},
+{type:'theme', q:"Which theme is most directly explored by the Inspector's closing speech?", opts:["Gender","Responsibility","Class only","Appearance"], a:1, exp:"The Inspector's final speech is the clearest statement of the play's central theme of collective responsibility."},
+{type:'theme', q:"What is the key difference between individual and collective responsibility in the play?", opts:["There is no real difference","Individual responsibility means caring only for yourself; collective responsibility means recognising a shared duty to others","Collective responsibility only applies to the working class","Individual responsibility is what the Inspector promotes"], a:1, exp:"Mr Birling represents individual responsibility; the Inspector represents collective responsibility."},
+{type:'mc', q:"What mistaken prediction does Mr Birling make about the Titanic?", opts:["It will be delayed","That it is unsinkable, absolutely unsinkable","It will not sail","It is too small to be significant"], a:1, exp:"Mr Birling confidently, and wrongly, declares the Titanic unsinkable."},
+{type:'tech', q:"What is the term for this kind of mistaken prediction, given what the audience already knows?", opts:["Foreshadowing","Dramatic irony","Symbolism","Pathetic fallacy"], a:1, exp:"This is dramatic irony: the audience knows the Titanic sank, undermining Mr Birling's credibility."},
+{type:'tf', q:"True or False: The play is set in the same year it was first performed.", opts:["True","False"], a:1, exp:"False — the play is set in 1912 but was written and first performed in 1945, creating significant dramatic irony."},
+{type:'context', q:"What major world events occurred between the play's 1912 setting and its 1945 first performance?", opts:["The Industrial Revolution","Two World Wars","The English Civil War","The Great Fire of London"], a:1, exp:"Two World Wars occurred between 1912 and 1945, profoundly changing British attitudes to class and collective responsibility."},
+{type:'context', q:"What political change had recently occurred in Britain around the time of the play's first performance?", opts:["The monarchy was abolished","A Labour government was elected, promising a welfare state","Britain became a republic","Women lost the right to vote"], a:1, exp:"A Labour government was elected in 1945, reflecting growing support for collectivist, welfare-focused politics."},
+{type:'mc', q:"What happens at the very end of the play?", opts:["The family celebrates","A phone call reveals a real police inspector is coming to investigate a girl's suicide","Gerald marries Sheila immediately","The Inspector returns"], a:1, exp:"The play ends with a telephone call revealing a real inspector is on his way, creating a cyclical, unresolved structure."},
+{type:'tech', q:"What is this final cyclical structural device sometimes said to suggest?", opts:["The play is finished with no further meaning","That lessons not genuinely learned may have to be relived","That the Birlings are innocent","That Eva Smith will return"], a:1, exp:"The cyclical ending suggests the family's failure to genuinely learn the Inspector's lesson may mean they must face it again."},
+{type:'char', q:"Which two characters show the most genuine, lasting moral change by the play's end?", opts:["Mr and Mrs Birling","Sheila and Eric","Gerald and Mr Birling","Mrs Birling and Gerald"], a:1, exp:"Sheila and Eric show the most genuine remorse and openness to change, contrasting with their parents and, to an extent, Gerald."},
+{type:'mc', q:"What does Sheila do with her engagement ring after learning of Gerald's affair?", opts:["Keeps it","Returns it to Gerald","Sells it","Gives it to her mother"], a:1, exp:"Sheila returns the ring to Gerald, reflecting her unwillingness to overlook his behaviour despite still caring for him."},
+{type:'mc', q:"What does Gerald discover by telephone that makes him question whether the Inspector was genuine?", opts:["That Eva Smith never existed","That no Inspector Goole is registered with the local police","That his father knew the Inspector","That the Inspector had resigned"], a:1, exp:"Gerald learns that no police inspector named Goole is registered locally, casting doubt on his identity."},
+{type:'theme', q:"Which theme is most clearly explored through Mrs Birling's phrase about 'girls of that class'?", opts:["Gender only","Social Class","Capitalism","Power"], a:1, exp:"This phrase reveals Mrs Birling's class prejudice toward working-class women like Eva."},
+{type:'mc', q:"What was J. B. Priestley's profession, in addition to playwriting?", opts:["He was only a playwright","He was also a novelist and broadcaster","He was a politician only","He was a scientist"], a:1, exp:"Priestley was also a novelist and a well-known wartime radio broadcaster, in addition to being a playwright."},
+{type:'tf', q:"True or False: Inspector Goole's exact identity and nature are explicitly confirmed by the end of the play.", opts:["True","False"], a:1, exp:"False — the Inspector's identity is deliberately left ambiguous, open to several different interpretations."},
+{type:'context', q:"What historical belief about class in 1912 does the play critique through the Birlings?", opts:["That class did not exist","That class divisions were natural and justified privilege over responsibility","That the working class held more power than the upper class","That class had no effect on opportunity"], a:1, exp:"The play critiques the 1912 assumption that class privilege did not carry equivalent social responsibility."},
+{type:'tech', q:"What technique describes the lighting change from soft and intimate to brighter and harder?", opts:["Foreshadowing only","Symbolism through stage directions","Dramatic irony","Repetition"], a:1, exp:"This lighting change is a symbolic use of stage directions, marking the shift from comfortable illusion to harsh scrutiny."},
+{type:'mc', q:"Which committee did Mrs Birling use her influence on to deny Eva help?", opts:["A hospital board","A women's charitable organisation","A trade union","A political party"], a:1, exp:"Mrs Birling used her influence on a women's charitable committee to deny Eva assistance shortly before her death."},
+{type:'theme', q:"According to the Inspector's argument, what happens if society does not learn the lesson of responsibility?", opts:["Nothing significant","It will be taught in fire and blood and anguish","The economy will improve","Class divisions will disappear naturally"], a:1, exp:"The Inspector warns that failing to learn collective responsibility will lead to being taught the lesson through devastating suffering."},
+{type:'mc', q:"What is the genre most commonly used to describe An Inspector Calls?", opts:["Romantic comedy","Morality play / social drama","Historical epic","Farce"], a:1, exp:"The play is best described as a morality play and social drama, with detective-thriller structural elements."}
+];
+
+/* ================= WHO SAID IT GAME ================= */
+const WHOSAIDIT = [
+{text:"We are members of one body.", answer:'Inspector Goole', opts:['Mr Birling','Inspector Goole','Eric','Gerald'], exp:"The Inspector's metaphor for collective social responsibility, delivered in his climactic final speech."},
+{text:"a man has to mind his own business and look after himself", answer:'Mr Birling', opts:['Mr Birling','Inspector Goole','Sheila','Mrs Birling'], exp:"Mr Birling's Act One statement summarising his individualist, capitalist worldview."},
+{text:"these girls aren't cheap labour – they're people", answer:'Sheila', opts:['Mrs Birling','Sheila','Eva Smith','Gerald'], exp:"Sheila's assertion challenging her family's treatment of working-class women as mere economic resources."},
+{text:"girls of that class", answer:'Mrs Birling', opts:['Mrs Birling','Mr Birling','Sheila','Eric'], exp:"Mrs Birling's dismissive, class-prejudiced description of Eva Smith."},
+{text:"unsinkable, absolutely unsinkable", answer:'Mr Birling', opts:['Mr Birling','Gerald','Eric','Inspector Goole'], exp:"Mr Birling's confidently wrong prediction about the Titanic — a key moment of dramatic irony."},
+{text:"fire and blood and anguish", answer:'Inspector Goole', opts:['Inspector Goole','Mr Birling','Eric','Sheila'], exp:"Part of the Inspector's apocalyptic warning in his final speech about the consequences of ignoring social responsibility."},
+{text:"Public men, Mr Birling, have responsibilities as well as privileges.", answer:'Inspector Goole', opts:['Inspector Goole','Gerald','Eric','Mrs Birling'], exp:"The Inspector reminds Mr Birling that his social status carries moral obligations, not just benefits."},
+{text:"you mustn't try to build up a kind of wall", answer:'Sheila', opts:['Sheila','Mrs Birling','Eric','Gerald'], exp:"Sheila warns her mother against denying the family's connection to Eva Smith."},
+{text:"the famous younger generation who know it all", answer:'Mr Birling', opts:['Mr Birling','Mrs Birling','Inspector Goole','Gerald'], exp:"Mr Birling sarcastically mocks Sheila and Eric for continuing to take the Inspector's message seriously."},
+{text:"I accept no blame for it at all", answer:'Mrs Birling', opts:['Mrs Birling','Mr Birling','Gerald','Eric'], exp:"Mrs Birling flatly denies any responsibility for her role in Eva's death."},
+{text:"you're beginning to pretend now that nothing's really happened at all", answer:'Eric', opts:['Eric','Sheila','Gerald','Inspector Goole'], exp:"Eric angrily accuses his parents of minimising their responsibility once they suspect the Inspector was not genuine."},
+{text:"community and all that nonsense", answer:'Mr Birling', opts:['Mr Birling','Inspector Goole','Eric','Sheila'], exp:"Mr Birling dismisses the idea of collective social responsibility as foolish."},
+{text:"there isn't a chance of war", answer:'Mr Birling', opts:['Mr Birling','Gerald','Inspector Goole','Eric'], exp:"Another of Mr Birling's confidently wrong predictions, undermined by the outbreak of the First World War soon after the play's 1912 setting."},
+{text:"I didn't feel about her the way she felt about me", answer:'Gerald', opts:['Gerald','Eric','Mr Birling','Inspector Goole'], exp:"Gerald admits his relationship with Eva was less serious for him than it was for her."},
+{text:"millions and millions of Eva Smiths", answer:'Inspector Goole', opts:['Inspector Goole','Mr Birling','Sheila','Gerald'], exp:"The Inspector broadens Eva's significance from an individual case to a symbol of exploited working-class people generally."},
+{text:"you and I aren't the same people who sat down to dinner here", answer:'Sheila', opts:['Sheila','Mrs Birling','Eric','Gerald'], exp:"Sheila reflects on how significantly the evening's events have changed her and, she hopes, her family."},
+{text:"I only did what any employer might have done", answer:'Mr Birling', opts:['Mr Birling','Gerald','Mrs Birling','Eric'], exp:"Mr Birling justifies dismissing Eva Smith by claiming his actions were standard business practice."},
+{text:"He's your son and this is your house – but look at him", answer:'Inspector Goole', opts:['Inspector Goole','Sheila','Gerald','Mrs Birling'], exp:"The Inspector forces the Birlings to confront the reality of Eric's condition, which they would otherwise prefer to ignore."},
+{text:"we really must stop these silly pretences", answer:'Sheila', opts:['Sheila','Mrs Birling','Eric','Gerald'], exp:"Sheila insists her family stop denying the truth about Eric's drinking and behaviour."},
+{text:"clothes mean something quite different to a woman", answer:'Mr Birling', opts:['Mr Birling','Gerald','Mrs Birling','Inspector Goole'], exp:"Mr Birling reveals his assumptions about gender and social status through a comment about women's clothing."}
+];
+
+/* ================= CHANGE METER DATA ================= */
+const CHANGE_DATA = [
+{name:'Sheila', level:5, begin:"Excited, somewhat spoiled young woman celebrating her engagement, initially defensive when questioned.", end:"Genuinely remorseful, socially aware, and the character most willing to challenge her own family's denial.", learns:"That her jealous complaint contributed directly to a real person's suffering, and that privilege carries real responsibility.", refuses:"Nothing significant — Sheila is presented as the character most fully transformed by the Inspector's visit.", quote:"you and I aren't the same people who sat down to dinner here"},
+{name:'Eric', level:4, begin:"Present but relatively quiet, already hiding a drinking problem and his relationship with Eva.", end:"Angry, guilt-ridden, and openly critical of his parents' refusal to accept responsibility, though his change is expressed more chaotically than Sheila's.", learns:"That his exploitation of Eva had real, devastating consequences, and that avoiding responsibility, as his parents do, is morally unacceptable.", refuses:"Little — though his change is messier and more emotionally volatile than Sheila's, he does not retreat into denial like his parents.", quote:"you're beginning to pretend now that nothing's really happened at all"},
+{name:'Mr Birling', level:1, begin:"Confident, complacent businessman focused on profit, reputation and his own advancement.", end:"Largely unchanged — once he suspects the Inspector was not genuine, he dismisses the entire evening's events and returns to his prior worldview.", learns:"Very little of lasting substance, beyond temporary anxiety about scandal.", refuses:"Genuine moral responsibility for dismissing Eva Smith, preferring to focus on protecting his reputation and business interests.", quote:"the famous younger generation who know it all"},
+{name:'Mrs Birling', level:1, begin:"Cold, status-conscious, confident in her own moral and social superiority.", end:"Largely unrepentant, having been forced into an especially damaging revelation, that her own son fathered Eva's child, without this producing genuine remorse.", learns:"Very little — she remains committed to her own innocence throughout, even after the dramatic irony of Eric's involvement is revealed.", refuses:"Any acknowledgement of her class prejudice or her direct role in refusing Eva assistance.", quote:"I accept no blame for it at all"},
+{name:'Gerald', level:2, begin:"Charming, socially confident, aligned with Mr Birling's business-focused worldview.", end:"Shows genuine emotional distress about Eva specifically, but ultimately seems relieved to learn the Inspector may not have been real and appears eager to resume his engagement to Sheila.", learns:"Real, personal remorse about his specific treatment of Eva Smith/Daisy Renton.", refuses:"To fully absorb the Inspector's wider message about collective social responsibility, seeming more focused on restoring his own personal situation.", quote:"I didn't feel about her the way she felt about me"}
+];
+
+/* ================= RESPONSIBILITY CHAIN DATA ================= */
+const CHAIN = [
+{who:'Mr Birling', action:"Fires Eva from his factory for organising a protest asking for higher wages.", detail:"Mr Birling dismisses Eva as a 'ringleader' of a pay protest, prioritising his factory's profit margins over his workers' basic requests.", quote:"a man has to mind his own business and look after himself", message:"Priestley may use this to show how easily economic self-interest can justify punishing collective action, even when that action is entirely reasonable."},
+{who:'Sheila', action:"Has Eva dismissed from her job at Milwards out of jealousy.", detail:"Sheila complains to the store manager after Eva appears to suit a dress better than she does, resulting in Eva's dismissal.", quote:"these girls aren't cheap labour – they're people", message:"Priestley may use Sheila's later horror at this action to show how thoughtless privilege, rather than deliberate cruelty, can still cause serious harm, and that recognising this is the first step toward genuine change."},
+{who:'Gerald', action:"Begins and later ends a relationship with Eva (as Daisy Renton).", detail:"Gerald provides Eva with financial support and companionship during a difficult period, but ultimately ends the relationship when it becomes inconvenient for him.", quote:"I didn't feel about her the way she felt about me", message:"Priestley may present Gerald's relationship with Eva as a more complex mix of genuine care and social/economic power imbalance, rather than straightforward villainy."},
+{who:'Eric', action:"Exploits Eva while drunk, gets her pregnant, and later steals money to support her.", detail:"Eric's relationship with Eva is presented as exploitative from the outset, worsened by his drinking, though his later attempt to financially support her, through theft, shows some genuine, if poorly executed, care.", quote:"she treated me – as if I were a kid", message:"Priestley may use Eric's chaotic, morally complicated involvement to show that responsibility is rarely simple — Eric is both an exploiter of Eva and, in his own flawed way, someone who tried to help her."},
+{who:'Mrs Birling', action:"Refuses Eva charitable assistance shortly before her death.", detail:"As head of a women's charitable committee, Mrs Birling uses her influence to deny Eva help, partly because Eva used the name 'Mrs Birling' and partly out of class-based moral judgement.", quote:"I accept no blame for it at all", message:"Priestley may present Mrs Birling's refusal as the final, decisive act in a chain of smaller harms, showing how institutional power combined with personal prejudice can prove fatal."}
+];
+
+const COMPARE_1912 = [
+{point:"Rigid class hierarchy", why:"Explains why the Birlings could dismiss and exploit Eva with minimal consequence — the social distance between employer and worker was vast and largely unquestioned."},
+{point:"Limited welfare provision", why:"Explains why Eva had so few options once dismissed and denied charitable help — there was no meaningful state safety net to fall back on."},
+{point:"Confidence in capitalism and empire", why:"Explains Mr Birling's complacent optimism about continued prosperity, which the audience knows history will soon disrupt."},
+{point:"Restricted rights for women", why:"Explains why women like Eva had limited legal, economic and political power to resist exploitation or unfair dismissal."},
+{point:"Pre-First World War", why:"Explains the dramatic irony of Mr Birling's confident predictions about peace and prosperity, which the audience knows are about to be shattered."}
+];
+const COMPARE_1945 = [
+{point:"Britain changed by two world wars", why:"Explains why the original audience would view the Birlings' complacency with hindsight-fuelled scepticism, rather than sharing their 1912 confidence."},
+{point:"Growing support for the welfare state", why:"Explains why the Inspector's message about collective responsibility would feel timely and persuasive to a 1945 audience."},
+{point:"Stronger emphasis on collective responsibility", why:"Explains why Priestley structures the play to argue explicitly against Mr Birling's individualism, aligning with contemporary political shifts."},
+{point:"Major political change (1945 Labour government)", why:"Explains why the play's socialist-leaning message would resonate with an audience that had just voted for significant social reform."},
+{point:"Shared wartime experience and sacrifice", why:"Explains why post-war audiences may have been more receptive to the Inspector's argument that society functions as one interconnected body."}
+];
+
+/* ================= RENDER: NAVIGATION ================= */
+let currentSection = Store.get('lastSection','overview');
+
+function renderNav(){
+  const html = SECTIONS.map((s,i)=>`<button class="navlink" data-target="${s.id}" role="tab"><span class="num">${String(i+1).padStart(2,'0')}</span>${s.label}</button>`).join('');
+  document.getElementById('navList').innerHTML = html;
+  document.getElementById('navListMobile').innerHTML = html;
+  document.querySelectorAll('.navlink').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ showSection(btn.getAttribute('data-target')); closeDrawer(); });
+  });
+}
+
+function showSection(id){
+  currentSection = id;
+  Store.set('lastSection', id);
+  document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active', s.id === 'section-'+id));
+  document.querySelectorAll('.navlink').forEach(b=>b.classList.toggle('active', b.getAttribute('data-target')===id));
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+}
+
+function closeDrawer(){
+  document.getElementById('mobileDrawer').classList.remove('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded','false');
+}
+document.getElementById('hamburgerBtn').addEventListener('click', ()=>{
+  const d = document.getElementById('mobileDrawer');
+  const open = d.classList.toggle('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded', open?'true':'false');
+});
+document.getElementById('mobileDrawer').addEventListener('click', (e)=>{
+  if(e.target.id === 'mobileDrawer') closeDrawer();
+});
+
+const root = document.getElementById('sectionsRoot');
+function el(html){ const d=document.createElement('div'); d.innerHTML=html; return d.firstElementChild; }
+
+/* ---- 1. OVERVIEW ---- */
+function buildOverview(){
+  const s = el(`<section class="section" id="section-overview">
+    <div class="section-header"><div class="eyebrow">Section 01</div><h1>Overview</h1><div class="desc">Get your bearings before you dive into detail.</div></div>
+
+    <div class="grid two">
+      <div class="card"><h3>Key facts</h3>
+        <p><b>Playwright:</b> J. B. Priestley<br>
+        <b>First performed:</b> 1945<br>
+        <b>Setting:</b> The Birling family's dining room, in the fictional industrial city of Brumley<br>
+        <b>Time setting:</b> 1912<br>
+        <b>Genre:</b> Morality play / social drama, with detective-thriller structural elements</p>
+      </div>
+      <div class="card"><h3>Why the play matters for GCSE</h3>
+        <p>Its tight structure and single setting make it ideal for studying how a playwright builds an argument through stagecraft — lighting, entrances, interruption — not just dialogue. It rewards students who analyse it as a play meant to be performed, not a novel to be read.</p>
+      </div>
+    </div>
+
+    <div class="card"><h3>Basic premise</h3>
+      <p>During a family celebration in 1912, a mysterious Inspector arrives to investigate the suicide of a young working-class woman, Eva Smith. Through careful questioning, he reveals that every member of the Birling family, and Sheila's fiancé Gerald, played some part in the events leading to her death. As the evening unfolds, each character responds very differently to what they learn about their own responsibility.</p>
+    </div>
+
+    <div class="card"><h3>Major themes at a glance</h3>
+      <p><span class="tag blood">Responsibility</span><span class="tag blood">Social Class</span><span class="tag blood">Capitalism</span><span class="tag gold">Socialism</span><span class="tag gold">Gender</span><span class="tag gold">Age and Generation</span><span class="tag">Power</span><span class="tag">Inequality</span><span class="tag">Morality</span><span class="tag fog">Guilt</span><span class="tag fog">Change</span><span class="tag fog">Exploitation</span></p>
+    </div>
+
+    <div class="card"><h3>Why these ideas matter</h3>
+      <p><b>Responsibility</b> sits at the heart of the play — the difference between looking after only yourself and recognising a duty to others is the central conflict Priestley dramatises.<br><br>
+      <b>Class, capitalism and socialism</b> shape how each character views their own obligations to people less privileged than themselves.<br><br>
+      <b>Gender and generation</b> show how power and openness to change are unevenly distributed across the Birling household.<br><br>
+      <b>Power, inequality and morality</b> are examined through how differently characters respond once their actions are exposed.<br><br>
+      <b>Social change</b> is the play's ultimate hope — that audiences, like Sheila and Eric, might learn what the Birlings' parents refuse to.</p>
+    </div>
+
+    <div class="card"><h3>Set in 1912, written in 1945 — why this matters</h3>
+      <p>Priestley deliberately set the play in 1912, just before the sinking of the Titanic and two years before the First World War, but wrote and first staged it in 1945, immediately after the Second World War. His original audience knew, with hindsight, that Mr Birling's confident predictions about peace and prosperity were about to be proven catastrophically wrong. This creates powerful dramatic irony throughout the play, and reflects Priestley's broader argument: that the individualist attitudes of 1912 helped lead to decades of conflict and suffering, and that post-war Britain had a genuine opportunity to build a more socially responsible society instead.</p>
+    </div>
+
+    <div class="card"><h3>What GCSE students need to understand</h3>
+      <ul>
+        <li>That the gap between the play's 1912 setting and 1945 first performance is central to its dramatic irony and political message.</li>
+        <li>How Priestley uses stagecraft (lighting, entrances, interruption) as deliberately as dialogue to build his argument.</li>
+        <li>That Eva Smith, though she never appears on stage, functions as both an individual victim and a wider symbol.</li>
+        <li>That exam boards want analysis of Priestley's methods and purpose, not simply a retelling of events.</li>
+      </ul>
+    </div>
+
+    <div class="sixty">
+      <h3>An Inspector Calls in 60 Seconds</h3>
+      <p>During an engagement celebration in 1912, a mysterious Inspector arrives at the Birling family home to investigate the suicide of a young woman, Eva Smith. Through careful questioning, he reveals that Mr Birling fired Eva from his factory, Sheila had her dismissed from a shop out of jealousy, Gerald had an affair with her, Eric exploited and got her pregnant, and Mrs Birling refused her charitable help shortly before her death. Sheila and Eric respond with genuine horror and guilt, while Mr and Mrs Birling try to deny responsibility, especially once they suspect the Inspector may not have been a real policeman. Just as the family relaxes, believing they have escaped consequence, a telephone call reveals that a real inspector is on his way to ask the very same questions.</p>
+    </div>
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 2. PLOT ---- */
+const PLOT = [
+{n:'Act One', t:'Engagement celebration and Mr Birling\'s speeches', happens:"The Birling family celebrates Sheila and Gerald's engagement. Mr Birling delivers confident, ultimately mistaken speeches about peace, prosperity and the unsinkable Titanic, and voices his individualist philosophy of self-reliance.", why:"Establishes Mr Birling's complacent worldview and sets up significant dramatic irony given the audience's historical knowledge.", chars:["Arthur Birling","Sheila","Gerald","Eric"], themes:["Capitalism","Appearance vs Reality"], quote:"unsinkable, absolutely unsinkable"},
+{n:'Act One', t:'Arrival of Inspector Goole', happens:"Inspector Goole arrives, announcing his investigation into the suicide of a young woman, Eva Smith. He begins questioning Mr Birling about her time at his factory.", why:"Introduces the play's central mystery and the Inspector's controlled, authoritative interrogation style.", chars:["Inspector Goole","Arthur Birling"], themes:["Responsibility","Power"], quote:"Public men, Mr Birling, have responsibilities as well as privileges"},
+{n:'Act One', t:"Eva Smith's dismissal from Birling's factory", happens:"Mr Birling admits he fired Eva for organising a protest asking for higher wages, defending his decision as ordinary business practice.", why:"Establishes Mr Birling's role as the first link in the chain of events leading to Eva's death.", chars:["Arthur Birling","Eva Smith"], themes:["Capitalism","Exploitation"], quote:"a man has to mind his own business and look after himself"},
+{n:'Act One', t:"Sheila's involvement at Milwards", happens:"Sheila admits she had Eva dismissed from her job at a department store out of jealousy over how a dress suited her.", why:"Reveals Sheila's initial privilege and thoughtlessness, setting up her subsequent moral transformation.", chars:["Sheila","Eva Smith"], themes:["Class","Guilt"], quote:"these girls aren't cheap labour – they're people"},
+{n:'Act One', t:"Gerald's connection beginning to emerge", happens:"The Inspector's questioning and Eva's changed name begin to suggest Gerald's own connection to her, which he initially tries to conceal.", why:"Builds suspense ahead of Act Two's fuller revelation of Gerald's relationship with Eva.", chars:["Gerald","Sheila"], themes:["Appearance vs Reality"], quote:"I didn't feel about her the way she felt about me"},
+{n:'Act Two', t:"Gerald's relationship with Daisy Renton", happens:"Gerald confesses to a relationship with Eva, then known as Daisy Renton, admitting he supported her financially before ending things.", why:"Reveals a more complex, partly sympathetic form of exploitation, showing genuine emotion alongside real power imbalance.", chars:["Gerald","Eva Smith"], themes:["Exploitation","Class"], quote:"I didn't feel about her the way she felt about me"},
+{n:'Act Two', t:"Sheila's growing awareness", happens:"Sheila continues to show increasing horror and insight throughout the interrogation, urging her family to stop denying their responsibility.", why:"Consolidates Sheila's position as the character undergoing the most significant moral change.", chars:["Sheila"], themes:["Responsibility","Change"], quote:"you mustn't try to build up a kind of wall"},
+{n:'Act Two', t:"Mrs Birling's interrogation", happens:"Mrs Birling is questioned about her role on a charitable committee, eventually admitting she used her influence to deny Eva assistance shortly before her death.", why:"Reveals Mrs Birling's class prejudice and sets up the devastating dramatic irony of Eric's involvement.", chars:["Sybil Birling","Inspector Goole"], themes:["Class","Hypocrisy"], quote:"girls of that class"},
+{n:'Act Two', t:"Development of the Inspector's moral argument", happens:"The Inspector continues building his case, emphasising each character's connected responsibility for Eva's death.", why:"Develops the play's central thesis about collective, rather than individual, responsibility.", chars:["Inspector Goole"], themes:["Responsibility","Socialism"], quote:"we are members of one body"},
+{n:'Act Two', t:"Eric's involvement beginning to emerge", happens:"The act ends with mounting suspicion that Eric, absent for part of the questioning, has his own significant connection to Eva.", why:"Builds toward Act Three's full revelation and the play's most devastating dramatic irony.", chars:["Eric"], themes:["Guilt"], quote:""},
+{n:'Act Three', t:"Eric's confession", happens:"Eric admits to exploiting Eva while drunk, getting her pregnant, and stealing money from his father's business to support her.", why:"Reveals the final, most personally damaging link in the family's collective responsibility for Eva's death.", chars:["Eric","Arthur Birling"], themes:["Guilt","Exploitation"], quote:"she treated me – as if I were a kid"},
+{n:'Act Three', t:"Mrs Birling's role in refusing Eva help", happens:"It becomes devastatingly clear that the young man Mrs Birling condemned for Eva's pregnancy was her own son, Eric.", why:"Creates the play's sharpest dramatic irony, exposing Mrs Birling's hypocrisy in the clearest possible terms.", chars:["Sybil Birling","Eric"], themes:["Hypocrisy","Guilt"], quote:"I accept no blame for it at all"},
+{n:'Act Three', t:"Inspector's final speech", happens:"The Inspector delivers his powerful closing speech about collective responsibility, warning of consequences if the lesson is not learned, before departing.", why:"The play's central thematic and rhetorical climax, articulating Priestley's argument most directly.", chars:["Inspector Goole"], themes:["Responsibility","Morality"], quote:"fire and blood and anguish"},
+{n:'Act Three', t:"Questions over the Inspector's identity", happens:"The family begins questioning whether Inspector Goole was a genuine police officer, with Gerald discovering by telephone that no such inspector is registered locally.", why:"Introduces the play's deliberate ambiguity about the Inspector's true identity and purpose.", chars:["Gerald","Arthur Birling"], themes:["Appearance vs Reality"], quote:""},
+{n:'Act Three', t:"Gerald's discovery", happens:"Gerald further learns that no recent suicide has been reported at the local infirmary, casting further doubt on whether the evening's events were entirely real.", why:"Deepens the play's central ambiguity, allowing Mr and Mrs Birling to begin dismissing the whole affair.", chars:["Gerald"], themes:["Appearance vs Reality"], quote:""},
+{n:'Act Three', t:"Family's different reactions", happens:"Mr and Mrs Birling, relieved, begin treating the evening as a hoax with no real consequence; Sheila and Eric insist the moral lesson still matters regardless.", why:"Crystallises the play's central generational and moral divide.", chars:["Sheila","Eric","Arthur Birling","Sybil Birling"], themes:["Generation","Morality"], quote:"you're beginning to pretend now that nothing's really happened at all"},
+{n:'Act Three', t:"Final telephone call", happens:"Just as the family relaxes, a telephone call reveals that a real police inspector is on his way to investigate the suicide of a young woman.", why:"Creates a cyclical, unsettling structure suggesting the family's lesson may have to be relearned.", chars:["Arthur Birling"], themes:["Responsibility"], quote:""}
+];
+
+function buildPlot(){
+  let cards = '';
+  PLOT.forEach(p=>{
+    cards += `<div class="disclosure" data-d>
+      <button class="d-head"><span>${p.n} — ${p.t}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <div class="mini-label">What happens</div><p>${p.happens}</p>
+        <div class="mini-label">Why it matters</div><p>${p.why}</p>
+        <div class="mini-label">Characters involved</div><p>${p.chars.map(c=>`<span class="tag">${c}</span>`).join('')}</p>
+        <div class="mini-label">Themes</div><p>${p.themes.map(t=>`<span class="tag blood">${t}</span>`).join('')}</p>
+        ${p.quote ? `<div class="mini-label">Useful quotation</div><div class="quote-line">"${p.quote}"</div>` : ''}
+      </div></div>
+    </div>`;
+  });
+
+  const twelveEvents = [
+   "The Birling family celebrates Sheila and Gerald's engagement.",
+   "Mr Birling delivers confident speeches about peace and prosperity.",
+   "Inspector Goole arrives to investigate Eva Smith's suicide.",
+   "Mr Birling admits he fired Eva for organising a pay protest.",
+   "Sheila admits she had Eva dismissed from Milwards out of jealousy.",
+   "Gerald confesses his relationship with Eva, known to him as Daisy Renton.",
+   "Mrs Birling admits refusing Eva charitable assistance.",
+   "It is revealed the father of Eva's child is Mrs Birling's own son, Eric.",
+   "Eric confesses to exploiting Eva and stealing money to support her.",
+   "The Inspector delivers his final speech on collective responsibility and departs.",
+   "The family discovers no Inspector Goole is registered locally, and no suicide has been reported.",
+   "A telephone call reveals a real inspector is coming to investigate the very same case."
+  ];
+
+  const s = el(`<section class="section" id="section-plot">
+    <div class="section-header"><div class="eyebrow">Section 02</div><h1>Plot</h1><div class="desc">All three acts. Tap any event to expand it.</div></div>
+    <div class="card"><h3>Whole Play in 12 Events</h3>
+      <div class="timeline">${twelveEvents.map((e,i)=>`<div class="t-item"><div class="t-num">${String(i+1).padStart(2,'0')}</div><p>${e}</p></div>`).join('')}</div>
+    </div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 3. CHARACTERS ---- */
+function buildCharacters(){
+  let cards = CHARACTERS.map(c=>`
+    <div class="disclosure" data-d>
+      <button class="d-head"><span>${c.name}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <p class="subtle" style="margin-top:10px;">${c.role}</p>
+        <div class="mini-label">Who are they?</div><p>${c.who}</p>
+        <div class="mini-label">Character journey</div><p>${c.journey}</p>
+        <div class="mini-label">Key relationships</div><p>${c.relationships}</p>
+        <div class="mini-label">Themes connected to this character</div><p>${c.themes.map(t=>`<span class="tag blood">${t}</span>`).join('')}</p>
+        ${c.quotes.length ? `<div class="mini-label">Essential quotes</div>${c.quotes.map(q=>`<div class="quote-line">"${q}"</div>`).join('') } ` : ''}
+        <div class="mini-label">What Priestley may be saying</div><p>${c.message}</p>
+        <div class="mini-label">Exam arguments to develop</div><ul>${c.examArgs.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-characters">
+    <div class="section-header"><div class="eyebrow">Section 03</div><h1>Characters</h1><div class="desc">Tap a character to see their full profile: journey, relationships, quotes and exam arguments.</div></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 4. THEMES ---- */
+function buildThemes(){
+  let cards = THEMES.map(t=>`
+    <div class="disclosure" data-d>
+      <button class="d-head"><span>${t.name}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <div class="mini-label">Simple explanation</div><p>${t.explanation}</p>
+        <div class="mini-label">Where it appears</div><p>${t.where}</p>
+        <div class="mini-label">Relevant characters</div><p>${t.characters.map(c=>`<span class="tag">${c}</span>`).join('')}</p>
+        ${t.quotes.length ? `<div class="mini-label">Essential quotations</div>${t.quotes.map(q=>`<div class="quote-line">"${q}"</div>`).join('')}` : ''}
+        <div class="mini-label">Priestley's possible message</div><p>${t.message}</p>
+        <div class="mini-label">Useful contextual link</div><p>${t.context}</p>
+        <div class="mini-label">Potential thesis statements</div><ul>${t.thesis.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-themes">
+    <div class="section-header"><div class="eyebrow">Section 04</div><h1>Themes</h1><div class="desc">Sixteen core themes, each with quotations, context and ready-to-adapt thesis statements.</div></div>
+    <div class="card"><h3>A note on responsibility</h3><p>This is the play's strongest and most important theme. Priestley draws a clear distinction between <b>individual responsibility</b> — Mr Birling's belief that a person should look after only themselves and their immediate family — and <b>collective responsibility</b> — the Inspector's argument that society functions as one interconnected body, meaning everyone bears some responsibility for everyone else's wellbeing. Almost every other theme in the play (class, capitalism, socialism, gender, generation) can be read as a different lens through which this central conflict plays out. Different characters represent different attitudes toward society: Mr and Mrs Birling represent rigid individualism; the Inspector represents collective responsibility; Sheila and Eric represent the possibility of moving from one to the other.</p></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 5. QUOTE VAULT ---- */
+function buildQuoteVault(){
+  const allChars = ['Inspector Goole','Arthur Birling','Sybil Birling','Sheila','Eric','Gerald','Eva Smith'];
+  const allThemes = Array.from(new Set(QUOTES.flatMap(q=>q.themes))).sort();
+
+  const s = el(`<section class="section" id="section-quotes">
+    <div class="section-header"><div class="eyebrow">Section 05</div><h1>Quote Vault</h1><div class="desc">Search and filter the play's most important quotations. Kept short and used only for educational analysis.</div></div>
+    <div class="qv-controls">
+      <input type="text" id="qvSearch" placeholder="Search quotations..." aria-label="Search quotations">
+      <select id="qvCharFilter" aria-label="Filter by character"><option value="">All characters</option>${allChars.map(c=>`<option value="${c}">${c}</option>`).join('')}</select>
+      <select id="qvThemeFilter" aria-label="Filter by theme"><option value="">All themes</option>${allThemes.map(t=>`<option value="${t}">${t}</option>`).join('')}</select>
+    </div>
+    <div class="qv-count" id="qvCount"></div>
+    <div id="qvResults"></div>
+  </section>`);
+  root.appendChild(s);
+
+  function renderQuotes(){
+    const search = document.getElementById('qvSearch').value.toLowerCase().trim();
+    const charF = document.getElementById('qvCharFilter').value;
+    const themeF = document.getElementById('qvThemeFilter').value;
+    const filtered = QUOTES.filter(q=>{
+      const matchesSearch = !search || q.text.toLowerCase().includes(search) || q.speaker.toLowerCase().includes(search);
+      const matchesChar = !charF || q.characters.includes(charF);
+      const matchesTheme = !themeF || q.themes.includes(themeF);
+      return matchesSearch && matchesChar && matchesTheme;
+    });
+    document.getElementById('qvCount').textContent = filtered.length + (filtered.length===1 ? ' quotation found':' quotations found');
+    const container = document.getElementById('qvResults');
+    container.innerHTML = filtered.map((q,i)=>`
+      <div class="qcard" data-idx="${i}">
+        <div class="qtext">"${q.text}"</div>
+        <div class="qmeta">${q.speaker} · Act ${q.act} · ${q.themes.join(', ')}</div>
+        <button class="qreveal-btn" type="button">Reveal analysis</button>
+        <div class="qdetail">
+          <div class="row"><b>Meaning</b>${q.meaning}</div>
+          <div class="row"><b>Technique</b>${q.technique}</div>
+          <div class="level-toggle">
+            <button type="button" class="lvl-btn active" data-lvl="solid">Solid (Grade 5–6)</button>
+            <button type="button" class="lvl-btn" data-lvl="deep">Deeper (Grade 7–9)</button>
+          </div>
+          <div class="level-block active" data-lvl="solid">${q.solid}</div>
+          <div class="level-block" data-lvl="deep">${q.deep}</div>
+          <div class="row" style="margin-top:10px;"><b>Context</b>${q.context}</div>
+          <div class="row"><b>Use this for</b>${q.useFor}</div>
+        </div>
+      </div>`).join('') || '<p class="subtle">No quotations match your search. Try different filters.</p>';
+
+    container.querySelectorAll('.qreveal-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.qcard');
+        const open = card.classList.toggle('open');
+        btn.textContent = open ? 'Hide analysis' : 'Reveal analysis';
+      });
+    });
+    container.querySelectorAll('.lvl-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.qcard');
+        const lvl = btn.getAttribute('data-lvl');
+        card.querySelectorAll('.lvl-btn').forEach(b=>b.classList.toggle('active', b===btn));
+        card.querySelectorAll('.level-block').forEach(b=>b.classList.toggle('active', b.getAttribute('data-lvl')===lvl));
+      });
+    });
+  }
+  document.getElementById('qvSearch').addEventListener('input', renderQuotes);
+  document.getElementById('qvCharFilter').addEventListener('change', renderQuotes);
+  document.getElementById('qvThemeFilter').addEventListener('change', renderQuotes);
+  renderQuotes();
+}
+
+/* ---- 6. CONTEXT ---- */
+function buildContext(){
+  const items = [
+  {t:"1912 Britain", body:"1912 Britain had rigid, largely unquestioned class divisions, very limited welfare provision, restricted rights for women, and significant power held by employers over workers, with minimal legal protection against unfair dismissal.",
+   use:"Use this to explain why Mr Birling could fire Eva with so little consequence, and why Eva had so few options once dismissed — the social and legal structures of the time offered her almost no protection."},
+  {t:"1945 Britain", body:"By 1945, Britain had been profoundly changed by two world wars, with growing support for the welfare state, greater collectivist thinking, and a newly-elected Labour government promising significant social reform.",
+   use:"Use this to explain why the play's 1945 audience would view Mr Birling's 1912 confidence with informed scepticism, and why the Inspector's socialist message would feel especially timely."},
+  {t:"Capitalism", body:"An economic system prioritising private profit and individual self-interest. Mr Birling represents Priestley's critique of a purely capitalist, self-interested attitude toward business and social responsibility.",
+   use:"Use this to explain Mr Birling's justification for firing Eva as 'ordinary business practice', and how Priestley uses this to critique capitalism's tendency to prioritise profit over worker welfare."},
+  {t:"Socialism", body:"A political philosophy emphasising collective responsibility and social duty. The Inspector's rhetoric throughout the play promotes a broadly socialist vision of interconnected social responsibility.",
+   use:"Use this to explain the Inspector's argument that society functions as one body, and how Priestley positions this collectivist philosophy as morally superior to Mr Birling's individualism."},
+  {t:"Class", body:"The Birling family's attitudes toward Eva Smith reveal deep-seated class prejudice and entitlement, treating a working-class woman's wellbeing as far less significant than their own reputation and comfort.",
+   use:"Use this to explain Mrs Birling's dismissive references to Eva's class, and how Priestley critiques the assumption that class position justifies indifference to others' suffering."},
+  {t:"Gender", body:"Women in 1912 had far less legal, economic and political power than men, including no right to vote in general elections, leaving working-class women like Eva especially vulnerable to exploitation.",
+   use:"Use this to explain why Eva had so little power to resist mistreatment by Mr Birling, Sheila, Gerald, Eric and Mrs Birling in turn, and to discuss how gender compounds class-based vulnerability in the play."},
+  {t:"Generational divide", body:"Priestley presents Sheila and Eric as significantly more willing to accept responsibility and embrace change than their parents, reflecting a broader generational shift in social attitudes.",
+   use:"Use this to explain why Sheila and Eric continue to feel genuine guilt even after questioning the Inspector's identity, while Mr and Mrs Birling quickly revert to their prior worldview."},
+  {t:"J. B. Priestley", body:"Priestley held socialist political views and was involved in founding the Common Wealth Party, a British political party advocating public ownership and social reform, though the play should not be reduced to simple political propaganda.",
+   use:"Use this sparingly to explain the play's clear socialist sympathies, but always connect it back to specific textual choices (the Inspector's rhetoric, the play's structure) rather than treating it as a substitute for textual analysis."}
+  ];
+  const cards = items.map(i=>`<div class="disclosure" data-d>
+    <button class="d-head"><span>${i.t}</span><span class="chev">›</span></button>
+    <div class="d-body"><div class="inner">
+      <p style="margin-top:10px;">${i.body}</p>
+      <div class="mini-label">How can I actually use this in an essay?</div><p>${i.use}</p>
+    </div></div>
+  </div>`).join('');
+
+  const s = el(`<section class="section" id="section-context">
+    <div class="section-header"><div class="eyebrow">Section 06</div><h1>Context</h1><div class="desc">Only the context you can actually use — always paired with a real essay application.</div></div>
+    <div class="card"><p><b>Important:</b> Never bolt on a historical fact just to prove you know it. Only use context when it genuinely deepens your interpretation of Priestley's choices in that specific moment.</p></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 7. TECHNIQUES ---- */
+function buildTechniques(){
+  const cards = TECHNIQUES.map(t=>`<div class="disclosure" data-d>
+    <button class="d-head"><span>${t.name}</span><span class="chev">›</span></button>
+    <div class="d-body"><div class="inner">
+      <div class="mini-label">Definition</div><p>${t.def}</p>
+      <div class="mini-label">An Inspector Calls example</div><p>${t.example}</p>
+      <div class="mini-label">Effect</div><p>${t.effect}</p>
+      <div class="mini-label">How to analyse it</div><p>${t.howto}</p>
+    </div></div>
+  </div>`).join('');
+
+  const s = el(`<section class="section" id="section-techniques">
+    <div class="section-header"><div class="eyebrow">Section 07</div><h1>Techniques</h1><div class="desc">The key dramatic and structural methods Priestley uses, with clear examples and analysis guidance.</div></div>
+
+    <div class="card"><h3>Why does the Inspector control the play?</h3>
+      <p>The Inspector dominates the play's structure as much as its content. He controls who speaks and when, often interrupting characters mid-sentence to redirect the conversation exactly where he wants it. He reveals information gradually, giving each character (and the audience) only as much as they need at any given moment, which sustains suspense across all three acts. His interruptions consistently disrupt characters' attempts at self-justification or evasion, and his calm, unshakeable authority repeatedly changes the mood of a scene, from celebratory to tense to confrontational. Because he essentially drives the plot forward through his questioning, students should consider the Inspector not just as a character with views, but as a structural device Priestley uses to control pacing, revelation and audience response throughout the entire play.</p>
+    </div>
+
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 8. EXAM ---- */
+function buildExam(){
+  const s = el(`<section class="section" id="section-exam">
+    <div class="section-header"><div class="eyebrow">Section 08</div><h1>Exam Survival</h1><div class="desc">How to actually approach an An Inspector Calls exam question, step by step.</div></div>
+
+    <div class="card"><p>Exam boards differ in exact format — some give you a printed extract and ask you to connect it to the whole play; others ask a discursive essay question without an extract. Always check your own exam board's format with your teacher, but the analytical skills below apply broadly.</p></div>
+
+    <div class="disclosure open" data-d><button class="d-head"><span>1. Understanding the question</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Underline the key words in the question — usually a character, theme, or idea, plus a command word (e.g. 'explore', 'how does Priestley present'). Every paragraph should keep answering that exact question.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>2. Selecting evidence</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Choose short, precise quotations you can analyse word-by-word. Never invent or misremember a quotation — an accurate short quote is always stronger than an inaccurate longer one.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>3. Creating a thesis</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>State a clear, arguable position rather than just restating the question. For example: "Priestley presents Mr Birling's confidence as a deliberate structural device, undermining his moral authority before the Inspector even arrives."</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>4. Paragraph structure</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>A reliable structure: Point → Evidence (short quotation) → Method (technique + effect) → Context (only if it adds insight) → Link back to Priestley's likely purpose.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>5. Analysing dramatic methods</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Always ask: why this specific word, technique, or stage direction, not a similar one? Consider dramatic methods (lighting, entrances, interruption) alongside dialogue.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>6. Analysing stage directions</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Stage directions are authorial commentary, not incidental detail. Treat lighting changes, pauses, and movement as deliberate choices carrying meaning, especially around the Inspector.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>7. Discussing character development</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Track how a character's language and behaviour shift across the three acts, rather than treating them as static from the play's opening.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>8. Incorporating context</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Context should illuminate Priestley's choices, not replace analysis of them. One well-placed contextual point is worth more than a paragraph of history with no link to the text.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>9. Connecting ideas across the whole play</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Always show how a moment connects to a wider pattern across all three acts, not just the scene in front of you.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>10. Writing conclusions</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Don't simply repeat your introduction. Briefly synthesise your strongest points and comment on Priestley's overall social or political message.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>11. Managing time</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Spend a few minutes planning before you write. Leave a couple of minutes at the end to check for missing words and unclear sentences.</p></div></div></div>
+
+    <h2 style="margin-top:28px;">Character or Theme?</h2>
+    <div class="card"><p>Some questions focus mainly on a <b>character</b> ("How does Priestley present Mr Birling?"), others mainly on a <b>theme</b> ("How does Priestley present responsibility?"), and some genuinely combine both ("How does Priestley use Sheila to explore ideas about responsibility?"). Read the question carefully: if it names a character, your argument should stay anchored to that character's specific words and actions throughout, even while discussing the themes they represent. If it names a theme, you can draw on multiple characters as evidence, but should still discuss specific characters' words and methods rather than describing the theme abstractly.</p></div>
+
+    <h2 style="margin-top:28px;">Weak vs Strong Analysis</h2>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"Mr Birling is selfish because he only cares about money."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"Priestley's use of dramatic irony, particularly Mr Birling's confident but historically false claim that the Titanic is unsinkable, systematically undermines his authority before the Inspector even arrives, inviting the audience to distrust the individualist philosophy he voices moments later."</p></div>
+    </div>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"The Inspector is a good character who teaches everyone a lesson."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"The Inspector's calm, controlled command of the interrogation, interrupting characters and revealing evidence at precisely chosen moments, suggests Priestley uses him as a structural device as much as a character, one whose ambiguous identity deliberately resists a single, settled interpretation."</p></div>
+    </div>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"Sheila changes a lot during the play."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"Sheila's declaration that she and her family are no longer 'the same people who sat down to dinner here' marks a decisive structural shift in her characterisation, positioning her, alongside Eric, as evidence for Priestley's broader argument that genuine social change is possible for a younger, more self-critical generation."</p></div>
+    </div>
+
+    <h2 style="margin-top:28px;">Practice questions</h2>
+    <div id="practiceQs"></div>
+  </section>`);
+  root.appendChild(s);
+
+  const practice = [
+   {q:"How does Priestley present responsibility?", plan:["Introduce the contrast between individual and collective responsibility.","P1: Mr Birling's individualist opening philosophy.","P2: The Inspector's collectivist counter-argument.","P3: Sheila and Eric's genuine acceptance of responsibility, contrasted with their parents.","Context: post-war collectivism vs pre-war individualism.","Conclusion: Priestley structures the whole play around this central conflict."]},
+   {q:"How does Priestley present Mr Birling?", plan:["Introduce Mr Birling as a vehicle for capitalist critique.","P1: His confident, dramatically ironic predictions in Act One.","P2: His self-justifying defence of firing Eva Smith.","P3: His lack of genuine change by the play's end.","Context: 1912 employer power and welfare limitations.","Conclusion: Priestley uses Birling's consistent errors to discredit his worldview."]},
+   {q:"How does Priestley present Sheila as a character who changes?", plan:["Introduce Sheila's initial privilege and rapid transformation.","P1: Her admission of jealousy-driven complaint against Eva.","P2: Her growing horror and insight during the interrogation.","P3: Her final declaration that she and her family have changed.","Context: generational shifts in post-war social attitudes.","Conclusion: Priestley presents Sheila as evidence that genuine change is possible."]},
+   {q:"How does Priestley present differences between generations?", plan:["Introduce the generational divide as central to the play's hope for change.","P1: Mr Birling's mocking dismissal of the younger generation.","P2: Sheila and Eric's continued guilt even after doubting the Inspector's identity.","P3: The cyclical ending suggesting unlearned lessons must be relearned.","Context: post-war shifts in social attitude.","Conclusion: Priestley presents generational change as the play's central source of hope."]},
+   {q:"How does Priestley present social class?", plan:["Introduce class as shaping how characters treat Eva Smith.","P1: Mrs Birling's dismissive class-based language.","P2: Mr Birling's dismissal of Eva as replaceable labour.","P3: Sheila's later rejection of this dehumanising language.","Context: rigid 1912 class hierarchy.","Conclusion: Priestley critiques class prejudice as enabling exploitation."]},
+   {q:"How does Priestley present Inspector Goole?", plan:["Introduce the Inspector's deliberate ambiguity.","P1: His calm, controlled command of the investigation's structure.","P2: His rhetorical, almost sermon-like final speech.","P3: The unresolved question of his exact identity and nature.","Context: Priestley's own socialist beliefs.","Conclusion: the Inspector functions as moral voice, structural device, and possibly more."]},
+   {q:"How does Priestley present women?", plan:["Introduce the play's contrast between powerful and powerless women.","P1: Eva Smith's vulnerability as a dismissed working-class woman.","P2: Mrs Birling's class-based judgement of women 'of that class'.","P3: Sheila's growing independence and moral voice.","Context: limited legal and political rights for women in 1912.","Conclusion: Priestley presents gender as compounding class-based vulnerability."]},
+   {q:"How does Priestley criticise selfishness?", plan:["Introduce selfishness as embodied primarily by Mr and Mrs Birling.","P1: Mr Birling's individualist business philosophy.","P2: Mrs Birling's refusal to accept any blame.","P3: The Inspector's direct rhetorical challenge to this worldview.","Context: capitalist vs socialist ideology.","Conclusion: Priestley structures the whole play as an argument against selfish individualism."]},
+   {q:"How does Priestley present Gerald?", plan:["Introduce Gerald as a more complex, partly sympathetic figure.","P1: His genuine, if temporary, care for Eva as Daisy Renton.","P2: His relief at doubting the Inspector's legitimacy.","P3: His apparent wish to restore the pre-Inspector status quo.","Context: privileged social position and its limits on genuine change.","Conclusion: Priestley presents partial remorse as insufficient for real change."]},
+   {q:"How does Priestley use Eva Smith in the play?", plan:["Introduce Eva's structural absence as a deliberate choice.","P1: She never appears on stage or speaks directly.","P2: Each character knows her differently, sometimes under different names.","P3: The Inspector's suggestion she represents 'millions' of similar women.","Context: working-class women's vulnerability in 1912.","Conclusion: Priestley uses Eva as both individual victim and broader symbol."]}
+  ];
+  const container = document.getElementById('practiceQs');
+  container.innerHTML = practice.map((p,i)=>`<div class="card">
+    <h3>${p.q}</h3>
+    <button class="btn secondary" type="button" data-plan="${i}">Reveal planning points</button>
+    <div class="plan-reveal" data-plan-body="${i}" style="display:none;margin-top:12px;">
+      <ol>${p.plan.map(x=>`<li>${x}</li>`).join('')}</ol>
+    </div>
+  </div>`).join('');
+  container.querySelectorAll('[data-plan]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const idx = btn.getAttribute('data-plan');
+      const body = container.querySelector(`[data-plan-body="${idx}"]`);
+      const showing = body.style.display !== 'none';
+      body.style.display = showing ? 'none' : 'block';
+      btn.textContent = showing ? 'Reveal planning points' : 'Hide planning points';
+    });
+  });
+}
+
+/* ---- 9. QUIZ ---- */
+let quizState = { order: [], idx:0, score:0, answered:false, wrongTopics:{} };
+function shuffle(arr){ const a = arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+const TYPE_LABEL = {mc:'Plot & detail', tf:'True / False', char:'Character', quote:'Quotation', theme:'Theme', context:'Context', tech:'Technique'};
+
+function buildQuiz(){
+  const s = el(`<section class="section" id="section-quiz">
+    <div class="section-header"><div class="eyebrow">Section 09</div><h1>Quiz</h1><div class="desc">Self-marking revision quiz covering plot, characters, quotations, themes, context, techniques and structure.</div></div>
+    <div class="card">
+      <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
+      <div id="quizArea"></div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  startQuiz();
+}
+
+function startQuiz(){
+  quizState = { order: shuffle(QUIZ_BANK.map((_,i)=>i)), idx:0, score:0, answered:false, wrongTopics:{} };
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion(){
+  const area = document.getElementById('quizArea');
+  const total = quizState.order.length;
+  if(quizState.idx >= total){
+    const pct = Math.round((quizState.score/total)*100);
+    document.getElementById('quizProgressBar').style.width = '100%';
+    const weakList = Object.keys(quizState.wrongTopics).sort((a,b)=>quizState.wrongTopics[b]-quizState.wrongTopics[a]);
+    area.innerHTML = `<div class="quiz-result">
+      <div class="score">${quizState.score}/${total}</div>
+      <p class="subtle">${pct}% correct</p>
+      ${weakList.length ? `<div class="weak-areas"><p class="subtle"><b>Areas to revise:</b></p><p>${weakList.map(t=>`<span class="tag blood">${TYPE_LABEL[t]||t}</span>`).join('')}</p></div>` : `<p class="subtle">Strong across every question type — well done!</p>`}
+      <button class="btn blood" id="tryAgainBtn" type="button">Try Again</button>
+      <button class="btn secondary" id="newQuizBtn" type="button" style="margin-left:8px;">New Quiz</button>
+    </div>`;
+    document.getElementById('tryAgainBtn').addEventListener('click', ()=>{ quizState.idx=0; quizState.score=0; quizState.wrongTopics={}; quizState.answered=false; renderQuizQuestion(); });
+    document.getElementById('newQuizBtn').addEventListener('click', startQuiz);
+    return;
+  }
+  document.getElementById('quizProgressBar').style.width = ((quizState.idx/total)*100)+'%';
+  const item = QUIZ_BANK[quizState.order[quizState.idx]];
+  const optOrder = shuffle(item.opts.map((o,i)=>i));
+  quizState.answered = false;
+  area.innerHTML = `
+    <p class="subtle">Question ${quizState.idx+1} of ${total} · <span class="tag gold">${TYPE_LABEL[item.type]||''}</span></p>
+    <div class="quiz-q">${item.q}</div>
+    <div class="quiz-opts">${optOrder.map(oi=>`<button class="quiz-opt" data-oi="${oi}" type="button">${item.opts[oi]}</button>`).join('')}</div>
+    <div class="quiz-explain" id="quizExplain"></div>
+    <div style="margin-top:14px;"><button class="btn" id="quizNextBtn" type="button" style="display:none;">Next question</button></div>
+  `;
+  area.querySelectorAll('.quiz-opt').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(quizState.answered) return;
+      quizState.answered = true;
+      const chosen = parseInt(btn.getAttribute('data-oi'));
+      area.querySelectorAll('.quiz-opt').forEach(b=>{
+        b.setAttribute('disabled','true');
+        const oi = parseInt(b.getAttribute('data-oi'));
+        if(oi === item.a) b.classList.add('correct');
+        else if(oi === chosen) b.classList.add('incorrect');
+      });
+      if(chosen === item.a) quizState.score++;
+      else quizState.wrongTopics[item.type] = (quizState.wrongTopics[item.type]||0)+1;
+      const exp = document.getElementById('quizExplain');
+      exp.textContent = item.exp;
+      exp.classList.add('show');
+      document.getElementById('quizNextBtn').style.display = 'inline-block';
+    });
+  });
+  document.getElementById('quizNextBtn').addEventListener('click', ()=>{ quizState.idx++; renderQuizQuestion(); });
+}
+
+/* ---- 10. WHO SAID IT GAME ---- */
+let wsiState = { order: [], idx:0, score:0, answered:false };
+
+function buildWhoSaidIt(){
+  const s = el(`<section class="section" id="section-whosaidit">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Who Said It?</h1><div class="desc">A quick, game-like activity. For each quotation, select the character who said it.</div></div>
+    <div class="jh-game">
+      <div class="jh-score" id="wsiScore"></div>
+      <div class="jh-quote" id="wsiQuoteText"></div>
+      <div class="jh-opts" id="wsiOpts"></div>
+      <div class="jh-feedback" id="wsiFeedback"></div>
+      <button class="btn" id="wsiNextBtn" type="button" style="display:none;margin-top:14px;">Next quotation</button>
+      <button class="btn secondary" id="wsiRestartBtn" type="button" style="display:none;margin-top:14px;">Play again</button>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  startWSI();
+}
+
+function startWSI(){
+  wsiState = { order: shuffle(WHOSAIDIT.map((_,i)=>i)), idx:0, score:0, answered:false };
+  renderWSI();
+}
+
+function renderWSI(){
+  const total = wsiState.order.length;
+  const scoreEl = document.getElementById('wsiScore');
+  const feedback = document.getElementById('wsiFeedback');
+  const nextBtn = document.getElementById('wsiNextBtn');
+  const restartBtn = document.getElementById('wsiRestartBtn');
+  feedback.classList.remove('show');
+  feedback.textContent = '';
+  nextBtn.style.display = 'none';
+
+  if(wsiState.idx >= total){
+    scoreEl.textContent = `Final score: ${wsiState.score}/${total}`;
+    document.getElementById('wsiQuoteText').textContent = "Round complete!";
+    document.getElementById('wsiOpts').innerHTML = '';
+    restartBtn.style.display = 'inline-block';
+    restartBtn.onclick = startWSI;
+    return;
+  }
+  restartBtn.style.display = 'none';
+  scoreEl.textContent = `Quotation ${wsiState.idx+1} of ${total} · Score: ${wsiState.score}`;
+  const item = WHOSAIDIT[wsiState.order[wsiState.idx]];
+  document.getElementById('wsiQuoteText').textContent = `"${item.text}"`;
+  const optsEl = document.getElementById('wsiOpts');
+  optsEl.innerHTML = item.opts.map(o=>`<button type="button" data-opt="${o}">${o}</button>`).join('');
+  wsiState.answered = false;
+  optsEl.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(wsiState.answered) return;
+      wsiState.answered = true;
+      const chosen = btn.getAttribute('data-opt');
+      optsEl.querySelectorAll('button').forEach(b=>{
+        b.disabled = true;
+        if(b.getAttribute('data-opt') === item.answer) b.classList.add('correct');
+        else if(b === btn) b.classList.add('incorrect');
+      });
+      if(chosen === item.answer) wsiState.score++;
+      feedback.textContent = `${item.answer}. ${item.exp}`;
+      feedback.classList.add('show');
+      nextBtn.style.display = 'inline-block';
+    });
+  });
+}
+document.addEventListener('click', function(e){
+  if(e.target && e.target.id === 'wsiNextBtn'){ wsiState.idx++; renderWSI(); }
+});
+
+/* ---- 11. CHANGE METER ---- */
+function buildChangeMeter(){
+  const cards = CHANGE_DATA.map(c=>`
+    <div class="change-card" data-d>
+      <button class="cc-head">
+        <span class="cc-name">${c.name}</span>
+        <span class="cc-meter">${[1,2,3,4,5].map(n=>`<span class="dot${n<=c.level?' on':''}"></span>`).join('')}</span>
+      </button>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="mini-label">Beginning of play</div><p>${c.begin}</p>
+        <div class="mini-label">End of play</div><p>${c.end}</p>
+        <div class="mini-label">What they learn</div><p>${c.learns}</p>
+        <div class="mini-label">What they refuse to learn</div><p>${c.refuses}</p>
+        <div class="mini-label">Evidence</div><div class="quote-line">"${c.quote}"</div>
+        <p class="cc-note">Willingness to change is a matter of interpretation, not a fixed score — use this as a starting point for your own argument, not a final answer.</p>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-changemeter">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Who Actually Changes?</h1><div class="desc">Tap each character to see how far they genuinely change by the end of the play.</div></div>
+    <div class="card"><p class="subtle">The dots represent an interpretative judgement of willingness to change, not a precise or objective score — good essays will debate and justify their own view.</p></div>
+    <div class="change-grid">${cards}</div>
+  </section>`);
+  root.appendChild(s);
+
+  s.querySelectorAll('.cc-head').forEach(head=>{
+    head.addEventListener('click', ()=>{ head.parentElement.classList.toggle('open'); });
+  });
+}
+
+/* ---- 12. RESPONSIBILITY CHAIN ---- */
+function buildResponsibilityChain(){
+  let stepsHtml = '';
+  CHAIN.forEach((c,i)=>{
+    stepsHtml += `<div class="chain-step" data-d>
+      <button class="chain-btn"><span>${c.who} — ${c.action}</span><span class="chev">›</span></button>
+      <div class="chain-body"><div class="chain-inner">
+        <div class="mini-label">What happened</div><p>${c.detail}</p>
+        <div class="mini-label">Key quotation</div><div class="quote-line">"${c.quote}"</div>
+        <div class="mini-label">Priestley's message</div><p>${c.message}</p>
+      </div></div>
+    </div>`;
+    if(i < CHAIN.length-1) stepsHtml += `<div class="chain-arrow">↓</div>`;
+  });
+
+  const s = el(`<section class="section" id="section-responsibilitychain">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Responsibility Chain</h1><div class="desc">Tap each stage to see how every character contributed to Eva Smith's downfall.</div></div>
+    <div class="card"><p><b>Important:</b> This is not a claim that every character bears exactly equal responsibility. The characters' contributions differ significantly in nature, timing and severity — use this chain as a starting point to debate the degree and type of responsibility each character holds, not as a fixed ranking.</p></div>
+    <div class="chain">${stepsHtml}</div>
+  </section>`);
+  root.appendChild(s);
+
+  s.querySelectorAll('.chain-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ btn.closest('.chain-step').classList.toggle('open'); });
+  });
+}
+
+/* ---- 13. 1912 vs 1945 ---- */
+function buildCompare(){
+  const s = el(`<section class="section" id="section-compare">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>1912 vs 1945</h1><div class="desc">Understanding the gap between the play's setting and its first audience is essential to understanding its dramatic irony and purpose.</div></div>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <h3>1912</h3>
+        <ul>${COMPARE_1912.map(c=>`<li><b>${c.point}</b><div class="compare-why">Why this matters in the play: ${c.why}</div></li>`).join('')}</ul>
+      </div>
+      <div class="compare-col">
+        <h3>1945</h3>
+        <ul>${COMPARE_1945.map(c=>`<li><b>${c.point}</b><div class="compare-why">Why this matters in the play: ${c.why}</div></li>`).join('')}</ul>
+      </div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 14. LAST MINUTE ---- */
+function buildLastMinute(){
+  const plot12 = ["The Birling family celebrates Sheila and Gerald's engagement.","Mr Birling delivers confident speeches about peace and prosperity.","Inspector Goole arrives to investigate Eva Smith's suicide.","Mr Birling admits he fired Eva for organising a pay protest.","Sheila admits she had Eva dismissed from Milwards out of jealousy.","Gerald confesses his relationship with Eva, known to him as Daisy Renton.","Mrs Birling admits refusing Eva charitable assistance.","It is revealed the father of Eva's child is Mrs Birling's own son, Eric.","Eric confesses to exploiting Eva and stealing money to support her.","The Inspector delivers his final speech on collective responsibility and departs.","The family discovers no Inspector Goole is registered locally, and no suicide has been reported.","A telephone call reveals a real inspector is coming to investigate the very same case."];
+  const sixChars = [
+   ["Inspector Goole","Ambiguous moral authority who exposes each character's role in Eva's death and argues for collective responsibility."],
+   ["Mr Birling","Complacent capitalist whose confident predictions are proven wrong, undermining his moral authority."],
+   ["Mrs Birling","Cold, class-prejudiced, and the character least willing to accept genuine responsibility."],
+   ["Sheila","Undergoes the most significant genuine moral change, becoming socially aware and remorseful."],
+   ["Eric","Guilt-ridden and angry at his parents' denial, showing real if chaotic change."],
+   ["Gerald","Charming and partly remorseful, but ultimately seems to want to restore the old social order."]
+  ];
+  const fiveThemes = [
+   ["Responsibility","The play's central theme — individual self-interest vs collective social duty."],
+   ["Social Class","The Birlings' prejudice and entitlement enable Eva's exploitation."],
+   ["Capitalism vs Socialism","Mr Birling represents self-interested capitalism; the Inspector represents collective socialism."],
+   ["Generation","Sheila and Eric represent hope for change; their parents represent resistance to it."],
+   ["Gender","Eva's limited power as a working-class woman leaves her especially vulnerable."]
+  ];
+  const quotes15 = [
+   ["a man has to mind his own business and look after himself","Mr Birling","Use for capitalism/individual responsibility."],
+   ["we are members of one body","Inspector Goole","Use for socialism/collective responsibility — central quote."],
+   ["unsinkable, absolutely unsinkable","Mr Birling","Use for dramatic irony — clearest example in the play."],
+   ["these girls aren't cheap labour – they're people","Sheila","Use for class/Sheila's development."],
+   ["Public men, Mr Birling, have responsibilities as well as privileges","Inspector Goole","Use for power/responsibility."],
+   ["you mustn't try to build up a kind of wall","Sheila","Use for class/denial vs responsibility."],
+   ["the famous younger generation who know it all","Mr Birling","Use for generational divide."],
+   ["I accept no blame for it at all","Mrs Birling","Use for responsibility/hypocrisy — note the dramatic irony given Eric."],
+   ["fire and blood and anguish","Inspector Goole","Use for the Inspector's warning/historical context."],
+   ["you're beginning to pretend now that nothing's really happened at all","Eric","Use for guilt/generational divide."],
+   ["girls of that class","Mrs Birling","Use for class prejudice."],
+   ["community and all that nonsense","Mr Birling","Use for capitalism vs socialism."],
+   ["you and I aren't the same people who sat down to dinner here","Sheila","Use for change/character development."],
+   ["I didn't feel about her the way she felt about me","Gerald","Use for Gerald's partial remorse."],
+   ["there isn't a chance of war","Mr Birling","Use for dramatic irony/historical context."]
+  ];
+  const fiveContext = ["1912: rigid class hierarchy and minimal welfare provision.","1945: post-war Britain, growing welfare state and Labour government.","Capitalism (Mr Birling) vs socialism (the Inspector) as competing philosophies.","Women had very limited legal and political power in 1912.","Priestley's own socialist political beliefs shaped the play's message."];
+  const fiveTech = [
+   ["Dramatic irony","Mr Birling's confident but historically wrong predictions undermine his authority."],
+   ["Stage directions","Lighting shifts from soft and intimate to brighter and harder upon the Inspector's arrival."],
+   ["Cyclical structure","The final telephone call mirrors the play's opening, suggesting unlearned lessons repeat."],
+   ["Interrogation structure","The Inspector questions each character in turn, gradually revealing collective responsibility."],
+   ["Interruption","The Inspector's arrival cuts off Mr Birling's individualist speech mid-sentence."]
+  ];
+  const checklist = ["Answer the actual question.","Make a clear argument.","Use precise, accurate evidence — never invented quotations.","Analyse dramatic methods, not just what happens.","Discuss Priestley's purpose.","Link context naturally, not as a bolt-on.","Refer to the whole play, not just one moment."];
+  const dontDo = ["Don't simply retell the plot.","Don't list historical facts disconnected from the text.","Don't invent or misremember quotations.","Don't call Priestley a novelist — he was a playwright.","Don't forget that this is a play, meant to be performed and staged."];
+
+  const s = el(`<section class="section" id="section-lastminute">
+    <div class="section-header"><div class="eyebrow">Section 10</div><h1>An Inspector Calls — Last Minute</h1><div class="desc">Exam tomorrow? Start here.</div></div>
+    <button class="btn secondary print-btn" id="printBtn" type="button">Print this page</button>
+
+    <div class="lm-grid">
+      <div class="lm-card"><h3>Plot in 12 points</h3><ol>${plot12.map(x=>`<li>${x}</li>`).join('')}</ol></div>
+      <div class="lm-card"><h3>6 characters you must understand</h3><ul>${sixChars.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 themes you must understand</h3><ul>${fiveThemes.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>15 quotations worth remembering</h3><ul>${quotes15.map(x=>`<li>"${x[0]}" <br><span class="subtle">— ${x[1]} → ${x[2]}</span></li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 contextual ideas</h3><ul>${fiveContext.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 techniques worth recognising</h3><ul>${fiveTech.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>Essay checklist</h3><ul>${checklist.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>Five things NOT to do</h3><ul>${dontDo.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  document.getElementById('printBtn').addEventListener('click', ()=> window.print());
+}
+
+/* ================= DISCLOSURE BEHAVIOUR (shared) ================= */
+function wireDisclosures(){
+  document.querySelectorAll('.disclosure > .d-head').forEach(head=>{
+    head.addEventListener('click', ()=>{
+      head.parentElement.classList.toggle('open');
+    });
+  });
+}
+
+/* ================= INIT ================= */
+buildOverview();
+buildPlot();
+buildCharacters();
+buildThemes();
+buildQuoteVault();
+buildContext();
+buildTechniques();
+buildExam();
+buildQuiz();
+buildWhoSaidIt();
+buildChangeMeter();
+buildResponsibilityChain();
+buildCompare();
+buildLastMinute();
+renderNav();
+wireDisclosures();
+showSection(SECTIONS.some(s=>s.id===currentSection) ? currentSection : 'overview');
+
+})();
+</script>
+</body>
+</html>
