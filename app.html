@@ -69,7 +69,7 @@
             <h2 class="mt-lg">How it works</h2>
             <div class="steps mt-sm" style="grid-template-columns:1fr;gap:16px;">
               <div class="step">
-                <h3>Get it from Gumroad</h3>
+                <h3 id="howGetHeading">Get it from Gumroad</h3>
                 <p id="howGumroad"></p>
               </div>
               <div class="step">
@@ -198,12 +198,23 @@
     return '<li>' + ICONS.check + ' <span>' + f + '</span></li>';
   }).join("");
 
-  document.getElementById("howGumroad").textContent = app.comingSoon
-    ? "This app isn't available yet — check back as The Vault grows."
-    : (app.tier === "pro" ? "Purchase " + app.title + " securely through Gumroad." : "Download " + app.title + " for free (£0) through Gumroad.");
-  document.getElementById("howOpen").textContent = app.comingSoon
-    ? "In the meantime, browse what's already available in the library."
-    : "Most Teacher Vault mini apps open directly in a modern browser — no installation, no account, no API key.";
+  if (app.comingSoon) {
+    document.getElementById("howGetHeading").textContent = "Get it from Gumroad";
+    document.getElementById("howGumroad").textContent = "This app isn't available yet — check back as The Vault grows.";
+    document.getElementById("howOpen").textContent = "In the meantime, browse what's already available in the library.";
+  } else if (app.fileUrl && app.fileType === "app") {
+    document.getElementById("howGetHeading").textContent = "Open it in your browser";
+    document.getElementById("howGumroad").textContent = "No download, no Gumroad step — " + app.title + " opens straight away in a new browser tab.";
+    document.getElementById("howOpen").textContent = "Most Teacher Vault mini apps open directly in a modern browser — no installation, no account, no API key.";
+  } else if (app.fileUrl) {
+    document.getElementById("howGetHeading").textContent = "Download the PDF";
+    document.getElementById("howGumroad").textContent = "No Gumroad step — " + app.title + " downloads directly from this site as a PDF.";
+    document.getElementById("howOpen").textContent = "Open the downloaded PDF in any PDF reader, on any device.";
+  } else {
+    document.getElementById("howGetHeading").textContent = "Get it from Gumroad";
+    document.getElementById("howGumroad").textContent = app.tier === "pro" ? "Purchase " + app.title + " securely through Gumroad." : "Download " + app.title + " for free (£0) through Gumroad.";
+    document.getElementById("howOpen").textContent = "Most Teacher Vault mini apps open directly in a modern browser — no installation, no account, no API key.";
+  }
 
   // --- Need more? (Lite -> Pro, or Pro -> Lite) ---
   var pairId = app.proVersionId || app.liteVersionId;

@@ -138,7 +138,7 @@ function renderFooter() {
         '<div class="footer-col">' +
           chalkLogo("footer") +
           '<p class="footer-desc">Practical tools for teachers. Free revision resources for students.</p>' +
-          '<p class="gumroad-note">Most downloads and purchases are fulfilled through Gumroad. Cliff Notes download directly from this site.</p>' +
+          '<p class="gumroad-note">Teacher tools are fulfilled through Gumroad. Revision apps and Cliff Notes open or download directly from this site.</p>' +
         '</div>' +
         '<div class="footer-col">' +
           '<h4>Explore</h4>' +
@@ -243,6 +243,9 @@ function thumbMedia(app) {
 function ctaFor(app) {
   if (app.comingSoon) {
     return '<span class="btn btn--dark btn--block" aria-disabled="true">Coming Soon</span>';
+  }
+  if (app.fileUrl && app.fileType === "app") {
+    return '<a class="btn btn--dark btn--block" href="' + app.fileUrl + '" target="_blank" rel="noopener">Open App ' + ICONS.external + '</a>';
   }
   if (app.fileUrl) {
     return '<a class="btn btn--dark btn--block" href="' + app.fileUrl + '" download>Download PDF ' + ICONS.download + '</a>';

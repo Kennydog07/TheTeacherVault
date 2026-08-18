@@ -72,12 +72,17 @@
    price         display price, e.g. "Free" or "£6.99"
    gumroadUrl    the Gumroad product link (or a GUMROAD_..._URL placeholder).
                  Leave blank ("") for apps that use "fileUrl" instead.
-   fileUrl       path to a PDF (or other file) hosted directly on this site,
-                 e.g. "downloads/macbeth-cliff-notes.pdf". When this is set,
-                 the card/detail page shows a direct "Download PDF" button
-                 instead of a Gumroad button — no gumroadUrl needed. Used for
-                 Cliff Notes study guides, which download straight from the
-                 site rather than through Gumroad.
+   fileUrl       path to a file hosted directly on this site, e.g.
+                 "downloads/macbeth-cliff-notes.pdf" or
+                 "revision-apps/gcse-maths.html". When this is set, the
+                 card/detail page shows a direct button instead of a
+                 Gumroad button — no gumroadUrl needed.
+   fileType      "pdf"  |  "app"  — only used alongside fileUrl.
+                 "pdf" shows a "Download PDF" button that saves the file
+                 (used for Cliff Notes study guides).
+                 "app" shows an "Open App" button that opens the file in
+                 a new browser tab instead of downloading it (used for the
+                 GCSE revision apps, which are self-contained HTML apps).
    image         path to a screenshot, or "" for a placeholder
    icon          optional: "skull" | "potion" | "pocketWatch" | any name from
                  the ICONS list in script.js. Used as the card thumbnail only
@@ -344,7 +349,9 @@ const APPS = [
     audience: "GCSE students",
     tier: "free",
     price: "Free",
-    gumroadUrl: "GUMROAD_GCSE_MATHS_URL",
+    gumroadUrl: "",
+    fileUrl: "revision-apps/gcse-maths.html",
+    fileType: "app",
     image: "images/gcse-maths.jpg",
     featured: true,
     isNew: false,
@@ -372,7 +379,9 @@ const APPS = [
     audience: "GCSE students",
     tier: "free",
     price: "Free",
-    gumroadUrl: "GUMROAD_GCSE_SCIENCE_URL",
+    gumroadUrl: "",
+    fileUrl: "revision-apps/gcse-combined-science.html",
+    fileType: "app",
     image: "images/gcse-science.jpg",
     featured: true,
     isNew: false,
@@ -400,7 +409,9 @@ const APPS = [
     audience: "GCSE students",
     tier: "free",
     price: "Free",
-    gumroadUrl: "GUMROAD_GCSE_HISTORY_URL",
+    gumroadUrl: "",
+    fileUrl: "revision-apps/gcse-history.html",
+    fileType: "app",
     image: "images/gcse-history.jpg",
     featured: true,
     isNew: false,
@@ -427,7 +438,9 @@ const APPS = [
     audience: "GCSE students",
     tier: "free",
     price: "Free",
-    gumroadUrl: "GUMROAD_GCSE_BUSINESS_URL",
+    gumroadUrl: "",
+    fileUrl: "revision-apps/gcse-business.html",
+    fileType: "app",
     image: "images/gcse-business.jpg",
     featured: true,
     isNew: false,
@@ -560,6 +573,7 @@ const APPS = [
     price: "Free",
     gumroadUrl: "",
     fileUrl: "downloads/jekyll-and-hyde-cliff-notes.pdf",
+    fileType: "pdf",
     image: "images/cliffnotes-jekyll-and-hyde.jpg",
     icon: "potion",
     featured: false,
@@ -587,6 +601,7 @@ const APPS = [
     price: "Free",
     gumroadUrl: "",
     fileUrl: "downloads/an-inspector-calls-cliff-notes.pdf",
+    fileType: "pdf",
     image: "images/cliffnotes-an-inspector-calls.jpg",
     icon: "pocketWatch",
     featured: false,
@@ -614,6 +629,7 @@ const APPS = [
     price: "Free",
     gumroadUrl: "",
     fileUrl: "downloads/macbeth-cliff-notes.pdf",
+    fileType: "pdf",
     image: "images/cliffnotes-macbeth.jpg",
     icon: "skull",
     featured: false,
