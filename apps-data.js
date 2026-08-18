@@ -161,7 +161,7 @@ const APPS = [
     audience: "Teachers writing reports for a full class or year group",
     tier: "pro",
     price: "£9.99",
-    gumroadUrl: "GUMROAD_REPORT_WRITER_PRO_URL",
+    gumroadUrl: "https://idamaemann.gumroad.com/l/unjcn",
     image: "images/report-writer-pro.jpg",
     featured: false,
     isNew: false,
