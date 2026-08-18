@@ -186,7 +186,7 @@ const APPS = [
     audience: "Teachers planning regularly across a term or year",
     tier: "pro",
     price: "£9.99",
-    gumroadUrl: "GUMROAD_LESSON_PLANNER_PRO_URL",
+    gumroadUrl: "https://idamaemann.gumroad.com/l/eghxdm?wanted=true",
     image: "images/lesson-planner-pro.jpg",
     featured: false,
     isNew: false,
