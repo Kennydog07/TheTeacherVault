@@ -37,7 +37,7 @@
     <div class="container">
 
       <form class="filter-bar" id="filterForm" role="search">
-        <div class="search-input-wrap">
+        <div class="search-input-wrap" id="searchInputWrap">
           <label for="searchInput" class="sr-only">Search The Teacher Vault</label>
           <span aria-hidden="true" id="searchIcon"></span>
           <input type="search" id="searchInput" class="search-input" placeholder="Search The Teacher Vault&hellip;">
@@ -118,6 +118,11 @@
     document.getElementById("pageEyebrow").textContent = tierInfo.eyebrow;
     document.getElementById("pageHeading").textContent = tierInfo.title;
     document.getElementById("pageLede").textContent = tierInfo.lede;
+  }
+
+  /* The Pro Apps view is a short, fixed list — no search box needed there. */
+  if (params.get("tier") === "pro") {
+    document.getElementById("searchInputWrap").hidden = true;
   }
 
   function syncChips() {
