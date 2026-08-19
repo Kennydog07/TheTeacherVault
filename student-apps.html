@@ -33,7 +33,7 @@
     </div>
   </section>
 
-  <section class="section" style="padding-top:0;">
+  <section class="section" style="padding-bottom:20px;">
     <div class="container">
 
       <div class="filter-bar" id="subjectFilterBar">
@@ -46,9 +46,13 @@
       </div>
 
       <p class="results-count" id="resultsCount" aria-live="polite"></p>
-      <div class="card-grid" id="revisionGrid"></div>
     </div>
   </section>
+
+  <!-- Populated with one section per Key Stage branch (KS2, KS3, KS4, KS5, General) -->
+  <div id="keyStageSections"></div>
+
+  <p class="text-center" id="emptyStateMessage" hidden style="color:var(--chalk-dim);padding:0 24px 40px;">No student apps match that subject yet — check back as the library grows.</p>
 
   <!-- ============================== COMING SOON SUBJECTS ============================== -->
   <section class="section paper-section" id="revisionSoonSection" hidden>
@@ -98,7 +102,32 @@
     var value = subjectSelect.value;
     var results = value === "all" ? allRevisionApps : allRevisionApps.filter(function (a) { return a.subject === value; });
     document.getElementById("resultsCount").textContent = results.length + (results.length === 1 ? " app found" : " apps found");
-    renderCardGrid(document.getElementById("revisionGrid"), results);
+
+    var container = document.getElementById("keyStageSections");
+    container.innerHTML = "";
+    var anyRendered = false;
+
+    KEY_STAGE_LIST.forEach(function (stage, i) {
+      var stageApps = results.filter(function (a) { return a.keyStage === stage.value; });
+      if (!stageApps.length) return;
+      anyRendered = true;
+
+      var section = document.createElement("section");
+      section.className = "section" + (i % 2 === 1 ? " paper-section" : "");
+      section.innerHTML =
+        '<div class="container">' +
+          '<div class="section-head">' +
+            '<span class="eyebrow">Key Stage</span>' +
+            '<h2>' + stage.label + '</h2>' +
+            '<p class="lede">' + stage.blurb + '</p>' +
+          '</div>' +
+          '<div class="card-grid"></div>' +
+        '</div>';
+      container.appendChild(section);
+      renderCardGrid(section.querySelector(".card-grid"), stageApps);
+    });
+
+    document.getElementById("emptyStateMessage").hidden = anyRendered;
   }
 
   subjectSelect.addEventListener("change", applySubjectFilter);

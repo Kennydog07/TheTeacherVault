@@ -65,8 +65,13 @@
    tagline       short one-line hook shown on cards
    description   1-3 sentence description shown on cards and detail pages
    category      "teacher"  |  "revision"  |  "quicknotes"
-   subject       "Maths" | "Science" | "History" | "Business" | "English" |
-                 "Languages" | "Primary" | "General" | "" (blank = none)
+   keyStage      "KS2" | "KS3" | "KS4" | "KS5" | "General"  — only used on
+                 "revision" apps. This is what splits the Student Apps page
+                 into separate sections. "General" is for anything not tied
+                 to one specific Key Stage.
+   subject       one of the values in SUBJECT_LIST (see script.js) — e.g.
+                 "Maths", "English", "Biology"... or "General" for teacher
+                 tools that aren't subject-specific, or "" for none.
    audience      who it's for, e.g. "Secondary teachers", "GCSE students"
    tier          "lite"  |  "pro"  |  "free"
    price         display price, e.g. "Free" or "£6.99"
@@ -345,6 +350,7 @@ const APPS = [
     tagline: "Hundreds of questions across the key GCSE Maths topics.",
     description: "An interactive GCSE Maths revision app containing hundreds of questions across key GCSE topics, with instant feedback and clear explanations.",
     category: "revision",
+    keyStage: "KS4",
     subject: "Maths",
     audience: "GCSE students",
     tier: "free",
@@ -375,6 +381,7 @@ const APPS = [
     tagline: "Interactive revision across Biology, Chemistry and Physics.",
     description: "An interactive Combined Science revision app covering the core Biology, Chemistry and Physics topics students need for their GCSE exams.",
     category: "revision",
+    keyStage: "KS4",
     subject: "Science",
     audience: "GCSE students",
     tier: "free",
@@ -405,6 +412,7 @@ const APPS = [
     tagline: "Interactive revision for key GCSE History topics.",
     description: "An interactive GCSE History revision app to help students test their knowledge of key topics, people and events with instant feedback.",
     category: "revision",
+    keyStage: "KS4",
     subject: "History",
     audience: "GCSE students",
     tier: "free",
@@ -434,6 +442,7 @@ const APPS = [
     tagline: "Interactive revision for GCSE Business Studies.",
     description: "An interactive GCSE Business revision app covering key concepts, case studies and terminology, with instant feedback as students work through questions.",
     category: "revision",
+    keyStage: "KS4",
     subject: "Business",
     audience: "GCSE students",
     tier: "free",
@@ -466,6 +475,7 @@ const APPS = [
     tagline: "Revision for GCSE English Language and Literature.",
     description: "Interactive revision covering key GCSE English Language and Literature topics.",
     category: "revision",
+    keyStage: "KS4",
     subject: "English",
     audience: "GCSE students",
     tier: "free",
@@ -485,6 +495,7 @@ const APPS = [
     tagline: "Vocabulary and grammar revision for GCSE German.",
     description: "Interactive revision covering key GCSE German vocabulary, grammar and topic areas.",
     category: "revision",
+    keyStage: "KS4",
     subject: "German",
     audience: "GCSE students",
     tier: "free",
@@ -504,6 +515,7 @@ const APPS = [
     tagline: "Revision for key GCSE Religious Studies topics.",
     description: "Interactive revision covering key beliefs, practices and themes for GCSE Religious Studies.",
     category: "revision",
+    keyStage: "KS4",
     subject: "RE",
     audience: "GCSE students",
     tier: "free",
@@ -523,6 +535,7 @@ const APPS = [
     tagline: "Reading and SPaG revision for Year 6 SATs.",
     description: "Interactive revision covering Reading and SPaG (spelling, punctuation and grammar) for Year 6 SATs preparation.",
     category: "revision",
+    keyStage: "KS2",
     subject: "Primary",
     audience: "Year 6 pupils",
     tier: "free",
@@ -542,6 +555,7 @@ const APPS = [
     tagline: "Interactive Maths revision for Year 6 SATs.",
     description: "Interactive revision covering key Year 6 Maths topics ahead of SATs.",
     category: "revision",
+    keyStage: "KS2",
     subject: "Primary",
     audience: "Year 6 pupils",
     tier: "free",
@@ -566,6 +580,7 @@ const APPS = [
     tagline: "Quickly spot which KS3 Maths topics need more work.",
     description: "A diagnostic test covering core KS3 Maths skills, designed to quickly identify which topics a student needs to focus on.",
     category: "revision",
+    keyStage: "KS3",
     subject: "Maths",
     audience: "KS3 students",
     tier: "free",
@@ -588,6 +603,7 @@ const APPS = [
     tagline: "A structured revision pack ahead of KS3 end-of-year maths exams.",
     description: "An end-of-year assessment and revision pack covering the key KS3 Maths topics students need before their exams.",
     category: "revision",
+    keyStage: "KS3",
     subject: "Maths",
     audience: "KS3 students",
     tier: "free",
@@ -610,6 +626,7 @@ const APPS = [
     tagline: "A quick-reference vault of KS3 Maths formulas and methods.",
     description: "A reference and practice tool covering the key formulas and methods KS3 Maths students need to know.",
     category: "revision",
+    keyStage: "KS3",
     subject: "Maths",
     audience: "KS3 students",
     tier: "free",
@@ -632,6 +649,7 @@ const APPS = [
     tagline: "Topic-by-topic practice questions for KS3 Maths.",
     description: "Practice questions organised by topic, so KS3 Maths students can focus revision exactly where it's needed.",
     category: "revision",
+    keyStage: "KS3",
     subject: "Maths",
     audience: "KS3 students",
     tier: "free",
@@ -654,6 +672,7 @@ const APPS = [
     tagline: "Multi-step problem-solving challenges for KS3 Maths.",
     description: "A bank of multi-step problem-solving challenges to stretch KS3 Maths students beyond routine practice questions.",
     category: "revision",
+    keyStage: "KS3",
     subject: "Maths",
     audience: "KS3 students",
     tier: "free",
@@ -676,6 +695,7 @@ const APPS = [
     tagline: "A structured toolkit for analysing poetry at KS3.",
     description: "A toolkit that walks KS3 English students through analysing poetry — form, language, sound and tone — step by step.",
     category: "revision",
+    keyStage: "KS3",
     subject: "English",
     audience: "KS3 students",
     tier: "free",
@@ -698,6 +718,7 @@ const APPS = [
     tagline: "A study pack introducing Shakespeare at KS3.",
     description: "A study pack covering the essentials of a KS3 Shakespeare text — plot, characters, themes and key language.",
     category: "revision",
+    keyStage: "KS3",
     subject: "English",
     audience: "KS3 students",
     tier: "free",
@@ -720,6 +741,7 @@ const APPS = [
     tagline: "Spelling, punctuation, grammar and vocabulary practice.",
     description: "Practice covering spelling, punctuation, grammar and vocabulary, built for KS3 English students.",
     category: "revision",
+    keyStage: "KS3",
     subject: "English",
     audience: "KS3 students",
     tier: "free",
@@ -742,6 +764,7 @@ const APPS = [
     tagline: "Generates creative writing prompts for KS3 English.",
     description: "A story starter generator that gives KS3 English students a prompt to kick off a piece of creative writing.",
     category: "revision",
+    keyStage: "KS3",
     subject: "English",
     audience: "KS3 students",
     tier: "free",
@@ -764,6 +787,7 @@ const APPS = [
     tagline: "Reading comprehension practice for KS3 English.",
     description: "Reading comprehension passages and questions, built to give KS3 English students regular, focused practice.",
     category: "revision",
+    keyStage: "KS3",
     subject: "English",
     audience: "KS3 students",
     tier: "free",

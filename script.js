@@ -64,6 +64,18 @@ const SUBJECT_LIST = [
   "PE", "Citizenship", "Primary", "Other"
 ];
 
+/* Key Stage branches shown as separate sections on the Student Apps page.
+   Order here is the order they appear on the page. To add a branch, add
+   it here with a value/label/blurb — you'll still need to set that
+   keyStage on an app in apps-data.js before anything shows up under it. */
+const KEY_STAGE_LIST = [
+  { value: "KS2", label: "KS2 (SATs)", blurb: "Revision for Year 6 SATs." },
+  { value: "KS3", label: "KS3", blurb: "Revision and practice for Years 7 to 9." },
+  { value: "KS4", label: "KS4 (GCSE)", blurb: "Revision for GCSE exams." },
+  { value: "KS5", label: "KS5 (A-Level)", blurb: "Revision for A-Level and sixth form study." },
+  { value: "General", label: "General Revision", blurb: "Tools and practice that aren't tied to one specific exam stage." }
+];
+
 function renderWhyGrid(container, lightCards) {
   if (!container) return;
   container.innerHTML = WHY_CARDS.map(function (c) {
