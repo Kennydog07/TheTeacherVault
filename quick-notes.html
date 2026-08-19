@@ -40,7 +40,7 @@
   </section>
 
   <!-- ============================== COMING SOON TEXTS ============================== -->
-  <section class="section paper-section">
+  <section class="section paper-section" id="quickNotesSoonSection" hidden>
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">Growing the library</span>
@@ -83,13 +83,16 @@
   }).join("");
 
   var quickNotesSoon = getComingSoonApps().filter(function(a){ return a.category === "quicknotes"; });
-  document.getElementById("quickNotesSoonGrid").innerHTML = quickNotesSoon.map(function(app){
-    return '<div class="soon-card" style="background:#fff;border-color:rgba(20,36,29,0.15);">' +
-      '<span class="badge badge--soon" style="align-self:flex-start;">Coming Soon</span>' +
-      '<h3 style="color:var(--ink);">' + app.title + '</h3>' +
-      '<p style="color:var(--ink-soft);">' + app.description + '</p>' +
-    '</div>';
-  }).join("");
+  if (quickNotesSoon.length) {
+    document.getElementById("quickNotesSoonSection").hidden = false;
+    document.getElementById("quickNotesSoonGrid").innerHTML = quickNotesSoon.map(function(app){
+      return '<div class="soon-card" style="background:#fff;border-color:rgba(20,36,29,0.15);">' +
+        '<span class="badge badge--soon" style="align-self:flex-start;">Coming Soon</span>' +
+        '<h3 style="color:var(--ink);">' + app.title + '</h3>' +
+        '<p style="color:var(--ink-soft);">' + app.description + '</p>' +
+      '</div>';
+    }).join("");
+  }
 </script>
 </body>
 </html>

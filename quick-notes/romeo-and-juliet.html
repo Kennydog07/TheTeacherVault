@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Teacher Vault — Romeo and Juliet QuickNotes</title>
+<style>
+:root{
+  --ink:#1B2A4A;
+  --ink-light:#33456e;
+  --parchment:#F7F4EB;
+  --parchment-dark:#EDE7D6;
+  --blood:#8C2F1E;
+  --blood-bright:#B5432B;
+  --gold:#B4922F;
+  --dusk:#5A3F6B;
+  --text:#232426;
+  --text-soft:#5b5d63;
+  --card:#FFFFFF;
+  --line:#E2DCC8;
+  --radius:10px;
+  --serif: Georgia, 'Times New Roman', Times, serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --mono: 'Courier New', Courier, monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--parchment);color:var(--text);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased;}
+::selection{background:var(--gold);color:#fff;}
+a{color:var(--blood-bright);}
+button{font-family:inherit;cursor:pointer;}
+h1,h2,h3,h4{font-family:var(--serif);color:var(--ink);margin:0 0 .5em 0;}
+p{margin:0 0 .8em 0;}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:.6em 1em;z-index:999;}
+.skip-link:focus{left:8px;top:8px;}
+.app{display:flex;min-height:100vh;}
+.sidebar{width:250px;flex-shrink:0;background:var(--ink);color:#EDE9DA;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.brand{padding:22px 20px 14px 20px;border-bottom:1px solid rgba(255,255,255,.12);}
+.brand .tv-name{font-family:var(--serif);font-size:1.05rem;letter-spacing:.02em;color:#fff;font-weight:700;}
+.brand .tv-sub{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-top:2px;}
+.brand .play-title{margin-top:14px;font-family:var(--serif);font-size:1.8rem;color:#fff;line-height:1.1;}
+.brand .play-sub{font-size:.78rem;color:#c9c4ac;margin-top:6px;line-height:1.4;}
+nav.mainnav{padding:10px 0;flex:1;}
+nav.mainnav button.navlink{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:none;color:#d9d5c3;padding:10px 20px;font-size:.86rem;border-left:3px solid transparent;}
+nav.mainnav button.navlink .num{font-family:var(--mono);font-size:.7rem;color:var(--gold);width:18px;flex-shrink:0;}
+nav.mainnav button.navlink:hover{background:rgba(255,255,255,.06);color:#fff;}
+nav.mainnav button.navlink.active{background:rgba(181,67,43,.25);border-left-color:var(--blood-bright);color:#fff;font-weight:600;}
+nav.mainnav button.navlink:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
+.sidebar-footer{padding:14px 20px;font-size:.7rem;color:#8b876f;border-top:1px solid rgba(255,255,255,.1);}
+.topbar{display:none;position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;padding:12px 16px;align-items:center;justify-content:space-between;}
+.topbar .tv-inline{font-family:var(--serif);font-size:1rem;}
+.topbar .tv-inline span{display:block;font-size:.65rem;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;}
+.hamburger{background:none;border:1px solid rgba(255,255,255,.4);color:#fff;padding:8px 10px;border-radius:6px;font-size:.85rem;}
+.mobile-nav-drawer{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.5);}
+.mobile-nav-drawer.open{display:block;}
+.mobile-nav-panel{position:absolute;top:0;left:0;bottom:0;width:80%;max-width:300px;background:var(--ink);overflow-y:auto;padding-bottom:20px;}
+main{flex:1;min-width:0;padding:36px 44px 80px 44px;max-width:980px;}
+.section{display:none;animation:fadein .25s ease;}
+.section.active{display:block;}
+@keyframes fadein{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+.section-header{margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid var(--ink);}
+.section-header .eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blood-bright);font-weight:700;margin-bottom:4px;}
+.section-header h1{font-size:1.9rem;margin-bottom:4px;}
+.section-header .desc{color:var(--text-soft);font-size:.95rem;max-width:640px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-bottom:16px;}
+.card h3{font-size:1.1rem;margin-bottom:8px;}
+.subtle{color:var(--text-soft);font-size:.88rem;}
+.tag{display:inline-block;background:var(--parchment-dark);color:var(--ink);border-radius:999px;padding:2px 10px;font-size:.72rem;margin:2px 4px 2px 0;font-weight:600;}
+.tag.blood{background:#f3e0da;color:var(--blood);}
+.tag.gold{background:#f3ecd6;color:#7a621c;}
+.tag.dusk{background:#ece3ef;color:var(--dusk);}
+.btn{display:inline-block;background:var(--ink);color:#fff;border:none;padding:9px 16px;border-radius:7px;font-size:.85rem;font-weight:600;}
+.btn:hover{background:var(--ink-light);}
+.btn.secondary{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+.btn.blood{background:var(--blood-bright);}
+.btn.blood:hover{background:var(--blood);}
+.btn:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+.disclosure{border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;background:var(--card);overflow:hidden;}
+.disclosure > .d-head{width:100%;background:none;border:none;text-align:left;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;font-weight:700;color:var(--ink);font-family:var(--serif);font-size:1.02rem;}
+.disclosure > .d-head:hover{background:var(--parchment);}
+.disclosure > .d-head .chev{transition:transform .2s;color:var(--blood-bright);font-size:1.1rem;}
+.disclosure.open > .d-head .chev{transform:rotate(90deg);}
+.disclosure > .d-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.disclosure.open > .d-body{max-height:4000px;}
+.disclosure > .d-body .inner{padding:0 18px 16px 18px;}
+.d-body .mini-label{font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--blood-bright);margin:12px 0 4px 0;}
+.d-body .mini-label:first-child{margin-top:0;}
+.quote-line{font-family:var(--serif);font-style:italic;color:var(--ink);background:var(--parchment);border-left:3px solid var(--gold);padding:8px 12px;margin:6px 0;font-size:.94rem;}
+.grid{display:grid;gap:14px;}
+.grid.two{grid-template-columns:1fr 1fr;}
+.grid.three{grid-template-columns:repeat(3,1fr);}
+@media(max-width:800px){.grid.two,.grid.three{grid-template-columns:1fr;}}
+.qv-controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;align-items:center;}
+.qv-controls input[type=text], .qv-controls select{padding:9px 12px;border:1px solid var(--line);border-radius:7px;font-size:.9rem;background:#fff;}
+.qv-controls input[type=text]{flex:1;min-width:180px;}
+.qv-count{font-size:.82rem;color:var(--text-soft);margin-bottom:10px;}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-bottom:12px;}
+.qcard .qtext{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);margin-bottom:6px;}
+.qcard .qmeta{font-size:.78rem;color:var(--text-soft);margin-bottom:10px;}
+.qcard .qreveal-btn{font-size:.8rem;background:var(--parchment-dark);border:none;padding:6px 12px;border-radius:6px;color:var(--ink);font-weight:600;}
+.qcard .qdetail{display:none;margin-top:12px;border-top:1px dashed var(--line);padding-top:10px;}
+.qcard.open .qdetail{display:block;}
+.qdetail .row{margin-bottom:8px;}
+.qdetail .row b{color:var(--blood-bright);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:2px;}
+.level-toggle{display:flex;gap:6px;margin:10px 0;}
+.level-toggle button{font-size:.75rem;padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:#fff;}
+.level-toggle button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.level-block{display:none;font-size:.9rem;}
+.level-block.active{display:block;}
+.quiz-progress{height:8px;background:var(--parchment-dark);border-radius:6px;overflow:hidden;margin-bottom:18px;}
+.quiz-progress-bar{height:100%;background:var(--blood-bright);width:0%;transition:width .3s;}
+.quiz-q{font-family:var(--serif);font-size:1.15rem;margin-bottom:14px;}
+.quiz-opts{display:flex;flex-direction:column;gap:8px;}
+.quiz-opt{text-align:left;padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;background:#fff;font-size:.95rem;}
+.quiz-opt:hover{border-color:var(--ink);}
+.quiz-opt.correct{background:#e4f2e6;border-color:#4c9a5f;}
+.quiz-opt.incorrect{background:#f7e4e0;border-color:var(--blood-bright);}
+.quiz-opt[disabled]{cursor:default;}
+.quiz-explain{margin-top:12px;padding:12px 14px;background:var(--parchment);border-radius:8px;font-size:.9rem;display:none;}
+.quiz-explain.show{display:block;}
+.quiz-result{text-align:center;padding:30px 10px;}
+.quiz-result .score{font-family:var(--serif);font-size:3rem;color:var(--ink);}
+.quiz-result .weak-areas{text-align:left;max-width:420px;margin:16px auto;}
+.wvs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+@media(max-width:700px){.wvs{grid-template-columns:1fr;}}
+.wvs .weak{border:1.5px solid #c9776a;background:#fbeeeb;border-radius:8px;padding:14px;}
+.wvs .strong{border:1.5px solid #6a9c76;background:#eef6ef;border-radius:8px;padding:14px;}
+.wvs .lbl{font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+.wvs .weak .lbl{color:#a1392a;}
+.wvs .strong .lbl{color:#3f7a4c;}
+.lm-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:760px){.lm-grid{grid-template-columns:1fr;}}
+.lm-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;}
+.lm-card h3{font-size:1rem;color:var(--blood-bright);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:10px;}
+.lm-card ol,.lm-card ul{margin:0;padding-left:20px;font-size:.88rem;}
+.lm-card li{margin-bottom:6px;}
+.print-btn{margin-bottom:16px;}
+@media print{
+  .sidebar,.topbar,.print-btn,nav,.section-header .desc{display:none !important;}
+  main{padding:0;max-width:100%;}
+  .section{display:block !important;}
+  #section-lastminute{display:block !important;}
+  .section:not(#section-lastminute){display:none !important;}
+  body{background:#fff;}
+}
+.sixty{background:var(--ink);color:#f2efe2;border-radius:var(--radius);padding:20px 22px;margin:18px 0;}
+.sixty h3{color:var(--gold);font-size:.85rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;}
+.sixty p{font-size:.95rem;line-height:1.6;}
+footer.app-footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);color:var(--text-soft);font-size:.78rem;}
+.timeline{display:flex;flex-direction:column;gap:0;margin:16px 0;border-left:3px solid var(--gold);padding-left:18px;}
+.timeline .t-item{position:relative;padding:6px 0 18px 14px;}
+.timeline .t-item::before{content:'';position:absolute;left:-25px;top:9px;width:10px;height:10px;border-radius:50%;background:var(--blood-bright);border:2px solid var(--parchment);}
+.timeline .t-item .t-num{font-family:var(--mono);font-size:.72rem;color:var(--blood-bright);font-weight:700;}
+.timeline .t-item p{margin:2px 0 0 0;font-size:.92rem;}
+.jh-game{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;text-align:center;}
+.jh-quote{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--ink);min-height:90px;display:flex;align-items:center;justify-content:center;padding:0 10px;}
+.jh-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0;}
+@media(max-width:640px){.jh-opts{grid-template-columns:1fr 1fr;}}
+.jh-opts button{padding:12px 8px;border-radius:8px;border:1.5px solid var(--line);background:#fff;font-weight:600;font-size:.85rem;}
+.jh-opts button:hover{border-color:var(--ink);}
+.jh-opts button.correct{background:#e4f2e6;border-color:#4c9a5f;}
+.jh-opts button.incorrect{background:#f7e4e0;border-color:var(--blood-bright);}
+.jh-feedback{background:var(--parchment);border-radius:8px;padding:14px;margin-top:14px;font-size:.9rem;display:none;text-align:left;}
+.jh-feedback.show{display:block;}
+.jh-score{font-size:.85rem;color:var(--text-soft);margin-bottom:10px;}
+/* Tragedy blame cards */
+.blame-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-bottom:12px;}
+.blame-card h3{font-size:1.1rem;margin-bottom:8px;}
+.blame-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0;}
+@media(max-width:700px){.blame-cols{grid-template-columns:1fr;}}
+.blame-for{border-left:3px solid var(--blood-bright);padding-left:10px;font-size:.9rem;}
+.blame-against{border-left:3px solid var(--gold);padding-left:10px;font-size:.9rem;}
+/* Relationship map */
+.rel-grid{display:grid;grid-template-columns:1fr;gap:10px;}
+.rel-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+.rel-head{width:100%;background:none;border:none;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.rel-title{font-family:var(--serif);font-size:1.05rem;color:var(--ink);font-weight:700;}
+.rel-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.rel-card.open .rel-body{max-height:600px;}
+.rel-inner{padding:0 18px 16px 18px;font-size:.92rem;}
+/* Fate tracker */
+.fate-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-bottom:12px;text-align:center;}
+.fate-card h3{margin-bottom:10px;}
+.fate-opts{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:10px;}
+.fate-opts button{padding:8px 16px;border-radius:8px;border:1.5px solid var(--line);background:#fff;font-weight:600;font-size:.85rem;}
+.fate-opts button.chosen{background:var(--ink);color:#fff;border-color:var(--ink);}
+.fate-explain{display:none;text-align:left;font-size:.9rem;background:var(--parchment);border-radius:8px;padding:12px 14px;margin-top:10px;}
+.fate-explain.show{display:block;}
+@media(max-width:900px){
+  .sidebar{display:none;}
+  .topbar{display:flex;}
+  main{padding:24px 18px 60px 18px;}
+  .section-header h1{font-size:1.5rem;}
+  .jh-opts{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div class="app">
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <div class="brand">
+      <div class="tv-name">The Teacher Vault</div>
+      <div class="tv-sub">QuickNotes</div>
+      <div class="play-title">Romeo and Juliet</div>
+      <div class="play-sub">Everything you actually need for GCSE English Literature.</div>
+    </div>
+    <nav class="mainnav" id="navList" aria-label="Sections"></nav>
+    <div class="sidebar-footer">Free GCSE revision resource.<br>Works fully offline.</div>
+  </aside>
+
+  <div class="topbar">
+    <div class="tv-inline"><span>The Teacher Vault · QuickNotes</span>Romeo and Juliet</div>
+    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobileDrawer">☰ Menu</button>
+  </div>
+  <div class="mobile-nav-drawer" id="mobileDrawer">
+    <div class="mobile-nav-panel">
+      <div class="brand">
+        <div class="tv-name">The Teacher Vault</div>
+        <div class="tv-sub">QuickNotes</div>
+        <div class="play-title">Romeo and Juliet</div>
+      </div>
+      <nav class="mainnav" id="navListMobile" aria-label="Sections (mobile)"></nav>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <div id="sectionsRoot"></div>
+    <footer class="app-footer">The Teacher Vault · Romeo and Juliet QuickNotes — a free GCSE English Literature revision resource. All explanatory content is original. Shakespeare's text is public domain; quotations have been checked against the original text.</footer>
+  </main>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+const Store = {
+  available: (function(){ try{ const k='__tv_test__'; localStorage.setItem(k,'1'); localStorage.removeItem(k); return true; }catch(e){ return false; } })(),
+  get(key, fallback){ if(!Store.available) return fallback; try{ const v = localStorage.getItem('tv_rj_'+key); return v===null?fallback:JSON.parse(v); }catch(e){ return fallback; } },
+  set(key, val){ if(!Store.available) return; try{ localStorage.setItem('tv_rj_'+key, JSON.stringify(val)); }catch(e){} }
+};
+
+const SECTIONS = [
+  {id:'overview', label:'Overview'},
+  {id:'plot', label:'Plot'},
+  {id:'characters', label:'Characters'},
+  {id:'themes', label:'Themes'},
+  {id:'quotes', label:'Quote Vault'},
+  {id:'context', label:'Context'},
+  {id:'techniques', label:'Techniques'},
+  {id:'exam', label:'Exam'},
+  {id:'quiz', label:'Quiz'},
+  {id:'whocaused', label:'Who Caused It?'},
+  {id:'loveconflict', label:'Love or Conflict?'},
+  {id:'relmap', label:'Relationship Map'},
+  {id:'fatetracker', label:'Fate or Choice?'},
+  {id:'lastminute', label:'Last Minute'}
+];
+
+/* ================= CHARACTERS ================= */
+const CHARACTERS = [
+{id:'romeo', name:'Romeo Montague', role:"Son of Lord and Lady Montague; the play's tragic hero",
+ who:"An impulsive, emotionally intense young man whose understanding of love shifts dramatically across the play, from theatrical infatuation with Rosaline to a deep, transformative passion for Juliet.",
+ journey:"Introduced moping over his unrequited love for Rosaline in exaggerated, self-indulgent language. Meeting Juliet transforms his language and priorities almost instantly. His impulsiveness drives the play's central tragedy: he marries Juliet secretly, kills Tybalt in a fit of grief and rage, and ultimately takes his own life based on incomplete information, having bought poison within hours of hearing of Juliet's apparent death.",
+ relationships:"Son to Montague; close friend to Mercutio and Benvolio; secretly married to Juliet; kills Tybalt (Juliet's cousin) and later Paris.",
+ themes:['Love','Impulsiveness','Fate','Masculinity','Violence'],
+ quotes:["Did my heart love till now?","It is the east, and Juliet is the sun","O, I am fortune's fool!","Thus with a kiss I die"],
+ message:"Shakespeare may use Romeo's dramatic shift from performative, Petrarchan love-language to more direct, urgent expression to suggest that his feelings for Juliet are qualitatively different from his earlier infatuation, while his repeated impulsive decisions show that intense emotion, whether love or grief, can be genuinely dangerous when acted upon without reflection.",
+ examArgs:[
+  "Romeo's language changes noticeably after meeting Juliet, moving from the exaggerated, clichéd imagery of courtly love poetry (used for Rosaline) toward more urgent, direct expression, which could support a reading that his feelings for Juliet are more genuine.",
+  "Romeo's repeated impulsive decisions — marrying within a day of meeting Juliet, killing Tybalt in immediate retaliation, buying poison within hours of hearing false news — suggest Shakespeare presents impulsiveness, not fate alone, as a significant driver of the tragedy.",
+  "Romeo's final words, 'thus with a kiss I die', maintain the same intense, romantic register that has characterised him throughout, suggesting his identity remains fundamentally shaped by passionate feeling even at the moment of death."
+ ]},
+{id:'juliet', name:'Juliet Capulet', role:"Daughter of Lord and Lady Capulet; the play's tragic heroine",
+ who:"A thirteen-year-old girl who develops with remarkable speed from an obedient daughter into an independent, courageous decision-maker over the course of the play.",
+ journey:"Introduced as dutiful and largely passive, deferring to her mother's judgement about marriage. Meeting Romeo prompts a rapid transformation: she takes the initiative in declaring her love, arranges her own secret marriage, defies her father's demand that she marry Paris, and ultimately fakes her own death and takes her own life rather than live without Romeo.",
+ relationships:"Daughter to Capulet and Lady Capulet; close, almost maternal relationship with the Nurse; secretly married to Romeo; unwillingly betrothed to Paris.",
+ themes:['Youth','Independence','Gender','Courage','Isolation'],
+ quotes:["What's in a name?","Parting is such sweet sorrow","O happy dagger"],
+ message:"Shakespeare may use Juliet's rapid development to explore the tension between the limited independence available to young women in a patriarchal society and the genuine courage and agency she demonstrates once she chooses to act on her own judgement.",
+ examArgs:[
+  "Juliet's growing independence, from deferring to her mother's judgement in Act One to defying her father's demands in Act Three, can be read as Shakespeare presenting rapid personal growth compressed into an extraordinarily short timeframe.",
+  "Juliet's increasing isolation across the play, as she loses the support of the Nurse and her parents, arguably makes her final, drastic choice to take her own life feel like the tragic result of having no remaining trusted adult to turn to.",
+  "Juliet's practical, decisive language ('Give me my Romeo') contrasts with Romeo's more elaborately poetic style at points, suggesting Shakespeare presents her as, in some respects, the more clear-sighted and resolute of the two lovers."
+ ]},
+{id:'mercutio', name:'Mercutio', role:"Romeo's close friend; kinsman to Prince Escalus",
+ who:"A witty, cynical and combative young man whose sharp humour and scepticism about romantic love provide a sharp contrast to Romeo's earnest passion.",
+ journey:"Appears mocking Romeo's lovesickness with bawdy humour and delivering the famous, increasingly dark Queen Mab speech. His death in Act Three, killed by Tybalt while defending Romeo's honour after Romeo refuses to fight, marks a decisive structural turning point, directly triggering Romeo's fatal decision to kill Tybalt.",
+ relationships:"Close friend to Romeo and Benvolio; kinsman to Prince Escalus and Paris; killed by Tybalt.",
+ themes:['Humour','Masculinity','Violence','Friendship'],
+ quotes:["A plague o' both your houses!"],
+ message:"Shakespeare may use Mercutio's cynical, mocking perspective on love throughout the play to provide an ironic counterpoint to Romeo's earnestness, while his violent death demonstrates how quickly the honour culture surrounding masculinity can turn deadly.",
+ examArgs:[
+  "Mercutio's dying curse, 'a plague o' both your houses', functions as a direct authorial-feeling condemnation of the feud, delivered by a character killed by violence he was not personally responsible for starting.",
+  "Mercutio's death marks the play's major structural turning point, shifting the tone decisively from comedy and romance toward inevitable tragedy, and can be used to discuss Shakespeare's control of dramatic structure.",
+  "Mercutio's persistent mockery of romantic love throughout the play offers a sceptical counter-perspective that complicates any simple reading of the play as a straightforward celebration of romantic passion."
+ ]},
+{id:'tybalt', name:'Tybalt', role:"Juliet's cousin; nephew to Lady Capulet",
+ who:"A proud, quick-tempered young man deeply committed to family honour and the ongoing feud with the Montagues, whose aggression repeatedly drives the play's violence.",
+ journey:"Introduced immediately as combative, refusing Benvolio's attempt at peace with open hostility. Enraged by Romeo's uninvited presence at the Capulet party, he later challenges Romeo to a duel; when Romeo refuses to fight (secretly now his kinsman by marriage), Tybalt kills Mercutio instead, prompting Romeo to kill him in turn.",
+ relationships:"Cousin to Juliet; nephew to Lady Capulet; kills Mercutio; killed by Romeo.",
+ themes:['Honour','Violence','Family Loyalty','Masculinity'],
+ quotes:["I hate the word, as I hate hell, all Montagues, and thee"],
+ message:"Shakespeare may use Tybalt to embody a violent, honour-driven masculinity in which any perceived insult demands physical retaliation, presenting this rigid code as a significant structural cause of the play's tragic violence.",
+ examArgs:[
+  "Tybalt's declaration that he hates the very 'word' peace 'as I hate hell' uses hyperbolic religious language to establish an absolute, uncompromising commitment to conflict from his very first appearance.",
+  "Tybalt's anger at Romeo's presence at the Capulet party, though ultimately suppressed by Capulet himself, plants the seed for his later challenge to Romeo, showing how swallowed insults in a honour culture tend to resurface with greater violence.",
+  "Tybalt's death, caused directly by Romeo's grief-driven retaliation for Mercutio, demonstrates how thoroughly the feud's violent logic has been internalised even by a character (Romeo) who initially tries to resist it."
+ ]},
+{id:'friar', name:'Friar Lawrence', role:'Franciscan friar; secret advisor to Romeo and Juliet',
+ who:"A well-meaning religious figure who agrees to secretly marry Romeo and Juliet in hopes of reconciling their feuding families, and who later devises the risky sleeping-potion plan.",
+ journey:"Agrees to marry the couple partly from genuine care and partly from hope that their union might end the feud. His later plan — faking Juliet's death via a sleeping potion — is well-intentioned but poorly communicated, and his message explaining the plan to Romeo fails to arrive in time, contributing directly to the play's final tragedy.",
+ relationships:"Secret spiritual advisor and confidant to both Romeo and Juliet; performs their marriage.",
+ themes:['Good Intentions','Secrecy','Responsibility','Fate'],
+ quotes:["These violent delights have violent ends"],
+ message:"Shakespeare may use Friar Lawrence to show that good intentions alone are insufficient to prevent tragedy; his well-meaning secrecy and reliance on a fragile, poorly communicated plan represent a significant adult failure of responsibility that contributes directly to the deaths of both young lovers.",
+ examArgs:[
+  "Friar Lawrence's warning that 'these violent delights have violent ends' is deeply ironic given his own role in enabling the very violent, rushed passion he cautions Romeo against, complicating a simple reading of him as purely wise or cautious.",
+  "The failure of Friar Lawrence's letter to reach Romeo can be read as a structural device Shakespeare uses to show how even carefully laid human plans remain vulnerable to circumstance, blurring the line between fate and human error.",
+  "As one of the few adult authority figures the young lovers trust, Friar Lawrence's flawed judgement invites a reading of the play as a critique of adult failure and inadequate guidance, not simply youthful recklessness."
+ ]},
+{id:'nurse', name:'The Nurse', role:"Juliet's childhood caregiver and confidante",
+ who:"A warm, earthy, comic figure who has cared for Juliet since infancy and initially supports her secret relationship with Romeo, before ultimately betraying Juliet's trust.",
+ journey:"Introduced with extended comic reminiscence about Juliet's infancy, establishing her closeness to Juliet as almost maternal. She actively helps arrange the secret marriage, but after Romeo's banishment, pragmatically advises Juliet to forget him and marry Paris instead, a betrayal that leaves Juliet emotionally isolated at a critical moment.",
+ relationships:"Juliet's childhood nurse and closest confidante; facilitates Juliet's secret marriage to Romeo.",
+ themes:['Affection','Loyalty','Betrayal','Practicality'],
+ quotes:[],
+ message:"Shakespeare may use the Nurse's shift from loyal supporter to pragmatic advocate for bigamy to demonstrate how even the closest relationships can fail under social pressure, deepening the play's exploration of Juliet's isolation.",
+ examArgs:[
+  "The Nurse's earlier comic warmth makes her later advice to marry Paris feel especially painful, since it comes from someone who has genuinely cared for Juliet since infancy rather than a more distant or clearly hostile figure.",
+  "The Nurse's practical, unsentimental advice — essentially recommending bigamy for social and personal safety — contrasts with the play's more romantic register elsewhere, offering a pragmatic, working-class perspective on love and marriage.",
+  "The Nurse's betrayal can be read as the final loss of adult support that leaves Juliet with only Friar Lawrence, and ultimately only herself, to rely on."
+ ]},
+{id:'capulet', name:'Lord Capulet', role:"Juliet's father; head of the Capulet household",
+ who:"A powerful, sometimes contradictory patriarch who initially appears protective of Juliet's wishes regarding marriage, but becomes violently authoritarian when she refuses to marry Paris.",
+ journey:"Introduced telling Paris that Juliet is too young for marriage and that her own consent should matter, appearing relatively progressive by contemporary standards. After Tybalt's death, he abruptly arranges Juliet's marriage to Paris without her input, and reacts to her refusal with furious threats to disown her.",
+ relationships:"Father to Juliet; husband to Lady Capulet; uncle to Tybalt; host of the Capulet feast where Romeo and Juliet meet.",
+ themes:['Authority','Patriarchy','Family','Reputation','Contradiction'],
+ quotes:["Hang thee, young baggage, disobedient wretch!"],
+ message:"Shakespeare may use Capulet's contradictory behaviour, initially protective, then violently authoritarian, to expose the limits of Elizabethan patriarchal 'kindness', which remains conditional on a daughter's obedience.",
+ examArgs:[
+  "The sharp contrast between Capulet's early insistence that Juliet's own consent should matter and his later furious authoritarianism exposes how quickly patriarchal goodwill can collapse once a daughter's independent choice conflicts with paternal authority.",
+  "Capulet's violent language toward Juliet ('young baggage, disobedient wretch') reveals the underlying threat of force that always structured his earlier apparent consideration for her wishes.",
+  "Capulet's grief and reconciliation with Montague at the play's close, prompted only by his daughter's death, suggests Shakespeare presents social change as achievable but tragically, and unnecessarily, costly."
+ ]},
+{id:'benvolio', name:'Benvolio', role:"Romeo's cousin and close friend; a Montague",
+ who:"A consistently peace-seeking character who repeatedly attempts to prevent or de-escalate violence throughout the play, providing a notable contrast to more combative figures like Tybalt.",
+ journey:"Appears trying to break up the opening street brawl, later encourages Romeo to attend the Capulet party to forget Rosaline, and attempts unsuccessfully to prevent the fatal confrontation between Mercutio and Tybalt in Act Three.",
+ relationships:"Cousin and close friend to Romeo; nephew to Montague; witness to and reporter of the fatal Act Three brawl.",
+ themes:['Loyalty','Peace','Family'],
+ quotes:[],
+ message:"Shakespeare may use Benvolio's consistent, if ultimately unsuccessful, attempts at peacemaking to demonstrate that individual efforts to resist the feud's violence, however well-intentioned, are insufficient against its deeper structural momentum.",
+ examArgs:[
+  "Benvolio's name (from the Italian for 'good will') directly signals his peacemaking role, making his repeated failure to prevent violence a pointed commentary on the feud's overwhelming destructive power."
+ ]},
+{id:'paris', name:'County Paris', role:"A young nobleman; Juliet's parentally-approved suitor",
+ who:"A respectable, socially appropriate suitor for Juliet whose genuine, if somewhat conventional, affection for her is ultimately overshadowed by her secret marriage to Romeo.",
+ journey:"Seeks Capulet's permission to marry Juliet early in the play and is initially asked to wait. After Tybalt's death, the marriage is hastily arranged; Paris later confronts Romeo at Juliet's tomb, believing him to be a grave-robber, and is killed by Romeo in the play's final violent confrontation.",
+ relationships:"Suitor, and briefly fiancé, to Juliet; kinsman to Prince Escalus and Mercutio; killed by Romeo.",
+ themes:['Marriage','Social Expectation','Death'],
+ quotes:[],
+ message:"Shakespeare may use Paris as a representative of conventional, socially appropriate romance, whose genuine but ultimately secondary claim on Juliet's affections is overshadowed by the play's central, more intense passion.",
+ examArgs:[
+  "Paris's death at Romeo's hands, largely a case of mistaken circumstance rather than personal enmity, extends the play's violence beyond the immediate feud, suggesting its destructive consequences reach even relatively innocent bystanders."
+ ]},
+{id:'prince', name:'Prince Escalus', role:"Ruler of Verona",
+ who:"The play's figure of civic authority, whose repeated warnings against the feud's violence go largely unheeded until the tragedy has already claimed multiple lives.",
+ journey:"Appears early in the play threatening death to anyone who disturbs the peace again, then later banishes Romeo (rather than executing him) following Tybalt's death. Delivers the play's closing lines, acknowledging the tragedy's devastating cost.",
+ relationships:"Kinsman to Mercutio and Paris; civic ruler over both the Montague and Capulet households.",
+ themes:['Authority','Violence','Consequences'],
+ quotes:[],
+ message:"Shakespeare may use Prince Escalus to demonstrate the limits of civic authority in the face of deep-rooted family hatred, since his warnings and punishments consistently arrive too late to prevent escalating violence.",
+ examArgs:[
+  "The Prince's repeated but ultimately ineffective interventions can be read as Shakespeare's critique of institutional authority's inability to resolve conflicts rooted in personal and family hatred through legal punishment alone."
+ ]}
+];
+
+/* ================= THEMES ================= */
+const THEMES = [
+{name:'Love', explanation:"The play explores multiple forms of love, from Romeo's performative infatuation with Rosaline to the intense, transformative passion he shares with Juliet.",
+ where:"Romeo's exaggerated Petrarchan language for Rosaline in Act One; the shared sonnet at the Capulet party; the balcony scene's escalating declarations.",
+ characters:['Romeo','Juliet'],
+ quotes:["Did my heart love till now?","It is the east, and Juliet is the sun"],
+ message:"Shakespeare may present genuine love as something that transforms language and priorities almost instantly and completely, distinguishing it from the more performative, self-indulgent language Romeo uses earlier for Rosaline.",
+ context:"Elizabethan courtly love poetry (the Petrarchan tradition) provided a familiar, recognisable style Shakespeare could use and then subvert as Romeo's language changes.",
+ thesis:["Shakespeare presents genuine love as fundamentally different in kind, not just degree, from performative infatuation, marked by a decisive shift in language and priority.","The play repeatedly links intense love with violence and death, suggesting Shakespeare views passionate love as inherently dangerous as well as transformative."]},
+{name:'Conflict', explanation:"The ongoing feud between the Montague and Capulet households structures the play's tragic events from its opening brawl to its final reconciliation.",
+ where:"The opening street fight in Act One; Tybalt's aggression throughout; Mercutio's death and Romeo's retaliation in Act Three.",
+ characters:['Tybalt','Mercutio','Prince Escalus'],
+ quotes:["ancient grudge"],
+ message:"Shakespeare may present the feud as a largely inherited, structural conflict whose origins are never fully explained, suggesting its persistence stems from social momentum and honour culture rather than any currently justifiable grievance.",
+ context:"Public violence and duelling were genuine features of Elizabethan social life, particularly among young men concerned with honour and reputation.",
+ thesis:["Shakespeare presents the feud as a self-perpetuating structural force that individual characters struggle to escape, regardless of their personal wishes."]},
+{name:'Fate', explanation:"The play repeatedly invokes fate and the stars, but Shakespeare balances this with clear evidence of human choice contributing to the tragedy.",
+ where:"The Prologue's description of 'star-cross'd lovers'; Romeo's declaration 'O, I am fortune's fool!' after killing Tybalt.",
+ characters:['Romeo','Juliet'],
+ quotes:["star-cross'd lovers","O, I am fortune's fool!"],
+ message:"Shakespeare may present fate and human choice as working together rather than fate alone determining events; the Prologue announces the tragic ending, but the specific chain of events leading there depends heavily on characters' impulsive decisions.",
+ context:"Elizabethan audiences held varied beliefs about astrology and fate, ranging from serious conviction to sceptical entertainment, meaning 'star-cross'd' would not necessarily imply total predetermination to all viewers.",
+ thesis:["Shakespeare presents the tragedy as arising from an interaction between fate and human choice, rather than fate alone removing characters' responsibility for their actions.","Characters' repeated invocation of fate, particularly by Romeo, could be read as a form of self-justification that deflects attention from their own impulsive decisions."]},
+{name:'Family', explanation:"Family loyalty and obligation shape nearly every character's choices, from the feud itself to Capulet's authority over Juliet's marriage.",
+ where:"The opening brawl between servants loyal to each household; Capulet's arrangement of Juliet's marriage to Paris.",
+ characters:['Capulet','Lady Capulet','Tybalt'],
+ quotes:[],
+ message:"Shakespeare may present family loyalty as a double-edged force, capable of providing identity and belonging while also demanding violent conformity and limiting individual choice, particularly for young women like Juliet.",
+ context:"Elizabethan family structures granted fathers significant legal and social authority over their children's marriages and conduct.",
+ thesis:["Shakespeare presents family loyalty as simultaneously a source of belonging and a destructive constraint on individual happiness and choice."]},
+{name:'Violence', explanation:"Violence, both public brawling and private duelling, recurs throughout the play, escalating from minor skirmishes to multiple deaths.",
+ where:"The opening street fight; Mercutio's and Tybalt's deaths in Act Three; the final confrontation at the tomb.",
+ characters:['Tybalt','Mercutio','Romeo'],
+ quotes:[],
+ message:"Shakespeare may present violence as self-perpetuating, since each act of violence (Mercutio's death, Tybalt's death) directly provokes the next, suggesting a cycle that individual characters struggle to break once set in motion.",
+ context:"Public duelling and street violence, particularly among young men defending honour, were genuine features of Elizabethan urban life.",
+ thesis:["Shakespeare presents violence as following its own internal, self-perpetuating logic, where each act demands retaliation regardless of the participants' original intentions."]},
+{name:'Youth', explanation:"The play's central tragedy is driven substantially by the impulsiveness, intensity and limited experience of its young protagonists.",
+ where:"Romeo and Juliet's rapid courtship and marriage within a single day; their impulsive responses to crisis throughout.",
+ characters:['Romeo','Juliet'],
+ quotes:[],
+ message:"Shakespeare may present youth as a period of intense feeling and rapid decision-making, capable of both genuine insight (Juliet's clear-sighted courage) and dangerous impulsiveness (Romeo's rushed decisions).",
+ context:"Juliet is explicitly stated to be not yet fourteen, notably young even by Elizabethan standards for marriage, which typically occurred somewhat later.",
+ thesis:["Shakespeare presents youth as a double-edged force, providing the emotional intensity that makes Romeo and Juliet's love so powerful while also driving the impulsive decisions that doom it."]},
+{name:'Gender', explanation:"The play explores unequal power between men and women, particularly through Juliet's limited independence and the aggressive masculinity displayed by male characters.",
+ where:"Capulet's authority over Juliet's marriage; Mercutio and Tybalt's violent, honour-driven masculinity.",
+ characters:['Juliet','Capulet','Tybalt'],
+ quotes:[],
+ message:"Shakespeare may critique both the restricted independence available to women like Juliet and the dangerous, honour-driven masculinity that repeatedly escalates conflict among the male characters.",
+ context:"Elizabethan women had limited legal and social independence, particularly regarding marriage, which was typically arranged with significant paternal authority.",
+ thesis:["Shakespeare presents gender expectations as constraining for both sexes, limiting Juliet's independence while pressuring male characters toward violent displays of honour."]},
+{name:'Marriage', explanation:"The play contrasts Romeo and Juliet's secret, love-based marriage with the more conventional, parentally-arranged match proposed with Paris.",
+ where:"Capulet's arrangement of Juliet's marriage to Paris; Romeo and Juliet's secret wedding officiated by Friar Lawrence.",
+ characters:['Juliet','Capulet','Paris','Friar Lawrence'],
+ quotes:[],
+ message:"Shakespeare may present the tension between marriage as a personal, romantic choice and marriage as a socially and economically strategic family arrangement as a central structural conflict driving the play's tragedy.",
+ context:"Elizabethan marriages, particularly among the nobility, were frequently arranged with family status and financial considerations taking priority over romantic love.",
+ thesis:["Shakespeare presents the clash between romantic and arranged models of marriage as a central structural tension the play's tragedy ultimately fails to resolve happily."]},
+{name:'Honour', explanation:"Masculine honour, and the violent responses required to defend it, drives much of the play's central conflict, particularly through Tybalt and Mercutio.",
+ where:"Tybalt's outrage at Romeo's presence at the Capulet feast; Mercutio's furious response to Tybalt's insults.",
+ characters:['Tybalt','Mercutio'],
+ quotes:[],
+ message:"Shakespeare may present honour culture as a dangerous social force that compels violent retaliation even from characters, like Mercutio, who might otherwise be inclined toward wit rather than genuine hostility.",
+ context:"Personal and family honour carried significant social weight in Elizabethan society, particularly regarding public insult and perceived disrespect.",
+ thesis:["Shakespeare presents honour culture as a coercive social force that demands violent response regardless of individual characters' personal preferences."]},
+{name:'Death', explanation:"Death pervades the play from its Prologue onward, ultimately claiming Mercutio, Tybalt, Paris, Romeo and Juliet.",
+ where:"The Prologue's announcement of the lovers' deaths; the escalating body count from Act Three onward.",
+ characters:['Romeo','Juliet','Mercutio','Tybalt','Paris'],
+ quotes:["Thus with a kiss I die","O happy dagger"],
+ message:"Shakespeare may use the accumulating deaths to demonstrate how violence, once initiated, extends its consequences far beyond its original participants, ultimately claiming the very lovers whose union might have ended the feud.",
+ context:"Elizabethan attitudes toward suicide were shaped by religious teaching viewing it as a serious sin, adding moral weight to Romeo and Juliet's final choices.",
+ thesis:["Shakespeare presents death as the tragic but almost inevitable culmination of a chain of violence the characters prove unable to break."]},
+{name:'Impulsiveness', explanation:"Repeated hasty decisions, from the lovers' rushed marriage to Romeo's swift purchase of poison, drive the play's tragic momentum.",
+ where:"Romeo and Juliet's marriage within a day of meeting; Romeo's immediate retaliation against Tybalt; Romeo's decision to buy poison before verifying Juliet's death.",
+ characters:['Romeo','Juliet'],
+ quotes:[],
+ message:"Shakespeare may present impulsiveness as a significant driver of the tragedy independent of fate, since several key decisions could plausibly have unfolded differently with more patience or verified information.",
+ context:"Elizabethan tragedy often explored the tension between passionate feeling and prudent restraint as a central moral concern.",
+ thesis:["Shakespeare presents impulsiveness, rather than fate alone, as directly responsible for several of the tragedy's most consequential turning points."]},
+{name:'Loyalty', explanation:"Loyalty, to family, friends and lovers, shapes characters' choices throughout, sometimes constructively and sometimes destructively.",
+ where:"Mercutio's fatal loyalty to Romeo in confronting Tybalt; the Nurse's initial loyal support of Juliet's secret marriage.",
+ characters:['Mercutio','Nurse','Benvolio'],
+ quotes:[],
+ message:"Shakespeare may present loyalty as morally admirable but potentially dangerous, since Mercutio's loyalty to Romeo directly leads to his own death, complicating a simple celebration of loyalty as unambiguously good.",
+ context:"Loyalty to family and friends carried significant social and moral weight in Elizabethan honour culture.",
+ thesis:["Shakespeare presents loyalty as a genuinely admirable but morally complicated virtue, capable of both supporting characters and contributing directly to tragic outcomes."]},
+{name:'Individual vs Society', explanation:"Romeo and Juliet's personal desires repeatedly clash with the social expectations and obligations imposed by their families and community.",
+ where:"Juliet's resistance to her arranged marriage with Paris; Romeo and Juliet's secret marriage in defiance of the feud.",
+ characters:['Romeo','Juliet','Capulet'],
+ quotes:[],
+ message:"Shakespeare may present the tragedy as arising substantially from the impossibility of reconciling genuine individual desire with rigid social and family expectation within Verona's structures.",
+ context:"Elizabethan society placed significant weight on family, social hierarchy and communal reputation over individual romantic preference.",
+ thesis:["Shakespeare presents the tragedy as arising from an irreconcilable conflict between individual desire and inherited social obligation."]},
+{name:'Light and Darkness', explanation:"Light and dark imagery runs throughout the play, initially celebrating the lovers' romance before becoming increasingly associated with death.",
+ where:"Romeo's celebration of Juliet as the sun in the balcony scene; the darkness surrounding their secret meetings and, later, the tomb.",
+ characters:['Romeo','Juliet'],
+ quotes:["But, soft! what light through yonder window breaks?","It is the east, and Juliet is the sun"],
+ message:"Shakespeare may use the gradual shift from celebratory light imagery to darker, death-associated imagery to visually chart the play's movement from romantic comedy toward tragedy.",
+ context:"Light and dark imagery carried familiar symbolic associations (goodness/evil, safety/danger) for Elizabethan audiences that Shakespeare both uses and complicates.",
+ thesis:["Shakespeare structures the play's light and dark imagery to visually track its movement from romantic celebration toward tragic darkness, without a simple, stable link between light and safety."]},
+{name:'Time', explanation:"The play's remarkably compressed timeframe, taking place over roughly four days, intensifies its sense of tragic inevitability and rushed decision-making.",
+ where:"The rapid sequence from the lovers' meeting to marriage to death, all within days.",
+ characters:['Romeo','Juliet','Friar Lawrence'],
+ quotes:["Wisely and slow; they stumble that run fast"],
+ message:"Shakespeare may use the play's compressed timeframe to intensify the sense that its characters, and perhaps the audience, have insufficient time to reconsider or reverse their most consequential decisions.",
+ context:"Elizabethan tragedy often used compressed timeframes to heighten dramatic tension and a sense of inescapable momentum.",
+ thesis:["Shakespeare's compression of the play's events into a handful of days structurally reinforces its themes of impulsiveness and insufficient reflection."]},
+{name:'Responsibility', explanation:"The play distributes responsibility for the tragedy across multiple characters and circumstances rather than locating it in a single cause.",
+ where:"Friar Lawrence's risky secret plan; the Nurse's betrayal of Juliet's trust; Capulet's authoritarian ultimatum; the failed letter.",
+ characters:['Friar Lawrence','Nurse','Capulet','Romeo','Juliet'],
+ quotes:[],
+ message:"Shakespeare may deliberately distribute responsibility across fate, family conflict, adult failure and the lovers' own impulsive choices, resisting any single, simple explanation for the tragedy.",
+ context:"Elizabethan tragedy often explored the interplay between fate, individual moral failing and circumstance as joint causes of catastrophe.",
+ thesis:["Shakespeare presents the tragedy as resulting from a complex interaction of fate, adult failure and impulsive individual choice, resisting any single explanatory cause."]}
+];
+
+/* ================= TECHNIQUES ================= */
+const TECHNIQUES = [
+{name:'Metaphor', def:"A direct comparison between two things without using 'like' or 'as'.", example:"Romeo declares 'It is the east, and Juliet is the sun', directly identifying Juliet with the sun itself.", effect:"Elevates Juliet to a cosmic, life-giving significance in Romeo's eyes, presenting his love as almost religious in intensity.", howto:"Identify exactly what is being compared and explain what specific quality is transferred by that comparison."},
+{name:'Simile', def:"A comparison using 'like' or 'as'.", example:"Juliet compares her love to the sea: 'My bounty is as boundless as the sea, my love as deep'.", effect:"The comparison to something vast and immeasurable emphasises the overwhelming scale of Juliet's feeling.", howto:"Explain the specific connotations of the object being compared to, not just that a simile is present."},
+{name:'Oxymoron', def:"A figure of speech combining seemingly contradictory terms.", example:"Romeo's description of love as 'O brawling love! O loving hate!' while describing the aftermath of the opening brawl.", effect:"Captures the play's central paradox: love and conflict are inseparably linked throughout Verona, not opposing forces.", howto:"Explain how the contradictory terms work together to capture a genuine, complex truth about the play's central concerns, rather than simply noting a contradiction exists."},
+{name:'Religious imagery', def:"Language and imagery drawing on Christian religious concepts and vocabulary.", example:"Romeo and Juliet's first exchange uses the extended metaphor of pilgrims and saints ('this holy shrine').", effect:"Elevates their attraction to something sacred and reverent, distinguishing it from more casual romantic language elsewhere in the play.", howto:"Explain what specific religious concept is being invoked and what moral or emotional weight it adds to the moment."},
+{name:'Light/dark imagery', def:"Recurring imagery of light and darkness used symbolically.", example:"Romeo's celebration of Juliet as sunlight breaking through darkness in the balcony scene.", effect:"Initially associates the lovers with hope and radiance, though this imagery grows increasingly complicated as the play moves toward tragedy.", howto:"Track how light/dark imagery develops across the whole play, not just in a single scene, to show its full thematic significance."},
+{name:'Foreshadowing', def:"Hints or clues that anticipate later events.", example:"The Prologue's description of 'star-cross'd lovers' announces the tragic ending before the play has even begun.", effect:"Creates dramatic irony throughout, since the audience watches events unfold already knowing their tragic outcome.", howto:"Identify the later event being anticipated and explain how the earlier hint shapes audience expectation and tension."},
+{name:'Dramatic irony', def:"When the audience knows something a character does not, creating tension.", example:"The audience knows Juliet is not actually dead when Romeo discovers her in the tomb and decides to take poison.", effect:"Creates almost unbearable tension, as the audience is powerless to prevent the tragic misunderstanding they can clearly see unfolding.", howto:"Identify precisely what the audience knows that the character does not, and explain the emotional effect of that gap."},
+{name:'Soliloquy', def:"A speech in which a character, alone on stage, reveals private thoughts directly to the audience.", example:"Juliet's soliloquy anticipating her wedding night and, later, her fear before drinking the sleeping potion.", effect:"Gives the audience privileged, intimate access to Juliet's private courage and fear, deepening sympathy for her position.", howto:"Use soliloquies as reliable evidence of a character's genuine inner state, tracking how their content shifts across the play."},
+{name:'Monologue', def:"An extended speech delivered by one character, potentially to other characters present.", example:"Mercutio's extended Queen Mab speech, delivered to Romeo and Benvolio.", effect:"Allows Mercutio's wit and increasingly dark imagination to be displayed at length, revealing his cynical view of dreams and desire.", howto:"Distinguish monologue (addressed to other characters) from soliloquy (private to the audience) and analyse who is meant to hear the speech."},
+{name:'Sonnet form', def:"A fourteen-line poem with a specific rhyme scheme, traditionally associated with romantic love poetry.", example:"The play's Prologue is structured as a sonnet, as is Romeo and Juliet's first shared exchange at the Capulet party.", effect:"Signals to an Elizabethan audience, familiar with the form, that romantic significance is at stake, while also imposing a sense of structured inevitability.", howto:"Note where sonnet form appears and consider why Shakespeare chooses this structured, traditional form for that specific moment."},
+{name:'Shared sonnet', def:"A sonnet whose fourteen lines are divided between two speakers.", example:"Romeo and Juliet's first conversation at the Capulet party forms a complete shared sonnet, built around the extended metaphor of pilgrims and saints.", effect:"The way their alternating lines complete each other's rhyme and rhythm structurally enacts a sense of natural harmony and instant connection between them.", howto:"Explain how the alternating structure itself, not just the words spoken, contributes to the sense of the couple's compatibility."},
+{name:'Contrast', def:"Placing two clearly different things side by side to highlight their differences.", example:"Mercutio's cynical, bawdy view of love directly contrasts with Romeo's earnest, elevated language throughout Act One and Two.", effect:"Sharpens the audience's understanding of Romeo's genuine feeling by measuring it against a clearly different perspective.", howto:"State both elements of the contrast explicitly, then explain what it reveals about character or theme."},
+{name:'Juxtaposition', def:"Placing two contrasting ideas or images close together, often within the same scene or line.", example:"The oxymoron 'O brawling love! O loving hate!' juxtaposes love and conflict within a single line.", effect:"Creates a jarring, memorable moment that captures the play's central thematic paradox.", howto:"Explain precisely how the juxtaposed elements clash and what that clash reveals thematically."},
+{name:'Symbolism', def:"An object, image or figure representing a deeper idea beyond its literal meaning.", example:"The dagger Juliet uses to end her life symbolically completes the play's recurring association between passionate love and violent death.", effect:"Concentrates the play's central thematic paradox into a single, powerful stage image at its tragic climax.", howto:"Explain what the symbol represents and connect it explicitly to the novella's — or here, play's — central themes."},
+{name:'Repetition', def:"Deliberate reuse of a word or phrase for emphasis.", example:"Juliet's repeated questioning 'Wherefore art thou Romeo?' (meaning 'why are you Romeo', not 'where are you').", effect:"Emphasises her genuine anguish at the fact that Romeo's family name, not his personal identity, is the obstacle to their love.", howto:"Explain what specific emotional or thematic idea the repetition reinforces, not just that repetition occurs."},
+{name:'Imperatives', def:"Commanding verb forms used to give orders.", example:"Juliet's urgent command 'Give me my Romeo' during her soliloquy anticipating their wedding night.", effect:"Reveals Juliet's active, assertive desire rather than passive waiting, reinforcing her characterisation as increasingly independent.", howto:"Link imperative language directly to what it reveals about a character's agency or emotional state at that specific moment."},
+{name:'Rhetorical questions', def:"Questions asked for effect rather than expecting a literal answer.", example:"Juliet's famous 'What's in a name?' during the balcony scene.", effect:"Invites the audience, alongside Juliet, to genuinely question whether the feud's inherited hostility has any rational basis.", howto:"Explain what the rhetorical question invites the audience to consider, beyond simply noting a question is asked."},
+{name:'Semantic field', def:"A group of related words running through a text.", example:"A semantic field of religious devotion (pilgrim, shrine, saint, sin) runs through Romeo and Juliet's first shared sonnet.", effect:"Reinforces the sense that their attraction carries a sacred, reverent quality distinct from more casual romantic language.", howto:"Track a semantic field across a scene or the whole play to show how Shakespeare sustains a particular idea or tone."},
+{name:'Stagecraft', def:"The practical staging choices (movement, positioning, physical action) that shape a scene's performance and meaning.", example:"The balcony scene's physical staging, with Juliet positioned above Romeo, visually reinforces his idealisation of her as almost celestial.", effect:"Reinforces thematic and emotional content through the physical geography of the stage itself, not just spoken language.", howto:"Consider what the physical staging and positioning of characters might contribute to a scene's meaning, even without an explicit stage direction."},
+{name:'Structure', def:"The overall shape and organisation of the play's plot and scenes.", example:"The play moves from the comedic tone of Acts One and Two toward escalating tragedy following Mercutio's death in Act Three.", effect:"Creates a clear structural turning point that reorients the audience's expectations from romantic comedy toward inevitable tragedy.", howto:"Consider why Shakespeare places specific events where he does within the play's overall five-act structure, and what effect that placement creates."}
+];
+
+/* ================= QUOTE VAULT ================= */
+const QUOTES = [
+{text:"star-cross'd lovers", speaker:"Chorus (Prologue)", act:"Prologue", characters:['Other'], themes:['Fate','Death'],
+ meaning:"The Chorus announces in the Prologue that the two young lovers are doomed by fate ('the stars') to a tragic end.",
+ technique:"Compound adjective; astrological metaphor; sonnet form.",
+ solid:"This phrase tells the audience straight away that Romeo and Juliet's love is doomed, using the idea of stars controlling fate to suggest it's not really their fault.",
+ deep:"Embedding this phrase within the Prologue's formal sonnet structure gives the fatal prophecy an air of poetic inevitability, yet the term 'cross'd' also implies active opposition or thwarting, suggesting external forces actively work against the lovers rather than simply predetermining their fate passively — a subtle distinction worth exploring against the play's later evidence of human choice.",
+ context:"Elizabethan audiences held varied beliefs about astrology, ranging from serious conviction to popular entertainment, meaning this framing would not necessarily be read as removing all human responsibility.",
+ useFor:"Essays on fate — arguably the single most quoted phrase for this theme, though should be balanced against evidence of human choice."},
+{text:"ancient grudge", speaker:"Chorus (Prologue)", act:"Prologue", characters:['Other'], themes:['Conflict','Family'],
+ meaning:"The Chorus describes the Montague-Capulet feud as long-standing, without explaining its original cause.",
+ technique:"Adjective choice ('ancient'); alliteration.",
+ solid:"Calling the feud 'ancient' shows it has been going on for a very long time, and the fact we're never told why it started suggests the reason doesn't really matter any more.",
+ deep:"Shakespeare's deliberate refusal to specify the feud's origin throughout the entire play is structurally significant: by withholding any rational justification, he frames the conflict as a largely inherited, self-perpetuating social momentum rather than a grievance any character could meaningfully resolve through reason or negotiation.",
+ context:"Ongoing family feuds and vendettas were a recognised feature of some Mediterranean cultures familiar to Elizabethan audiences through travel writing and other Italian-set drama.",
+ useFor:"Essays on conflict, family, or the structural, inherited nature of the feud."},
+{text:"O brawling love! O loving hate!", speaker:"Romeo", act:"1.1", characters:['Romeo'], themes:['Love','Conflict'],
+ meaning:"Romeo, upset over Rosaline and having just witnessed the aftermath of the opening street fight, expresses the paradoxical connection between love and violence.",
+ technique:"Oxymoron; anaphora ('O...O').",
+ solid:"This contradictory phrase shows Romeo linking love and violence together, which sets up a pattern that continues throughout the play.",
+ deep:"This oxymoron, delivered before Romeo has even met Juliet, establishes love and conflict as structurally inseparable forces in Verona from the play's very beginning, meaning the eventual fatal entanglement of the lovers' romance with the feud's violence is foreshadowed rather than simply an unfortunate accident.",
+ context:"Reflects the Petrarchan poetic tradition's frequent use of paradox and contradiction to capture the overwhelming, contradictory nature of romantic feeling.",
+ useFor:"Essays on the connection between love and conflict — a key early quotation establishing this central paradox."},
+{text:"Did my heart love till now? Forswear it, sight!", speaker:"Romeo", act:"1.5", characters:['Romeo'], themes:['Love'],
+ meaning:"Upon first seeing Juliet, Romeo immediately declares that he has never truly loved before, retroactively dismissing his feelings for Rosaline.",
+ technique:"Rhetorical question; imperative ('forswear').",
+ solid:"Romeo instantly decides his previous love for Rosaline wasn't real, showing how sudden and overwhelming his feelings for Juliet are.",
+ deep:"The instant, absolute rejection of his prior feelings ('forswear it, sight') reveals Romeo's tendency toward totalising, immediate emotional conviction rather than gradual, considered judgement — a character trait that proves consistent, and increasingly dangerous, across his later impulsive decisions throughout the play.",
+ context:"Reflects the Petrarchan convention of love at first sight, though Shakespeare's rapid escalation exceeds typical treatments of the trope.",
+ useFor:"Essays on love, Romeo's characterisation, or his pattern of impulsive emotional conviction."},
+{text:"My only love sprung from my only hate!", speaker:"Juliet", act:"1.5", characters:['Juliet'], themes:['Love','Family'],
+ meaning:"Juliet, having just learned Romeo is a Montague, expresses anguish at loving someone from her family's enemy house.",
+ technique:"Oxymoron; parallel structure ('only...only').",
+ solid:"This line shows Juliet's shock and pain at discovering the boy she loves belongs to her family's enemies, immediately linking her love to the feud's conflict.",
+ deep:"The parallel structure balancing 'only love' against 'only hate' suggests these two intense emotions occupy the same singular, totalising space in Juliet's experience, foreshadowing how inseparably her romantic and family loyalties will remain in tension throughout the rest of the play.",
+ context:"Reflects the immediate, high-stakes consequences of the feud for personal relationships in Verona.",
+ useFor:"Essays on love, family conflict, or Juliet's immediate awareness of her situation's danger."},
+{text:"But, soft! what light through yonder window breaks? It is the east, and Juliet is the sun", speaker:"Romeo", act:"2.2", characters:['Romeo'], themes:['Love','Light/Dark'],
+ meaning:"Romeo, seeing Juliet appear at her window, compares her to the sunrise, elevating her to cosmic significance.",
+ technique:"Metaphor; light imagery; personification of the sun.",
+ solid:"Comparing Juliet to the sun rising in the east shows Romeo sees her as bringing light and life into his world, making her seem incredibly important to him.",
+ deep:"Positioning Juliet as the literal sun inverts the natural order (the sun does not rise from a window), suggesting Romeo's love reorganises his entire perception of reality around her; this celestial elevation also subtly foreshadows the destructive intensity of a love that, like staring at the sun, may ultimately prove overwhelming or dangerous.",
+ context:"Draws on a long poetic tradition of comparing beloveds to celestial bodies, while Shakespeare's specific staging (Juliet appearing above at a window) reinforces the metaphor visually.",
+ useFor:"Essays on love, light/dark imagery — one of the play's most famous and analysable quotations."},
+{text:"What's in a name? That which we call a rose by any other name would smell as sweet", speaker:"Juliet", act:"2.2", characters:['Juliet'], themes:['Love','Family'],
+ meaning:"Juliet argues that Romeo's family name is arbitrary and irrelevant to his true worth or identity.",
+ technique:"Rhetorical question; extended metaphor (the rose).",
+ solid:"Juliet argues that names don't really matter — Romeo would still be the same wonderful person even if he had a different surname, so the feud shouldn't stop them being together.",
+ deep:"The rose metaphor's apparent simplicity conceals a genuinely radical claim: Juliet suggests that socially constructed categories (family name, and by extension the entire feud) have no essential connection to a person's true nature, directly challenging the rigid social structures that will ultimately doom their relationship.",
+ context:"Reflects Renaissance philosophical debates about the relationship between names, language and essential identity.",
+ useFor:"Essays on love, family, or the play's critique of social categorisation and identity."},
+{text:"Parting is such sweet sorrow", speaker:"Juliet", act:"2.2", characters:['Juliet'], themes:['Love'],
+ meaning:"Juliet reflects on the bittersweet feeling of saying goodnight to Romeo, wanting to stay together but knowing they must part.",
+ technique:"Oxymoron.",
+ solid:"This oxymoron captures how parting from someone you love can feel both painful ('sorrow') and pleasant ('sweet') at the same time.",
+ deep:"The oxymoron's genuine emotional accuracy, rather than mere wordplay, exemplifies Shakespeare's skill at capturing psychologically complex, contradictory feeling within compact poetic language, reinforcing the balcony scene's overall sense of intense but precarious happiness.",
+ context:"Reflects the broader Petrarchan tradition of using paradox to capture love's contradictory emotional intensity.",
+ useFor:"Essays on love, or oxymoron as a technique — one of the play's most famous individual lines."},
+{text:"These violent delights have violent ends", speaker:"Friar Lawrence", act:"2.6", characters:['Friar Lawrence'], themes:['Love','Fate'],
+ meaning:"Friar Lawrence warns Romeo, just before marrying the couple, that intensely passionate love tends to end destructively.",
+ technique:"Parallel structure; foreshadowing; aphoristic warning.",
+ solid:"Friar Lawrence warns that overly intense passion often ends badly, which turns out to be exactly what happens to Romeo and Juliet — this line foreshadows their tragic deaths.",
+ deep:"The parallel structure linking 'delights' and 'ends' through the shared adjective 'violent' collapses any distinction between the beginning and conclusion of intense passion, structurally anticipating the play's central tragic pattern; the line's dramatic irony is sharpened by the fact that Friar Lawrence delivers this warning while simultaneously enabling the very rushed, secret union he cautions against.",
+ context:"Reflects broader Elizabethan moral and religious caution against excessive, unrestrained passion as spiritually and practically dangerous.",
+ useFor:"Essays on fate, foreshadowing, or the irony of Friar Lawrence's own role in the tragedy."},
+{text:"A plague o' both your houses!", speaker:"Mercutio", act:"3.1", characters:['Mercutio'], themes:['Conflict','Death'],
+ meaning:"The dying Mercutio curses both the Montague and Capulet families, blaming the feud itself for his fatal wound.",
+ technique:"Curse/imprecation; repetition (repeated later in the same scene).",
+ solid:"Mercutio's dying curse blames both families equally for his death, showing that the feud harms people who aren't even directly part of the conflict.",
+ deep:"Mercutio's repetition of this curse multiple times as he dies gives it the weight of a dramatic, almost prophetic condemnation, delivered by a character killed through no fault or grievance of his own, making it one of the play's clearest direct authorial-feeling critiques of the feud's senseless destructiveness.",
+ context:"Curses carried genuine perceived weight and seriousness in Elizabethan popular belief, adding to the line's dramatic power.",
+ useFor:"Essays on conflict, Mercutio's role in the tragedy, or the feud's impact beyond the two families themselves."},
+{text:"O, I am fortune's fool!", speaker:"Romeo", act:"3.1", characters:['Romeo'], themes:['Fate','Impulsiveness'],
+ meaning:"Immediately after killing Tybalt in retaliation for Mercutio's death, Romeo exclaims that he has been made a victim or plaything of fate.",
+ technique:"Metaphor; exclamation.",
+ solid:"Romeo blames fate for what has just happened, suggesting he feels he had no real choice but to kill Tybalt, even though it was his own decision to fight.",
+ deep:"This line invites a genuinely ambiguous reading: does Romeo's declaration reflect a legitimate sense that circumstances beyond his control (Mercutio's death, honour's demands) drove his action, or does it function as a convenient act of self-justification that deflects responsibility for his own impulsive, chosen retaliation? Strong essays can argue either position, or hold both in tension.",
+ context:"Reflects genuine Elizabethan uncertainty about the relative weight of fate versus individual moral responsibility in tragic outcomes.",
+ useFor:"Essays on fate vs choice — an essential quotation for debating whether Romeo bears responsibility for Tybalt's death."},
+{text:"Hang thee, young baggage, disobedient wretch!", speaker:"Lord Capulet", act:"3.5", characters:['Capulet'], themes:['Family','Gender'],
+ meaning:"Capulet furiously threatens and insults Juliet after she refuses to agree to marry Paris.",
+ technique:"Imperative; harsh, dehumanising diction.",
+ solid:"Capulet's violent, insulting language shows how quickly his earlier apparent kindness toward Juliet turns to fury and threat once she disobeys him.",
+ deep:"The dehumanising noun 'baggage' (implying something disposable or burdensome) starkly reveals the conditional nature of Capulet's earlier apparent consideration for Juliet's wishes regarding marriage — his 'protectiveness' in Act One is exposed here as always having been contingent on her ultimate obedience.",
+ context:"Reflects the significant legal and social authority Elizabethan fathers held over their daughters' marriages, including the threat of disownment for disobedience.",
+ useFor:"Essays on Capulet's contradictory characterisation, patriarchy, or Juliet's isolation."},
+{text:"Give me my Romeo; and, when he shall die, take him and cut him out in little stars", speaker:"Juliet", act:"3.2", characters:['Juliet'], themes:['Love','Death'],
+ meaning:"Juliet, anticipating her wedding night before learning of Tybalt's death, imagines Romeo's beauty transformed into stars that would improve the night sky itself.",
+ technique:"Imperative; hyperbole; celestial imagery.",
+ solid:"Juliet imagines Romeo being so beautiful that even cut into stars he would make the night sky more wonderful, showing the intensity and almost cosmic scale of her love.",
+ deep:"The imagery of cutting Romeo 'into little stars' carries a disturbing, almost violent undertone even within this celebratory passage, subtly and perhaps unintentionally foreshadowing the fatal violence that will soon follow; the hyperbolic scale of the comparison (surpassing the sun itself) also mirrors and extends Romeo's earlier celestial imagery for Juliet, suggesting their love operates on a consistently cosmic register throughout.",
+ context:"Continues the play's recurring pattern of celestial imagery used to elevate the lovers' feelings beyond ordinary human scale.",
+ useFor:"Essays on love, celestial/light imagery, or dramatic irony given the tragic events about to unfold."},
+{text:"Thus with a kiss I die", speaker:"Romeo", act:"5.3", characters:['Romeo'], themes:['Love','Death'],
+ meaning:"Romeo's final words, spoken as he takes poison beside Juliet's apparently lifeless body.",
+ technique:"Juxtaposition (kiss/death); simplicity of final declaration.",
+ solid:"Romeo's last words link a kiss, associated with love, directly to his death, showing how completely his love and his death have become intertwined by the play's end.",
+ deep:"The stark simplicity of Romeo's final line, in contrast to his earlier, more elaborate poetic declarations, suggests a kind of tragic clarity or resolution; the direct juxtaposition of 'kiss' and 'die' within a single short clause enacts, at the level of syntax itself, the play's central thematic fusion of love and death.",
+ context:"Reflects the Elizabethan tragic tradition of a hero's final words carrying particular dramatic and thematic weight.",
+ useFor:"Essays on the play's ending, the love/death connection, or Romeo's characterisation at the point of death."},
+{text:"O happy dagger, this is thy sheath", speaker:"Juliet", act:"5.3", characters:['Juliet'], themes:['Love','Death','Courage'],
+ meaning:"Juliet, discovering Romeo dead beside her, addresses his dagger before using it to take her own life, calling it 'happy' for the release it offers.",
+ technique:"Apostrophe (addressing an inanimate object); metaphor (her body as a 'sheath').",
+ solid:"Juliet calls the dagger 'happy' because it will let her join Romeo in death, showing how completely she has decided to die rather than live without him.",
+ deep:"Describing her own body as the dagger's 'sheath' reframes Juliet's suicide not as passive despair but as a deliberate, almost triumphant final act of agency, consistent with the practical decisiveness she has shown throughout the play; the address to the dagger as 'happy' inverts conventional associations of weapons with violence and horror, recasting this one as an instrument of longed-for reunion.",
+ context:"Elizabethan religious teaching generally viewed suicide as a serious sin, adding moral weight and risk to Juliet's final, deliberate choice.",
+ useFor:"Essays on the play's ending, Juliet's agency and courage, or the love/death connection."}
+];
+
+/* ================= QUIZ BANK ================= */
+const QUIZ_BANK = [
+{type:'mc', q:"In which city is Romeo and Juliet set?", opts:["Venice","Verona","Rome","Florence"], a:1, exp:"The play is set in Verona, Italy."},
+{type:'mc', q:"Who is Romeo in love with before he meets Juliet?", opts:["Lady Capulet","Rosaline","The Nurse","Lady Montague"], a:1, exp:"Romeo is initially infatuated with Rosaline, who does not return his feelings."},
+{type:'char', q:"Who kills Mercutio?", opts:["Romeo","Tybalt","Paris","Benvolio"], a:1, exp:"Tybalt kills Mercutio in Act 3, Scene 1, prompting Romeo's fatal retaliation."},
+{type:'mc', q:"What does Romeo do immediately after Mercutio's death?", opts:["Flees Verona","Kills Tybalt in retaliation","Marries Juliet secretly","Visits Friar Lawrence"], a:1, exp:"Romeo kills Tybalt immediately after Mercutio's death, leading to his banishment."},
+{type:'char', q:"Who marries Romeo and Juliet in secret?", opts:["Prince Escalus","Friar Lawrence","Capulet","Benvolio"], a:1, exp:"Friar Lawrence secretly marries the couple, hoping it might end the feud."},
+{type:'mc', q:"What punishment does Romeo receive for killing Tybalt?", opts:["Execution","Banishment from Verona","Imprisonment","No punishment"], a:1, exp:"Prince Escalus banishes Romeo from Verona rather than sentencing him to death."},
+{type:'quote', q:"Who says: 'It is the east, and Juliet is the sun'?", opts:["Romeo","Mercutio","Friar Lawrence","Benvolio"], a:0, exp:"Romeo says this during the famous balcony scene in Act 2."},
+{type:'quote', q:"Who says: 'What's in a name?'?", opts:["Romeo","Juliet","The Nurse","Lady Capulet"], a:1, exp:"Juliet says this during the balcony scene, questioning the significance of Romeo's family name."},
+{type:'quote', q:"Complete the quote: 'A plague o' ___ your houses!'", opts:["both","all","these","our"], a:0, exp:"Mercutio's full dying curse is: 'A plague o' both your houses!'"},
+{type:'quote', q:"Who says: 'O, I am fortune's fool!'?", opts:["Tybalt","Mercutio","Romeo","Friar Lawrence"], a:2, exp:"Romeo says this immediately after killing Tybalt in Act 3, Scene 1."},
+{type:'theme', q:"Which theme is most directly explored by the Prologue's phrase 'star-cross'd lovers'?", opts:["Fate","Family only","Marriage","Gender"], a:0, exp:"This phrase directly introduces the theme of fate, though the play balances this with evidence of human choice."},
+{type:'theme', q:"What does the play suggest about the relationship between fate and human choice?", opts:["Fate alone controls everything","Human choice alone matters, fate is irrelevant","Fate and human choice work together to cause the tragedy","Neither fate nor choice matters"], a:2, exp:"The play balances the Prologue's fatalistic framing with clear evidence of impulsive human decisions contributing to the tragedy."},
+{type:'mc', q:"What plan does Friar Lawrence devise to help Juliet avoid marrying Paris?", opts:["Sending her away to a convent","A sleeping potion to fake her death","Poisoning Paris","Telling her parents the truth"], a:1, exp:"Friar Lawrence gives Juliet a sleeping potion designed to make her appear dead."},
+{type:'tech', q:"What technique is used in the phrase 'O brawling love! O loving hate!'?", opts:["Simile","Oxymoron","Onomatopoeia","Alliteration"], a:1, exp:"This is an oxymoron, combining contradictory terms (brawling/love, loving/hate)."},
+{type:'tf', q:"True or False: Romeo receives Friar Lawrence's letter explaining the sleeping potion plan in time.", opts:["True","False"], a:1, exp:"False — the letter fails to reach Romeo, who believes Juliet is genuinely dead, leading directly to his suicide."},
+{type:'context', q:"What was the typical role of a father in arranging his daughter's marriage in Elizabethan England?", opts:["Fathers had no involvement","Fathers held significant legal and social authority over their daughters' marriages","Only mothers arranged marriages","Marriage was entirely the daughter's choice"], a:1, exp:"Elizabethan fathers typically held significant authority over their daughters' marriage arrangements."},
+{type:'context', q:"How were Elizabethan attitudes toward suicide generally shaped?", opts:["Suicide was celebrated","Religious teaching generally viewed suicide as a serious sin","Suicide was legally required in some cases","There were no strong attitudes toward suicide"], a:1, exp:"Christian religious teaching generally condemned suicide as a serious sin, adding moral weight to Juliet's final choice."},
+{type:'mc', q:"Who does Romeo kill at Juliet's tomb in Act 5?", opts:["Friar Lawrence","Paris","Benvolio","The Apothecary"], a:1, exp:"Romeo kills Paris, who confronts him at the tomb believing him to be a grave-robber."},
+{type:'char', q:"Which character consistently tries to prevent or de-escalate violence throughout the play?", opts:["Tybalt","Benvolio","Mercutio","Lady Capulet"], a:1, exp:"Benvolio repeatedly attempts to keep the peace, notably at the opening brawl and before Mercutio's death."},
+{type:'theme', q:"According to the play, what ultimately happens between the Montague and Capulet families?", opts:["The feud continues unresolved","They reconcile, but only after the deaths of Romeo and Juliet","They merge into one family","The Prince ends the feud by force alone"], a:1, exp:"The families reconcile at the play's end, but only after losing both Romeo and Juliet."},
+{type:'mc', q:"Who advises Juliet to forget Romeo and marry Paris after his banishment?", opts:["Friar Lawrence","The Nurse","Benvolio","Prince Escalus"], a:1, exp:"The Nurse pragmatically advises Juliet to marry Paris, a betrayal of Juliet's trust."},
+{type:'stave', q:"In which act does Mercutio die?", opts:["Act 1","Act 2","Act 3","Act 4"], a:2, exp:"Mercutio dies in Act 3, Scene 1, marking a major structural turning point in the play."},
+{type:'tech', q:"What is a 'shared sonnet', as seen in Romeo and Juliet's first conversation?", opts:["A sonnet written by two authors","A sonnet whose fourteen lines are divided between two speakers","A sonnet with no rhyme scheme","A type of stage direction"], a:1, exp:"Romeo and Juliet's first exchange at the Capulet party forms a complete sonnet divided between their alternating lines."},
+{type:'mc', q:"What does Juliet drink to fake her death?", opts:["Poison","A sleeping potion given by Friar Lawrence","Wine","Nothing — she pretends"], a:1, exp:"Juliet drinks a sleeping potion provided by Friar Lawrence, designed to make her appear dead for 42 hours."},
+{type:'context', q:"What poetic tradition shapes much of Romeo's early language about love?", opts:["Gothic horror","The Petrarchan tradition of courtly love poetry","Epic poetry","Absurdist drama"], a:1, exp:"Romeo's exaggerated, idealised early language for Rosaline draws on the Petrarchan courtly love tradition."},
+{type:'theme', q:"Which theme is most directly explored by Capulet's furious reaction to Juliet's refusal to marry Paris?", opts:["Light and darkness","Patriarchy and gender","Time","Honour alone"], a:1, exp:"This scene directly explores patriarchal authority and its limits when a daughter exercises independent choice."},
+{type:'mc', q:"What is the name of the apothecary from whom Romeo buys poison?", opts:["He is unnamed","Friar John","Old Joe","Balthasar"], a:0, exp:"The apothecary who sells Romeo poison is never given a personal name in the play."},
+{type:'quote', q:"Who says: 'These violent delights have violent ends'?", opts:["Romeo","Friar Lawrence","Mercutio","Capulet"], a:1, exp:"Friar Lawrence delivers this warning to Romeo just before marrying him and Juliet in Act 2, Scene 6."},
+{type:'mc', q:"What happens to Friar John, preventing the crucial letter from reaching Romeo?", opts:["He is killed","He is quarantined due to suspected plague","He refuses to deliver it","He gets lost"], a:1, exp:"Friar John is quarantined due to suspected plague, preventing him from delivering the crucial letter to Romeo."},
+{type:'theme', q:"What does the play's compressed timeframe (around four days) most directly emphasise?", opts:["The characters' patience","The rushed, impulsive nature of key decisions","The importance of long courtships","Nothing significant"], a:1, exp:"The extremely compressed timeframe emphasises how rushed and impulsive several key decisions are."}
+];
+
+/* ================= LOVE OR CONFLICT GAME ================= */
+const LOVEORCONFLICT = [
+{text:"O brawling love! O loving hate!", answer:'Both', exp:"This oxymoron directly links love and conflict, showing them as intertwined from the play's opening."},
+{text:"It is the east, and Juliet is the sun", answer:'Love', exp:"Romeo's celestial metaphor for Juliet is purely a declaration of love."},
+{text:"A plague o' both your houses!", answer:'Conflict', exp:"Mercutio's dying curse condemns both feuding families for the violence that killed him."},
+{text:"What's in a name?", answer:'Both', exp:"Juliet's question is about love, but it directly addresses the family conflict that threatens it."},
+{text:"Parting is such sweet sorrow", answer:'Love', exp:"This oxymoron captures the bittersweet emotion of the lovers' reluctant goodnight."},
+{text:"These violent delights have violent ends", answer:'Both', exp:"Friar Lawrence links passionate love directly to violent consequence."},
+{text:"I hate the word, as I hate hell, all Montagues, and thee", answer:'Conflict', exp:"Tybalt's declaration is pure hostility, expressing hatred for peace itself."},
+{text:"Did my heart love till now?", answer:'Love', exp:"Romeo's declaration upon first seeing Juliet is a pure expression of love."},
+{text:"O, I am fortune's fool!", answer:'Conflict', exp:"Romeo says this immediately after killing Tybalt, reflecting on the violent consequences of the feud."},
+{text:"My only love sprung from my only hate!", answer:'Both', exp:"Juliet's line directly fuses her love for Romeo with her family's hatred for the Montagues."},
+{text:"Give me my Romeo; and, when he shall die, take him and cut him out in little stars", answer:'Love', exp:"Juliet's soliloquy anticipating her wedding night is a pure expression of romantic devotion."},
+{text:"Hang thee, young baggage, disobedient wretch!", answer:'Conflict', exp:"Capulet's furious outburst at Juliet is a moment of familial conflict, not romantic content."},
+{text:"Thus with a kiss I die", answer:'Both', exp:"Romeo's final words fuse an act of love (a kiss) directly with his death."},
+{text:"O happy dagger, this is thy sheath", answer:'Both', exp:"Juliet's suicide is framed through the language of reunion with her love, fusing love and violent death."},
+{text:"These two hours' traffic of our stage", answer:'Neither', exp:"This line from the Prologue refers to the play's performance length, not to love or conflict directly."},
+{text:"Do you bite your thumb at us, sir?", answer:'Conflict', exp:"This exchange between servants sparks the play's opening street brawl."},
+{text:"My bounty is as boundless as the sea, my love as deep", answer:'Love', exp:"Juliet's simile expresses the immeasurable scale of her love for Romeo."},
+{text:"Wisely and slow; they stumble that run fast", answer:'Neither', exp:"Friar Lawrence's general warning about haste is cautionary advice, not itself directly about love or conflict."},
+{text:"Turn thee, Benvolio, look upon thy death", answer:'Conflict', exp:"Tybalt's aggressive challenge to Benvolio is a pure statement of violent intent."},
+{text:"Good night, good night! Parting is such sweet sorrow, that I shall say good night till it be morrow", answer:'Love', exp:"This tender exchange between the lovers is a pure expression of romantic reluctance to part."}
+];
+
+/* ================= RELATIONSHIP MAP ================= */
+const RELMAP = [
+{a:'Romeo', b:'Juliet', begins:"Meet and fall in love instantly at the Capulet feast, communicating through a shared sonnet before even learning each other's names.", changes:"Progresses within a single day from first meeting to secret marriage, then must navigate banishment, a faked death, and ultimately genuine tragedy.", conflict:"Their families' feud makes their relationship forbidden and forces total secrecy, contributing directly to the tragic misunderstandings that follow.", quote:"It is the east, and Juliet is the sun", themes:['Love','Fate','Family']},
+{a:'Romeo', b:'Mercutio', begins:"Close friends who banter and tease each other, with Mercutio mocking Romeo's lovesickness for Rosaline.", changes:"Their friendship becomes central to the tragedy when Mercutio dies defending Romeo's honour after Romeo refuses to fight Tybalt.", conflict:"Romeo's refusal to fight Tybalt (now secretly his kinsman) leaves Mercutio to fight in his place, indirectly causing Mercutio's death.", quote:"A plague o' both your houses!", themes:['Friendship','Violence','Honour']},
+{a:'Romeo', b:'Friar Lawrence', begins:"Romeo confides in the Friar about his feelings for Rosaline, and later Juliet, treating him almost as a father figure.", changes:"The Friar agrees to marry Romeo and Juliet secretly, and later devises the risky sleeping-potion plan intended to reunite them.", conflict:"The Friar's well-intentioned secrecy and poorly communicated plan ultimately fail to reach Romeo in time, contributing directly to his suicide.", quote:"These violent delights have violent ends", themes:['Responsibility','Secrecy','Fate']},
+{a:'Juliet', b:'Nurse', begins:"An affectionate, almost maternal bond, with the Nurse having cared for Juliet since infancy.", changes:"The Nurse initially actively supports Juliet's secret relationship with Romeo, helping arrange the marriage.", conflict:"After Romeo's banishment, the Nurse pragmatically advises Juliet to marry Paris instead, a betrayal that leaves Juliet emotionally isolated.", quote:"", themes:['Affection','Betrayal','Isolation']},
+{a:'Juliet', b:'Capulet', begins:"Capulet initially appears protective, telling Paris that Juliet's own consent should matter regarding marriage.", changes:"After Tybalt's death, Capulet abruptly arranges Juliet's marriage to Paris without consulting her wishes.", conflict:"When Juliet refuses to marry Paris, Capulet reacts with furious threats to disown her, exposing the conditional nature of his earlier apparent consideration.", quote:"Hang thee, young baggage, disobedient wretch!", themes:['Patriarchy','Family','Gender']},
+{a:'Juliet', b:'Lady Capulet', begins:"A relatively formal, distant relationship, with Lady Capulet deferring practical childcare matters to the Nurse.", changes:"Lady Capulet attempts to comfort Juliet after Tybalt's death but ultimately defers to her husband's authority regarding the marriage to Paris.", conflict:"Lady Capulet's failure to meaningfully intervene on Juliet's behalf against Capulet's demands leaves Juliet without maternal support at a critical moment.", quote:"", themes:['Family','Gender']},
+{a:'Tybalt', b:'Capulets', begins:"Tybalt is deeply loyal to the Capulet family and its honour, quick to perceive and respond to any perceived insult.", changes:"His aggressive defence of family honour drives much of the play's violence, from the opening brawl to his fatal duel with Romeo.", conflict:"Tybalt's violence, while loyal to Capulet family honour, ultimately contributes to the deaths of Mercutio, himself, and indirectly Romeo and Juliet.", quote:"I hate the word, as I hate hell, all Montagues, and thee", themes:['Honour','Violence','Family Loyalty']},
+{a:'Romeo', b:'Montagues', begins:"Romeo is a loyal, if somewhat melancholy, member of the Montague family at the play's opening.", changes:"His secret marriage to Juliet and eventual death place his personal romantic choices in direct tension with family loyalty.", conflict:"Romeo's love for Juliet ultimately transcends and complicates his family loyalty, contributing to the feud's eventual, tragic resolution.", quote:"", themes:['Family','Love','Individual vs Society']},
+{a:'Paris', b:'Juliet', begins:"Paris seeks Capulet's permission to marry Juliet, representing a conventional, socially appropriate match.", changes:"After Tybalt's death, the marriage is hastily arranged by Capulet without Juliet's genuine consent.", conflict:"Juliet's secret marriage to Romeo makes her arranged match to Paris impossible to accept, though Paris remains unaware of this throughout.", quote:"", themes:['Marriage','Social Expectation']}
+];
+
+/* ================= FATE TRACKER ================= */
+const FATE = [
+{event:"The Prologue", explain:"The Chorus announces the lovers are 'star-cross'd' and doomed from the outset. This framing suggests fate, but it is delivered as a dramatic device to create tension, not necessarily as a literal claim removing all human responsibility for what follows."},
+{event:"Romeo deciding to attend the Capulet party", explain:"This is a clear human choice — Romeo chooses to attend an enemy household's feast (uninvited) hoping to see Rosaline, a decision entirely his own, though it sets the fatal meeting with Juliet in motion."},
+{event:"Romeo and Juliet marrying in secret", explain:"A significant human choice made rapidly and without full consideration of consequences, though the play's compressed timeframe and the lovers' intense feelings make their haste understandable rather than simply careless."},
+{event:"Mercutio's death", explain:"Arguably closer to circumstance than deliberate choice — Mercutio dies partly because Romeo's well-intentioned attempt to prevent the fight (stepping between the duellists) inadvertently allows Tybalt's fatal blow, blending accident with consequence of prior choices."},
+{event:"Romeo killing Tybalt", explain:"A clear, deliberate human choice made in a moment of overwhelming grief and rage, though Romeo himself later frames it as fate ('O, I am fortune's fool!') — students can debate whether this is a fair characterisation or a form of self-justification."},
+{event:"Friar Lawrence's sleeping-potion plan", explain:"Entirely a human choice and plan, devised with good intentions but relying on a fragile chain of communication that ultimately fails — closer to human error and risky planning than fate."},
+{event:"The failed letter", explain:"This is closer to circumstance or bad luck — Friar John's quarantine due to suspected plague is outside any character's control, representing one of the play's clearest instances of fate or chance intervening in human plans."},
+{event:"Romeo buying poison", explain:"A clear human choice, made impulsively and without verifying Juliet's true condition, demonstrating how quickly Romeo acts on incomplete information under emotional distress."},
+{event:"The final tomb scene", explain:"A combination of circumstance (the failed letter, tragic timing) and repeated human choices (Romeo's decision to take poison rather than wait; Juliet's decision to use the dagger), showing fate and choice working together right up to the play's tragic conclusion."}
+];
+
+/* ================= RENDER: NAVIGATION ================= */
+let currentSection = Store.get('lastSection','overview');
+
+function renderNav(){
+  const html = SECTIONS.map((s,i)=>`<button class="navlink" data-target="${s.id}" role="tab"><span class="num">${String(i+1).padStart(2,'0')}</span>${s.label}</button>`).join('');
+  document.getElementById('navList').innerHTML = html;
+  document.getElementById('navListMobile').innerHTML = html;
+  document.querySelectorAll('.navlink').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ showSection(btn.getAttribute('data-target')); closeDrawer(); });
+  });
+}
+
+function showSection(id){
+  currentSection = id;
+  Store.set('lastSection', id);
+  document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active', s.id === 'section-'+id));
+  document.querySelectorAll('.navlink').forEach(b=>b.classList.toggle('active', b.getAttribute('data-target')===id));
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+}
+
+function closeDrawer(){
+  document.getElementById('mobileDrawer').classList.remove('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded','false');
+}
+document.getElementById('hamburgerBtn').addEventListener('click', ()=>{
+  const d = document.getElementById('mobileDrawer');
+  const open = d.classList.toggle('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded', open?'true':'false');
+});
+document.getElementById('mobileDrawer').addEventListener('click', (e)=>{
+  if(e.target.id === 'mobileDrawer') closeDrawer();
+});
+
+const root = document.getElementById('sectionsRoot');
+function el(html){ const d=document.createElement('div'); d.innerHTML=html; return d.firstElementChild; }
+
+/* ---- 1. OVERVIEW ---- */
+function buildOverview(){
+  const s = el(`<section class="section" id="section-overview">
+    <div class="section-header"><div class="eyebrow">Section 01</div><h1>Overview</h1><div class="desc">Get your bearings before you dive into detail.</div></div>
+
+    <div class="grid two">
+      <div class="card"><h3>Key facts</h3>
+        <p><b>Playwright:</b> William Shakespeare<br>
+        <b>Approximate date:</b> Around 1595<br>
+        <b>Genre:</b> Tragedy<br>
+        <b>Setting:</b> Verona, Italy<br>
+        <b>Structure:</b> Five acts</p>
+      </div>
+      <div class="card"><h3>Why the play matters for GCSE</h3>
+        <p>Its compact structure, famous language, and blend of romance and violence make it ideal for studying how Shakespeare builds tragedy through both poetic technique and dramatic structure. It rewards students who look beyond "a sad love story" to the play's wider critique of conflict, family and social expectation.</p>
+      </div>
+    </div>
+
+    <div class="card"><h3>Basic premise</h3>
+      <p>In the Italian city of Verona, an ongoing feud between the Montague and Capulet families provides the backdrop for the fatal romance between Romeo Montague and Juliet Capulet. Meeting and falling in love within hours, the two marry in secret, but a violent confrontation between their households leads to Romeo's banishment, a desperate plan to reunite them, and ultimately both their deaths — a tragedy that finally, and only then, reconciles their warring families.</p>
+    </div>
+
+    <div class="card"><h3>Major themes at a glance</h3>
+      <p><span class="tag blood">Love</span><span class="tag blood">Conflict</span><span class="tag blood">Fate</span><span class="tag gold">Family</span><span class="tag gold">Violence</span><span class="tag gold">Youth</span><span class="tag dusk">Gender</span><span class="tag dusk">Marriage</span><span class="tag dusk">Honour</span><span class="tag">Impulsiveness</span><span class="tag">Death</span><span class="tag">Social Expectations</span></p>
+    </div>
+
+    <div class="card"><h3>Why these ideas matter</h3>
+      <p><b>Love, conflict and fate</b> are the play's strongest, most interconnected themes — the tragedy arises not from any single cause but from the interaction between fate, family conflict, and the characters' own impulsive choices.<br><br>
+      <b>Family and honour</b> shape almost every character's decisions, from the opening street brawl to Capulet's authority over Juliet's marriage.<br><br>
+      <b>Youth, gender and impulsiveness</b> explain why the play's central figures act so quickly and intensely, for better and for worse.<br><br>
+      <b>Marriage and social expectations</b> place Romeo and Juliet's personal desires in direct conflict with their community's demands.<br><br>
+      <b>Violence and death</b> accumulate throughout, showing how conflict, once begun, extends its consequences far beyond its original participants.</p>
+    </div>
+
+    <div class="card"><h3>What GCSE students need to understand</h3>
+      <ul>
+        <li>That fate is important, but the tragedy is not caused by fate alone — human choices repeatedly contribute to the outcome.</li>
+        <li>That this is not simply a love story; it is also a tragedy about conflict, violence, family and failed adult authority.</li>
+        <li>How both Romeo and Juliet develop and change significantly across the play, at different paces and in different ways.</li>
+        <li>That exam boards want analysis of Shakespeare's methods and purpose, not simply a retelling of events.</li>
+      </ul>
+    </div>
+
+    <div class="sixty">
+      <h3>Romeo and Juliet in 60 Seconds</h3>
+      <p>In Verona, the feuding Montague and Capulet families provide the backdrop for the fatal romance between Romeo and Juliet, who meet and fall in love within hours at a Capulet party. They marry secretly the next day with Friar Lawrence's help. When Romeo's friend Mercutio is killed by Juliet's cousin Tybalt, Romeo kills Tybalt in revenge and is banished from Verona. Juliet's father, unaware of her marriage, arranges for her to marry Paris; desperate, Juliet takes a sleeping potion arranged by Friar Lawrence to fake her death and escape the marriage. His message explaining the plan fails to reach Romeo in time, and believing Juliet truly dead, Romeo takes poison beside her body. Juliet wakes, finds Romeo dead, and takes her own life. Their deaths finally, tragically, reconcile their warring families.</p>
+    </div>
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 2. PLOT ---- */
+const PLOT = [
+{n:'Act One', t:'Prologue and the opening feud', happens:"The Chorus's sonnet Prologue announces the 'star-cross'd lovers' fate. A street brawl breaks out between Montague and Capulet servants, and Prince Escalus threatens death to anyone who disturbs the peace again. Romeo, melancholy over unrequited love for Rosaline, is persuaded by Benvolio to attend the Capulet feast.", why:"Establishes the feud's violence and the Prince's authority, alongside Romeo's initial, more performative understanding of love.", chars:["Chorus","Benvolio","Tybalt","Prince Escalus","Romeo"], themes:["Fate","Conflict","Love"], quote:"star-cross'd lovers"},
+{n:'Act One', t:'The Capulet party and first meeting', happens:"At the Capulet feast, Romeo sees Juliet and instantly forgets Rosaline. Their first conversation forms a complete shared sonnet, built around the metaphor of pilgrims and saints, before they kiss. Both then discover, to their horror, that the other belongs to their family's enemy household.", why:"The play's central romance begins, immediately complicated by the dramatic irony of their opposing family loyalties.", chars:["Romeo","Juliet","Tybalt","Nurse"], themes:["Love","Family","Fate"], quote:"Did my heart love till now?"},
+{n:'Act Two', t:'The balcony scene', happens:"Romeo overhears Juliet privately declaring her love for him from her balcony. They exchange increasingly urgent declarations of love and agree to marry, despite having known each other for less than a day.", why:"Establishes the intensity and rapid escalation of their relationship, alongside Juliet's active, assertive role in arranging their marriage.", chars:["Romeo","Juliet"], themes:["Love","Youth","Light/Dark"], quote:"It is the east, and Juliet is the sun"},
+{n:'Act Two', t:"Friar Lawrence agrees to marry them", happens:"Romeo asks Friar Lawrence to marry him and Juliet in secret. The Friar agrees, partly from genuine care and partly hoping their union might reconcile the feuding families.", why:"Introduces the Friar's well-intentioned but ultimately risky involvement in the lovers' plans.", chars:["Romeo","Friar Lawrence"], themes:["Responsibility","Fate"], quote:"These violent delights have violent ends"},
+{n:'Act Two', t:"The secret wedding", happens:"With the Nurse's help arranging the details, Romeo and Juliet are secretly married by Friar Lawrence.", why:"Completes the first major turning point of the plot, binding the lovers together despite the feud.", chars:["Romeo","Juliet","Friar Lawrence","Nurse"], themes:["Love","Marriage","Secrecy"], quote:""},
+{n:'Act Three', t:"Mercutio's death", happens:"Tybalt challenges Romeo to a duel; Romeo, now secretly Tybalt's kinsman by marriage, refuses to fight. Mercutio, outraged, fights Tybalt in Romeo's place and is fatally wounded when Romeo's attempt to intervene inadvertently allows the fatal blow.", why:"The play's major structural turning point, shifting the tone from comedy and romance toward inevitable tragedy.", chars:["Mercutio","Tybalt","Romeo","Benvolio"], themes:["Violence","Honour","Conflict"], quote:"A plague o' both your houses!"},
+{n:'Act Three', t:"Romeo kills Tybalt and is banished", happens:"Enraged by Mercutio's death, Romeo kills Tybalt in retaliation. Prince Escalus banishes Romeo from Verona rather than sentencing him to death.", why:"Directly causes the separation that drives the play's remaining tragic plot.", chars:["Romeo","Tybalt","Prince Escalus"], themes:["Violence","Fate","Impulsiveness"], quote:"O, I am fortune's fool!"},
+{n:'Act Three', t:"Wedding night and Capulet's ultimatum", happens:"Romeo and Juliet spend their wedding night together before Romeo must flee at dawn. Capulet, unaware of the marriage, arranges for Juliet to marry Paris and reacts furiously when she refuses.", why:"Places Juliet in an impossible position, isolated from parental support and forced toward increasingly desperate action.", chars:["Juliet","Capulet","Romeo"], themes:["Family","Gender","Marriage"], quote:"Hang thee, young baggage, disobedient wretch!"},
+{n:'Act Four', t:"The sleeping potion plan", happens:"Desperate, Juliet seeks Friar Lawrence's help. He gives her a sleeping potion designed to make her appear dead for 42 hours, promising to send word to Romeo so he can retrieve her from the family tomb.", why:"Sets in motion the plan whose failure directly causes the play's final tragedy.", chars:["Juliet","Friar Lawrence"], themes:["Responsibility","Fate","Secrecy"], quote:""},
+{n:'Act Four', t:"Juliet takes the potion", happens:"Juliet drinks the potion alone, expressing genuine fear in her soliloquy beforehand. Her family discovers her apparently lifeless body the next morning and believes she has died.", why:"Demonstrates Juliet's courage and isolation, having no trusted adult remaining to confide in.", chars:["Juliet","Capulet","Lady Capulet","Nurse"], themes:["Courage","Isolation","Death"], quote:""},
+{n:'Act Five', t:"The failed letter and Romeo's despair", happens:"Friar Lawrence's letter explaining the plan fails to reach Romeo, delayed by Friar John's quarantine due to suspected plague. Romeo, hearing only that Juliet has died, buys poison from an apothecary and returns to Verona.", why:"The play's clearest instance of circumstance or fate intervening, though Romeo's subsequent choices remain his own.", chars:["Romeo","Friar John","Balthasar"], themes:["Fate","Death","Impulsiveness"], quote:""},
+{n:'Act Five', t:"The tomb and final tragedy", happens:"At the Capulet tomb, Romeo kills Paris, who confronts him believing him a grave-robber. Romeo takes poison beside Juliet's body. Juliet wakes moments later, finds Romeo dead, and takes her own life with his dagger. The grieving families finally reconcile.", why:"The play's tragic climax, resolving the feud only at the cost of both young lovers' lives.", chars:["Romeo","Juliet","Paris","Capulet","Montague"], themes:["Death","Love","Family"], quote:"Thus with a kiss I die"}
+];
+
+function buildPlot(){
+  let cards = '';
+  PLOT.forEach(p=>{
+    cards += `<div class="disclosure" data-d>
+      <button class="d-head"><span>${p.n} — ${p.t}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <div class="mini-label">What happens</div><p>${p.happens}</p>
+        <div class="mini-label">Why it matters</div><p>${p.why}</p>
+        <div class="mini-label">Characters involved</div><p>${p.chars.map(c=>`<span class="tag">${c}</span>`).join('')}</p>
+        <div class="mini-label">Themes</div><p>${p.themes.map(t=>`<span class="tag blood">${t}</span>`).join('')}</p>
+        ${p.quote ? `<div class="mini-label">Useful quotation</div><div class="quote-line">"${p.quote}"</div>` : ''}
+      </div></div>
+    </div>`;
+  });
+
+  const twelveEvents = [
+   "The Prologue announces the fate of the 'star-cross'd lovers'.",
+   "A street brawl breaks out between the Montagues and Capulets.",
+   "Romeo and Juliet meet and fall in love at the Capulet feast.",
+   "Romeo and Juliet exchange vows in the balcony scene.",
+   "Friar Lawrence secretly marries Romeo and Juliet.",
+   "Tybalt kills Mercutio; Romeo kills Tybalt in revenge and is banished.",
+   "Romeo and Juliet spend their wedding night together before he flees.",
+   "Capulet arranges Juliet's marriage to Paris; Juliet refuses.",
+   "Friar Lawrence gives Juliet a sleeping potion to fake her death.",
+   "Juliet takes the potion; her family believes she has died.",
+   "Friar Lawrence's letter fails to reach Romeo, who buys poison.",
+   "Romeo and Juliet both die at the tomb; their families reconcile."
+  ];
+
+  const s = el(`<section class="section" id="section-plot">
+    <div class="section-header"><div class="eyebrow">Section 02</div><h1>Plot</h1><div class="desc">All five acts. Tap any event to expand it.</div></div>
+    <div class="card"><h3>Whole Play in 12 Events</h3>
+      <div class="timeline">${twelveEvents.map((e,i)=>`<div class="t-item"><div class="t-num">${String(i+1).padStart(2,'0')}</div><p>${e}</p></div>`).join('')}</div>
+    </div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 3. CHARACTERS ---- */
+function buildCharacters(){
+  let cards = CHARACTERS.map(c=>`
+    <div class="disclosure" data-d>
+      <button class="d-head"><span>${c.name}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <p class="subtle" style="margin-top:10px;">${c.role}</p>
+        <div class="mini-label">Who are they?</div><p>${c.who}</p>
+        <div class="mini-label">Character journey</div><p>${c.journey}</p>
+        <div class="mini-label">Key relationships</div><p>${c.relationships}</p>
+        <div class="mini-label">Themes connected to this character</div><p>${c.themes.map(t=>`<span class="tag blood">${t}</span>`).join('')}</p>
+        ${c.quotes.length ? `<div class="mini-label">Essential quotes</div>${c.quotes.map(q=>`<div class="quote-line">"${q}"</div>`).join('') } ` : ''}
+        <div class="mini-label">What Shakespeare may be saying</div><p>${c.message}</p>
+        <div class="mini-label">Exam arguments to develop</div><ul>${c.examArgs.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-characters">
+    <div class="section-header"><div class="eyebrow">Section 03</div><h1>Characters</h1><div class="desc">Tap a character to see their full profile: journey, relationships, quotes and exam arguments.</div></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 4. THEMES ---- */
+function buildThemes(){
+  let cards = THEMES.map(t=>`
+    <div class="disclosure" data-d>
+      <button class="d-head"><span>${t.name}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <div class="mini-label">Simple explanation</div><p>${t.explanation}</p>
+        <div class="mini-label">Where it appears</div><p>${t.where}</p>
+        <div class="mini-label">Relevant characters</div><p>${t.characters.map(c=>`<span class="tag">${c}</span>`).join('')}</p>
+        ${t.quotes.length ? `<div class="mini-label">Essential quotations</div>${t.quotes.map(q=>`<div class="quote-line">"${q}"</div>`).join('')}` : ''}
+        <div class="mini-label">Shakespeare's possible message</div><p>${t.message}</p>
+        <div class="mini-label">Useful contextual link</div><p>${t.context}</p>
+        <div class="mini-label">Potential thesis statements</div><ul>${t.thesis.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-themes">
+    <div class="section-header"><div class="eyebrow">Section 04</div><h1>Themes</h1><div class="desc">Sixteen core themes, each with quotations, context and ready-to-adapt thesis statements.</div></div>
+    <div class="card"><h3>A note on fate, love and conflict</h3><p>These are the play's three strongest, most interconnected themes. The tragedy is <b>not caused by fate alone</b> — the Prologue announces the lovers' doom, but the specific chain of events getting there depends heavily on individual choices: Romeo's decision to attend the party, his impulsive killing of Tybalt, his rushed purchase of poison. Strong essays explore the interaction between fate, individual choices, family conflict, violence, secrecy, social expectations and simple poor decisions, rather than defaulting to "it was fate" as a single, simple explanation.</p></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 5. QUOTE VAULT ---- */
+function buildQuoteVault(){
+  const allChars = ['Romeo','Juliet','Mercutio','Tybalt','Friar Lawrence','Nurse','Capulet','Lady Capulet','Benvolio','Paris','Prince','Other'];
+  const allThemes = Array.from(new Set(QUOTES.flatMap(q=>q.themes))).sort();
+
+  const s = el(`<section class="section" id="section-quotes">
+    <div class="section-header"><div class="eyebrow">Section 05</div><h1>Quote Vault</h1><div class="desc">Search and filter the play's most important quotations. All checked against the original text.</div></div>
+    <div class="qv-controls">
+      <input type="text" id="qvSearch" placeholder="Search quotations..." aria-label="Search quotations">
+      <select id="qvCharFilter" aria-label="Filter by character"><option value="">All characters</option>${allChars.map(c=>`<option value="${c}">${c}</option>`).join('')}</select>
+      <select id="qvThemeFilter" aria-label="Filter by theme"><option value="">All themes</option>${allThemes.map(t=>`<option value="${t}">${t}</option>`).join('')}</select>
+    </div>
+    <div class="qv-count" id="qvCount"></div>
+    <div id="qvResults"></div>
+  </section>`);
+  root.appendChild(s);
+
+  function renderQuotes(){
+    const search = document.getElementById('qvSearch').value.toLowerCase().trim();
+    const charF = document.getElementById('qvCharFilter').value;
+    const themeF = document.getElementById('qvThemeFilter').value;
+    const filtered = QUOTES.filter(q=>{
+      const matchesSearch = !search || q.text.toLowerCase().includes(search) || q.speaker.toLowerCase().includes(search);
+      const matchesChar = !charF || q.characters.includes(charF);
+      const matchesTheme = !themeF || q.themes.includes(themeF);
+      return matchesSearch && matchesChar && matchesTheme;
+    });
+    document.getElementById('qvCount').textContent = filtered.length + (filtered.length===1 ? ' quotation found':' quotations found');
+    const container = document.getElementById('qvResults');
+    container.innerHTML = filtered.map((q,i)=>`
+      <div class="qcard" data-idx="${i}">
+        <div class="qtext">"${q.text}"</div>
+        <div class="qmeta">${q.speaker} · ${q.act} · ${q.themes.join(', ')}</div>
+        <button class="qreveal-btn" type="button">Reveal analysis</button>
+        <div class="qdetail">
+          <div class="row"><b>Meaning</b>${q.meaning}</div>
+          <div class="row"><b>Technique</b>${q.technique}</div>
+          <div class="level-toggle">
+            <button type="button" class="lvl-btn active" data-lvl="solid">Solid (Grade 5–6)</button>
+            <button type="button" class="lvl-btn" data-lvl="deep">Deeper (Grade 7–9)</button>
+          </div>
+          <div class="level-block active" data-lvl="solid">${q.solid}</div>
+          <div class="level-block" data-lvl="deep">${q.deep}</div>
+          <div class="row" style="margin-top:10px;"><b>Context</b>${q.context}</div>
+          <div class="row"><b>Use this for</b>${q.useFor}</div>
+        </div>
+      </div>`).join('') || '<p class="subtle">No quotations match your search. Try different filters.</p>';
+
+    container.querySelectorAll('.qreveal-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.qcard');
+        const open = card.classList.toggle('open');
+        btn.textContent = open ? 'Hide analysis' : 'Reveal analysis';
+      });
+    });
+    container.querySelectorAll('.lvl-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.qcard');
+        const lvl = btn.getAttribute('data-lvl');
+        card.querySelectorAll('.lvl-btn').forEach(b=>b.classList.toggle('active', b===btn));
+        card.querySelectorAll('.level-block').forEach(b=>b.classList.toggle('active', b.getAttribute('data-lvl')===lvl));
+      });
+    });
+  }
+  document.getElementById('qvSearch').addEventListener('input', renderQuotes);
+  document.getElementById('qvCharFilter').addEventListener('change', renderQuotes);
+  document.getElementById('qvThemeFilter').addEventListener('change', renderQuotes);
+  renderQuotes();
+}
+
+/* ---- 6. CONTEXT ---- */
+function buildContext(){
+  const items = [
+  {t:"Elizabethan marriage", body:"Marriages, particularly among wealthier families, were often arranged with significant parental involvement, prioritising social status and financial alliance over romantic love. Daughters were generally expected to defer to their father's judgement regarding suitable matches.",
+   use:"Use this to explain both Capulet's initial arrangement of Juliet's marriage to Paris and the genuinely transgressive nature of her secret, self-chosen marriage to Romeo."},
+  {t:"Patriarchy", body:"Elizabethan society was structured around significant male authority, with fathers holding substantial legal and social power over their daughters' lives, including marriage decisions.",
+   use:"Use this to explain the shift in Capulet's behaviour once Juliet exercises independent choice, revealing the conditional, authority-dependent nature of his earlier apparent consideration for her wishes."},
+  {t:"Honour", body:"Personal and family reputation carried substantial social weight in Elizabethan society, particularly regarding public insult, perceived disrespect, and the willingness to defend one's name through physical confrontation if necessary.",
+   use:"Use this to explain Tybalt's aggressive response to Romeo's presence at the Capulet feast, and Mercutio's fatal willingness to fight in defence of both his own and Romeo's honour."},
+  {t:"Violence", body:"Public duelling and street violence, particularly among young men, were a genuine feature of some aspects of Elizabethan urban life, especially where personal or family honour was perceived to be at stake.",
+   use:"Use this to explain why the play's violence, from the opening brawl to Mercutio and Tybalt's deaths, would have felt recognisable rather than purely theatrical to a contemporary audience."},
+  {t:"Religion", body:"Elizabethan England was a predominantly Christian society; ideas of sin, particularly regarding suicide, alongside marriage as a sacred sacrament and questions of fate versus divine providence, shaped contemporary moral thinking.",
+   use:"Use this to explain the genuine moral weight of Romeo and Juliet's final suicides, and the significance of their marriage being performed by a religious figure, Friar Lawrence."},
+  {t:"Fate and astrology", body:"Belief in astrology and the influence of the stars on human affairs was widespread in Elizabethan England, though attitudes varied considerably, from serious conviction to sceptical entertainment, rather than being a single, universally-held view.",
+   use:"Use this to explain the Prologue's 'star-cross'd lovers' framing, while being careful not to overstate the extent to which all Elizabethan audience members would have read this as removing all human responsibility."},
+  {t:"Family and inheritance", body:"Family name, reputation and social position carried substantial practical significance in Elizabethan society, affecting marriage prospects, business relationships and social standing.",
+   use:"Use this to explain why Juliet's dismissal of the importance of Romeo's family name ('what's in a name?') represents a genuinely radical claim against contemporary social assumptions."},
+  {t:"Shakespeare's theatre", body:"Elizabethan theatre used minimal scenery, relying heavily on language to establish setting and mood; female roles were played by male actors, since women were not permitted to perform on the public stage.",
+   use:"Use this to explain why Shakespeare's language does so much descriptive and atmospheric work throughout the play, and to contextualise original staging decisions like the balcony scene."},
+  {t:"Italy as setting", body:"Shakespeare frequently set plays involving intense passion, family conflict and social tension in Italy, drawing on English cultural associations of Italian city-states with both romance and volatile honour culture.",
+   use:"Use this to explain why Verona provides a fitting backdrop for the play's combination of passionate romance and violent family conflict, familiar to Shakespeare's audience through other Italian-set literature and drama."}
+  ];
+  const cards = items.map(i=>`<div class="disclosure" data-d>
+    <button class="d-head"><span>${i.t}</span><span class="chev">›</span></button>
+    <div class="d-body"><div class="inner">
+      <p style="margin-top:10px;">${i.body}</p>
+      <div class="mini-label">How can I actually use this in an essay?</div><p>${i.use}</p>
+    </div></div>
+  </div>`).join('');
+
+  const s = el(`<section class="section" id="section-context">
+    <div class="section-header"><div class="eyebrow">Section 06</div><h1>Context</h1><div class="desc">Only the context you can actually use — always paired with a real essay application.</div></div>
+    <div class="card"><p><b>Important:</b> Never bolt on a historical fact just to prove you know it. Only use context when it genuinely deepens your interpretation of Shakespeare's choices in that specific moment.</p></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 7. TECHNIQUES ---- */
+function buildTechniques(){
+  const cards = TECHNIQUES.map(t=>`<div class="disclosure" data-d>
+    <button class="d-head"><span>${t.name}</span><span class="chev">›</span></button>
+    <div class="d-body"><div class="inner">
+      <div class="mini-label">Definition</div><p>${t.def}</p>
+      <div class="mini-label">Romeo and Juliet example</div><p>${t.example}</p>
+      <div class="mini-label">Effect</div><p>${t.effect}</p>
+      <div class="mini-label">How to analyse it</div><p>${t.howto}</p>
+    </div></div>
+  </div>`).join('');
+
+  const s = el(`<section class="section" id="section-techniques">
+    <div class="section-header"><div class="eyebrow">Section 07</div><h1>Techniques</h1><div class="desc">The key literary and dramatic methods Shakespeare uses, with clear examples and analysis guidance.</div></div>
+
+    <div class="card"><h3>Oxymorons — Romeo's contradictory language</h3>
+      <p>Romeo repeatedly uses oxymorons throughout the play, most strikingly in Act One's 'O brawling love! O loving hate!' This pattern of contradictory language is not simply decorative wordplay — it captures a genuine, structural truth about the play's world, where love and violence are never fully separable. Romeo's oxymorons suggest he intuitively grasps this paradox even before fully living through its consequences, and the technique recurs at key moments (Juliet's 'parting is such sweet sorrow') to reinforce how thoroughly contradictory, intense emotion characterises the lovers' entire experience.</p>
+    </div>
+
+    <div class="card"><h3>Light and dark imagery — how it develops</h3>
+      <p>Light imagery begins the play in a celebratory register: Romeo describes Juliet as the sun itself breaking through darkness in the balcony scene, associating her with life, hope and radiance. As the play progresses toward tragedy, however, this imagery grows increasingly complicated. Darkness becomes associated not just with danger but with the secrecy the lovers require to survive (their meetings, their marriage), while light increasingly appears alongside violence and death (the 'lightning' Juliet fears their love resembles — too swift and bright to last). By the tomb scene, light and dark have become inseparably fused with mortality itself, tracking the play's full tonal journey from romantic comedy to tragedy through a single, evolving image pattern.</p>
+    </div>
+
+    <div class="card"><h3>The shared sonnet — why it matters</h3>
+      <p>Romeo and Juliet's first conversation at the Capulet party is structured as a complete Shakespearean sonnet, its fourteen lines divided between the two speakers, built around an extended metaphor comparing Romeo to a pilgrim and Juliet to a holy shrine. This is a remarkable formal choice: rather than one character delivering a self-contained poetic speech, their alternating lines complete each other's rhyme scheme and rhythm, structurally enacting a sense of natural harmony and immediate compatibility before they have exchanged more than a few words. The religious imagery (pilgrim, shrine, saint, prayer) also elevates their attraction to something sacred, distinguishing this encounter from Romeo's earlier, more conventional Petrarchan language for Rosaline.</p>
+    </div>
+
+    <div class="card"><h3>The Prologue — sonnet, fate and inevitability</h3>
+      <p>The Chorus's Prologue is itself a sonnet, immediately signalling to an audience familiar with the form that romantic and tragic significance is at stake. Its explicit announcement that the 'star-cross'd lovers' will die removes any suspense about the plot's basic outcome, meaning the play's dramatic tension comes not from wondering what will happen, but from watching how it happens, and from the accumulating dramatic irony as characters make decisions the audience already knows are doomed. This creates a powerful sense of foreshadowing and inevitability from the very first lines, even as the play's actual unfolding events repeatedly show human choice, not fate alone, driving the tragedy forward.</p>
+    </div>
+
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 8. EXAM ---- */
+function buildExam(){
+  const s = el(`<section class="section" id="section-exam">
+    <div class="section-header"><div class="eyebrow">Section 08</div><h1>Exam Survival</h1><div class="desc">How to actually approach a Romeo and Juliet exam question, step by step.</div></div>
+
+    <div class="card"><p>Exam boards differ in exact format — some give you a printed extract and ask you to connect it to the whole play; others ask a discursive essay question without an extract. Always check your own exam board's format with your teacher, but the analytical skills below apply broadly.</p></div>
+
+    <div class="disclosure open" data-d><button class="d-head"><span>1. Understanding the question</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Underline the key words in the question — usually a character, theme, or idea, plus a command word (e.g. 'explore', 'how does Shakespeare present'). Every paragraph should keep answering that exact question.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>2. Analysing the extract</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Read the extract twice — first for meaning, then hunting for specific techniques (imagery, structure, form). Annotate briefly rather than writing full sentences at this stage.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>3. Connecting extract to whole play</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Always show how the extract's ideas develop elsewhere. For example, if the extract shows Romeo's impulsiveness, connect it to his later decision to buy poison to show a pattern across the whole play.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>4. Selecting evidence</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Choose short, precise quotations you can analyse word-by-word rather than long ones you only summarise. Never invent a quotation — an accurate short quote is always stronger than a fabricated longer one.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>5. Creating a thesis</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>State a clear, arguable position rather than just restating the question. For example: "Shakespeare presents the tragedy as arising from the interaction between fate and repeated impulsive human choice, rather than fate alone."</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>6. Paragraph structure</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>A reliable structure: Point → Evidence (short quotation) → Method (technique + effect) → Context (only if it adds insight) → Link back to Shakespeare's likely purpose.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>7. Analysing language</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Always ask: why this specific word or image, not a similar one? Zoom in on individual word choices and their connotations rather than making broad, generic claims.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>8. Analysing stagecraft</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Consider physical staging, positioning and movement, not just spoken language — for example, Juliet's elevated position in the balcony scene reinforces Romeo's idealisation of her.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>9. Discussing structure</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Consider why Shakespeare places events in a specific order — for example, why Mercutio's death occurs precisely at the play's structural midpoint, shifting tone from comedy toward tragedy.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>10. Using context</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Context should illuminate Shakespeare's choices, not replace analysis of them. One well-placed contextual point is worth more than a paragraph of Elizabethan history with no link to the text.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>11. Writing conclusions</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Don't simply repeat your introduction. Briefly synthesise your strongest points and comment on Shakespeare's overall dramatic or moral message.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>12. Managing time</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Spend a few minutes planning before you write. Leave a couple of minutes at the end to check for missing words and unclear sentences.</p></div></div></div>
+
+    <h2 style="margin-top:28px;">Extract → Whole Play</h2>
+    <div class="card"><p>Start with what the extract itself does — for example, an extract showing Romeo's impulsiveness might focus on urgent imperatives and rapid decision-making. Then widen outward: does this connect to a pattern across the play (his later purchase of poison)? Does it relate to a theme explored elsewhere (fate vs choice)? Finally, connect to Shakespeare's likely overall purpose — is he arguing that impulsiveness, not fate alone, drives tragedy? This "zoom out" movement — extract detail, play-wide pattern, authorial purpose — is a reliable way to structure a strong response.</p></div>
+
+    <h2 style="margin-top:28px;">Weak vs Strong Analysis</h2>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"Romeo loves Juliet because he says she is the sun."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"Romeo's metaphor 'Juliet is the sun' positions her as a literal source of light and life, its connotations of warmth and vitality elevating his feeling beyond ordinary romantic language — yet the sun's overwhelming intensity also subtly foreshadows a love that, like staring directly at sunlight, may ultimately prove too powerful to safely sustain, reflecting Shakespeare's wider pattern of linking passionate love with danger throughout the play."</p></div>
+    </div>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"The play is about fate because the Prologue says they're star-crossed."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"While the Prologue's 'star-cross'd lovers' establishes a fatalistic framework, Shakespeare consistently shows individual characters making avoidable choices — Romeo's impulsive killing of Tybalt, his hasty purchase of poison — suggesting the tragedy results from an interaction between fate and human agency rather than predetermined destiny alone."</p></div>
+    </div>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"Juliet is brave because she kills herself."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"Juliet's address to the dagger as 'happy' and her body as its 'sheath' reframes her final act not as passive despair but as deliberate, active agency, consistent with the assertive, decisive characterisation Shakespeare has built throughout the play — a marked contrast to the passive, obedient daughter introduced in Act One."</p></div>
+    </div>
+
+    <h2 style="margin-top:28px;">Practice questions</h2>
+    <div id="practiceQs"></div>
+  </section>`);
+  root.appendChild(s);
+
+  const practice = [
+   {q:"How does Shakespeare present love?", plan:["Introduce love as multiple, contrasting forms across the play.","P1: Romeo's performative early love for Rosaline.","P2: The shared sonnet and balcony scene's genuine intensity.","P3: Love's fatal entanglement with violence and death by the play's end.","Context: Petrarchan poetic tradition.","Conclusion: Shakespeare presents genuine love as transformative but dangerously intense."]},
+   {q:"How does Shakespeare present conflict?", plan:["Introduce the feud as a structural, largely inherited force.","P1: The unexplained 'ancient grudge' from the Prologue.","P2: Tybalt's aggressive honour-driven violence.","P3: Mercutio's death as the play's structural turning point.","Context: Elizabethan honour culture and duelling.","Conclusion: Shakespeare presents conflict as self-perpetuating and largely beyond individual control once begun."]},
+   {q:"How does Shakespeare present Juliet?", plan:["Introduce Juliet's rapid development from obedient daughter to independent agent.","P1: Her initial deference to her mother's judgement.","P2: Her active role in arranging the secret marriage.","P3: Her isolated but courageous final choice.","Context: Elizabethan patriarchal expectations of daughters.","Conclusion: Shakespeare presents Juliet's development as remarkably rapid and genuinely courageous."]},
+   {q:"How does Shakespeare present Romeo?", plan:["Introduce Romeo's shifting understanding of love and his consistent impulsiveness.","P1: His performative early language for Rosaline.","P2: His genuine, transformed feeling for Juliet.","P3: His repeated impulsive decisions driving the tragedy.","Context: Petrarchan poetic conventions.","Conclusion: Shakespeare presents Romeo as genuinely capable of deep feeling, but dangerously impulsive."]},
+   {q:"How does Shakespeare present fate?", plan:["Introduce fate as announced but not solely responsible for the tragedy.","P1: The Prologue's 'star-cross'd lovers'.","P2: The failed letter as genuine circumstance beyond control.","P3: Repeated human choices (Tybalt's death, the poison) also driving events.","Context: varied Elizabethan beliefs about astrology.","Conclusion: Shakespeare presents fate and choice as working together, not fate alone."]},
+   {q:"How does Shakespeare present Mercutio?", plan:["Introduce Mercutio as a cynical, witty counterpoint to Romeo.","P1: His mocking Queen Mab speech.","P2: His fatal loyalty to Romeo in confronting Tybalt.","P3: His dying curse on both households.","Context: Elizabethan honour culture.","Conclusion: Shakespeare uses Mercutio as both comic relief and a structural catalyst for tragedy."]},
+   {q:"How does Shakespeare present Tybalt?", plan:["Introduce Tybalt as embodying violent honour culture.","P1: His immediate hostility from his first appearance.","P2: His anger at Romeo's presence at the Capulet feast.","P3: His fatal duels with Mercutio and Romeo.","Context: Elizabethan duelling and honour.","Conclusion: Shakespeare presents Tybalt as a structural embodiment of the feud's violent logic."]},
+   {q:"How does Shakespeare present family relationships?", plan:["Introduce family as both supportive and destructively constraining.","P1: The feud's inherited, structural hostility.","P2: Capulet's contradictory authority over Juliet.","P3: The families' reconciliation, achieved only through tragic loss.","Context: Elizabethan patriarchal family structures.","Conclusion: Shakespeare presents family loyalty as double-edged, both identity-giving and destructive."]},
+   {q:"How does Shakespeare present male violence?", plan:["Introduce male violence as driven by honour culture.","P1: The opening brawl's origins in minor provocation.","P2: Tybalt and Mercutio's fatal duel.","P3: Romeo's retaliatory killing of Tybalt.","Context: Elizabethan honour and duelling culture.","Conclusion: Shakespeare presents male violence as a coercive, self-perpetuating social force."]},
+   {q:"How does Shakespeare present the relationship between Romeo and Juliet?", plan:["Introduce their relationship as intense, rapid and structurally significant.","P1: The shared sonnet's formal harmony at first meeting.","P2: The balcony scene's escalating mutual declarations.","P3: Their united fate at the play's tragic conclusion.","Context: Petrarchan poetic tradition and Elizabethan marriage norms.","Conclusion: Shakespeare presents their relationship as genuinely transformative but fatally entangled with the feud."]},
+   {q:"How does Shakespeare present Capulet?", plan:["Introduce Capulet's contradictory characterisation.","P1: His initially protective attitude toward Juliet's marriage.","P2: His furious authoritarianism once she disobeys.","P3: His grief and reconciliation with Montague at the play's end.","Context: Elizabethan patriarchal authority.","Conclusion: Shakespeare presents Capulet's apparent kindness as ultimately conditional on obedience."]},
+   {q:"How does Shakespeare use light and darkness?", plan:["Introduce light/dark imagery as developing across the play.","P1: Celebratory light imagery in the balcony scene.","P2: Darkness associated with necessary secrecy.","P3: Light and dark fused with death by the tomb scene.","Context: familiar Elizabethan light/dark symbolic associations.","Conclusion: Shakespeare uses light/dark imagery to visually chart the play's movement from romance toward tragedy."]}
+  ];
+  const container = document.getElementById('practiceQs');
+  container.innerHTML = practice.map((p,i)=>`<div class="card">
+    <h3>${p.q}</h3>
+    <button class="btn secondary" type="button" data-plan="${i}">Reveal planning points</button>
+    <div class="plan-reveal" data-plan-body="${i}" style="display:none;margin-top:12px;">
+      <ol>${p.plan.map(x=>`<li>${x}</li>`).join('')}</ol>
+    </div>
+  </div>`).join('');
+  container.querySelectorAll('[data-plan]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const idx = btn.getAttribute('data-plan');
+      const body = container.querySelector(`[data-plan-body="${idx}"]`);
+      const showing = body.style.display !== 'none';
+      body.style.display = showing ? 'none' : 'block';
+      btn.textContent = showing ? 'Reveal planning points' : 'Hide planning points';
+    });
+  });
+}
+
+/* ---- 9. QUIZ ---- */
+let quizState = { order: [], idx:0, score:0, answered:false, wrongTopics:{} };
+function shuffle(arr){ const a = arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+const TYPE_LABEL = {mc:'Plot & detail', tf:'True / False', char:'Character', quote:'Quotation', theme:'Theme', context:'Context', tech:'Technique', stave:'Act'};
+
+function buildQuiz(){
+  const s = el(`<section class="section" id="section-quiz">
+    <div class="section-header"><div class="eyebrow">Section 09</div><h1>Quiz</h1><div class="desc">Self-marking revision quiz covering plot, acts, characters, quotations, themes, context, techniques and structure.</div></div>
+    <div class="card">
+      <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
+      <div id="quizArea"></div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  startQuiz();
+}
+
+function startQuiz(){
+  quizState = { order: shuffle(QUIZ_BANK.map((_,i)=>i)), idx:0, score:0, answered:false, wrongTopics:{} };
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion(){
+  const area = document.getElementById('quizArea');
+  const total = quizState.order.length;
+  if(quizState.idx >= total){
+    const pct = Math.round((quizState.score/total)*100);
+    document.getElementById('quizProgressBar').style.width = '100%';
+    const weakList = Object.keys(quizState.wrongTopics).sort((a,b)=>quizState.wrongTopics[b]-quizState.wrongTopics[a]);
+    area.innerHTML = `<div class="quiz-result">
+      <div class="score">${quizState.score}/${total}</div>
+      <p class="subtle">${pct}% correct</p>
+      ${weakList.length ? `<div class="weak-areas"><p class="subtle"><b>Areas to revise:</b></p><p>${weakList.map(t=>`<span class="tag blood">${TYPE_LABEL[t]||t}</span>`).join('')}</p></div>` : `<p class="subtle">Strong across every question type — well done!</p>`}
+      <button class="btn blood" id="tryAgainBtn" type="button">Try Again</button>
+      <button class="btn secondary" id="newQuizBtn" type="button" style="margin-left:8px;">New Quiz</button>
+    </div>`;
+    document.getElementById('tryAgainBtn').addEventListener('click', ()=>{ quizState.idx=0; quizState.score=0; quizState.wrongTopics={}; quizState.answered=false; renderQuizQuestion(); });
+    document.getElementById('newQuizBtn').addEventListener('click', startQuiz);
+    return;
+  }
+  document.getElementById('quizProgressBar').style.width = ((quizState.idx/total)*100)+'%';
+  const item = QUIZ_BANK[quizState.order[quizState.idx]];
+  const optOrder = shuffle(item.opts.map((o,i)=>i));
+  quizState.answered = false;
+  area.innerHTML = `
+    <p class="subtle">Question ${quizState.idx+1} of ${total} · <span class="tag gold">${TYPE_LABEL[item.type]||''}</span></p>
+    <div class="quiz-q">${item.q}</div>
+    <div class="quiz-opts">${optOrder.map(oi=>`<button class="quiz-opt" data-oi="${oi}" type="button">${item.opts[oi]}</button>`).join('')}</div>
+    <div class="quiz-explain" id="quizExplain"></div>
+    <div style="margin-top:14px;"><button class="btn" id="quizNextBtn" type="button" style="display:none;">Next question</button></div>
+  `;
+  area.querySelectorAll('.quiz-opt').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(quizState.answered) return;
+      quizState.answered = true;
+      const chosen = parseInt(btn.getAttribute('data-oi'));
+      area.querySelectorAll('.quiz-opt').forEach(b=>{
+        b.setAttribute('disabled','true');
+        const oi = parseInt(b.getAttribute('data-oi'));
+        if(oi === item.a) b.classList.add('correct');
+        else if(oi === chosen) b.classList.add('incorrect');
+      });
+      if(chosen === item.a) quizState.score++;
+      else quizState.wrongTopics[item.type] = (quizState.wrongTopics[item.type]||0)+1;
+      const exp = document.getElementById('quizExplain');
+      exp.textContent = item.exp;
+      exp.classList.add('show');
+      document.getElementById('quizNextBtn').style.display = 'inline-block';
+    });
+  });
+  document.getElementById('quizNextBtn').addEventListener('click', ()=>{ quizState.idx++; renderQuizQuestion(); });
+}
+
+/* ---- 10. WHO CAUSED THE TRAGEDY ---- */
+const BLAME = [
+{who:'Romeo', for_:"His repeated impulsive decisions — marrying within a day, killing Tybalt in immediate retaliation, buying poison without verifying Juliet's condition — directly cause key turning points.", against:"His actions occur under extreme emotional pressure (grief, apparent loss), and the Prologue frames him as fated, suggesting limited genuine agency.", quote:"O, I am fortune's fool!", judgement:"A strong case can be made that Romeo's impulsiveness is a major contributing factor, though his own framing of events as fate complicates full personal responsibility."},
+{who:'Juliet', for_:"Her decision to fake her death via an untested, risky plan, and her own final choice to take her own life, are both hers alone.", against:"She is left with no trusted adult to turn to after the Nurse's betrayal, making her choices understandable given her genuinely isolated position.", quote:"O happy dagger, this is thy sheath", judgement:"Juliet's actions can be read as courageous responses to an impossible situation rather than reckless choices, though her plan's riskiness remains a contributing factor."},
+{who:'Friar Lawrence', for_:"His secret marriage and risky sleeping-potion plan, poorly communicated, directly enable the fatal misunderstanding at the play's climax.", against:"His intentions are consistently positive, hoping to reconcile the families and protect Juliet; the letter's failure is due to circumstance (Friar John's quarantine), not his own negligence.", quote:"These violent delights have violent ends", judgement:"A significant case exists that his well-intentioned but insufficiently careful planning represents a serious adult failure of responsibility, even without malicious intent."},
+{who:'The Nurse', for_:"Her advice that Juliet forget Romeo and marry Paris betrays Juliet's trust at a critical moment, contributing to her isolation.", against:"Her advice is practical and arguably well-meaning, aiming to protect Juliet from a genuinely dangerous situation given Romeo's banishment.", quote:"", judgement:"The Nurse's betrayal, while perhaps pragmatically reasonable, removes crucial emotional support from Juliet precisely when she needs it most."},
+{who:'Capulet', for_:"His furious ultimatum forcing Juliet to marry Paris directly drives her toward the desperate, risky plan that ultimately fails.", against:"He is unaware of Juliet's secret marriage, and his actions, though harsh, reflect standard Elizabethan patriarchal expectations rather than unusual cruelty.", quote:"Hang thee, young baggage, disobedient wretch!", judgement:"Capulet's authoritarian response, while socially unremarkable for the period, directly precipitates the crisis that leads to Juliet's fatal plan."},
+{who:'Tybalt', for_:"His aggressive challenge to Romeo, followed by killing Mercutio, directly sets off the chain of violence leading to his own and later Romeo and Juliet's deaths.", against:"His actions align with genuine Elizabethan honour-culture expectations; he is defending his family's honour according to social norms of the time.", quote:"I hate the word, as I hate hell, all Montagues, and thee", judgement:"Tybalt's aggressive commitment to honour culture is a significant proximate cause of the tragedy's escalation, whatever its social justification."},
+{who:'Mercutio', for_:"His decision to fight Tybalt in Romeo's place, despite not being personally obligated to do so, directly leads to his own death and the subsequent chain of violence.", against:"He acts out of loyalty to Romeo and frustration with the feud's constraints; his death is arguably closer to misfortune than a culpable choice.", quote:"A plague o' both your houses!", judgement:"Mercutio's death is difficult to attribute primarily to his own culpability, though his choice to fight does directly trigger the play's central turning point."},
+{who:'The families', for_:"The ongoing, unexplained feud creates the entire context of secrecy, danger and violence within which the tragedy unfolds.", against:"No individual character alive during the play's events is shown to have started the feud; its origins are never explained, distributing responsibility across generations.", quote:"ancient grudge", judgement:"The feud's structural, inherited nature makes it a significant background cause, even though no single living character can be blamed for originating it."},
+{who:'Fate', for_:"The Prologue explicitly frames the lovers as 'star-cross'd', and genuine circumstance (Friar John's quarantine) does intervene beyond any character's control.", against:"Many of the play's most consequential turning points result directly from identifiable human choices, suggesting fate alone cannot fully explain the tragedy.", quote:"star-cross'd lovers", judgement:"Fate provides a meaningful framing device and does intervene at points, but should be balanced against, not substituted for, analysis of characters' choices."}
+];
+
+function buildWhoCaused(){
+  const cards = BLAME.map(b=>`<div class="blame-card">
+    <h3>${b.who}</h3>
+    <div class="blame-cols">
+      <div class="blame-for"><b>Evidence for responsibility</b><p>${b.for_}</p></div>
+      <div class="blame-against"><b>Evidence against</b><p>${b.against}</p></div>
+    </div>
+    ${b.quote ? `<div class="mini-label">Key quotation</div><div class="quote-line">"${b.quote}"</div>` : ''}
+    <div class="mini-label">Possible judgement</div><p>${b.judgement}</p>
+  </div>`).join('');
+
+  const s = el(`<section class="section" id="section-whocaused">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Who Caused the Tragedy?</h1><div class="desc">There is no single correct answer — use the evidence below to develop your own argument.</div></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 11. LOVE OR CONFLICT GAME ---- */
+let lcState = { order: [], idx:0, score:0, answered:false };
+
+function buildLoveConflict(){
+  const s = el(`<section class="section" id="section-loveconflict">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Love or Conflict?</h1><div class="desc">A quick, game-like activity. For each quotation, decide whether it is primarily about love, conflict, both, or neither.</div></div>
+    <div class="jh-game">
+      <div class="jh-score" id="lcScore"></div>
+      <div class="jh-quote" id="lcQuoteText"></div>
+      <div class="jh-opts" id="lcOpts"></div>
+      <div class="jh-feedback" id="lcFeedback"></div>
+      <button class="btn" id="lcNextBtn" type="button" style="display:none;margin-top:14px;">Next quotation</button>
+      <button class="btn secondary" id="lcRestartBtn" type="button" style="display:none;margin-top:14px;">Play again</button>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  startLC();
+}
+
+function startLC(){
+  lcState = { order: shuffle(LOVEORCONFLICT.map((_,i)=>i)), idx:0, score:0, answered:false };
+  renderLC();
+}
+
+function renderLC(){
+  const total = lcState.order.length;
+  const scoreEl = document.getElementById('lcScore');
+  const feedback = document.getElementById('lcFeedback');
+  const nextBtn = document.getElementById('lcNextBtn');
+  const restartBtn = document.getElementById('lcRestartBtn');
+  feedback.classList.remove('show');
+  feedback.textContent = '';
+  nextBtn.style.display = 'none';
+
+  if(lcState.idx >= total){
+    scoreEl.textContent = `Final score: ${lcState.score}/${total}`;
+    document.getElementById('lcQuoteText').textContent = "Round complete!";
+    document.getElementById('lcOpts').innerHTML = '';
+    restartBtn.style.display = 'inline-block';
+    restartBtn.onclick = startLC;
+    return;
+  }
+  restartBtn.style.display = 'none';
+  scoreEl.textContent = `Quotation ${lcState.idx+1} of ${total} · Score: ${lcState.score}`;
+  const item = LOVEORCONFLICT[lcState.order[lcState.idx]];
+  document.getElementById('lcQuoteText').textContent = `"${item.text}"`;
+  const opts = ['Love','Conflict','Both','Neither'];
+  const optsEl = document.getElementById('lcOpts');
+  optsEl.innerHTML = opts.map(o=>`<button type="button" data-opt="${o}">${o}</button>`).join('');
+  lcState.answered = false;
+  optsEl.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(lcState.answered) return;
+      lcState.answered = true;
+      const chosen = btn.getAttribute('data-opt');
+      optsEl.querySelectorAll('button').forEach(b=>{
+        b.disabled = true;
+        if(b.getAttribute('data-opt') === item.answer) b.classList.add('correct');
+        else if(b === btn) b.classList.add('incorrect');
+      });
+      if(chosen === item.answer) lcState.score++;
+      feedback.textContent = item.exp;
+      feedback.classList.add('show');
+      nextBtn.style.display = 'inline-block';
+    });
+  });
+}
+document.addEventListener('click', function(e){
+  if(e.target && e.target.id === 'lcNextBtn'){ lcState.idx++; renderLC(); }
+});
+
+/* ---- 12. RELATIONSHIP MAP ---- */
+function buildRelMap(){
+  const cards = RELMAP.map(r=>`
+    <div class="rel-card" data-d>
+      <button class="rel-head">
+        <span class="rel-title">${r.a} ↔ ${r.b}</span>
+        <span class="chev">›</span>
+      </button>
+      <div class="rel-body"><div class="rel-inner">
+        <div class="mini-label">How it begins</div><p>${r.begins}</p>
+        <div class="mini-label">How it changes</div><p>${r.changes}</p>
+        <div class="mini-label">Key conflict</div><p>${r.conflict}</p>
+        ${r.quote ? `<div class="mini-label">Useful quotation</div><div class="quote-line">"${r.quote}"</div>` : ''}
+        <div class="mini-label">Relevant themes</div><p>${r.themes.map(t=>`<span class="tag blood">${t}</span>`).join('')}</p>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-relmap">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Relationship Map</h1><div class="desc">Tap each relationship to see how it develops across the play.</div></div>
+    <div class="rel-grid">${cards}</div>
+  </section>`);
+  root.appendChild(s);
+
+  s.querySelectorAll('.rel-head').forEach(head=>{
+    head.addEventListener('click', ()=>{ head.closest('.rel-card').classList.toggle('open'); });
+  });
+}
+
+/* ---- 13. FATE TRACKER ---- */
+function buildFateTracker(){
+  const cards = FATE.map((f,i)=>`
+    <div class="fate-card">
+      <h3>${f.event}</h3>
+      <div class="fate-opts" data-idx="${i}">
+        <button type="button" data-choice="Fate">Fate</button>
+        <button type="button" data-choice="Choice">Choice</button>
+        <button type="button" data-choice="Both">Both</button>
+      </div>
+      <div class="fate-explain" id="fate-explain-${i}">${f.explain}</div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-fatetracker">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Fate or Choice?</h1><div class="desc">For each major moment, make your own judgement, then reveal a balanced explanation.</div></div>
+    <div class="card"><p class="subtle">There's no single correct answer here — the goal is to think through how fate and human choice interact at each moment, not to guess a fixed answer.</p></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+
+  s.querySelectorAll('.fate-opts').forEach(optsDiv=>{
+    const idx = optsDiv.getAttribute('data-idx');
+    const explainEl = document.getElementById(`fate-explain-${idx}`);
+    optsDiv.querySelectorAll('button').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        optsDiv.querySelectorAll('button').forEach(b=>b.classList.remove('chosen'));
+        btn.classList.add('chosen');
+        explainEl.classList.add('show');
+      });
+    });
+  });
+}
+
+/* ---- 14. LAST MINUTE ---- */
+function buildLastMinute(){
+  const plot12 = ["The Prologue announces the fate of the 'star-cross'd lovers'.","A street brawl breaks out between the Montagues and Capulets.","Romeo and Juliet meet and fall in love at the Capulet feast.","Romeo and Juliet exchange vows in the balcony scene.","Friar Lawrence secretly marries Romeo and Juliet.","Tybalt kills Mercutio; Romeo kills Tybalt in revenge and is banished.","Romeo and Juliet spend their wedding night together before he flees.","Capulet arranges Juliet's marriage to Paris; Juliet refuses.","Friar Lawrence gives Juliet a sleeping potion to fake her death.","Juliet takes the potion; her family believes she has died.","Friar Lawrence's letter fails to reach Romeo, who buys poison.","Romeo and Juliet both die at the tomb; their families reconcile."];
+  const sixChars = [
+   ["Romeo","Passionate, impulsive young man whose understanding of love transforms upon meeting Juliet."],
+   ["Juliet","Develops rapidly from obedient daughter into independent, courageous decision-maker."],
+   ["Mercutio","Witty, cynical friend whose death marks the play's structural turning point."],
+   ["Tybalt","Proud, honour-driven Capulet whose aggression repeatedly escalates violence."],
+   ["Friar Lawrence","Well-meaning but ultimately reckless adult whose secret plans contribute to disaster."],
+   ["Capulet","Contradictory patriarch, initially protective but violently authoritarian when disobeyed."]
+  ];
+  const fiveThemes = [
+   ["Love","Genuine, transformative passion that becomes fatally entangled with violence and death."],
+   ["Conflict","The largely inherited, structural Montague-Capulet feud driving much of the play's violence."],
+   ["Fate","The Prologue's framing, balanced against clear evidence of human choice throughout."],
+   ["Family","Family loyalty as both a source of identity and a destructive constraint, especially on Juliet."],
+   ["Violence","Escalating, self-perpetuating conflict extending consequences beyond its original participants."]
+  ];
+  const quotes15 = [
+   ["star-cross'd lovers","The Chorus","Use for fate — balance against evidence of choice."],
+   ["ancient grudge","The Chorus","Use for conflict and the feud's unexplained, structural nature."],
+   ["O brawling love! O loving hate!","Romeo","Use for the love/conflict connection — oxymoron."],
+   ["Did my heart love till now?","Romeo","Use for love and Romeo's instant, total conviction."],
+   ["It is the east, and Juliet is the sun","Romeo","Use for love and light imagery — one of the play's most famous lines."],
+   ["What's in a name?","Juliet","Use for love, family, and social categorisation."],
+   ["Parting is such sweet sorrow","Juliet","Use for love and oxymoron."],
+   ["These violent delights have violent ends","Friar Lawrence","Use for fate, foreshadowing, and dramatic irony."],
+   ["A plague o' both your houses!","Mercutio","Use for conflict and the feud's wider impact."],
+   ["O, I am fortune's fool!","Romeo","Use for fate vs choice — essential for debating Romeo's responsibility."],
+   ["Hang thee, young baggage, disobedient wretch!","Capulet","Use for patriarchy, family, and gender."],
+   ["Give me my Romeo...cut him out in little stars","Juliet","Use for love and celestial imagery."],
+   ["Thus with a kiss I die","Romeo","Use for the play's ending and the love/death connection."],
+   ["O happy dagger","Juliet","Use for the ending, courage, and Juliet's agency."],
+   ["Wisely and slow; they stumble that run fast","Friar Lawrence","Use for impulsiveness and foreshadowing."]
+  ];
+  const fiveContext = ["Elizabethan patriarchal authority over daughters' marriages.","Honour culture and the social weight of public duelling.","Varied Elizabethan beliefs about astrology and fate.","Christian attitudes toward suicide as a serious sin.","Elizabethan theatre conventions: male actors, minimal scenery, language-driven staging."];
+  const fiveTech = [
+   ["Oxymoron","Romeo's contradictory language ('O brawling love! O loving hate!') captures the play's central paradox."],
+   ["Light/dark imagery","Develops from celebratory (the balcony scene) to increasingly death-associated by the tomb scene."],
+   ["Shared sonnet","Romeo and Juliet's first conversation structurally enacts their instant harmony."],
+   ["Dramatic irony","The audience's knowledge of Juliet's fake death creates unbearable tension in the tomb scene."],
+   ["Foreshadowing","The Prologue's sonnet announces the tragic ending before the play even begins."]
+  ];
+  const checklist = ["Answer the exact question.","Start with a clear argument.","Use precise, accurate quotations — never invented.","Analyse individual words, not just quote them.","Discuss dramatic methods, not just what happens.","Link extract to whole play where relevant.","Use context naturally, not as a bolt-on.","Keep returning to Shakespeare's purpose."];
+  const dontDo = ["Don't simply retell the story.","Don't call Shakespeare a novelist — he was a playwright.","Don't invent or misremember quotations.","Don't bolt on context disconnected from the text.","Don't blame everything on fate without discussing characters' choices."];
+
+  const s = el(`<section class="section" id="section-lastminute">
+    <div class="section-header"><div class="eyebrow">Section 10</div><h1>Romeo and Juliet — Last Minute</h1><div class="desc">Exam tomorrow? Start here.</div></div>
+    <button class="btn secondary print-btn" id="printBtn" type="button">Print this page</button>
+
+    <div class="lm-grid">
+      <div class="lm-card"><h3>Plot in 12 points</h3><ol>${plot12.map(x=>`<li>${x}</li>`).join('')}</ol></div>
+      <div class="lm-card"><h3>6 characters you must understand</h3><ul>${sixChars.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 themes you must understand</h3><ul>${fiveThemes.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>15 quotations worth remembering</h3><ul>${quotes15.map(x=>`<li>"${x[0]}" <br><span class="subtle">— ${x[1]} → ${x[2]}</span></li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 contextual ideas</h3><ul>${fiveContext.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 techniques worth recognising</h3><ul>${fiveTech.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>Essay checklist</h3><ul>${checklist.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>Five things NOT to do</h3><ul>${dontDo.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  document.getElementById('printBtn').addEventListener('click', ()=> window.print());
+}
+
+/* ================= DISCLOSURE BEHAVIOUR (shared) ================= */
+function wireDisclosures(){
+  document.querySelectorAll('.disclosure > .d-head').forEach(head=>{
+    head.addEventListener('click', ()=>{
+      head.parentElement.classList.toggle('open');
+    });
+  });
+}
+
+/* ================= INIT ================= */
+buildOverview();
+buildPlot();
+buildCharacters();
+buildThemes();
+buildQuoteVault();
+buildContext();
+buildTechniques();
+buildExam();
+buildQuiz();
+buildWhoCaused();
+buildLoveConflict();
+buildRelMap();
+buildFateTracker();
+buildLastMinute();
+renderNav();
+wireDisclosures();
+showSection(SECTIONS.some(s=>s.id===currentSection) ? currentSection : 'overview');
+
+})();
+</script>
+</body>
+</html>

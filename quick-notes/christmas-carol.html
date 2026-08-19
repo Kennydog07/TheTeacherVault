@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Teacher Vault — A Christmas Carol QuickNotes</title>
+<style>
+:root{
+  --ink:#1B2A4A;
+  --ink-light:#33456e;
+  --parchment:#F7F4EB;
+  --parchment-dark:#EDE7D6;
+  --blood:#8C2F1E;
+  --blood-bright:#B5432B;
+  --gold:#B4922F;
+  --holly:#3F6B4A;
+  --text:#232426;
+  --text-soft:#5b5d63;
+  --card:#FFFFFF;
+  --line:#E2DCC8;
+  --radius:10px;
+  --serif: Georgia, 'Times New Roman', Times, serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --mono: 'Courier New', Courier, monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--parchment);color:var(--text);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased;}
+::selection{background:var(--gold);color:#fff;}
+a{color:var(--blood-bright);}
+button{font-family:inherit;cursor:pointer;}
+h1,h2,h3,h4{font-family:var(--serif);color:var(--ink);margin:0 0 .5em 0;}
+p{margin:0 0 .8em 0;}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:.6em 1em;z-index:999;}
+.skip-link:focus{left:8px;top:8px;}
+.app{display:flex;min-height:100vh;}
+.sidebar{width:250px;flex-shrink:0;background:var(--ink);color:#EDE9DA;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.brand{padding:22px 20px 14px 20px;border-bottom:1px solid rgba(255,255,255,.12);}
+.brand .tv-name{font-family:var(--serif);font-size:1.05rem;letter-spacing:.02em;color:#fff;font-weight:700;}
+.brand .tv-sub{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-top:2px;}
+.brand .play-title{margin-top:14px;font-family:var(--serif);font-size:1.75rem;color:#fff;line-height:1.15;}
+.brand .play-sub{font-size:.78rem;color:#c9c4ac;margin-top:6px;line-height:1.4;}
+nav.mainnav{padding:10px 0;flex:1;}
+nav.mainnav button.navlink{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:none;color:#d9d5c3;padding:10px 20px;font-size:.86rem;border-left:3px solid transparent;}
+nav.mainnav button.navlink .num{font-family:var(--mono);font-size:.7rem;color:var(--gold);width:18px;flex-shrink:0;}
+nav.mainnav button.navlink:hover{background:rgba(255,255,255,.06);color:#fff;}
+nav.mainnav button.navlink.active{background:rgba(181,67,43,.25);border-left-color:var(--blood-bright);color:#fff;font-weight:600;}
+nav.mainnav button.navlink:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
+.sidebar-footer{padding:14px 20px;font-size:.7rem;color:#8b876f;border-top:1px solid rgba(255,255,255,.1);}
+.topbar{display:none;position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;padding:12px 16px;align-items:center;justify-content:space-between;}
+.topbar .tv-inline{font-family:var(--serif);font-size:1rem;}
+.topbar .tv-inline span{display:block;font-size:.65rem;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;}
+.hamburger{background:none;border:1px solid rgba(255,255,255,.4);color:#fff;padding:8px 10px;border-radius:6px;font-size:.85rem;}
+.mobile-nav-drawer{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.5);}
+.mobile-nav-drawer.open{display:block;}
+.mobile-nav-panel{position:absolute;top:0;left:0;bottom:0;width:80%;max-width:300px;background:var(--ink);overflow-y:auto;padding-bottom:20px;}
+main{flex:1;min-width:0;padding:36px 44px 80px 44px;max-width:980px;}
+.section{display:none;animation:fadein .25s ease;}
+.section.active{display:block;}
+@keyframes fadein{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+.section-header{margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid var(--ink);}
+.section-header .eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blood-bright);font-weight:700;margin-bottom:4px;}
+.section-header h1{font-size:1.9rem;margin-bottom:4px;}
+.section-header .desc{color:var(--text-soft);font-size:.95rem;max-width:640px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-bottom:16px;}
+.card h3{font-size:1.1rem;margin-bottom:8px;}
+.subtle{color:var(--text-soft);font-size:.88rem;}
+.tag{display:inline-block;background:var(--parchment-dark);color:var(--ink);border-radius:999px;padding:2px 10px;font-size:.72rem;margin:2px 4px 2px 0;font-weight:600;}
+.tag.blood{background:#f3e0da;color:var(--blood);}
+.tag.gold{background:#f3ecd6;color:#7a621c;}
+.tag.holly{background:#e2ede4;color:var(--holly);}
+.btn{display:inline-block;background:var(--ink);color:#fff;border:none;padding:9px 16px;border-radius:7px;font-size:.85rem;font-weight:600;}
+.btn:hover{background:var(--ink-light);}
+.btn.secondary{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+.btn.blood{background:var(--blood-bright);}
+.btn.blood:hover{background:var(--blood);}
+.btn:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+.disclosure{border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;background:var(--card);overflow:hidden;}
+.disclosure > .d-head{width:100%;background:none;border:none;text-align:left;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;font-weight:700;color:var(--ink);font-family:var(--serif);font-size:1.02rem;}
+.disclosure > .d-head:hover{background:var(--parchment);}
+.disclosure > .d-head .chev{transition:transform .2s;color:var(--blood-bright);font-size:1.1rem;}
+.disclosure.open > .d-head .chev{transform:rotate(90deg);}
+.disclosure > .d-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.disclosure.open > .d-body{max-height:4000px;}
+.disclosure > .d-body .inner{padding:0 18px 16px 18px;}
+.d-body .mini-label{font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--blood-bright);margin:12px 0 4px 0;}
+.d-body .mini-label:first-child{margin-top:0;}
+.quote-line{font-family:var(--serif);font-style:italic;color:var(--ink);background:var(--parchment);border-left:3px solid var(--gold);padding:8px 12px;margin:6px 0;font-size:.94rem;}
+.grid{display:grid;gap:14px;}
+.grid.two{grid-template-columns:1fr 1fr;}
+.grid.three{grid-template-columns:repeat(3,1fr);}
+@media(max-width:800px){.grid.two,.grid.three{grid-template-columns:1fr;}}
+.qv-controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;align-items:center;}
+.qv-controls input[type=text], .qv-controls select{padding:9px 12px;border:1px solid var(--line);border-radius:7px;font-size:.9rem;background:#fff;}
+.qv-controls input[type=text]{flex:1;min-width:180px;}
+.qv-count{font-size:.82rem;color:var(--text-soft);margin-bottom:10px;}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-bottom:12px;}
+.qcard .qtext{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);margin-bottom:6px;}
+.qcard .qmeta{font-size:.78rem;color:var(--text-soft);margin-bottom:10px;}
+.qcard .qreveal-btn{font-size:.8rem;background:var(--parchment-dark);border:none;padding:6px 12px;border-radius:6px;color:var(--ink);font-weight:600;}
+.qcard .qdetail{display:none;margin-top:12px;border-top:1px dashed var(--line);padding-top:10px;}
+.qcard.open .qdetail{display:block;}
+.qdetail .row{margin-bottom:8px;}
+.qdetail .row b{color:var(--blood-bright);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:2px;}
+.level-toggle{display:flex;gap:6px;margin:10px 0;}
+.level-toggle button{font-size:.75rem;padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:#fff;}
+.level-toggle button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.level-block{display:none;font-size:.9rem;}
+.level-block.active{display:block;}
+.quiz-progress{height:8px;background:var(--parchment-dark);border-radius:6px;overflow:hidden;margin-bottom:18px;}
+.quiz-progress-bar{height:100%;background:var(--blood-bright);width:0%;transition:width .3s;}
+.quiz-q{font-family:var(--serif);font-size:1.15rem;margin-bottom:14px;}
+.quiz-opts{display:flex;flex-direction:column;gap:8px;}
+.quiz-opt{text-align:left;padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;background:#fff;font-size:.95rem;}
+.quiz-opt:hover{border-color:var(--ink);}
+.quiz-opt.correct{background:#e4f2e6;border-color:#4c9a5f;}
+.quiz-opt.incorrect{background:#f7e4e0;border-color:var(--blood-bright);}
+.quiz-opt[disabled]{cursor:default;}
+.quiz-explain{margin-top:12px;padding:12px 14px;background:var(--parchment);border-radius:8px;font-size:.9rem;display:none;}
+.quiz-explain.show{display:block;}
+.quiz-result{text-align:center;padding:30px 10px;}
+.quiz-result .score{font-family:var(--serif);font-size:3rem;color:var(--ink);}
+.quiz-result .weak-areas{text-align:left;max-width:420px;margin:16px auto;}
+.wvs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+@media(max-width:700px){.wvs{grid-template-columns:1fr;}}
+.wvs .weak{border:1.5px solid #c9776a;background:#fbeeeb;border-radius:8px;padding:14px;}
+.wvs .strong{border:1.5px solid #6a9c76;background:#eef6ef;border-radius:8px;padding:14px;}
+.wvs .lbl{font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+.wvs .weak .lbl{color:#a1392a;}
+.wvs .strong .lbl{color:#3f7a4c;}
+.lm-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:760px){.lm-grid{grid-template-columns:1fr;}}
+.lm-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;}
+.lm-card h3{font-size:1rem;color:var(--blood-bright);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:10px;}
+.lm-card ol,.lm-card ul{margin:0;padding-left:20px;font-size:.88rem;}
+.lm-card li{margin-bottom:6px;}
+.print-btn{margin-bottom:16px;}
+@media print{
+  .sidebar,.topbar,.print-btn,nav,.section-header .desc{display:none !important;}
+  main{padding:0;max-width:100%;}
+  .section{display:block !important;}
+  #section-lastminute{display:block !important;}
+  .section:not(#section-lastminute){display:none !important;}
+  body{background:#fff;}
+}
+.sixty{background:var(--ink);color:#f2efe2;border-radius:var(--radius);padding:20px 22px;margin:18px 0;}
+.sixty h3{color:var(--gold);font-size:.85rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;}
+.sixty p{font-size:.95rem;line-height:1.6;}
+footer.app-footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);color:var(--text-soft);font-size:.78rem;}
+.timeline{display:flex;flex-direction:column;gap:0;margin:16px 0;border-left:3px solid var(--gold);padding-left:18px;}
+.timeline .t-item{position:relative;padding:6px 0 18px 14px;}
+.timeline .t-item::before{content:'';position:absolute;left:-25px;top:9px;width:10px;height:10px;border-radius:50%;background:var(--blood-bright);border:2px solid var(--parchment);}
+.timeline .t-item .t-num{font-family:var(--mono);font-size:.72rem;color:var(--blood-bright);font-weight:700;}
+.timeline .t-item p{margin:2px 0 0 0;font-size:.92rem;}
+.jh-game{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;text-align:center;}
+.jh-quote{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--ink);min-height:90px;display:flex;align-items:center;justify-content:center;padding:0 10px;}
+.jh-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0;}
+@media(max-width:640px){.jh-opts{grid-template-columns:1fr 1fr;}}
+.jh-opts button{padding:12px 8px;border-radius:8px;border:1.5px solid var(--line);background:#fff;font-weight:600;font-size:.82rem;}
+.jh-opts button:hover{border-color:var(--ink);}
+.jh-opts button.correct{background:#e4f2e6;border-color:#4c9a5f;}
+.jh-opts button.incorrect{background:#f7e4e0;border-color:var(--blood-bright);}
+.jh-feedback{background:var(--parchment);border-radius:8px;padding:14px;margin-top:14px;font-size:.9rem;display:none;text-align:left;}
+.jh-feedback.show{display:block;}
+.jh-score{font-size:.85rem;color:var(--text-soft);margin-bottom:10px;}
+/* Transformation tracker */
+.tt-grid{display:flex;flex-direction:column;gap:0;}
+.tt-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+.tt-head{width:100%;background:none;border:none;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.tt-title{font-family:var(--serif);font-size:1.05rem;color:var(--ink);font-weight:700;}
+.tt-attitude{font-size:.78rem;color:var(--blood-bright);font-weight:600;text-transform:uppercase;letter-spacing:.03em;}
+.tt-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.tt-card.open .tt-body{max-height:600px;}
+.tt-inner{padding:0 18px 16px 18px;font-size:.92rem;}
+.tt-arrow{text-align:center;color:var(--gold);font-size:1.3rem;padding:2px 0;}
+/* Symbol vault */
+.symbol-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:700px){.symbol-grid{grid-template-columns:1fr;}}
+.symbol-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;}
+.symbol-card h3{font-size:1.05rem;margin-bottom:8px;}
+/* Poverty map */
+.map-chain{display:flex;flex-direction:column;gap:0;}
+.map-step{position:relative;}
+.map-btn{width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;font-family:var(--serif);font-size:1.02rem;color:var(--ink);font-weight:700;}
+.map-arrow{text-align:center;color:var(--gold);font-size:1.3rem;padding:2px 0;}
+.map-body{max-height:0;overflow:hidden;transition:max-height .25s ease;background:var(--parchment);border-radius:0 0 var(--radius) var(--radius);}
+.map-step.open .map-body{max-height:600px;}
+.map-step.open .map-btn{border-radius:var(--radius) var(--radius) 0 0;}
+.map-inner{padding:14px 18px;font-size:.92rem;}
+@media(max-width:900px){
+  .sidebar{display:none;}
+  .topbar{display:flex;}
+  main{padding:24px 18px 60px 18px;}
+  .section-header h1{font-size:1.5rem;}
+  .jh-opts{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div class="app">
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <div class="brand">
+      <div class="tv-name">The Teacher Vault</div>
+      <div class="tv-sub">QuickNotes</div>
+      <div class="play-title">A Christmas Carol</div>
+      <div class="play-sub">Everything you actually need for GCSE English Literature.</div>
+    </div>
+    <nav class="mainnav" id="navList" aria-label="Sections"></nav>
+    <div class="sidebar-footer">Free GCSE revision resource.<br>Works fully offline.</div>
+  </aside>
+
+  <div class="topbar">
+    <div class="tv-inline"><span>The Teacher Vault · QuickNotes</span>A Christmas Carol</div>
+    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobileDrawer">☰ Menu</button>
+  </div>
+  <div class="mobile-nav-drawer" id="mobileDrawer">
+    <div class="mobile-nav-panel">
+      <div class="brand">
+        <div class="tv-name">The Teacher Vault</div>
+        <div class="tv-sub">QuickNotes</div>
+        <div class="play-title">A Christmas Carol</div>
+      </div>
+      <nav class="mainnav" id="navListMobile" aria-label="Sections (mobile)"></nav>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <div id="sectionsRoot"></div>
+    <footer class="app-footer">The Teacher Vault · A Christmas Carol QuickNotes — a free GCSE English Literature revision resource. All explanatory content is original. The text of A Christmas Carol is public domain.</footer>
+  </main>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+const Store = {
+  available: (function(){ try{ const k='__tv_test__'; localStorage.setItem(k,'1'); localStorage.removeItem(k); return true; }catch(e){ return false; } })(),
+  get(key, fallback){ if(!Store.available) return fallback; try{ const v = localStorage.getItem('tv_acc_'+key); return v===null?fallback:JSON.parse(v); }catch(e){ return fallback; } },
+  set(key, val){ if(!Store.available) return; try{ localStorage.setItem('tv_acc_'+key, JSON.stringify(val)); }catch(e){} }
+};
+
+const SECTIONS = [
+  {id:'overview', label:'Overview'},
+  {id:'plot', label:'Plot'},
+  {id:'characters', label:'Characters'},
+  {id:'themes', label:'Themes'},
+  {id:'quotes', label:'Quote Vault'},
+  {id:'context', label:'Context'},
+  {id:'techniques', label:'Techniques'},
+  {id:'exam', label:'Exam'},
+  {id:'quiz', label:'Quiz'},
+  {id:'tracker', label:'How Scrooge Changes'},
+  {id:'whichspirit', label:'Which Spirit?'},
+  {id:'symbolvault', label:'Symbol Vault'},
+  {id:'povertymap', label:'Poverty & Responsibility'},
+  {id:'lastminute', label:'Last Minute'}
+];
+
+/* ================= CHARACTERS ================= */
+const CHARACTERS = [
+{id:'scrooge', name:'Ebenezer Scrooge', role:'Miserly businessman; the novella\'s protagonist',
+ who:"A wealthy but friendless moneylender whose contempt for Christmas, charity and human connection is transformed by supernatural visitations across a single night.",
+ journey:"Introduced as 'hard and sharp as flint', isolated and dismissive of poverty. The Ghost of Christmas Past reveals the loneliness and loss behind his hardness; the Ghost of Christmas Present shows him the humanity of those he ignores; the Ghost of Christmas Yet to Come confronts him with the consequences of remaining unchanged. He wakes on Christmas morning transformed, generous and socially connected.",
+ relationships:"Former business partner to Jacob Marley; employer to Bob Cratchit; uncle to Fred; former fiancé to Belle; nephew of no one significant, but shaped by his relationship with his father and sister Fan.",
+ themes:['Redemption','Isolation','Greed','Fear','Change'],
+ quotes:["hard and sharp as flint","solitary as an oyster","Are there no prisons? Are there no workhouses?","I will honour Christmas in my heart","I am not the man I was"],
+ message:"Dickens may use Scrooge to argue that moral change is genuinely possible for anyone, however hardened, provided they are willing to honestly confront their own past, present and likely future.",
+ examArgs:[
+  "Scrooge's transformation is presented gradually across four staves rather than instantly, suggesting Dickens believed genuine moral change requires sustained reflection rather than a single moment of realisation.",
+  "The novella suggests Scrooge's isolation is not purely self-inflicted; his childhood neglect and the loss of Belle offer a more sympathetic, complex explanation for his hardness than simple greed alone.",
+  "Scrooge's redemption is expressed through renewed social connection (visiting Fred, helping the Cratchits) rather than wealth alone, suggesting Dickens presents true happiness as relational rather than material."
+ ]},
+{id:'cratchit', name:'Bob Cratchit', role:"Scrooge's underpaid clerk; father to Tiny Tim",
+ who:"A poor but dignified and loving family man who works long hours for low pay in Scrooge's counting house, yet maintains warmth, gratitude and hope despite hardship.",
+ journey:"Introduced shivering in his 'dismal little cell' of an office, timidly asking for Christmas Day off. Shown at home with his loving, if struggling, family, including his grief over Tiny Tim's likely death in the vision of a possible future. Rewarded in Stave Five when Scrooge raises his salary and helps his family.",
+ relationships:"Employed by Scrooge; husband to Mrs Cratchit; father to several children including Tiny Tim, Peter, Martha and Belinda.",
+ themes:['Poverty','Family','Dignity','Exploitation'],
+ quotes:["tried to warm himself at the candle"],
+ message:"Dickens may use Bob Cratchit to humanise poverty, showing that financial hardship does not diminish a family's capacity for love, gratitude and dignity, challenging readers to see the poor as individuals rather than an abstract 'surplus population'.",
+ examArgs:[
+  "Bob's continued loyalty and gratitude toward Scrooge, despite his poor treatment, could be read either as admirable patience or as an uncomfortable acceptance of an unjust employment relationship, depending on interpretation.",
+  "Bob's family scenes are structurally essential, since they give the abstract concept of poverty a specific, sympathetic human face the reader comes to care about.",
+  "Dickens's contrast between Bob's material poverty and his emotional wealth (a loving, close family) critiques the assumption that financial success equates to a good life."
+ ]},
+{id:'tinytim', name:'Tiny Tim', role:"Bob Cratchit's youngest son; physically disabled and seriously ill",
+ who:"A gentle, hopeful child whose illness and possible death become central to Scrooge's realisation of the human cost of indifference to poverty.",
+ journey:"Appears warmly in the Cratchit family scenes in Stave Three, offering the memorable Christian blessing 'God bless us every one!'. In the vision of a possible future shown by the Ghost of Christmas Yet to Come, Tiny Tim has died, devastating his family. Restored to health and central to Scrooge's newfound generosity by Stave Five.",
+ relationships:"Son to Bob and Mrs Cratchit; beloved by his siblings; his fate becomes personally important to Scrooge.",
+ themes:['Vulnerability','Innocence','Social Responsibility','Christianity'],
+ quotes:["God bless us every one!"],
+ message:"Dickens may use Tiny Tim as both an individual, sympathetic child and a broader emotional symbol of vulnerable people whose survival depends on the compassion and responsibility of wealthier members of society.",
+ examArgs:[
+  "Tiny Tim's potential death functions as the novella's clearest illustration of the real, human stakes of Scrooge's earlier indifference to poverty, giving abstract social criticism an emotionally devastating personal focus.",
+  "His blessing 'God bless us every one!' can be read as a distillation of the novella's Christian values of compassion and goodwill, delivered by the character with the least power or wealth in the story.",
+  "Some critics note that Tiny Tim's illness and vulnerability risk sentimentalising disability and poverty; students might weigh this alongside the character's clear narrative and thematic function."
+ ]},
+{id:'fred', name:'Fred', role:"Scrooge's nephew",
+ who:"A warm, generous and persistently good-humoured young man who repeatedly invites his uncle to Christmas dinner despite Scrooge's rudeness, embodying the novella's positive vision of Christmas.",
+ journey:"Appears in Stave One inviting Scrooge to dinner and defending the value of Christmas against his uncle's cynicism. Hosts a lively, affectionate Christmas party witnessed by Scrooge and the Ghost of Christmas Present in Stave Three. Welcomes the transformed Scrooge warmly in Stave Five.",
+ relationships:"Nephew to Scrooge (his late sister Fan's son); husband to an unnamed wife; host to a wide circle of friends at Christmas.",
+ themes:['Generosity','Family','Christmas','Forgiveness'],
+ quotes:["he was all in a glow"],
+ message:"Dickens may use Fred as a direct foil to Scrooge, demonstrating an alternative way of living centred on warmth, forgiveness and generosity rather than wealth accumulation, and suggesting that persistent kindness can eventually reach even the most hardened person.",
+ examArgs:[
+  "Fred's determined, repeated kindness toward Scrooge despite years of rejection can be read as modelling the very persistence and generosity of spirit Dickens hopes his readers will adopt toward others.",
+  "Fred's warm physical description ('all in a glow') directly contrasts with Scrooge's cold, hard introduction, reinforcing the novella's recurring warmth/cold symbolism.",
+  "As Scrooge's only living blood relative shown in the text, Fred represents the possibility of family reconciliation that Scrooge has long rejected, foreshadowing his eventual return to social connection."
+ ]},
+{id:'marley', name:"Jacob Marley's Ghost", role:"Scrooge's deceased former business partner",
+ who:"The spectral, chain-bound figure who appears to warn Scrooge on Christmas Eve, revealing the terrible consequences of a life devoted entirely to business rather than humanity.",
+ journey:"Appears immediately in Stave One, dragging a chain forged from his own greed and neglect of others, warning Scrooge that an even heavier chain awaits him unless he changes. Announces the visitation of the three spirits before departing.",
+ relationships:"Former business partner and close professional ally to Scrooge; otherwise shown to have had no meaningful relationships in life.",
+ themes:['Warning','Regret','Consequences','Greed'],
+ quotes:["I wear the chain I forged in life","mankind was my business"],
+ message:"Dickens may use Marley to demonstrate the ultimate, permanent consequence of a life spent pursuing only wealth and business at the expense of human connection and social responsibility, serving as a warning of what Scrooge risks becoming eternally.",
+ examArgs:[
+  "Marley's chain, forged link by link from specific selfish choices ('cash-boxes, keys, padlocks, ledgers, deeds'), symbolises how ordinary daily choices accumulate into a person's ultimate moral character.",
+  "Marley's admission that 'mankind was my business' directly inverts his living philosophy that only commercial business mattered, delivering the novella's central moral message in a single powerful reversal.",
+  "As a figure who can no longer change his own fate, Marley's function is to make Scrooge's own continued capacity for change feel urgent and precious by contrast."
+ ]},
+{id:'ghostpast', name:'The Ghost of Christmas Past', role:'First of the three spirits',
+ who:"A strange, shifting figure (described with candle-like light emanating from its head) who guides Scrooge through scenes from his own childhood and youth.",
+ journey:"Arrives at one o'clock, taking Scrooge to revisit his lonely schooldays, his beloved sister Fan, the joyful Fezziwig Christmas party, and his painful breakup with Belle, before departing once its light is extinguished by Scrooge.",
+ relationships:"Guides Scrooge without judgement, allowing him to observe scenes from his own past as an unseen witness.",
+ themes:['Memory','Childhood','Regret'],
+ quotes:[],
+ message:"Dickens may use this spirit and its shifting, flickering light to represent the way memory itself is unstable and partial, yet still capable of illuminating the emotional roots of a person's present character.",
+ examArgs:[
+  "The Ghost's strange appearance, alternately childlike and aged, may symbolise how memory blends different periods of life together, refusing straightforward chronological order.",
+  "By showing Scrooge scenes he cannot change or intervene in, this spirit forces a form of accountability through observation alone, letting the past's emotional weight speak for itself without direct moral commentary."
+ ]},
+{id:'ghostpresent', name:'The Ghost of Christmas Present', role:'Second of the three spirits',
+ who:"A large, jovial, generous figure surrounded by festive abundance, who shows Scrooge the Christmas celebrations of people around him, including the Cratchits and Fred's household.",
+ journey:"Appears surrounded by a great feast, takes Scrooge on a single-night journey through various Christmas celebrations, most significantly the Cratchit family dinner and Fred's party, before revealing the allegorical children Ignorance and Want beneath its robes and departing.",
+ relationships:"Shows Scrooge scenes of warmth and community he has long excluded himself from, without directly instructing him.",
+ themes:['Christmas','Community','Compassion','Inequality'],
+ quotes:["This boy is Ignorance. This girl is Want."],
+ message:"Dickens may use this spirit's abundant generosity, contrasted with its final revelation of Ignorance and Want, to argue that true Christmas spirit requires actively confronting social inequality, not merely enjoying private celebration.",
+ examArgs:[
+  "The spirit's physical largeness and abundance visually embody the generosity and plenty Dickens associates with genuine Christmas spirit, directly opposing Scrooge's earlier miserliness.",
+  "The dramatic reveal of Ignorance and Want beneath the spirit's robes broadens the novella's message beyond Scrooge's individual reform into a wider warning about the dangers a society creates by neglecting its poorest children.",
+  "This spirit ages rapidly during its single day of life, a detail some critics read as symbolising how quickly opportunities for compassion and connection can pass if not acted upon."
+ ]},
+{id:'ghostfuture', name:'The Ghost of Christmas Yet to Come', role:'Third and final spirit',
+ who:"A silent, hooded, ominous figure who shows Scrooge a series of unnamed scenes depicting a possible future, including his own unmourned death and the Cratchits' grief over Tiny Tim.",
+ journey:"Appears without speaking, guiding Scrooge through business acquaintances discussing an unnamed death with indifference, Old Joe's shop where the dead man's possessions are sold, the grieving Cratchit household, and finally a neglected grave bearing Scrooge's own name.",
+ relationships:"Never speaks and reveals nothing directly; Scrooge himself must interpret the meaning of what he sees.",
+ themes:['Fear','Death','Consequences','Change'],
+ quotes:[],
+ message:"Dickens deliberately withholds direct commentary from this spirit; Scrooge himself must interpret and draw conclusions from the scenes shown, suggesting genuine moral change must come from a person's own understanding rather than being imposed from outside.",
+ examArgs:[
+  "The spirit's total silence is structurally significant: unlike Marley or the other two spirits, it offers no direct warning or explanation, placing the interpretative and moral work entirely on Scrooge, which arguably makes his eventual change feel more genuinely his own.",
+  "The possible future shown is never presented as fixed or certain — Scrooge explicitly asks whether these are the 'shadows of things that May be, only', reinforcing the novella's belief that the future remains changeable through present action.",
+  "The neglected, unmourned death contrasted with the Cratchits' genuine grief for Tiny Tim starkly illustrates the different kinds of legacy left by a life of selfishness versus a life of love, despite their difference in wealth."
+ ]},
+{id:'belle', name:'Belle', role:"Scrooge's former fiancée",
+ who:"A woman who was once engaged to a younger Scrooge, but who ended their relationship as his growing obsession with wealth displaced his affection for her.",
+ journey:"Appears in the Ghost of Christmas Past's visions, first ending her engagement to Scrooge with sorrow rather than anger, and later shown as a happily married mother in a warm, loving household Scrooge might have shared.",
+ relationships:"Formerly engaged to Scrooge; later married with a family of her own.",
+ themes:['Regret','Greed','Family','Memory'],
+ quotes:["another idol has displaced me"],
+ message:"Dickens may use Belle to show precisely what Scrooge's pursuit of wealth cost him personally, giving his later isolation a specific, emotionally resonant origin rather than presenting it as simply an innate character flaw.",
+ examArgs:[
+  "Belle's calm, sorrowful rather than bitter tone when ending the engagement makes the scene more painfully persuasive, showing genuine loss rather than simple rejection.",
+  "The later vision of Belle's warm, loving family functions as a direct visual contrast to Scrooge's own lonely present, sharpening his growing regret.",
+  "Belle's metaphor describing Scrooge's growing love of money as 'another idol' that has 'displaced' her uses religious language of idolatry to frame his greed as a kind of misplaced devotion."
+ ]},
+{id:'fezziwig', name:'Mr Fezziwig', role:"Scrooge's former employer during his apprenticeship",
+ who:"A warm, generous employer who hosts a joyful Christmas party for his employees and their community, treating his workers with dignity and genuine care despite running an ordinary, modest business.",
+ journey:"Appears in the Ghost of Christmas Past's visions, hosting a lively Christmas celebration for young Scrooge and his fellow apprentices, contrasted directly with the older Scrooge's own treatment of Bob Cratchit.",
+ relationships:"Former employer to young Scrooge; well-liked and respected by his employees and wider community.",
+ themes:['Generosity','Employment','Christmas','Contrast'],
+ quotes:["as good a friend, as good a master, and as good a man"],
+ message:"Dickens may use Fezziwig to demonstrate that treating employees with warmth and generosity is a choice available to any employer, regardless of wealth, directly critiquing Scrooge's later justification of poor treatment as simply 'business'.",
+ examArgs:[
+  "Fezziwig's celebration, funded modestly ('three or four pound' according to Scrooge's own later reflection), demonstrates that generosity toward employees is a matter of character and choice rather than requiring great wealth, directly undermining Scrooge's excuses.",
+  "The Ghost's pointed comment that Fezziwig has 'the power' to make his employees' service 'light or burdensome' for so small a cost forces Scrooge, and the reader, to recognise employer generosity as a moral choice with real impact.",
+  "Fezziwig functions as a structural echo of Fred and a direct contrast to the elder Scrooge, reinforcing the novella's belief that warmth and business success are not mutually exclusive."
+ ]},
+{id:'mrscratchit', name:'Mrs Cratchit', role:"Bob Cratchit's wife",
+ who:"A loving, resourceful mother who manages her family's modest Christmas celebration with pride despite their poverty, and who initially struggles to forgive Scrooge's treatment of her husband.",
+ journey:"Appears preparing and hosting the family's Christmas dinner in Stave Three, briefly voicing frustration at Scrooge's poor treatment of Bob before the family moves past it for the sake of Christmas spirit.",
+ relationships:"Wife to Bob Cratchit; mother to Tiny Tim, Peter, Martha, Belinda and others.",
+ themes:['Family','Poverty','Dignity'],
+ quotes:[],
+ message:"Dickens may use Mrs Cratchit's brief, understandable resentment toward Scrooge to show that the Cratchits' warmth and generosity toward him later is a genuine act of grace, not naive ignorance of how poorly they have been treated.",
+ examArgs:[
+  "Mrs Cratchit's initial anger at Scrooge, quickly set aside for her family's sake, demonstrates the emotional labour and resilience required to maintain a joyful home despite genuine hardship and injustice."
+ ]}
+];
+
+/* ================= THEMES ================= */
+const THEMES = [
+{name:'Redemption', explanation:"The novella's central theme: the belief that even a deeply selfish, isolated person can undergo genuine moral transformation.",
+ where:"Scrooge's gradual change across all five staves, culminating in his generous, socially connected transformation in Stave Five.",
+ characters:['Scrooge','Jacob Marley'],
+ quotes:["I am not the man I was","I will honour Christmas in my heart"],
+ message:"Dickens presents redemption as possible for anyone, however hardened, provided they are willing to confront their past honestly, recognise their present impact on others, and actively choose to change their future behaviour.",
+ context:"Reflects widely-held Victorian Christian beliefs in the possibility of genuine moral and spiritual transformation through repentance.",
+ thesis:["Dickens presents redemption as a gradual, effortful process built through honest self-reflection, rather than a sudden, effortless change of heart.","Scrooge's redemption matters structurally because it demonstrates Dickens's wider belief that individuals, and by extension society, can change for the better if they choose to."]},
+{name:'Social Responsibility', explanation:"The novella argues that wealthier members of society have an active moral duty to care about and act on behalf of those less fortunate.",
+ where:"The charity collectors' visit in Stave One; the Ghost of Christmas Present's revelation of Ignorance and Want; Scrooge's transformed generosity in Stave Five.",
+ characters:['Scrooge','Inspector Goole' /*placeholder removed below*/,'Marley'],
+ quotes:["mankind was my business","Are there no prisons? Are there no workhouses?"],
+ message:"Dickens may argue that social responsibility means far more than simply donating money occasionally; it requires genuine, sustained moral engagement with the wellbeing of others, as Marley's warning and Scrooge's full transformation both suggest.",
+ context:"Reflects growing Victorian debate about the responsibilities of the wealthy toward the poor amid stark, visible inequality in industrial cities like London.",
+ thesis:["Dickens presents social responsibility as a moral duty extending to all of society, not an optional act of charity reserved for special occasions.","Marley's warning ('mankind was my business') reframes social responsibility as the true purpose of a person's life, in direct opposition to Scrooge's earlier belief that commercial business was his only legitimate concern."]},
+{name:'Poverty', explanation:"The novella depicts poverty both through specific, sympathetic individuals (the Cratchits) and as a wider structural social problem (Ignorance and Want).",
+ where:"The Cratchit family's modest Christmas dinner in Stave Three; the allegorical children Ignorance and Want revealed by the Ghost of Christmas Present.",
+ characters:['Bob Cratchit','Tiny Tim'],
+ quotes:["This boy is Ignorance. This girl is Want."],
+ message:"Dickens may present poverty as both a deeply personal, human experience and a wider systemic failure that society as a whole bears responsibility for addressing, rather than something individuals can simply be blamed or praised for enduring.",
+ context:"Victorian London contained extreme visible inequality, with wealthy areas existing alongside severe, dangerous poverty and minimal state support.",
+ thesis:["Dickens presents poverty through both individual sympathy (the Cratchits) and structural critique (Ignorance and Want), refusing to reduce it to a single simple message."]},
+{name:'Wealth', explanation:"The novella questions what wealth is genuinely for, contrasting Scrooge's hoarded, unused fortune with the emotional richness of poorer but loving families.",
+ where:"Scrooge's isolated wealth throughout Stave One; the contrast with the Cratchits' modest but joyful Christmas.",
+ characters:['Scrooge','Bob Cratchit'],
+ quotes:[],
+ message:"Dickens may suggest that wealth without generosity or human connection is ultimately worthless, while more modest means combined with love and community produce genuine happiness.",
+ context:"Victorian Britain saw enormous new industrial wealth accumulate alongside continuing severe poverty, prompting genuine public debate about wealth's moral purpose.",
+ thesis:["Dickens presents wealth as morally neutral in itself, made meaningful only by how generously and responsibly it is used."]},
+{name:'Family', explanation:"Family relationships, both loving (the Cratchits, Fred) and damaged (Scrooge's own upbringing), run throughout the novella.",
+ where:"The warm Cratchit Christmas dinner; Fred's insistence on including Scrooge in his family celebrations; Scrooge's own lonely, neglected childhood.",
+ characters:['Bob Cratchit','Fred','Scrooge'],
+ quotes:[],
+ message:"Dickens may present family, whether by blood or by chosen community, as a central source of the meaning and happiness that Scrooge's wealth alone has failed to provide him.",
+ context:"Victorian ideals increasingly celebrated the family, and particularly Christmas as a family occasion, as a source of moral and emotional stability.",
+ thesis:["Dickens presents genuine family connection, rather than wealth or status, as the true measure of a meaningful life."]},
+{name:'Isolation', explanation:"Scrooge's profound social isolation, both chosen and partly inflicted upon him by past experience, is central to his characterisation.",
+ where:"Scrooge's description as 'solitary as an oyster' in Stave One; his lonely schooldays revealed in Stave Two.",
+ characters:['Scrooge'],
+ quotes:["solitary as an oyster"],
+ message:"Dickens may suggest that isolation, while partly self-inflicted through Scrooge's choices, is also connected to earlier emotional neglect, offering a more complex, sympathetic explanation for his hardness than simple innate selfishness.",
+ context:"Victorian society placed significant value on social and family connection, making Scrooge's chosen isolation especially conspicuous and troubling to contemporary readers.",
+ thesis:["Dickens presents Scrooge's isolation as both self-created and rooted in earlier emotional neglect, complicating a simple reading of him as merely selfish by nature."]},
+{name:'Christmas', explanation:"Christmas functions throughout the novella as more than a holiday; it represents generosity, community, warmth and moral responsibility.",
+ where:"Fred's defence of Christmas in Stave One; the abundant, joyful scenes shown by the Ghost of Christmas Present.",
+ characters:['Fred','Ghost of Christmas Present'],
+ quotes:["he was all in a glow"],
+ message:"Dickens may present Christmas as a yearly opportunity to renew social bonds and moral responsibility, functioning as a powerful symbol for the wider values he hopes readers will carry through the whole year, not just one day.",
+ context:"Dickens did not invent Christmas traditions, but his novella helped popularise and reinforce a Victorian vision of Christmas centred on family, charity and goodwill.",
+ thesis:["Dickens presents Christmas symbolically, using it to represent broader values of generosity and community that he hopes will extend beyond a single day."]},
+{name:'Generosity', explanation:"Acts of generosity, from Fezziwig's employee party to Scrooge's final transformation, are consistently presented as morally significant regardless of scale.",
+ where:"Fezziwig's modest but joyful Christmas party; Scrooge's anonymous gift of a turkey to the Cratchits in Stave Five.",
+ characters:['Fezziwig','Scrooge'],
+ quotes:["as good a friend, as good a master, and as good a man"],
+ message:"Dickens may suggest that genuine generosity is measured by its emotional impact and sincerity rather than its financial size, as Fezziwig's modest party demonstrates.",
+ context:"Victorian charitable culture increasingly debated the difference between token, impersonal charity and genuine, engaged generosity.",
+ thesis:["Dickens presents generosity as valuable primarily for its emotional and relational impact, not simply its monetary cost."]},
+{name:'Greed', explanation:"Scrooge's, and to a lesser extent Marley's, obsessive pursuit of wealth at the expense of relationships and compassion drives much of the novella's early criticism.",
+ where:"Scrooge's introduction as a 'squeezing, wrenching, grasping' figure; Marley's confession that mere business consumed his entire life.",
+ characters:['Scrooge','Jacob Marley'],
+ quotes:["a squeezing, wrenching, grasping, scraping, clutching, covetous, old sinner"],
+ message:"Dickens may present greed not simply as a personal vice but as a corrosive force that actively destroys a person's capacity for relationships and genuine happiness.",
+ context:"Reflects Victorian anxieties about the moral effects of rapid industrial wealth accumulation on personal character and social relationships.",
+ thesis:["Dickens presents greed as self-destructive, isolating its possessor from the very relationships and joys that give life genuine meaning."]},
+{name:'Childhood', explanation:"Childhood, both Scrooge's own troubled youth and Tiny Tim's vulnerable present, is central to the novella's emotional and moral arguments.",
+ where:"Scrooge's lonely schooldays and relationship with his sister Fan in Stave Two; Tiny Tim's vulnerability in Stave Three.",
+ characters:['Scrooge','Tiny Tim','Fan'],
+ quotes:["A solitary child, neglected by his friends"],
+ message:"Dickens may use childhood both to explain Scrooge's adult hardness sympathetically and to demonstrate the urgent human stakes of poverty through Tiny Tim's vulnerability.",
+ context:"Dickens's own difficult childhood, including a period of factory work after his father's imprisonment for debt, informed his lifelong concern for child welfare.",
+ thesis:["Dickens presents childhood experience as formative for adult character, using it to complicate simple moral judgements of Scrooge while also dramatising poverty's most vulnerable victims."]},
+{name:'Memory', explanation:"The Ghost of Christmas Past demonstrates how confronting one's own memories honestly can be a powerful catalyst for moral change.",
+ where:"Scrooge's emotional reactions throughout Stave Two as he revisits scenes from his own past.",
+ characters:['Scrooge','Ghost of Christmas Past'],
+ quotes:[],
+ message:"Dickens may suggest that honest engagement with one's own memory and history, rather than avoidance, is necessary for genuine self-understanding and moral growth.",
+ context:"Reflects a broader Victorian interest in psychology, memory and the formation of individual character through past experience.",
+ thesis:["Dickens presents honest confrontation with memory as a necessary first step toward genuine self-understanding and moral change."]},
+{name:'Change', explanation:"The novella's central structural and moral argument: that people, and by extension society, are capable of genuine transformation.",
+ where:"Scrooge's transformation across the five staves, from isolated miser to generous, connected member of his community.",
+ characters:['Scrooge'],
+ quotes:["I am not the man I was"],
+ message:"Dickens structures the entire novella to demonstrate that change, however unlikely it may seem, remains possible for any individual willing to honestly confront themselves.",
+ context:"Reflects Victorian Christian belief in the possibility of genuine repentance and moral transformation.",
+ thesis:["Dickens presents change as difficult but genuinely achievable, using Scrooge's transformation as evidence against fatalistic assumptions about fixed character."]},
+{name:'Fear', explanation:"Fear, particularly of death and of an unmourned, meaningless life, plays a significant role in prompting Scrooge's final transformation.",
+ where:"Scrooge's terror during his encounter with the Ghost of Christmas Yet to Come, particularly at the sight of his own neglected grave.",
+ characters:['Scrooge','Ghost of Christmas Yet to Come'],
+ quotes:[],
+ message:"Dickens may suggest that fear, while not the noblest motivation for change, can still serve a valuable moral purpose by forcing genuine self-confrontation that more comfortable emotions might not achieve.",
+ context:"Ghost stories were a popular Victorian Christmas tradition, often used, as here, to deliver moral lessons through supernatural fear.",
+ thesis:["Dickens presents fear as a legitimate, if imperfect, catalyst for moral change, distinct from but complementary to the more positive emotions (regret, empathy) shown earlier in the novella."]},
+{name:'Death', explanation:"Death, from Marley's opening state to the vision of Scrooge's own unmourned grave, frames the novella's moral stakes.",
+ where:"Marley's death and haunting in Stave One; the vision of Scrooge's own neglected grave in Stave Four.",
+ characters:['Jacob Marley','Scrooge','Tiny Tim'],
+ quotes:["Marley was dead: to begin with"],
+ message:"Dickens may use death, and specifically the question of how a person is remembered and mourned, as the ultimate measure of the value of the life they lived.",
+ context:"Victorian society held elaborate cultural rituals and beliefs around death and mourning, making the contrast between Scrooge's neglected grave and the Cratchits' genuine grief especially resonant.",
+ thesis:["Dickens uses death, and particularly the contrast in how different characters are mourned, as the novella's ultimate test of a life's true value."]},
+{name:'Inequality', explanation:"The stark contrast between Scrooge's hoarded wealth and the Cratchits' poverty exposes wider social inequality in Victorian Britain.",
+ where:"The juxtaposition of Scrooge's comfortable, if joyless, home with the Cratchits' cramped but loving one.",
+ characters:['Scrooge','Bob Cratchit'],
+ quotes:[],
+ message:"Dickens may use this contrast to critique not simply individual selfishness but a wider social system that allows such stark inequality to persist unquestioned.",
+ context:"Victorian London contained extreme, visible inequality between wealthy and poor districts, often located in close physical proximity to one another.",
+ thesis:["Dickens presents inequality as a structural social problem requiring collective responsibility, not simply a matter of individual charity."]},
+{name:'Compassion', explanation:"Genuine compassion, demonstrated by characters like Fred and the transformed Scrooge, is presented as a moral good in itself.",
+ where:"Fred's persistent kindness toward Scrooge; Scrooge's transformed compassion for the Cratchits in Stave Five.",
+ characters:['Fred','Scrooge'],
+ quotes:[],
+ message:"Dickens may present compassion as both morally valuable in itself and practically transformative, capable of changing both the giver and receiver's lives for the better.",
+ context:"Reflects Christian teachings on compassion and charity that significantly shaped Victorian moral and social thought.",
+ thesis:["Dickens presents compassion as a transformative force, benefiting both those who receive it and those who learn to offer it."]},
+{name:'Religion and Morality', explanation:"Christian ideas of sin, redemption, charity and moral responsibility to others underpin the novella's central moral argument.",
+ where:"Marley's warning and the overall structure of Scrooge's supernatural repentance; Tiny Tim's blessing.",
+ characters:['Jacob Marley','Tiny Tim','Scrooge'],
+ quotes:["God bless us every one!"],
+ message:"Dickens may draw on familiar Christian ideas of sin, repentance and redemption to structure Scrooge's transformation, making his message accessible and resonant for a predominantly Christian Victorian readership.",
+ context:"Victorian Britain was a predominantly Christian society, and ideas of charity, sin and redemption would have been immediately familiar and morally weighty to contemporary readers.",
+ thesis:["Dickens structures the novella's moral argument around recognisably Christian ideas of sin, warning and redemption, even while its message extends to broader social responsibility."]}
+];
+// Remove accidental placeholder in Social Responsibility characters array
+THEMES[1].characters = ['Scrooge','Jacob Marley'];
+
+/* ================= TECHNIQUES ================= */
+const TECHNIQUES = [
+{name:'Symbolism', def:"An object, image or figure representing a deeper idea beyond its literal meaning.", example:"Marley's chain, forged from 'cash-boxes, keys, padlocks, ledgers, deeds', symbolises the accumulated weight of his selfish choices in life.", effect:"Makes abstract moral consequences feel concrete and inescapable, visually representing the burden of a wasted, selfish life.", howto:"Identify what the symbol represents, then trace how its meaning develops across the novella rather than analysing a single instance in isolation."},
+{name:'Simile', def:"A comparison using 'like' or 'as'.", example:"Scrooge is described as 'hard and sharp as flint' and 'solitary as an oyster'.", effect:"Establishes Scrooge's coldness and isolation vividly and memorably from the novella's opening description.", howto:"Explain the specific connotations of the object being compared to, not just that a simile is present."},
+{name:'Metaphor', def:"A direct comparison between two things without using 'like' or 'as'.", example:"Marley describes ordinary commercial business as merely 'a drop of water in the comprehensive ocean' of what should have been his true business: mankind.", effect:"Powerfully diminishes the importance Scrooge and Marley placed on commercial success compared to their true moral obligations.", howto:"Identify exactly what two things are being compared and what quality is transferred between them."},
+{name:'Personification', def:"Giving human qualities to non-human things.", example:"The cold is described as something Scrooge 'carried... always about with him', as though it were an active companion.", effect:"Reinforces the sense that Scrooge's coldness is an inherent, almost living part of his character, not merely incidental weather.", howto:"Explain what human quality is given to the non-human subject, and what this suggests about the surrounding theme or character."},
+{name:'Pathetic fallacy', def:"Attributing human emotion to weather or the natural world to reflect mood.", example:"The 'cold, bleak, biting weather' outside Scrooge's counting house in Stave One reflects his own emotional coldness.", effect:"Reinforces character and atmosphere simultaneously, blending setting and psychology.", howto:"Connect the specific weather description directly to the emotional or moral state of the character or scene it accompanies."},
+{name:'Imagery', def:"Descriptive language creating vivid sensory pictures.", example:"The rich, abundant food imagery surrounding the Ghost of Christmas Present contrasts with Scrooge's earlier cold, sparse world.", effect:"Makes abstract ideas of generosity and abundance feel immediate and appealing to the reader.", howto:"Group images by pattern (cold/warmth, food, light/dark) and trace how they develop across the staves to show Scrooge's changing world."},
+{name:'Contrast', def:"Placing two clearly different things side by side to highlight their differences.", example:"The contrast between Scrooge's cold, empty home and the Cratchits' modest but warm, loving household.", effect:"Sharpens the novella's argument that emotional wealth matters more than financial wealth.", howto:"State both elements of the contrast explicitly, then explain what it reveals about theme or character."},
+{name:'Juxtaposition', def:"Placing two contrasting ideas or images close together, often within the same scene or sentence.", example:"The Ghost of Christmas Present's abundant generosity juxtaposed with the ragged children Ignorance and Want hidden beneath its robes.", effect:"Creates a jarring, memorable moment that broadens the novella's message from personal generosity to structural social concern.", howto:"Explain precisely how the juxtaposed elements clash and what that clash reveals thematically."},
+{name:'Repetition', def:"Deliberate reuse of a word or phrase for emphasis.", example:"Scrooge's repeated dismissive question: 'Are there no prisons? Are there no workhouses?'", effect:"Emphasises Scrooge's complacent reliance on institutional, impersonal solutions to poverty rather than personal compassion.", howto:"Explain what specific attitude or emotional state the repetition reinforces, not just that repetition occurs."},
+{name:'Listing', def:"A sequence of words or phrases building a cumulative effect.", example:"Scrooge's introduction as 'a squeezing, wrenching, grasping, scraping, clutching, covetous, old sinner'.", effect:"The escalating list of harsh verbs and adjectives overwhelms the reader with the sheer scale of Scrooge's miserliness.", howto:"Note the order and cumulative effect of the list, considering why Dickens chose that specific sequence of words."},
+{name:'Semantic field', def:"A group of related words running through a text.", example:"A semantic field of cold and ice (frost, chill, freeze) runs throughout Scrooge's early characterisation.", effect:"Reinforces Scrooge's emotional coldness persistently and cumulatively across multiple descriptions.", howto:"Track a semantic field across several scenes to show how Dickens sustains a theme or character trait throughout the text."},
+{name:'Narrative voice', def:"The distinctive voice and perspective through which the story is told.", example:"The narrator's warm, conversational, sometimes humorous tone, especially in asides like the extended discussion of whether Marley was 'dead as a door-nail'.", effect:"Creates an intimate, almost oral storytelling quality, appropriate for a tale explicitly framed as being told aloud, like a carol.", howto:"Analyse the narrator's tone and how directly they comment on events, rather than treating narration as neutral or invisible."},
+{name:'Direct address', def:"The narrator speaking directly to the reader.", example:"The narrator's declaration 'Marley was dead: to begin with. There is no doubt whatever about that.'", effect:"Draws the reader into an intimate, storytelling relationship with the narrator, reinforcing the novella's oral, carol-like quality.", howto:"Explain what effect this direct address has on the reader's relationship with the story at that specific moment."},
+{name:'Humour', def:"Comic or witty elements used for effect, even within a morally serious text.", example:"The narrator's playful extended debate over the phrase 'dead as a door-nail' in the novella's opening lines.", effect:"Balances the novella's serious moral message with warmth and wit, making it more engaging and accessible.", howto:"Consider why Dickens includes humour at this specific moment, and how it affects the reader's overall relationship with the text."},
+{name:'Exaggeration', def:"Deliberate overstatement for effect.", example:"Scrooge's earlier suggestion that anyone celebrating Christmas 'should be boiled with his own pudding'.", effect:"The absurd violence of the exaggeration makes Scrooge's hostility toward Christmas seem both comic and genuinely troubling.", howto:"Explain what the exaggeration reveals about the character's attitude, beyond simply noting that overstatement occurs."},
+{name:'Irony', def:"A gap between what is said or expected and what is actually true or meant.", example:"Scrooge, who once dismissed charity, becomes the novella's model of generous giving by its end.", effect:"Reinforces the novella's central argument that dramatic personal change is genuinely possible.", howto:"Identify precisely what expectation or statement is being undercut or reversed, and explain the effect of that reversal."},
+{name:'Foreshadowing', def:"Hints or clues that anticipate later events.", example:"Marley's chain and warning in Stave One foreshadow the fate Scrooge risks if he does not change.", effect:"Builds dramatic tension and reinforces the novella's central moral stakes from its very opening.", howto:"Identify the later event being anticipated and explain how the earlier hint shapes the reader's expectations."},
+{name:'Cyclical structure', def:"A narrative structure that returns to or echoes its starting point.", example:"The novella begins and ends at Christmas, but Scrooge's attitude toward the season has been completely reversed by the close.", effect:"Emphasises the scale of Scrooge's transformation by measuring it against an unchanged calendar structure.", howto:"Explain what has changed, and what has stayed the same, between the story's opening and closing points."},
+{name:'Gothic elements', def:"Conventions associated with supernatural, eerie or unsettling fiction.", example:"Marley's ghostly appearance, complete with rattling chains and a bandaged jaw, draws directly on Gothic ghost story conventions.", effect:"Creates genuine unease and dramatic weight, ensuring Scrooge's (and the reader's) moral lessons feel urgent rather than merely sentimental.", howto:"Identify the specific Gothic convention used and explain what particular fear or unease it is designed to create."}
+];
+
+/* ================= QUOTE VAULT ================= */
+const QUOTES = [
+{text:"hard and sharp as flint, from which no steel had ever struck out generous fire", speaker:"Narrator", stave:"1", characters:['Scrooge'], themes:['Greed','Isolation'],
+ meaning:"The narrator describes Scrooge's cold, unyielding character using the image of flint, a hard stone.",
+ technique:"Simile; extended metaphor of striking fire.",
+ solid:"Comparing Scrooge to flint, a hard stone, shows he is cold and unfeeling, and the idea that no 'fire' can be struck from him suggests he has no warmth or generosity inside him.",
+ deep:"The extended conceit of striking fire from flint is significant because flint can, under the right conditions, produce fire — the simile therefore leaves open the possibility that warmth exists within Scrooge but has simply never been drawn out, subtly foreshadowing his eventual capacity for change even in this deeply negative opening description.",
+ context:"Flint was a familiar, everyday material to Victorian readers, used for fire-starting, making the comparison immediately vivid and accessible.",
+ useFor:"Essays on Scrooge's introduction, greed, or foreshadowing his later transformation."},
+{text:"solitary as an oyster", speaker:"Narrator", stave:"1", characters:['Scrooge'], themes:['Isolation'],
+ meaning:"The narrator compares Scrooge to an oyster, emphasising his closed-off, isolated nature.",
+ technique:"Simile; zoomorphism.",
+ solid:"Comparing Scrooge to an oyster, which has a hard shell that stays shut, shows that he keeps himself closed off from other people and doesn't let anyone get close to him.",
+ deep:"The oyster simile carries a productive ambiguity: an oyster's hard shell suggests defensive isolation, yet oysters can also contain a pearl, subtly hinting that something valuable may remain hidden within Scrooge despite his hardened exterior, an idea the rest of the novella goes on to confirm.",
+ context:"Reflects Victorian anxieties about excessive individualism and self-interest at the expense of community bonds.",
+ useFor:"Essays on isolation, or foreshadowing Scrooge's hidden capacity for change."},
+{text:"Are there no prisons? Are there no workhouses?", speaker:"Scrooge", stave:"1", characters:['Scrooge'], themes:['Poverty','Greed'],
+ meaning:"Scrooge dismisses the charity collectors' request for donations by pointing to existing institutional provisions for the poor.",
+ technique:"Rhetorical question; repetition.",
+ solid:"Scrooge's repeated rhetorical questions show he believes institutions like prisons and workhouses are enough to deal with poverty, and that he doesn't feel personally responsible for helping.",
+ deep:"The repeated rhetorical question structure reveals Scrooge's belief that impersonal institutions can substitute entirely for individual moral responsibility, a position Dickens spends the rest of the novella dismantling by showing the genuine human suffering such institutions failed to prevent or relieve.",
+ context:"Refers to real Victorian institutions established under the Poor Law, widely criticised by Dickens and others for their harsh, punitive conditions.",
+ useFor:"Essays on poverty, social responsibility, or Victorian context."},
+{text:"decrease the surplus population", speaker:"Scrooge", stave:"1", characters:['Scrooge'], themes:['Poverty','Greed'],
+ meaning:"Scrooge callously suggests that the poor who would 'rather die' than face harsh conditions should do so, to reduce the number of people needing support.",
+ technique:"Cold, clinical diction; dehumanising language.",
+ solid:"By calling poor people a 'surplus population', Scrooge treats them like unwanted extra numbers rather than real people, showing how little he values their lives.",
+ deep:"The clinical, economic diction of 'surplus population' dehumanises the poor by reducing them to a statistical problem rather than individuals, echoing contemporary Malthusian arguments about population and resources that Dickens critiques throughout the novella as morally bankrupt when applied without compassion.",
+ context:"Echoes ideas associated with Thomas Malthus's population theory, though Dickens critiques the callous application of such ideas rather than engaging with them as serious economics.",
+ useFor:"Essays on poverty, dehumanisation, or Malthusian context."},
+{text:"I wear the chain I forged in life", speaker:"Jacob Marley's Ghost", stave:"1", characters:['Marley'], themes:['Redemption','Greed'],
+ meaning:"Marley's ghost explains that the heavy chain he now carries was created, link by link, through his own selfish choices during his lifetime.",
+ technique:"Metaphor; first-person confession.",
+ solid:"The chain is a symbol for all of Marley's selfish choices in life, showing that his greed has trapped him even after death.",
+ deep:"The metaphor's power lies in its cumulative, constructed nature — Marley did not simply inherit or receive the chain but actively 'forged' it through countless individual choices, suggesting that moral character, like the chain itself, is built gradually through the accumulation of everyday decisions rather than fixed from birth.",
+ context:"Draws on Christian and folkloric traditions of ghosts bound by the consequences of their earthly sins.",
+ useFor:"Essays on redemption, symbolism, or Marley's warning to Scrooge."},
+{text:"mankind was my business", speaker:"Jacob Marley's Ghost", stave:"1", characters:['Marley'], themes:['Responsibility','Redemption'],
+ meaning:"Marley reveals, too late, that his true responsibility in life should have been caring for humanity, not merely conducting commercial business.",
+ technique:"Metaphor; semantic reversal of the word 'business'.",
+ solid:"Marley realises that his real job should have been caring about other people, not just making money, but he understands this too late to change anything.",
+ deep:"The line performs a striking semantic reversal, repurposing 'business' (previously associated only with commercial trade) to mean moral and social responsibility instead, directly undermining Scrooge's own earlier assumption that his commercial dealings were his only legitimate concern.",
+ context:"Reflects Christian teachings on charity and responsibility to others as a person's true moral duty.",
+ useFor:"Essays on social responsibility — arguably the novella's most direct statement of this theme."},
+{text:"another idol has displaced me", speaker:"Belle", stave:"2", characters:['Belle'], themes:['Greed','Family'],
+ meaning:"Belle tells the young Scrooge that his growing obsession with wealth has replaced her in his affections, ending their engagement.",
+ technique:"Metaphor; religious diction ('idol').",
+ solid:"Belle compares money to an idol, something Scrooge now worships instead of her, showing how his greed has taken over his life and relationships.",
+ deep:"The religious language of idolatry frames Scrooge's pursuit of wealth as a kind of misplaced devotion or false worship, implicitly contrasting it with the genuine Christian values of charity and human connection the novella ultimately champions.",
+ context:"Reflects Christian religious vocabulary that would have carried serious moral weight for Dickens's contemporary readers.",
+ useFor:"Essays on greed, Scrooge's backstory, or religious imagery."},
+{text:"This boy is Ignorance. This girl is Want.", speaker:"Ghost of Christmas Present", stave:"3", characters:['Ghost of Christmas Present'], themes:['Poverty','Inequality'],
+ meaning:"The Ghost reveals two wretched allegorical children hidden beneath its robes, representing the dangers society creates by neglecting the poor.",
+ technique:"Personification/allegory; short, blunt declarative sentences.",
+ solid:"These two children represent big social problems — Ignorance (lack of education) and Want (poverty) — showing that Scrooge's earlier indifference has consequences for society as a whole, not just individuals.",
+ deep:"The short, blunt sentence structure ('This boy is...This girl is...') delivers the allegory with an almost sermon-like directness, refusing any softening qualification, which forces both Scrooge and the reader to confront the social consequences of neglect without the comfort of ambiguity.",
+ context:"Reflects Victorian debates about the causes and consequences of poverty, including access to education and basic welfare.",
+ useFor:"Essays on poverty, inequality, or the novella's broadening beyond Scrooge's individual story."},
+{text:"God bless us every one!", speaker:'Tiny Tim', stave:"3", characters:['Tiny Tim'], themes:['Christianity','Family'],
+ meaning:"Tiny Tim offers a simple, heartfelt Christian blessing at the Cratchit family's Christmas dinner.",
+ technique:"Direct speech; exclamation; inclusive pronoun 'us'.",
+ solid:"This short, simple blessing shows Tiny Tim's kindness and faith despite his own illness and his family's poverty, and the word 'every' includes everyone, not just his own family.",
+ deep:"The inclusive pronoun 'every one' extends Tiny Tim's blessing beyond his immediate family to encompass all of society, subtly reinforcing the novella's wider argument for universal social responsibility rather than narrow, self-interested charity, delivered poignantly by the character with the least power in the text.",
+ context:"Reflects Christian values of universal compassion and blessing regardless of a person's own circumstances.",
+ useFor:"Essays on Tiny Tim, Christianity, or the novella's closing message — a widely recognised closing line."},
+{text:"I will honour Christmas in my heart, and try to keep it all the year", speaker:"Scrooge", stave:"4", characters:['Scrooge'], themes:['Redemption','Change'],
+ meaning:"Scrooge, terrified by the vision of his possible future, vows to genuinely change his character, not merely his behaviour on a single day.",
+ technique:"First-person vow; parallel structure ('the Past, the Present, and the Future').",
+ solid:"Scrooge promises to keep the spirit of Christmas — kindness and generosity — in his heart all year round, not just on Christmas Day, showing this is a genuine, lasting change.",
+ deep:"Scrooge's vow to 'keep it all the year' explicitly rejects a superficial, once-a-year performance of generosity, instead committing to sustained internal change, which structurally anticipates and validates his genuinely transformed behaviour shown in Stave Five.",
+ context:"Reflects Christian ideas of genuine, ongoing repentance rather than temporary, performative good behaviour.",
+ useFor:"Essays on redemption, change, or Scrooge's turning point before Stave Five."},
+{text:"I am not the man I was", speaker:"Scrooge", stave:"5", characters:['Scrooge'], themes:['Redemption','Change'],
+ meaning:"The transformed Scrooge declares his fundamental change of character on Christmas morning.",
+ technique:"First-person declarative statement; direct contrast with the novella's opening characterisation.",
+ solid:"This simple, direct statement confirms Scrooge has genuinely changed from the cold, selfish man introduced at the novella's start.",
+ deep:"The stark simplicity of this declaration deliberately echoes and reverses the elaborate, negative similes used to introduce Scrooge in Stave One ('hard and sharp as flint'), and the structural contrast between an ornate opening description and this plain, confident closing statement suggests genuine change requires no embellishment to be believed.",
+ context:"Marks the culmination of the novella's central redemption arc, resolving the moral question posed from its opening pages.",
+ useFor:"Essays on redemption, change, or structural contrast with the novella's opening."},
+{text:"as good a friend, as good a master, and as good a man, as the good old city knew", speaker:"Narrator", stave:"5", characters:['Fezziwig'], themes:['Generosity'],
+ meaning:"The narrator closes the novella's final reflection on Fezziwig by celebrating him as an exemplary employer, friend and person.",
+ technique:"Tricolon (rule of three); superlative praise.",
+ solid:"This triple repetition of 'as good a...' emphasises just how highly Fezziwig is regarded, showing that being a good employer and a good person go together in the novella's values.",
+ deep:"The tricolon structure equates Fezziwig's roles as friend, master and man, refusing to separate his professional conduct from his moral character — directly challenging Scrooge's earlier assumption that business and personal morality could be treated as entirely separate concerns.",
+ context:"Reflects Victorian debate about the proper moral relationship between employers and employees during a period of rapid industrial change.",
+ useFor:"Essays on generosity, employment, or the Fezziwig/Scrooge contrast."}
+];
+
+/* ================= QUIZ BANK ================= */
+const QUIZ_BANK = [
+{type:'mc', q:"What is the name of Scrooge's underpaid clerk?", opts:["Fred","Bob Cratchit","Jacob Marley","Old Joe"], a:1, exp:"Bob Cratchit works long hours for low pay in Scrooge's counting house."},
+{type:'mc', q:"How many spirits, including Marley, visit Scrooge in total?", opts:["Two","Three","Four","Five"], a:2, exp:"Marley's ghost warns Scrooge, followed by three further spirits: Christmas Past, Present, and Yet to Come."},
+{type:'stave', q:"In which stave does Scrooge visit his own childhood?", opts:["Stave One","Stave Two","Stave Three","Stave Four"], a:1, exp:"The Ghost of Christmas Past takes Scrooge to revisit his childhood in Stave Two."},
+{type:'char', q:"Who ends her engagement to the young Scrooge because of his growing love of money?", opts:["Fan","Belle","Mrs Cratchit","Martha"], a:1, exp:"Belle ends their engagement, telling Scrooge 'another idol has displaced me'."},
+{type:'mc', q:"What are the names of the two allegorical children shown by the Ghost of Christmas Present?", opts:["Hope and Fear","Ignorance and Want","Poverty and Wealth","Past and Future"], a:1, exp:"The Ghost reveals two wretched children named Ignorance and Want, warning Scrooge of them both."},
+{type:'stave', q:"In which stave does the Ghost of Christmas Yet to Come appear?", opts:["Stave Two","Stave Three","Stave Four","Stave Five"], a:2, exp:"The final, silent spirit appears in Stave Four, showing Scrooge a possible future."},
+{type:'quote', q:"Who says: 'I wear the chain I forged in life'?", opts:["Scrooge","Jacob Marley's Ghost","Bob Cratchit","Ghost of Christmas Present"], a:1, exp:"Marley's ghost explains his chain was forged from his own selfish choices in life."},
+{type:'quote', q:"Who says: 'mankind was my business'?", opts:["Scrooge","Fred","Jacob Marley's Ghost","Tiny Tim"], a:2, exp:"Marley delivers this key line, realising too late that caring for others should have been his true purpose."},
+{type:'quote', q:"Complete the quote: 'God bless us, ___!'", opts:["every one","and Merry Christmas","forevermore","one and all"], a:0, exp:"Tiny Tim's full blessing is: 'God bless us every one!'"},
+{type:'char', q:"Who is described as 'hard and sharp as flint'?", opts:["Marley","Scrooge","Fred","Bob Cratchit"], a:1, exp:"This description of Scrooge appears in the novella's opening pages, establishing his cold character."},
+{type:'theme', q:"Which theme is most directly explored by Marley's warning to Scrooge?", opts:["Christmas traditions only","Social responsibility","Weather symbolism","Childhood"], a:1, exp:"Marley's warning centres on the neglected responsibility to care for 'mankind', not just commercial business."},
+{type:'theme', q:"What does the novella suggest about the possibility of change?", opts:["People cannot really change","Genuine change is possible but requires honest self-reflection","Only wealthy people can change","Change happens instantly with no effort"], a:1, exp:"Scrooge's gradual transformation across the staves shows change as possible but requiring genuine, sustained reflection."},
+{type:'mc', q:"What does Fezziwig do that Scrooge later reflects on with regret?", opts:["Fires his employees","Hosts a joyful Christmas party for his employees","Refuses to pay wages","Closes his business"], a:1, exp:"Fezziwig's generous, joyful Christmas party for his employees contrasts sharply with Scrooge's own treatment of Bob Cratchit."},
+{type:'tech', q:"What technique is used in the phrase 'hard and sharp as flint'?", opts:["Metaphor","Simile","Personification","Onomatopoeia"], a:1, exp:"This is a simile, using 'as' to compare Scrooge to flint."},
+{type:'tf', q:"True or False: A Christmas Carol is set entirely on Christmas Day itself.", opts:["True","False"], a:1, exp:"False — most of the novella takes place on Christmas Eve and through the night, with only Stave Five occurring on Christmas Day."},
+{type:'context', q:"What real Victorian institutions does Scrooge refer to when he says 'Are there no prisons? Are there no workhouses?'", opts:["Hospitals and schools","Institutions established under the Poor Law","Churches","Factories only"], a:1, exp:"Scrooge refers to harsh institutional provisions for the poor established under Victorian Poor Law legislation."},
+{type:'context', q:"What aspect of Dickens's own life is believed to have shaped his concern for child poverty?", opts:["He was very wealthy as a child","His father's imprisonment for debt and his own childhood factory work","He trained as a lawyer","He worked as a teacher"], a:1, exp:"Dickens's father was imprisoned for debt, and young Dickens worked in a factory, shaping his lifelong concern for poverty."},
+{type:'mc', q:"What does Scrooge send to the Cratchit family on Christmas morning?", opts:["A goose","A large turkey","Money only","A letter"], a:1, exp:"Scrooge anonymously sends the Cratchits a large turkey on Christmas morning as part of his transformation."},
+{type:'char', q:"Which spirit never speaks throughout its entire appearance?", opts:["Jacob Marley's Ghost","Ghost of Christmas Past","Ghost of Christmas Present","Ghost of Christmas Yet to Come"], a:3, exp:"The Ghost of Christmas Yet to Come communicates only through silent gestures, never speaking."},
+{type:'theme', q:"According to the novella, what happened to Tiny Tim in the vision of a possible future?", opts:["He recovered fully","He had died","He moved away","He became wealthy"], a:1, exp:"In the vision shown by the Ghost of Christmas Yet to Come, Tiny Tim has died, devastating his family."},
+{type:'mc', q:"Whose grave does Scrooge eventually see in Stave Four?", opts:["Marley's","Tiny Tim's","His own","Bob Cratchit's"], a:2, exp:"Scrooge is horrified to discover the neglected grave shown to him bears his own name."},
+{type:'stave', q:"In which stave does Scrooge wake up transformed?", opts:["Stave Three","Stave Four","Stave Five","Stave Two"], a:2, exp:"Stave Five, 'The End of It', shows Scrooge waking on Christmas morning, fully transformed."},
+{type:'tech', q:"What is the term for Dickens attributing human coldness to weather, reflecting Scrooge's character?", opts:["Simile","Pathetic fallacy","Alliteration","Hyperbole"], a:1, exp:"Pathetic fallacy attributes human emotion or qualities to weather or nature to reflect mood or character."},
+{type:'mc', q:"What does Scrooge do for Bob Cratchit's salary in Stave Five?", opts:["Fires him","Raises it","Keeps it the same","Reduces it further"], a:1, exp:"Scrooge raises Bob's salary and promises to help his struggling family as part of his transformation."},
+{type:'context', q:"Why does Dickens use the word 'stave' rather than 'chapter' for each section?", opts:["It was a printing error","It reflects the musical structure of a carol, reinforcing the novella's title and festive themes","It has no particular significance","It refers to a type of Victorian building"], a:1, exp:"'Stave' refers to the musical staff notation, reinforcing the novella's framing as a Christmas carol told in five parts."},
+{type:'theme', q:"What does the reveal of Ignorance and Want suggest about the novella's message?", opts:["Poverty is entirely Scrooge's individual fault","The novella's concern extends beyond Scrooge's personal story to wider social problems","Poverty only affects children","There is no solution to poverty"], a:1, exp:"Ignorance and Want broaden the novella's message from Scrooge's individual redemption into a wider social warning."},
+{type:'mc', q:"What is Scrooge's business partner's name?", opts:["Fezziwig","Jacob Marley","Old Joe","Fred"], a:1, exp:"Jacob Marley was Scrooge's former business partner, who died seven years before the novella begins."},
+{type:'quote', q:"Who says: 'another idol has displaced me'?", opts:["Belle","Mrs Cratchit","Fan","Ghost of Christmas Past"], a:0, exp:"Belle says this while ending her engagement to the young Scrooge, referring to his growing love of money."},
+{type:'context', q:"What does the term 'surplus population' relate to historically?", opts:["Victorian census data only","Ideas associated with Thomas Malthus's population theory","A type of Victorian workhouse","Dickens's own family background"], a:1, exp:"The phrase echoes Malthusian ideas about population and resources, though Dickens critiques its callous application."},
+{type:'mc', q:"What is the novella's genre most accurately described as?", opts:["Historical romance","Novella / ghost story / social criticism","Epic poem","Stage play"], a:1, exp:"A Christmas Carol is best described as a novella combining ghost story conventions with social criticism."}
+];
+
+/* ================= WHICH SPIRIT GAME ================= */
+const WHICHSPIRIT = [
+{text:"Drags a heavy chain made of cash-boxes, keys and ledgers.", answer:'Marley', exp:"Marley's ghost carries a chain forged from his own selfish choices in life."},
+{text:"Shows Scrooge scenes from his own lonely schooldays.", answer:'Ghost of Christmas Past', exp:"The Ghost of Christmas Past guides Scrooge through his own childhood memories."},
+{text:"Reveals two wretched children, Ignorance and Want, beneath its robes.", answer:'Ghost of Christmas Present', exp:"The Ghost of Christmas Present makes this dramatic revelation near the end of Stave Three."},
+{text:"Never speaks throughout its entire appearance.", answer:'Ghost of Christmas Yet to Come', exp:"This final spirit communicates only through silent gestures, forcing Scrooge to interpret events himself."},
+{text:"Warns Scrooge that three spirits will visit him.", answer:'Marley', exp:"Marley's ghost delivers this warning before departing in Stave One."},
+{text:"Appears surrounded by a great feast and abundant food.", answer:'Ghost of Christmas Present', exp:"This spirit is introduced amid an enormous, generous spread of festive food."},
+{text:"Shows Scrooge the joyful Fezziwig Christmas party.", answer:'Ghost of Christmas Past', exp:"This scene from Scrooge's apprenticeship is shown by the Ghost of Christmas Past."},
+{text:"Shows Scrooge his own neglected grave.", answer:'Ghost of Christmas Yet to Come', exp:"This chilling final revelation occurs at the climax of Stave Four."},
+{text:"Wears a bandage tied around its head and jaw.", answer:'Marley', exp:"Marley's ghost is described wearing this bandage, a traditional element of preparing a corpse."},
+{text:"Takes Scrooge to witness Belle's happy, later family life.", answer:'Ghost of Christmas Past', exp:"This poignant scene, showing what Scrooge might have had, is shown by the Ghost of Christmas Past."},
+{text:"Is described as large, jovial and generous in appearance.", answer:'Ghost of Christmas Present', exp:"This spirit's physical largeness embodies the abundance and generosity of Christmas spirit."},
+{text:"Shows Scrooge businessmen discussing an unnamed death with indifference.", answer:'Ghost of Christmas Yet to Come', exp:"This scene in Stave Four shows the callous indifference to Scrooge's own eventual death."},
+{text:"Takes Scrooge to the Cratchit family's Christmas dinner.", answer:'Ghost of Christmas Present', exp:"This central, warm domestic scene is shown by the Ghost of Christmas Present in Stave Three."},
+{text:"Its light comes from a bright jet of light on top of its head.", answer:'Ghost of Christmas Past', exp:"This unusual, candle-like light is a distinctive feature of the Ghost of Christmas Past's appearance."},
+{text:"Shows Scrooge Old Joe's shop, where a dead man's possessions are being sold.", answer:'Ghost of Christmas Yet to Come', exp:"This grim scene in Stave Four reveals the callous aftermath of the unnamed man's death."},
+{text:"Rings a bell before its appearance is confirmed to Scrooge.", answer:'Marley', exp:"Bells and other unsettling supernatural signs precede Marley's ghostly appearance in Stave One."},
+{text:"Ages visibly older within the course of a single day.", answer:'Ghost of Christmas Present', exp:"This spirit's rapid ageing during its one day of life carries symbolic weight about time and opportunity."},
+{text:"Takes Scrooge to Fred's lively Christmas party.", answer:'Ghost of Christmas Present', exp:"This joyful scene is shown alongside the Cratchits' dinner by the Ghost of Christmas Present."},
+{text:"Is hooded and shrouded, revealing only a single outstretched hand.", answer:'Ghost of Christmas Yet to Come', exp:"This ominous, silent appearance characterises the final spirit throughout Stave Four."},
+{text:"Explains it is doomed to wander the earth witnessing suffering it can no longer help.", answer:'Marley', exp:"Marley's ghost describes this as part of his eternal punishment for a life of selfishness."}
+];
+
+/* ================= SCROOGE TRANSFORMATION TRACKER ================= */
+const TRACKER = [
+{stave:'Stave One', attitude:'Isolated / dismissive / selfish', event:"Rejects Fred's Christmas invitation, dismisses charity collectors, and is visited and warned by Marley's ghost.", emotion:"Contempt, irritation, mild unease at Marley's appearance.", quote:"Are there no prisons? Are there no workhouses?", changed:"Nothing has changed yet — this stave establishes Scrooge's starting point of cold, dismissive selfishness."},
+{stave:'Stave Two', attitude:'Regret / memory / emotional awakening', event:"The Ghost of Christmas Past shows Scrooge his lonely childhood, the joyful Fezziwig party, and his painful breakup with Belle.", emotion:"Growing sadness, regret and emotional vulnerability, culminating in his plea to see 'no more'.", quote:"another idol has displaced me", changed:"Scrooge begins to feel genuine emotion and regret about his own past choices, cracking his earlier hardness."},
+{stave:'Stave Three', attitude:'Empathy / curiosity / concern', event:"The Ghost of Christmas Present shows Scrooge the Cratchits' Christmas dinner and Fred's party, and reveals Ignorance and Want.", emotion:"Growing concern for Tiny Tim's fate, curiosity about others' lives, and unease at the revelation of Ignorance and Want.", quote:"This boy is Ignorance. This girl is Want.", changed:"Scrooge begins to genuinely care about specific people (Tiny Tim) and the wider social problem their poverty represents."},
+{stave:'Stave Four', attitude:'Fear / responsibility / determination', event:"The Ghost of Christmas Yet to Come shows Scrooge his own neglected death and the Cratchits' grief over Tiny Tim.", emotion:"Genuine terror and desperate determination to change before it is too late.", quote:"I will honour Christmas in my heart", changed:"Scrooge moves from passive regret to an active, determined vow to change his future behaviour permanently."},
+{stave:'Stave Five', attitude:'Generosity / connection / redemption', event:"Scrooge wakes transformed, sends a turkey to the Cratchits, donates to charity, visits Fred, and raises Bob's salary.", emotion:"Joy, lightness and genuine, sustained happiness.", quote:"I am not the man I was", changed:"Scrooge's transformation is now expressed through concrete, generous action and renewed social connection, completing his redemption."}
+];
+
+/* ================= SYMBOL VAULT ================= */
+const SYMBOLS = [
+{name:'Chains', literal:"The heavy iron chain Marley's ghost drags, made of cash-boxes, keys, padlocks and ledgers.", symbolic:"The accumulated weight of a lifetime's selfish choices, and the inescapable consequences of neglecting moral and social responsibility.", quote:"I wear the chain I forged in life", themes:['Redemption','Greed'], use:"Use to discuss consequences of selfishness, or Marley's warning function in the novella."},
+{name:'Light', literal:"Various sources of light throughout the novella, including the jet of light from the Ghost of Christmas Past's head.", symbolic:"Insight, truth and moral clarity — light often accompanies moments of revelation or understanding for Scrooge.", quote:"", themes:['Memory','Change'], use:"Use to discuss moments of realisation or growing self-awareness, particularly during Scrooge's encounters with the spirits."},
+{name:'Fire', literal:"The small, meagre fire Scrooge allows Bob Cratchit in Stave One, contrasted with the roaring fires of later, warmer scenes.", symbolic:"Warmth, generosity and human connection — the size and warmth of a fire often reflects a character's generosity.", quote:"", themes:['Generosity','Wealth'], use:"Use to discuss the contrast between Scrooge's early miserliness and his later transformation, or Bob Cratchit's poor treatment."},
+{name:'Cold', literal:"The 'cold, bleak, biting weather' and Scrooge's own described low body temperature.", symbolic:"Emotional coldness, isolation and lack of compassion, closely associated with Scrooge's character throughout Stave One.", quote:"No warmth could warm, nor wintry weather chill him", themes:['Isolation','Greed'], use:"Use to discuss Scrooge's characterisation, or the pathetic fallacy linking weather and emotional state."},
+{name:'Darkness', literal:"The dark, gloomy settings associated with Scrooge's home and his early, unenlightened state.", symbolic:"Ignorance, moral blindness and the absence of the insight the spirits later provide.", quote:"", themes:['Change','Memory'], use:"Use to discuss Scrooge's initial lack of self-awareness, contrasted with the illumination brought by the spirits."},
+{name:'Food', literal:"The abundant feast surrounding the Ghost of Christmas Present, and the modest but joyful Cratchit family dinner.", symbolic:"Generosity, abundance, and the sharing of resources as an expression of community and care for others.", quote:"", themes:['Generosity','Family'], use:"Use to discuss the contrast between Scrooge's earlier miserliness and the novella's celebration of shared abundance."},
+{name:'Weather', literal:"The cold, foggy conditions of Stave One, gradually giving way to more festive imagery as the novella progresses.", symbolic:"Reflects and reinforces Scrooge's own emotional and moral state through pathetic fallacy.", quote:"cold, bleak, biting weather", themes:['Isolation','Change'], use:"Use to discuss pathetic fallacy, or how setting reinforces Scrooge's emotional journey."},
+{name:"Ignorance and Want", literal:"Two wretched, starving children revealed beneath the Ghost of Christmas Present's robes.", symbolic:"The dangers a society creates for itself by neglecting the education and welfare of its poorest children.", quote:"This boy is Ignorance. This girl is Want.", themes:['Poverty','Inequality'], use:"Use to discuss the novella's broadening from individual to structural social criticism — a particularly strong essay symbol."},
+{name:'The grave', literal:"The neglected gravestone Scrooge is shown by the Ghost of Christmas Yet to Come, bearing his own name.", symbolic:"The ultimate consequence of a life lived without love or connection: to be unmourned and forgotten.", quote:"", themes:['Death','Fear'], use:"Use to discuss the novella's climax, or the contrast between Scrooge's possible fate and the Cratchits' genuine grief for Tiny Tim."},
+{name:'Bells', literal:"Church bells and other bell sounds that recur throughout the novella, particularly around supernatural events.", symbolic:"Traditionally associated with both Christmas celebration and, in Gothic tradition, supernatural warning or omen.", quote:"", themes:['Christmas','Fear'], use:"Use to discuss the novella's blending of festive and Gothic supernatural traditions."},
+{name:'Doors and windows', literal:"Physical thresholds Scrooge and the spirits pass through, including the famous door-knocker that transforms into Marley's face.", symbolic:"Boundaries between the ordinary and supernatural worlds, and between Scrooge's isolated interior life and the wider society beyond.", quote:"", themes:['Isolation','Change'], use:"Use to discuss the moment Marley's face appears in the door-knocker, or Scrooge's movement between isolation and connection."}
+];
+
+/* ================= POVERTY & RESPONSIBILITY MAP ================= */
+const POVMAP = [
+{who:'Scrooge (before)', action:"Dismisses poverty as none of his concern.", detail:"Scrooge refuses to donate to the charity collectors, suggesting that prisons and workhouses already provide sufficient support for the poor.", quote:"Are there no prisons? Are there no workhouses?", message:"Dickens may use this to establish the callous, institutional attitude toward poverty he sets out to challenge throughout the rest of the novella."},
+{who:'Charity collectors', action:"Challenge Scrooge's dismissive attitude.", detail:"Two gentlemen visit Scrooge's counting house seeking donations for the poor, explaining that many would rather die than face harsh workhouse conditions.", quote:"", message:"Dickens may use the collectors to voice a direct, reasoned challenge to Scrooge's institutional excuses, planting an early seed of doubt about his position."},
+{who:'The Cratchits', action:"Humanise poverty through a specific, sympathetic family.", detail:"The Cratchit family's modest but loving Christmas dinner shows the reader the genuine warmth and dignity possible even within real financial hardship.", quote:"tried to warm himself at the candle", message:"Dickens may use the Cratchits to transform poverty from an abstract social problem into a specific, emotionally resonant human experience."},
+{who:'Tiny Tim', action:"Shows the real, human consequences of poverty and neglect.", detail:"Tiny Tim's illness and the possibility of his death in Stave Four demonstrate the genuine stakes of the poverty and inequality Scrooge has previously ignored.", quote:"God bless us every one!", message:"Dickens may use Tiny Tim's vulnerability to give the novella's social criticism its most emotionally powerful, personal focus."},
+{who:'Ignorance and Want', action:"Broaden the novella's message beyond any single family.", detail:"These two allegorical children, revealed by the Ghost of Christmas Present, represent the wider social dangers created by neglecting the poorest and most vulnerable.", quote:"This boy is Ignorance. This girl is Want.", message:"Dickens may use this revelation to argue that poverty is a structural social problem requiring collective responsibility, not simply individual charity toward specific families."},
+{who:'Reformed Scrooge', action:"Accepts genuine social responsibility.", detail:"By Stave Five, Scrooge actively supports the Cratchits, donates generously to charity, and commits to sustained generosity rather than one-off gestures.", quote:"I am not the man I was", message:"Dickens may use Scrooge's completed transformation to demonstrate that genuine acceptance of social responsibility is both personally and socially redemptive."}
+];
+
+/* ================= RENDER: NAVIGATION ================= */
+let currentSection = Store.get('lastSection','overview');
+
+function renderNav(){
+  const html = SECTIONS.map((s,i)=>`<button class="navlink" data-target="${s.id}" role="tab"><span class="num">${String(i+1).padStart(2,'0')}</span>${s.label}</button>`).join('');
+  document.getElementById('navList').innerHTML = html;
+  document.getElementById('navListMobile').innerHTML = html;
+  document.querySelectorAll('.navlink').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ showSection(btn.getAttribute('data-target')); closeDrawer(); });
+  });
+}
+
+function showSection(id){
+  currentSection = id;
+  Store.set('lastSection', id);
+  document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active', s.id === 'section-'+id));
+  document.querySelectorAll('.navlink').forEach(b=>b.classList.toggle('active', b.getAttribute('data-target')===id));
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+}
+
+function closeDrawer(){
+  document.getElementById('mobileDrawer').classList.remove('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded','false');
+}
+document.getElementById('hamburgerBtn').addEventListener('click', ()=>{
+  const d = document.getElementById('mobileDrawer');
+  const open = d.classList.toggle('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded', open?'true':'false');
+});
+document.getElementById('mobileDrawer').addEventListener('click', (e)=>{
+  if(e.target.id === 'mobileDrawer') closeDrawer();
+});
+
+const root = document.getElementById('sectionsRoot');
+function el(html){ const d=document.createElement('div'); d.innerHTML=html; return d.firstElementChild; }
+
+/* ---- 1. OVERVIEW ---- */
+function buildOverview(){
+  const s = el(`<section class="section" id="section-overview">
+    <div class="section-header"><div class="eyebrow">Section 01</div><h1>Overview</h1><div class="desc">Get your bearings before you dive into detail.</div></div>
+
+    <div class="grid two">
+      <div class="card"><h3>Key facts</h3>
+        <p><b>Author:</b> Charles Dickens<br>
+        <b>Published:</b> 1843<br>
+        <b>Genre:</b> Novella / ghost story / social criticism<br>
+        <b>Setting:</b> Victorian London<br>
+        <b>Structure:</b> Five 'staves' (a musical term, reinforcing the novella's framing as a Christmas carol)</p>
+      </div>
+      <div class="card"><h3>Why the novella matters for GCSE</h3>
+        <p>Its compact five-part structure and rich, patterned symbolism (chains, light, cold, food) make it ideal for close analysis. It rewards students who can track Scrooge's gradual transformation and connect Dickens's social criticism to genuine historical context.</p>
+      </div>
+    </div>
+
+    <div class="card"><h3>Basic premise</h3>
+      <p>Ebenezer Scrooge, a cold, miserly London businessman who despises Christmas and has no time for charity or human connection, is visited on Christmas Eve by the ghost of his dead business partner, Jacob Marley, who warns him of the consequences of his selfishness. Three further spirits — the Ghosts of Christmas Past, Present and Yet to Come — take Scrooge on a night-long journey through his own life, showing him his lonely childhood, the warmth and hardship of those around him, and a possible bleak future if he does not change. Scrooge wakes on Christmas morning transformed, generous and finally reconnected to the people and community he had long shut out.</p>
+    </div>
+
+    <div class="card"><h3>Major themes at a glance</h3>
+      <p><span class="tag blood">Redemption</span><span class="tag blood">Social Responsibility</span><span class="tag blood">Poverty</span><span class="tag gold">Wealth</span><span class="tag gold">Family</span><span class="tag gold">Isolation</span><span class="tag holly">Christmas</span><span class="tag holly">Generosity</span><span class="tag holly">Greed</span><span class="tag">Childhood</span><span class="tag">Memory</span><span class="tag">Change</span></p>
+    </div>
+
+    <div class="card"><h3>Why these ideas matter</h3>
+      <p><b>Redemption</b> and <b>social responsibility</b> sit at the heart of the novella — Dickens uses Scrooge's transformation to argue that people, and by extension society, genuinely can change for the better.<br><br>
+      <b>Poverty, wealth and inequality</b> are examined both through specific characters (the Cratchits) and broader symbols (Ignorance and Want).<br><br>
+      <b>Family, isolation and generosity</b> show what Scrooge has lost through his selfishness, and what he ultimately regains.<br><br>
+      <b>Memory, childhood and fear</b> all play a role in prompting Scrooge's transformation, showing change can come from multiple different emotional sources.<br><br>
+      Dickens's message is broader than simply "rich people should give money away" — he criticises indifference, exploitation and social division as much as individual greed itself.</p>
+    </div>
+
+    <div class="card"><h3>What GCSE students need to understand</h3>
+      <ul>
+        <li>That Scrooge's redemption is gradual, built across four staves, not an instant change of heart.</li>
+        <li>That the novella criticises wider indifference and social division, not simply individual "meanness".</li>
+        <li>How Dickens uses recurring symbols (chains, warmth/cold, light/dark) to reinforce his themes throughout.</li>
+        <li>That exam boards want analysis of Dickens's methods and purpose, not simply a retelling of events.</li>
+      </ul>
+    </div>
+
+    <div class="sixty">
+      <h3>A Christmas Carol in 60 Seconds</h3>
+      <p>Ebenezer Scrooge, a cold and miserly London businessman, is visited on Christmas Eve by the ghost of his dead business partner Jacob Marley, who warns him to change before it is too late. Three spirits then guide Scrooge through his own life: the Ghost of Christmas Past reveals his lonely childhood and lost love; the Ghost of Christmas Present shows him the warmth of the Cratchit family's Christmas despite their poverty, and reveals the allegorical children Ignorance and Want; and the silent Ghost of Christmas Yet to Come shows him a possible bleak future, including his own neglected death. Terrified and moved, Scrooge wakes on Christmas morning transformed — generous, socially connected, and determined to honour the spirit of Christmas all year round.</p>
+    </div>
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 2. PLOT ---- */
+const PLOT = [
+{n:'Stave One', t:"Marley's Ghost", happens:"Scrooge dismisses his nephew Fred's Christmas invitation and two charity collectors, treats Bob Cratchit poorly, and is then visited by the ghost of his dead business partner Jacob Marley, who warns him of the fate awaiting selfish men and announces the coming of three spirits.", why:"Establishes Scrooge's cold, dismissive character and sets the novella's supernatural, morally urgent plot in motion.", chars:["Scrooge","Bob Cratchit","Fred","Jacob Marley"], themes:["Greed","Isolation","Warning"], quote:"I wear the chain I forged in life"},
+{n:'Stave Two', t:"The First of the Three Spirits", happens:"The Ghost of Christmas Past takes Scrooge to revisit his lonely schooldays, his beloved sister Fan, the joyful Fezziwig Christmas party, and his painful breakup with Belle as his love of money grew.", why:"Reveals the emotional and personal roots of Scrooge's later hardness, complicating a simple reading of him as innately selfish.", chars:["Scrooge","Ghost of Christmas Past","Fan","Fezziwig","Belle"], themes:["Memory","Childhood","Regret"], quote:"another idol has displaced me"},
+{n:'Stave Three', t:"The Second of the Three Spirits", happens:"The Ghost of Christmas Present shows Scrooge the Cratchit family's modest but joyful Christmas dinner, Fred's lively party, and finally reveals two wretched children, Ignorance and Want, hidden beneath its robes.", why:"Humanises poverty through the Cratchits while broadening the novella's message into a wider social warning through Ignorance and Want.", chars:["Scrooge","Ghost of Christmas Present","Bob Cratchit","Tiny Tim","Fred"], themes:["Christmas","Poverty","Inequality"], quote:"This boy is Ignorance. This girl is Want."},
+{n:'Stave Four', t:"The Last of the Spirits", happens:"The silent Ghost of Christmas Yet to Come shows Scrooge indifferent businessmen discussing an unnamed death, Old Joe's shop where stolen possessions are sold, the grieving Cratchit family, and finally Scrooge's own neglected grave.", why:"Confronts Scrooge with the possible consequences of remaining unchanged, prompting his final, urgent vow to transform.", chars:["Scrooge","Ghost of Christmas Yet to Come","Bob Cratchit"], themes:["Fear","Death","Change"], quote:"I will honour Christmas in my heart"},
+{n:'Stave Five', t:"The End of It", happens:"Scrooge wakes on Christmas morning transformed: he sends a large turkey to the Cratchits, donates generously to charity, visits Fred's Christmas party, raises Bob's salary, and commits to helping Tiny Tim.", why:"Completes Scrooge's redemption arc, demonstrating genuine change through concrete, generous action rather than mere words.", chars:["Scrooge","Bob Cratchit","Fred","Tiny Tim"], themes:["Redemption","Generosity","Family"], quote:"I am not the man I was"}
+];
+
+function buildPlot(){
+  let cards = '';
+  PLOT.forEach(p=>{
+    cards += `<div class="disclosure" data-d>
+      <button class="d-head"><span>${p.n} — ${p.t}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <div class="mini-label">What happens</div><p>${p.happens}</p>
+        <div class="mini-label">Why it matters</div><p>${p.why}</p>
+        <div class="mini-label">Characters involved</div><p>${p.chars.map(c=>`<span class="tag">${c}</span>`).join('')}</p>
+        <div class="mini-label">Themes</div><p>${p.themes.map(t=>`<span class="tag blood">${t}</span>`).join('')}</p>
+        <div class="mini-label">Useful quotation</div><div class="quote-line">"${p.quote}"</div>
+      </div></div>
+    </div>`;
+  });
+
+  const twelveEvents = [
+   "Scrooge dismisses Fred's Christmas invitation and the charity collectors.",
+   "Scrooge treats Bob Cratchit poorly, reluctantly granting him Christmas Day off.",
+   "Marley's ghost appears, warning Scrooge and announcing three coming spirits.",
+   "The Ghost of Christmas Past shows Scrooge his lonely childhood and the Fezziwig party.",
+   "Scrooge relives his painful breakup with Belle as his love of money grew.",
+   "The Ghost of Christmas Present shows Scrooge the Cratchits' joyful Christmas dinner.",
+   "The Ghost reveals the allegorical children Ignorance and Want.",
+   "The Ghost of Christmas Yet to Come shows indifferent businessmen discussing an unnamed death.",
+   "Scrooge sees the grieving Cratchit family mourning Tiny Tim's death.",
+   "Scrooge discovers the neglected grave shown to him bears his own name.",
+   "Scrooge wakes transformed on Christmas morning and sends a turkey to the Cratchits.",
+   "Scrooge visits Fred, raises Bob's salary, and commits to lasting generosity."
+  ];
+
+  const s = el(`<section class="section" id="section-plot">
+    <div class="section-header"><div class="eyebrow">Section 02</div><h1>Plot</h1><div class="desc">All five staves. Tap any stave to expand it.</div></div>
+    <div class="card"><h3>Whole Novella in 12 Events</h3>
+      <div class="timeline">${twelveEvents.map((e,i)=>`<div class="t-item"><div class="t-num">${String(i+1).padStart(2,'0')}</div><p>${e}</p></div>`).join('')}</div>
+    </div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 3. CHARACTERS ---- */
+function buildCharacters(){
+  let cards = CHARACTERS.map(c=>`
+    <div class="disclosure" data-d>
+      <button class="d-head"><span>${c.name}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <p class="subtle" style="margin-top:10px;">${c.role}</p>
+        <div class="mini-label">Who are they?</div><p>${c.who}</p>
+        <div class="mini-label">Character journey</div><p>${c.journey}</p>
+        <div class="mini-label">Key relationships</div><p>${c.relationships}</p>
+        <div class="mini-label">Themes connected to this character</div><p>${c.themes.map(t=>`<span class="tag blood">${t}</span>`).join('')}</p>
+        ${c.quotes.length ? `<div class="mini-label">Essential quotes</div>${c.quotes.map(q=>`<div class="quote-line">"${q}"</div>`).join('') } ` : ''}
+        <div class="mini-label">What Dickens may be saying</div><p>${c.message}</p>
+        <div class="mini-label">Exam arguments to develop</div><ul>${c.examArgs.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-characters">
+    <div class="section-header"><div class="eyebrow">Section 03</div><h1>Characters</h1><div class="desc">Tap a character to see their full profile: journey, relationships, quotes and exam arguments.</div></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 4. THEMES ---- */
+function buildThemes(){
+  let cards = THEMES.map(t=>`
+    <div class="disclosure" data-d>
+      <button class="d-head"><span>${t.name}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <div class="mini-label">Simple explanation</div><p>${t.explanation}</p>
+        <div class="mini-label">Where it appears</div><p>${t.where}</p>
+        <div class="mini-label">Relevant characters</div><p>${t.characters.map(c=>`<span class="tag">${c}</span>`).join('')}</p>
+        ${t.quotes.length ? `<div class="mini-label">Essential quotations</div>${t.quotes.map(q=>`<div class="quote-line">"${q}"</div>`).join('')}` : ''}
+        <div class="mini-label">Dickens's possible message</div><p>${t.message}</p>
+        <div class="mini-label">Useful contextual link</div><p>${t.context}</p>
+        <div class="mini-label">Potential thesis statements</div><ul>${t.thesis.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-themes">
+    <div class="section-header"><div class="eyebrow">Section 04</div><h1>Themes</h1><div class="desc">Seventeen core themes, each with quotations, context and ready-to-adapt thesis statements.</div></div>
+    <div class="card"><h3>A note on redemption and social responsibility</h3><p>These are the novella's two strongest, most interconnected themes. Redemption is not presented as instantaneous — Scrooge's change unfolds gradually across four staves, built through memory, empathy, fear and finally action. Social responsibility is not reduced to simply "rich people should give money away": Dickens criticises indifference, exploitation and social division as systemic problems, shown through Ignorance and Want, not just individual meanness. Scrooge's transformation matters because it demonstrates Dickens's broader belief that people, and by extension society, genuinely can change for the better once they accept responsibility for one another.</p></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 5. QUOTE VAULT ---- */
+function buildQuoteVault(){
+  const allChars = ['Scrooge','Bob Cratchit','Tiny Tim','Fred','Marley','Ghost of Christmas Past','Ghost of Christmas Present','Ghost of Christmas Yet to Come','Belle','Fezziwig'];
+  const allThemes = Array.from(new Set(QUOTES.flatMap(q=>q.themes))).sort();
+
+  const s = el(`<section class="section" id="section-quotes">
+    <div class="section-header"><div class="eyebrow">Section 05</div><h1>Quote Vault</h1><div class="desc">Search and filter the novella's most important quotations. All checked against the original 1843 text.</div></div>
+    <div class="qv-controls">
+      <input type="text" id="qvSearch" placeholder="Search quotations..." aria-label="Search quotations">
+      <select id="qvCharFilter" aria-label="Filter by character"><option value="">All characters</option>${allChars.map(c=>`<option value="${c}">${c}</option>`).join('')}</select>
+      <select id="qvThemeFilter" aria-label="Filter by theme"><option value="">All themes</option>${allThemes.map(t=>`<option value="${t}">${t}</option>`).join('')}</select>
+    </div>
+    <div class="qv-count" id="qvCount"></div>
+    <div id="qvResults"></div>
+  </section>`);
+  root.appendChild(s);
+
+  function renderQuotes(){
+    const search = document.getElementById('qvSearch').value.toLowerCase().trim();
+    const charF = document.getElementById('qvCharFilter').value;
+    const themeF = document.getElementById('qvThemeFilter').value;
+    const filtered = QUOTES.filter(q=>{
+      const matchesSearch = !search || q.text.toLowerCase().includes(search) || q.speaker.toLowerCase().includes(search);
+      const matchesChar = !charF || q.characters.includes(charF);
+      const matchesTheme = !themeF || q.themes.includes(themeF);
+      return matchesSearch && matchesChar && matchesTheme;
+    });
+    document.getElementById('qvCount').textContent = filtered.length + (filtered.length===1 ? ' quotation found':' quotations found');
+    const container = document.getElementById('qvResults');
+    container.innerHTML = filtered.map((q,i)=>`
+      <div class="qcard" data-idx="${i}">
+        <div class="qtext">"${q.text}"</div>
+        <div class="qmeta">${q.speaker} · Stave ${q.stave} · ${q.themes.join(', ')}</div>
+        <button class="qreveal-btn" type="button">Reveal analysis</button>
+        <div class="qdetail">
+          <div class="row"><b>Meaning</b>${q.meaning}</div>
+          <div class="row"><b>Technique</b>${q.technique}</div>
+          <div class="level-toggle">
+            <button type="button" class="lvl-btn active" data-lvl="solid">Solid (Grade 5–6)</button>
+            <button type="button" class="lvl-btn" data-lvl="deep">Deeper (Grade 7–9)</button>
+          </div>
+          <div class="level-block active" data-lvl="solid">${q.solid}</div>
+          <div class="level-block" data-lvl="deep">${q.deep}</div>
+          <div class="row" style="margin-top:10px;"><b>Context</b>${q.context}</div>
+          <div class="row"><b>Use this for</b>${q.useFor}</div>
+        </div>
+      </div>`).join('') || '<p class="subtle">No quotations match your search. Try different filters.</p>';
+
+    container.querySelectorAll('.qreveal-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.qcard');
+        const open = card.classList.toggle('open');
+        btn.textContent = open ? 'Hide analysis' : 'Reveal analysis';
+      });
+    });
+    container.querySelectorAll('.lvl-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.qcard');
+        const lvl = btn.getAttribute('data-lvl');
+        card.querySelectorAll('.lvl-btn').forEach(b=>b.classList.toggle('active', b===btn));
+        card.querySelectorAll('.level-block').forEach(b=>b.classList.toggle('active', b.getAttribute('data-lvl')===lvl));
+      });
+    });
+  }
+  document.getElementById('qvSearch').addEventListener('input', renderQuotes);
+  document.getElementById('qvCharFilter').addEventListener('change', renderQuotes);
+  document.getElementById('qvThemeFilter').addEventListener('change', renderQuotes);
+  renderQuotes();
+}
+
+/* ---- 6. CONTEXT ---- */
+function buildContext(){
+  const items = [
+  {t:"Victorian poverty", body:"Victorian Britain contained severe inequality, with dangerous, overcrowded living conditions, widespread child poverty, and very limited support available for the poor.",
+   use:"Use this to explain the genuine desperation behind the charity collectors' visit in Stave One, and the real stakes behind Ignorance and Want."},
+  {t:"Workhouses", body:"Workhouses were institutions where the destitute could receive basic shelter and food in exchange for hard labour, under deliberately harsh conditions intended to discourage reliance on them. Dickens strongly criticised both the institutions themselves and the callous public attitudes that saw them as a sufficient solution to poverty.",
+   use:"Use this to explain Scrooge's dismissive reference to prisons and workhouses in Stave One, and how Dickens uses the rest of the novella to challenge such institutional complacency."},
+  {t:"The Poor Law", body:"The 1834 Poor Law Amendment Act reformed poor relief in Britain, making workhouse conditions deliberately harsh to discourage people from seeking help, a policy widely criticised by social reformers including Dickens.",
+   use:"Use this briefly to explain the real legislative background behind Scrooge's institutional attitude toward poverty, without turning your essay into a history lesson."},
+  {t:"Malthusian ideas", body:"Thomas Malthus theorised that population growth would eventually outpace resources, leading some contemporaries to argue that helping the poor merely delayed an inevitable, harsher reckoning. Dickens does not directly engage with Malthus's economic theory in detail, but critiques the callous application of such ideas to justify indifference toward the poor.",
+   use:"Use this to explain Scrooge's chilling reference to 'decrease the surplus population', while being careful not to overstate the novella's direct relationship to Malthus's actual writing."},
+  {t:"Industrialisation", body:"Rapid Victorian industrialisation produced enormous new wealth alongside continuing severe poverty, poor working conditions, and growing social division between rich and poor, often living in close physical proximity within the same cities.",
+   use:"Use this to explain the stark contrast Dickens draws between Scrooge's comfortable wealth and the Cratchits' poverty, despite their shared urban setting."},
+  {t:"Dickens's experiences", body:"Dickens's father was imprisoned for debt when Dickens was a child, and young Dickens was sent to work in a blacking factory, giving him direct, personal experience of poverty and its psychological effects.",
+   use:"Use this sparingly to explain the emotional authenticity of the novella's sympathy for poverty, but always connect it back to specific textual choices rather than treating biography as a substitute for analysis."},
+  {t:"Christianity", body:"Victorian Britain was a predominantly Christian society, and ideas of charity, forgiveness, redemption and responsibility to others would have been immediately familiar and morally significant to contemporary readers.",
+   use:"Use this to explain the religious language and structure underpinning Scrooge's redemption arc, and Tiny Tim's closing blessing."},
+  {t:"Christmas traditions", body:"While Dickens did not invent Christmas, A Christmas Carol helped reinforce and popularise a Victorian vision of Christmas centred on generosity, family, community and goodwill, ideas that remain influential today.",
+   use:"Use this to explain why Christmas functions symbolically throughout the novella, representing far more than a single calendar day."},
+  {t:"Ghost stories", body:"Supernatural Christmas tales were a popular Victorian tradition, often told aloud during the festive season; Dickens uses this familiar convention to deliver his moral and social message in an engaging, accessible form.",
+   use:"Use this to explain why Dickens chooses ghosts specifically to challenge Scrooge, rather than a more conventional realist narrative method."}
+  ];
+  const cards = items.map(i=>`<div class="disclosure" data-d>
+    <button class="d-head"><span>${i.t}</span><span class="chev">›</span></button>
+    <div class="d-body"><div class="inner">
+      <p style="margin-top:10px;">${i.body}</p>
+      <div class="mini-label">How can I actually use this in an essay?</div><p>${i.use}</p>
+    </div></div>
+  </div>`).join('');
+
+  const s = el(`<section class="section" id="section-context">
+    <div class="section-header"><div class="eyebrow">Section 06</div><h1>Context</h1><div class="desc">Only the context you can actually use — always paired with a real essay application.</div></div>
+    <div class="card"><p><b>Important:</b> Never bolt on a historical fact just to prove you know it. Only use context when it genuinely deepens your interpretation of Dickens's choices in that specific moment.</p></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 7. TECHNIQUES ---- */
+function buildTechniques(){
+  const cards = TECHNIQUES.map(t=>`<div class="disclosure" data-d>
+    <button class="d-head"><span>${t.name}</span><span class="chev">›</span></button>
+    <div class="d-body"><div class="inner">
+      <div class="mini-label">Definition</div><p>${t.def}</p>
+      <div class="mini-label">A Christmas Carol example</div><p>${t.example}</p>
+      <div class="mini-label">Effect</div><p>${t.effect}</p>
+      <div class="mini-label">How to analyse it</div><p>${t.howto}</p>
+    </div></div>
+  </div>`).join('');
+
+  const s = el(`<section class="section" id="section-techniques">
+    <div class="section-header"><div class="eyebrow">Section 07</div><h1>Techniques</h1><div class="desc">The key literary and structural methods Dickens uses, with clear examples and analysis guidance.</div></div>
+
+    <div class="card"><h3>Why five staves?</h3>
+      <p>Dickens deliberately calls each of the novella's five sections a 'stave' rather than a 'chapter' — a stave (or staff) is the set of five lines used in musical notation to write a piece of music. This choice directly reinforces the novella's title and framing: A Christmas Carol is structured like a piece of music to be performed and heard, not simply a story to be silently read. This musical framing suits the novella's warm, oral, direct-address narrative voice, and reinforces its themes of harmony, community and seasonal tradition — a carol, after all, is a song traditionally sung together, in community, at Christmas. The five-stave structure also creates a clear, rhythmic progression through Scrooge's transformation, giving his gradual change a satisfying, almost musical shape from discord (Stave One) toward resolution and harmony (Stave Five).</p>
+    </div>
+
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 8. EXAM ---- */
+function buildExam(){
+  const s = el(`<section class="section" id="section-exam">
+    <div class="section-header"><div class="eyebrow">Section 08</div><h1>Exam Survival</h1><div class="desc">How to actually approach an A Christmas Carol exam question, step by step.</div></div>
+
+    <div class="card"><p>Exam boards differ in exact format — some give you a printed extract and ask you to connect it to the whole novella; others ask a discursive essay question without an extract. Always check your own exam board's format with your teacher, but the analytical skills below apply broadly.</p></div>
+
+    <div class="disclosure open" data-d><button class="d-head"><span>1. Understanding the question</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Underline the key words in the question — usually a character, theme, or idea, plus a command word (e.g. 'explore', 'how does Dickens present'). Every paragraph should keep answering that exact question.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>2. Analysing an extract</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Read the extract twice — first for meaning, then hunting for specific techniques (imagery, symbolism, structure). Annotate briefly rather than writing full sentences at this stage.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>3. Connecting extract to whole novella</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Always show how the extract's ideas develop elsewhere in the novella. For example, if the extract shows Scrooge's coldness, connect it to his warmth by Stave Five to show change across the whole text.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>4. Selecting evidence</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Choose short, precise quotations you can analyse word-by-word rather than long ones you only summarise. Never invent a quotation — an accurate short quote is always stronger than a fabricated longer one.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>5. Creating a thesis</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>State a clear, arguable position rather than just restating the question. For example: "Dickens presents Scrooge's transformation as gradual and effortful, built through memory, empathy and fear rather than a single instant of realisation."</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>6. Paragraph structure</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>A reliable structure: Point → Evidence (short quotation) → Method (technique + effect) → Context (only if it adds insight) → Link back to Dickens's likely purpose.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>7. Analysing language</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Always ask: why this specific word, not a similar one? Zoom in on individual word choices and their connotations rather than making broad, generic claims.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>8. Discussing structure</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Consider why Dickens places events in a specific order — for example, why the emotionally warmest scenes (Fezziwig, the Cratchits) come before the frightening final spirit, building sympathy before fear.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>9. Incorporating context</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Context should illuminate Dickens's choices, not replace analysis of them. One well-placed contextual point is worth more than a paragraph of Victorian history with no link to the text.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>10. Discussing Dickens's purpose</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Always ask what broader point Dickens might be making about Victorian society, not just about Scrooge as an individual — his criticism extends to indifference and social division more widely.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>11. Writing conclusions</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Don't simply repeat your introduction. Briefly synthesise your strongest points and comment on Dickens's overall social or moral message.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>12. Managing time</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Spend a few minutes planning before you write. Leave a couple of minutes at the end to check for missing words and unclear sentences.</p></div></div></div>
+
+    <h2 style="margin-top:28px;">Extract → Whole Novella</h2>
+    <div class="card"><p>Start with what the extract itself does — for example, an extract describing Scrooge's coldness might focus on simile and pathetic fallacy. Then widen outward: does this connect to a pattern across the novella (his eventual warmth by Stave Five)? Does it relate to a theme explored elsewhere (isolation, redemption)? Finally, connect to Dickens's likely overall purpose — is he arguing individual change is possible, or making a wider point about social responsibility? This "zoom out" movement — extract detail, novella-wide pattern, authorial purpose — is a reliable way to structure a strong response.</p></div>
+
+    <h2 style="margin-top:28px;">Weak vs Strong Analysis</h2>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"Scrooge is mean because Dickens says he is cold."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"Dickens's simile describing Scrooge as 'hard and sharp as flint' immediately establishes his emotional coldness, yet the underlying logic of the comparison — that flint can, under the right conditions, produce fire — subtly foreshadows the warmth Scrooge proves capable of by the novella's close, complicating a purely negative reading of his character from the outset."</p></div>
+    </div>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"The ghosts teach Scrooge to be nice."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"Each spirit prompts a different kind of moral response — the Ghost of Christmas Past provokes regret through memory, the Ghost of Christmas Present provokes empathy through direct observation, and the silent Ghost of Christmas Yet to Come provokes fear through unmediated confrontation with consequence — suggesting Dickens presents genuine change as requiring multiple, complementary emotional catalysts rather than a single lesson."</p></div>
+    </div>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"Tiny Tim is sad and makes the reader feel sorry for him."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"Tiny Tim functions as both a specific, sympathetic individual and a broader emotional symbol of vulnerable people affected by inequality, meaning his fate in the vision of a possible future gives Dickens's otherwise abstract social criticism a devastating, personal human cost."</p></div>
+    </div>
+
+    <h2 style="margin-top:28px;">Practice questions</h2>
+    <div id="practiceQs"></div>
+  </section>`);
+  root.appendChild(s);
+
+  const practice = [
+   {q:"How does Dickens present Scrooge as an outsider?", plan:["Introduce Scrooge's isolation as both self-created and connected to his past.","P1: His introduction as 'solitary as an oyster'.","P2: His lonely, neglected schooldays revealed in Stave Two.","P3: His eventual reintegration into family and community by Stave Five.","Context: Victorian value placed on family and social connection.","Conclusion: Dickens presents outsider status as painful but ultimately reversible."]},
+   {q:"How does Dickens present Scrooge's transformation?", plan:["Introduce the transformation as gradual, not instant.","P1: Stave One's cold, dismissive Scrooge.","P2: Growing regret and empathy across Staves Two and Three.","P3: Fear-driven determination in Stave Four, culminating in Stave Five's generous action.","Context: Christian ideas of genuine, sustained repentance.","Conclusion: Dickens presents change as effortful and multi-staged, not sudden."]},
+   {q:"How does Dickens present poverty?", plan:["Introduce poverty as presented both individually and structurally.","P1: The Cratchits' specific, sympathetic hardship.","P2: The allegorical figures of Ignorance and Want.","P3: Scrooge's initial institutional dismissal versus his final generous action.","Context: Victorian workhouses and the Poor Law.","Conclusion: Dickens presents poverty as a social responsibility, not merely individual misfortune."]},
+   {q:"How does Dickens present the importance of family?", plan:["Introduce family as central to the novella's vision of a meaningful life.","P1: The Cratchits' loving, if poor, household.","P2: Fred's persistent inclusion of Scrooge despite rejection.","P3: Scrooge's own troubled childhood and eventual reconnection with Fred.","Context: Victorian ideals of family and Christmas.","Conclusion: Dickens presents family connection as more valuable than wealth alone."]},
+   {q:"How does Dickens present social responsibility?", plan:["Introduce social responsibility as the novella's central moral argument.","P1: Marley's warning that 'mankind was my business'.","P2: The charity collectors' challenge to Scrooge in Stave One.","P3: Scrooge's transformed, sustained generosity in Stave Five.","Context: Victorian debates about wealth and responsibility to the poor.","Conclusion: Dickens presents social responsibility as an active, ongoing moral duty."]},
+   {q:"How does Dickens use the ghosts?", plan:["Introduce the ghosts as both narrative device and moral mechanism.","P1: Marley's warning function.","P2: Each spirit's distinct method of provoking change (memory, empathy, fear).","P3: The silent final spirit forcing Scrooge's own interpretation and choice.","Context: Victorian ghost story traditions.","Conclusion: Dickens uses the ghosts to structure a multi-staged, convincing case for change."]},
+   {q:"How does Dickens present Christmas?", plan:["Introduce Christmas as symbolic of broader values, not just a holiday.","P1: Fred's defence of Christmas in Stave One.","P2: The abundant generosity of the Ghost of Christmas Present.","P3: Scrooge's vow to 'keep it all the year'.","Context: Victorian Christmas traditions Dickens helped popularise.","Conclusion: Dickens presents Christmas as symbolic of generosity and community valuable beyond a single day."]},
+   {q:"How does Dickens present fear?", plan:["Introduce fear as a legitimate, if imperfect, catalyst for change.","P1: Scrooge's initial unease at Marley's appearance.","P2: His terror during the Ghost of Christmas Yet to Come's silent revelations.","P3: The productive result of that fear in Stave Five's genuine transformation.","Context: Gothic ghost story conventions.","Conclusion: Dickens presents fear as valuable when it prompts genuine reflection and change."]},
+   {q:"How does Dickens present Bob Cratchit?", plan:["Introduce Bob as a figure of poverty, dignity and patience.","P1: His poor treatment and low wages in Stave One.","P2: His loving, grateful presence at his family's Christmas dinner.","P3: His reward and respect in Stave Five.","Context: Victorian employer-employee power dynamics.","Conclusion: Dickens presents Bob as humanising poverty through dignity rather than victimhood alone."]},
+   {q:"How does Dickens present Tiny Tim?", plan:["Introduce Tiny Tim as both individual and symbol.","P1: His warmth and faith at the Cratchit Christmas dinner.","P2: His possible death in the vision of a future stave.","P3: His restored health and central place in Scrooge's new generosity.","Context: Victorian child poverty and mortality.","Conclusion: Dickens presents Tiny Tim as giving abstract social criticism a devastating personal focus."]},
+   {q:"How does Dickens present greed?", plan:["Introduce greed as self-destructive rather than simply immoral.","P1: Scrooge's introduction as 'covetous' and hard.","P2: Marley's confession that mere business consumed his whole life.","P3: Belle's departure as a direct consequence of Scrooge's growing greed.","Context: Victorian anxieties about wealth and character.","Conclusion: Dickens presents greed as corroding relationships and genuine happiness."]},
+   {q:"How does Dickens use setting?", plan:["Introduce setting as reinforcing character and theme throughout.","P1: The cold, foggy world of Stave One.","P2: The warm, abundant scenes of Staves Two and Three.","P3: The bleak, silent settings of Stave Four's future vision.","Context: pathetic fallacy and Gothic tradition.","Conclusion: Dickens uses setting to chart Scrooge's emotional and moral journey visually."]}
+  ];
+  const container = document.getElementById('practiceQs');
+  container.innerHTML = practice.map((p,i)=>`<div class="card">
+    <h3>${p.q}</h3>
+    <button class="btn secondary" type="button" data-plan="${i}">Reveal planning points</button>
+    <div class="plan-reveal" data-plan-body="${i}" style="display:none;margin-top:12px;">
+      <ol>${p.plan.map(x=>`<li>${x}</li>`).join('')}</ol>
+    </div>
+  </div>`).join('');
+  container.querySelectorAll('[data-plan]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const idx = btn.getAttribute('data-plan');
+      const body = container.querySelector(`[data-plan-body="${idx}"]`);
+      const showing = body.style.display !== 'none';
+      body.style.display = showing ? 'none' : 'block';
+      btn.textContent = showing ? 'Reveal planning points' : 'Hide planning points';
+    });
+  });
+}
+
+/* ---- 9. QUIZ ---- */
+let quizState = { order: [], idx:0, score:0, answered:false, wrongTopics:{} };
+function shuffle(arr){ const a = arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+const TYPE_LABEL = {mc:'Plot & detail', tf:'True / False', char:'Character', quote:'Quotation', theme:'Theme', context:'Context', tech:'Technique', stave:'Stave'};
+
+function buildQuiz(){
+  const s = el(`<section class="section" id="section-quiz">
+    <div class="section-header"><div class="eyebrow">Section 09</div><h1>Quiz</h1><div class="desc">Self-marking revision quiz covering plot, staves, characters, quotations, themes, context, techniques and symbolism.</div></div>
+    <div class="card">
+      <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
+      <div id="quizArea"></div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  startQuiz();
+}
+
+function startQuiz(){
+  quizState = { order: shuffle(QUIZ_BANK.map((_,i)=>i)), idx:0, score:0, answered:false, wrongTopics:{} };
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion(){
+  const area = document.getElementById('quizArea');
+  const total = quizState.order.length;
+  if(quizState.idx >= total){
+    const pct = Math.round((quizState.score/total)*100);
+    document.getElementById('quizProgressBar').style.width = '100%';
+    const weakList = Object.keys(quizState.wrongTopics).sort((a,b)=>quizState.wrongTopics[b]-quizState.wrongTopics[a]);
+    area.innerHTML = `<div class="quiz-result">
+      <div class="score">${quizState.score}/${total}</div>
+      <p class="subtle">${pct}% correct</p>
+      ${weakList.length ? `<div class="weak-areas"><p class="subtle"><b>Areas to revise:</b></p><p>${weakList.map(t=>`<span class="tag blood">${TYPE_LABEL[t]||t}</span>`).join('')}</p></div>` : `<p class="subtle">Strong across every question type — well done!</p>`}
+      <button class="btn blood" id="tryAgainBtn" type="button">Try Again</button>
+      <button class="btn secondary" id="newQuizBtn" type="button" style="margin-left:8px;">New Quiz</button>
+    </div>`;
+    document.getElementById('tryAgainBtn').addEventListener('click', ()=>{ quizState.idx=0; quizState.score=0; quizState.wrongTopics={}; quizState.answered=false; renderQuizQuestion(); });
+    document.getElementById('newQuizBtn').addEventListener('click', startQuiz);
+    return;
+  }
+  document.getElementById('quizProgressBar').style.width = ((quizState.idx/total)*100)+'%';
+  const item = QUIZ_BANK[quizState.order[quizState.idx]];
+  const optOrder = shuffle(item.opts.map((o,i)=>i));
+  quizState.answered = false;
+  area.innerHTML = `
+    <p class="subtle">Question ${quizState.idx+1} of ${total} · <span class="tag gold">${TYPE_LABEL[item.type]||''}</span></p>
+    <div class="quiz-q">${item.q}</div>
+    <div class="quiz-opts">${optOrder.map(oi=>`<button class="quiz-opt" data-oi="${oi}" type="button">${item.opts[oi]}</button>`).join('')}</div>
+    <div class="quiz-explain" id="quizExplain"></div>
+    <div style="margin-top:14px;"><button class="btn" id="quizNextBtn" type="button" style="display:none;">Next question</button></div>
+  `;
+  area.querySelectorAll('.quiz-opt').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(quizState.answered) return;
+      quizState.answered = true;
+      const chosen = parseInt(btn.getAttribute('data-oi'));
+      area.querySelectorAll('.quiz-opt').forEach(b=>{
+        b.setAttribute('disabled','true');
+        const oi = parseInt(b.getAttribute('data-oi'));
+        if(oi === item.a) b.classList.add('correct');
+        else if(oi === chosen) b.classList.add('incorrect');
+      });
+      if(chosen === item.a) quizState.score++;
+      else quizState.wrongTopics[item.type] = (quizState.wrongTopics[item.type]||0)+1;
+      const exp = document.getElementById('quizExplain');
+      exp.textContent = item.exp;
+      exp.classList.add('show');
+      document.getElementById('quizNextBtn').style.display = 'inline-block';
+    });
+  });
+  document.getElementById('quizNextBtn').addEventListener('click', ()=>{ quizState.idx++; renderQuizQuestion(); });
+}
+
+/* ---- 10. SCROOGE TRANSFORMATION TRACKER ---- */
+function buildTracker(){
+  let stepsHtml = '';
+  TRACKER.forEach((t,i)=>{
+    stepsHtml += `<div class="tt-card" data-d>
+      <button class="tt-head">
+        <span><span class="tt-title">${t.stave}</span><br><span class="tt-attitude">${t.attitude}</span></span>
+        <span class="chev">›</span>
+      </button>
+      <div class="tt-body"><div class="tt-inner">
+        <div class="mini-label">Key event</div><p>${t.event}</p>
+        <div class="mini-label">Emotion</div><p>${t.emotion}</p>
+        <div class="mini-label">Quotation</div><div class="quote-line">"${t.quote}"</div>
+        <div class="mini-label">What has changed?</div><p>${t.changed}</p>
+      </div></div>
+    </div>`;
+    if(i < TRACKER.length-1) stepsHtml += `<div class="tt-arrow">↓</div>`;
+  });
+
+  const s = el(`<section class="section" id="section-tracker">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>How Scrooge Changes</h1><div class="desc">Tap each stave to see Scrooge's development, stage by stage.</div></div>
+    <div class="tt-grid">${stepsHtml}</div>
+  </section>`);
+  root.appendChild(s);
+
+  s.querySelectorAll('.tt-head').forEach(head=>{
+    head.addEventListener('click', ()=>{ head.closest('.tt-card').classList.toggle('open'); });
+  });
+}
+
+/* ---- 11. WHICH SPIRIT GAME ---- */
+let wsState = { order: [], idx:0, score:0, answered:false };
+
+function buildWhichSpirit(){
+  const s = el(`<section class="section" id="section-whichspirit">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Which Spirit?</h1><div class="desc">A quick, game-like activity. For each detail, identify which spirit it belongs to.</div></div>
+    <div class="jh-game">
+      <div class="jh-score" id="wsScore"></div>
+      <div class="jh-quote" id="wsQuoteText"></div>
+      <div class="jh-opts" id="wsOpts"></div>
+      <div class="jh-feedback" id="wsFeedback"></div>
+      <button class="btn" id="wsNextBtn" type="button" style="display:none;margin-top:14px;">Next question</button>
+      <button class="btn secondary" id="wsRestartBtn" type="button" style="display:none;margin-top:14px;">Play again</button>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  startWS();
+}
+
+function startWS(){
+  wsState = { order: shuffle(WHICHSPIRIT.map((_,i)=>i)), idx:0, score:0, answered:false };
+  renderWS();
+}
+
+function renderWS(){
+  const total = wsState.order.length;
+  const scoreEl = document.getElementById('wsScore');
+  const feedback = document.getElementById('wsFeedback');
+  const nextBtn = document.getElementById('wsNextBtn');
+  const restartBtn = document.getElementById('wsRestartBtn');
+  feedback.classList.remove('show');
+  feedback.textContent = '';
+  nextBtn.style.display = 'none';
+
+  if(wsState.idx >= total){
+    scoreEl.textContent = `Final score: ${wsState.score}/${total}`;
+    document.getElementById('wsQuoteText').textContent = "Round complete!";
+    document.getElementById('wsOpts').innerHTML = '';
+    restartBtn.style.display = 'inline-block';
+    restartBtn.onclick = startWS;
+    return;
+  }
+  restartBtn.style.display = 'none';
+  scoreEl.textContent = `Question ${wsState.idx+1} of ${total} · Score: ${wsState.score}`;
+  const item = WHICHSPIRIT[wsState.order[wsState.idx]];
+  document.getElementById('wsQuoteText').textContent = item.text;
+  const opts = ['Marley','Ghost of Christmas Past','Ghost of Christmas Present','Ghost of Christmas Yet to Come'];
+  const optsEl = document.getElementById('wsOpts');
+  optsEl.innerHTML = opts.map(o=>`<button type="button" data-opt="${o}">${o}</button>`).join('');
+  wsState.answered = false;
+  optsEl.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(wsState.answered) return;
+      wsState.answered = true;
+      const chosen = btn.getAttribute('data-opt');
+      optsEl.querySelectorAll('button').forEach(b=>{
+        b.disabled = true;
+        if(b.getAttribute('data-opt') === item.answer) b.classList.add('correct');
+        else if(b === btn) b.classList.add('incorrect');
+      });
+      if(chosen === item.answer) wsState.score++;
+      feedback.textContent = `${item.answer}. ${item.exp}`;
+      feedback.classList.add('show');
+      nextBtn.style.display = 'inline-block';
+    });
+  });
+}
+document.addEventListener('click', function(e){
+  if(e.target && e.target.id === 'wsNextBtn'){ wsState.idx++; renderWS(); }
+});
+
+/* ---- 12. SYMBOL VAULT ---- */
+function buildSymbolVault(){
+  const cards = SYMBOLS.map(s=>`
+    <div class="symbol-card">
+      <h3>${s.name}</h3>
+      <div class="mini-label">Literal meaning</div><p>${s.literal}</p>
+      <div class="mini-label">Symbolic meaning</div><p>${s.symbolic}</p>
+      ${s.quote ? `<div class="mini-label">Useful quotation</div><div class="quote-line">"${s.quote}"</div>` : ''}
+      <div class="mini-label">Themes</div><p>${s.themes.map(t=>`<span class="tag blood">${t}</span>`).join('')}</p>
+      <div class="mini-label">How to use it in an essay</div><p>${s.use}</p>
+    </div>`).join('');
+
+  const s2 = el(`<section class="section" id="section-symbolvault">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Symbol Vault</h1><div class="desc">The novella's key recurring symbols, explained with useful essay applications.</div></div>
+    <div class="symbol-grid">${cards}</div>
+  </section>`);
+  root.appendChild(s2);
+}
+
+/* ---- 13. POVERTY & RESPONSIBILITY MAP ---- */
+function buildPovertyMap(){
+  let stepsHtml = '';
+  POVMAP.forEach((c,i)=>{
+    stepsHtml += `<div class="map-step" data-d>
+      <button class="map-btn"><span>${c.who} — ${c.action}</span><span class="chev">›</span></button>
+      <div class="map-body"><div class="map-inner">
+        <div class="mini-label">What happens</div><p>${c.detail}</p>
+        ${c.quote ? `<div class="mini-label">Useful evidence</div><div class="quote-line">"${c.quote}"</div>` : ''}
+        <div class="mini-label">Dickens's message</div><p>${c.message}</p>
+      </div></div>
+    </div>`;
+    if(i < POVMAP.length-1) stepsHtml += `<div class="map-arrow">↓</div>`;
+  });
+
+  const s = el(`<section class="section" id="section-povertymap">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Poverty &amp; Responsibility Map</h1><div class="desc">Tap each stage to see how the novella builds its argument about poverty and social responsibility.</div></div>
+    <div class="map-chain">${stepsHtml}</div>
+  </section>`);
+  root.appendChild(s);
+
+  s.querySelectorAll('.map-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ btn.closest('.map-step').classList.toggle('open'); });
+  });
+}
+
+/* ---- 14. LAST MINUTE ---- */
+function buildLastMinute(){
+  const plot12 = ["Scrooge dismisses Fred's Christmas invitation and the charity collectors.","Scrooge treats Bob Cratchit poorly, reluctantly granting him Christmas Day off.","Marley's ghost appears, warning Scrooge and announcing three coming spirits.","The Ghost of Christmas Past shows Scrooge his lonely childhood and the Fezziwig party.","Scrooge relives his painful breakup with Belle as his love of money grew.","The Ghost of Christmas Present shows Scrooge the Cratchits' joyful Christmas dinner.","The Ghost reveals the allegorical children Ignorance and Want.","The Ghost of Christmas Yet to Come shows indifferent businessmen discussing an unnamed death.","Scrooge sees the grieving Cratchit family mourning Tiny Tim's death.","Scrooge discovers the neglected grave shown to him bears his own name.","Scrooge wakes transformed on Christmas morning and sends a turkey to the Cratchits.","Scrooge visits Fred, raises Bob's salary, and commits to lasting generosity."];
+  const sixChars = [
+   ["Scrooge","Cold, isolated miser transformed through supernatural confrontation with his past, present and possible future."],
+   ["Bob Cratchit","Poor but dignified clerk whose loving family humanises poverty."],
+   ["Tiny Tim","Vulnerable, gentle child who embodies the human cost of inequality."],
+   ["Fred","Scrooge's warm, generous nephew, a direct foil to his uncle's early coldness."],
+   ["Marley","Scrooge's deceased partner, whose chain-bound ghost warns of the consequences of selfishness."],
+   ["The Spirits","Three supernatural guides who prompt Scrooge's change through memory, empathy and fear."]
+  ];
+  const fiveThemes = [
+   ["Redemption","Scrooge's gradual, effortful transformation demonstrates that genuine change is possible."],
+   ["Social Responsibility","Marley's warning that 'mankind was my business' reframes true purpose beyond commerce."],
+   ["Poverty","Shown through both the sympathetic Cratchits and the structural symbol of Ignorance and Want."],
+   ["Family","The Cratchits' and Fred's warmth contrast with Scrooge's early isolation."],
+   ["Christmas","Functions symbolically throughout, representing generosity and community beyond one day."]
+  ];
+  const quotes15 = [
+   ["hard and sharp as flint","Use for Scrooge's introduction and later transformation."],
+   ["solitary as an oyster","Use for isolation, with a hint of hidden value (the pearl)."],
+   ["Are there no prisons? Are there no workhouses?","Use for poverty and Victorian institutional context."],
+   ["decrease the surplus population","Use for dehumanisation and Malthusian context."],
+   ["I wear the chain I forged in life","Use for consequences of selfishness — Marley's key symbol."],
+   ["mankind was my business","Use for social responsibility — arguably the novella's central line."],
+   ["another idol has displaced me","Use for greed and Scrooge's backstory with Belle."],
+   ["This boy is Ignorance. This girl is Want.","Use for poverty broadening into structural social criticism."],
+   ["God bless us every one!","Use for Tiny Tim, Christianity, and inclusive compassion."],
+   ["I will honour Christmas in my heart","Use for redemption and Scrooge's turning point."],
+   ["I am not the man I was","Use for change and structural contrast with the novella's opening."],
+   ["as good a friend, as good a master, and as good a man","Use for Fezziwig and generosity as an employer."],
+   ["he was all in a glow","Use for Fred, warmth, and contrast with Scrooge."],
+   ["A solitary child, neglected by his friends","Use for Scrooge's childhood and sympathetic backstory."],
+   ["tried to warm himself at the candle","Use for Bob Cratchit's poverty and poor treatment."]
+  ];
+  const fiveContext = ["Victorian workhouses and the 1834 Poor Law Amendment Act.","Malthusian ideas about population, critiqued through Scrooge's callousness.","Dickens's own childhood experience of poverty and his father's imprisonment for debt.","Christian ideas of charity, redemption and responsibility to others.","Victorian Christmas traditions Dickens helped popularise, not invent."];
+  const fiveTech = [
+   ["Symbolism","Marley's chain represents the accumulated weight of selfish choices."],
+   ["Simile","'Hard and sharp as flint' establishes Scrooge's coldness through vivid comparison."],
+   ["Pathetic fallacy","Cold, bleak weather reflects Scrooge's own emotional state."],
+   ["Contrast","Scrooge's cold home versus the Cratchits' warm, loving one."],
+   ["Cyclical structure","The novella begins and ends at Christmas, measuring Scrooge's dramatic change."]
+  ];
+  const checklist = ["Answer the exact question.","Use a clear thesis.","Select precise, accurate evidence — never invented quotations.","Analyse individual words, not just quote them.","Discuss Dickens's methods, not just what happens.","Link extract to whole novella where relevant.","Use context naturally, not as a bolt-on.","Keep returning to Dickens's purpose."];
+  const dontDo = ["Don't simply retell the story.","Don't use made-up or misremembered quotations.","Don't bolt on context disconnected from the text.","Don't identify a technique without analysing its effect.","Don't forget that Scrooge changes significantly across the novella."];
+
+  const s = el(`<section class="section" id="section-lastminute">
+    <div class="section-header"><div class="eyebrow">Section 10</div><h1>A Christmas Carol — Last Minute</h1><div class="desc">Exam tomorrow? Start here.</div></div>
+    <button class="btn secondary print-btn" id="printBtn" type="button">Print this page</button>
+
+    <div class="lm-grid">
+      <div class="lm-card"><h3>Plot in 12 points</h3><ol>${plot12.map(x=>`<li>${x}</li>`).join('')}</ol></div>
+      <div class="lm-card"><h3>6 characters you must understand</h3><ul>${sixChars.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 themes you must understand</h3><ul>${fiveThemes.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>15 quotations worth remembering</h3><ul>${quotes15.map(x=>`<li>"${x[0]}" <br><span class="subtle">→ ${x[1]}</span></li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 contextual ideas</h3><ul>${fiveContext.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 techniques worth recognising</h3><ul>${fiveTech.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>Essay checklist</h3><ul>${checklist.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>Five things NOT to do</h3><ul>${dontDo.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  document.getElementById('printBtn').addEventListener('click', ()=> window.print());
+}
+
+/* ================= DISCLOSURE BEHAVIOUR (shared) ================= */
+function wireDisclosures(){
+  document.querySelectorAll('.disclosure > .d-head').forEach(head=>{
+    head.addEventListener('click', ()=>{
+      head.parentElement.classList.toggle('open');
+    });
+  });
+}
+
+/* ================= INIT ================= */
+buildOverview();
+buildPlot();
+buildCharacters();
+buildThemes();
+buildQuoteVault();
+buildContext();
+buildTechniques();
+buildExam();
+buildQuiz();
+buildTracker();
+buildWhichSpirit();
+buildSymbolVault();
+buildPovertyMap();
+buildLastMinute();
+renderNav();
+wireDisclosures();
+showSection(SECTIONS.some(s=>s.id===currentSection) ? currentSection : 'overview');
+
+})();
+</script>
+</body>
+</html>
