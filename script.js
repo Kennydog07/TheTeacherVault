@@ -43,14 +43,25 @@ const WHY_CARDS = [
   { icon: "coin", title: "Affordable", text: "Many apps are free, with optional paid Pro tools for regular use." },
   { icon: "noSub", title: "No subscriptions", text: "Products are purchased individually unless explicitly stated otherwise." },
   { icon: "teacher", title: "Teacher-focused", text: "Designed around actual everyday education tasks." },
-  { icon: "student", title: "Student-friendly", text: "Revision apps are straightforward and distraction-free." }
+  { icon: "student", title: "Student-friendly", text: "Student apps are straightforward and distraction-free." }
 ];
 
 const TRUST_ITEMS = [
-  "Free revision apps",
+  "Free student apps",
   "No subscription required for free resources",
   "Instant, browser-based tools",
   "Growing app library"
+];
+
+/* Full subject list used by the subject dropdown on Student Apps and
+   Browse All. To add a subject, add it here and it appears in both
+   dropdowns automatically — you'll still need to set that subject on
+   an app in apps-data.js before anything shows up under it. */
+const SUBJECT_LIST = [
+  "English", "Maths", "Science", "Biology", "Chemistry", "Physics",
+  "History", "Geography", "Business", "French", "Spanish", "German",
+  "Computer Science", "RE", "Art/Design", "Design/Tech", "Music",
+  "PE", "Citizenship", "Primary", "Other"
 ];
 
 function renderWhyGrid(container, lightCards) {
@@ -91,7 +102,7 @@ function chalkLogo(size) {
 const NAV_LINKS = [
   { href: "index.html", label: "Home" },
   { href: "teacher-tools.html", label: "Teacher Tools" },
-  { href: "revision.html", label: "Revision Apps" },
+  { href: "student-apps.html", label: "Student Apps" },
   { href: "quick-notes.html", label: "Quick Notes" },
   { href: "apps.html?tier=pro", label: "Pro Apps" },
   { href: "about.html", label: "About" },
@@ -140,13 +151,13 @@ function renderFooter() {
         '<div class="footer-col">' +
           chalkLogo("footer") +
           '<p class="footer-desc">Practical tools for teachers. Free revision resources for students.</p>' +
-          '<p class="gumroad-note">Teacher tools are fulfilled through Gumroad. Revision apps and Quick Notes open or download directly from this site.</p>' +
+          '<p class="gumroad-note">Teacher tools are fulfilled through Gumroad. Student apps and Quick Notes open or download directly from this site.</p>' +
         '</div>' +
         '<div class="footer-col">' +
           '<h4>Explore</h4>' +
           '<ul>' +
             '<li><a href="teacher-tools.html">Teacher Tools</a></li>' +
-            '<li><a href="revision.html">Revision Apps</a></li>' +
+            '<li><a href="student-apps.html">Student Apps</a></li>' +
             '<li><a href="quick-notes.html">Quick Notes</a></li>' +
             '<li><a href="apps.html?tier=free">Free Apps</a></li>' +
             '<li><a href="apps.html?tier=pro">Pro Apps</a></li>' +
@@ -226,7 +237,7 @@ function tierBadge(app) {
 function categoryLabel(app) {
   if (app.category === "teacher") return "Teacher Tool";
   if (app.category === "quicknotes") return "Quick Notes";
-  return "Revision App";
+  return "Student App";
 }
 
 function thumbIcon(app) {

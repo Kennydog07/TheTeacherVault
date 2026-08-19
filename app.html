@@ -132,8 +132,8 @@
   document.getElementById("canonicalLink").setAttribute("href", "https://www.theteachervault.com/app.html?id=" + app.id);
 
   // --- Breadcrumb ---
-  var catHref = { teacher: "teacher-tools.html", revision: "revision.html", quicknotes: "quick-notes.html" }[app.category];
-  var catName = { teacher: "Teacher Tools", revision: "Revision Apps", quicknotes: "Quick Notes" }[app.category];
+  var catHref = { teacher: "teacher-tools.html", revision: "student-apps.html", quicknotes: "quick-notes.html" }[app.category];
+  var catName = { teacher: "Teacher Tools", revision: "Student Apps", quicknotes: "Quick Notes" }[app.category];
   document.getElementById("breadcrumb").innerHTML =
     '<a href="index.html">Home</a> / <a href="' + catHref + '">' + catName + '</a> / ' + app.title;
 

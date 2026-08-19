@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Browse All — The Teacher Vault</title>
-<meta name="description" content="Search and filter every app in The Teacher Vault library — free teacher tools, Pro upgrades, free GCSE revision apps and Quick Notes study guides, all in one place.">
+<meta name="description" content="Search and filter every app in The Teacher Vault library — free teacher tools, Pro upgrades, free student apps and Quick Notes study guides, all in one place.">
 <link rel="canonical" href="https://www.theteachervault.com/apps.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Browse All — The Teacher Vault">
@@ -29,7 +29,7 @@
       <p class="breadcrumb" id="pageBreadcrumb"><a href="index.html">Home</a> / Browse All</p>
       <span class="eyebrow" id="pageEyebrow">The full library</span>
       <h1 id="pageHeading">Browse All</h1>
-      <p class="lede" id="pageLede">Every teacher tool, revision app and Quick Notes guide in The Teacher Vault, in one place. Search by name, subject or who it's for — or filter by type, tier and subject.</p>
+      <p class="lede" id="pageLede">Every teacher tool, student app and Quick Notes guide in The Teacher Vault, in one place. Search by name, subject or who it's for — or filter by type, tier and subject.</p>
     </div>
   </section>
 
@@ -49,7 +49,7 @@
             <div class="filter-group__options">
               <button type="button" class="chip" data-value="all" aria-pressed="true">All</button>
               <button type="button" class="chip" data-value="teacher" aria-pressed="false">Teacher Tools</button>
-              <button type="button" class="chip" data-value="revision" aria-pressed="false">Revision</button>
+              <button type="button" class="chip" data-value="revision" aria-pressed="false">Student</button>
               <button type="button" class="chip" data-value="quicknotes" aria-pressed="false">Quick Notes</button>
             </div>
           </div>
@@ -64,19 +64,11 @@
             </div>
           </div>
 
-          <div class="filter-group" data-group="subject">
-            <span class="filter-group__label">Subject</span>
-            <div class="filter-group__options" id="subjectOptions">
-              <button type="button" class="chip" data-value="all" aria-pressed="true">All</button>
-              <button type="button" class="chip" data-value="Maths" aria-pressed="false">Maths</button>
-              <button type="button" class="chip" data-value="Science" aria-pressed="false">Science</button>
-              <button type="button" class="chip" data-value="History" aria-pressed="false">History</button>
-              <button type="button" class="chip" data-value="Business" aria-pressed="false">Business</button>
-              <button type="button" class="chip" data-value="English" aria-pressed="false">English</button>
-              <button type="button" class="chip" data-value="Languages" aria-pressed="false">Languages</button>
-              <button type="button" class="chip" data-value="Primary" aria-pressed="false">Primary</button>
-              <button type="button" class="chip" data-value="Other" aria-pressed="false">Other</button>
-            </div>
+          <div class="filter-group" style="max-width:260px;">
+            <label class="filter-group__label" for="subjectSelect">Subject</label>
+            <select id="subjectSelect" class="search-input" style="border-radius:var(--radius-sm);">
+              <option value="all">All subjects</option>
+            </select>
           </div>
         </div>
       </form>
@@ -104,11 +96,17 @@
   document.getElementById("searchInput").value = state.q;
   document.getElementById("searchIcon").innerHTML = ICONS.search;
 
+  var subjectSelect = document.getElementById("subjectSelect");
+  subjectSelect.innerHTML += SUBJECT_LIST.map(function (s) {
+    return '<option value="' + s + '">' + s + '</option>';
+  }).join("");
+  subjectSelect.value = state.subject;
+
   /* If the page was reached via a specific tier link (Pro Apps, Free Apps),
      show a heading for that tier instead of the generic "Browse All" one. */
   var TIER_PAGE_INFO = {
     pro: { title: "Pro Apps", eyebrow: "Premium tools", lede: "Every Pro upgrade in The Teacher Vault — purchased individually through Gumroad, never bundled with the Lite version." },
-    free: { title: "Free Apps", eyebrow: "No cost, no catch", lede: "Every free app in The Teacher Vault — Lite teacher tools, revision apps and Quick Notes guides, all £0." },
+    free: { title: "Free Apps", eyebrow: "No cost, no catch", lede: "Every free app in The Teacher Vault — Lite teacher tools, student apps and Quick Notes guides, all £0." },
     lite: { title: "Lite Apps", eyebrow: "Free, no catch", lede: "Every free Lite teacher tool in The Teacher Vault, downloaded through Gumroad." }
   };
   var tierInfo = params.get("tier") && !params.get("category") && !params.get("subject") && !params.get("q") ? TIER_PAGE_INFO[params.get("tier")] : null;
@@ -168,6 +166,11 @@
 
   document.getElementById("searchInput").addEventListener("input", function (e) {
     state.q = e.target.value;
+    applyFilters();
+  });
+
+  subjectSelect.addEventListener("change", function (e) {
+    state.subject = e.target.value;
     applyFilters();
   });
 
