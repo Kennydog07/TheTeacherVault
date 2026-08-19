@@ -106,12 +106,15 @@ function currentFile() {
 function renderHeader() {
   const here = currentFile();
   const hereWithQuery = here + window.location.search;
+  const onProApps = here === "apps.html" && new URLSearchParams(window.location.search).get("tier") === "pro";
   const linkHtml = function (extra) {
     return NAV_LINKS.map(function (l) {
       const active = l.href.indexOf("?") > -1 ? l.href === hereWithQuery : l.href === here;
       return '<a href="' + l.href + '"' + (active ? ' aria-current="page"' : '') + '>' + l.label + '</a>';
     }).join("");
   };
+  const browseAllBtn = onProApps ? "" : '<a href="apps.html" class="btn btn--ghost btn--sm">Browse All Apps</a>';
+  const browseAllBtnMobile = onProApps ? "" : '<a href="apps.html" class="btn btn--primary btn--sm">Browse All Apps</a>';
 
   return (
     '<div class="site-header__inner">' +
@@ -120,12 +123,14 @@ function renderHeader() {
         '<div class="main-nav__links">' + linkHtml() + '</div>' +
       '</nav>' +
       '<div class="header-cta">' +
+        browseAllBtn +
         '<button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">' + ICONS.menu + '</button>' +
       '</div>' +
     '</div>' +
     '<div class="mobile-nav" id="mobileNav">' +
       linkHtml() +
       '<a href="contact.html"' + (here === "contact.html" ? ' aria-current="page"' : '') + '>Contact</a>' +
+      browseAllBtnMobile +
     '</div>'
   );
 }

@@ -294,7 +294,7 @@ p { color: var(--chalk-dim); }
 body.nav-open .mobile-nav { display: flex; }
 
 @media (max-width: 1120px) {
-  .main-nav__links { display: none; }
+  .main-nav__links, .header-cta .btn--ghost { display: none; }
   .nav-toggle { display: inline-flex; }
 }
 
