@@ -687,6 +687,8 @@ table.compare td:first-child, table.compare th:first-child { border-right: 1px s
   gap: 16px;
 }
 
+.filter-bar[hidden] { display: none; }
+
 .search-input-wrap {
   position: relative;
 }

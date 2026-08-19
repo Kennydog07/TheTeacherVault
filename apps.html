@@ -120,9 +120,9 @@
     document.getElementById("pageLede").textContent = tierInfo.lede;
   }
 
-  /* The Pro Apps view is a short, fixed list — no search box needed there. */
+  /* The Pro Apps view is a short, fixed list — no search or filters needed. */
   if (params.get("tier") === "pro") {
-    document.getElementById("searchInputWrap").hidden = true;
+    document.getElementById("filterForm").hidden = true;
   }
 
   function syncChips() {
