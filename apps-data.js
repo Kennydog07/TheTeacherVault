@@ -1062,6 +1062,29 @@ const APPS = [
     worksOffline: true,
     noAccount: true
   },
+  {
+    id: "gcse-revision-planner",
+    title: "GCSE Revision Planner",
+    tagline: "Build a weekly GCSE revision plan and track your progress.",
+    description: "A GCSE revision planner for Years 10-11 — build a weekly plan across subjects, track daily streaks, schedule past papers, and see a weakness dashboard showing where to focus next.",
+    category: "revision",
+    keyStage: "KS4",
+    subject: "Other",
+    audience: "GCSE students",
+    tier: "free",
+    price: "Free",
+    gumroadUrl: "",
+    fileUrl: "revision-apps/gcse-revision-planner.html",
+    fileType: "app",
+    image: "images/gcse-revision-planner.jpg",
+    icon: "chart",
+    featured: false,
+    isNew: true,
+    comingSoon: false,
+    features: ["Build a weekly revision plan across all your subjects", "Track daily streaks and activity", "Schedule past papers", "Weakness dashboard highlights where to focus", "Examiner tips on using revision time well", "Opens instantly in a new browser tab"],
+    worksOffline: true,
+    noAccount: true
+  },
 
   /* ------------------------------ QUICK NOTES ------------------------------
      Study guides. Most are self-contained HTML apps that open in a new
