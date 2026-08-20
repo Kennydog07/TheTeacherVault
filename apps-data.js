@@ -264,6 +264,28 @@ const APPS = [
     worksOffline: false,
     noAccount: true
   },
+  {
+    id: "sats-english-teacher-tools",
+    title: "Year 6 SATs English Revision (for the classroom)",
+    tagline: "Assign SATs Reading and SPaG practice to your Year 6 class.",
+    description: "The same free Year 6 SATs English Revision app, listed here so teachers can quickly find it, link it in homework or point a class to it during a SATs preparation lesson.",
+    category: "teacher",
+    subject: "Primary",
+    audience: "Year 6 teachers",
+    tier: "lite",
+    price: "Free",
+    gumroadUrl: "",
+    fileUrl: "revision-apps/sats-english.html",
+    fileType: "app",
+    image: "images/sats-english.jpg",
+    icon: "book",
+    featured: false,
+    isNew: true,
+    comingSoon: false,
+    features: ["Reading practice across all six SATs content domains (2a-2f)", "SPaG practice covering punctuation, grammar, spelling and word meaning", "Instant feedback with explanations", "No login needed — safe to link for pupils to use at home", "Opens instantly in a new browser tab"],
+    worksOffline: true,
+    noAccount: true
+  },
 
   /* ----------------------- TEACHER PRODUCTIVITY: PRO (cont.) ----------------------- */
 
@@ -571,7 +593,7 @@ const APPS = [
     gumroadUrl: "",
     fileUrl: "revision-apps/sats-english.html",
     fileType: "app",
-    image: "",
+    image: "images/sats-english.jpg",
     icon: "book",
     featured: false,
     isNew: true,
