@@ -366,7 +366,7 @@ body.nav-open .mobile-nav { display: flex; }
 .hero__mascot {
   display: none;
   position: absolute;
-  right: 0;
+  right: -10mm;
   top: 30px;
   width: 320px;
   height: auto;
@@ -379,7 +379,7 @@ body.nav-open .mobile-nav { display: flex; }
 }
 
 @media (min-width: 1280px) {
-  .hero__mascot { width: 380px; right: 10px; top: 10px; }
+  .hero__mascot { width: 380px; right: calc(10px - 10mm); top: 10px; }
 }
 
 .hero__logo { margin-bottom: 28px; display: flex; justify-content: center; }
