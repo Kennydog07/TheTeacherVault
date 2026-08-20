@@ -376,10 +376,12 @@ body.nav-open .mobile-nav { display: flex; }
 
 @media (min-width: 1101px) {
   .hero__mascot { display: block; }
+  .hero.container { padding-right: 360px; }
 }
 
 @media (min-width: 1280px) {
   .hero__mascot { width: 380px; right: calc(10px - 10mm); top: 10px; }
+  .hero.container { padding-right: 420px; }
 }
 
 .hero__logo { margin-bottom: 28px; display: flex; justify-content: center; }
