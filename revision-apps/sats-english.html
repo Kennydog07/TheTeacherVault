@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Year 6 SATs English Revision | The Teacher Vault</title>
+<style>
+  :root{
+    --bg:#0b1220; --surface: rgba(255,255,255,.06); --surface2: rgba(255,255,255,.10);
+    --card: rgba(255,255,255,.08); --border: rgba(255,255,255,.14);
+    --text:#eaf0ff; --muted: rgba(234,240,255,.70);
+    --primary:#7c3aed; --good:#22c55e; --danger:#ef4444;
+    --shadow: 0 14px 40px rgba(0,0,0,.35); --radius: 18px;
+  }
+  [data-theme="light"]{
+    --bg:#f5f7fb; --surface:#ffffff; --surface2:#f0f3f9; --card:#ffffff; --border:#e6e9ef;
+    --text:#0f172a; --muted:#64748b; --primary:#4f46e5; --good:#16a34a; --danger:#dc2626;
+    --shadow: 0 14px 40px rgba(15,23,42,.10);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background:
+      radial-gradient(1200px 800px at 10% 0%, rgba(124,58,237,.35), transparent 60%),
+      radial-gradient(900px 700px at 90% 10%, rgba(34,197,94,.25), transparent 55%),
+      radial-gradient(800px 600px at 50% 100%, rgba(59,130,246,.20), transparent 60%),
+      var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    padding: 28px 16px 60px;
+  }
+  .wrap{ max-width: 1100px; margin: 0 auto; }
+  .topbar{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom: 18px; flex-wrap:wrap; }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .logo{ width:58px; height:58px; border-radius:12px; object-fit:cover; display:block; box-shadow:var(--shadow); }
+  h1{ margin:0; font-size: 22px; letter-spacing: .2px; }
+  .subtitle{ margin:2px 0 0; color:var(--muted); font-size: 13px; }
+  .toggle{ display:flex; align-items:center; gap:10px; background: var(--card); border: 1px solid var(--border);
+           padding: 10px 12px; border-radius: 999px; cursor:pointer; user-select:none; }
+  .toggle span{ font-size: 13px; color: var(--muted); }
+
+  .container{ background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+              box-shadow: var(--shadow); overflow:hidden; }
+  .header{ padding: 18px 18px 12px; border-bottom: 1px solid var(--border);
+           background: linear-gradient(180deg, var(--surface2), transparent); }
+  .headerTitle{ font-size: 16px; margin:0; }
+  .headerMeta{ margin:6px 0 0; color:var(--muted); font-size: 13px; line-height:1.4; }
+
+  .content{ padding: 16px 18px 18px; }
+  .grid{ display:grid; grid-template-columns: 1.25fr .75fr; gap: 14px; }
+  @media (max-width: 960px){ .grid{ grid-template-columns: 1fr; } }
+
+  .card{ background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 14px; }
+  .card h3{ margin: 0 0 10px; font-size: 15px; }
+  .small{ color:var(--muted); font-size: 12px; margin: 0; line-height:1.35; }
+
+  .row{ display:flex; gap: 10px; flex-wrap:wrap; align-items:flex-end; }
+  .field{ min-width: 180px; }
+  label{ font-size: 12px; color: var(--muted); display:block; margin-bottom: 6px; }
+  select{
+    width:100%; background: transparent; color: var(--text); border: 1px solid var(--border); border-radius: 12px;
+    padding: 10px 12px; font-size: 14px; outline:none;
+  }
+  option{ color: #111827; }
+
+  button{ border: 0; border-radius: 14px; padding: 12px 14px; font-size: 14px; cursor:pointer;
+          transition: transform .05s ease, opacity .15s ease; }
+  button:active{ transform: translateY(1px); }
+  .btnPrimary{ background: linear-gradient(135deg, var(--primary), #60a5fa); color:white; }
+  .btnSecondary{ background: transparent; border: 1px solid var(--border); color: var(--text); }
+  .btnDanger{ background: transparent; border: 1px solid rgba(239,68,68,.55); color: var(--text); }
+
+  .pills{ display:flex; gap: 10px; flex-wrap:wrap; margin-bottom: 12px; }
+  .pill{ padding: 8px 10px; border-radius: 999px; font-size: 12px; color: var(--muted);
+         background: rgba(255,255,255,.06); border: 1px solid var(--border); }
+
+  .passageCard{ background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; margin-bottom: 14px; }
+  .passageCard h4{ margin: 0 0 8px; font-size: 15px; }
+  .passageCard p{ margin: 0; line-height: 1.55; font-size: 14px; color: var(--text); }
+
+  .questionCard{ background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 16px; }
+  .qText{ font-size: 17px; margin: 2px 0 10px; line-height:1.4; }
+  .qMeta{ color: var(--muted); font-size: 13px; margin: 0 0 6px; }
+
+  .opt{ display:flex; gap: 12px; align-items:flex-start; padding: 12px; border-radius: 14px; border: 1px solid var(--border);
+        background: rgba(255,255,255,.04); margin: 10px 0; cursor:pointer; }
+  .opt:hover{ background: rgba(255,255,255,.06); }
+  .opt.correctOpt{ border-color: rgba(34,197,94,.6); }
+  .opt.wrongOpt{ border-color: rgba(239,68,68,.6); }
+  .opt input{ margin-top: 4px; transform: scale(1.1); }
+
+  .feedback{ margin-top: 12px; padding: 12px 14px; border-radius: 14px; border: 1px solid var(--border); background: rgba(255,255,255,.05); }
+  .feedback.good{ border-color: rgba(34,197,94,.55); }
+  .feedback.bad{ border-color: rgba(239,68,68,.55); }
+
+  .footerRow{ display:flex; justify-content:space-between; align-items:center; gap: 12px; flex-wrap:wrap; margin-top: 14px; }
+
+  .kpiBox{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 8px 0 10px; }
+  .kpi{ background: rgba(255,255,255,.05); border: 1px solid var(--border); border-radius: 16px; padding: 12px; }
+  .kpi .value{ font-size: 22px; font-weight: 700; margin:0; }
+  .kpi .label{ color: var(--muted); font-size: 12px; margin:4px 0 0; }
+
+  ul{ margin: 8px 0 0; padding-left: 18px; }
+  li{ margin: 8px 0; font-size: 13px; }
+  .muted{ color: var(--muted); }
+
+  .hidden{ display:none; }
+
+  .domainRow{ display:flex; justify-content:space-between; align-items:center; gap:10px; margin: 8px 0; font-size: 13px; }
+  .bar{ flex:1; height:10px; border-radius:999px; background: rgba(255,255,255,.12); overflow:hidden; border:1px solid var(--border); }
+  .bar > div{ height:100%; background: var(--primary); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand">
+      <img class="logo" alt="The Teacher Vault" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAUEBAQEAwUEBAQGBQUGCA0ICAcHCBALDAkNExAUExIQEhIUFx0ZFBYcFhISGiMaHB4fISEhFBkkJyQgJh0gISD/2wBDAQUGBggHCA8ICA8gFRIVICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICD/wAARCADIAMgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDx3UdSv11W7Vb64AEz8eYfU1XGp6j/AM/0/wD38NR6kP8AibXf/XZ/5mogMUzzy8up6hnm+n/7+GpRqWof8/0//fw1ngVIKBGgupah/wA/s/8A38NSLqWof8/0/wD38NZ64A61KPu5pgXhqN/jP264/wC/hpf7S1D/AJ/Z/wDv4apA09RSAujUtQ/5/p/+/hp39o6gP+X2f/v4apjGeOaeFNAi1/aWof8AP7P/AN/DSjUtQP8Ay+z/APfw1W2eppdv40DLY1G//wCf2f8A7+Gl/tHUAebyf/v4aqgUuDQBYOo3/wDz+T/9/DR/aN//AM/k/wD38NVSOKPxoAtf2jf/APP5P/38NB1G/wD+f2f/AL+Gq2KTFICwdQv/APn9n/77NNOo3/8Az+z/APfw1EyMAGweRmoW60ATNqOof8/s/wD38NRtqWoD/l+n/wC/hquxxUDPQMtNqmoY/wCP2f8A7+GoW1TUB0vp89f9Yaqu/FQs3HFBRYbVNRJ5v7g/9tD/AI0VQJ5opjLmonGrXf8A12f+ZqDcDyKl1I/8Ta8/67P/ADNV0wTzQQSg+tSrk9KhGSauqU2L8wJKcjGMEUANXOKnQHy2z9aagQAlvTgepqaDJZ8HHymgQ1Bk1Jg0pJO3PJA61KygAEd6BEYQ1IBzxT4xyR7Gl2nGcUAM/nS07bxnNLgHigBgJpalVBjgdqUIx7UAQc05FBkUO21SRlgM4HripxDjrTxEO4yPaiwyBki2fI7M24jkcFexo8ofxMB7DmrKxjslIUz/AAiiwFdihUDDHAx6VAzQr/yzY/VqvGPtsFV5YvVcUWGUJGjP8JH/AAKqkm3+E/gauSp7YqlInDUsZXYk1CxqZzgYqE0hjc8iim96KYy5qX/IWvP+uz/zNQqdoBqbUf8AkL3n/XZ/5mo12jr8xHbtVED0ViAc4Hqa7v4f+BrfxvJqMcniSz0T7EsbA3YGZtxI+UFh0x79a4PdkjmpQAzAbQcEYyKQ15nuV98Bk02ynuL3x5YW5jikkSOe38oy7BnC5fn0yK4zxT4AuPCfhLQvEM2qxXceroGEKRFTDmMSYJJ54OK739pALJP4T+QELaTDcR3yldX4p1vwv4e+Gfg+fxd4ZXxBZzWsSW8G1SY3EClnyxHUcUXNHFao8+f4N3kN14Vt28R2pfxDnb/o7f6ORD5vPPzcccYq7qPwWXTbK8kuvHmkJcWcTyG3ddrthdwXBbIJ+nevUr51uvEvwzuYY9kEs80kEWAPKjNllV49BgfhWF8QtKbU/wC3bW1+Ep1G9khyniJWhBZtoPmYzu4wR+FFw5V2PnO3ZC0ZkJRT17kU8lNibSd2PmBGMH2qsDkbgc980/eB0pmJJ1PFPG0d6g3cUoY0wLHmADjApQ/q1VweeaXPvQBOZAON1KJR6mqpfnjFN3nGc0rgXvM7hjR5i9j/APWqh5ntmmlj60XGaAlKsGViCDkEGgtnJY85/Os0yY7mgTsB1ouBbkjVu35VRnhUA4NSfatvXP8AOmvMkkZGQfcdqQzKlXbVdhgDI61Zlb1NQygG2jlP32dl/AAf41IyDvRRghA3YnH5UUxmleq0es6g3lncryYDDGCTjNUjwq+4zVvUJ5P7QvoDKwR5mOOvO7iqW0rjPFUSPBrqPDXgnxZ4ut7mbw3os+ox2zKkrRsq7GIyB8xHOBniuYRSzYr074afFP8A4VzYapZHQF1Zb+ZJtxuDFsKqVx905BzSGrX1NPXvBPxt8UNbf8JHpl5qLWaGOJZZ4B5SnGRgMOuBUur+CPjdrmi2WnavpF9eafpyYt4XlgxCAu3jDZPyjHevbPBGvx/ETwyviGOxOklbt7d4hN5g+VRghsDGcjt2ri/E3x+l8M+KNa8O2/hGKd7CeS1Fw14R5mBjcVC+/TNFzVxW9zh9MtfjfrukaDqmkpqd1Y2Sn+zLlGhXyxt8s7c4J4BXnNb0unftFvYtFI+rlXVlkDTwDcp49fQ16v8AB9lf4N+FlZdxa2k4PHIkfAH1rjv+FseO4nL/APCpNQMSsVCkznOOP7nSi4ctlqz581jRNV8Oao+k63YvY3sSqxhcgkKwypyCRyKueHvDGveJ9TOm6HYNd3QiMxXeqAJwM5YgdxVnx74ouvGnjW71y901dMuSiQNahixj8sbcEkA59eK92+A2jGx8FyapdQgXWsTFbdyPmWBCQD64Lbj+FBko3lY8J8R+D/EvhKS2TxDpb2JuVZoSXVw4HXBUkcZH51i9CQo3n1r6s+KGhR+KvhncLYst3c2K/wBo2UsR3eaij5wD33Jn8VFeC/DDwxb+LPG0Ntfru0y0jN1dqDguoICx5/2mIH0zTCULOyM/w74G8XeK0Mmh6LPcQA4M5xHFkdfnbAP4Vp6r8JviBo9o95deH3mgjG52tZUnKj1Kqc/pXv8A8QPiLp3w70iwtrewjutQuEP2WxQ+VFDEDjc2PurngAck5+teY3f7QurXfhvULSPQYLHVpU8u1vbaUlIc8MxVudwGcYPWkU4xWjZ5xofgfxb4m05tQ0HQ5r61WQwmVGRRvGCV+YjnkVhahaXel39zp9/C1vdWzmOaJusbDqDivoz4Gy7PhdPEAXMmqSbs9WG1M9e/Oa8f+IWiao3xH8TtBpN9PE9/MVdLaRlYE9iBzQS42SZVHw28ejSv7VPhi6+weR9q8/KYEW3duxuzjHPSo9H+H3jbxBpMOraL4fnvLGYssc6yIoYg4ONzA9a+p5x5XwfnjbO6Pw8QwYYYN9m5yOoI9KxPgd5Uvwa0Fbn5T5s6hs9B5houaKCueCN8HviQ0PmjwvOV7/vouP8Ax6sMeAfGJ8Wnwr/YUo1oQ/aDamRARHjO/OcY/GveLj4q+N7e9kSH4R6hJGsjKuPOw+CQG4Tv1/GsPwD4ovfGH7RN3q+oaaNIuRpE1s1uCzGIx7eu4Zz14xSFyx6Hn/8AwpP4nMuf+EaXHTm8hz/6FXHeJPCniTwncxweIdHudOabPltIAUkx12sMg/TNfRfxT+JmrfD7UtEsdM02wuUvbd7qVboOzErJgBSpGPyPNbnjKyt9c+FOuSarC0Uc2kDUo4JjlrSYIHXGehByPUg80DcF0PjZyfWiWbdZwwqcbSxYY65IxzRjKgnv2qJhg0jMI3CSDI3L3BH60UwjmimMtakf+Jvef9dn/wDQjUKAFuOnWn6if+Jtef8AXZ//AEI02Do2T2qiSdSAMjihOWzTCRtAFSxKAmT1oA+r/wBnUf8AFrJy7YUatLz6/IlfPnxIOfi34rbAA/tKXHHPBr1v4LePvBfhv4dz6X4m16PTroai8yRPE7EoVXDZCkdQa8b8d6pZa18RvEOr6bL51ld30ksEhUrvQ9Dg8jNI0b91H1F8KYpb34Q+FY1mMbGKQ5BI3ASPxXNf8NKeH7MtavoGsSFWwxN1F1B61T+G/wAV/A2i/DHQ9C1bWJbG9sVdZlFpI+cuxGGAx0IrrI/jD8JCGDakspI4B0pifr92g0vorM+a7kT+O/iTP/Y1u8b67qTNHGTuMQkfJJI/ujJP0r7PGi2n/CNx6LpzS21vb2n2KKaDAeNNu3cvbJ5P1NeK23xD+GC/G248XtetFYw6Slrasli65nLMJG2gcYQgZI7n0rlvif8AFa61vxJZw+CNev7XSbO3x5sLNbG4lY5YlRgkAAAZ96CYtRuz6L8OaPB4S8PWWiwG5uo7RTHFJdYLKhYnYSABjk/nXlvgXRLfwZ8avFnhl48RahYi808H+OHfvKj125Yf8BrzH4e/E/V9A8c2V74l13Ur7RmDQ3UU8zzBVYcOFJPKnB45611XxR+I/hTVbrw94k8F6xcN4k0a5YI0loyK0LDJDZwCMjp3DGgfMmrroHx/0S/j8Qad4kELyadLaJaPIoJWCVCx2t/dyDkZ968XjSWaGWaCGSWGEAySRqWWPJwNxHA545r6b0D47eCdZ08WuvK2iXcqhbiOeEz20nrggE4Powq7rXxX+Eek+HLrTLeS31e1uo2jksNMtNqygjBDHCqPqeaLkuKbvcxPgpBPc/CmZLV9kjarKqvkfISic1t6j8Z/CnhjVdR0HUZ9auLqymaGYpACu5eu07uma434N+PPA/hzwLdaZrmtR6bM2pSzpbzI8h8ohdvzBcHpj8K8g8c6jZ638QPEOqabN59pd3skkEmCN6nocHkfjQHNaKsfV96zS+B9c1FJXlgu9GluY/M+8A8LMN3XnGK5/wCDcT3vwZ0BIp/JD3MwJx1/eHIqgfil8Pf+FVf2UfEaHUG0P7GYPs8m4y+Rs252468elYvws+J3gnwx8MNN0TVdVltNQtpJWlQWzyDDOSCCBjoaCubU0n/aM8P2M89qNC1SSSGRo2Y3UYyVJGR+Vcp8L9aj8TftA6xr1lD5C6jBeTiF33FcheCRXox+L/wql+ZtUX3B0o5PvnbXHS/EzwIfjzpviawuhbaLFo8lpcTizaPMpJIG0DJ4xzikJva7PUzd29hfWfhvULm2n1+4t5rmyLW4Y7FPzbGbPIz0zkgZryv4zeItX0fwNZ6VBbs8PiRWN5qLybzlSCbdeOM8HPccAdawPiz8RdI1Txh4W1zwLqLz3GjI7+c0LRhXLggfMASCAQfY11fiHx18JvFfw+v9HvtantbnUIxcpC1rI7WV0BkbTjGAcrxwQaBt3uj5jaoG61MQQvzDBqFqDEjPWig9aKBk98u/W7tQcZmfnGe5qWCCLGRewZI6HcP6Uy6bb4guD289wfoSRUKArkHtxzTEWGXD4yp6cg5FS5HT0qDJyOakY/Nx3NMQ5j0HpzXr3wq+GXhDx74ZvL/VtY1K3v7K58maC2aMLsYZRhuBPOGH1FePSNzgV6F8GfFUXhn4lWkF5Ls03VwLC4z0Uscxuc+j4/AmkVHfUyvH/hJ/Bfje80BZHmtkCzWsrjBlhcZUn36g47iui+FHw5g8d6zqEWpXFzbaXYwhpprYAuZGPyoMgjoGJ+leoftDeHmuvC+n+KYYybnSZPstyw5/cyH5WP8AuuP/AB6uq+D2gReFPhXazakPs02oBtTvHfjy4yvyg/RBn8aC1D3rHgnxZ8E+HfAeu6dpehajeXtxPbm4uFutv7pScIBtA5OGPPtV/wCEPw2sPHsmr3etzXVvptiqRq1swVnmbnGSDwFGencV594z8USeKPGWr+JJSdl5MWiU/wAEQ4jX8FAr6s8D6LF4A+EVnPekQpBavq2pFh/Gy7tv1C7VoFGKlLyPFfi58MLHwNa6XquhXF1cabdM0ExuSGaKXqvIA4Iz+IrC+E/hbSPGfxCj0HXPtBtGtZpj9nk2NuQDHPpzX0hqENj8V/g6w05R/wATqzFzb5IYQXK8qpPqHUr+NeBfAVpbb4vCOSNklSwu1kRhypAAI+oOaBuK5l2Lfxl8BeG/Ac+hx+G/teL5JjN9pm83lCoGOBjqao/B3wd4f8a+ItWsfELXItrOzFwvkS+WdxcLycH1rpP2iZTv8IxAsStvcbmYgndvXOSO9Z37PJkbxf4gWMFv+JXyobBP75e/akJpc5qal8MPCC/Gvwx4VsH1BNG1Wye5l3y5l3L5nAYjjO0dqq/GX4beGfAek6Nd+H2vfMvLiSGUXMwkGFQMMcDHWu/1ptn7Tnw/VeSulzA+uMS1nftLSb/C/hYnOTeT5JGP+WYplOKsz570KwTVfE+l6VNK0UV5dRW7MnLKHcKSPfBr6RuP2dPB1s7btT15hnC/NFzzj+5Xy8lw0UyTQs6SxsGV1baVI5BBHINer/Cbxh4q1L4qaHY3/iHUbu1nmZJUuLp5FOY2xwTjtQRG2zPRbD4BeCdQD+RqOuny8bxvj3J/45Xl/wAXPAeleAdc0m10e5u5ra+tXmb7WQWDK+3ggDjFesfHy+u9H8C6TcaVeXVkz6kY2azuGhZh5bdSvUZHQ18yX+qX2rTJLqOp3l5Ki7Fe7laUqPQEngUFTstLEZI6Dg0hAHPeossg29R+dIX5449qDIJUDezfzqOKyknhndHVWiK4RjjfkkcH14pxbPtSuzJaTwyDmQIwHc8mhoZnyo8U7xOMMjFTj1FFTyPLeXYdlXzWHzEcbiB1PvxRSGJeyeVrl2+0PiaThunU0M25EkAA3jJwO/Q1FqZP9r3n/XZ//QjUccjeUY+2d30NMRaVhjHU1KfK3jaWwTxkciqgPfNTFtoBI560wGv7HNMUGSRQGKnPDD+H3/CklzkmmknbuB5PHXmkB9reHvFekfEH4S28urWxvIL+3NnqcZ4/eRkBzkdM4Vh6ZrF+OfjKPR/hg2mWYEN5rjC0j2nlbdQDJ+GNq/8AAjXgfw6+KWqfDy11GzttLttUtL9kkaG5dlEbqMbgR6jgj2FZ3j7x5f8AxA8QW+p3lnFYx21sttDbROXVBkljk9yTz9BSNefQvfCbwuni74n6XYXMXmafan7bdjt5cfO0/wC821fxr658R+L/AAr4Zu0tvEniGx0+S8QyRwXIyHTdgkrgjGeOfSvkj4cfE68+Gr6m1loNjqT6iEWSS5kdWRVyQo29snP4VjeN/GWo+OPFU2vakkNuzxpDHbwMSkMajhRnnqST7mgUZcqPsvQvGng/Xr1tJ8JeIdNv7xY2ma3tVKFEBGWAwBwSM4rx/WbK28A/tP6XrJK2+j+JVYtN0SJ5R5cvPQASbW+jV4Z4R8V33g3xbZeI9KMUlzaFsxSk7JUYFWRsc4INdV8Q/i5qHxI0ez06/wBA02wSymM0c9s7swyu0r8xxg8fkKBuaa1PdPij8Ob3xr4csLHQ5LeDVNDlcLBcOEWWJwMgN2OVBGevNVfg/wDDTVvBR1K81aa3Os3ypDHb20nmCOEHccsOCzHHHtXk/h349eLtE0mHTLyGx121gUIkl5uEwUdAZFOWA7ZBPvVjWP2gPF2p6Y9joun2Hh8OCpntA0kwB67WbhPqBn3oC8b8x3s2uW2v/tiaPFYSBk0m3ksHIPBkWGRpMEf7TY/Ct34veGNc8e+HtCsfD0UN1d2V3M8yTXCRFQUwMbjg8jtXzZ4L8VS+DPG1h4otrdL2azZy0MjFRIGUq3zdQeTz616nL+0S80ouI/Amnpt+9m9f/wCJ46mgFJNO5yOufCHx3oejXms3mkQR6dYx75pUu43IGQCcA5PJpvwZc/8AC5vDkQx887dfURsRXR+Kvj/qPifwdqfhpPDFjY29/D5Ek4uXdlBIPAIAJ4rzXwh4kbwj4y0zxJBbR3j2EhkEDvtD5UrjI6daZGiasfRH7SG9fh9ovyqqjVDnH/XJsV8vqRjPevSfiL8YL74iaFaaRN4ftdMjt7n7T5kUzSMx2lQOQAOprzLeFG0qenXPfPWgJu70Ldtt8zewUqoP3jjnBxT5Ni2luXy0z7mYHqBn5effmqG/jOep6VY+1nfE6ookjACt9Ohx60Ej54ZIZ3t5AFkTgjP9agdSuVIx7Gl85mDFyWckncTzz1pGYsB7cAUxlbdiVRyp9fSiopDiSikBJqhP9sXv/XZ//QjUEf3ual1M/wDE3vP+uz/zNV0PIzQBYXv71IrfKc96hJ+binAnr2oAdLnHy8nHSu7sbH4QRaXBNqeu+ILu/CBpYbW2WNNx6oCR255zXDMMkkdqjpMD0tNQ+BtvjZ4f8T3ZBBzLcKuR3HDDH1qa58VfBqNCLD4ZX7sf+fm+zj3Bya8uzS0DueqW3xG+HsKMi/B3TJPl4M05b6djzUZ+KmlQbls/hf4ajU9AUJK89OnNeYnhB6sc/hSUBdnqa/GWRBiD4f8AhmIZyR5BOfY0rfGzWRs8nwn4dhCNuwtsfm+vNeWKPenjGOM5oC7PUG+N/iRmZo9A8PRFsg4sj09MbqD8cPFe4Mmk6DGy8hlssH/0LmvL+MZpaAuz1E/HHxXJt36ToJGMHFljdxznnvUsXxz8TIGV/D/h6RD/AAmzx7djzXlYpT04oDmZ6snxomWEI3w/8MuF65gOD9R3qBfinoksm6++FXhubnjyxs7f7teYenNBNOwczPU5PiH8OriMrdfCDTwxAG+CfaV/QZrE1rXPhhe6DdR6T4KvtN1ZhiCU3ZaND2Yjcc/TFcKaYc88YoC4xvvEDtSb8cUYIB9aYevrQIlV+cVIXAjyarKe9SB0yBJnZnnb1xQMilRxIVZSrDqD2opJJC8hdjksck0UAP1M/wDE3vP+uz/+hGqqn5hVjU/+Qvef9dn/APQjVTpQBZzTg3NVwxxTg1AFz29RTDxkUiH51+gqWddhB9RQBEOTRu7UzP4UE0hErNzgdAMCgGox0pRQBMoJUtjp1oB5pgbHelBzTAfmlzTOaXNAEgNGSDzTAe9LksSSc0APznmjNNHNGMe9AC5zSE1LJEYwhOPnXcADnFQkE0AMbmo24qbb75qGQUDIyeaaX9s5pHbPtTVztMgOChFADkSR8FVyv948D86KZNPJPK0krlmY5J6fpRQMl1Jv+Jvef9dn/wDQjVbOBipNTb/icXv/AF3f/wBCNVsk0ATZ9DTgahD47Ub+elIRoRHKowPsfzqedg0QOORWdHNtRl98ipvO3R475pgFBNRM/YHtzinDpSGSZ4pwIx71GOaUUxEnFOU0w0oJ6AUASZxRnimc9xSDOeKAJF5709QD1NRqrEnnHHUj9KnjjLRs24DHYmgQu5AOuKTzIwOvNRMy565qNm546UDLLTo55OO2AMCm+ZCP4qqk4xSEEgkfnQBdEkLD/WL+JpCkbdHU/jVAg00jHancCaaPaSe1RQ/Mlwh/557h9QQf8ajYnpnikSQoxK4yVK8+4pDGmimk0UDH6mf+Jze/9dn/APQjVYGrmqJ/xOb3v++f/wBCNVlXA4FSA0Z9DTsH0NTeW7evHFOEDZ5H60xEIB64qRSQPQ+tP8ph1FO8ts8g0wGAYOcZqUtxgU0IzOFAOScCnSRPFI8Ui7XQlSD2IoAQE+ppQSe5pAme2DTlQlgMdfWgBxY8DNAJz96kCsTwKdtccY/SgBckd6VXYZAbrxR5bbd2DjvmlZGUDJHIzQITcPc04SNtOOM1GVbkk00qxGT0oAfyf/10uMDqKiVS3QZqykKJhpCGGMkDigCHIzyRTt0Y9/wqSOB7u5WG0geeZ84iiQsx+gGavLoOthdn/CO6i0hYH/j2kHHp0pgZm+I/dVifpUTSpn/VN+db0vhnXooIGj0LUS7ElgbOTcpBxjpyCOah/wCER8Uycr4b1TB9bRx/Si4zDaVSf9UR+NQE9+ldB/wh3ikuVPh7Uf8AwHb/AArGuLK4tLmWC6gkhljOGSVSjD8DzSGVckGinbckdffiigDT1GAnV7z185+v+8ari2k/uj8693u/Efwlj1C5B8AozlyGOW+Y55P3uKhbxN8KAqhPAYUL1wxBP1+asvbU+51fVavY8RETKpyowOck106/D3x3JFHLD4L1qRJAGVls5PmB6HpXpg8V/DAKVTwLGCRg7hux+bV0UPxxu40EaarfCNQFVRbJ8oHAH3/SpeIprqUsHUe54svw3+ILEkeBde4/6cn/AMKmT4afEV/l/wCEE105OTmzYH9a9qT433DPh9Y1FFweVtIzn/x6lHxrnI51jUs+1vFx/wCPUfWafcf1KZ4Bq/hfXfDt7Daa9o93pdxMvmRx3UewuucZH41ny2jrNJuXGDyM19CXnxI8I63NDc+JdAfW7uFDGlxdxLuVCc7QAcYzmoh40+G2NsfgG2VR6wr/AFNH1ml3F9Tq9EfPy2hcDaykk7cZ5HvT3s5EleNlDFGK5Rsg49D3Fe/r44+Hqcp4AtA3Y+ShH5UDxr8PGBJ+H9ocdxCv+NH1ml3D6lW7Hh+keH9T1zWLTRtLsXnvrx/LgTpvOCcZPA4BPPpXaH4I/E5AyP4MvDtz8yPGd3P+9+tehQ+O/AtvcR3Fp4SOn3UZzFd2yIssLYxlTzzitQfFezxiHUNfcjrukhHT320fWKfRjWCqdUeRH4L/ABRTdjwVfvjp9zn/AMeqN/hB8T1kYp4C1bZnKqRGcfX5q9k/4WxbRxF/tuvb8/caSHH57aVvjDaBABPrfufMhz/6DR9Zp9x/Up9jwDXPA3i3wxFFeeJPDV3pVvO5jie4C4dsZ2jBPOAaw/s2RuI2E4OCuM57/Svpqb4r6FcoF1XR7nWI0O6OO+aJ1jbpkDb1x3qu/wAT/CT9fA9myhQo3RxsQPTp0o+s0u4vqVXoj52W0FwtvFFbIskancVJzN82eeeOOOMcU650nVY41muNOnhhY7VZkIX1xmvodPiL4OaIt/wg1gnO0/uo/wDCpLj4keGp4hNJ4Ls5uQoJjjyMDjqPSn9Yp9yfqdXseCeD3uLH4gCbQTKzLBL9nNwFRnOB8rc4B6/lXoreK/iW8mRp9sQGwwYLux9c1b8V+K/CWt6HdWdl4dttJvzzDcRQpkNnODtAOD3ryeS01dgXSa06ZKh3596ynXTfuSX3G0MPKK96J6JL41+MO9YwLdI0+7uCcf8Aj1UZfFXxZlnWVltEAHzAbPX/AHq8+Ol6jM4aS4tN3cBnwaZ/ZV4j4Nxa4znaS+M/1FHt/wC8vu/4JfsX/K/vPRv+Ek+JkwLzSWantkISfTBBrkPGE3iXV5rS+1+0tRMuYUmhI3uvXa2D27E+tZjabqLTJ5b2qMxBVV3gN9B6V9BfBvSPC1j4P1zV9V1bTtRlkVPtKmLammhMsCfMGSSf4hwcYFVCrd/EvuM6lF8vwnzneaLdWMzQXVm0E6OQyE52cDjIJz1or3q/+MOi2+oS2Vv4ZsLyCKQ7JliVFkyB8wVkyKK09vT7mf1SoeJajpV02q3Z+2TY858dOOTVcaTddftc36UUVxWR2qTHjSbnP/H3N+lOGkXPX7XOKKKmyHzMeNKuP+fuc/iKeNKuM5+1T/nRRSsiuZjv7Ln/AOfqf/vqlGmXH/PzcfnRRRZBzMeNLnHIubj/AL6p40qc/wDLzcf99UUUrIrmfccNJn/5+bg/8CoGkzjn7Rcf990UUrIOZ9xf7LnPBubgj/fpP7Ilz/rp/wDvuiinyoOZ9w/siXP+un/77pRpMq8ie4B9d5ooosg5n3GHSZf+e8//AH3R/ZUyghZ7gA8/6w0UUWQuZkTaM5JLSzknk5c80z+x3B4eb/vuiinZBdjTpMg/5aTDHo5qJtGYjl5v++zRRTsieZjW0iQHmWfjj/WHinR2N1Bb3VvDd3McN2qpOgkOJVVgyg/RgDRRTQm2VzopL5ZpifXeaKKKYrs//9k=">
+      <div>
+        <h1>Year 6 SATs English Revision</h1>
+        <p class="subtitle">Reading and SPaG practice for KS2 SATs, with instant feedback</p>
+      </div>
+    </div>
+    <div class="toggle" id="themeToggle" onclick="toggleTheme()">
+      <span id="themeLabel">Dark</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="header">
+      <p class="headerTitle" style="font-weight:700;">Practise Reading and SPaG for Year 6 SATs</p>
+      <p class="headerMeta">Choose Reading, SPaG or a Mixed session, then start. The app tracks your weakest content domain so you know what to revise next. Nothing here leaves your browser.</p>
+    </div>
+
+    <div class="content">
+
+      <!-- HOME -->
+      <div id="home">
+        <div class="grid">
+          <div class="card">
+            <h3>Start a session</h3>
+            <div class="row">
+              <div class="field">
+                <label>Section</label>
+                <select id="sectionSelect">
+                  <option value="mixed">Mixed (Reading + SPaG)</option>
+                  <option value="reading">Reading</option>
+                  <option value="spag">SPaG</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Content domain / topic</label>
+                <select id="domainSelect"></select>
+              </div>
+            </div>
+            <div class="row" style="margin-top:10px;">
+              <div class="field">
+                <label>Difficulty</label>
+                <select id="diffSelect">
+                  <option value="mixed">Mixed</option>
+                  <option value="Easy">Easy</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Hard">Hard</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Questions</label>
+                <select id="countSelect">
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                </select>
+              </div>
+            </div>
+            <div class="footerRow">
+              <button class="btnPrimary" onclick="startQuiz()">Start session</button>
+              <button class="btnSecondary" onclick="resetProgress()">Reset progress</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Your progress</h3>
+            <div class="kpiBox">
+              <div class="kpi"><p class="value" id="kpiSessions">0</p><p class="label">Sessions completed</p></div>
+              <div class="kpi"><p class="value" id="kpiAccuracy">0%</p><p class="label">Average accuracy</p></div>
+            </div>
+            <p class="small" style="margin-bottom:6px;"><strong>Progress by domain</strong> (lowest first)</p>
+            <div id="domainProgress"><p class="small">No progress yet â€” complete a session to see your weakest domains.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUIZ -->
+      <div id="quiz" class="hidden">
+        <div class="pills">
+          <div class="pill" id="pillProgress">Question 1 of 10</div>
+          <div class="pill" id="pillScore">Score: 0</div>
+          <div class="pill" id="pillDomain">Domain</div>
+        </div>
+
+        <div id="passageArea"></div>
+
+        <div class="questionCard">
+          <div class="qMeta" id="qMeta"></div>
+          <div class="qText" id="qText"></div>
+          <div id="optionsArea"></div>
+          <div id="feedbackArea" class="feedback hidden"></div>
+          <div class="footerRow">
+            <button class="btnSecondary" onclick="goHome()">Quit</button>
+            <div class="row">
+              <button id="submitBtn" class="btnPrimary" onclick="submitAnswer()">Submit</button>
+              <button id="nextBtn" class="btnPrimary hidden" onclick="nextQuestion()">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULT -->
+      <div id="result" class="hidden">
+        <div class="card">
+          <h3>Session complete</h3>
+          <p id="finalScore" style="font-size:18px;margin:6px 0 12px;"></p>
+          <p class="small" style="margin-bottom:6px;"><strong>This session by domain</strong></p>
+          <div id="sessionDomainBreakdown"></div>
+          <div class="footerRow">
+            <button class="btnSecondary" onclick="goHome()">Back to home</button>
+            <button class="btnPrimary" onclick="startQuiz()">Start another session</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <p class="small" style="text-align:center;margin-top:16px;">Free Year 6 SATs English revision from The Teacher Vault. Works offline once loaded â€” no account, no data leaves your device.</p>
+</div>
+
+<script>
+/* ============================================================
+   Year 6 SATs English Revision â€” The Teacher Vault
+   Self-contained: question bank + logic below, no external calls.
+   ============================================================ */
+
+const READING_DOMAINS = {
+  retrieval:  "Retrieval (2a)",
+  vocabulary: "Word Meaning (2b)",
+  summarise:  "Summarising (2c)",
+  inference:  "Inference (2d)",
+  predict:    "Prediction (2e)",
+  compare:    "Comparison (2f)"
+};
+const SPAG_DOMAINS = {
+  punctuation: "Punctuation",
+  grammar:     "Grammar",
+  spelling:    "Spelling",
+  wordmeaning: "SPaG Word Meaning"
+};
+
+const PASSAGES = {
+  lighthouse: {
+    title: "The Lighthouse Keeper",
+    text: "Mara had lived on the island for eleven years, and in all that time the lighthouse had never once gone dark. Each evening, as the sky turned the colour of a bruised plum, she climbed the one hundred and eight steps to the lamp room. Tonight, though, the wind was different â€” sharper, angrier â€” and it rattled the glass like something trying to get in. Mara checked the oil, wound the mechanism, and waited. Out at sea, a fishing boat flickered in and out of view, fighting the swell. She would not let the light fail. Not tonight, of all nights."
+  },
+  octopus: {
+    title: "Octopuses: Masters of Disguise",
+    text: "Few creatures can vanish as completely as the octopus. Within a fraction of a second, an octopus can change not only the colour of its skin but also its texture, flattening itself against a rock until it looks like just another patch of stone. This remarkable skill comes from thousands of tiny colour-changing cells called chromatophores. Octopuses use camouflage mainly to avoid predators, but scientists believe it may also help them sneak up on unsuspecting crabs and fish. Despite having no bones at all, the octopus is considered one of the most intelligent creatures in the ocean."
+  },
+  schooltrip: {
+    title: "The School Trip (from Amir's diary)",
+    text: "Today was, without question, the best school trip I have ever been on â€” and also the wettest. We had barely stepped off the coach at the museum when the sky opened and everyone made a dash for the entrance, shrieking and laughing in equal measure. Inside, dripping but delighted, we found a real Anglo-Saxon shield, a helmet with a dented nose-guard, and a coin so old the king's face had almost worn away. Miss Okafor let us sketch our favourite object. I chose the helmet. I still don't know how anyone fought wearing something so heavy."
+  },
+  recycling: {
+    title: "Rubbish: Whose Problem Is It?",
+    text: "Every year, the average person in the UK throws away hundreds of kilograms of rubbish, much of which could have been recycled, reused or never bought in the first place. It is easy to assume that recycling is something only councils and factories need to worry about, but small choices add up. Carrying a reusable water bottle, mending torn clothes instead of replacing them, and simply checking what actually belongs in the recycling bin can all make a genuine difference. Nobody can solve this problem alone â€” but that does not mean nobody should try."
+  }
+};
+
+const READING_QUESTIONS = [
+  { passage:"lighthouse", domain:"retrieval", difficulty:"Easy",
+    q:"How many years had Mara lived on the island?",
+    options:["Eight","Eleven","Fifteen","One hundred and eight"], correct:1,
+    explain:"The text states Mara â€œhad lived on the island for eleven yearsâ€." },
+  { passage:"lighthouse", domain:"retrieval", difficulty:"Easy",
+    q:"How many steps did Mara climb to reach the lamp room?",
+    options:["Eleven","Eighty","One hundred and eight","Two hundred"], correct:2,
+    explain:"The passage says she climbed â€œone hundred and eight steps to the lamp room.â€" },
+  { passage:"lighthouse", domain:"vocabulary", difficulty:"Medium",
+    q:"In the sentence â€œthe wind was different â€” sharper, angrierâ€, what does â€œsharperâ€ suggest about the wind?",
+    options:["It was warmer than usual","It was more forceful and biting","It smelled unusual","It was completely silent"], correct:1,
+    explain:"â€œSharperâ€ is used to suggest the wind felt more cutting and forceful than usual." },
+  { passage:"lighthouse", domain:"inference", difficulty:"Medium",
+    q:"What can you infer about how Mara feels about her job as the passage ends?",
+    options:["She wants to give it up","She is determined and takes it seriously","She has forgotten about the fishing boat","She is bored of the routine"], correct:1,
+    explain:"The line â€œShe would not let the light failâ€ shows determination and a sense of duty." },
+  { passage:"lighthouse", domain:"predict", difficulty:"Hard",
+    q:"Based on the passage, what is most likely to happen next?",
+    options:["Mara falls asleep in the lamp room","Mara continues to watch over the light through the storm","The lighthouse is demolished","Mara leaves the island for good"], correct:1,
+    explain:"Given her determination and the ongoing storm, the most likely next event is that she keeps watching over the light." },
+  { passage:"lighthouse", domain:"summarise", difficulty:"Medium",
+    q:"Which sentence best summarises this passage?",
+    options:[
+      "A lighthouse keeper worries about the weather forecast for tomorrow.",
+      "An experienced lighthouse keeper stays alert during a stormy night to keep the light working for a boat at sea.",
+      "A fishing boat crashes into a lighthouse during a storm.",
+      "Mara decides to stop working as a lighthouse keeper."
+    ], correct:1,
+    explain:"The passage focuses on Mara staying alert and determined to keep the light working during a storm, with a boat visible at sea." },
+
+  { passage:"octopus", domain:"retrieval", difficulty:"Easy",
+    q:"What are the tiny colour-changing cells in an octopus's skin called?",
+    options:["Neurons","Chromatophores","Tentacles","Photophores"], correct:1,
+    explain:"The text names them directly: â€œthousands of tiny colour-changing cells called chromatophores.â€" },
+  { passage:"octopus", domain:"retrieval", difficulty:"Easy",
+    q:"According to the passage, how quickly can an octopus change colour?",
+    options:["Within a fraction of a second","Within a minute","Within an hour","It cannot change colour"], correct:0,
+    explain:"The passage says an octopus can change colour â€œwithin a fraction of a second.â€" },
+  { passage:"octopus", domain:"vocabulary", difficulty:"Medium",
+    q:"What does the word â€œcamouflageâ€ mean as used in this passage?",
+    options:["A type of ocean current","Blending in with the surroundings to hide","A method of hunting with sound","A colourful display used to attract a mate"], correct:1,
+    explain:"Camouflage refers to disguising or blending in with the surroundings, matching how the octopus avoids predators." },
+  { passage:"octopus", domain:"inference", difficulty:"Medium",
+    q:"Why does the passage suggest octopuses might use camouflage to hunt as well as hide?",
+    options:["Because scientists have proven it beyond doubt","Because it lets them 'sneak up on unsuspecting crabs and fish'","Because octopuses cannot swim quickly","Because camouflage only works underwater"], correct:1,
+    explain:"The text says scientists â€œbelieve it may also help them sneak up on unsuspecting crabs and fishâ€ â€” a possibility, not a proven fact." },
+  { passage:"octopus", domain:"summarise", difficulty:"Medium",
+    q:"Which sentence best summarises the whole passage?",
+    options:[
+      "Octopuses are dangerous predators that attack humans.",
+      "Octopuses use remarkable camouflage abilities to hide and possibly to hunt, and are considered highly intelligent.",
+      "Octopuses live only in the coldest oceans on Earth.",
+      "Octopuses have bones that help them change shape."
+    ], correct:1,
+    explain:"The passage covers camouflage ability, its possible uses, and octopus intelligence â€” this option captures all three." },
+  { passage:"octopus", domain:"compare", difficulty:"Hard",
+    q:"Compared to most other sea creatures mentioned indirectly in the passage (such as crabs and fish), what makes the octopus's approach to survival distinctive?",
+    options:["It relies purely on speed to escape danger","It uses rapid, dramatic camouflage rather than just fleeing", "It hides only at night","It changes size rather than colour"], correct:1,
+    explain:"The passage emphasises the octopus's unusually fast and dramatic camouflage as its distinctive survival method." },
+
+  { passage:"schooltrip", domain:"retrieval", difficulty:"Easy",
+    q:"What real object from the museum did Amir choose to sketch?",
+    options:["A shield","A coin","A helmet","A coach"], correct:2,
+    explain:"The diary entry says â€œI chose the helmet.â€" },
+  { passage:"schooltrip", domain:"retrieval", difficulty:"Easy",
+    q:"What was the weather like on the school trip?",
+    options:["Sunny all day","Snowy","It rained heavily","Foggy"], correct:2,
+    explain:"The text says â€œthe sky openedâ€ and describes pupils â€œdripping but delightedâ€, showing heavy rain." },
+  { passage:"schooltrip", domain:"vocabulary", difficulty:"Medium",
+    q:"What does â€œwithout questionâ€ mean in the phrase â€œthe best school trip I have ever been on â€” and also the wettestâ€?",
+    options:["With many questions asked","Definitely, with no doubt","Rarely","Only sometimes"], correct:1,
+    explain:"â€œWithout questionâ€ is an idiom meaning something is definitely true, with no doubt." },
+  { passage:"schooltrip", domain:"inference", difficulty:"Medium",
+    q:"What can you infer about Amir's feelings towards the trip, despite the rain?",
+    options:["He regretted going on the trip","He was mostly upset about getting wet","He genuinely enjoyed the trip overall","He wished he had stayed on the coach"], correct:2,
+    explain:"He calls it â€œthe best school trip I have ever been onâ€, showing genuine enjoyment despite the rain." },
+  { passage:"schooltrip", domain:"predict", difficulty:"Hard",
+    q:"Based on Amir's diary entry, what would he most likely want to do next time he visits a museum?",
+    options:["Avoid museums entirely","Look for more historical objects to sketch","Refuse to bring a coat","Skip the exhibits and stay on the coach"], correct:1,
+    explain:"His enthusiasm for the shield, helmet and coin suggests he would enjoy finding more objects to sketch on a future visit." },
+  { passage:"schooltrip", domain:"compare", difficulty:"Medium",
+    q:"How does Amir's mood compare to what you might expect from someone caught in sudden heavy rain?",
+    options:["He is far more cheerful and excited than you might expect","He is exactly as miserable as expected","He is angry and wants to go home","He does not mention his mood at all"], correct:0,
+    explain:"Despite the sudden rain, Amir describes the day as â€œthe best school tripâ€, showing more excitement than might be expected." },
+
+  { passage:"recycling", domain:"retrieval", difficulty:"Easy",
+    q:"According to the passage, what does the average person in the UK throw away each year?",
+    options:["A few kilograms of rubbish","Hundreds of kilograms of rubbish","No rubbish at all","Only recyclable rubbish"], correct:1,
+    explain:"The text states the average person throws away â€œhundreds of kilograms of rubbishâ€ each year." },
+  { passage:"recycling", domain:"retrieval", difficulty:"Easy",
+    q:"Which of these is given as an example of a small choice that can help?",
+    options:["Buying more plastic bottles","Carrying a reusable water bottle","Throwing away torn clothes","Ignoring recycling bin rules"], correct:1,
+    explain:"The passage lists â€œcarrying a reusable water bottleâ€ as one example of a helpful small choice." },
+  { passage:"recycling", domain:"vocabulary", difficulty:"Medium",
+    q:"What does the word â€œgenuineâ€ mean in â€œcan all make a genuine differenceâ€?",
+    options:["Fake","Real and true","Tiny and unimportant","Expensive"], correct:1,
+    explain:"â€œGenuineâ€ means real or true, emphasising that the difference these choices make is significant." },
+  { passage:"recycling", domain:"inference", difficulty:"Hard",
+    q:"What is the writer's main purpose in this passage?",
+    options:["To entertain readers with a funny story","To persuade readers that small actions on recycling matter","To give strict scientific data about landfill sites","To criticise councils for not recycling enough"], correct:1,
+    explain:"The tone and content (encouraging small everyday choices) show the writer's purpose is to persuade, not simply inform or entertain." },
+  { passage:"recycling", domain:"summarise", difficulty:"Medium",
+    q:"Which sentence best summarises the passage?",
+    options:[
+      "Only large companies can make a difference to recycling.",
+      "Everyday choices by individuals can genuinely help reduce rubbish, even though the problem is bigger than one person.",
+      "Recycling is entirely the responsibility of the government.",
+      "It is impossible for individuals to reduce the amount of rubbish they produce."
+    ], correct:1,
+    explain:"The passage argues that individual choices matter, even though no one person can solve the whole problem alone." },
+  { passage:"recycling", domain:"compare", difficulty:"Hard",
+    q:"How does the writer's final sentence (â€œNobody can solve this problem alone â€” but that does not mean nobody should tryâ€) compare in tone to the rest of the passage?",
+    options:["It contradicts everything said before it","It sums up and reinforces the passage's persuasive message","It changes the subject completely","It is the only factual statement in the passage"], correct:1,
+    explain:"The final sentence reinforces the persuasive argument built throughout the passage, rather than contradicting or changing it." }
+];
+
+const SPAG_QUESTIONS = [
+  { domain:"punctuation", difficulty:"Easy", q:"Which sentence uses an apostrophe correctly?",
+    options:["The dog's bone was buried in the garden.","The dogs' bone was buried in the garden.","The dogs bone was buried in the garden.","The do'gs bone was buried in the garden."], correct:0,
+    explain:"For one dog owning one bone, the apostrophe goes before the s: â€œdog'sâ€." },
+  { domain:"punctuation", difficulty:"Easy", q:"Which sentence is punctuated correctly?",
+    options:["\"Stop!\" shouted the coach.","Stop! shouted the coach.","'Stop! shouted the coach.'","Stop, shouted the coach!"], correct:0,
+    explain:"Direct speech needs inverted commas around the exact words spoken, with the exclamation mark inside them." },
+  { domain:"punctuation", difficulty:"Medium", q:"Which sentence uses a comma correctly to mark a subordinate clause?",
+    options:["Although it was raining, we still went outside.","Although it was raining we, still went outside.","Although, it was raining we still went outside.","Although it was raining we still, went outside."], correct:0,
+    explain:"A comma is placed after the subordinate clause â€œAlthough it was rainingâ€, before the main clause begins." },
+  { domain:"punctuation", difficulty:"Medium", q:"Which sentence correctly uses a semicolon?",
+    options:["I love reading; my sister prefers drawing.","I love reading, my sister; prefers drawing.","I love reading; and my sister prefers drawing.","I; love reading my sister prefers drawing."], correct:0,
+    explain:"A semicolon can join two related independent clauses without a conjunction: â€œI love reading; my sister prefers drawing.â€" },
+  { domain:"punctuation", difficulty:"Hard", q:"Which sentence uses parenthesis (brackets) correctly?",
+    options:["My uncle (who lives in Leeds) is visiting tomorrow.","My uncle who lives in Leeds, is visiting tomorrow.","My (uncle who lives in Leeds is visiting) tomorrow.","My uncle who (lives in Leeds is visiting tomorrow)."], correct:0,
+    explain:"The extra information â€œwho lives in Leedsâ€ is enclosed entirely within the brackets." },
+  { domain:"punctuation", difficulty:"Hard", q:"Which sentence uses a colon correctly to introduce a list?",
+    options:["We need the following: bread, milk and eggs.","We need the following, bread, milk and eggs.","We need the following bread: milk and eggs.","We need: the following bread, milk and eggs."], correct:0,
+    explain:"A colon introduces the list after the phrase â€œthe followingâ€." },
+
+  { domain:"grammar", difficulty:"Easy", q:"Which word in this sentence is the adverb? â€œShe ran quickly to the bus stop.â€",
+    options:["She","ran","quickly","bus"], correct:2,
+    explain:"â€œQuicklyâ€ describes how she ran, making it an adverb." },
+  { domain:"grammar", difficulty:"Easy", q:"Which sentence is a command?",
+    options:["Close the door.","Did you close the door?","The door was closed.","What a loud door!"], correct:0,
+    explain:"â€œClose the door.â€ gives an instruction, making it a command (imperative)." },
+  { domain:"grammar", difficulty:"Medium", q:"Which underlined-style clause is the subordinate clause? â€œBecause it was cold, we wore our coats.â€",
+    options:["Because it was cold","we wore our coats","we wore","our coats"], correct:0,
+    explain:"â€œBecause it was coldâ€ cannot stand alone as a full sentence, making it the subordinate clause." },
+  { domain:"grammar", difficulty:"Medium", q:"Which sentence is written in the past perfect tense?",
+    options:["She had finished her homework before dinner.","She finishes her homework before dinner.","She will finish her homework before dinner.","She is finishing her homework before dinner."], correct:0,
+    explain:"â€œHad finishedâ€ shows an action completed before another point in the past â€” the past perfect tense." },
+  { domain:"grammar", difficulty:"Hard", q:"Which sentence uses the passive voice?",
+    options:["The trophy was lifted by the captain.","The captain lifted the trophy.","The captain will lift the trophy.","The captain is lifting the trophy."], correct:0,
+    explain:"In the passive voice, the subject receives the action: â€œThe trophy was lifted by the captain.â€" },
+  { domain:"grammar", difficulty:"Hard", q:"Which sentence correctly uses the subjunctive form?",
+    options:["If I were you, I would apologise.","If I was you, I would apologise.","If I am you, I would apologise.","If I be you, I would apologise."], correct:0,
+    explain:"The subjunctive â€œwereâ€ is used after â€œifâ€ for hypothetical situations, even with a singular subject." },
+
+  { domain:"spelling", difficulty:"Easy", q:"Which spelling is correct?",
+    options:["Definately","Definitely","Definitly","Definetely"], correct:1,
+    explain:"The correct spelling is â€œdefinitelyâ€ â€” remember â€œfiniteâ€ is inside the word." },
+  { domain:"spelling", difficulty:"Easy", q:"Which spelling is correct?",
+    options:["Neccessary","Necessary","Necesary","Neccesary"], correct:1,
+    explain:"The correct spelling is â€œnecessaryâ€ â€” one c, two s's." },
+  { domain:"spelling", difficulty:"Medium", q:"Which sentence uses the correct homophone?",
+    options:["They're going to their house over there.","There going to there house over they're.","Their going to they're house over there.","They're going to there house over their."], correct:0,
+    explain:"â€œThey'reâ€ (they are) going to â€œtheirâ€ (belonging to them) house over â€œthereâ€ (location) is correct." },
+  { domain:"spelling", difficulty:"Medium", q:"Which word correctly adds the suffix to 'happy' + 'ness'?",
+    options:["Happyness","Happiness","Happynes","Happieness"], correct:1,
+    explain:"When a word ends in a consonant + y, change the y to i before adding the suffix: happiness." },
+  { domain:"spelling", difficulty:"Hard", q:"Which spelling is correct?",
+    options:["Accomodate","Acommodate","Accommodate","Acomodate"], correct:2,
+    explain:"The correct spelling is â€œaccommodateâ€ â€” double c, double m." },
+  { domain:"spelling", difficulty:"Hard", q:"Which spelling is correct?",
+    options:["Embarass","Embarrass","Embarras","Embbarrass"], correct:1,
+    explain:"The correct spelling is â€œembarrassâ€ â€” double r, double s." },
+
+  { domain:"wordmeaning", difficulty:"Easy", q:"Which word is a synonym for â€œhappyâ€?",
+    options:["Miserable","Joyful","Tired","Angry"], correct:1,
+    explain:"â€œJoyfulâ€ has a similar meaning to â€œhappyâ€, making it a synonym." },
+  { domain:"wordmeaning", difficulty:"Easy", q:"Which word is an antonym for â€œancientâ€?",
+    options:["Old","Historic","Modern","Aged"], correct:2,
+    explain:"â€œModernâ€ means the opposite of â€œancientâ€, making it an antonym." },
+  { domain:"wordmeaning", difficulty:"Medium", q:"What does the prefix â€œmis-â€ usually mean, as in â€œmisunderstandâ€?",
+    options:["Again","Before","Badly or wrongly","Not"], correct:2,
+    explain:"The prefix â€œmis-â€ generally means â€œbadlyâ€ or â€œwronglyâ€, as in misunderstand or misspell." },
+  { domain:"wordmeaning", difficulty:"Medium", q:"In the sentence 'The evidence was inconclusive', what does 'inconclusive' mean?",
+    options:["Completely certain","Not leading to a definite conclusion","Very exciting","Written down clearly"], correct:1,
+    explain:"â€œInconclusiveâ€ means not leading to a definite result or conclusion." },
+  { domain:"wordmeaning", difficulty:"Hard", q:"Which word best replaces 'said' to show someone spoke nervously?",
+    options:["Declared","Stammered","Announced","Bellowed"], correct:1,
+    explain:"â€œStammeredâ€ suggests hesitant, nervous speech, unlike the more confident alternatives." },
+  { domain:"wordmeaning", difficulty:"Hard", q:"What does the suffix â€œ-fulâ€ add to a word, as in â€œthoughtfulâ€?",
+    options:["Full of / having the quality of","Without","Before","Again"], correct:0,
+    explain:"The suffix â€œ-fulâ€ means â€œfull ofâ€ or â€œhaving the quality ofâ€, as in thoughtful (full of thought)." }
+];
+
+const PROGRESS_KEY = "tv_sats_english_progress_v1";
+const THEME_KEY = "tv_sats_english_theme";
+
+function setTheme(theme){
+  document.documentElement.setAttribute("data-theme", theme);
+  document.getElementById("themeLabel").textContent = theme === "light" ? "Light" : "Dark";
+  localStorage.setItem(THEME_KEY, theme);
+}
+function toggleTheme(){
+  const cur = localStorage.getItem(THEME_KEY) || "dark";
+  setTheme(cur === "dark" ? "light" : "dark");
+}
+(function initTheme(){ setTheme(localStorage.getItem(THEME_KEY) || "dark"); })();
+
+function loadProgress(){
+  const blank = { sessions:0, totalCorrect:0, totalAnswered:0, domains:{} };
+  try {
+    const raw = JSON.parse(localStorage.getItem(PROGRESS_KEY));
+    return raw || blank;
+  } catch(e){ return blank; }
+}
+function saveProgress(p){ localStorage.setItem(PROGRESS_KEY, JSON.stringify(p)); }
+
+function domainLabel(key){ return READING_DOMAINS[key] || SPAG_DOMAINS[key] || key; }
+
+function updateHomeKPIs(){
+  const p = loadProgress();
+  document.getElementById("kpiSessions").textContent = p.sessions;
+  const acc = p.totalAnswered ? Math.round((p.totalCorrect / p.totalAnswered) * 100) : 0;
+  document.getElementById("kpiAccuracy").textContent = acc + "%";
+
+  const rows = Object.keys(p.domains).map(function(k){
+    const d = p.domains[k];
+    const domAcc = d.answered ? Math.round((d.correct / d.answered) * 100) : 0;
+    return { key:k, acc:domAcc, answered:d.answered };
+  }).filter(function(r){ return r.answered > 0; });
+  rows.sort(function(a,b){ return a.acc - b.acc; });
+
+  const container = document.getElementById("domainProgress");
+  if(!rows.length){
+    container.innerHTML = '<p class="small">No progress yet â€” complete a session to see your weakest domains.</p>';
+    return;
+  }
+  container.innerHTML = rows.map(function(r){
+    return '<div class="domainRow"><span>' + domainLabel(r.key) + '</span>' +
+      '<div class="bar"><div style="width:' + r.acc + '%;"></div></div>' +
+      '<span>' + r.acc + '%</span></div>';
+  }).join("");
+}
+
+function resetProgress(){
+  if(!confirm("Reset all saved progress on this device?")) return;
+  localStorage.removeItem(PROGRESS_KEY);
+  updateHomeKPIs();
+}
+
+function populateDomainSelect(){
+  const section = document.getElementById("sectionSelect").value;
+  const sel = document.getElementById("domainSelect");
+  let opts = '<option value="all">All / Mixed</option>';
+  if(section === "reading" || section === "mixed"){
+    Object.keys(READING_DOMAINS).forEach(function(k){
+      opts += '<option value="' + k + '">' + READING_DOMAINS[k] + (section==="mixed" ? " (Reading)" : "") + '</option>';
+    });
+  }
+  if(section === "spag" || section === "mixed"){
+    Object.keys(SPAG_DOMAINS).forEach(function(k){
+      opts += '<option value="' + k + '">' + SPAG_DOMAINS[k] + (section==="mixed" ? " (SPaG)" : "") + '</option>';
+    });
+  }
+  sel.innerHTML = opts;
+}
+document.getElementById("sectionSelect").addEventListener("change", populateDomainSelect);
+populateDomainSelect();
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+function buildPool(){
+  const section = document.getElementById("sectionSelect").value;
+  const domain = document.getElementById("domainSelect").value;
+  const diff = document.getElementById("diffSelect").value;
+
+  let pool = [];
+  if(section === "reading" || section === "mixed"){
+    pool = pool.concat(READING_QUESTIONS.map(function(q){ return Object.assign({section:"reading"}, q); }));
+  }
+  if(section === "spag" || section === "mixed"){
+    pool = pool.concat(SPAG_QUESTIONS.map(function(q){ return Object.assign({section:"spag"}, q); }));
+  }
+  if(domain !== "all"){
+    pool = pool.filter(function(q){ return q.domain === domain; });
+  }
+  if(diff !== "mixed"){
+    pool = pool.filter(function(q){ return q.difficulty === diff; });
+  }
+  return pool;
+}
+
+let state = null;
+
+function startQuiz(){
+  const count = parseInt(document.getElementById("countSelect").value, 10);
+  let pool = buildPool();
+  if(!pool.length){
+    alert("No questions match that combination yet â€” try a different domain or difficulty.");
+    return;
+  }
+  pool = shuffle(pool).slice(0, Math.min(count, pool.length));
+
+  state = {
+    questions: pool,
+    index: 0,
+    score: 0,
+    answered: false,
+    sessionDomains: {}
+  };
+  showScreen("quiz");
+  renderQuestion();
+}
+
+function showScreen(which){
+  ["home","quiz","result"].forEach(function(id){
+    document.getElementById(id).classList.toggle("hidden", id !== which);
+  });
+  if(which === "home") updateHomeKPIs();
+}
+
+function goHome(){ showScreen("home"); }
+
+function renderQuestion(){
+  const q = state.questions[state.index];
+  document.getElementById("pillProgress").textContent = "Question " + (state.index+1) + " of " + state.questions.length;
+  document.getElementById("pillScore").textContent = "Score: " + state.score;
+  document.getElementById("pillDomain").textContent = domainLabel(q.domain);
+
+  const passageArea = document.getElementById("passageArea");
+  if(q.section === "reading" && q.passage){
+    const p = PASSAGES[q.passage];
+    passageArea.innerHTML = '<div class="passageCard"><h4>' + p.title + '</h4><p>' + p.text + '</p></div>';
+  } else {
+    passageArea.innerHTML = "";
+  }
+
+  document.getElementById("qMeta").textContent = (q.section === "reading" ? "Reading" : "SPaG") + " Â· " + q.difficulty;
+  document.getElementById("qText").textContent = q.q;
+
+  const optionsArea = document.getElementById("optionsArea");
+  optionsArea.innerHTML = q.options.map(function(opt, i){
+    return '<label class="opt" data-i="' + i + '"><input type="radio" name="opt" value="' + i + '"><span>' + opt + '</span></label>';
+  }).join("");
+
+  document.getElementById("feedbackArea").classList.add("hidden");
+  document.getElementById("submitBtn").classList.remove("hidden");
+  document.getElementById("nextBtn").classList.add("hidden");
+  state.answered = false;
+}
+
+function submitAnswer(){
+  if(state.answered) return;
+  const checked = document.querySelector('input[name="opt"]:checked');
+  if(!checked){
+    alert("Choose an answer first.");
+    return;
+  }
+  state.answered = true;
+  const q = state.questions[state.index];
+  const chosen = parseInt(checked.value, 10);
+  const correct = chosen === q.correct;
+
+  document.querySelectorAll(".opt").forEach(function(el){
+    const i = parseInt(el.getAttribute("data-i"), 10);
+    if(i === q.correct) el.classList.add("correctOpt");
+    else if(i === chosen) el.classList.add("wrongOpt");
+  });
+
+  const fb = document.getElementById("feedbackArea");
+  fb.classList.remove("hidden","good","bad");
+  fb.classList.add(correct ? "good" : "bad");
+  fb.textContent = (correct ? "Correct. " : "Not quite. ") + q.explain;
+
+  if(correct) state.score++;
+
+  if(!state.sessionDomains[q.domain]) state.sessionDomains[q.domain] = { correct:0, answered:0 };
+  state.sessionDomains[q.domain].answered++;
+  if(correct) state.sessionDomains[q.domain].correct++;
+
+  const p = loadProgress();
+  if(!p.domains[q.domain]) p.domains[q.domain] = { correct:0, answered:0 };
+  p.domains[q.domain].answered++;
+  if(correct) p.domains[q.domain].correct++;
+  p.totalAnswered++;
+  if(correct) p.totalCorrect++;
+  saveProgress(p);
+
+  document.getElementById("submitBtn").classList.add("hidden");
+  document.getElementById("nextBtn").classList.remove("hidden");
+}
+
+function nextQuestion(){
+  state.index++;
+  if(state.index >= state.questions.length){
+    finishQuiz();
+  } else {
+    renderQuestion();
+  }
+}
+
+function finishQuiz(){
+  const p = loadProgress();
+  p.sessions++;
+  saveProgress(p);
+
+  const pct = Math.round((state.score / state.questions.length) * 100);
+  document.getElementById("finalScore").textContent = "You scored " + state.score + " out of " + state.questions.length + " (" + pct + "%).";
+
+  const rows = Object.keys(state.sessionDomains).map(function(k){
+    const d = state.sessionDomains[k];
+    const acc = Math.round((d.correct / d.answered) * 100);
+    return '<div class="domainRow"><span>' + domainLabel(k) + '</span>' +
+      '<div class="bar"><div style="width:' + acc + '%;"></div></div>' +
+      '<span>' + d.correct + '/' + d.answered + '</span></div>';
+  }).join("");
+  document.getElementById("sessionDomainBreakdown").innerHTML = rows || '<p class="small">No domain data for this session.</p>';
+
+  showScreen("result");
+}
+
+updateHomeKPIs();
+</script>
+</body>
+</html>
