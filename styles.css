@@ -366,7 +366,7 @@ body.nav-open .mobile-nav { display: flex; }
 .hero__mascot {
   display: none;
   position: absolute;
-  right: -10mm;
+  right: 0;
   top: 30px;
   width: 320px;
   height: auto;
