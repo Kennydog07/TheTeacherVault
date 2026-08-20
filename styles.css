@@ -366,10 +366,9 @@ body.nav-open .mobile-nav { display: flex; }
 .hero__mascot {
   display: none;
   position: absolute;
-  right: -10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 300px;
+  right: 0;
+  top: 30px;
+  width: 320px;
   height: auto;
   pointer-events: none;
   user-select: none;
@@ -380,7 +379,7 @@ body.nav-open .mobile-nav { display: flex; }
 }
 
 @media (min-width: 1280px) {
-  .hero__mascot { width: 360px; right: -20px; }
+  .hero__mascot { width: 380px; right: 10px; top: 10px; }
 }
 
 .hero__logo { margin-bottom: 28px; display: flex; justify-content: center; }
