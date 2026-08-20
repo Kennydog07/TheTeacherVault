@@ -360,6 +360,27 @@ body.nav-open .mobile-nav { display: flex; }
 .hero {
   padding: 76px 0 60px;
   text-align: center;
+  position: relative;
+}
+
+.hero__mascot {
+  display: none;
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (min-width: 1101px) {
+  .hero__mascot { display: block; }
+}
+
+@media (min-width: 1280px) {
+  .hero__mascot { width: 360px; right: -20px; }
 }
 
 .hero__logo { margin-bottom: 28px; display: flex; justify-content: center; }
