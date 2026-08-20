@@ -314,6 +314,57 @@ const APPS = [
     worksOffline: false,
     noAccount: true
   },
+  {
+    id: "feedback-fixer-lite",
+    title: "Feedback Fixer Lite",
+    tagline: "Quick, specific marking feedback for primary teachers.",
+    description: "Choose a year group, subject, attainment level and feedback focus, and get a positive comment, an improvement point and a clear next step — ready to copy, print or write straight into a book.",
+    category: "teacher",
+    subject: "General",
+    audience: "Primary teachers (Years 1-6)",
+    tier: "lite",
+    price: "Free",
+    gumroadUrl: "https://idamaemann.gumroad.com/l/dsphip",
+    image: "images/feedback-fixer-lite.jpg",
+    featured: false,
+    isNew: true,
+    comingSoon: false,
+    proVersionId: "feedback-fixer-pro",
+    features: [
+      "Positive feedback, an improvement point and a next step in one click",
+      "Covers English Writing, Reading, Maths and Science across Years 1-6",
+      "Options adapt to the year group and attainment level you pick",
+      "Copy individual comments, copy all, or print a feedback slip"
+    ],
+    worksOffline: false,
+    noAccount: true
+  },
+  {
+    id: "feedback-fixer-pro",
+    title: "Feedback Fixer Pro",
+    tagline: "Turn hours of marking into minutes for a whole class.",
+    description: "Everything in Feedback Fixer Lite, plus class lists, batch feedback for a whole class, 8 more subjects, SEND/EAL/High Attainer support, multiple feedback formats, editable saved history and class print sheets.",
+    category: "teacher",
+    subject: "General",
+    audience: "Primary teachers marking a full class",
+    tier: "pro",
+    price: "£2.99",
+    gumroadUrl: "https://idamaemann.gumroad.com/l/uueuie",
+    image: "images/feedback-fixer-pro.jpg",
+    featured: false,
+    isNew: true,
+    comingSoon: false,
+    liteVersionId: "feedback-fixer-lite",
+    features: [
+      "Class Manager with pupil profiles, saved locally in your browser",
+      "Batch-generate feedback for a whole class, each pupil individually adjustable",
+      "12 subjects, 5 feedback formats and 5 tones of voice",
+      "SEND, EAL and High Attainer support built into every next step",
+      "Editable feedback, saved history and printable class sheets"
+    ],
+    worksOffline: false,
+    noAccount: true
+  },
 
   /* --------------------- TEACHER PRODUCTIVITY: COMING SOON ------------------ */
 
