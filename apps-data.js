@@ -393,6 +393,58 @@ const APPS = [
     worksOffline: false,
     noAccount: true
   },
+  {
+    id: "task-twist-lite",
+    title: "Task Twist Lite",
+    tagline: "Turn one classroom task into Support, Core and Challenge versions.",
+    description: "Paste in a task you already planned and get Support, Core and Challenge versions in one click — with real scaffolding (sentence starters, a word bank and a checklist), not just 'do an easier version'.",
+    category: "teacher",
+    subject: "General",
+    audience: "Primary teachers (Years 1-6)",
+    tier: "lite",
+    price: "Free",
+    gumroadUrl: "https://idamaemann.gumroad.com/l/daohlw",
+    image: "images/task-twist-lite.jpg",
+    featured: false,
+    isNew: true,
+    comingSoon: false,
+    proVersionId: "task-twist-pro",
+    features: [
+      "Support, Core and Challenge versions of any task in one click",
+      "Real scaffolding — sentence starters, a word bank and a checklist, not generic filler",
+      "Covers English, Maths, Science, History and Geography across Years 1-6",
+      "Copy each version, or copy all three at once"
+    ],
+    worksOffline: false,
+    noAccount: true
+  },
+  {
+    id: "task-twist-pro",
+    title: "Task Twist Pro",
+    tagline: "Properly differentiate one task across your whole class.",
+    description: "Everything in Task Twist Lite, plus six differentiation levels, SEND/EAL/Greater Depth profiles, individual pupil versions, a class differentiation planner, editable success criteria and questioning prompts, printable task cards, a Classroom Display mode and saved tasks.",
+    category: "teacher",
+    subject: "General",
+    audience: "Primary teachers planning for a full class",
+    tier: "pro",
+    price: "£9.99",
+    gumroadUrl: "https://idamaemann.gumroad.com/l/iawgx",
+    image: "images/task-twist-pro.jpg",
+    featured: false,
+    isNew: true,
+    comingSoon: false,
+    liteVersionId: "task-twist-lite",
+    features: [
+      "Six differentiation levels, from High Support to Open Challenge",
+      "SEND, EAL, Lower/Higher Prior Attainment and Greater Depth profiles",
+      "Individual Pupil Mode and a full Class Mode that groups pupils by level automatically",
+      "Editable success criteria, questioning prompts and an extension activity for every task",
+      "12 subjects, Must/Should/Could mode and Bloom-style challenge questions",
+      "Printable task cards, Classroom Display mode and saved tasks"
+    ],
+    worksOffline: false,
+    noAccount: true
+  },
 
   /* --------------------- TEACHER PRODUCTIVITY: COMING SOON ------------------ */
 
