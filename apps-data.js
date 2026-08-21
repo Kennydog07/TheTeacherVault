@@ -286,6 +286,34 @@ const APPS = [
     worksOffline: true,
     noAccount: true
   },
+  {
+    id: "morning-magic",
+    title: "Morning Magic",
+    tagline: "Instant morning starters for busy primary classrooms.",
+    description: "Choose a year group and a session length and get an instant set of morning starter activities — maths, SPaG, vocabulary, quick writing, a brain teaser and a question of the day — ready to put straight on the whiteboard. Completely free, with no locked features.",
+    category: "teacher",
+    subject: "Primary",
+    audience: "Primary teachers, Years 1-6",
+    tier: "lite",
+    price: "Free",
+    gumroadUrl: "",
+    fileUrl: "teacher-apps/morning-magic.html",
+    fileType: "app",
+    image: "images/morning-magic.jpg",
+    featured: true,
+    isNew: true,
+    comingSoon: false,
+    features: [
+      "Maths, SPaG, vocabulary, quick writing, brain teasers and a question of the day",
+      "Difficulty tailored to Year 1 through Year 6",
+      "Swap any single activity without regenerating the whole session",
+      "Reveal/hide answers, a built-in classroom timer and a whiteboard-friendly Classroom Mode",
+      "Print, copy or save a morning session for later",
+      "Opens instantly in a new browser tab — no login, no limits"
+    ],
+    worksOffline: true,
+    noAccount: true
+  },
 
   /* ----------------------- TEACHER PRODUCTIVITY: PRO (cont.) ----------------------- */
 
@@ -310,57 +338,6 @@ const APPS = [
       "Automatic detection of class-wide misconceptions",
       "Generated reteach priorities",
       "Faster workflow for a full class set of results"
-    ],
-    worksOffline: false,
-    noAccount: true
-  },
-  {
-    id: "feedback-fixer-lite",
-    title: "Feedback Fixer Lite",
-    tagline: "Quick, specific marking feedback for primary teachers.",
-    description: "Choose a year group, subject, attainment level and feedback focus, and get a positive comment, an improvement point and a clear next step — ready to copy, print or write straight into a book.",
-    category: "teacher",
-    subject: "General",
-    audience: "Primary teachers (Years 1-6)",
-    tier: "lite",
-    price: "Free",
-    gumroadUrl: "https://idamaemann.gumroad.com/l/dsphip",
-    image: "images/feedback-fixer-lite.jpg",
-    featured: false,
-    isNew: true,
-    comingSoon: false,
-    proVersionId: "feedback-fixer-pro",
-    features: [
-      "Positive feedback, an improvement point and a next step in one click",
-      "Covers English Writing, Reading, Maths and Science across Years 1-6",
-      "Options adapt to the year group and attainment level you pick",
-      "Copy individual comments, copy all, or print a feedback slip"
-    ],
-    worksOffline: false,
-    noAccount: true
-  },
-  {
-    id: "feedback-fixer-pro",
-    title: "Feedback Fixer Pro",
-    tagline: "Turn hours of marking into minutes for a whole class.",
-    description: "Everything in Feedback Fixer Lite, plus class lists, batch feedback for a whole class, 8 more subjects, SEND/EAL/High Attainer support, multiple feedback formats, editable saved history and class print sheets.",
-    category: "teacher",
-    subject: "General",
-    audience: "Primary teachers marking a full class",
-    tier: "pro",
-    price: "£2.99",
-    gumroadUrl: "https://idamaemann.gumroad.com/l/uueuie",
-    image: "images/feedback-fixer-pro.jpg",
-    featured: false,
-    isNew: true,
-    comingSoon: false,
-    liteVersionId: "feedback-fixer-lite",
-    features: [
-      "Class Manager with pupil profiles, saved locally in your browser",
-      "Batch-generate feedback for a whole class, each pupil individually adjustable",
-      "12 subjects, 5 feedback formats and 5 tones of voice",
-      "SEND, EAL and High Attainer support built into every next step",
-      "Editable feedback, saved history and printable class sheets"
     ],
     worksOffline: false,
     noAccount: true

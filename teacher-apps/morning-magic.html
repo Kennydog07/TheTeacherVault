@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Magic | The Teacher Vault</title>
+<meta name="description" content="Instant morning starter activities for primary classrooms — free, offline, no login.">
+<style>
+  :root{
+    --bg:#f4f7fb;
+    --surface:#ffffff;
+    --surface-soft:#eef2fb;
+    --border:#e1e7f2;
+    --text:#1c2536;
+    --text-muted:#5c6780;
+    --brand:#2f5fd0;
+    --brand-dark:#1f3f97;
+    --brand-light:#e8effe;
+    --good:#1f9d63;
+    --warn:#c2680a;
+    --radius-lg:22px;
+    --radius-md:16px;
+    --radius-sm:10px;
+    --shadow:0 10px 30px rgba(30,45,90,0.10);
+    --shadow-sm:0 4px 12px rgba(30,45,90,0.08);
+    --maths:#2f5fd0;      --maths-bg:#e8effe;
+    --spag:#8b3fd6;       --spag-bg:#f2e8fd;
+    --vocab:#d6337c;      --vocab-bg:#fde8f1;
+    --writing:#d4711a;    --writing-bg:#fdf0e2;
+    --brainteaser:#0f9b8e; --brainteaser-bg:#e2f7f5;
+    --question:#c99a12;   --question-bg:#fdf5dc;
+    --bonus:#e0455a;      --bonus-bg:#fde9eb;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height:1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  img{ max-width:100%; display:block; }
+  button{ font-family:inherit; }
+
+  a, button, select, input, [tabindex] { }
+  a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible, [tabindex]:focus-visible {
+    outline: 3px solid #ffb100;
+    outline-offset: 2px;
+  }
+
+  .wrap{ max-width: 1180px; margin:0 auto; padding: 0 20px 64px; }
+
+  /* ---------------------------- Header ---------------------------- */
+  header.app-header{
+    background: linear-gradient(135deg, var(--brand) 0%, #4a7bf0 100%);
+    color:#fff;
+    padding: 22px 20px;
+    margin-bottom: 28px;
+  }
+  .header-inner{
+    max-width:1180px; margin:0 auto;
+    display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  }
+  .header-inner img.logo{
+    width:56px; height:56px; border-radius:14px; object-fit:cover;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25); flex-shrink:0;
+  }
+  .header-titles h1{ margin:0; font-size:1.7rem; letter-spacing:-0.01em; }
+  .header-titles p{ margin:2px 0 0; font-size:0.98rem; color:#dce6ff; }
+
+  /* ---------------------------- Cards / layout ---------------------------- */
+  .card{
+    background: var(--surface);
+    border:1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 26px;
+  }
+  .card + .card{ margin-top:22px; }
+
+  .field-row{ display:flex; gap:18px; flex-wrap:wrap; }
+  .field{ flex:1; min-width:200px; }
+  .field label{ display:block; font-weight:700; font-size:0.95rem; margin-bottom:8px; }
+  select.big-select{
+    width:100%; font-size:1.15rem; font-weight:600; padding:14px 16px;
+    border-radius: var(--radius-sm); border:2px solid var(--border);
+    background: var(--surface-soft); color:var(--text);
+    appearance:none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><path d='M5 8l5 5 5-5' stroke='%235c6780' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat:no-repeat; background-position: right 14px center;
+    padding-right: 42px;
+  }
+  select.big-select:hover{ border-color: var(--brand); }
+
+  .toggles{ display:flex; flex-wrap:wrap; gap:10px; margin-top:6px; }
+  .toggle-chip{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:10px 16px; border-radius:999px; border:2px solid var(--border);
+    background:#fff; cursor:pointer; font-weight:600; font-size:0.95rem;
+    user-select:none;
+  }
+  .toggle-chip input{ width:18px; height:18px; accent-color: var(--brand); cursor:pointer; }
+  .toggle-chip[data-on="true"]{ border-color: var(--brand); background: var(--brand-light); color: var(--brand-dark); }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    font-weight:700; font-size:1rem; border-radius: var(--radius-sm);
+    border:2px solid transparent; padding:14px 22px; cursor:pointer;
+    transition: transform .05s ease;
+  }
+  .btn:active{ transform: translateY(1px); }
+  .btn-primary{ background: var(--brand); color:#fff; }
+  .btn-primary:hover{ background: var(--brand-dark); }
+  .btn-secondary{ background:#fff; border-color: var(--border); color: var(--text); }
+  .btn-secondary:hover{ border-color: var(--brand); color: var(--brand-dark); }
+  .btn-ghost{ background: transparent; border-color: transparent; color: var(--text-muted); }
+  .btn-ghost:hover{ color: var(--text); background: var(--surface-soft); }
+  .btn-lg{ font-size:1.2rem; padding:18px 28px; width:100%; }
+  .btn-sm{ font-size:0.85rem; padding:8px 14px; border-radius:999px; }
+  .btn[disabled]{ opacity:0.5; cursor:not-allowed; }
+
+  .actions-row{ display:flex; flex-wrap:wrap; gap:12px; margin-top:18px; }
+  .actions-row[hidden]{ display:none; }
+
+  .generate-wrap{ margin-top:24px; }
+
+  /* ---------------------------- Empty state ---------------------------- */
+  .empty-state{
+    text-align:center; padding: 56px 24px;
+    background: var(--brand-light);
+    border:2px dashed #c3d3fb;
+  }
+  .empty-state h2{ margin:0 0 10px; font-size:1.6rem; color: var(--brand-dark); }
+  .empty-state p{ margin:0; color: var(--text-muted); font-size:1.05rem; max-width:46ch; margin:0 auto; }
+  .empty-state .empty-icon{ font-size:2.6rem; margin-bottom:12px; }
+
+  /* ---------------------------- Session header ---------------------------- */
+  .session-header{
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:14px;
+    margin-bottom:18px;
+  }
+  .session-date{ color: var(--text-muted); font-size:0.95rem; font-weight:600; }
+  .session-greeting{ font-size:1.5rem; font-weight:800; margin:2px 0 0; }
+
+  /* ---------------------------- Activity cards ---------------------------- */
+  .activities-grid{
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap:18px; margin-top:8px;
+  }
+  .activity-card{
+    background:#fff; border-radius: var(--radius-md); border:2px solid var(--border);
+    padding:20px; box-shadow: var(--shadow-sm);
+    display:flex; flex-direction:column; gap:12px;
+    border-top-width:6px;
+  }
+  .activity-card[data-cat="maths"]{ border-top-color: var(--maths); }
+  .activity-card[data-cat="spag"]{ border-top-color: var(--spag); }
+  .activity-card[data-cat="vocabulary"]{ border-top-color: var(--vocab); }
+  .activity-card[data-cat="writing"]{ border-top-color: var(--writing); }
+  .activity-card[data-cat="brainteaser"]{ border-top-color: var(--brainteaser); }
+  .activity-card[data-cat="question"]{ border-top-color: var(--question); }
+  .activity-card[data-cat="bonus"]{ border-top-color: var(--bonus); background: var(--bonus-bg); }
+
+  .cat-badge{
+    display:inline-flex; align-items:center; gap:6px; align-self:flex-start;
+    font-size:0.78rem; font-weight:800; text-transform:uppercase; letter-spacing:0.04em;
+    padding:5px 12px; border-radius:999px;
+  }
+  .activity-card[data-cat="maths"] .cat-badge{ background: var(--maths-bg); color: var(--maths); }
+  .activity-card[data-cat="spag"] .cat-badge{ background: var(--spag-bg); color: var(--spag); }
+  .activity-card[data-cat="vocabulary"] .cat-badge{ background: var(--vocab-bg); color: var(--vocab); }
+  .activity-card[data-cat="writing"] .cat-badge{ background: var(--writing-bg); color: var(--writing); }
+  .activity-card[data-cat="brainteaser"] .cat-badge{ background: var(--brainteaser-bg); color: var(--brainteaser); }
+  .activity-card[data-cat="question"] .cat-badge{ background: var(--question-bg); color: var(--question); }
+  .activity-card[data-cat="bonus"] .cat-badge{ background:#fff; color: var(--bonus); }
+
+  .activity-prompt{ font-size:1.18rem; font-weight:600; line-height:1.45; white-space:pre-line; }
+  .activity-answer{
+    display:none; font-size:1rem; padding:12px 14px; border-radius: var(--radius-sm);
+    background: var(--surface-soft); color: var(--good); font-weight:700;
+  }
+  .activity-answer.vary{ color: var(--text-muted); font-weight:600; font-style:italic; }
+  .answers-visible .activity-answer{ display:block; }
+
+  .card-footer-row{ display:flex; justify-content:flex-end; margin-top:auto; }
+
+  /* ---------------------------- Timer ---------------------------- */
+  .timer-card{ display:flex; flex-wrap:wrap; align-items:center; gap:20px; justify-content:space-between; }
+  .timer-display{
+    font-size:2.6rem; font-weight:800; font-variant-numeric: tabular-nums;
+    min-width:150px; text-align:center; color: var(--brand-dark);
+  }
+  .timer-display.time-up{ color: var(--bonus); }
+  .timer-controls{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+  .timer-controls select{ padding:10px 12px; border-radius: var(--radius-sm); border:2px solid var(--border); font-weight:600; }
+
+  /* ---------------------------- Toast ---------------------------- */
+  #toastRegion{
+    position: fixed; left:50%; bottom:26px; transform: translateX(-50%);
+    display:flex; flex-direction:column; gap:10px; z-index:999; align-items:center;
+  }
+  .toast{
+    background: var(--text); color:#fff; padding:12px 22px; border-radius:999px;
+    font-weight:700; box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    animation: toastIn .18s ease;
+  }
+  @keyframes toastIn{ from{ opacity:0; transform: translateY(8px);} to{ opacity:1; transform:none; } }
+
+  /* ---------------------------- Saved mornings ---------------------------- */
+  .saved-item{
+    display:flex; justify-content:space-between; align-items:center; gap:12px;
+    padding:14px 16px; border:2px solid var(--border); border-radius: var(--radius-sm);
+    margin-top:10px; flex-wrap:wrap;
+  }
+  .saved-item-meta{ font-weight:700; }
+  .saved-item-sub{ color: var(--text-muted); font-size:0.88rem; font-weight:500; }
+  .saved-item-actions{ display:flex; gap:8px; }
+  .saved-note{ color: var(--text-muted); font-size:0.88rem; margin-top:14px; }
+
+  /* ---------------------------- Footer ---------------------------- */
+  footer.app-footer{
+    text-align:center; padding:30px 20px; color: var(--text-muted); font-size:0.92rem;
+  }
+
+  /* ---------------------------- Classroom mode ---------------------------- */
+  body.classroom-mode{ background:#0e2a6b; }
+  body.classroom-mode header.app-header,
+  body.classroom-mode .controls-card,
+  body.classroom-mode .timer-card,
+  body.classroom-mode footer.app-footer,
+  body.classroom-mode .saved-card,
+  body.classroom-mode .session-actions,
+  body.classroom-mode .empty-state{ display:none !important; }
+  body.classroom-mode .wrap{ max-width:none; padding:26px; }
+  body.classroom-mode .session-header{ color:#fff; }
+  body.classroom-mode .session-date{ color:#cfe0ff; font-size:1.2rem; }
+  body.classroom-mode .session-greeting{ color:#fff; font-size:2.6rem; }
+  body.classroom-mode .activities-grid{ gap:24px; }
+  body.classroom-mode .activity-card{ padding:30px; border-top-width:10px; }
+  body.classroom-mode .activity-prompt{ font-size:1.85rem; }
+  body.classroom-mode .activity-answer{ font-size:1.4rem; }
+  body.classroom-mode .cat-badge{ font-size:0.95rem; padding:7px 16px; }
+  body.classroom-mode .exit-classroom-btn{ display:inline-flex !important; }
+  .exit-classroom-btn{ display:none; }
+
+  /* ---------------------------- Responsive ---------------------------- */
+  @media (max-width: 720px){
+    .header-titles h1{ font-size:1.4rem; }
+    .card{ padding:20px; }
+    .timer-display{ font-size:2rem; }
+    body.classroom-mode .activity-prompt{ font-size:1.4rem; }
+    body.classroom-mode .session-greeting{ font-size:1.9rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  /* ---------------------------- Print ---------------------------- */
+  @media print{
+    body{ background:#fff; }
+    header.app-header, .controls-card, .timer-card, .session-actions,
+    footer.app-footer, .saved-card, #toastRegion, .card-footer-row, .empty-state{ display:none !important; }
+    .wrap{ max-width:none; padding:0; }
+    .card{ box-shadow:none; border:none; padding:0; }
+    .activities-grid{ display:block; }
+    .activity-card{
+      border:1px solid #999; border-top:1px solid #999; box-shadow:none;
+      break-inside: avoid; margin-bottom:18px; padding:16px;
+    }
+    .activity-answer{ display:none !important; }
+    .print-writing-space{ display:block; border-bottom:1px solid #bbb; height:26px; margin-top:10px; }
+    .print-writing-space:nth-child(1){ margin-top:16px; }
+  }
+  .print-writing-space{ display:none; }
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="header-inner">
+    <img class="logo" alt="The Teacher Vault" src="data:image/jpeg;base64,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">
+    <div class="header-titles">
+      <h1>Morning Magic</h1>
+      <p>Instant morning starters for busy primary classrooms</p>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <button type="button" class="btn btn-secondary exit-classroom-btn" id="exitClassroomBtn" style="position:fixed;top:18px;right:18px;z-index:998;">Exit Classroom Mode</button>
+
+  <!-- ============================== CONTROLS ============================== -->
+  <section class="card controls-card">
+    <div class="field-row">
+      <div class="field">
+        <label for="yearGroupSelect">Year Group</label>
+        <select id="yearGroupSelect" class="big-select">
+          <option>Year 1</option>
+          <option>Year 2</option>
+          <option>Year 3</option>
+          <option selected>Year 4</option>
+          <option>Year 5</option>
+          <option>Year 6</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="sessionLengthSelect">Morning Session Length</label>
+        <select id="sessionLengthSelect" class="big-select">
+          <option value="5">5 minutes</option>
+          <option value="10" selected>10 minutes</option>
+          <option value="15">15 minutes</option>
+          <option value="20">20 minutes</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field" style="margin-top:20px;">
+      <label>Activity types</label>
+      <div class="toggles" id="categoryToggles"></div>
+    </div>
+
+    <div class="generate-wrap">
+      <button type="button" class="btn btn-primary btn-lg" id="generateBtn">✨ Generate Morning Magic</button>
+    </div>
+
+    <div class="actions-row session-actions" id="sessionActionsRow" hidden>
+      <button type="button" class="btn btn-secondary" id="generateAgainBtn">🔄 Generate Again</button>
+      <button type="button" class="btn btn-secondary" id="revealBtn">👀 Reveal Answers</button>
+      <button type="button" class="btn btn-secondary" id="classroomModeBtn">🖥️ Classroom Mode</button>
+      <button type="button" class="btn btn-secondary" id="printBtn">🖨️ Print Morning Work</button>
+      <button type="button" class="btn btn-secondary" id="copyBtn">📋 Copy Activities</button>
+      <button type="button" class="btn btn-secondary" id="saveBtn">💾 Save Morning</button>
+    </div>
+  </section>
+
+  <!-- ============================== TIMER ============================== -->
+  <section class="card timer-card">
+    <div>
+      <label for="timerLengthSelect" style="font-weight:700; display:block; margin-bottom:8px;">Classroom Timer</label>
+      <div class="timer-controls">
+        <select id="timerLengthSelect">
+          <option value="5">5 minutes</option>
+          <option value="10" selected>10 minutes</option>
+          <option value="15">15 minutes</option>
+          <option value="20">20 minutes</option>
+        </select>
+        <button type="button" class="btn btn-secondary btn-sm" id="timerStartBtn">Start</button>
+        <button type="button" class="btn btn-secondary btn-sm" id="timerPauseBtn">Pause</button>
+        <button type="button" class="btn btn-secondary btn-sm" id="timerResetBtn">Reset</button>
+      </div>
+    </div>
+    <div class="timer-display" id="timerDisplay">10:00</div>
+  </section>
+
+  <!-- ============================== RESULTS ============================== -->
+  <section class="card" id="resultsCard" style="margin-top:22px;">
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">🌅</div>
+      <h2>Ready for a little Morning Magic?</h2>
+      <p>Choose your year group and session length, then generate a ready-to-use starter for your class.</p>
+    </div>
+
+    <div id="sessionOutput" hidden>
+      <div class="session-header">
+        <div>
+          <p class="session-date" id="sessionDate"></p>
+          <p class="session-greeting" id="sessionGreeting"></p>
+        </div>
+      </div>
+      <div class="activities-grid" id="activitiesGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============================== SAVED MORNINGS ============================== -->
+  <section class="card saved-card">
+    <h2 style="margin:0 0 4px;font-size:1.2rem;">Saved Mornings</h2>
+    <p class="saved-note">Saved mornings are stored only in this browser.</p>
+    <div id="savedList"></div>
+  </section>
+
+</div>
+
+<footer class="app-footer">
+  The Teacher Vault — Tools that give teachers their time back
+</footer>
+
+<div id="toastRegion" aria-live="polite"></div>
+
+<script>
+/* ============================================================
+   Morning Magic — The Teacher Vault
+   Fully self-contained, rule-based generator. No network calls.
+   ============================================================ */
+
+function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+function pick(arr) { return arr[randInt(0, arr.length - 1)]; }
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = randInt(0, i);
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, function (ch) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[ch];
+  });
+}
+
+/* ---------------------------- Maths generators ---------------------------- */
+
+const MATHS_GENERATORS = {
+  "Year 1": [
+    function () { const a = randInt(1, 12), b = randInt(1, Math.min(12, 20 - a)); return { prompt: a + " + " + b + " = ?", answer: String(a + b) }; },
+    function () { const a = randInt(5, 20), b = randInt(1, a); return { prompt: a + " − " + b + " = ?", answer: String(a - b) }; },
+    function () { const b = randInt(1, 9); return { prompt: "? + " + b + " = 10", answer: String(10 - b) }; },
+    function () { const step = pick([2, 5, 10]); const start = step * randInt(0, 3); const seq = [start, start + step, start + 2 * step, start + 3 * step]; return { prompt: "What comes next? " + seq.join(", ") + ", ?", answer: String(start + 4 * step) }; },
+    function () { const n = randInt(1, 10); return { prompt: "Double " + n + " is?", answer: String(n * 2) }; },
+    function () { const n = randInt(1, 19); return { prompt: "What is one more than " + n + "?", answer: String(n + 1) }; },
+    function () { const n = randInt(2, 20); return { prompt: "What is one less than " + n + "?", answer: String(n - 1) }; },
+    function () { const a = randInt(1, 9), b = randInt(1, 9); return { prompt: "Circle the bigger number: " + a + " or " + b, answer: String(Math.max(a, b)) }; }
+  ],
+  "Year 2": [
+    function () { const a = randInt(20, 70), b = randInt(10, 29); return { prompt: a + " + " + b + " = ?", answer: String(a + b) }; },
+    function () { const a = randInt(40, 99), b = randInt(10, a - 1); return { prompt: a + " − " + b + " = ?", answer: String(a - b) }; },
+    function () { const t = pick([2, 5, 10]); const n = randInt(1, 12); return { prompt: t + " × " + n + " = ?", answer: String(t * n) }; },
+    function () { const money = randInt(15, 50), spend = randInt(1, money - 1); return { prompt: "I have " + money + "p and spend " + spend + "p. How much is left?", answer: (money - spend) + "p" }; },
+    function () { const tens = randInt(1, 9), ones = randInt(0, 9); return { prompt: "What is the value of the " + tens + " in " + (tens * 10 + ones) + "?", answer: String(tens * 10) }; },
+    function () { const n = randInt(1, 25); return { prompt: "Double " + n + " is?", answer: String(n * 2) }; },
+    function () { const n = randInt(1, 20) * 2; return { prompt: "Half of " + n + " is?", answer: String(n / 2) }; },
+    function () { const a = randInt(1, 50), b = randInt(1, 50); return { prompt: "What is " + a + " + " + b + " − 10?", answer: String(a + b - 10) }; }
+  ],
+  "Year 3": [
+    function () { const t = pick([3, 4, 8]); const n = randInt(1, 12); return { prompt: t + " × " + n + " = ?", answer: String(t * n) }; },
+    function () { const t = pick([3, 4, 8]); const n = randInt(1, 12); const product = t * n; return { prompt: product + " ÷ " + t + " = ?", answer: String(n) }; },
+    function () { const a = randInt(120, 500), b = randInt(100, 400); return { prompt: a + " + " + b + " = ?", answer: String(a + b) }; },
+    function () { const a = randInt(300, 800), b = randInt(100, a - 50); return { prompt: a + " − " + b + " = ?", answer: String(a - b) }; },
+    function () { const frac = pick([2, 3, 4]); const whole = frac * randInt(2, 8); return { prompt: "1/" + frac + " of " + whole + " = ?", answer: String(whole / frac) }; },
+    function () { const target = randInt(30, 90), part = randInt(5, target - 5); return { prompt: "? + " + part + " = " + target, answer: String(target - part) }; },
+    function () { const m = randInt(1, 4), cm = randInt(1, 99); return { prompt: "How many cm in " + m + "m " + cm + "cm?", answer: String(m * 100 + cm) + "cm" }; },
+    function () { const start = randInt(1, 20), step = randInt(3, 9); const seq = [start, start + step, start + 2 * step]; return { prompt: "Continue the sequence: " + seq.join(", ") + ", ?", answer: String(start + 3 * step) }; }
+  ],
+  "Year 4": [
+    function () { const a = randInt(2, 12), b = randInt(2, 12); return { prompt: a + " × " + b + " = ?", answer: String(a * b) }; },
+    function () { const a = randInt(12, 45), b = randInt(2, 8); return { prompt: a + " × " + b + " = ?", answer: String(a * b) }; },
+    function () { const divisor = randInt(2, 9); const quotient = randInt(3, 12); const remainder = randInt(1, divisor - 1); const dividend = divisor * quotient + remainder; return { prompt: dividend + " ÷ " + divisor + " = ? remainder ?", answer: quotient + " remainder " + remainder }; },
+    function () { const a = (randInt(10, 60) / 10).toFixed(1), b = (randInt(10, 60) / 10).toFixed(1); return { prompt: a + " + " + b + " = ?", answer: (parseFloat(a) + parseFloat(b)).toFixed(1) }; },
+    function () { const start = randInt(1, 6), drop = randInt(3, 8); return { prompt: "The temperature is " + start + "°C and drops by " + drop + "°C. What is the new temperature?", answer: (start - drop) + "°C" }; },
+    function () { const l = randInt(4, 12), w = randInt(2, 9); return { prompt: "A rectangle is " + l + "cm by " + w + "cm. What is its area?", answer: (l * w) + "cm²" }; },
+    function () { const l = randInt(4, 12), w = randInt(2, 9); return { prompt: "A rectangle is " + l + "cm by " + w + "cm. What is its perimeter?", answer: (2 * (l + w)) + "cm" }; },
+    function () { const n = randInt(1, 20); const romanMap = [[10,"X"],[9,"IX"],[5,"V"],[4,"IV"],[1,"I"]]; function toRoman(num){ let res=""; romanMap.forEach(function(pair){ while(num>=pair[0]){ res+=pair[1]; num-=pair[0]; } }); return res; } return { prompt: "What is " + toRoman(n) + " in numbers?", answer: String(n) }; }
+  ],
+  "Year 5": [
+    function () { const a = randInt(12, 40), b = randInt(11, 30); return { prompt: a + " × " + b + " = ?", answer: String(a * b) }; },
+    function () { const divisor = randInt(3, 12); const quotient = randInt(10, 40); return { prompt: (divisor * quotient) + " ÷ " + divisor + " = ?", answer: String(quotient) }; },
+    function () { const denom = pick([5, 6, 8, 10]); const a = randInt(1, denom - 1), b = randInt(1, denom - a); return { prompt: a + "/" + denom + " + " + b + "/" + denom + " = ?", answer: (a + b) + "/" + denom }; },
+    function () { const a = (randInt(100, 900) / 100).toFixed(2), b = (randInt(50, 500) / 100).toFixed(2); return { prompt: a + " + " + b + " = ?", answer: (parseFloat(a) + parseFloat(b)).toFixed(2) }; },
+    function () { const pct = pick([10, 25, 50]); const base = pct === 25 ? randInt(2, 25) * 4 : (pct === 50 ? randInt(2, 50) * 2 : randInt(2, 50) * 10); return { prompt: "Find " + pct + "% of " + base + ".", answer: String((base * pct) / 100) }; },
+    function () { const a = randInt(2, 9), b = randInt(2, 9), c = randInt(1, 10); return { prompt: "(" + a + " + " + b + ") × " + c + " = ?", answer: String((a + b) * c) }; },
+    function () { const kg = randInt(1, 9), g = randInt(1, 9) * 100; return { prompt: "How many grams in " + kg + "." + (g/100) + " kg?", answer: String(kg * 1000 + g) + "g" }; },
+    function () { const mins = randInt(70, 300); return { prompt: "Convert " + mins + " minutes into hours and minutes.", answer: Math.floor(mins / 60) + " hours " + (mins % 60) + " minutes" }; }
+  ],
+  "Year 6": [
+    function () { const a = randInt(23, 89), b = randInt(11, 45); return { prompt: a + " × " + b + " = ?", answer: String(a * b) }; },
+    function () { const divisor = randInt(6, 18); const quotient = randInt(12, 60); return { prompt: (divisor * quotient) + " ÷ " + divisor + " = ?", answer: String(quotient) }; },
+    function () { const whole = randInt(2, 12); const numer = randInt(1, 3), denom = pick([2, 4]); return { prompt: numer + "/" + denom + " × " + whole + " = ?", answer: String((numer * whole) / denom) }; },
+    function () { const a = (randInt(150, 999) / 100).toFixed(2); const b = randInt(2, 9); return { prompt: a + " × " + b + " = ?", answer: (parseFloat(a) * b).toFixed(2) }; },
+    function () { const pct = pick([15, 20, 30, 40, 60, 75]); const base = randInt(2, 40) * 10; return { prompt: "Find " + pct + "% of " + base + ".", answer: String((base * pct) / 100) }; },
+    function () { const total = randInt(4, 12) * 5; const ratioA = randInt(1, 4), ratioB = randInt(1, 4); const share = total / (ratioA + ratioB); return share % 1 === 0 ? { prompt: "Share £" + total + " in the ratio " + ratioA + ":" + ratioB + ". How much is the smaller share?", answer: "£" + (share * Math.min(ratioA, ratioB)) } : this(); }.bind(0),
+    function () { const x = randInt(2, 20), add = randInt(3, 15); return { prompt: "If x + " + add + " = " + (x + add) + ", what is x?", answer: String(x) }; },
+    function () { const a = randInt(3, 9), b = randInt(2, 9), c = randInt(1, 12); return { prompt: "(" + a + " + " + b + ") × " + c + " − " + randInt(1,10) + " = ?", answer: "" }; },
+    function () { const num = randInt(150, 999) / 100; return { prompt: (num.toFixed(2)) + " × 8 = ?", answer: (num * 8).toFixed(2) }; },
+    function () { const f = pick([[1,4,"25%"],[1,2,"50%"],[3,4,"75%"],[1,5,"20%"],[3,5,"60%"],[1,10,"10%"]]); return { prompt: "Write " + f[0] + "/" + f[1] + " as a percentage.", answer: f[2] }; }
+  ]
+};
+// Fix the malformed generator (index 7 in Year 6) so it always returns a real question.
+MATHS_GENERATORS["Year 6"][7] = function () {
+  const a = randInt(3, 9), b = randInt(2, 9), c = randInt(1, 12), d = randInt(1, 10);
+  return { prompt: "(" + a + " + " + b + ") × " + c + " − " + d + " = ?", answer: String((a + b) * c - d) };
+};
+MATHS_GENERATORS["Year 6"][5] = function () {
+  const ratioA = randInt(1, 4), ratioB = randInt(1, 4);
+  const unit = randInt(2, 10);
+  const total = (ratioA + ratioB) * unit;
+  return { prompt: "Share £" + total + " in the ratio " + ratioA + ":" + ratioB + ". How much is the smaller share?", answer: "£" + (unit * Math.min(ratioA, ratioB)) };
+};
+
+function generateMaths(yearGroup) {
+  const pool = MATHS_GENERATORS[yearGroup];
+  const q = pick(pool)();
+  return { category: "maths", prompt: q.prompt, answer: q.answer };
+}
+
+/* ---------------------------- SPaG banks ---------------------------- */
+
+const SPAG_BANKS = {
+  "Year 1": [
+    { prompt: "Add the missing capital letter: ‘tom likes cake.’", answer: "Tom likes cake." },
+    { prompt: "Add the missing full stop: ‘The sun is hot’", answer: "The sun is hot." },
+    { prompt: "What is the plural of ‘dog’?", answer: "dogs" },
+    { prompt: "What is the plural of ‘box’?", answer: "boxes" },
+    { prompt: "Give a word that rhymes with ‘cat’.", answer: "Answers will vary (e.g. hat, mat, bat, sat)." },
+    { prompt: "Give a word that rhymes with ‘hop’.", answer: "Answers will vary (e.g. top, pop, stop)." },
+    { prompt: "Is ‘run’ a naming word or a doing word?", answer: "A doing word (verb)." },
+    { prompt: "Is ‘happy’ a describing word or a doing word?", answer: "A describing word (adjective)." },
+    { prompt: "Add the missing capital letter and full stop: ‘i have a red bike’", answer: "I have a red bike." },
+    { prompt: "Which word means the opposite of ‘big’?", answer: "small (or little)" }
+  ],
+  "Year 2": [
+    { prompt: "Add the missing capital letter and full stop:\n‘my dog is called ben’", answer: "My dog is called Ben." },
+    { prompt: "Add the correct punctuation: ‘what is your favourite colour’", answer: "What is your favourite colour?" },
+    { prompt: "Find the adjective in this sentence: ‘The big dog ran fast.’", answer: "big" },
+    { prompt: "Add ‘-ing’ to the word ‘jump’.", answer: "jumping" },
+    { prompt: "Add ‘-ed’ to the word ‘walk’.", answer: "walked" },
+    { prompt: "Choose ‘and’, ‘but’ or ‘so’: ‘I was tired ___ I kept playing.’", answer: "but" },
+    { prompt: "What is the plural of ‘child’?", answer: "children" },
+    { prompt: "Rewrite with an exclamation mark: ‘watch out’", answer: "Watch out!" },
+    { prompt: "Which of these is a noun: ‘quickly’, ‘table’, ‘jump’?", answer: "table" },
+    { prompt: "Add the missing capital letters: ‘we went to london in may’", answer: "We went to London in May." }
+  ],
+  "Year 3": [
+    { prompt: "Rewrite using an apostrophe for the missing letters: ‘do not’", answer: "don't" },
+    { prompt: "Rewrite using an apostrophe for the missing letters: ‘cannot’", answer: "can't" },
+    { prompt: "Which word class is ‘quickly’ in ‘She ran quickly’?", answer: "Adverb" },
+    { prompt: "Add a prefix to change ‘happy’ to its opposite.", answer: "unhappy" },
+    { prompt: "Add a prefix to change ‘appear’ to its opposite.", answer: "disappear" },
+    { prompt: "Correct this sentence: ‘i went to london on monday’", answer: "I went to London on Monday." },
+    { prompt: "Which conjunction fits best: ‘I was tired ___ I kept working.’ (and / because / so)", answer: "so" },
+    { prompt: "Add the missing apostrophe: ‘the dogs bone’ (belonging to one dog)", answer: "the dog's bone" },
+    { prompt: "Turn ‘care’ into an adjective by adding ‘-ful’.", answer: "careful" },
+    { prompt: "Which word is the verb: ‘The noisy children laughed loudly.’", answer: "laughed" }
+  ],
+  "Year 4": [
+    { prompt: "Add a fronted adverbial to start this sentence:\n‘___, the children ran outside.’", answer: "Answers will vary (e.g. Suddenly, / After lunch, / Without warning,)." },
+    { prompt: "Add an apostrophe to show possession: ‘the dogs bone’ (one dog)", answer: "the dog's bone" },
+    { prompt: "Which word is the adverb: ‘She spoke calmly to the class.’", answer: "calmly" },
+    { prompt: "Turn ‘quick’ into an adverb.", answer: "quickly" },
+    { prompt: "Turn ‘sudden’ into an adverb.", answer: "suddenly" },
+    { prompt: "Add the missing commas in this list: ‘I packed a hat a coat and some gloves.’", answer: "I packed a hat, a coat and some gloves." },
+    { prompt: "Which word is the noun: ‘The brave firefighter climbed quickly.’", answer: "firefighter" },
+    { prompt: "Rewrite in the past tense: ‘She walks to school.’", answer: "She walked to school." },
+    { prompt: "Add a prefix meaning ‘again’ to ‘write’.", answer: "rewrite" },
+    { prompt: "Which sentence uses direct speech correctly?\nA) Sam said I am tired\nB) Sam said, \"I am tired.\"", answer: "B" }
+  ],
+  "Year 5": [
+    { prompt: "Identify the subordinate clause: ‘Although it was raining, we went outside.’", answer: "Although it was raining" },
+    { prompt: "Combine using a relative clause: ‘The dog was brown. It ran fast.’", answer: "Answers will vary (e.g. The dog, which ran fast, was brown.)." },
+    { prompt: "What does the prefix ‘auto-’ mean, as in ‘automatic’?", answer: "Self / by itself" },
+    { prompt: "What does the prefix ‘tele-’ mean, as in ‘telephone’?", answer: "Far / distant" },
+    { prompt: "Replace ‘good’ with a more powerful synonym: ‘It was a good performance.’", answer: "Answers will vary (e.g. outstanding, impressive, remarkable)." },
+    { prompt: "Punctuate this direct speech correctly: ‘she said i am tired’", answer: "She said, \"I am tired.\"" },
+    { prompt: "Which word is the modal verb: ‘You should finish your work.’", answer: "should" },
+    { prompt: "Rewrite in the passive voice: ‘The chef cooked the meal.’", answer: "The meal was cooked by the chef." },
+    { prompt: "Add a semicolon to join these sentences: ‘I was hungry I ate an apple’", answer: "I was hungry; I ate an apple." },
+    { prompt: "Which word is the determiner: ‘Every pupil finished the test.’", answer: "Every" }
+  ],
+  "Year 6": [
+    { prompt: "Which word in this sentence is a subordinating conjunction?\n‘Although it was raining, we went outside.’", answer: "Although" },
+    { prompt: "Rewrite in the passive voice: ‘The dog chased the cat.’", answer: "The cat was chased by the dog." },
+    { prompt: "Correct this sentence using a semicolon: ‘I was hungry I ate an apple’", answer: "I was hungry; I ate an apple." },
+    { prompt: "Identify the modal verb: ‘She might come to the party.’", answer: "might" },
+    { prompt: "Add parenthesis (brackets or commas) to include extra information:\n‘My teacher Mrs Smith is very kind.’", answer: "My teacher, Mrs Smith, is very kind." },
+    { prompt: "Which word is the relative pronoun: ‘The book, which I borrowed, was excellent.’", answer: "which" },
+    { prompt: "Rewrite formally: ‘The results were, like, really good.’", answer: "Answers will vary (e.g. The results were very good.)." },
+    { prompt: "Add a colon to introduce this list: ‘We need the following items bread milk and eggs’", answer: "We need the following items: bread, milk and eggs." },
+    { prompt: "Which word class is ‘furthermore’ acting as in: ‘Furthermore, the evidence was clear.’", answer: "Adverb (a cohesive/linking adverb)" },
+    { prompt: "Identify the subject and the object: ‘The teacher praised the pupil.’", answer: "Subject: the teacher. Object: the pupil." }
+  ]
+};
+
+const SPAG_CAPITAL_BANK = [
+  "the cat sat on the wall",
+  "we are going swimming today",
+  "sam and jess play chess",
+  "our school trip is on friday",
+  "the river flows through the town",
+  "birds sing in the morning",
+  "i can see the moon tonight",
+  "the library opens at nine"
+];
+function generateSpagCapitalFix() {
+  const s = pick(SPAG_CAPITAL_BANK);
+  const fixed = s.charAt(0).toUpperCase() + s.slice(1) + ".";
+  return { prompt: "Add the missing capital letter and full stop:\n‘" + s + "’", answer: fixed };
+}
+
+function generateSpag(yearGroup) {
+  const useTemplate = Math.random() < 0.25;
+  const q = useTemplate ? generateSpagCapitalFix() : pick(SPAG_BANKS[yearGroup]);
+  return { category: "spag", prompt: q.prompt, answer: q.answer };
+}
+
+/* ---------------------------- Vocabulary banks ---------------------------- */
+
+const VOCAB_BANKS = {
+  "Year 1": [
+    { word: "huge", meaning: "very big", synonym: "enormous", antonym: "tiny", sentence: "The elephant was huge." },
+    { word: "tiny", meaning: "very small", synonym: "little", antonym: "huge", sentence: "The ant was tiny." },
+    { word: "happy", meaning: "feeling glad or pleased", synonym: "glad", antonym: "sad", sentence: "She felt happy on her birthday." },
+    { word: "quick", meaning: "moving fast", synonym: "fast", antonym: "slow", sentence: "The rabbit was quick." },
+    { word: "bright", meaning: "full of light", synonym: "shining", antonym: "dull", sentence: "The bright sun woke us up." }
+  ],
+  "Year 2": [
+    { word: "gigantic", meaning: "extremely large", synonym: "enormous", antonym: "minuscule", sentence: "A gigantic wave crashed on the shore." },
+    { word: "furious", meaning: "extremely angry", synonym: "enraged", antonym: "calm", sentence: "He was furious when he lost the game." },
+    { word: "delighted", meaning: "very pleased", synonym: "thrilled", antonym: "disappointed", sentence: "She was delighted with her present." },
+    { word: "exhausted", meaning: "very tired", synonym: "worn out", antonym: "energetic", sentence: "After the race, he was exhausted." },
+    { word: "gloomy", meaning: "dark and dull, or sad", synonym: "dismal", antonym: "cheerful", sentence: "The sky looked gloomy before the storm." }
+  ],
+  "Year 3": [
+    { word: "reluctant", meaning: "not willing to do something", synonym: "unwilling", antonym: "eager", sentence: "She was reluctant to go swimming in the cold sea." },
+    { word: "curious", meaning: "eager to know or learn something", synonym: "inquisitive", antonym: "indifferent", sentence: "The curious cat explored every corner." },
+    { word: "ancient", meaning: "very old, from long ago", synonym: "old", antonym: "modern", sentence: "They found an ancient coin in the field." },
+    { word: "cautious", meaning: "careful to avoid danger", synonym: "careful", antonym: "reckless", sentence: "He was cautious crossing the busy road." },
+    { word: "vanish", meaning: "to disappear suddenly", synonym: "disappear", antonym: "appear", sentence: "The magician made the coin vanish." }
+  ],
+  "Year 4": [
+    { word: "resilient", meaning: "able to recover quickly from difficulties", synonym: "tough", antonym: "fragile", sentence: "The resilient team bounced back after losing." },
+    { word: "hesitant", meaning: "slow to act because of uncertainty", synonym: "unsure", antonym: "decisive", sentence: "She was hesitant to answer the tricky question." },
+    { word: "magnificent", meaning: "extremely beautiful or impressive", synonym: "splendid", antonym: "ordinary", sentence: "The castle looked magnificent at sunset." },
+    { word: "peculiar", meaning: "strange or unusual", synonym: "odd", antonym: "normal", sentence: "There was a peculiar smell in the old house." },
+    { word: "determined", meaning: "firmly decided to do something", synonym: "resolute", antonym: "half-hearted", sentence: "She was determined to finish the marathon." }
+  ],
+  "Year 5": [
+    { word: "meticulous", meaning: "very careful and precise", synonym: "thorough", antonym: "careless", sentence: "The scientist was meticulous with her measurements." },
+    { word: "ambiguous", meaning: "open to more than one interpretation", synonym: "unclear", antonym: "obvious", sentence: "His ambiguous answer confused everyone." },
+    { word: "tenacious", meaning: "not giving up easily", synonym: "persistent", antonym: "yielding", sentence: "The tenacious explorer refused to turn back." },
+    { word: "candid", meaning: "honest and direct", synonym: "frank", antonym: "evasive", sentence: "She gave a candid opinion about the film." },
+    { word: "eloquent", meaning: "fluent and persuasive in speaking", synonym: "articulate", antonym: "inarticulate", sentence: "The eloquent speaker impressed the audience." }
+  ],
+  "Year 6": [
+    { word: "ubiquitous", meaning: "found everywhere", synonym: "omnipresent", antonym: "rare", sentence: "Smartphones have become ubiquitous in modern life." },
+    { word: "pragmatic", meaning: "dealing with things sensibly and realistically", synonym: "practical", antonym: "idealistic", sentence: "The team took a pragmatic approach to the problem." },
+    { word: "conscientious", meaning: "wishing to do one's work well and thoroughly", synonym: "diligent", antonym: "careless", sentence: "She is a conscientious student who checks her work." },
+    { word: "arduous", meaning: "involving strenuous effort", synonym: "gruelling", antonym: "effortless", sentence: "The arduous hike took them eight hours." },
+    { word: "benevolent", meaning: "kind and generous", synonym: "kindly", antonym: "malicious", sentence: "The benevolent king helped his people." }
+  ]
+};
+
+const VOCAB_TASKS = ["meaning", "synonym", "antonym", "sentence", "fits"];
+function generateVocabulary(yearGroup) {
+  const bank = VOCAB_BANKS[yearGroup];
+  const entry = pick(bank);
+  let task = pick(VOCAB_TASKS);
+  if (task === "antonym" && !entry.antonym) task = "meaning";
+
+  if (task === "meaning") return { category: "vocabulary", prompt: "What does the word “" + entry.word + "” mean?", answer: entry.meaning };
+  if (task === "synonym") return { category: "vocabulary", prompt: "Give a synonym (a word with a similar meaning) for “" + entry.word + "”.", answer: "Answers will vary (e.g. " + entry.synonym + ")." };
+  if (task === "antonym") return { category: "vocabulary", prompt: "Give an antonym (the opposite) for “" + entry.word + "”.", answer: "Answers will vary (e.g. " + entry.antonym + ")." };
+  if (task === "sentence") return { category: "vocabulary", prompt: "Use the word “" + entry.word + "” correctly in your own sentence.", answer: "Answers will vary." };
+  const blanked = entry.sentence.replace(new RegExp(entry.word, "i"), "_______");
+  return { category: "vocabulary", prompt: "Which word best fits the sentence?\n“" + blanked + "”", answer: entry.word };
+}
+
+/* ---------------------------- Writing prompts ---------------------------- */
+
+const WRITING_BANKS = {
+  ks1: [
+    "Describe your favourite toy using three describing words.",
+    "Finish this sentence: ‘One sunny morning, a little dragon...’",
+    "Write one powerful sentence about a rainy day.",
+    "Describe what a monster under the bed might look like.",
+    "Write a question you would like to ask a dinosaur.",
+    "Describe your favourite animal without saying its name — can a partner guess it?",
+    "Finish this sentence: ‘When I opened the box, I found...’",
+    "Write a sentence about what you can see outside the window right now.",
+    "Describe how it feels to eat your favourite food.",
+    "Write a sentence to welcome a new pupil to your class."
+  ],
+  lks2: [
+    "Describe a mysterious setting using at least two adjectives.",
+    "Continue this story starter: ‘The old door creaked open, revealing...’",
+    "Write one powerful sentence describing a thunderstorm.",
+    "Improve this boring sentence: ‘The dog ran. It was fast.’",
+    "Write a diary entry as if you were an astronaut on your first day in space.",
+    "Create an interesting question you could ask a time traveller.",
+    "Describe a setting using all five senses in one paragraph.",
+    "Write from the perspective of a lost umbrella on a windy day.",
+    "Use these three words in one sentence: shimmering, ancient, whisper.",
+    "Continue this story starter: ‘Nobody had ever noticed the tiny door before...’"
+  ],
+  uks2: [
+    "Write an opening paragraph for a mystery story set in a school at night.",
+    "Describe a character entirely through their actions, without naming their feelings.",
+    "Improve this boring sentence: ‘The storm was bad. The ship moved a lot.’",
+    "Write from the perspective of the last tree in a forest being cut down.",
+    "Create a tense, action-packed sentence using no more than 15 words.",
+    "Use these three words in one paragraph: reluctant, shimmering, inevitable.",
+    "Write a persuasive opening line encouraging people to protect the oceans.",
+    "Continue this story starter: ‘The letter had been sealed for exactly one hundred years...’",
+    "Describe a bustling marketplace using figurative language (a simile or metaphor).",
+    "Write a diary entry from the perspective of someone living through a historical event of your choice."
+  ]
+};
+function writingBandFor(yearGroup) {
+  if (yearGroup === "Year 1" || yearGroup === "Year 2") return "ks1";
+  if (yearGroup === "Year 3" || yearGroup === "Year 4") return "lks2";
+  return "uks2";
+}
+function generateWriting(yearGroup) {
+  const band = writingBandFor(yearGroup);
+  const prompt = pick(WRITING_BANKS[band]);
+  return { category: "writing", prompt: prompt, answer: "Answers will vary." };
+}
+
+/* ---------------------------- Brain teasers ---------------------------- */
+
+const BRAINTEASER_SIMPLE = [
+  { prompt: "Which doesn't belong: apple, banana, carrot, orange?", answer: "Carrot — it's a vegetable, the rest are fruit." },
+  { prompt: "I have a face but no eyes, hands but no arms. What am I?", answer: "A clock." },
+  { prompt: "What has keys but can't open locks?", answer: "A piano (or a keyboard)." },
+  { prompt: "Which doesn't belong: triangle, square, circle, red?", answer: "Red — the rest are shapes." },
+  { prompt: "What comes next in the pattern? Circle, square, circle, square, ?", answer: "Circle." },
+  { prompt: "I am tall when I am young and short when I am old. What am I?", answer: "A candle." },
+  { prompt: "How many months have 28 days?", answer: "All 12 months have at least 28 days." },
+  { prompt: "What can you catch but not throw?", answer: "A cold." },
+  { prompt: "Which doesn't belong: dog, cat, spider, rabbit?", answer: "Spider — it has 8 legs, the rest have 4." },
+  { prompt: "What has a neck but no head?", answer: "A bottle." },
+  { prompt: "Estimate: how many blinks do you think you make in one minute? Then count for real.", answer: "Answers will vary — a typical guess is 15-20 blinks." },
+  { prompt: "Which doesn't belong: whale, shark, dolphin, jellyfish?", answer: "Dolphin — it's a mammal, the rest are not." }
+];
+const BRAINTEASER_HARDER = [
+  { prompt: "A farmer has 17 sheep. All but 9 run away. How many sheep are left?", answer: "9." },
+  { prompt: "What has to be broken before you can use it?", answer: "An egg." },
+  { prompt: "The more you take, the more you leave behind. What am I?", answer: "Footsteps." },
+  { prompt: "Can you find three different ways to make 24 using addition, subtraction or multiplication?", answer: "Answers will vary (e.g. 12+12, 20+4, 6×4, 30−6)." },
+  { prompt: "I speak without a mouth and hear without ears. What am I?", answer: "An echo." },
+  { prompt: "A clock shows 3:15. What is the angle between the hands close to?", answer: "About 7.5° (a fun estimate is fine for a starter)." },
+  { prompt: "Which doesn't belong: square, cube, sphere, triangle?", answer: "Cube — it's 3D, the rest are 2D shapes." },
+  { prompt: "If today is Wednesday, what day will it be in 100 days?", answer: "Friday (100 ÷ 7 = 14 remainder 2)." },
+  { prompt: "What gets wetter the more it dries?", answer: "A towel." },
+  { prompt: "You see a boat filled with people, yet there isn't a single person on board. How?", answer: "They are all married (no single people)." },
+  { prompt: "Without writing anything down, can you work out double 46?", answer: "92." },
+  { prompt: "Which doesn't belong: 4, 9, 16, 20, 25?", answer: "20 — the rest are square numbers." }
+];
+function generateBrainteaser(yearGroup) {
+  const bank = (yearGroup === "Year 1" || yearGroup === "Year 2" || yearGroup === "Year 3") ? BRAINTEASER_SIMPLE : BRAINTEASER_HARDER;
+  const q = pick(bank);
+  return { category: "brainteaser", prompt: q.prompt, answer: q.answer };
+}
+
+/* ---------------------------- Question of the day ---------------------------- */
+
+const QUESTIONS_OF_THE_DAY = [
+  "Would you rather explore space or the ocean?",
+  "What makes someone a good friend?",
+  "If animals could talk, which animal do you think would be the funniest?",
+  "What invention could you not live without?",
+  "Should pupils have homework? Why or why not?",
+  "Would you rather be able to fly or be invisible?",
+  "What is the kindest thing someone has ever done for you?",
+  "If you could learn any new skill instantly, what would you choose?",
+  "What is the best thing about your favourite season?",
+  "Would you rather live in a treehouse or a houseboat?",
+  "What would your perfect weekend look like?",
+  "If you could ask an adult one question about their job, what would it be?",
+  "Would you rather explore a jungle or a desert?",
+  "What is one rule you would make if you were in charge for a day?",
+  "What is your proudest achievement so far?",
+  "Would you rather have the power of super strength or super speed?",
+  "What book or story would you love to live inside for a day?",
+  "If you could plant one tree anywhere in the world, where would it be?",
+  "Would you rather never eat chocolate again or never watch TV again?",
+  "What small thing always makes you smile?"
+];
+function generateQuestion() {
+  return { category: "question", prompt: pick(QUESTIONS_OF_THE_DAY), answer: "Answers will vary." };
+}
+
+/* ---------------------------- Bonus challenges ---------------------------- */
+
+const BONUS_CHALLENGES = [
+  "Can you solve today's maths question without writing anything down?",
+  "Can you use today's vocabulary word before break time?",
+  "Can you find three different ways to make 24?",
+  "Can you write a sentence containing exactly eight words?",
+  "Can you think of a word that rhymes with your first name?",
+  "Can you name three things in the room that are the same colour?",
+  "Can you count backwards from 50 in your head?",
+  "Can you think of a synonym for ‘nice’ before anyone else?"
+];
+function generateBonus() {
+  return { category: "bonus", prompt: pick(BONUS_CHALLENGES), answer: "Answers will vary." };
+}
+
+/* ---------------------------- Category dispatch ---------------------------- */
+
+const CATEGORY_META = {
+  maths: { label: "Maths", icon: "🔢", generator: generateMaths, needsYear: true },
+  spag: { label: "SPaG", icon: "✍️", generator: generateSpag, needsYear: true },
+  vocabulary: { label: "Vocabulary", icon: "📚", generator: generateVocabulary, needsYear: true },
+  writing: { label: "Quick Writing", icon: "🖊️", generator: generateWriting, needsYear: true },
+  brainteaser: { label: "Brain Teaser", icon: "🧩", generator: generateBrainteaser, needsYear: true },
+  question: { label: "Question of the Day", icon: "💬", generator: generateQuestion, needsYear: false }
+};
+const CATEGORY_ORDER = ["maths", "spag", "vocabulary", "writing", "brainteaser", "question"];
+
+function generateForCategory(cat, yearGroup) {
+  const meta = CATEGORY_META[cat];
+  const result = meta.needsYear ? meta.generator(yearGroup) : meta.generator();
+  result.id = "act-" + Date.now() + "-" + Math.random().toString(36).slice(2, 8);
+  return result;
+}
+
+/* ---------------------------- Session assembly ---------------------------- */
+
+const SESSION_COUNTS = { "5": 3, "10": 4, "15": 5, "20": 6 };
+
+function buildCategorySequence(enabledCats, count) {
+  const seq = [];
+  if (enabledCats.includes("maths")) seq.push("maths");
+  if (enabledCats.includes("spag") && seq.length < count) seq.push("spag");
+
+  const weighted = [];
+  enabledCats.forEach(function (c) {
+    const weight = (c === "maths" || c === "spag") ? 2 : 1;
+    for (let i = 0; i < weight; i++) weighted.push(c);
+  });
+
+  let guard = 0;
+  while (seq.length < count && guard < 200) {
+    guard++;
+    const candidate = pick(weighted);
+    const last = seq[seq.length - 1];
+    if (candidate === last && enabledCats.length > 1 && guard < 150) continue;
+    seq.push(candidate);
+  }
+  return seq.slice(0, count);
+}
+
+let state = {
+  session: null,
+  yearGroup: "Year 4",
+  minutes: "10",
+  answersVisible: false,
+  timer: { totalSeconds: 600, remaining: 600, running: false, intervalId: null }
+};
+
+function getEnabledCategories() {
+  return CATEGORY_ORDER.filter(function (c) {
+    const el = document.querySelector('.toggle-chip[data-category="' + c + '"] input');
+    return el && el.checked;
+  });
+}
+
+function generateSession(regenerateAll) {
+  const yearGroup = document.getElementById("yearGroupSelect").value;
+  const minutes = document.getElementById("sessionLengthSelect").value;
+  const enabled = getEnabledCategories();
+
+  if (enabled.length === 0) {
+    showToast("Please enable at least one activity type to generate Morning Magic.");
+    return;
+  }
+
+  const count = SESSION_COUNTS[minutes];
+  const sequence = buildCategorySequence(enabled, count);
+  const items = sequence.map(function (cat) { return generateForCategory(cat, yearGroup); });
+
+  if (regenerateAll !== false && Math.random() < 0.3) {
+    items.push(generateBonus());
+  }
+
+  state.session = { yearGroup: yearGroup, minutes: minutes, date: new Date(), items: items };
+  state.yearGroup = yearGroup;
+  state.minutes = minutes;
+  state.answersVisible = false;
+  renderSession();
+}
+
+function formatDate(d) {
+  const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  return days[d.getDay()] + " " + d.getDate() + " " + months[d.getMonth()] + " " + d.getFullYear();
+}
+
+function renderSession() {
+  const emptyState = document.getElementById("emptyState");
+  const output = document.getElementById("sessionOutput");
+  const actionsRow = document.getElementById("sessionActionsRow");
+
+  if (!state.session) {
+    emptyState.hidden = false;
+    output.hidden = true;
+    actionsRow.hidden = true;
+    return;
+  }
+
+  emptyState.hidden = true;
+  output.hidden = false;
+  actionsRow.hidden = false;
+
+  document.getElementById("sessionDate").textContent = formatDate(state.session.date);
+  document.getElementById("sessionGreeting").textContent = "Good morning, " + state.session.yearGroup + "!";
+
+  const grid = document.getElementById("activitiesGrid");
+  grid.innerHTML = "";
+  state.session.items.forEach(function (item) { grid.appendChild(renderActivityCard(item)); });
+
+  document.getElementById("sessionOutput").classList.toggle("answers-visible", state.answersVisible);
+  document.getElementById("revealBtn").textContent = state.answersVisible ? "🙈 Hide Answers" : "👀 Reveal Answers";
+}
+
+function renderActivityCard(item) {
+  const meta = item.category === "bonus" ? { label: "Bonus Challenge", icon: "⭐" } : CATEGORY_META[item.category];
+  const card = document.createElement("div");
+  card.className = "activity-card";
+  card.setAttribute("data-cat", item.category);
+  card.setAttribute("data-id", item.id);
+
+  const badge = document.createElement("span");
+  badge.className = "cat-badge";
+  badge.textContent = meta.icon + " " + meta.label;
+  card.appendChild(badge);
+
+  const prompt = document.createElement("p");
+  prompt.className = "activity-prompt";
+  prompt.textContent = item.prompt;
+  card.appendChild(prompt);
+
+  const printSpace = document.createElement("div");
+  printSpace.className = "print-writing-space";
+  card.appendChild(printSpace);
+  if (item.category === "writing" || item.category === "question" || item.answer === "Answers will vary.") {
+    const extra = document.createElement("div");
+    extra.className = "print-writing-space";
+    card.appendChild(extra);
+    const extra2 = document.createElement("div");
+    extra2.className = "print-writing-space";
+    card.appendChild(extra2);
+  }
+
+  const answer = document.createElement("p");
+  answer.className = "activity-answer" + (item.answer === "Answers will vary." || item.answer.indexOf("Answers will vary") === 0 ? " vary" : "");
+  answer.textContent = item.answer;
+  card.appendChild(answer);
+
+  if (item.category !== "bonus") {
+    const footerRow = document.createElement("div");
+    footerRow.className = "card-footer-row";
+    const swapBtn = document.createElement("button");
+    swapBtn.type = "button";
+    swapBtn.className = "btn btn-ghost btn-sm";
+    swapBtn.textContent = "🔀 Swap";
+    swapBtn.addEventListener("click", function () { swapActivity(item.id, item.category); });
+    footerRow.appendChild(swapBtn);
+    card.appendChild(footerRow);
+  }
+
+  return card;
+}
+
+function swapActivity(id, category) {
+  if (!state.session) return;
+  const idx = state.session.items.findIndex(function (i) { return i.id === id; });
+  if (idx === -1) return;
+  const replacement = generateForCategory(category, state.session.yearGroup);
+  state.session.items[idx] = replacement;
+  renderSession();
+}
+
+/* ---------------------------- Toasts ---------------------------- */
+
+function showToast(msg) {
+  const region = document.getElementById("toastRegion");
+  const el = document.createElement("div");
+  el.className = "toast";
+  el.textContent = msg;
+  region.appendChild(el);
+  setTimeout(function () { el.remove(); }, 2400);
+}
+
+/* ---------------------------- Category toggles ---------------------------- */
+
+function buildCategoryToggles() {
+  const wrap = document.getElementById("categoryToggles");
+  wrap.innerHTML = "";
+  CATEGORY_ORDER.forEach(function (cat) {
+    const meta = CATEGORY_META[cat];
+    const label = document.createElement("label");
+    label.className = "toggle-chip";
+    label.setAttribute("data-category", cat);
+    label.setAttribute("data-on", "true");
+    const input = document.createElement("input");
+    input.type = "checkbox";
+    input.checked = true;
+    input.addEventListener("change", function () {
+      label.setAttribute("data-on", input.checked ? "true" : "false");
+    });
+    label.appendChild(input);
+    label.appendChild(document.createTextNode(meta.icon + " " + meta.label));
+    wrap.appendChild(label);
+  });
+}
+
+/* ---------------------------- Timer ---------------------------- */
+
+function formatTime(totalSeconds) {
+  const m = Math.floor(totalSeconds / 60);
+  const s = totalSeconds % 60;
+  return (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
+}
+function renderTimer() {
+  const display = document.getElementById("timerDisplay");
+  display.textContent = formatTime(Math.max(0, state.timer.remaining));
+  display.classList.toggle("time-up", state.timer.remaining <= 0);
+}
+function timerTick() {
+  state.timer.remaining--;
+  if (state.timer.remaining <= 0) {
+    state.timer.remaining = 0;
+    stopTimerInterval();
+    renderTimer();
+    showToast("⏰ Time's up!");
+    return;
+  }
+  renderTimer();
+}
+function stopTimerInterval() {
+  if (state.timer.intervalId) { clearInterval(state.timer.intervalId); state.timer.intervalId = null; }
+  state.timer.running = false;
+}
+function startTimer() {
+  if (state.timer.running) return;
+  if (state.timer.remaining <= 0) return;
+  state.timer.running = true;
+  state.timer.intervalId = setInterval(timerTick, 1000);
+}
+function pauseTimer() { stopTimerInterval(); }
+function resetTimer() {
+  stopTimerInterval();
+  const mins = parseInt(document.getElementById("timerLengthSelect").value, 10);
+  state.timer.totalSeconds = mins * 60;
+  state.timer.remaining = mins * 60;
+  renderTimer();
+}
+
+/* ---------------------------- Classroom mode ---------------------------- */
+
+function enterClassroomMode() {
+  document.body.classList.add("classroom-mode");
+  showToast("Classroom Mode on");
+}
+function exitClassroomMode() {
+  document.body.classList.remove("classroom-mode");
+}
+
+/* ---------------------------- Copy / Print ---------------------------- */
+
+function sessionAsText() {
+  if (!state.session) return "";
+  const lines = [];
+  lines.push("MORNING MAGIC — " + state.session.yearGroup.toUpperCase());
+  lines.push(formatDate(state.session.date));
+  lines.push("");
+  state.session.items.forEach(function (item) {
+    const label = item.category === "bonus" ? "Bonus Challenge" : CATEGORY_META[item.category].label;
+    lines.push(label + ":");
+    lines.push(item.prompt.replace(/\n/g, " "));
+    lines.push("");
+  });
+  lines.push("— The Teacher Vault —");
+  return lines.join("\n");
+}
+
+function copyActivities() {
+  if (!state.session) { showToast("Generate a Morning Magic session first."); return; }
+  const text = sessionAsText();
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function () { showToast("Copied!"); }, function () { fallbackCopy(text); });
+  } else {
+    fallbackCopy(text);
+  }
+}
+function fallbackCopy(text) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); showToast("Copied!"); } catch (e) { showToast("Couldn't copy — select and copy manually."); }
+  document.body.removeChild(ta);
+}
+
+function printMorning() {
+  if (!state.session) { showToast("Generate a Morning Magic session first."); return; }
+  window.print();
+}
+
+/* ---------------------------- Save / load mornings ---------------------------- */
+
+const SAVE_KEY = "tv_morning_magic_saved_v1";
+function getSavedMornings() {
+  try { return JSON.parse(localStorage.getItem(SAVE_KEY)) || []; } catch (e) { return []; }
+}
+function setSavedMornings(list) { localStorage.setItem(SAVE_KEY, JSON.stringify(list)); }
+
+function saveMorning() {
+  if (!state.session) { showToast("Generate a Morning Magic session first."); return; }
+  const list = getSavedMornings();
+  list.unshift({
+    id: "save-" + Date.now(),
+    savedAt: new Date().toISOString(),
+    yearGroup: state.session.yearGroup,
+    minutes: state.session.minutes,
+    dateLabel: formatDate(state.session.date),
+    items: state.session.items
+  });
+  setSavedMornings(list.slice(0, 20));
+  showToast("Morning saved.");
+  renderSavedList();
+}
+
+function renderSavedList() {
+  const container = document.getElementById("savedList");
+  const list = getSavedMornings();
+  if (!list.length) {
+    container.innerHTML = '<p style="color:var(--text-muted);margin-top:12px;">No saved mornings yet — generate a session and click “Save Morning”.</p>';
+    return;
+  }
+  container.innerHTML = "";
+  list.forEach(function (saved) {
+    const row = document.createElement("div");
+    row.className = "saved-item";
+    const meta = document.createElement("div");
+    meta.innerHTML = '<div class="saved-item-meta">' + escapeHtml(saved.yearGroup) + " — " + escapeHtml(saved.minutes) + ' minutes</div><div class="saved-item-sub">' + escapeHtml(saved.dateLabel) + " · " + saved.items.length + " activities</div>";
+    row.appendChild(meta);
+    const actions = document.createElement("div");
+    actions.className = "saved-item-actions";
+    const loadBtn = document.createElement("button");
+    loadBtn.type = "button"; loadBtn.className = "btn btn-secondary btn-sm"; loadBtn.textContent = "View / Reload";
+    loadBtn.addEventListener("click", function () { loadSavedMorning(saved.id); });
+    const delBtn = document.createElement("button");
+    delBtn.type = "button"; delBtn.className = "btn btn-secondary btn-sm"; delBtn.textContent = "Delete";
+    delBtn.addEventListener("click", function () { deleteSavedMorning(saved.id); });
+    actions.appendChild(loadBtn);
+    actions.appendChild(delBtn);
+    row.appendChild(actions);
+    container.appendChild(row);
+  });
+}
+
+function loadSavedMorning(id) {
+  const list = getSavedMornings();
+  const saved = list.find(function (s) { return s.id === id; });
+  if (!saved) return;
+  state.session = { yearGroup: saved.yearGroup, minutes: saved.minutes, date: new Date(saved.savedAt), items: saved.items };
+  state.answersVisible = false;
+  document.getElementById("yearGroupSelect").value = saved.yearGroup;
+  document.getElementById("sessionLengthSelect").value = saved.minutes;
+  renderSession();
+  showToast("Loaded saved morning.");
+  document.getElementById("resultsCard").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function deleteSavedMorning(id) {
+  const list = getSavedMornings().filter(function (s) { return s.id !== id; });
+  setSavedMornings(list);
+  renderSavedList();
+  showToast("Saved morning deleted.");
+}
+
+/* ---------------------------- Wire up UI ---------------------------- */
+
+document.getElementById("generateBtn").addEventListener("click", function () { generateSession(); });
+document.getElementById("generateAgainBtn").addEventListener("click", function () { generateSession(); });
+document.getElementById("revealBtn").addEventListener("click", function () {
+  state.answersVisible = !state.answersVisible;
+  document.getElementById("sessionOutput").classList.toggle("answers-visible", state.answersVisible);
+  document.getElementById("revealBtn").textContent = state.answersVisible ? "🙈 Hide Answers" : "👀 Reveal Answers";
+});
+document.getElementById("classroomModeBtn").addEventListener("click", enterClassroomMode);
+document.getElementById("exitClassroomBtn").addEventListener("click", exitClassroomMode);
+document.getElementById("printBtn").addEventListener("click", printMorning);
+document.getElementById("copyBtn").addEventListener("click", copyActivities);
+document.getElementById("saveBtn").addEventListener("click", saveMorning);
+
+document.getElementById("timerStartBtn").addEventListener("click", startTimer);
+document.getElementById("timerPauseBtn").addEventListener("click", pauseTimer);
+document.getElementById("timerResetBtn").addEventListener("click", resetTimer);
+document.getElementById("timerLengthSelect").addEventListener("change", resetTimer);
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && document.body.classList.contains("classroom-mode")) exitClassroomMode();
+});
+
+/* ---------------------------- Init ---------------------------- */
+
+buildCategoryToggles();
+renderSavedList();
+resetTimer();
+renderSession();
+</script>
+</body>
+</html>
