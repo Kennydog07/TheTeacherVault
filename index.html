@@ -26,16 +26,50 @@
 
   <!-- ============================== HERO ============================== -->
   <section class="hero container">
-    <img class="hero__mascot" src="images/mascot-teacher.png" alt="" aria-hidden="true">
-    <div class="hero__logo" id="heroLogo"></div>
-    <span class="eyebrow">Free teacher tools &middot; Free GCSE revision</span>
-    <h1>Useful tools for teachers. Better revision for students.</h1>
-    <p class="lede">The Teacher Vault is a growing collection of practical mini apps designed to save teachers time and help students revise more effectively — no clutter, no subscriptions for free apps.</p>
-    <div class="hero__ctas">
-      <a href="teacher-tools.html" class="btn btn--primary">Browse Teacher Tools</a>
-      <a href="student-apps.html" class="btn btn--ghost">Explore Free Student Apps</a>
+    <div class="hero-doodles" aria-hidden="true">
+      <svg class="hero-doodle hero-doodle--pencil" viewBox="0 0 100 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 34 L70 6 L92 4 L84 22 L18 38 Z"/><path d="M70 6 L84 22"/></svg>
+      <svg class="hero-doodle hero-doodle--ruler" viewBox="0 0 100 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="94" height="20" rx="3"/><path d="M15 3v8M28 3v8M41 3v8M54 3v8M67 3v8M80 3v8"/></svg>
+      <svg class="hero-doodle hero-doodle--bulb" viewBox="0 0 60 80" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="30" cy="28" r="22"/><path d="M22 48h16M20 56h20M25 63h10"/><path d="M30 6 L30 0M8 12 L3 7M52 12 L57 7"/></svg>
+      <svg class="hero-doodle hero-doodle--atom" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2.5"><ellipse cx="30" cy="30" rx="26" ry="10"/><ellipse cx="30" cy="30" rx="26" ry="10" transform="rotate(60 30 30)"/><ellipse cx="30" cy="30" rx="26" ry="10" transform="rotate(120 30 30)"/><circle cx="30" cy="30" r="4" fill="currentColor" stroke="none"/></svg>
+      <svg class="hero-doodle hero-doodle--book" viewBox="0 0 90 56" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M45 12 C33 4 16 4 6 9 V46 C16 41 33 41 45 49 C57 41 74 41 84 46 V9 C74 4 57 4 45 12 Z"/><path d="M45 12 V49"/></svg>
+      <svg class="hero-doodle hero-doodle--calc" viewBox="0 0 54 66" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="48" height="60" rx="5"/><rect x="10" y="10" width="34" height="12" rx="2"/><circle cx="14" cy="34" r="2.5" fill="currentColor" stroke="none"/><circle cx="27" cy="34" r="2.5" fill="currentColor" stroke="none"/><circle cx="40" cy="34" r="2.5" fill="currentColor" stroke="none"/><circle cx="14" cy="46" r="2.5" fill="currentColor" stroke="none"/><circle cx="27" cy="46" r="2.5" fill="currentColor" stroke="none"/><circle cx="40" cy="46" r="2.5" fill="currentColor" stroke="none"/><circle cx="14" cy="57" r="2.5" fill="currentColor" stroke="none"/><circle cx="27" cy="57" r="2.5" fill="currentColor" stroke="none"/><circle cx="40" cy="57" r="2.5" fill="currentColor" stroke="none"/></svg>
+      <svg class="hero-doodle hero-doodle--star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z"/></svg>
+      <svg class="hero-doodle hero-doodle--star2" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z"/></svg>
+      <svg class="hero-doodle hero-doodle--arrow" viewBox="0 0 90 50" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10 C40 4 70 20 86 40"/><path d="M70 34 L86 40 L82 24"/></svg>
     </div>
-    <p class="hero__trust">No subscriptions for free apps. No complicated setup. Just useful tools.</p>
+
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero__logo" id="heroLogo"></div>
+        <span class="eyebrow">Free teacher tools &middot; Free GCSE revision</span>
+        <h1>Useful tools for teachers. <span class="chalk-underline">Better revision<svg class="chalk-underline__mark" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3,13 Q50,4 100,11 T197,9"/></svg></span> for students.</h1>
+        <p class="lede">The Teacher Vault is a growing collection of practical mini apps designed to save teachers time and help students revise more effectively — no clutter, no subscriptions for free apps.</p>
+        <div class="hero__ctas">
+          <a href="teacher-tools.html" class="btn btn--primary">Browse Teacher Tools</a>
+          <a href="student-apps.html" class="btn btn--ghost">Explore Free Student Apps</a>
+        </div>
+        <p class="hero__trust">No subscriptions for free apps. No complicated setup. Just useful tools.</p>
+      </div>
+
+      <div class="hero-card-stack">
+        <a class="hero-mini-card hero-mini-card--1" href="app.html?id=lesson-planner-lite">
+          <img class="hero-mini-card__thumb" src="images/lesson-planner-lite.jpg" alt="" loading="lazy">
+          <span class="hero-mini-card__label"><span class="hero-mini-card__kicker">Teacher Tool</span>Lesson Planner</span>
+        </a>
+        <a class="hero-mini-card hero-mini-card--2" href="app.html?id=feedback-fixer-lite">
+          <img class="hero-mini-card__thumb" src="images/feedback-fixer-lite.jpg" alt="" loading="lazy">
+          <span class="hero-mini-card__label"><span class="hero-mini-card__kicker">Teacher Tool</span>Feedback Fixer</span>
+        </a>
+        <a class="hero-mini-card hero-mini-card--3" href="app.html?id=gcse-maths">
+          <img class="hero-mini-card__thumb" src="images/gcse-maths.jpg" alt="" loading="lazy">
+          <span class="hero-mini-card__label"><span class="hero-mini-card__kicker">Student Revision</span>GCSE Maths</span>
+        </a>
+        <a class="hero-mini-card hero-mini-card--4" href="app.html?id=quicknotes-macbeth">
+          <img class="hero-mini-card__thumb" src="images/quicknotes-macbeth.jpg" alt="" loading="lazy">
+          <span class="hero-mini-card__label"><span class="hero-mini-card__kicker">Quick Notes</span>Macbeth</span>
+        </a>
+      </div>
+    </div>
 
     <div class="trust-strip" aria-label="Why The Teacher Vault" id="trustStrip"></div>
   </section>
