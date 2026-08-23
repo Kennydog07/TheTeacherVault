@@ -177,7 +177,10 @@ p { color: var(--chalk-dim); }
   max-width: 680px;
   margin-bottom: 36px;
 }
-.section-head .eyebrow { margin-bottom: 1rem; }
+/* The eyebrow label is redundant with the heading it sits above (e.g.
+   "Key Stage" / "KS2 (SATs)") — hidden sitewide so only the heading and
+   its chalk-underline animation remain. */
+.section-head .eyebrow { display: none; }
 .section-head h2 { margin-bottom: 0.75rem; }
 .section-head p.lede { margin-top: 0; }
 
@@ -201,7 +204,7 @@ p { color: var(--chalk-dim); }
   bottom: 0;
   width: 100%;
   height: 0.16em;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'><path d='M2,9 Q50,2 100,7 T198,6' fill='none' stroke='%23c9a24b' stroke-width='6' stroke-linecap='round'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'><path d='M2,9 Q50,2 100,7 T198,6' fill='none' stroke='%23e2685f' stroke-width='6' stroke-linecap='round'/></svg>");
   background-repeat: no-repeat;
   background-position: left center;
   background-size: 0% 100%;
