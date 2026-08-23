@@ -27,6 +27,15 @@
   --pro-bg: #2c2312;
   --pro-text: #f0d795;
 
+  /* Resource-type colour coding — used sparingly (badges, thin lines, icons),
+     never as full-card fills. Each verified at 7:1+ contrast against
+     --board-green (#1e3a30), well above the 3:1 AA large-text/UI minimum. */
+  --type-teacher: #e8c65c;   /* warm chalk yellow */
+  --type-revision: #9fc6e0;  /* muted pale blue */
+  --type-quicknotes: #a8d5b5; /* muted pale green */
+  --type-pro: var(--gold-light);  /* soft muted gold */
+  --type-free: var(--chalk-dim);  /* off-white / pale grey */
+
   /* Layout */
   --max-width: 1180px;
   --radius-sm: 6px;
@@ -548,17 +557,32 @@ body.nav-open .mobile-nav { display: flex; }
 }
 
 .app-card {
+  --accent: var(--type-free);
   background: var(--paper);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition: transform 0.16s ease, box-shadow 0.16s ease;
-  border: 1px solid rgba(20,36,29,0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  border: 1px solid rgba(20,36,29,0.08);
+  border-top: 3px solid var(--accent);
 }
 
-.app-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card-hover); }
+.app-card[data-category="teacher"] { --accent: var(--type-teacher); }
+.app-card[data-category="revision"] { --accent: var(--type-revision); }
+.app-card[data-category="quicknotes"] { --accent: var(--type-quicknotes); }
+.app-card[data-tier="pro"] { --accent: var(--type-pro); }
+
+.app-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--accent);
+}
+.app-card:hover .app-card__foot .btn--dark,
+.app-card:hover .app-card__foot .btn--primary {
+  box-shadow: 0 4px 14px rgba(0,0,0,0.28);
+}
 
 .app-card__thumb {
   aspect-ratio: 16/9;
@@ -615,12 +639,23 @@ body.nav-open .mobile-nav { display: flex; }
 }
 
 .app-card__category {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--gold-dark);
 }
+.app-card__category-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: var(--accent);
+  opacity: 0.9;
+}
+.app-card__category-icon svg { width: 100%; height: 100%; }
 
 .app-card__title { font-size: 1.08rem; color: var(--ink); font-weight: 800; }
 .app-card__desc { font-size: 0.9rem; color: var(--ink-soft); flex: 1; }

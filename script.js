@@ -303,7 +303,7 @@ function renderAppCard(app) {
         '<span class="app-card__badges">' + tierBadge(app) + newBadge + '</span>' +
       '</a>' +
       '<div class="app-card__body">' +
-        '<span class="app-card__category">' + categoryLabel(app) + '</span>' +
+        '<span class="app-card__category"><span class="app-card__category-icon" aria-hidden="true">' + thumbIcon(app) + '</span>' + categoryLabel(app) + '</span>' +
         '<h3 class="app-card__title"><a href="app.html?id=' + app.id + '">' + app.title + '</a></h3>' +
         '<p class="app-card__desc">' + app.tagline + '</p>' +
         '<div class="app-card__meta">' + subjectBadge + '</div>' +
