@@ -212,6 +212,53 @@ p { color: var(--chalk-dim); }
 }
 
 /* --------------------------------------------------------------------------
+   Chalk notes — small handwritten asides between select sections (Phase 5)
+   -------------------------------------------------------------------------- */
+.chalk-note {
+  text-align: center;
+  padding: 4px 24px 0;
+}
+.chalk-note span {
+  display: inline-block;
+  font-family: var(--font-chalk);
+  font-size: 1.05rem;
+  color: var(--chalk-dim);
+  opacity: 0.8;
+  transform: rotate(-1.2deg);
+}
+.chalk-note--right span { transform: rotate(1deg); }
+
+/* --------------------------------------------------------------------------
+   Homepage-only entry reveal — two chalkboard panels slide apart on first
+   load of the session (Phase 5, optional). Gated by inline script in
+   index.html: html.no-vault-reveal hides it outright (already shown this
+   session, or JS decided to skip it). Always fully hidden under
+   prefers-reduced-motion regardless of JS, so a JS failure can never leave
+   the panels stuck covering the page.
+   -------------------------------------------------------------------------- */
+.vault-reveal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  pointer-events: none;
+}
+.vault-reveal__panel {
+  flex: 1 0 50%;
+  background: var(--board-green-dark);
+}
+html.no-vault-reveal .vault-reveal { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .vault-reveal { display: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .vault-reveal__panel--left { animation: vault-reveal-left 650ms ease-in-out forwards; }
+  .vault-reveal__panel--right { animation: vault-reveal-right 650ms ease-in-out forwards; }
+}
+@keyframes vault-reveal-left { to { transform: translateX(-100%); } }
+@keyframes vault-reveal-right { to { transform: translateX(100%); } }
+
+/* --------------------------------------------------------------------------
    Chalk logo — used in header, hero and footer
    -------------------------------------------------------------------------- */
 
@@ -348,11 +395,11 @@ body.nav-open .mobile-nav { display: flex; }
   font-weight: 700;
   font-size: 0.95rem;
   border: 2px solid transparent;
-  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease, color 0.12s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
   white-space: nowrap;
 }
 
-.btn:hover { transform: translateY(-1px); }
+.btn:hover { transform: translateY(-2px); }
 .btn:active { transform: translateY(0); }
 
 .btn--primary {
@@ -360,28 +407,40 @@ body.nav-open .mobile-nav { display: flex; }
   color: var(--ink);
   box-shadow: 0 4px 14px rgba(201, 162, 75, 0.3);
 }
-.btn--primary:hover { box-shadow: 0 8px 20px rgba(201, 162, 75, 0.4); }
+.btn--primary:hover { box-shadow: 0 8px 22px rgba(201, 162, 75, 0.45); }
 
 .btn--ghost {
   background: transparent;
   border-color: rgba(245, 242, 232, 0.5);
   color: var(--chalk-white);
 }
-.btn--ghost:hover { border-color: var(--chalk-white); background: rgba(245,242,232,0.06); }
+.btn--ghost:hover {
+  border-color: var(--chalk-white);
+  background: rgba(245,242,232,0.08);
+  box-shadow: 0 0 16px rgba(245,242,232,0.22);
+}
 
 .btn--dark {
   background: var(--board-green-dark);
   color: var(--chalk-white);
   border-color: var(--board-green-dark);
 }
-.btn--dark:hover { background: #0f1f17; }
+.btn--dark:hover {
+  background: #0f1f17;
+  border-color: rgba(245,242,232,0.35);
+  box-shadow: 0 0 16px rgba(245,242,232,0.16);
+}
 
 .btn--outline-dark {
   background: transparent;
   border-color: var(--board-green);
   color: var(--board-green);
 }
-.btn--outline-dark:hover { background: var(--board-green); color: var(--chalk-white); }
+.btn--outline-dark:hover {
+  background: var(--board-green);
+  color: var(--chalk-white);
+  box-shadow: 0 6px 18px rgba(30,58,48,0.3);
+}
 
 .btn--sm { padding: 9px 16px; font-size: 0.85rem; }
 .btn--block { width: 100%; }

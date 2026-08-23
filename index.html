@@ -17,6 +17,21 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body data-page="home">
+<script>
+(function () {
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var shown = sessionStorage.getItem("tvVaultRevealShown");
+  if (reduced || shown) {
+    document.documentElement.classList.add("no-vault-reveal");
+  } else {
+    sessionStorage.setItem("tvVaultRevealShown", "1");
+  }
+})();
+</script>
+<div class="vault-reveal" aria-hidden="true">
+  <span class="vault-reveal__panel vault-reveal__panel--left"></span>
+  <span class="vault-reveal__panel vault-reveal__panel--right"></span>
+</div>
 <div class="chalk-texture" aria-hidden="true"></div>
 <a class="sr-only" href="#main">Skip to main content</a>
 
@@ -86,6 +101,8 @@
     </div>
   </section>
 
+  <div class="chalk-note" aria-hidden="true"><span>Teacher time-savers &rarr;</span></div>
+
   <!-- ============================== FEATURED ============================== -->
   <section class="section paper-section">
     <div class="container">
@@ -101,6 +118,8 @@
     </div>
   </section>
 
+  <div class="chalk-note chalk-note--right" aria-hidden="true"><span>Revision corner &rarr;</span></div>
+
   <!-- ============================== QUICK NOTES ============================== -->
   <section class="section">
     <div class="container">
@@ -115,6 +134,8 @@
       </div>
     </div>
   </section>
+
+  <div class="chalk-note" aria-hidden="true"><span>Keep digging&hellip; there's more in the Vault &darr;</span></div>
 
   <!-- ============================== HOW IT WORKS ============================== -->
   <section class="section">
