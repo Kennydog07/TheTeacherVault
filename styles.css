@@ -433,6 +433,22 @@ body.nav-open .mobile-nav { display: flex; }
   opacity: 0.85;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .chalk-underline__mark path {
+    stroke-dasharray: 260;
+    stroke-dashoffset: 260;
+    animation: draw-underline 750ms 300ms ease-out forwards;
+  }
+  .hero-doodle--sketch path {
+    stroke-dasharray: 220;
+    stroke-dashoffset: 220;
+    animation: draw-underline 1100ms 500ms ease-out forwards;
+  }
+}
+@keyframes draw-underline {
+  to { stroke-dashoffset: 0; }
+}
+
 .hero__ctas {
   display: flex;
   gap: 14px;
