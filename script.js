@@ -327,10 +327,47 @@ function renderCardGrid(container, apps) {
 }
 
 /* --------------------------------------------------------------------------
+   Scroll-triggered chalk underlines + "New" badge pop-in (Phase 4)
+   Each element animates once, then is unobserved. Skipped entirely when
+   prefers-reduced-motion is set, since the CSS already shows the final
+   state instantly in that case.
+   -------------------------------------------------------------------------- */
+
+function initScrollReveals() {
+  if (!("IntersectionObserver" in window)) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const headings = document.querySelectorAll(".section-head h2");
+  if (headings.length) {
+    const headingObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("in-view");
+        headingObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.4 });
+    headings.forEach(function (h) { headingObserver.observe(h); });
+  }
+
+  const newBadges = document.querySelectorAll(".badge--new");
+  if (newBadges.length) {
+    const badgeObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("in-view");
+        badgeObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.3 });
+    newBadges.forEach(function (b) { badgeObserver.observe(b); });
+  }
+}
+
+/* --------------------------------------------------------------------------
    Init
    -------------------------------------------------------------------------- */
 
 document.addEventListener("DOMContentLoaded", function () {
   mountLayout();
   mountBackToTop();
+  initScrollReveals();
 });
