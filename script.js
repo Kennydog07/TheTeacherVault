@@ -273,7 +273,8 @@ function ctaFor(app) {
     return '<a class="btn btn--dark btn--block" href="' + app.fileUrl + '" target="_blank" rel="noopener">Open App ' + ICONS.external + '</a>';
   }
   if (app.fileUrl && app.fileType === "poster") {
-    return '<a class="btn btn--dark btn--block" href="' + app.fileUrl + '" download>Download Poster ' + ICONS.download + '</a>';
+    return '<a class="btn btn--dark btn--block" href="' + app.fileUrl + '" download>Download Poster ' + ICONS.download + '</a>' +
+      '<a class="btn btn--outline-dark btn--block" href="' + app.fileUrl + '" target="_blank" rel="noopener">Open in New Window ' + ICONS.external + '</a>';
   }
   if (app.fileUrl) {
     return '<a class="btn btn--dark btn--block" href="' + app.fileUrl + '" download>Download PDF ' + ICONS.download + '</a>';
