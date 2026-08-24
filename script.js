@@ -272,6 +272,9 @@ function ctaFor(app) {
   if (app.fileUrl && app.fileType === "app") {
     return '<a class="btn btn--dark btn--block" href="' + app.fileUrl + '" target="_blank" rel="noopener">Open App ' + ICONS.external + '</a>';
   }
+  if (app.fileUrl && app.fileType === "poster") {
+    return '<a class="btn btn--dark btn--block" href="' + app.fileUrl + '" download>Download Poster ' + ICONS.download + '</a>';
+  }
   if (app.fileUrl) {
     return '<a class="btn btn--dark btn--block" href="' + app.fileUrl + '" download>Download PDF ' + ICONS.download + '</a>';
   }

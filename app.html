@@ -206,6 +206,10 @@
     document.getElementById("howGetHeading").textContent = "Open it in your browser";
     document.getElementById("howGumroad").textContent = "No download, no Gumroad step — " + app.title + " opens straight away in a new browser tab.";
     document.getElementById("howOpen").textContent = "Most Teacher Vault mini apps open directly in a modern browser — no installation, no account, no API key.";
+  } else if (app.fileUrl && app.fileType === "poster") {
+    document.getElementById("howGetHeading").textContent = "Download the poster";
+    document.getElementById("howGumroad").textContent = "No Gumroad step — " + app.title + " downloads directly from this site as a single image file.";
+    document.getElementById("howOpen").textContent = "Save it, print it, or pin it up — it opens in any photo viewer on any device.";
   } else if (app.fileUrl) {
     document.getElementById("howGetHeading").textContent = "Download the PDF";
     document.getElementById("howGumroad").textContent = "No Gumroad step — " + app.title + " downloads directly from this site as a PDF.";
