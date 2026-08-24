@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Teacher Vault — Power and Conflict Poetry QuickNotes</title>
+<meta name="description" content="Free Power and Conflict GCSE poetry quick notes — all 15 AQA anthology poems with key ideas, poetic methods, context and comparison guidance.">
+<link rel="canonical" href="https://theteachervault.com/quick-notes/power-and-conflict-poetry.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Teacher Vault — Power and Conflict Poetry QuickNotes">
+<meta property="og:description" content="Free Power and Conflict GCSE poetry quick notes — all 15 AQA anthology poems with key ideas, poetic methods, context and comparison guidance.">
+<meta property="og:url" content="https://theteachervault.com/quick-notes/power-and-conflict-poetry.html">
+<meta property="og:image" content="https://theteachervault.com/images/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Teacher Vault — Power and Conflict Poetry QuickNotes">
+<meta name="twitter:description" content="Free Power and Conflict GCSE poetry quick notes — all 15 AQA anthology poems with key ideas, poetic methods, context and comparison guidance.">
+<meta name="twitter:image" content="https://theteachervault.com/images/logo.png">
 <style>
 :root{
   --ink:#20242B;
@@ -210,7 +221,7 @@ footer.app-footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--li
       <img src="../images/mascot-teacher.png" alt="The Teacher Vault mascot" class="brand-mascot">
       <div class="tv-name">The Teacher Vault</div>
       <div class="tv-sub">QuickNotes</div>
-      <div class="play-title">Power and Conflict Poetry</div>
+      <h1 class="play-title" style="margin:14px 0 0;font-weight:400;">Power and Conflict Poetry — GCSE Quick Notes</h1>
       <div class="play-sub">Everything you actually need for GCSE English Literature — AQA anthology, all 15 poems.</div>
     </div>
     <nav class="mainnav" id="navList" aria-label="Sections"></nav>
@@ -872,7 +883,7 @@ function el(html){ const d=document.createElement('div'); d.innerHTML=html; retu
 /* ---- 1. OVERVIEW ---- */
 function buildOverview(){
   const s = el(`<section class="section" id="section-overview">
-    <div class="section-header"><div class="eyebrow">Section 01</div><h1>Overview</h1><div class="desc">Get your bearings before you dive into detail.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 01</div><h2>Overview</h2><div class="desc">Get your bearings before you dive into detail.</div></div>
 
     <div class="grid two">
       <div class="card"><h3>Key facts</h3>
@@ -941,7 +952,7 @@ function buildPoemGuide(){
     </div>`).join('');
 
   const s = el(`<section class="section" id="section-poemguide">
-    <div class="section-header"><div class="eyebrow">Section 02</div><h1>Poem Guide</h1><div class="desc">All 15 poems. Tap any poem to see its full profile: form, voice, quotes, technique and comparison partners.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 02</div><h2>Poem Guide</h2><div class="desc">All 15 poems. Tap any poem to see its full profile: form, voice, quotes, technique and comparison partners.</div></div>
     ${cards}
   </section>`);
   root.appendChild(s);
@@ -964,7 +975,7 @@ function buildThemes(){
     </div>`).join('');
 
   const s = el(`<section class="section" id="section-themes">
-    <div class="section-header"><div class="eyebrow">Section 03</div><h1>Themes</h1><div class="desc">Fourteen cross-poem themes, each with quotations, context and ready-to-adapt thesis statements.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 03</div><h2>Themes</h2><div class="desc">Fourteen cross-poem themes, each with quotations, context and ready-to-adapt thesis statements.</div></div>
     <div class="card"><h3>A note on comparing themes across poems</h3><p>Because this is an anthology rather than a single text, the strongest theme-based answers do not simply describe a theme in isolation — they compare how two different poets present it, using specific methods (structure, imagery, sound) linked to each poet's likely viewpoint. Use the 'relevant poems' tags below as a starting point for finding a genuinely comparable second poem, not just any poem that briefly touches the same idea.</p></div>
     ${cards}
   </section>`);
@@ -977,7 +988,7 @@ function buildQuoteVault(){
   const allThemes = Array.from(new Set(QUOTES.flatMap(q=>q.themes))).sort();
 
   const s = el(`<section class="section" id="section-quotes">
-    <div class="section-header"><div class="eyebrow">Section 04</div><h1>Quote Vault</h1><div class="desc">Search and filter the anthology's most important quotations. Kept short and used only for educational analysis.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 04</div><h2>Quote Vault</h2><div class="desc">Search and filter the anthology's most important quotations. Kept short and used only for educational analysis.</div></div>
     <div class="qv-controls">
       <input type="text" id="qvSearch" placeholder="Search quotations..." aria-label="Search quotations">
       <select id="qvCharFilter" aria-label="Filter by poem"><option value="">All poems</option>${allPoems.map(c=>`<option value="${c}">${c}</option>`).join('')}</select>
@@ -1054,7 +1065,7 @@ function buildTechniques(){
   </div>`).join('');
 
   const s = el(`<section class="section" id="section-techniques">
-    <div class="section-header"><div class="eyebrow">Section 05</div><h1>Techniques</h1><div class="desc">The key methods poets use across the anthology, with clear examples drawn from named poems and analysis guidance.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 05</div><h2>Techniques</h2><div class="desc">The key methods poets use across the anthology, with clear examples drawn from named poems and analysis guidance.</div></div>
 
     <div class="card"><h3>Voice, structure, imagery, sound, contrast</h3>
       <p>Almost every technique worth revising for this anthology falls into one of five groups: <b>voice and perspective</b> (who is speaking, how reliable or limited they are); <b>structure</b> (shifts, repetition, stanza pattern, cyclical endings, caesura, enjambment); <b>imagery</b> (natural, military, religious, bodily, domestic, political); <b>sound</b> (rhythm, rhyme, alliteration, harsh or soft sounds); and <b>contrast</b> (before/after, power/fragility, public/private, patriotic/realistic). Strong essays always link the specific technique to what it reveals about the poet's viewpoint, not just that the technique is present.</p>
@@ -1076,7 +1087,7 @@ function buildContext(){
   </div>`).join('');
 
   const s = el(`<section class="section" id="section-context">
-    <div class="section-header"><div class="eyebrow">Section 06</div><h1>Context</h1><div class="desc">Only the context you can actually use — organised by poem or cluster, always paired with a real essay application.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 06</div><h2>Context</h2><div class="desc">Only the context you can actually use — organised by poem or cluster, always paired with a real essay application.</div></div>
     <div class="card"><p><b>Important:</b> Never bolt on a historical fact just to prove you know it. Only use context when it genuinely deepens your interpretation of a poet's specific choices in that moment.</p></div>
     ${cards}
   </section>`);
@@ -1100,7 +1111,7 @@ function buildComparisonPairs(){
     </div>`).join('');
 
   const s = el(`<section class="section" id="section-comparisonpairs">
-    <div class="section-header"><div class="eyebrow">Section 07</div><h1>Comparison Pairs</h1><div class="desc">Ten reliable comparison routes — the seven fastest pairings plus three more strong options, each with a shared theme, similarity, difference and essay angle.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 07</div><h2>Comparison Pairs</h2><div class="desc">Ten reliable comparison routes — the seven fastest pairings plus three more strong options, each with a shared theme, similarity, difference and essay angle.</div></div>
     <div class="card"><p>A strong comparison is never just 'both poems show power'. Choose a second poem because it gives you something genuinely useful to compare — a clear similarity <i>and</i> a clear difference in viewpoint or method.</p></div>
     ${cards}
   </section>`);
@@ -1127,7 +1138,7 @@ function buildStructureWalkthrough(){
   });
 
   const s = el(`<section class="section" id="section-structurewalkthrough">
-    <div class="section-header"><div class="eyebrow">Section 08</div><h1>How a Poem Moves</h1><div class="desc">Three poems, traced stanza-by-stanza or moment-by-moment. Tap each step to see the quotation and what shifts.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 08</div><h2>How a Poem Moves</h2><div class="desc">Three poems, traced stanza-by-stanza or moment-by-moment. Tap each step to see the quotation and what shifts.</div></div>
     ${groupsHtml}
   </section>`);
   root.appendChild(s);
@@ -1140,7 +1151,7 @@ function buildStructureWalkthrough(){
 /* ---- 9. EXAM ---- */
 function buildExam(){
   const s = el(`<section class="section" id="section-exam">
-    <div class="section-header"><div class="eyebrow">Section 09</div><h1>Exam Survival</h1><div class="desc">How to actually approach a Power and Conflict comparison question, step by step.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 09</div><h2>Exam Survival</h2><div class="desc">How to actually approach a Power and Conflict comparison question, step by step.</div></div>
 
     <div class="card" style="text-align:center;">
       <img src="../images/exam-essentials/power-and-conflict-poetry-exam-essentials.png" alt="The Teacher Vault: Power and Conflict Poetry Exam Essentials one-page revision poster" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--line);display:block;margin:0 auto;" loading="lazy">
@@ -1226,7 +1237,7 @@ const TYPE_LABEL = {poem:'Poem ID', quote:'Quotation', theme:'Theme', tech:'Tech
 
 function buildQuiz(){
   const s = el(`<section class="section" id="section-quiz">
-    <div class="section-header"><div class="eyebrow">Section 10</div><h1>Quiz</h1><div class="desc">Self-marking revision quiz covering poem identification, quotations, themes, techniques, context and comparison logic.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 10</div><h2>Quiz</h2><div class="desc">Self-marking revision quiz covering poem identification, quotations, themes, techniques, context and comparison logic.</div></div>
     <div class="card">
       <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
       <div id="quizArea"></div>
@@ -1297,7 +1308,7 @@ let mqState = { order: [], idx:0, score:0, answered:false };
 
 function buildMatchGame(){
   const s = el(`<section class="section" id="section-matchgame">
-    <div class="section-header"><div class="eyebrow">Section 11</div><h1>Match the Quote</h1><div class="desc">A quick, game-like activity. For each quotation, select the poem it comes from.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 11</div><h2>Match the Quote</h2><div class="desc">A quick, game-like activity. For each quotation, select the poem it comes from.</div></div>
     <div class="jh-game">
       <div class="jh-score" id="mqScore"></div>
       <div class="jh-quote" id="mqQuoteText"></div>
@@ -1365,7 +1376,7 @@ document.addEventListener('click', function(e){
 /* ---- 12. POWER THEN & NOW ---- */
 function buildErasCompare(){
   const s = el(`<section class="section" id="section-erascompare">
-    <div class="section-header"><div class="eyebrow">Section 12</div><h1>Power Then &amp; Now</h1><div class="desc">Understanding the roughly two-century range this anthology covers is essential to comparing poems written in very different periods.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 12</div><h2>Power Then &amp; Now</h2><div class="desc">Understanding the roughly two-century range this anthology covers is essential to comparing poems written in very different periods.</div></div>
     <div class="compare-grid">
       <div class="compare-col">
         <h3>19th-Century Power &amp; Conflict</h3>
@@ -1433,7 +1444,7 @@ function buildLastMinute(){
   const dontDo = ["Don't simply describe or paraphrase a poem's content.","Don't list historical facts disconnected from the text.","Don't invent or misremember quotations, or quote at length.","Don't choose a comparison poem that only shares one surface word.","Don't forget this is poetry — form, structure and sound matter as much as meaning."];
 
   const s = el(`<section class="section" id="section-lastminute">
-    <div class="section-header"><div class="eyebrow">Section 13</div><h1>Power and Conflict — Last Minute</h1><div class="desc">Exam tomorrow? Start here.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 13</div><h2>Power and Conflict — Last Minute</h2><div class="desc">Exam tomorrow? Start here.</div></div>
     <button class="btn secondary print-btn" id="printBtn" type="button">Print this page</button>
 
     <div class="lm-grid">

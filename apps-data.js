@@ -110,6 +110,7 @@ const APPS = [
 
   {
     id: "report-writer-lite",
+    landingUrl: "report-writer.html",
     title: "Report Writer Lite",
     tagline: "Structure clear pupil reports in a fraction of the time.",
     description: "A free report-writing assistant that helps you turn rough notes into clear, consistent pupil reports without starting from a blank page each time.",
@@ -135,6 +136,7 @@ const APPS = [
   },
   {
     id: "lesson-planner-lite",
+    landingUrl: "lesson-planner.html",
     title: "Lesson Planner Lite",
     tagline: "Structure lessons and activities without the paperwork.",
     description: "A free planning tool that helps you lay out lesson objectives, activities and timings quickly, so planning takes minutes rather than a whole evening.",
@@ -163,6 +165,7 @@ const APPS = [
 
   {
     id: "report-writer-pro",
+    landingUrl: "report-writer.html",
     title: "Report Writer Pro",
     tagline: "The full report-writing toolkit for regular use.",
     description: "Everything in Report Writer Lite, plus extra banks of subject-specific phrasing, saved pupil profiles and faster batch report-writing for a full class.",
@@ -188,6 +191,7 @@ const APPS = [
   },
   {
     id: "lesson-planner-pro",
+    landingUrl: "lesson-planner.html",
     title: "Lesson Planner Pro",
     tagline: "Advanced planning for regular, everyday use.",
     description: "Everything in Lesson Planner Lite, plus scheme-of-work views, saved templates by topic, and more advanced options for planning across a full term.",
@@ -216,6 +220,7 @@ const APPS = [
 
   {
     id: "mark-my-class-lite",
+    landingUrl: "mark-my-class.html",
     title: "Mark My Class Lite",
     tagline: "A no-frills way to total pupil marks and see class averages.",
     description: "A simple, no-frills tool for totalling pupil assessment marks and seeing class averages at a glance — free, and ready in seconds.",
@@ -241,6 +246,7 @@ const APPS = [
   },
   {
     id: "differentiator",
+    landingUrl: "differentiator.html",
     title: "Differentiator",
     tagline: "Turn one activity into Support, Core and Stretch versions.",
     description: "Paste in a classroom activity and get three ready-to-use versions — Support, Core and Stretch — without writing three separate lessons from scratch.",
@@ -859,6 +865,7 @@ const APPS = [
 
   {
     id: "mark-my-class-pro",
+    landingUrl: "mark-my-class.html",
     title: "Mark My Class Pro",
     tagline: "Spot misconceptions and generate reteach priorities.",
     description: "Everything in Mark My Class Lite, plus deeper analysis of pupil assessment marks — spot class-wide misconceptions and generate reteach priorities in seconds.",
@@ -884,6 +891,7 @@ const APPS = [
   },
   {
     id: "feedback-fixer-lite",
+    landingUrl: "feedback-fixer.html",
     title: "Feedback Fixer Lite",
     tagline: "Quick, specific marking feedback for primary teachers.",
     description: "Choose a year group, subject, attainment level and feedback focus, and get a positive comment, an improvement point and a clear next step — ready to copy, print or write straight into a book.",
@@ -909,6 +917,7 @@ const APPS = [
   },
   {
     id: "feedback-fixer-pro",
+    landingUrl: "feedback-fixer.html",
     title: "Feedback Fixer Pro",
     tagline: "Turn hours of marking into minutes for a whole class.",
     description: "Everything in Feedback Fixer Lite, plus class lists, batch feedback for a whole class, 8 more subjects, SEND/EAL/High Attainer support, multiple feedback formats, editable saved history and class print sheets.",
@@ -990,6 +999,7 @@ const APPS = [
 
   {
     id: "rubric-generator",
+    landingUrl: "rubric-generator.html",
     title: "Rubric Generator",
     tagline: "Build a clear marking rubric from an assignment brief in seconds.",
     description: "Enter an assignment brief, subject and year group and get a ready-to-use marking rubric, drawn from a bank of criteria and descriptors matched to the subject.",
@@ -1015,6 +1025,7 @@ const APPS = [
   },
   {
     id: "rubric-generator-pro",
+    landingUrl: "rubric-generator.html",
     title: "Rubric Generator Pro",
     tagline: "Fully editable rubrics with weightings and saved templates.",
     description: "Everything in Rubric Generator Lite, plus up to 8 editable criteria, custom grade-level labels, criterion weightings, CSV export and saved rubrics you can reload for next time.",

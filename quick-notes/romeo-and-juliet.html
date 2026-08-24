@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Teacher Vault — Romeo and Juliet QuickNotes</title>
+<meta name="description" content="Free Romeo and Juliet GCSE quick notes — plot summary, character profiles, themes, key quotations and an exam-ready revision guide to Shakespeare's tragedy.">
+<link rel="canonical" href="https://theteachervault.com/quick-notes/romeo-and-juliet.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Teacher Vault — Romeo and Juliet QuickNotes">
+<meta property="og:description" content="Free Romeo and Juliet GCSE quick notes — plot summary, character profiles, themes, key quotations and an exam-ready revision guide to Shakespeare's tragedy.">
+<meta property="og:url" content="https://theteachervault.com/quick-notes/romeo-and-juliet.html">
+<meta property="og:image" content="https://theteachervault.com/images/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Teacher Vault — Romeo and Juliet QuickNotes">
+<meta name="twitter:description" content="Free Romeo and Juliet GCSE quick notes — plot summary, character profiles, themes, key quotations and an exam-ready revision guide to Shakespeare's tragedy.">
+<meta name="twitter:image" content="https://theteachervault.com/images/logo.png">
 <style>
 :root{
   --ink:#1B2A4A;
@@ -205,7 +216,7 @@ footer.app-footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--li
       <img src="../images/mascot-teacher.png" alt="The Teacher Vault mascot" class="brand-mascot">
       <div class="tv-name">The Teacher Vault</div>
       <div class="tv-sub">QuickNotes</div>
-      <div class="play-title">Romeo and Juliet</div>
+      <h1 class="play-title" style="margin:14px 0 0;font-weight:400;">Romeo and Juliet — GCSE Quick Notes</h1>
       <div class="play-sub">Everything you actually need for GCSE English Literature.</div>
     </div>
     <nav class="mainnav" id="navList" aria-label="Sections"></nav>
@@ -751,7 +762,7 @@ function el(html){ const d=document.createElement('div'); d.innerHTML=html; retu
 /* ---- 1. OVERVIEW ---- */
 function buildOverview(){
   const s = el(`<section class="section" id="section-overview">
-    <div class="section-header"><div class="eyebrow">Section 01</div><h1>Overview</h1><div class="desc">Get your bearings before you dive into detail.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 01</div><h2>Overview</h2><div class="desc">Get your bearings before you dive into detail.</div></div>
 
     <div class="grid two">
       <div class="card"><h3>Key facts</h3>
@@ -846,7 +857,7 @@ function buildPlot(){
   ];
 
   const s = el(`<section class="section" id="section-plot">
-    <div class="section-header"><div class="eyebrow">Section 02</div><h1>Plot</h1><div class="desc">All five acts. Tap any event to expand it.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 02</div><h2>Plot</h2><div class="desc">All five acts. Tap any event to expand it.</div></div>
     <div class="card"><h3>Whole Play in 12 Events</h3>
       <div class="timeline">${twelveEvents.map((e,i)=>`<div class="t-item"><div class="t-num">${String(i+1).padStart(2,'0')}</div><p>${e}</p></div>`).join('')}</div>
     </div>
@@ -873,7 +884,7 @@ function buildCharacters(){
     </div>`).join('');
 
   const s = el(`<section class="section" id="section-characters">
-    <div class="section-header"><div class="eyebrow">Section 03</div><h1>Characters</h1><div class="desc">Tap a character to see their full profile: journey, relationships, quotes and exam arguments.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 03</div><h2>Characters</h2><div class="desc">Tap a character to see their full profile: journey, relationships, quotes and exam arguments.</div></div>
     ${cards}
   </section>`);
   root.appendChild(s);
@@ -896,7 +907,7 @@ function buildThemes(){
     </div>`).join('');
 
   const s = el(`<section class="section" id="section-themes">
-    <div class="section-header"><div class="eyebrow">Section 04</div><h1>Themes</h1><div class="desc">Sixteen core themes, each with quotations, context and ready-to-adapt thesis statements.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 04</div><h2>Themes</h2><div class="desc">Sixteen core themes, each with quotations, context and ready-to-adapt thesis statements.</div></div>
     <div class="card"><h3>A note on fate, love and conflict</h3><p>These are the play's three strongest, most interconnected themes. The tragedy is <b>not caused by fate alone</b> — the Prologue announces the lovers' doom, but the specific chain of events getting there depends heavily on individual choices: Romeo's decision to attend the party, his impulsive killing of Tybalt, his rushed purchase of poison. Strong essays explore the interaction between fate, individual choices, family conflict, violence, secrecy, social expectations and simple poor decisions, rather than defaulting to "it was fate" as a single, simple explanation.</p></div>
     ${cards}
   </section>`);
@@ -909,7 +920,7 @@ function buildQuoteVault(){
   const allThemes = Array.from(new Set(QUOTES.flatMap(q=>q.themes))).sort();
 
   const s = el(`<section class="section" id="section-quotes">
-    <div class="section-header"><div class="eyebrow">Section 05</div><h1>Quote Vault</h1><div class="desc">Search and filter the play's most important quotations. All checked against the original text.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 05</div><h2>Quote Vault</h2><div class="desc">Search and filter the play's most important quotations. All checked against the original text.</div></div>
     <div class="qv-controls">
       <input type="text" id="qvSearch" placeholder="Search quotations..." aria-label="Search quotations">
       <select id="qvCharFilter" aria-label="Filter by character"><option value="">All characters</option>${allChars.map(c=>`<option value="${c}">${c}</option>`).join('')}</select>
@@ -1004,7 +1015,7 @@ function buildContext(){
   </div>`).join('');
 
   const s = el(`<section class="section" id="section-context">
-    <div class="section-header"><div class="eyebrow">Section 06</div><h1>Context</h1><div class="desc">Only the context you can actually use — always paired with a real essay application.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 06</div><h2>Context</h2><div class="desc">Only the context you can actually use — always paired with a real essay application.</div></div>
     <div class="card"><p><b>Important:</b> Never bolt on a historical fact just to prove you know it. Only use context when it genuinely deepens your interpretation of Shakespeare's choices in that specific moment.</p></div>
     ${cards}
   </section>`);
@@ -1024,7 +1035,7 @@ function buildTechniques(){
   </div>`).join('');
 
   const s = el(`<section class="section" id="section-techniques">
-    <div class="section-header"><div class="eyebrow">Section 07</div><h1>Techniques</h1><div class="desc">The key literary and dramatic methods Shakespeare uses, with clear examples and analysis guidance.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 07</div><h2>Techniques</h2><div class="desc">The key literary and dramatic methods Shakespeare uses, with clear examples and analysis guidance.</div></div>
 
     <div class="card"><h3>Oxymorons — Romeo's contradictory language</h3>
       <p>Romeo repeatedly uses oxymorons throughout the play, most strikingly in Act One's 'O brawling love! O loving hate!' This pattern of contradictory language is not simply decorative wordplay — it captures a genuine, structural truth about the play's world, where love and violence are never fully separable. Romeo's oxymorons suggest he intuitively grasps this paradox even before fully living through its consequences, and the technique recurs at key moments (Juliet's 'parting is such sweet sorrow') to reinforce how thoroughly contradictory, intense emotion characterises the lovers' entire experience.</p>
@@ -1050,7 +1061,7 @@ function buildTechniques(){
 /* ---- 8. EXAM ---- */
 function buildExam(){
   const s = el(`<section class="section" id="section-exam">
-    <div class="section-header"><div class="eyebrow">Section 08</div><h1>Exam Survival</h1><div class="desc">How to actually approach a Romeo and Juliet exam question, step by step.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 08</div><h2>Exam Survival</h2><div class="desc">How to actually approach a Romeo and Juliet exam question, step by step.</div></div>
 
     <div class="card" style="text-align:center;">
       <img src="../images/exam-essentials/romeo-and-juliet-exam-essentials.png" alt="The Teacher Vault: Romeo and Juliet Exam Essentials one-page revision poster" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--line);display:block;margin:0 auto;" loading="lazy">
@@ -1157,7 +1168,7 @@ const TYPE_LABEL = {mc:'Plot & detail', tf:'True / False', char:'Character', quo
 
 function buildQuiz(){
   const s = el(`<section class="section" id="section-quiz">
-    <div class="section-header"><div class="eyebrow">Section 09</div><h1>Quiz</h1><div class="desc">Self-marking revision quiz covering plot, acts, characters, quotations, themes, context, techniques and structure.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 09</div><h2>Quiz</h2><div class="desc">Self-marking revision quiz covering plot, acts, characters, quotations, themes, context, techniques and structure.</div></div>
     <div class="card">
       <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
       <div id="quizArea"></div>
@@ -1248,7 +1259,7 @@ function buildWhoCaused(){
   </div>`).join('');
 
   const s = el(`<section class="section" id="section-whocaused">
-    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Who Caused the Tragedy?</h1><div class="desc">There is no single correct answer — use the evidence below to develop your own argument.</div></div>
+    <div class="section-header"><div class="eyebrow">Bonus</div><h2>Who Caused the Tragedy?</h2><div class="desc">There is no single correct answer — use the evidence below to develop your own argument.</div></div>
     ${cards}
   </section>`);
   root.appendChild(s);
@@ -1259,7 +1270,7 @@ let lcState = { order: [], idx:0, score:0, answered:false };
 
 function buildLoveConflict(){
   const s = el(`<section class="section" id="section-loveconflict">
-    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Love or Conflict?</h1><div class="desc">A quick, game-like activity. For each quotation, decide whether it is primarily about love, conflict, both, or neither.</div></div>
+    <div class="section-header"><div class="eyebrow">Bonus</div><h2>Love or Conflict?</h2><div class="desc">A quick, game-like activity. For each quotation, decide whether it is primarily about love, conflict, both, or neither.</div></div>
     <div class="jh-game">
       <div class="jh-score" id="lcScore"></div>
       <div class="jh-quote" id="lcQuoteText"></div>
@@ -1343,7 +1354,7 @@ function buildRelMap(){
     </div>`).join('');
 
   const s = el(`<section class="section" id="section-relmap">
-    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Relationship Map</h1><div class="desc">Tap each relationship to see how it develops across the play.</div></div>
+    <div class="section-header"><div class="eyebrow">Bonus</div><h2>Relationship Map</h2><div class="desc">Tap each relationship to see how it develops across the play.</div></div>
     <div class="rel-grid">${cards}</div>
   </section>`);
   root.appendChild(s);
@@ -1367,7 +1378,7 @@ function buildFateTracker(){
     </div>`).join('');
 
   const s = el(`<section class="section" id="section-fatetracker">
-    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Fate or Choice?</h1><div class="desc">For each major moment, make your own judgement, then reveal a balanced explanation.</div></div>
+    <div class="section-header"><div class="eyebrow">Bonus</div><h2>Fate or Choice?</h2><div class="desc">For each major moment, make your own judgement, then reveal a balanced explanation.</div></div>
     <div class="card"><p class="subtle">There's no single correct answer here — the goal is to think through how fate and human choice interact at each moment, not to guess a fixed answer.</p></div>
     ${cards}
   </section>`);
@@ -1433,7 +1444,7 @@ function buildLastMinute(){
   const dontDo = ["Don't simply retell the story.","Don't call Shakespeare a novelist — he was a playwright.","Don't invent or misremember quotations.","Don't bolt on context disconnected from the text.","Don't blame everything on fate without discussing characters' choices."];
 
   const s = el(`<section class="section" id="section-lastminute">
-    <div class="section-header"><div class="eyebrow">Section 10</div><h1>Romeo and Juliet — Last Minute</h1><div class="desc">Exam tomorrow? Start here.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 10</div><h2>Romeo and Juliet — Last Minute</h2><div class="desc">Exam tomorrow? Start here.</div></div>
     <button class="btn secondary print-btn" id="printBtn" type="button">Print this page</button>
 
     <div class="lm-grid">

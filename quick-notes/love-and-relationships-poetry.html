@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Teacher Vault — Love and Relationships Poetry QuickNotes</title>
+<meta name="description" content="Free Love and Relationships GCSE poetry quick notes — all 15 AQA anthology poems with key ideas, poetic methods, context and comparison guidance.">
+<link rel="canonical" href="https://theteachervault.com/quick-notes/love-and-relationships-poetry.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Teacher Vault — Love and Relationships Poetry QuickNotes">
+<meta property="og:description" content="Free Love and Relationships GCSE poetry quick notes — all 15 AQA anthology poems with key ideas, poetic methods, context and comparison guidance.">
+<meta property="og:url" content="https://theteachervault.com/quick-notes/love-and-relationships-poetry.html">
+<meta property="og:image" content="https://theteachervault.com/images/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Teacher Vault — Love and Relationships Poetry QuickNotes">
+<meta name="twitter:description" content="Free Love and Relationships GCSE poetry quick notes — all 15 AQA anthology poems with key ideas, poetic methods, context and comparison guidance.">
+<meta name="twitter:image" content="https://theteachervault.com/images/logo.png">
 <style>
 :root{
   --ink:#3B1F33;
@@ -216,7 +227,7 @@ footer.app-footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--li
       <img src="../images/mascot-teacher.png" alt="The Teacher Vault mascot" class="brand-mascot">
       <div class="tv-name">The Teacher Vault</div>
       <div class="tv-sub">QuickNotes</div>
-      <div class="play-title">Love and Relationships Poetry</div>
+      <h1 class="play-title" style="margin:14px 0 0;font-weight:400;">Love and Relationships Poetry — GCSE Quick Notes</h1>
       <div class="play-sub">Fifteen poems, one anthology — everything you need for AQA GCSE English Literature.</div>
     </div>
     <nav class="mainnav" id="navList" aria-label="Sections"></nav>
@@ -922,7 +933,7 @@ function el(html){ const d=document.createElement('div'); d.innerHTML=html; retu
 /* ---- 1. OVERVIEW ---- */
 function buildOverview(){
   const s = el(`<section class="section" id="section-overview">
-    <div class="section-header"><div class="eyebrow">Section 01</div><h1>Overview</h1><div class="desc">Get your bearings across all fifteen poems before you dive into detail.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 01</div><h2>Overview</h2><div class="desc">Get your bearings across all fifteen poems before you dive into detail.</div></div>
 
     <div class="grid two">
       <div class="card"><h3>Key facts</h3>
@@ -993,7 +1004,7 @@ function buildPoemGuide(){
     </div>`).join('');
 
   const s = el(`<section class="section" id="section-poemguide">
-    <div class="section-header"><div class="eyebrow">Section 02</div><h1>Poem Guide</h1><div class="desc">All fifteen poems. Tap any title to see its full profile: form, core idea, voice, quotes, technique and comparison partners.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 02</div><h2>Poem Guide</h2><div class="desc">All fifteen poems. Tap any title to see its full profile: form, core idea, voice, quotes, technique and comparison partners.</div></div>
     ${cards}
   </section>`);
   root.appendChild(s);
@@ -1016,7 +1027,7 @@ function buildThemes(){
     </div>`).join('');
 
   const s = el(`<section class="section" id="section-themes">
-    <div class="section-header"><div class="eyebrow">Section 03</div><h1>Themes</h1><div class="desc">Twelve cross-poem themes, each with linked poems, quotations, context and ready-to-adapt thesis statements.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 03</div><h2>Themes</h2><div class="desc">Twelve cross-poem themes, each with linked poems, quotations, context and ready-to-adapt thesis statements.</div></div>
     <div class="card"><h3>A note on comparing themes across poems</h3><p>Because this cluster contains fifteen poems spanning two centuries, almost every theme below appears, in some form, across several poems. The strongest exam answers do not simply list which poems share a theme — they explain <b>how</b> each poet's specific methods (form, structure, imagery, voice) shape a distinct version of that shared theme. Use this section to identify strong comparison pairs, then develop the comparison using the Poem Guide and Quote Vault sections.</p></div>
     ${cards}
   </section>`);
@@ -1029,7 +1040,7 @@ function buildQuoteVault(){
   const allThemes = Array.from(new Set(QUOTES.flatMap(q=>q.themes))).sort();
 
   const s = el(`<section class="section" id="section-quotes">
-    <div class="section-header"><div class="eyebrow">Section 04</div><h1>Quote Vault</h1><div class="desc">Search and filter the anthology's most important quotations. Kept short and used only for educational analysis.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 04</div><h2>Quote Vault</h2><div class="desc">Search and filter the anthology's most important quotations. Kept short and used only for educational analysis.</div></div>
     <div class="qv-controls">
       <input type="text" id="qvSearch" placeholder="Search quotations..." aria-label="Search quotations">
       <select id="qvCharFilter" aria-label="Filter by poem"><option value="">All poems</option>${allPoems.map(c=>`<option value="${c}">${c}</option>`).join('')}</select>
@@ -1106,7 +1117,7 @@ function buildTechniques(){
   </div>`).join('');
 
   const s = el(`<section class="section" id="section-techniques">
-    <div class="section-header"><div class="eyebrow">Section 05</div><h1>Techniques</h1><div class="desc">The key poetic and structural methods used across the anthology, with clear examples and analysis guidance.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 05</div><h2>Techniques</h2><div class="desc">The key poetic and structural methods used across the anthology, with clear examples and analysis guidance.</div></div>
 
     <div class="card"><h3>Why form and structure matter so much in this cluster</h3>
       <p>Because these fifteen poems span dramatic monologue, sonnet, ballad-like quatrains, dialect free verse and single unbroken stanzas, form is rarely incidental — poets frequently choose a structure that reinforces their poem's central idea. An unbroken stanza can mirror obsessive control (Porphyria's Lover) or an uninterrupted climb (Climbing My Grandfather); a sonnet's volta can dramatise a shift from thought to demand (Sonnet 29) or from admiration to reversal (Follower). Always ask why a poet chose this specific form, not just what technique appears within it.</p>
@@ -1128,7 +1139,7 @@ function buildContext(){
   </div>`).join('');
 
   const s = el(`<section class="section" id="section-context">
-    <div class="section-header"><div class="eyebrow">Section 06</div><h1>Context</h1><div class="desc">Only the context you can actually use — always paired with a real essay application, poet by poet.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 06</div><h2>Context</h2><div class="desc">Only the context you can actually use — always paired with a real essay application, poet by poet.</div></div>
     <div class="card"><p><b>Important:</b> Never bolt on a biographical or historical fact just to prove you know it. Only use context when it genuinely deepens your interpretation of a poet's specific choices in that poem.</p></div>
     ${cards}
   </section>`);
@@ -1153,7 +1164,7 @@ function buildComparisonPairs(){
     </div>`).join('');
 
   const s = el(`<section class="section" id="section-comparisonpairs">
-    <div class="section-header"><div class="eyebrow">Section 07</div><h1>Comparison Pairs</h1><div class="desc">Ten strong comparison routes through the anthology, each with a shared theme, a similarity, a difference and a suggested essay angle.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 07</div><h2>Comparison Pairs</h2><div class="desc">Ten strong comparison routes through the anthology, each with a shared theme, a similarity, a difference and a suggested essay angle.</div></div>
     <div class="card"><p><b>Remember:</b> these are strong starting points, not the only correct pairings. Always let the exact wording of the exam question decide your second poem — a pairing that works brilliantly for one question may not suit a differently-worded one.</p></div>
     ${blocks}
   </section>`);
@@ -1182,7 +1193,7 @@ function buildStructureWalkthrough(){
   }).join('<div style="height:8px;"></div>');
 
   const s = el(`<section class="section" id="section-structurewalkthrough">
-    <div class="section-header"><div class="eyebrow">Section 08</div><h1>How a Poem Moves</h1><div class="desc">Three poems, traced step by step. Tap each stage to see how the poem shifts stanza by stanza.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 08</div><h2>How a Poem Moves</h2><div class="desc">Three poems, traced step by step. Tap each stage to see how the poem shifts stanza by stanza.</div></div>
     <div class="card"><p><b>Why this matters:</b> examiners consistently reward students who can track how a poem develops or changes across its structure, not just students who can quote from anywhere within it. Use these three worked examples as a model for tracing structure in any poem in the anthology.</p></div>
     ${poemBlocks}
   </section>`);
@@ -1196,7 +1207,7 @@ function buildStructureWalkthrough(){
 /* ---- 9. EXAM ---- */
 function buildExam(){
   const s = el(`<section class="section" id="section-exam">
-    <div class="section-header"><div class="eyebrow">Section 09</div><h1>Exam Survival</h1><div class="desc">How to actually approach a Love and Relationships comparison question, step by step.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 09</div><h2>Exam Survival</h2><div class="desc">How to actually approach a Love and Relationships comparison question, step by step.</div></div>
 
     <div class="card" style="text-align:center;">
       <img src="../images/exam-essentials/love-and-relationships-poetry-exam-essentials.png" alt="The Teacher Vault: Love and Relationships Poetry Exam Essentials one-page revision poster" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--line);display:block;margin:0 auto;" loading="lazy">
@@ -1294,7 +1305,7 @@ const TYPE_LABEL = {poem:'Poem identification', quote:'Quotation', theme:'Theme'
 
 function buildQuiz(){
   const s = el(`<section class="section" id="section-quiz">
-    <div class="section-header"><div class="eyebrow">Section 10</div><h1>Quiz</h1><div class="desc">Self-marking revision quiz covering poem identification, quotations, themes, techniques, context and comparison.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 10</div><h2>Quiz</h2><div class="desc">Self-marking revision quiz covering poem identification, quotations, themes, techniques, context and comparison.</div></div>
     <div class="card">
       <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
       <div id="quizArea"></div>
@@ -1365,7 +1376,7 @@ let matchState = { order: [], idx:0, score:0, answered:false };
 
 function buildMatchGame(){
   const s = el(`<section class="section" id="section-matchgame">
-    <div class="section-header"><div class="eyebrow">Section 11</div><h1>Match the Quote</h1><div class="desc">A quick, game-like activity. For each quotation, select the poem it comes from.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 11</div><h2>Match the Quote</h2><div class="desc">A quick, game-like activity. For each quotation, select the poem it comes from.</div></div>
     <div class="jh-game">
       <div class="jh-score" id="matchScore"></div>
       <div class="jh-quote" id="matchQuoteText"></div>
@@ -1433,7 +1444,7 @@ document.addEventListener('click', function(e){
 /* ---- 12. LOVE THEN & NOW (ERAS COMPARE) ---- */
 function buildErasCompare(){
   const s = el(`<section class="section" id="section-erascompare">
-    <div class="section-header"><div class="eyebrow">Section 12</div><h1>Love Then &amp; Now</h1><div class="desc">Comparing the anthology's six Romantic/Victorian poems against its nine contemporary poems reveals how ideas about love, power and family have shifted across two centuries.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 12</div><h2>Love Then &amp; Now</h2><div class="desc">Comparing the anthology's six Romantic/Victorian poems against its nine contemporary poems reveals how ideas about love, power and family have shifted across two centuries.</div></div>
     <div class="compare-grid">
       <div class="compare-col">
         <h3>Romantic &amp; Victorian Love Poems</h3>
@@ -1489,7 +1500,7 @@ function buildLastMinute(){
   const dontDo = ["Don't simply summarise each poem's plot in turn.","Don't list biographical facts disconnected from the text.","Don't invent or misremember quotations.","Don't force a memorised pairing that doesn't fit the question.","Don't forget to compare methods (form, structure, imagery), not only content."];
 
   const s = el(`<section class="section" id="section-lastminute">
-    <div class="section-header"><div class="eyebrow">Section 13</div><h1>Love and Relationships — Last Minute</h1><div class="desc">Exam tomorrow? Start here.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 13</div><h2>Love and Relationships — Last Minute</h2><div class="desc">Exam tomorrow? Start here.</div></div>
     <button class="btn secondary print-btn" id="printBtn" type="button">Print this page</button>
 
     <div class="sixty">

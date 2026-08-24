@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Teacher Vault — A Christmas Carol QuickNotes</title>
+<meta name="description" content="Free A Christmas Carol GCSE quick notes — stave-by-stave plot summary, character profiles, themes, key quotations and an exam-ready revision guide.">
+<link rel="canonical" href="https://theteachervault.com/quick-notes/christmas-carol.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Teacher Vault — A Christmas Carol QuickNotes">
+<meta property="og:description" content="Free A Christmas Carol GCSE quick notes — stave-by-stave plot summary, character profiles, themes, key quotations and an exam-ready revision guide.">
+<meta property="og:url" content="https://theteachervault.com/quick-notes/christmas-carol.html">
+<meta property="og:image" content="https://theteachervault.com/images/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Teacher Vault — A Christmas Carol QuickNotes">
+<meta name="twitter:description" content="Free A Christmas Carol GCSE quick notes — stave-by-stave plot summary, character profiles, themes, key quotations and an exam-ready revision guide.">
+<meta name="twitter:image" content="https://theteachervault.com/images/logo.png">
 <style>
 :root{
   --ink:#1B2A4A;
@@ -204,7 +215,7 @@ footer.app-footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--li
     <div class="brand">
       <div class="tv-name">The Teacher Vault</div>
       <div class="tv-sub">QuickNotes</div>
-      <div class="play-title">A Christmas Carol</div>
+      <h1 class="play-title" style="margin:14px 0 0;font-weight:400;">A Christmas Carol — GCSE Quick Notes</h1>
       <div class="play-sub">Everything you actually need for GCSE English Literature.</div>
     </div>
     <nav class="mainnav" id="navList" aria-label="Sections"></nav>
@@ -759,7 +770,7 @@ function el(html){ const d=document.createElement('div'); d.innerHTML=html; retu
 /* ---- 1. OVERVIEW ---- */
 function buildOverview(){
   const s = el(`<section class="section" id="section-overview">
-    <div class="section-header"><div class="eyebrow">Section 01</div><h1>Overview</h1><div class="desc">Get your bearings before you dive into detail.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 01</div><h2>Overview</h2><div class="desc">Get your bearings before you dive into detail.</div></div>
 
     <div class="grid two">
       <div class="card"><h3>Key facts</h3>
@@ -847,7 +858,7 @@ function buildPlot(){
   ];
 
   const s = el(`<section class="section" id="section-plot">
-    <div class="section-header"><div class="eyebrow">Section 02</div><h1>Plot</h1><div class="desc">All five staves. Tap any stave to expand it.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 02</div><h2>Plot</h2><div class="desc">All five staves. Tap any stave to expand it.</div></div>
     <div class="card"><h3>Whole Novella in 12 Events</h3>
       <div class="timeline">${twelveEvents.map((e,i)=>`<div class="t-item"><div class="t-num">${String(i+1).padStart(2,'0')}</div><p>${e}</p></div>`).join('')}</div>
     </div>
@@ -874,7 +885,7 @@ function buildCharacters(){
     </div>`).join('');
 
   const s = el(`<section class="section" id="section-characters">
-    <div class="section-header"><div class="eyebrow">Section 03</div><h1>Characters</h1><div class="desc">Tap a character to see their full profile: journey, relationships, quotes and exam arguments.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 03</div><h2>Characters</h2><div class="desc">Tap a character to see their full profile: journey, relationships, quotes and exam arguments.</div></div>
     ${cards}
   </section>`);
   root.appendChild(s);
@@ -897,7 +908,7 @@ function buildThemes(){
     </div>`).join('');
 
   const s = el(`<section class="section" id="section-themes">
-    <div class="section-header"><div class="eyebrow">Section 04</div><h1>Themes</h1><div class="desc">Seventeen core themes, each with quotations, context and ready-to-adapt thesis statements.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 04</div><h2>Themes</h2><div class="desc">Seventeen core themes, each with quotations, context and ready-to-adapt thesis statements.</div></div>
     <div class="card"><h3>A note on redemption and social responsibility</h3><p>These are the novella's two strongest, most interconnected themes. Redemption is not presented as instantaneous — Scrooge's change unfolds gradually across four staves, built through memory, empathy, fear and finally action. Social responsibility is not reduced to simply "rich people should give money away": Dickens criticises indifference, exploitation and social division as systemic problems, shown through Ignorance and Want, not just individual meanness. Scrooge's transformation matters because it demonstrates Dickens's broader belief that people, and by extension society, genuinely can change for the better once they accept responsibility for one another.</p></div>
     ${cards}
   </section>`);
@@ -910,7 +921,7 @@ function buildQuoteVault(){
   const allThemes = Array.from(new Set(QUOTES.flatMap(q=>q.themes))).sort();
 
   const s = el(`<section class="section" id="section-quotes">
-    <div class="section-header"><div class="eyebrow">Section 05</div><h1>Quote Vault</h1><div class="desc">Search and filter the novella's most important quotations. All checked against the original 1843 text.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 05</div><h2>Quote Vault</h2><div class="desc">Search and filter the novella's most important quotations. All checked against the original 1843 text.</div></div>
     <div class="qv-controls">
       <input type="text" id="qvSearch" placeholder="Search quotations..." aria-label="Search quotations">
       <select id="qvCharFilter" aria-label="Filter by character"><option value="">All characters</option>${allChars.map(c=>`<option value="${c}">${c}</option>`).join('')}</select>
@@ -1005,7 +1016,7 @@ function buildContext(){
   </div>`).join('');
 
   const s = el(`<section class="section" id="section-context">
-    <div class="section-header"><div class="eyebrow">Section 06</div><h1>Context</h1><div class="desc">Only the context you can actually use — always paired with a real essay application.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 06</div><h2>Context</h2><div class="desc">Only the context you can actually use — always paired with a real essay application.</div></div>
     <div class="card"><p><b>Important:</b> Never bolt on a historical fact just to prove you know it. Only use context when it genuinely deepens your interpretation of Dickens's choices in that specific moment.</p></div>
     ${cards}
   </section>`);
@@ -1025,7 +1036,7 @@ function buildTechniques(){
   </div>`).join('');
 
   const s = el(`<section class="section" id="section-techniques">
-    <div class="section-header"><div class="eyebrow">Section 07</div><h1>Techniques</h1><div class="desc">The key literary and structural methods Dickens uses, with clear examples and analysis guidance.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 07</div><h2>Techniques</h2><div class="desc">The key literary and structural methods Dickens uses, with clear examples and analysis guidance.</div></div>
 
     <div class="card"><h3>Why five staves?</h3>
       <p>Dickens deliberately calls each of the novella's five sections a 'stave' rather than a 'chapter' — a stave (or staff) is the set of five lines used in musical notation to write a piece of music. This choice directly reinforces the novella's title and framing: A Christmas Carol is structured like a piece of music to be performed and heard, not simply a story to be silently read. This musical framing suits the novella's warm, oral, direct-address narrative voice, and reinforces its themes of harmony, community and seasonal tradition — a carol, after all, is a song traditionally sung together, in community, at Christmas. The five-stave structure also creates a clear, rhythmic progression through Scrooge's transformation, giving his gradual change a satisfying, almost musical shape from discord (Stave One) toward resolution and harmony (Stave Five).</p>
@@ -1039,7 +1050,7 @@ function buildTechniques(){
 /* ---- 8. EXAM ---- */
 function buildExam(){
   const s = el(`<section class="section" id="section-exam">
-    <div class="section-header"><div class="eyebrow">Section 08</div><h1>Exam Survival</h1><div class="desc">How to actually approach an A Christmas Carol exam question, step by step.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 08</div><h2>Exam Survival</h2><div class="desc">How to actually approach an A Christmas Carol exam question, step by step.</div></div>
 
     <div class="card"><p>Exam boards differ in exact format — some give you a printed extract and ask you to connect it to the whole novella; others ask a discursive essay question without an extract. Always check your own exam board's format with your teacher, but the analytical skills below apply broadly.</p></div>
 
@@ -1141,7 +1152,7 @@ const TYPE_LABEL = {mc:'Plot & detail', tf:'True / False', char:'Character', quo
 
 function buildQuiz(){
   const s = el(`<section class="section" id="section-quiz">
-    <div class="section-header"><div class="eyebrow">Section 09</div><h1>Quiz</h1><div class="desc">Self-marking revision quiz covering plot, staves, characters, quotations, themes, context, techniques and symbolism.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 09</div><h2>Quiz</h2><div class="desc">Self-marking revision quiz covering plot, staves, characters, quotations, themes, context, techniques and symbolism.</div></div>
     <div class="card">
       <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
       <div id="quizArea"></div>
@@ -1227,7 +1238,7 @@ function buildTracker(){
   });
 
   const s = el(`<section class="section" id="section-tracker">
-    <div class="section-header"><div class="eyebrow">Bonus</div><h1>How Scrooge Changes</h1><div class="desc">Tap each stave to see Scrooge's development, stage by stage.</div></div>
+    <div class="section-header"><div class="eyebrow">Bonus</div><h2>How Scrooge Changes</h2><div class="desc">Tap each stave to see Scrooge's development, stage by stage.</div></div>
     <div class="tt-grid">${stepsHtml}</div>
   </section>`);
   root.appendChild(s);
@@ -1242,7 +1253,7 @@ let wsState = { order: [], idx:0, score:0, answered:false };
 
 function buildWhichSpirit(){
   const s = el(`<section class="section" id="section-whichspirit">
-    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Which Spirit?</h1><div class="desc">A quick, game-like activity. For each detail, identify which spirit it belongs to.</div></div>
+    <div class="section-header"><div class="eyebrow">Bonus</div><h2>Which Spirit?</h2><div class="desc">A quick, game-like activity. For each detail, identify which spirit it belongs to.</div></div>
     <div class="jh-game">
       <div class="jh-score" id="wsScore"></div>
       <div class="jh-quote" id="wsQuoteText"></div>
@@ -1321,7 +1332,7 @@ function buildSymbolVault(){
     </div>`).join('');
 
   const s2 = el(`<section class="section" id="section-symbolvault">
-    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Symbol Vault</h1><div class="desc">The novella's key recurring symbols, explained with useful essay applications.</div></div>
+    <div class="section-header"><div class="eyebrow">Bonus</div><h2>Symbol Vault</h2><div class="desc">The novella's key recurring symbols, explained with useful essay applications.</div></div>
     <div class="symbol-grid">${cards}</div>
   </section>`);
   root.appendChild(s2);
@@ -1343,7 +1354,7 @@ function buildPovertyMap(){
   });
 
   const s = el(`<section class="section" id="section-povertymap">
-    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Poverty &amp; Responsibility Map</h1><div class="desc">Tap each stage to see how the novella builds its argument about poverty and social responsibility.</div></div>
+    <div class="section-header"><div class="eyebrow">Bonus</div><h2>Poverty &amp; Responsibility Map</h2><div class="desc">Tap each stage to see how the novella builds its argument about poverty and social responsibility.</div></div>
     <div class="map-chain">${stepsHtml}</div>
   </section>`);
   root.appendChild(s);
@@ -1400,7 +1411,7 @@ function buildLastMinute(){
   const dontDo = ["Don't simply retell the story.","Don't use made-up or misremembered quotations.","Don't bolt on context disconnected from the text.","Don't identify a technique without analysing its effect.","Don't forget that Scrooge changes significantly across the novella."];
 
   const s = el(`<section class="section" id="section-lastminute">
-    <div class="section-header"><div class="eyebrow">Section 10</div><h1>A Christmas Carol — Last Minute</h1><div class="desc">Exam tomorrow? Start here.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 10</div><h2>A Christmas Carol — Last Minute</h2><div class="desc">Exam tomorrow? Start here.</div></div>
     <button class="btn secondary print-btn" id="printBtn" type="button">Print this page</button>
 
     <div class="lm-grid">

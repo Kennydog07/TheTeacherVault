@@ -299,21 +299,22 @@ function renderAppCard(app) {
   const subjectBadge = (app.subject && app.subject !== "General")
     ? '<span class="badge badge--subject">' + app.subject + '</span>' : "";
   const newBadge = app.isNew ? '<span class="badge badge--new">New</span>' : "";
+  const detailsUrl = app.landingUrl || ('app.html?id=' + app.id);
 
   return (
     '<article class="app-card" data-id="' + app.id + '" data-category="' + app.category + '" data-tier="' + app.tier + '" data-subject="' + (app.subject || "") + '" data-comingsoon="' + !!app.comingSoon + '">' +
-      '<a href="app.html?id=' + app.id + '" class="app-card__thumb' + (!app.image && app.category === "quicknotes" ? " app-card__thumb--board" : "") + '" aria-hidden="true" tabindex="-1">' +
+      '<a href="' + detailsUrl + '" class="app-card__thumb' + (!app.image && app.category === "quicknotes" ? " app-card__thumb--board" : "") + '" aria-hidden="true" tabindex="-1">' +
         thumbMedia(app) +
         '<span class="app-card__badges">' + tierBadge(app) + newBadge + '</span>' +
       '</a>' +
       '<div class="app-card__body">' +
         '<span class="app-card__category"><span class="app-card__category-icon" aria-hidden="true">' + thumbIcon(app) + '</span>' + categoryLabel(app) + '</span>' +
-        '<h3 class="app-card__title"><a href="app.html?id=' + app.id + '">' + app.title + '</a></h3>' +
+        '<h3 class="app-card__title"><a href="' + detailsUrl + '">' + app.title + '</a></h3>' +
         '<p class="app-card__desc">' + app.tagline + '</p>' +
         '<div class="app-card__meta">' + subjectBadge + '</div>' +
         '<div class="app-card__foot">' +
           ctaFor(app) +
-          '<a href="app.html?id=' + app.id + '" class="btn btn--outline-dark btn--sm btn--block">View details</a>' +
+          '<a href="' + detailsUrl + '" class="btn btn--outline-dark btn--sm btn--block">View details</a>' +
           proNote(app) +
         '</div>' +
       '</div>' +

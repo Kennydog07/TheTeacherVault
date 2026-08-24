@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Teacher Vault — Blood Brothers QuickNotes</title>
+<meta name="description" content="Free Blood Brothers GCSE quick notes — plot summary, character profiles, themes, key quotations and an exam-ready revision guide to Willy Russell's play.">
+<link rel="canonical" href="https://theteachervault.com/quick-notes/blood-brothers.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Teacher Vault — Blood Brothers QuickNotes">
+<meta property="og:description" content="Free Blood Brothers GCSE quick notes — plot summary, character profiles, themes, key quotations and an exam-ready revision guide to Willy Russell's play.">
+<meta property="og:url" content="https://theteachervault.com/quick-notes/blood-brothers.html">
+<meta property="og:image" content="https://theteachervault.com/images/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Teacher Vault — Blood Brothers QuickNotes">
+<meta name="twitter:description" content="Free Blood Brothers GCSE quick notes — plot summary, character profiles, themes, key quotations and an exam-ready revision guide to Willy Russell's play.">
+<meta name="twitter:image" content="https://theteachervault.com/images/logo.png">
 <style>
 :root{
   --ink:#122237;
@@ -209,7 +220,7 @@ footer.app-footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--li
       <img src="../images/mascot-teacher.png" alt="The Teacher Vault mascot" class="brand-mascot">
       <div class="tv-name">The Teacher Vault</div>
       <div class="tv-sub">QuickNotes</div>
-      <div class="play-title">Blood Brothers</div>
+      <h1 class="play-title" style="margin:14px 0 0;font-weight:400;">Blood Brothers — GCSE Quick Notes</h1>
       <div class="play-sub">Everything you actually need for GCSE English Literature.</div>
     </div>
     <nav class="mainnav" id="navList" aria-label="Sections"></nav>
@@ -725,7 +736,7 @@ function el(html){ const d=document.createElement('div'); d.innerHTML=html; retu
 /* ---- 1. OVERVIEW ---- */
 function buildOverview(){
   const s = el(`<section class="section" id="section-overview">
-    <div class="section-header"><div class="eyebrow">Section 01</div><h1>Overview</h1><div class="desc">Get your bearings before you dive into detail.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 01</div><h2>Overview</h2><div class="desc">Get your bearings before you dive into detail.</div></div>
 
     <div class="grid two">
       <div class="card"><h3>Key facts</h3>
@@ -828,7 +839,7 @@ function buildPlot(){
   ];
 
   const s = el(`<section class="section" id="section-plot">
-    <div class="section-header"><div class="eyebrow">Section 02</div><h1>Plot</h1><div class="desc">From the twins' conception to the play's tragic climax. Tap any event to expand it.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 02</div><h2>Plot</h2><div class="desc">From the twins' conception to the play's tragic climax. Tap any event to expand it.</div></div>
     <div class="card"><h3>Whole Play in 12 Events</h3>
       <div class="timeline">${twelveEvents.map((e,i)=>`<div class="t-item"><div class="t-num">${String(i+1).padStart(2,'0')}</div><p>${e}</p></div>`).join('')}</div>
     </div>
@@ -855,7 +866,7 @@ function buildCharacters(){
     </div>`).join('');
 
   const s = el(`<section class="section" id="section-characters">
-    <div class="section-header"><div class="eyebrow">Section 03</div><h1>Characters</h1><div class="desc">Tap a character to see their full profile: journey, relationships, verbal cues and exam arguments.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 03</div><h2>Characters</h2><div class="desc">Tap a character to see their full profile: journey, relationships, verbal cues and exam arguments.</div></div>
     ${cards}
   </section>`);
   root.appendChild(s);
@@ -878,7 +889,7 @@ function buildThemes(){
     </div>`).join('');
 
   const s = el(`<section class="section" id="section-themes">
-    <div class="section-header"><div class="eyebrow">Section 04</div><h1>Themes</h1><div class="desc">Thirteen core themes, each with verbal cues, context and ready-to-adapt thesis statements.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 04</div><h2>Themes</h2><div class="desc">Thirteen core themes, each with verbal cues, context and ready-to-adapt thesis statements.</div></div>
     <div class="card"><h3>A note on nature versus nurture</h3><p>This is the play's central structuring idea. Russell makes Mickey and Edward genetically identical twins specifically so that any difference in their lives cannot be explained by nature — it must come from nurture: environment, opportunity and treatment. Almost every other theme in the play (class, education, poverty, mental health, family) can be read as a different lens through which this central argument plays out. The Narrator's language of fate and superstition runs alongside this social argument throughout, and part of the play's power lies in never fully resolving how much weight to give each explanation.</p></div>
     ${cards}
   </section>`);
@@ -891,7 +902,7 @@ function buildQuoteVault(){
   const allThemes = Array.from(new Set(QUOTES.flatMap(q=>q.themes))).sort();
 
   const s = el(`<section class="section" id="section-quotes">
-    <div class="section-header"><div class="eyebrow">Section 05</div><h1>Quote Vault</h1><div class="desc">Search and filter the play's key verbal cues. Blood Brothers is a modern, copyrighted play, so quotations here are deliberately kept short and used only for educational analysis.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 05</div><h2>Quote Vault</h2><div class="desc">Search and filter the play's key verbal cues. Blood Brothers is a modern, copyrighted play, so quotations here are deliberately kept short and used only for educational analysis.</div></div>
     <div class="qv-controls">
       <input type="text" id="qvSearch" placeholder="Search verbal cues..." aria-label="Search verbal cues">
       <select id="qvCharFilter" aria-label="Filter by character"><option value="">All characters</option>${allChars.map(c=>`<option value="${c}">${c}</option>`).join('')}</select>
@@ -984,7 +995,7 @@ function buildContext(){
   </div>`).join('');
 
   const s = el(`<section class="section" id="section-context">
-    <div class="section-header"><div class="eyebrow">Section 06</div><h1>Context</h1><div class="desc">Only the context you can actually use — always paired with a real essay application.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 06</div><h2>Context</h2><div class="desc">Only the context you can actually use — always paired with a real essay application.</div></div>
     <div class="card"><p><b>Important:</b> Never bolt on a historical fact just to prove you know it. Only use context when it genuinely deepens your interpretation of Russell's choices in that specific moment.</p></div>
     ${cards}
   </section>`);
@@ -1004,7 +1015,7 @@ function buildTechniques(){
   </div>`).join('');
 
   const s = el(`<section class="section" id="section-techniques">
-    <div class="section-header"><div class="eyebrow">Section 07</div><h1>Techniques</h1><div class="desc">The key dramatic, structural and musical methods Russell uses, with clear examples and analysis guidance.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 07</div><h2>Techniques</h2><div class="desc">The key dramatic, structural and musical methods Russell uses, with clear examples and analysis guidance.</div></div>
 
     <div class="card"><h3>Why does the Narrator control the play?</h3>
       <p>The Narrator dominates the play's structure as much as its content. Never given a name or a place within the plot itself, he opens the play by revealing the tragedy's ending, then reappears throughout to comment on events, invoke superstition, and question the audience directly. Because he stands outside the normal cause-and-effect of scenes between characters, his interventions consistently reset the mood, from playful to ominous, and remind the audience of the fate they already know is coming. Students should consider the Narrator not just as a voice with opinions, but as a structural device Russell uses to control pacing, foreboding and audience judgement across the entire play.</p>
@@ -1018,7 +1029,7 @@ function buildTechniques(){
 /* ---- 8. EXAM ---- */
 function buildExam(){
   const s = el(`<section class="section" id="section-exam">
-    <div class="section-header"><div class="eyebrow">Section 08</div><h1>Exam Survival</h1><div class="desc">How to actually approach a Blood Brothers exam question, step by step.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 08</div><h2>Exam Survival</h2><div class="desc">How to actually approach a Blood Brothers exam question, step by step.</div></div>
 
     <div class="card" style="text-align:center;">
       <img src="../images/exam-essentials/blood-brothers-exam-essentials.png" alt="The Teacher Vault: Blood Brothers Exam Essentials one-page revision poster" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--line);display:block;margin:0 auto;" loading="lazy">
@@ -1120,7 +1131,7 @@ const TYPE_LABEL = {mc:'Plot & detail', tf:'True / False', char:'Character', quo
 
 function buildQuiz(){
   const s = el(`<section class="section" id="section-quiz">
-    <div class="section-header"><div class="eyebrow">Section 09</div><h1>Quiz</h1><div class="desc">Self-marking revision quiz covering plot, characters, verbal cues, themes, context, techniques and structure.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 09</div><h2>Quiz</h2><div class="desc">Self-marking revision quiz covering plot, characters, verbal cues, themes, context, techniques and structure.</div></div>
     <div class="card">
       <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
       <div id="quizArea"></div>
@@ -1191,7 +1202,7 @@ let wsiState = { order: [], idx:0, score:0, answered:false };
 
 function buildWhoSaidIt(){
   const s = el(`<section class="section" id="section-whosaidit">
-    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Who Said It?</h1><div class="desc">A quick, game-like activity. For each verbal cue, select who it belongs to.</div></div>
+    <div class="section-header"><div class="eyebrow">Bonus</div><h2>Who Said It?</h2><div class="desc">A quick, game-like activity. For each verbal cue, select who it belongs to.</div></div>
     <div class="jh-game">
       <div class="jh-score" id="wsiScore"></div>
       <div class="jh-quote" id="wsiQuoteText"></div>
@@ -1275,7 +1286,7 @@ function buildFateTracker(){
     </div>`).join('');
 
   const s = el(`<section class="section" id="section-fatetracker">
-    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Fate or Choice?</h1><div class="desc">Tap each character to see how far their journey looks like fate closing in, versus a series of human choices.</div></div>
+    <div class="section-header"><div class="eyebrow">Bonus</div><h2>Fate or Choice?</h2><div class="desc">Tap each character to see how far their journey looks like fate closing in, versus a series of human choices.</div></div>
     <div class="card"><p class="subtle">The dots represent an interpretative judgement of how far each character's fate feels driven by circumstance rather than by their own choices, not a precise or objective score — good essays will debate and justify their own view.</p></div>
     <div class="change-grid">${cards}</div>
   </section>`);
@@ -1302,7 +1313,7 @@ function buildChainOfConsequences(){
   });
 
   const s = el(`<section class="section" id="section-chainofconsequences">
-    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Chain of Consequences</h1><div class="desc">Tap each stage to see how a chain of individually explicable choices combines into tragedy.</div></div>
+    <div class="section-header"><div class="eyebrow">Bonus</div><h2>Chain of Consequences</h2><div class="desc">Tap each stage to see how a chain of individually explicable choices combines into tragedy.</div></div>
     <div class="card"><p><b>Important:</b> This is not a claim that every character bears exactly equal responsibility. The characters' contributions differ significantly in nature, timing and severity — use this chain as a starting point to debate the degree and type of responsibility each character holds, not as a fixed ranking.</p></div>
     <div class="chain">${stepsHtml}</div>
   </section>`);
@@ -1316,7 +1327,7 @@ function buildChainOfConsequences(){
 /* ---- 13. NATURE VS NURTURE ---- */
 function buildTwinCompare(){
   const s = el(`<section class="section" id="section-twincompare">
-    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Nature vs Nurture</h1><div class="desc">Same biology, different worlds — the environments and outcomes that separate Mickey and Edward, side by side.</div></div>
+    <div class="section-header"><div class="eyebrow">Bonus</div><h2>Nature vs Nurture</h2><div class="desc">Same biology, different worlds — the environments and outcomes that separate Mickey and Edward, side by side.</div></div>
     <div class="compare-grid">
       <div class="compare-col">
         <h3>Mickey's Environment &amp; Outcomes</h3>
@@ -1378,7 +1389,7 @@ function buildLastMinute(){
   const dontDo = ["Don't simply retell the plot.","Don't quote long passages from memory — Blood Brothers is still in copyright.","Don't list historical facts disconnected from the text.","Don't call Russell a novelist — he is a playwright and lyricist.","Don't forget that this is a musical, meant to be staged and sung, not just read."];
 
   const s = el(`<section class="section" id="section-lastminute">
-    <div class="section-header"><div class="eyebrow">Section 10</div><h1>Blood Brothers — Last Minute</h1><div class="desc">Exam tomorrow? Start here.</div></div>
+    <div class="section-header"><div class="eyebrow">Section 10</div><h2>Blood Brothers — Last Minute</h2><div class="desc">Exam tomorrow? Start here.</div></div>
     <button class="btn secondary print-btn" id="printBtn" type="button">Print this page</button>
 
     <div class="lm-grid">

@@ -5,16 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Teacher Vault — Free Teacher Tools &amp; Student Apps</title>
 <meta name="description" content="The Teacher Vault is a growing library of practical mini apps for teachers and students — free Lite teacher tools, free GCSE and KS3 student apps, and optional Pro upgrades.">
-<link rel="canonical" href="https://www.theteachervault.com/index.html">
+<link rel="canonical" href="https://theteachervault.com/index.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="The Teacher Vault — Free Teacher Tools & Student Apps">
 <meta property="og:description" content="A growing library of practical mini apps for teachers and students. Free Lite teacher tools. Free GCSE and KS3 student apps. Optional Pro upgrades.">
-<meta property="og:image" content="images/og-image.jpg">
+<meta property="og:image" content="https://theteachervault.com/images/logo.png">
+<meta property="og:url" content="https://theteachervault.com/index.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Teacher Vault — Free Teacher Tools & Student Apps">
+<meta name="twitter:description" content="A growing library of practical mini apps for teachers and students. Free Lite teacher tools. Free GCSE and KS3 student apps. Optional Pro upgrades.">
+<meta name="twitter:image" content="https://theteachervault.com/images/logo.png">
 <link rel="icon" type="image/png" href="images/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
 <link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://theteachervault.com/#organization",
+      "name": "The Teacher Vault",
+      "url": "https://theteachervault.com/",
+      "logo": "https://theteachervault.com/images/logo.png"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://theteachervault.com/#website",
+      "url": "https://theteachervault.com/",
+      "name": "The Teacher Vault",
+      "publisher": {
+        "@id": "https://theteachervault.com/#organization"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body data-page="home">
 <script>
@@ -210,7 +238,7 @@
     var thumb = app.image
       ? '<img class="hero-mini-card__thumb" src="' + app.image + '" alt="" loading="lazy">'
       : '<span class="hero-mini-card__thumb hero-mini-card__thumb--board">' + thumbIcon(app) + '</span>';
-    return '<a class="hero-mini-card ' + posClass + '" href="app.html?id=' + app.id + '">' +
+    return '<a class="hero-mini-card ' + posClass + '" href="' + (app.landingUrl || ('app.html?id=' + app.id)) + '">' +
       thumb +
       '<span class="hero-mini-card__label"><span class="hero-mini-card__kicker">' + kicker + '</span>' + app.title + '</span>' +
     '</a>';
