@@ -66,24 +66,7 @@
         <p class="hero__trust">No subscriptions for free apps. No complicated setup. Just useful tools.</p>
       </div>
 
-      <div class="hero-card-stack">
-        <a class="hero-mini-card hero-mini-card--1" href="app.html?id=lesson-planner-lite">
-          <img class="hero-mini-card__thumb" src="images/lesson-planner-lite.jpg" alt="" loading="lazy">
-          <span class="hero-mini-card__label"><span class="hero-mini-card__kicker">Teacher Tool</span>Lesson Planner</span>
-        </a>
-        <a class="hero-mini-card hero-mini-card--2" href="app.html?id=feedback-fixer-lite">
-          <img class="hero-mini-card__thumb" src="images/feedback-fixer-lite.jpg" alt="" loading="lazy">
-          <span class="hero-mini-card__label"><span class="hero-mini-card__kicker">Teacher Tool</span>Feedback Fixer</span>
-        </a>
-        <a class="hero-mini-card hero-mini-card--3" href="app.html?id=gcse-maths">
-          <img class="hero-mini-card__thumb" src="images/gcse-maths.jpg" alt="" loading="lazy">
-          <span class="hero-mini-card__label"><span class="hero-mini-card__kicker">Student Revision</span>GCSE Maths</span>
-        </a>
-        <a class="hero-mini-card hero-mini-card--4" href="app.html?id=quicknotes-macbeth">
-          <img class="hero-mini-card__thumb" src="images/quicknotes-macbeth.jpg" alt="" loading="lazy">
-          <span class="hero-mini-card__label"><span class="hero-mini-card__kicker">Quick Notes</span>Macbeth</span>
-        </a>
-      </div>
+      <div class="hero-card-stack" id="heroCardStack"></div>
     </div>
 
     <div class="trust-strip" aria-label="Why The Teacher Vault" id="trustStrip"></div>
@@ -212,6 +195,36 @@
 <script src="script.js"></script>
 <script>
   document.getElementById("heroLogo").innerHTML = chalkLogo("lg");
+
+  // --- Hero card stack: randomised, rotates every 10s through every available resource ---
+  function shuffledApps() {
+    var pool = APPS.filter(function (a) { return !a.comingSoon; });
+    for (var i = pool.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = pool[i]; pool[i] = pool[j]; pool[j] = t;
+    }
+    return pool;
+  }
+  function heroCardHtml(app, posClass) {
+    var kicker = app.id.indexOf("examessentials-") === 0 ? "Exam Essentials" : categoryLabel(app);
+    var thumb = app.image
+      ? '<img class="hero-mini-card__thumb" src="' + app.image + '" alt="" loading="lazy">'
+      : '<span class="hero-mini-card__thumb hero-mini-card__thumb--board">' + thumbIcon(app) + '</span>';
+    return '<a class="hero-mini-card ' + posClass + '" href="app.html?id=' + app.id + '">' +
+      thumb +
+      '<span class="hero-mini-card__label"><span class="hero-mini-card__kicker">' + kicker + '</span>' + app.title + '</span>' +
+    '</a>';
+  }
+  var heroPositions = ["hero-mini-card--1", "hero-mini-card--2", "hero-mini-card--3", "hero-mini-card--4"];
+  function renderHeroCards() {
+    var picks = shuffledApps().slice(0, heroPositions.length);
+    document.getElementById("heroCardStack").innerHTML = picks.map(function (app, i) {
+      return heroCardHtml(app, heroPositions[i]);
+    }).join("");
+  }
+  renderHeroCards();
+  setInterval(renderHeroCards, 10000);
+
   renderTrustStrip(document.getElementById("trustStrip"));
   renderWhyGrid(document.getElementById("whyGrid"), true);
 

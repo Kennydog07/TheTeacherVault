@@ -598,6 +598,14 @@ body.nav-open .mobile-nav { display: flex; }
   z-index: 9 !important;
 }
 .hero-mini-card__thumb { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+.hero-mini-card__thumb--board {
+  background: linear-gradient(160deg, var(--board-green-light), var(--board-green-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--chalk-white);
+}
+.hero-mini-card__thumb--board svg { width: 34px; height: 34px; opacity: 1; }
 .hero-mini-card__label {
   padding: 10px 12px 12px;
   font-size: 0.78rem;
