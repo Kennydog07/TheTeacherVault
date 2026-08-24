@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Teacher Vault — Power and Conflict Poetry QuickNotes</title>
+<style>
+:root{
+  --ink:#20242B;
+  --ink-light:#333945;
+  --parchment:#EDEAE0;
+  --parchment-dark:#DFDBC9;
+  --blood:#6E1E1E;
+  --blood-bright:#93302A;
+  --gold:#8C7A4E;
+  --fog:#54606B;
+  --text:#212327;
+  --text-soft:#5b5d63;
+  --card:#FFFFFF;
+  --line:#D8D3C0;
+  --radius:10px;
+  --serif: Georgia, 'Times New Roman', Times, serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --mono: 'Courier New', Courier, monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--parchment);color:var(--text);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased;}
+::selection{background:var(--gold);color:#fff;}
+a{color:var(--blood-bright);}
+button{font-family:inherit;cursor:pointer;}
+h1,h2,h3,h4{font-family:var(--serif);color:var(--ink);margin:0 0 .5em 0;}
+p{margin:0 0 .8em 0;}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:.6em 1em;z-index:999;}
+.skip-link:focus{left:8px;top:8px;}
+.app{display:flex;min-height:100vh;}
+.sidebar{width:250px;flex-shrink:0;background:var(--ink);color:#EDE9DA;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.brand{padding:22px 20px 14px 20px;border-bottom:1px solid rgba(255,255,255,.12);}
+.brand .tv-name{font-family:var(--serif);font-size:1.05rem;letter-spacing:.02em;color:#fff;font-weight:700;}
+.brand .tv-sub{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-top:2px;}
+.brand .play-title{margin-top:14px;font-family:var(--serif);font-size:1.55rem;color:#fff;line-height:1.18;}
+.brand .play-sub{font-size:.78rem;color:#c9c4ac;margin-top:6px;line-height:1.4;}
+.brand-mascot{width:52px;height:52px;object-fit:contain;display:block;margin-bottom:10px;}
+nav.mainnav{padding:10px 0;flex:1;}
+nav.mainnav button.navlink{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:none;color:#d9d5c3;padding:10px 20px;font-size:.88rem;border-left:3px solid transparent;}
+nav.mainnav button.navlink .num{font-family:var(--mono);font-size:.7rem;color:var(--gold);width:18px;flex-shrink:0;}
+nav.mainnav button.navlink:hover{background:rgba(255,255,255,.06);color:#fff;}
+nav.mainnav button.navlink.active{background:rgba(147,48,42,.30);border-left-color:var(--blood-bright);color:#fff;font-weight:600;}
+nav.mainnav button.navlink:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
+.sidebar-footer{padding:14px 20px;font-size:.7rem;color:#8b876f;border-top:1px solid rgba(255,255,255,.1);}
+.topbar{display:none;position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;padding:12px 16px;align-items:center;justify-content:space-between;}
+.topbar .tv-inline{font-family:var(--serif);font-size:1rem;}
+.topbar .tv-inline span{display:block;font-size:.65rem;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;}
+.hamburger{background:none;border:1px solid rgba(255,255,255,.4);color:#fff;padding:8px 10px;border-radius:6px;font-size:.85rem;}
+.mobile-nav-drawer{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.5);}
+.mobile-nav-drawer.open{display:block;}
+.mobile-nav-panel{position:absolute;top:0;left:0;bottom:0;width:80%;max-width:300px;background:var(--ink);overflow-y:auto;padding-bottom:20px;}
+main{flex:1;min-width:0;padding:36px 44px 80px 44px;max-width:980px;}
+.section{display:none;animation:fadein .25s ease;}
+.section.active{display:block;}
+@keyframes fadein{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+.section-header{margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid var(--ink);}
+.section-header .eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blood-bright);font-weight:700;margin-bottom:4px;}
+.section-header h1{font-size:1.9rem;margin-bottom:4px;}
+.section-header .desc{color:var(--text-soft);font-size:.95rem;max-width:640px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-bottom:16px;}
+.card h3{font-size:1.1rem;margin-bottom:8px;}
+.subtle{color:var(--text-soft);font-size:.88rem;}
+.tag{display:inline-block;background:var(--parchment-dark);color:var(--ink);border-radius:999px;padding:2px 10px;font-size:.72rem;margin:2px 4px 2px 0;font-weight:600;}
+.tag.blood{background:#f0dcd8;color:var(--blood);}
+.tag.gold{background:#f0e9d6;color:#6b5a37;}
+.tag.fog{background:#e2e6ea;color:var(--fog);}
+.btn{display:inline-block;background:var(--ink);color:#fff;border:none;padding:9px 16px;border-radius:7px;font-size:.85rem;font-weight:600;}
+.btn:hover{background:var(--ink-light);}
+.btn.secondary{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+.btn.blood{background:var(--blood-bright);}
+.btn.blood:hover{background:var(--blood);}
+.btn:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+.disclosure{border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;background:var(--card);overflow:hidden;}
+.disclosure > .d-head{width:100%;background:none;border:none;text-align:left;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;font-weight:700;color:var(--ink);font-family:var(--serif);font-size:1.02rem;}
+.disclosure > .d-head:hover{background:var(--parchment);}
+.disclosure > .d-head .chev{transition:transform .2s;color:var(--blood-bright);font-size:1.1rem;}
+.disclosure.open > .d-head .chev{transform:rotate(90deg);}
+.disclosure > .d-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.disclosure.open > .d-body{max-height:4000px;}
+.disclosure > .d-body .inner{padding:0 18px 16px 18px;}
+.d-body .mini-label{font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--blood-bright);margin:12px 0 4px 0;}
+.d-body .mini-label:first-child{margin-top:0;}
+.quote-line{font-family:var(--serif);font-style:italic;color:var(--ink);background:var(--parchment);border-left:3px solid var(--gold);padding:8px 12px;margin:6px 0;font-size:.94rem;}
+.grid{display:grid;gap:14px;}
+.grid.two{grid-template-columns:1fr 1fr;}
+.grid.three{grid-template-columns:repeat(3,1fr);}
+@media(max-width:800px){.grid.two,.grid.three{grid-template-columns:1fr;}}
+.qv-controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;align-items:center;}
+.qv-controls input[type=text], .qv-controls select{padding:9px 12px;border:1px solid var(--line);border-radius:7px;font-size:.9rem;background:#fff;}
+.qv-controls input[type=text]{flex:1;min-width:180px;}
+.qv-count{font-size:.82rem;color:var(--text-soft);margin-bottom:10px;}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-bottom:12px;}
+.qcard .qtext{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);margin-bottom:6px;}
+.qcard .qmeta{font-size:.78rem;color:var(--text-soft);margin-bottom:10px;}
+.qcard .qreveal-btn{font-size:.8rem;background:var(--parchment-dark);border:none;padding:6px 12px;border-radius:6px;color:var(--ink);font-weight:600;}
+.qcard .qdetail{display:none;margin-top:12px;border-top:1px dashed var(--line);padding-top:10px;}
+.qcard.open .qdetail{display:block;}
+.qdetail .row{margin-bottom:8px;}
+.qdetail .row b{color:var(--blood-bright);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:2px;}
+.level-toggle{display:flex;gap:6px;margin:10px 0;}
+.level-toggle button{font-size:.75rem;padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:#fff;}
+.level-toggle button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.level-block{display:none;font-size:.9rem;}
+.level-block.active{display:block;}
+.quiz-progress{height:8px;background:var(--parchment-dark);border-radius:6px;overflow:hidden;margin-bottom:18px;}
+.quiz-progress-bar{height:100%;background:var(--blood-bright);width:0%;transition:width .3s;}
+.quiz-q{font-family:var(--serif);font-size:1.15rem;margin-bottom:14px;}
+.quiz-opts{display:flex;flex-direction:column;gap:8px;}
+.quiz-opt{text-align:left;padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;background:#fff;font-size:.95rem;}
+.quiz-opt:hover{border-color:var(--ink);}
+.quiz-opt.correct{background:#e4f2e6;border-color:#4c9a5f;}
+.quiz-opt.incorrect{background:#f7e4e0;border-color:var(--blood-bright);}
+.quiz-opt[disabled]{cursor:default;}
+.quiz-explain{margin-top:12px;padding:12px 14px;background:var(--parchment);border-radius:8px;font-size:.9rem;display:none;}
+.quiz-explain.show{display:block;}
+.quiz-result{text-align:center;padding:30px 10px;}
+.quiz-result .score{font-family:var(--serif);font-size:3rem;color:var(--ink);}
+.quiz-result .weak-areas{text-align:left;max-width:420px;margin:16px auto;}
+.wvs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+@media(max-width:700px){.wvs{grid-template-columns:1fr;}}
+.wvs .weak{border:1.5px solid #c9776a;background:#fbeeeb;border-radius:8px;padding:14px;}
+.wvs .strong{border:1.5px solid #6a9c76;background:#eef6ef;border-radius:8px;padding:14px;}
+.wvs .lbl{font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+.wvs .weak .lbl{color:#a1392a;}
+.wvs .strong .lbl{color:#3f7a4c;}
+.lm-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:760px){.lm-grid{grid-template-columns:1fr;}}
+.lm-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;}
+.lm-card h3{font-size:1rem;color:var(--blood-bright);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:10px;}
+.lm-card ol,.lm-card ul{margin:0;padding-left:20px;font-size:.88rem;}
+.lm-card li{margin-bottom:6px;}
+.print-btn{margin-bottom:16px;}
+@media print{
+  .sidebar,.topbar,.print-btn,nav,.section-header .desc{display:none !important;}
+  main{padding:0;max-width:100%;}
+  .section{display:block !important;}
+  #section-lastminute{display:block !important;}
+  .section:not(#section-lastminute){display:none !important;}
+  body{background:#fff;}
+}
+.sixty{background:var(--ink);color:#f2efe2;border-radius:var(--radius);padding:20px 22px;margin:18px 0;}
+.sixty h3{color:var(--gold);font-size:.85rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;}
+.sixty p{font-size:.95rem;line-height:1.6;}
+footer.app-footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);color:var(--text-soft);font-size:.78rem;}
+.timeline{display:flex;flex-direction:column;gap:0;margin:16px 0;border-left:3px solid var(--gold);padding-left:18px;}
+.timeline .t-item{position:relative;padding:6px 0 18px 14px;}
+.timeline .t-item::before{content:'';position:absolute;left:-25px;top:9px;width:10px;height:10px;border-radius:50%;background:var(--blood-bright);border:2px solid var(--parchment);}
+.timeline .t-item .t-num{font-family:var(--mono);font-size:.72rem;color:var(--blood-bright);font-weight:700;}
+.timeline .t-item p{margin:2px 0 0 0;font-size:.92rem;}
+.jh-game{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;text-align:center;}
+.jh-quote{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--ink);min-height:90px;display:flex;align-items:center;justify-content:center;padding:0 10px;}
+.jh-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0;}
+@media(max-width:640px){.jh-opts{grid-template-columns:1fr 1fr;}}
+.jh-opts button{padding:12px 8px;border-radius:8px;border:1.5px solid var(--line);background:#fff;font-weight:600;font-size:.85rem;}
+.jh-opts button:hover{border-color:var(--ink);}
+.jh-opts button.correct{background:#e4f2e6;border-color:#4c9a5f;}
+.jh-opts button.incorrect{background:#f7e4e0;border-color:var(--blood-bright);}
+.jh-feedback{background:var(--parchment);border-radius:8px;padding:14px;margin-top:14px;font-size:.9rem;display:none;text-align:left;}
+.jh-feedback.show{display:block;}
+.jh-score{font-size:.85rem;color:var(--text-soft);margin-bottom:10px;}
+.change-grid{display:grid;grid-template-columns:1fr;gap:10px;}
+.change-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+.change-card .cc-head{width:100%;background:none;border:none;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.change-card .cc-name{font-family:var(--serif);font-size:1.1rem;color:var(--ink);font-weight:700;}
+.change-card .cc-meter{display:flex;gap:3px;align-items:center;}
+.change-card .cc-meter .dot{width:10px;height:10px;border-radius:50%;background:var(--line);}
+.change-card .cc-meter .dot.on{background:var(--blood-bright);}
+.change-card .cc-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.change-card.open .cc-body{max-height:700px;}
+.change-card .cc-inner{padding:0 18px 16px 18px;font-size:.92rem;}
+.change-card .cc-note{font-style:italic;color:var(--text-soft);font-size:.82rem;margin-top:8px;}
+.chain{display:flex;flex-direction:column;gap:0;}
+.chain-step{position:relative;}
+.chain-btn{width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;font-family:var(--serif);font-size:1.05rem;color:var(--ink);font-weight:700;}
+.chain-arrow{text-align:center;color:var(--gold);font-size:1.3rem;padding:2px 0;}
+.chain-body{max-height:0;overflow:hidden;transition:max-height .25s ease;background:var(--parchment);border-radius:0 0 var(--radius) var(--radius);}
+.chain-step.open .chain-body{max-height:600px;}
+.chain-step.open .chain-btn{border-radius:var(--radius) var(--radius) 0 0;}
+.chain-inner{padding:14px 18px;font-size:.92rem;}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:700px){.compare-grid{grid-template-columns:1fr;}}
+.compare-col{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;}
+.compare-col h3{text-align:center;background:var(--ink);color:#fff;margin:-18px -18px 14px -18px;padding:12px;border-radius:var(--radius) var(--radius) 0 0;}
+.compare-col ul{padding-left:20px;font-size:.9rem;}
+.compare-col li{margin-bottom:10px;}
+.compare-why{font-size:.85rem;color:var(--text-soft);font-style:italic;margin-top:4px;}
+.poemchip{display:inline-block;background:var(--ink);color:#fff;border-radius:6px;padding:3px 10px;font-size:.72rem;font-weight:700;margin:2px 4px 2px 0;}
+@media(max-width:900px){
+  .app{flex-direction:column;}
+  .sidebar{display:none;}
+  .topbar{display:flex;}
+  main{padding:24px 18px 60px 18px;}
+  .section-header h1{font-size:1.5rem;}
+  .jh-opts{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div class="app">
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <div class="brand">
+      <img src="../images/mascot-teacher.png" alt="The Teacher Vault mascot" class="brand-mascot">
+      <div class="tv-name">The Teacher Vault</div>
+      <div class="tv-sub">QuickNotes</div>
+      <div class="play-title">Power and Conflict Poetry</div>
+      <div class="play-sub">Everything you actually need for GCSE English Literature — AQA anthology, all 15 poems.</div>
+    </div>
+    <nav class="mainnav" id="navList" aria-label="Sections"></nav>
+    <div class="sidebar-footer">Free GCSE revision resource.<br>Works fully offline.</div>
+  </aside>
+
+  <div class="topbar">
+    <div class="tv-inline"><span>The Teacher Vault · QuickNotes</span>Power and Conflict Poetry</div>
+    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobileDrawer">☰ Menu</button>
+  </div>
+  <div class="mobile-nav-drawer" id="mobileDrawer">
+    <div class="mobile-nav-panel">
+      <div class="brand">
+        <img src="../images/mascot-teacher.png" alt="The Teacher Vault mascot" class="brand-mascot">
+      <div class="tv-name">The Teacher Vault</div>
+        <div class="tv-sub">QuickNotes</div>
+        <div class="play-title">Power and Conflict Poetry</div>
+      </div>
+      <nav class="mainnav" id="navListMobile" aria-label="Sections (mobile)"></nav>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <div id="sectionsRoot"></div>
+    <footer class="app-footer">The Teacher Vault · Power and Conflict Poetry QuickNotes — a free GCSE English Literature revision resource covering the AQA Power and Conflict anthology (Percy Bysshe Shelley, William Blake, William Wordsworth, Robert Browning, Alfred Lord Tennyson, Wilfred Owen, Seamus Heaney, Ted Hughes, Simon Armitage, Jane Weir, Carol Ann Duffy, Imtiaz Dharker, Carol Rumens, John Agard and Beatrice Garland). All explanatory content is original. Several of these poems remain in copyright as part of a live AQA GCSE anthology, so quotations used here are kept to short fragments only, used solely for educational analysis.</footer>
+  </main>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+const Store = {
+  available: (function(){ try{ const k='__tv_test__'; localStorage.setItem(k,'1'); localStorage.removeItem(k); return true; }catch(e){ return false; } })(),
+  get(key, fallback){ if(!Store.available) return fallback; try{ const v = localStorage.getItem('tv_pac_'+key); return v===null?fallback:JSON.parse(v); }catch(e){ return fallback; } },
+  set(key, val){ if(!Store.available) return; try{ localStorage.setItem('tv_pac_'+key, JSON.stringify(val)); }catch(e){} }
+};
+
+const SECTIONS = [
+  {id:'overview', label:'Overview'},
+  {id:'poemguide', label:'Poem Guide'},
+  {id:'themes', label:'Themes'},
+  {id:'quotes', label:'Quote Vault'},
+  {id:'techniques', label:'Techniques'},
+  {id:'context', label:'Context'},
+  {id:'comparisonpairs', label:'Comparison Pairs'},
+  {id:'structurewalkthrough', label:'How a Poem Moves'},
+  {id:'exam', label:'Exam'},
+  {id:'quiz', label:'Quiz'},
+  {id:'matchgame', label:'Match the Quote'},
+  {id:'erascompare', label:'Power Then & Now'},
+  {id:'lastminute', label:'Last Minute'}
+];
+
+/* ================= POEMS ================= */
+const POEMS = [
+{id:'ozymandias', name:'Ozymandias', role:"Percy Bysshe Shelley — sonnet (14 lines, irregular ABABACDCEDEFEF rhyme scheme, mostly iambic pentameter)",
+ who:"A frame narrative: an unnamed first-person speaker reports what 'a traveller from an antique land' told him, distancing the reader from the ruined king by two layers of retelling.",
+ journey:"The poem describes a ruined statue lying broken in the desert, its shattered face still showing a 'sneer of cold command'. The pedestal's arrogant inscription boasts of the king's absolute power and commands other rulers to despair at his 'works', yet nothing remains around the statue except empty, level sand. Shelley uses the statue's decay to suggest that political power and tyranny are always temporary, however permanent a ruler believes his own legacy to be, and that art and time ultimately outlast even the mightiest empire.",
+ relationships:"Structurally isolated — no other character appears except the traveller who reports the scene and, within the inscription, the king's own boastful voice addressing future 'Mighty' rulers.",
+ themes:['Power','Pride and hubris','Memory'],
+ quotes:["Two vast and trunkless legs of stone","sneer of cold command","king of kings","Look on my works, ye Mighty, and despair!","boundless and bare"],
+ techniques:["Irony (the boast survives; the 'works' do not)","Frame narrative distancing the reader from the ruin","Caesura mimicking the statue's fragmentation","Alliteration in 'boundless and bare'"],
+ message:"Shelley may be using Ozymandias as a warning to contemporary rulers and tyrants that political power is always temporary, however permanent it appears, and that nature and time will eventually erase even the most confident displays of authority.",
+ pairsWith:[{poem:'My Last Duchess', why:"both poems present an arrogant, controlling male figure whose own words or legacy expose his pride and desire to control his image or the people around him."},{poem:'Tissue', why:"both poems explore how apparently permanent structures of human power are fragile and temporary when measured against time."}]},
+{id:'london', name:'London', role:"William Blake — four quatrains, regular ABAB rhyme scheme, mostly iambic tetrameter (from Songs of Experience)",
+ who:"A first-person speaker walks and observes, functioning almost as a social investigator or prophet figure whose repeated use of 'I' grounds a wide social critique in direct, personal witness.",
+ journey:"The speaker walks through London's streets and hears suffering in every voice he passes, tracing this suffering to specific institutions of power: the monarchy, the Church, and restrictive social convention such as marriage. Blake presents a city where poverty, exploitation and misery are not accidental but the direct, visible result of institutional control, and where even the river Thames is 'chartered', owned and restricted like everything else.",
+ relationships:"The speaker encounters, but never individually names, a chimney-sweeper, a soldier and a young prostitute, using each briefly-glimpsed figure to represent a wider institution's failure.",
+ themes:['Institutional power','Individual vs society','Suffering'],
+ quotes:["chartered streets","marks of weakness, marks of woe","mind-forged manacles","blackning Church appalls","Marriage hearse"],
+ techniques:["Anaphora ('In every...')","Repetition of 'charter'd'","Oxymoron in 'Marriage hearse'","Auditory imagery (cries, sighs, curses)"],
+ message:"Blake may be suggesting that the suffering he witnesses across London is not natural or inevitable, but manufactured by institutions such as the monarchy, the Church and restrictive social conventions, which trap people's minds as much as their bodies.",
+ pairsWith:[{poem:'Checking Out Me History', why:"both poems examine how power operates through institutions, and how language and official narratives can restrict people's understanding of their own lives."},{poem:'Ozymandias', why:"both poems critique the abuse of political power, though Blake focuses on its everyday, ongoing human cost rather than a single ruler's eventual downfall."}]},
+{id:'prelude', name:'The Prelude (extract)', role:"William Wordsworth — extract from a longer autobiographical poem, blank verse (unrhymed iambic pentameter)",
+ who:"Told retrospectively in the first person by an adult Wordsworth recalling a childhood memory, blending the boy's immediate fear with the older speaker's reflective understanding of the experience's lasting effect.",
+ journey:"A boy steals a boat and rows out onto a lake at night, initially confident and even boastful in his 'act of stealth'. As he rows, a huge peak appears to rise up and seem to 'stride' after him, and the experience leaves him deeply shaken, unsettled by a new awareness of nature's power and his own smallness within it. In the days that follow, his mind is haunted by 'unknown modes of being'.",
+ relationships:"A solitary, personal episode — no other character appears; the poem's central relationship is between the boy and the mountain itself, which is described almost as a living, pursuing presence.",
+ themes:['Nature','Fear','Memory'],
+ quotes:["an act of stealth / And troubled pleasure","huge peak, black and huge","measured motion like a living thing","unknown modes of being"],
+ techniques:["Personification of the mountain","Enjambment mirroring the boat's continuous motion","Simile ('like a living thing')","Sibilance"],
+ message:"Wordsworth may be suggesting that encounters with nature's overwhelming scale can permanently humble human confidence, leaving a lasting psychological impression that reshapes how a person understands their own power and place in the world.",
+ pairsWith:[{poem:'Storm on the Island', why:"both poems present human confidence being challenged by nature's far greater, sometimes frightening power."},{poem:'Kamikaze', why:"both poems use vivid natural, watery imagery to frame a single life-changing personal experience."}]},
+{id:'mylastduchess', name:'My Last Duchess', role:"Robert Browning — dramatic monologue in rhyming couplets of iambic pentameter, heavily disguised by enjambment",
+ who:"A single, unchallenged dramatic monologue spoken entirely by the Duke of Ferrara, whose self-satisfied, controlled tone unintentionally reveals his cruelty and jealousy to the reader even as he appears unaware of how damning his own words are.",
+ journey:"The Duke shows a visiting envoy a portrait of his late wife, gradually revealing through his own words that he had her killed for smiling too readily and appreciating simple pleasures as much as his 'nine-hundred-years-old name'. He then abruptly shifts the conversation to negotiating a dowry for his next marriage, before pointing out a bronze statue of Neptune 'taming' a sea-horse — a closing image of the domination he still desires.",
+ relationships:"Addresses a silent envoy sent to arrange his next marriage; refers throughout to his dead 'last Duchess' as though she were still a possession on display.",
+ themes:['Control','Possessiveness and control','Status'],
+ quotes:["That's my last Duchess painted on the wall","as if she ranked / My gift","I gave commands","Taming a sea-horse"],
+ techniques:["Dramatic monologue with a self-incriminating speaker","Enjambment concealing the rhyme scheme","Euphemism ('I gave commands')","Symbolism (the bronze statue of Neptune)"],
+ message:"Browning may be using the Duke's own words to expose the dangers of unchecked male power and possessiveness, allowing the reader to judge the Duke far more harshly than the Duke appears to judge himself.",
+ pairsWith:[{poem:'Ozymandias', why:"both poems present a powerful, arrogant male figure whose own words or legacy ultimately expose and undermine his authority."},{poem:'Kamikaze', why:"both poems explore how rigid expectations of status, duty or honour can be used to judge and control an individual's behaviour."}]},
+{id:'chargelightbrigade', name:'The Charge of the Light Brigade', role:"Alfred, Lord Tennyson — six irregular stanzas, galloping dactylic metre, recurring refrain",
+ who:"A collective, celebratory third-person voice speaks for the nation, honouring 'the six hundred' as a unified group rather than focusing on any single soldier's individual experience.",
+ journey:"The poem commemorates a real, disastrous cavalry charge during the Crimean War, caused by a miscommunicated order ('Someone had blundered'). As cannon fire the men from every side, Tennyson honours the soldiers' unquestioning courage and discipline while still briefly acknowledging the devastating cost of the command that sent them to their deaths, closing by asking whether their glory can ever fade.",
+ relationships:"No individual soldier is named; the six hundred cavalrymen are presented as a single, unified collective body acting under orders.",
+ themes:['War','Duty and sacrifice','Power'],
+ quotes:["Half a league, half a league","Cannon to right of them","Someone had blundered","Theirs not to reason why, / Theirs but to do and die","When can their glory fade?"],
+ techniques:["Dactylic rhythm mimicking galloping horses","Repetition and refrain","Anaphora ('Cannon to right of them')","Rhetorical question"],
+ message:"Tennyson may be using the poem to honour the soldiers' collective courage and discipline as heroic in itself, even while acknowledging, through the brief admission that 'someone had blundered', that their sacrifice resulted from a serious failure in command.",
+ pairsWith:[{poem:'Exposure', why:"both poems explore experiences of war, though Tennyson celebrates collective heroism while Owen focuses on individual suffering and futility, making them a strong poem of contrast."},{poem:'Bayonet Charge', why:"both poems open with soldiers already in motion, though Tennyson's confident public tone contrasts sharply with the disorientated, private terror Hughes presents."}]},
+{id:'exposure', name:'Exposure', role:"Wilfred Owen — eight five-line stanzas, most ending in a short refrain line, half-rhyme throughout",
+ who:"A first-person plural ('we', 'our') voice speaks collectively for the exhausted soldiers, blurring individual identity as cold and exhaustion wear down their sense of self and purpose.",
+ journey:"Rather than describing direct combat, Owen presents soldiers enduring the relentless cold, waiting and uncertainty of trench warfare, where the freezing weather becomes as deadly an enemy as the opposing army. The poem's repeated refrain, 'But nothing happens', emphasises the exhausting, purposeless waiting that defined much of the First World War experience, and by the close even faith itself seems to be dying alongside the men.",
+ relationships:"The soldiers are presented as a single collective unit; their true adversary throughout is not an opposing army but the 'merciless iced east winds'.",
+ themes:['War','Nature','Futility'],
+ quotes:["merciless iced east winds that knive us","But nothing happens","melancholy army","Slowly our ghosts drag home","For love of God seems dying"],
+ techniques:["Personification and pathetic fallacy (weather as attacker)","Half-rhyme creating unease","Repetition/refrain","Sibilance"],
+ message:"Owen may be challenging patriotic, heroic depictions of war by presenting soldiers' suffering as largely defined by cold, boredom and uncertainty rather than dramatic combat, suggesting war's cruelty often lies in prolonged, purposeless endurance.",
+ pairsWith:[{poem:'Bayonet Charge', why:"both poems strip away patriotic or heroic ideas about war to focus on the physical and psychological realities soldiers actually experience."},{poem:'Storm on the Island', why:"both poems use vivid, hostile natural imagery to represent an overwhelming, almost supernatural threat."}]},
+{id:'stormisland', name:'Storm on the Island', role:"Seamus Heaney — a single unbroken stanza of blank verse, heavy enjambment",
+ who:"A collective first-person plural ('we') voice speaks for a whole island community, emphasising their shared vulnerability and united, almost defiant preparation against the storm.",
+ journey:"An island community describes preparing their homes against an approaching storm, confident at first that they are 'prepared' and that the 'wizened earth' had never troubled them. The poem then reveals that the true source of their fear is the storm's invisible, unpredictable power, closing on the paradox that it is 'a huge nothing' they actually fear.",
+ relationships:"A close-knit, unnamed community acts as a single voice throughout; no individual speaker is distinguished from the collective 'we'.",
+ themes:['Nature','Fear','Conflict'],
+ quotes:["We are prepared: we build our houses squat","wizened earth had never troubled us","spits like a tame cat / Turned savage","huge nothing that we fear"],
+ techniques:["Paradox ('huge nothing')","Enjambment building tension","Sibilance","Simile ('like a tame cat')"],
+ message:"Heaney may be using the literal storm to explore a wider, less tangible sense of fear and vulnerability, possibly reflecting the atmosphere of tension and hidden threat experienced during the Troubles in Northern Ireland.",
+ pairsWith:[{poem:'The Prelude', why:"both poems present human confidence being unsettled by nature's unpredictable, overwhelming power."},{poem:'Bayonet Charge', why:"both poems explore fear of an invisible, hard-to-define threat rather than a clearly identifiable enemy."}]},
+{id:'bayonetcharge', name:'Bayonet Charge', role:"Ted Hughes — three stanzas of free verse, irregular line lengths, in medias res opening",
+ who:"A third-person voice closely follows a single, unnamed soldier ('he'), immersing the reader directly in his physical panic and confusion rather than any wider political or patriotic perspective.",
+ journey:"A soldier finds himself suddenly running into battle, his patriotic convictions about 'king, honour, human dignity' dissolving instantly under the immediate, overwhelming terror of combat. A wounded hare rolling through the field briefly interrupts his motion, before the poem closes questioning whether he is truly in control of his own actions or simply part of a larger, mechanised system.",
+ relationships:"The soldier is entirely alone in the reader's view — no comrades or enemies are individually described, only the surrounding chaos of the charge itself.",
+ themes:['War','Fear','Instinct'],
+ quotes:["Suddenly he awoke and was running","raw-seamed hot khaki","King, honour, human dignity, etcetera / Dropped like luxuries","yellow hare that rolled like a flame","cold clockwork of the stars and nations"],
+ techniques:["In medias res opening","Enjambment mirroring physical momentum","Dehumanising, mechanical imagery","Simile"],
+ message:"Hughes may be suggesting that patriotic ideals about honour and duty collapse instantly and completely under the immediate physical terror of combat, leaving only raw animal instinct in their place.",
+ pairsWith:[{poem:'Exposure', why:"both poems present the immediate physical and psychological realities of conflict, rejecting a simplified, heroic version of war."},{poem:'Remains', why:"both poems explore how instinctive, adrenaline-driven action in combat leaves lasting psychological damage once the immediate danger has passed."}]},
+{id:'remains', name:'Remains', role:"Simon Armitage — loose, colloquial free verse, near-rhyming couplets, based on real soldier testimony",
+ who:"A first-person, colloquial voice recounts events almost as if speaking aloud in an informal testimony, blurring the line between narration and confession as guilt intrudes on ordinary present-tense description.",
+ journey:"A soldier recounts shooting a possibly unarmed looter during a patrol, an act he cannot escape even long after returning home, as the memory intrudes repeatedly into his daily life. The poem traces the lasting psychological damage of a single violent moment, closing with the man tormented by nightly dreams in which the victim is 'torn apart' again and again.",
+ relationships:"The soldier's central, haunting relationship is with the memory of the man he shot, referred to only as 'his' throughout, never given an individual identity.",
+ themes:['Guilt','Memory','Conflict'],
+ quotes:["Legs it up the road","probably armed, possibly not","his bloody life in my bloody hands","his blood-shadow stays on the street","dream, and he's torn apart"],
+ techniques:["Colloquial diction","Enjambment mirroring intrusive memory","Repetition ('his bloody...')","Shift into present tense for flashbacks"],
+ message:"Armitage may be suggesting that the psychological damage caused by violence in conflict continues long after the physical danger has passed, and that guilt over a single split-second decision can permanently reshape a person's mind.",
+ pairsWith:[{poem:'War Photographer', why:"both poems explore the lasting psychological effects of witnessing or causing violence, and the difficulty of processing traumatic memory afterwards."},{poem:'Bayonet Charge', why:"both poems present the instinctive, unthinking nature of violent action in the moment of combat, before its consequences are fully understood."}]},
+{id:'poppies', name:'Poppies', role:"Jane Weir — free verse, no regular rhyme scheme or stanza pattern",
+ who:"A first-person maternal voice, addressing her absent son directly at points, blending everyday domestic detail with an undercurrent of grief and anxious memory.",
+ journey:"A mother recalls pinning a poppy to her son's blazer before he leaves, likely for military service, and traces her private, domestic grief and anxiety in the time since. She follows him in her imagination as far as a war memorial, before the poem closes with her straining, unsuccessfully, to hear him again.",
+ relationships:"Addressed throughout to her son, 'you', though he never speaks or responds; the relationship is entirely one-directional, filtered through the mother's memory and imagination.",
+ themes:['Loss','Family','Memory'],
+ quotes:["Three days before Armistice Sunday","blackthorns of your hair","spasms of paper red","released a song bird from its cage","world overflowing / like a treasure chest"],
+ techniques:["Extended metaphor (sewing and textile imagery)","Enjambment","Sibilance","Symbolism (the poppy, the dove)"],
+ message:"Weir may be using the mother's private, domestic perspective to highlight a frequently overlooked aspect of conflict: the ongoing grief and anxiety experienced by family members left behind, rather than the experience of combat itself.",
+ pairsWith:[{poem:'Kamikaze', why:"both poems explore conflict through the perspective of family members, focusing on loss, separation and complicated emotional consequences rather than combat itself."},{poem:'War Photographer', why:"both poems consider conflict at a remove from the battlefield, one from a grieving parent's home, the other from a photographer's darkroom."}]},
+{id:'warphotographer', name:'War Photographer', role:"Carol Ann Duffy — four regular six-line stanzas, ordered structure contrasting with chaotic subject matter",
+ who:"A third-person voice closely observes the photographer's private, methodical actions in the darkroom, creating a reflective, almost detached tone that mirrors the professional distance he must maintain to do his job.",
+ journey:"A photographer develops photographs of war-torn scenes in his quiet English darkroom, remembering the suffering he witnessed while acknowledging the emotional distance of the audience back home who will glance briefly at his printed images before moving on. The poem closes with him returning to an airport, ready to fly out again, while 'they do not care' remains unresolved.",
+ relationships:"Contrasts the photographer's intimate, remembered relationship with the suffering he photographed against his distant, largely unknown relationship with the newspaper readers who will view his work.",
+ themes:['Conflict','Responsibility','Distance'],
+ quotes:["In his darkroom he is finally alone","spools of suffering set out in ordered rows","fields which don't explode beneath the feet","hundred agonies in black-and-white","they do not care"],
+ techniques:["Regular, ordered stanza structure","Religious imagery ('a church')","Oxymoron/juxtaposition","Caesura"],
+ message:"Duffy may be questioning how effectively photography, and by extension the media more broadly, can genuinely convey the reality of distant suffering to an audience who remains largely comfortable and detached from it.",
+ pairsWith:[{poem:'Remains', why:"both poems explore the lasting psychological effects of witnessing violence, and the professional distance required to process traumatic experience."},{poem:'Tissue', why:"both poems reflect on how fragile, physical materials can carry immense emotional or symbolic weight."}]},
+{id:'tissue', name:'Tissue', role:"Imtiaz Dharker — short, loosely structured free-verse stanzas built around an extended metaphor of paper",
+ who:"A reflective, speculative first-person voice considers paper's symbolic possibilities throughout, using conditional and tentative phrasing ('if...', 'might') rather than definite statements.",
+ journey:"Dharker uses paper, in its many forms (holy books, maps, receipts, birth certificates, skin), as an extended metaphor for the fragility and impermanence of human power and structures. The poem moves from ordinary paper documents to grand human buildings that 'sway, collapse', before closing on the tentative, hopeful idea of paper structures built lightly enough to 'let the light shine through'.",
+ relationships:"No individual human relationships are described; the poem's central relationship is between fragile paper and the vast human structures (institutions, buildings, borders) it is used to symbolise.",
+ themes:['Human power','Fragility','Individual vs institutions'],
+ quotes:["Paper that lets the light / shine through","buildings sway, collapse","turned into your skin","might / feel their drift"],
+ techniques:["Extended metaphor (paper)","Enjambment","Symbolism","Conditional/tentative language"],
+ message:"Dharker may be suggesting that human structures of power, whether physical buildings, political borders or bureaucratic documents, are far more fragile and temporary than they appear, however permanent or authoritative they claim to be.",
+ pairsWith:[{poem:'Ozymandias', why:"both poems suggest that structures and symbols of human power are ultimately fragile and temporary when measured against time."},{poem:'War Photographer', why:"both poems use a fragile, paper-based material as a symbol carrying far greater emotional or political weight than its physical form suggests."}]},
+{id:'emigree', name:'The Emigrée', role:"Carol Rumens — three stanzas of irregular but roughly similar length, no fixed rhyme scheme",
+ who:"A first-person speaker reflects on a distant childhood memory, blending present-tense imaginative return ('my city takes me dancing') with acknowledgement of the city's uncertain, possibly troubled present reality.",
+ journey:"The speaker recalls a city she left as a child, which 'may be at war' or 'sick with tyrants' in reality, yet remains vivid, sunlit and unthreatening in her memory. Rumens explores how memory and imagination can preserve a powerful, positive sense of home and identity even when there is 'no way back' to the physical place itself.",
+ relationships:"The speaker's central relationship is with her remembered city itself, personified almost as a companion who 'takes me dancing' rather than with any other named individual.",
+ themes:['Place','Memory','Identity'],
+ quotes:["There once was a country... I left it as a child","sunlight-clear","It may be at war, it may be sick with tyrants","docile as paper","no way back"],
+ techniques:["Extended metaphor (light)","Repetition","Ambiguity","First-person reflective voice"],
+ message:"Rumens may be suggesting that memory and imagined identity can remain powerfully resilient even when a person's actual home becomes physically or politically inaccessible, allowing a sense of belonging to survive displacement.",
+ pairsWith:[{poem:'Checking Out Me History', why:"both poems explore how identity can be reclaimed or preserved through memory and language, resisting an oppressive or uncertain external reality."},{poem:'Kamikaze', why:"both poems explore the tension between an idealised, remembered past and a more complicated, threatening present reality."}]},
+{id:'checkingoutmehistory', name:'Checking Out Me History', role:"John Agard — performance poem in Caribbean-influenced dialect, alternating short and longer stanzas with a refrain",
+ who:"A defiant, assertive first-person voice moves between mocking, sing-song descriptions of standard curriculum content and passionate, celebratory tributes to overlooked Black figures being reclaimed.",
+ journey:"The speaker criticises an education system that taught him nursery-rhyme versions of English history while omitting significant Black historical figures such as Toussaint L'Ouverture and Mary Seacole. Agard argues that this selective, incomplete education has effectively 'blinded' him to his own cultural identity, and the poem itself becomes an act of reclaiming that missing history, closing with the speaker 'carving out' his own identity.",
+ relationships:"Addresses an unnamed education system or curriculum ('Dem') directly and critically, while celebrating named historical figures it omitted.",
+ themes:['Identity','Education','Resistance'],
+ quotes:["Dem tell me / Dem tell me","Bandage up me eye with me own history","Toussaint / a slave / with vision","Mary Seacole / She was a healer","carving out me own identity"],
+ techniques:["Dialect and phonetic spelling","Refrain ('Dem tell me')","Juxtaposition of curriculum vs reclaimed history","Extended metaphor (blindness/bandage)"],
+ message:"Agard may be arguing that an education system which omits significant Black historical figures functions as a form of institutional power that restricts and distorts people's understanding of their own identity, and that reclaiming this history is itself an act of resistance.",
+ pairsWith:[{poem:'London', why:"both poems examine how power can operate through institutions and controlled narratives, restricting people's freedom or understanding of their own lives."},{poem:'The Emigrée', why:"both poems explore how identity can be actively reclaimed or preserved through memory and language, resisting external attempts at control or erasure."}]},
+{id:'kamikaze', name:'Kamikaze', role:"Beatrice Garland — free verse, no regular rhyme scheme, narrated by the pilot's daughter",
+ who:"Narrated by the pilot's daughter in the third person, reconstructing her father's likely thoughts and experience from her own imagination and family memory, since he never speaks of the event himself.",
+ journey:"A Japanese kamikaze pilot sets off on a mission expecting to die, but turns back after being reminded, by the natural beauty of the sea and memories of his childhood, of the value of life. On his return, rather than being welcomed, he is shunned by his family and community for failing to fulfil his duty, illustrating the severe social cost of prioritising life over honour.",
+ relationships:"Narrated by his daughter, who reconstructs her father's story secondhand; his own wife and children later treat him, in the community's eyes, 'as though he no longer existed'.",
+ themes:['Conflict','Honour','Family'],
+ quotes:["Her father embarked at sunrise","green-blue translucent sea","shoals of fish flashing silver","which had been the better way to die","he no longer existed"],
+ techniques:["Extended metaphor (the sea)","Enjambment","Colour imagery","Shifting narrative perspective"],
+ message:"Garland may be suggesting that rigid cultural expectations around honour and duty can inflict a lasting, almost unbearable social punishment on individuals who choose life over sacrifice, regardless of the personal courage that choice may actually require.",
+ pairsWith:[{poem:'Poppies', why:"both poems explore the impact of conflict on family relationships, focusing on loss, separation and complicated emotional consequences away from the battlefield itself."},{poem:'My Last Duchess', why:"both poems explore how rigid expectations of honour, duty or status can be used to judge and punish an individual's personal choices."}]}
+];
+/* ================= THEMES ================= */
+const THEMES = [
+{name:'Power', explanation:"Poems across the anthology examine different forms of power — political, military, institutional, personal and natural — and question how power is gained, displayed, abused, or ultimately lost.",
+ where:"A ruined statue's arrogant inscription; a Duke's chilling command over his household; a city controlled by unseen institutions.",
+ characters:['Ozymandias','My Last Duchess','London'],
+ quotes:["Look on my works, ye Mighty, and despair!","I gave commands"],
+ message:"Several poets may be suggesting that power, whether political, personal or institutional, is frequently displayed through control over others or over how a narrative is told, and that this display often reveals its own instability.",
+ context:"Nineteenth-century Britain's imperial confidence and rigid class hierarchies shaped how power was publicly performed and questioned by contemporary poets.",
+ thesis:["Poets across the anthology often present power as something performed and asserted through language or control over others, which paradoxically exposes its own fragility.","A comparison of powerful individual figures (Ozymandias, the Duke) with powerful institutions (the Church and monarchy in London) reveals that power can be personal or systemic, but both are open to poetic critique."]},
+{name:'Conflict', explanation:"The anthology explores conflict across a wide historical range, from nineteenth-century military engagements to twentieth and twenty-first century warfare, examining both the physical experience of combat and its lasting personal and social consequences.",
+ where:"A doomed cavalry charge; a soldier's sudden panic; a mother's private grief; a photographer's darkroom.",
+ characters:['The Charge of the Light Brigade','Bayonet Charge','Exposure','Remains'],
+ quotes:["Theirs but to do and die","Suddenly he awoke and was running"],
+ message:"Poets writing about conflict may increasingly move away from celebrating heroism toward depicting its psychological cost, reflecting how attitudes to war changed significantly across the periods the anthology covers.",
+ context:"The anthology spans conflicts from the nineteenth-century Crimean War through both World Wars to more recent conflicts represented by modern journalism and testimony.",
+ thesis:["A comparison of nineteenth and twentieth-century war poems reveals a significant shift from celebrating collective heroism to exposing individual trauma and futility.","Poets increasingly use close, individual perspectives to expose conflict's lasting psychological cost, rather than presenting it as a purely public or heroic event."]},
+{name:'Nature and its power', explanation:"Several poems present nature as an overwhelming, sometimes frightening force capable of humbling human confidence, occasionally functioning as a metaphor for less tangible fears or conflicts.",
+ where:"A boy's terrifying encounter with a mountain; an island community's fearful preparation for a storm.",
+ characters:['The Prelude','Storm on the Island','Kamikaze'],
+ quotes:["huge peak, black and huge","huge nothing that we fear"],
+ message:"Poets may use nature's overwhelming scale and unpredictability as a way of humbling human confidence, suggesting that people are far less in control of their environment than they assume.",
+ context:"Romantic-era poets such as Wordsworth were particularly interested in the 'sublime' — the awe and terror inspired by nature's vast power — a tradition later poets echo and adapt.",
+ thesis:["Poets frequently use nature's overwhelming power to expose the limits of human confidence and control.","Nature can function literally, as a genuine physical threat, or symbolically, as in Storm on the Island's possible allegory for wider social tension."]},
+{name:'Memory', explanation:"Many poems are structured around the act of remembering, whether a traumatic combat memory, a childhood experience, or an idealised, distant home.",
+ where:"A soldier's intrusive memory of a shooting; an adult recalling a childhood boat theft; an exile's memory of her homeland.",
+ characters:['Remains','The Prelude','The Emigrée'],
+ quotes:["dream, and he's torn apart","sunlight-clear"],
+ message:"Poets may present memory as something that resurfaces involuntarily and shapes present identity, whether as a source of trauma, as in Remains, or as a source of resilience, as in The Emigrée.",
+ context:"Increased twentieth-century understanding of psychological trauma and PTSD may have influenced how poets such as Armitage represent intrusive, involuntary memory.",
+ thesis:["Poets frequently present memory as something involuntary and persistent, resurfacing regardless of a speaker's conscious will.","A comparison between traumatic and comforting memory across the anthology reveals memory's dual capacity to harm or sustain identity."]},
+{name:'Identity', explanation:"Several poems explore how identity is shaped, threatened or reclaimed, particularly in relation to culture, education, migration or loss.",
+ where:"A speaker reclaiming overlooked Black historical figures; an exile preserving a memory of home.",
+ characters:['Checking Out Me History','The Emigrée'],
+ quotes:["carving out me own identity","sunlight I carry"],
+ message:"Poets may suggest that identity, particularly cultural or national identity, can be actively reclaimed or preserved through memory, language and resistance, even when external forces attempt to restrict or erase it.",
+ context:"Postcolonial writers such as Agard often directly challenge Eurocentric education systems and historical narratives that have historically marginalised non-white history and culture.",
+ thesis:["Poets present identity as something that can be actively reclaimed through language and memory, rather than passively inherited or lost.","A comparison of Checking Out Me History and The Emigrée reveals two different strategies — defiant reclamation and imaginative preservation — for maintaining identity under pressure."]},
+{name:'Loss', explanation:"Loss is explored both through direct bereavement and through the loss of safety, belonging or a former self, often focused on family members left behind by conflict.",
+ where:"A mother's grief for her departed son; a family's rejection of a pilot who chose to live.",
+ characters:['Poppies','Kamikaze'],
+ quotes:["world overflowing / like a treasure chest","he no longer existed"],
+ message:"Poets may use loss experienced by family members, rather than combatants themselves, to highlight conflict's wide-reaching emotional cost beyond the battlefield.",
+ context:"Poppies was written for a modern anthology reflecting on remembrance and the ongoing human cost of war for military families.",
+ thesis:["Poets frequently use family perspectives to reveal the wide-reaching, ongoing emotional cost of conflict, extending it far beyond the battlefield itself.","A comparison of Poppies and Kamikaze reveals two different kinds of loss — bereavement and social rejection — that families experience because of conflict."]},
+{name:'Family', explanation:"Family relationships offer several poets a way of exploring conflict, loss and identity through an intimate, personal lens rather than a purely public or historical one.",
+ where:"A mother's private ritual of remembrance; a daughter narrating her father's story.",
+ characters:['Poppies','Kamikaze'],
+ quotes:["Before you left, I pinned a poppy","Her father embarked at sunrise"],
+ message:"Poets may use family relationships and perspectives to humanise wider historical or political events, grounding large-scale conflict in intimate, personal experience.",
+ context:"Both poems were written by contemporary female poets specifically to give voice to family members' experience of conflict, a perspective often underrepresented in traditional war poetry.",
+ thesis:["Poets frequently use family relationships to humanise and personalise the wider consequences of conflict.","A family perspective allows poets to explore conflict's emotional aftermath in ways combat-focused poems cannot."]},
+{name:'Individual vs society/institutions', explanation:"Several poems examine the tension between an individual and the wider institutions — political, religious, military or educational — that seek to control or define them.",
+ where:"A city controlled by Church and monarchy; a soldier following orders despite their cost; an education system omitting key history.",
+ characters:['London','The Charge of the Light Brigade','Checking Out Me History'],
+ quotes:["mind-forged manacles","Theirs not to reason why"],
+ message:"Poets may present institutions as powerful forces capable of controlling, restricting or misinforming individuals, whether through direct political power, unquestioned military hierarchy, or selective education.",
+ context:"Blake's radical political and religious views placed him in direct opposition to the institutional power he critiques throughout Songs of Experience.",
+ thesis:["Poets frequently present institutions as exerting control over individuals in ways that are pervasive but not always immediately visible.","A comparison of London and Checking Out Me History reveals two different institutional forms of control: direct social suffering and restricted access to one's own history."]},
+{name:'Possessiveness and control', explanation:"Some poems explore controlling, possessive relationships, particularly focused on how one person, often with greater social or institutional power, seeks to dominate another.",
+ where:"A Duke's jealous control over his late wife's image and memory.",
+ characters:['My Last Duchess'],
+ quotes:["as if she ranked / My gift","I gave commands"],
+ message:"Browning may be exposing how possessiveness, when combined with significant social power, can lead to devastating, even fatal consequences for the person being controlled.",
+ context:"Browning's dramatic monologues often expose the psychology of controlling or morally compromised speakers through their own unwittingly self-incriminating words.",
+ thesis:["Browning presents possessiveness as a natural, dangerous extension of unchecked social and personal power.","The Duke's own words, rather than any external narrator, are used to expose the destructive nature of his controlling jealousy."]},
+{name:'Guilt', explanation:"Several poems explore the lasting guilt experienced after causing or witnessing violence, particularly the way such guilt continues to intrude on ordinary life long afterwards.",
+ where:"A soldier's recurring memory of a violent shooting; a photographer's uneasy relationship with his own profession.",
+ characters:['Remains','War Photographer'],
+ quotes:["his bloody life in my bloody hands","they do not care"],
+ message:"Poets may suggest that guilt following violence, whether directly caused or professionally witnessed, resists resolution and continues to reshape a person's mental state long after the immediate danger has passed.",
+ context:"Growing modern understanding of post-traumatic stress disorder has shaped how contemporary poets such as Armitage represent intrusive combat memories.",
+ thesis:["Poets frequently present guilt as an unresolved, intrusive psychological state rather than something that fades naturally with time.","A comparison of Remains and War Photographer reveals two different professional relationships to violence — direct participant and distant observer — that both result in lasting guilt."]},
+{name:'Pride and hubris', explanation:"Several poems examine excessive pride, particularly in figures of power who overestimate their own permanence or importance.",
+ where:"A ruined statue's arrogant inscription; a Duke's boast of an ancient family name.",
+ characters:['Ozymandias','My Last Duchess'],
+ quotes:["king of kings","nine-hundred-years-old name"],
+ message:"Poets may use excessive pride in these powerful figures to foreshadow, or directly cause, their eventual downfall or moral exposure.",
+ context:"Shelley wrote Ozymandias partly in response to a real Egyptian statue fragment acquired by the British Museum, reflecting broader Romantic scepticism toward imperial and tyrannical power.",
+ thesis:["Poets frequently use pride as a structural flaw that leads directly to a powerful figure's downfall or moral exposure.","A comparison of Ozymandias and My Last Duchess reveals two different forms of pride — in permanent legacy and in inherited status — both ultimately undermined by the poem's own structure."]},
+{name:'Resistance and defiance', explanation:"Some poems present a speaker actively resisting or challenging an oppressive external force, whether political, institutional or personal.",
+ where:"A speaker reclaiming erased Black history; a community defiantly preparing against a storm.",
+ characters:['Checking Out Me History','Storm on the Island'],
+ quotes:["carving out me own identity","We are prepared"],
+ message:"Poets may present resistance and defiance as an active, ongoing process rather than a single, resolved act, requiring continued effort against persistent external pressure.",
+ context:"Agard's performance poetry background emphasises spoken, assertive delivery as itself a form of resistance against a written, institutional version of history.",
+ thesis:["Poets present resistance as an active, deliberate process of reclaiming control over one's own narrative or safety.","A comparison of Checking Out Me History and Storm on the Island reveals resistance directed at both human institutions and natural forces."]},
+{name:'Distance and detachment', explanation:"Several poems explore the emotional or physical distance between those who experience conflict directly and those who witness or process it from a position of relative safety.",
+ where:"A photographer's darkroom far from the events pictured; an audience briefly glancing at printed images.",
+ characters:['War Photographer','Tissue'],
+ quotes:["Rural England. Home again","they do not care"],
+ message:"Poets may be questioning how effectively distant audiences can genuinely understand or engage with suffering they have not directly experienced, even when confronted with vivid representations of it.",
+ context:"The rise of photojournalism throughout the twentieth century significantly shaped public awareness of, and potential desensitisation to, distant conflicts.",
+ thesis:["Poets frequently question whether physical or emotional distance from conflict inevitably leads to reduced understanding or empathy.","A comparison of War Photographer and Tissue reveals two different ways fragile, paper-based media can carry emotional weight across distance."]},
+{name:'Duty and sacrifice', explanation:"Several poems examine the pressure placed on individuals to fulfil a duty — military, social or familial — and the personal cost of meeting or failing to meet that expectation.",
+ where:"Cavalry soldiers following a fatal order without question; a pilot expected to die for his country.",
+ characters:['The Charge of the Light Brigade','Kamikaze'],
+ quotes:["Theirs but to do and die","which had been the better way to die"],
+ message:"Poets may be questioning whether unquestioning duty and sacrifice should be considered purely heroic, particularly when the personal cost — in death or social rejection — is so severe.",
+ context:"Rigid military and cultural expectations of duty, whether Victorian British or wartime Japanese, placed enormous pressure on individuals to prioritise sacrifice over personal survival.",
+ thesis:["Poets frequently complicate straightforward, heroic ideas of duty and sacrifice by revealing their devastating personal cost.","A comparison of The Charge of the Light Brigade and Kamikaze reveals two different cultural expectations of sacrifice — one fulfilled fatally, one refused at great social cost."]}
+];
+/* ================= TECHNIQUES ================= */
+const TECHNIQUES = [
+{name:'Voice and perspective', def:"Whether a poem's speaker is a persona, a first-person witness, a collective voice, or a more distanced narrator, and how reliable or limited that perspective is.", example:"My Last Duchess's Duke unwittingly incriminates himself through his own self-satisfied dramatic monologue.", effect:"Forces readers to judge a speaker's reliability and read between the lines rather than trusting the account at face value.", howto:"Identify who is speaking, how much they know or control, and where their account might be limited, biased or self-serving."},
+{name:'Structural shift', def:"A turning point where a poem's tone, argument or focus changes, sometimes called a volta.", example:"The Prelude shifts from the boy's confident 'act of stealth' to his fearful retreat once the peak appears to 'stride' after him.", effect:"Mirrors a psychological or emotional turning point within the poem itself.", howto:"Locate exactly where the shift occurs and explain what causes it and what changes as a result."},
+{name:'Repetition and refrain', def:"The deliberate reuse of a word, phrase or line for emphasis.", example:"Exposure's repeated refrain 'But nothing happens'.", effect:"Reinforces a sense of exhausting monotony and futility that builds across the poem.", howto:"Explain the specific effect the repeated element creates each time it recurs, not just that repetition occurs."},
+{name:'Cyclical structure', def:"A poem that returns to its starting point or imagery, suggesting repetition or an unresolved cycle.", example:"Exposure's structure returns repeatedly to cold, waiting and the refrain 'nothing happens', denying narrative progression.", effect:"Suggests circumstances that do not resolve or improve, however much time passes.", howto:"Identify what element recurs at the poem's beginning and end, and explain what this repetition suggests about resolution or change."},
+{name:'Caesura', def:"A deliberate pause or break within a line of poetry, often marked by punctuation.", example:"'I gave commands; / Then all smiles stopped together' in My Last Duchess.", effect:"Creates a chilling, controlled pause that mirrors the Duke's calm, deliberate cruelty.", howto:"Explain what emotional or dramatic effect the pause creates at that specific moment in the line."},
+{name:'Enjambment', def:"A sentence or phrase that continues past the end of a line without punctuation.", example:"The Prelude's flowing description of the boat's 'measured motion like a living thing'.", effect:"Creates continuous, flowing movement that can mirror physical action or a build-up of tension.", howto:"Explain how the enjambment mirrors the content or emotional momentum of that specific moment."},
+{name:'Natural imagery', def:"Descriptive language drawing on the natural world — landscapes, weather, animals.", example:"Bayonet Charge's 'yellow hare that rolled like a flame'.", effect:"Can represent innocence, vulnerability or overwhelming uncontrollable force depending on context.", howto:"Identify what natural image is used and explain its specific symbolic or emotional function in that moment."},
+{name:'Military imagery', def:"Language and imagery drawn directly from warfare and combat, sometimes applied to non-military subjects.", example:"Exposure's description of 'merciless iced east winds that knive us'.", effect:"Presents an unexpected enemy, the weather, using the language of direct attack.", howto:"Explain what or who is being presented as a military threat, and why that choice is significant."},
+{name:'Religious imagery', def:"Language, symbolism or allusion drawing on religious belief, ritual or scripture.", example:"War Photographer's comparison of the darkroom to 'a church' and the photographer's ritualistic developing process.", effect:"Elevates an ordinary, mundane process into something solemn and almost sacred.", howto:"Explain what specific religious association is being drawn on and what tone or meaning it lends the moment."},
+{name:'Bodily and visceral imagery', def:"Language focused on physical bodies, blood, wounds or visceral sensation.", example:"Remains' repeated phrase 'his bloody life in my bloody hands'.", effect:"Forces the reader to confront the immediate, physical reality of violence rather than an abstracted version of it.", howto:"Explain what specific physical detail is emphasised and why it makes the moment more immediate or disturbing."},
+{name:'Domestic imagery', def:"Language drawn from everyday home life, family routines or household objects.", example:"Poppies' description of 'spasms of paper red', evoking craft materials alongside the poppy's symbolism.", effect:"Grounds a wider public event, such as conflict or remembrance, in intimate, personal, everyday experience.", howto:"Explain how a specific domestic detail connects the poem's personal, intimate focus to its wider theme."},
+{name:'Political and institutional imagery', def:"Language and imagery representing political power, institutions or governance.", example:"London's reference to the 'blackning Church' and the 'palace walls'.", effect:"Makes abstract institutional power visible and directly implicated in the suffering the speaker witnesses.", howto:"Identify the specific institution referenced and explain what the poet suggests about its role in the situation described."},
+{name:'Rhyme and half-rhyme', def:"The matching, or partial matching, of end sounds in lines of poetry.", example:"Exposure's use of unsettling half-rhyme rather than full rhyme throughout.", effect:"Creates a subtly unresolved, uneasy feeling that mirrors the soldiers' own unresolved suffering.", howto:"Explain what specific effect the presence, or notable absence, of full rhyme creates in that poem."},
+{name:'Rhythm and metre', def:"The pattern of stressed and unstressed syllables shaping a poem's pace and feel.", example:"The Charge of the Light Brigade's galloping dactylic rhythm.", effect:"Mimics the physical motion, such as galloping horses, or emotional state being described.", howto:"Identify the specific rhythmic pattern and explain what physical or emotional effect it creates."},
+{name:'Alliteration and sibilance', def:"The repetition of consonant sounds, particularly soft 's' or 'sh' sounds (sibilance), across nearby words.", example:"Ozymandias' 'boundless and bare' and Storm on the Island's hissing description of the sea.", effect:"Can create a soft, unsettling or hostile atmosphere depending on context.", howto:"Identify the specific sound being repeated and explain the atmosphere or emotional tone it creates."},
+{name:'Contrast and juxtaposition', def:"Placing two clearly different ideas, images or tones side by side to highlight their difference.", example:"War Photographer's contrast between the photographer's ordered darkroom and the chaotic suffering his photographs depict.", effect:"Emphasises the emotional or moral gap between two situations, forcing the reader to notice it directly.", howto:"State both halves of the contrast explicitly, then explain what the poet reveals by placing them together."}
+];
+/* ================= QUOTE VAULT ================= */
+const QUOTES = [
+{text:"sneer of cold command", speaker:"Percy Bysshe Shelley — Ozymandias", act:"lines 4-5", characters:['Ozymandias'], themes:['Power','Pride and hubris'],
+ meaning:"The traveller describes the statue's broken facial expression, which still shows the king's arrogant, contemptuous attitude toward those he ruled.",
+ technique:"Alliteration and harsh consonants ('c' sounds) creating a cold, hostile tone.",
+ solid:"The word 'sneer' shows the king looked down on people, and even in ruins his arrogant expression is still visible.",
+ deep:"The survival of the 'sneer' in the sculpted stone, despite the statue's total physical collapse, suggests that arrogance and cruelty are more durable in art than the power that produced them — the sculptor has captured and preserved the king's contempt more successfully than the king preserved his own empire.",
+ context:"Reflects Romantic-era scepticism toward tyrannical and imperial power, partly inspired by a real fragment of an Egyptian statue acquired by the British Museum.",
+ useFor:"Essays on power, pride, or how Shelley uses physical description to expose character."},
+{text:"Look on my works, ye Mighty, and despair!", speaker:"Percy Bysshe Shelley — Ozymandias", act:"line 11 (the inscription)", characters:['Ozymandias'], themes:['Power','Pride and hubris','Memory'],
+ meaning:"The pedestal's inscription records the king's boast that other powerful rulers should feel hopeless when comparing their own achievements to his.",
+ technique:"Dramatic irony; imperative command; exclamation.",
+ solid:"The king's boastful command seems ridiculous because there is nothing left around the statue to actually despair at, showing how wrong he was about his own lasting power.",
+ deep:"The command is addressed to an imagined audience of future rulers, but the only actual audience left is the traveller and the reader, standing in an empty desert — Shelley engineers this gap between the boast's intended and actual audience to devastating ironic effect, turning the king's arrogance into unintentional self-mockery.",
+ context:"Written during a period when Romantic poets were increasingly sceptical of the permanence of empire and political power.",
+ useFor:"Essays on dramatic irony, or on the theme of time undermining human pride."},
+{text:"mind-forged manacles", speaker:"William Blake — London", act:"stanza 3", characters:['London'], themes:['Institutional power','Suffering'],
+ meaning:"Blake suggests that Londoners' suffering is partly caused by mental and psychological restriction, not only physical or legal oppression.",
+ technique:"Metaphor; compound adjective; oxymoron-like tension between 'mind' and 'forged' (a physical, industrial process).",
+ solid:"This phrase suggests people are trapped not just by real chains, but by ideas and beliefs that have been forced into their minds.",
+ deep:"By describing the manacles as 'mind-forged', Blake implies that oppression works partly through internalised belief and acceptance, not solely through visible legal or physical restriction, which makes the critique apply to institutions (the Church, monarchy) that shape thought as much as behaviour.",
+ context:"Blake held radical political and religious views and was deeply critical of established institutional power in late eighteenth-century Britain.",
+ useFor:"Essays on institutional power, control, or Blake's critique of London society."},
+{text:"chartered streets", speaker:"William Blake — London", act:"stanza 1", characters:['London'], themes:['Institutional power','Individual vs society'],
+ meaning:"The speaker observes that even the city's streets, and later the river itself, are owned, controlled and restricted by legal charter.",
+ technique:"Repetition of 'charter'd'; unsettling extension of ownership from streets to a natural river.",
+ solid:"The word 'chartered' shows that everything in London, even things that should be free like the river, is actually owned and controlled by someone.",
+ deep:"Extending 'charter'd' from the man-made streets to the naturally flowing Thames exposes the totality of institutional control Blake is critiquing — nothing, not even nature, escapes ownership and regulation in this vision of London.",
+ context:"Reflects Blake's critique of increasing legal and commercial control over public and natural space in late eighteenth-century London.",
+ useFor:"Essays on institutional power or control as a central theme of London."},
+{text:"huge peak, black and huge", speaker:"William Wordsworth — The Prelude", act:"mid-poem (the peak rising)", characters:['The Prelude'], themes:['Nature','Fear'],
+ meaning:"The boy describes the mountain appearing to rise up and grow larger as he rows further out onto the lake, becoming a terrifying presence.",
+ technique:"Repetition ('huge... huge'); personification; monosyllabic, blunt diction.",
+ solid:"Repeating 'huge' emphasises how overwhelming and frightening the mountain suddenly seems to the boy.",
+ deep:"The repetition of 'huge' mimics the boy's escalating panic in real time, while the personifying suggestion that the peak actively 'strides' after him blurs the line between his perception and reality, capturing how overwhelming natural scale can destabilise a confident, rational sense of self.",
+ context:"Reflects the Romantic interest in the 'sublime' — nature's capacity to inspire both awe and terror simultaneously.",
+ useFor:"Essays on nature, fear, or the Romantic sublime."},
+{text:"I gave commands; / Then all smiles stopped together", speaker:"Robert Browning — My Last Duchess", act:"mid-poem (the confession)", characters:['My Last Duchess'], themes:['Control','Possessiveness and control'],
+ meaning:"The Duke reveals, through chilling understatement, that he ordered his wife's death after growing tired of her indiscriminate warmth toward others.",
+ technique:"Euphemism; caesura; enjambment across the line break delaying the disturbing implication.",
+ solid:"The vague phrase 'gave commands' avoids saying directly that he had her killed, which makes the moment feel even more chilling.",
+ deep:"The euphemistic vagueness of 'gave commands', combined with the abrupt caesura and casual tone, forces the reader to actively infer murder rather than have it stated outright, implicating the reader in uncovering the Duke's crime and heightening the horror of his composed, untroubled delivery.",
+ context:"Reflects Browning's interest in exploring morally compromised speakers through dramatic monologue, a form that lets characters unwittingly incriminate themselves.",
+ useFor:"Essays on control, power, or Browning's use of dramatic monologue."},
+{text:"Taming a sea-horse", speaker:"Robert Browning — My Last Duchess", act:"final couplet", characters:['My Last Duchess'], themes:['Control','Status'],
+ meaning:"The Duke's closing remark about a bronze statue of Neptune taming a sea-horse reveals his continuing desire to dominate and control.",
+ technique:"Symbolism; closing structural placement giving the image maximum weight.",
+ solid:"The statue of taming a sea-horse symbolises the Duke's own desire to control and dominate those around him, including his wife.",
+ deep:"Placing this image of forceful domination at the poem's very close reframes everything the reader has just heard: the Duke's pride in owning this artwork confirms that his need to 'tame' extends beyond his late wife to a general, ongoing desire for control, suggesting the pattern will simply repeat with his next Duchess.",
+ context:"Reflects aristocratic art collecting as a form of status display in Renaissance Italy, the poem's loosely historical setting.",
+ useFor:"Essays on possessiveness, status, or symbolism in My Last Duchess."},
+{text:"Theirs not to reason why, / Theirs but to do and die", speaker:"Alfred, Lord Tennyson — The Charge of the Light Brigade", act:"stanza 2", characters:['The Charge of the Light Brigade'], themes:['War','Duty and sacrifice'],
+ meaning:"The speaker states that the soldiers' duty was simply to obey orders without question, even knowing the charge would likely kill them.",
+ technique:"Antithesis; repetition ('Theirs...'); parallel structure.",
+ solid:"This shows the soldiers were expected to obey orders completely, without ever questioning whether those orders made sense.",
+ deep:"The rigid parallel structure enacts the very obedience it describes, denying the soldiers, and the line itself, any space for questioning or doubt, which allows Tennyson to honour their discipline while quietly implying the tragedy of unquestioning obedience to a flawed command.",
+ context:"Responds directly to a real, disastrous 1854 cavalry charge during the Crimean War caused by a miscommunicated order.",
+ useFor:"Essays on duty, sacrifice, or the tension between heroism and futility in war poetry."},
+{text:"Someone had blundered", speaker:"Alfred, Lord Tennyson — The Charge of the Light Brigade", act:"stanza 2", characters:['The Charge of the Light Brigade'], themes:['War','Power'],
+ meaning:"The speaker briefly acknowledges that the disastrous charge resulted from a command error, without naming who was responsible.",
+ technique:"Understatement; passive, vague attribution of blame; isolated short line.",
+ solid:"This brief line admits a serious mistake was made, even though the poem mostly celebrates the soldiers' bravery.",
+ deep:"The vague, almost throwaway phrasing of 'someone had blundered' isolates a moment of genuine institutional failure within an otherwise celebratory poem, letting Tennyson quietly critique the command structure without directly naming or blaming any specific officer.",
+ context:"Reflects genuine public unease in Victorian Britain about the mismanagement of the Crimean War, despite official celebration of the soldiers' courage.",
+ useFor:"Essays on power, command failure, or Tennyson's balance of celebration and critique."},
+{text:"merciless iced east winds that knive us", speaker:"Wilfred Owen — Exposure", act:"stanza 1", characters:['Exposure'], themes:['War','Nature'],
+ meaning:"The soldiers describe the freezing wind as an active, violent attacker, as dangerous as enemy weapons.",
+ technique:"Personification; military/violent verb 'knive'; sibilance.",
+ solid:"Describing the wind as something that 'knives' the soldiers shows how the freezing cold feels like a direct physical attack.",
+ deep:"By giving the weather an active, violent verb usually associated with human attackers, Owen reframes nature itself as the soldiers' true enemy, more immediate and inescapable than the human opposing army, which structurally supports the poem's wider argument about the futility of conventional heroism in this kind of warfare.",
+ context:"Reflects Owen's first-hand experience of brutal winter conditions in First World War trenches.",
+ useFor:"Essays on nature as an enemy, or the physical suffering of soldiers."},
+{text:"But nothing happens", speaker:"Wilfred Owen — Exposure", act:"refrain, closing several stanzas", characters:['Exposure'], themes:['War','Futility'],
+ meaning:"The soldiers' anticipation of action or attack is repeatedly denied, leaving only exhausting, purposeless waiting.",
+ technique:"Refrain/repetition; anticlimax; short, blunt final line.",
+ solid:"Repeating this phrase shows how frustrating and pointless the soldiers' constant waiting feels, since nothing ever actually happens.",
+ deep:"The refrain's blunt anticlimax structurally enacts the very futility it describes, denying the poem, like the soldiers, any satisfying narrative progression or resolution, which reframes suffering as located in prolonged endurance rather than dramatic combat.",
+ context:"Reflects the reality that much of trench warfare involved long periods of waiting rather than direct combat.",
+ useFor:"Essays on futility, structure, or Owen's rejection of heroic war narratives."},
+{text:"spits like a tame cat / Turned savage", speaker:"Seamus Heaney — Storm on the Island", act:"closing lines", characters:['Storm on the Island'], themes:['Nature','Fear'],
+ meaning:"The speaker describes the sea's sudden, unpredictable transformation from apparent calm into violent, dangerous behaviour.",
+ technique:"Simile; personification; enjambment across the line break.",
+ solid:"Comparing the sea to a 'tame cat' turning 'savage' shows how quickly something that seems safe can become genuinely dangerous.",
+ deep:"The domestic simile of a 'tame cat' initially undercuts the sea's danger with familiar, almost comforting imagery, before the violent verb 'savage' abruptly overturns that reassurance, mirroring the community's own shifting confidence and enacting the poem's wider argument about the unpredictability of the threat they face.",
+ context:"Can be read as an allegory for the atmosphere of hidden, unpredictable tension experienced in Northern Ireland during the Troubles.",
+ useFor:"Essays on nature, fear, or Storm on the Island as possible political allegory."},
+{text:"King, honour, human dignity, etcetera / Dropped like luxuries", speaker:"Ted Hughes — Bayonet Charge", act:"stanza 2", characters:['Bayonet Charge'], themes:['War','Instinct'],
+ meaning:"The soldier's patriotic ideals are abandoned instantly and completely once he is confronted with the immediate terror of combat.",
+ technique:"Listing; dismissive 'etcetera'; simile ('like luxuries').",
+ solid:"Comparing these ideals to 'luxuries' shows they suddenly seem useless and unnecessary compared to the soldier's urgent need to survive.",
+ deep:"The dismissive 'etcetera' collapses grand patriotic abstractions into an interchangeable, almost bureaucratic list, while the simile reframes them as unaffordable luxuries rather than genuine motivations, exposing how quickly ideological justification for war dissolves under real physical threat.",
+ context:"Reflects Hughes's broader scepticism toward romanticised, patriotic representations of war, partly shaped by his father's experience of the First World War.",
+ useFor:"Essays on patriotism vs reality, or the collapse of ideology under fear."},
+{text:"yellow hare that rolled like a flame", speaker:"Ted Hughes — Bayonet Charge", act:"stanza 3", characters:['Bayonet Charge'], themes:['War','Nature'],
+ meaning:"A wounded hare, caught in the chaos of the charge, briefly interrupts the soldier's focus with an image of innocent, indiscriminate suffering.",
+ technique:"Simile; vivid colour imagery; symbolism.",
+ solid:"The hare's suffering shows that war harms innocent creatures as well as soldiers, widening the poem's focus beyond just human experience.",
+ deep:"The simile comparing the hare to a rolling 'flame' fuses natural and violent imagery in a single disturbing image, using the hare as a symbol of indiscriminate, meaningless harm that momentarily mirrors the soldier's own vulnerability and confusion.",
+ context:"Reflects a wider tradition in war poetry of using animal suffering to represent war's indiscriminate destruction.",
+ useFor:"Essays on nature imagery, instinct, or the indiscriminate harm caused by conflict."},
+{text:"his bloody life in my bloody hands", speaker:"Simon Armitage — Remains", act:"stanza 6", characters:['Remains'], themes:['Guilt','Conflict'],
+ meaning:"The soldier reflects with horror on his direct physical responsibility for the man's death, unable to distance himself from the act.",
+ technique:"Repetition ('bloody... bloody'); possessive pronouns emphasising direct responsibility; visceral imagery.",
+ solid:"Repeating 'bloody' emphasises how directly responsible the soldier feels for the man's death and how disturbed he is by it.",
+ deep:"The repeated adjective 'bloody' functions both literally, describing the violence, and colloquially, as an intensifier of guilt and self-disgust, while the parallel possessives ('his... my') collapse the distance between victim and perpetrator that the soldier might otherwise have used to protect himself psychologically.",
+ context:"Based directly on real testimony from a British soldier who served in Iraq, reflecting genuine accounts of combat-related guilt and trauma.",
+ useFor:"Essays on guilt, trauma, or the lasting psychological effects of violence."},
+{text:"his blood-shadow stays on the street", speaker:"Simon Armitage — Remains", act:"stanza 7", characters:['Remains'], themes:['Guilt','Memory'],
+ meaning:"The image of the shot man's blood, left behind on the street, becomes a permanent, haunting mark that the soldier cannot forget.",
+ technique:"Compound noun ('blood-shadow'); visual, lingering imagery; present tense.",
+ solid:"The lasting 'blood-shadow' shows that the memory of what happened has stayed with the soldier just as visibly as if it were still on the street.",
+ deep:"The invented compound 'blood-shadow' merges a literal physical stain with the psychological shadow of guilt that continues to follow the soldier, using present tense to suggest that, in his mind at least, the mark has never actually faded.",
+ context:"Reflects growing modern understanding of how traumatic combat memories can remain vivid and unresolved long after the event itself.",
+ useFor:"Essays on memory, guilt, or the lasting psychological impact of conflict."},
+{text:"blackthorns of your hair", speaker:"Jane Weir — Poppies", act:"opening stanza", characters:['Poppies'], themes:['Family','Loss'],
+ meaning:"The mother recalls the texture of her son's hair using an unexpectedly sharp, thorny natural image, hinting at pain beneath tender description.",
+ technique:"Metaphor; natural imagery; sound (harsh consonants in 'blackthorns').",
+ solid:"Comparing her son's hair to thorns is an unusual, slightly painful image that suggests the mother's love is mixed with anxiety.",
+ deep:"The thorny, defensive connotations of 'blackthorns' sit uneasily alongside the tenderness of a mother arranging her son's hair, foreshadowing the pain and vulnerability beneath this apparently ordinary domestic moment before he leaves.",
+ context:"Reflects Poppies' focus on a mother's private, domestic experience of a son's departure for likely military service.",
+ useFor:"Essays on family, loss, or Weir's use of domestic and natural imagery."},
+{text:"released a song bird from its cage", speaker:"Jane Weir — Poppies", act:"closing lines", characters:['Poppies'], themes:['Loss','Family'],
+ meaning:"The mother imagines a symbolic act of release as she lets her son go, capturing both hope and painful loss in a single image.",
+ technique:"Symbolism; metaphor; ambiguous tone (both freeing and painful).",
+ solid:"Releasing the bird symbolises the mother letting her son go, showing mixed feelings of hope and sadness.",
+ deep:"The bird symbol carries deliberately ambiguous connotations, freedom and departure, hope and loss, allowing Weir to capture the mother's genuinely conflicted emotional state rather than presenting her grief as simple or one-dimensional.",
+ context:"Written for a contemporary anthology reflecting on the ongoing experience of military families during recent conflicts.",
+ useFor:"Essays on symbolism, family, or ambiguous emotional states in Poppies."},
+{text:"spools of suffering set out in ordered rows", speaker:"Carol Ann Duffy — War Photographer", act:"stanza 1", characters:['War Photographer'], themes:['Conflict','Distance'],
+ meaning:"The photographer arranges his negatives of war photography in a methodical, orderly way, contrasting with the chaos they depict.",
+ technique:"Alliteration ('spools... suffering'); juxtaposition; ordered structure mirroring the sentence's own controlled rhythm.",
+ solid:"Arranging the negatives in 'ordered rows' contrasts sharply with the chaotic suffering they show, highlighting the photographer's need for professional control.",
+ deep:"The alliterative pairing of 'spools' and 'suffering' aestheticises the process of documenting pain, while the ordered, almost ritualistic arrangement suggests the photographer's professional detachment functions as a necessary psychological defence against the chaos he has witnessed.",
+ context:"Reflects the twentieth-century rise of photojournalism bringing images of distant conflict to a wider public audience.",
+ useFor:"Essays on distance, responsibility, or the tension between order and chaos in War Photographer."},
+{text:"A hundred agonies in black-and-white", speaker:"Carol Ann Duffy — War Photographer", act:"stanza 3", characters:['War Photographer'], themes:['Conflict','Responsibility'],
+ meaning:"The photographer's images reduce numerous individual instances of suffering into a limited set of printed photographs an editor will select from.",
+ technique:"Alliteration; numerical exaggeration ('a hundred'); juxtaposition of colour ('black-and-white') with vivid suffering.",
+ solid:"Describing the suffering as reduced to 'black-and-white' photographs shows how complex, painful human experiences get simplified into a limited set of images.",
+ deep:"The tension between the vast scale suggested by 'a hundred' and the reductive simplicity of 'black-and-white' captures Duffy's wider critique: that photography, however powerful, can only ever offer a limited, flattened version of the suffering it attempts to represent.",
+ context:"Reflects debates about the ethics and limitations of photojournalism in representing real human suffering to a distant audience.",
+ useFor:"Essays on responsibility, representation, or the limitations of media in War Photographer."},
+{text:"Paper that lets the light / shine through", speaker:"Imtiaz Dharker — Tissue", act:"opening stanza", characters:['Tissue'], themes:['Human power','Fragility'],
+ meaning:"The poem opens by describing paper's delicate, translucent quality, introducing the poem's extended metaphor for fragile human structures.",
+ technique:"Extended metaphor (introduced); enjambment; imagery of light.",
+ solid:"Describing paper as something that lets light through introduces the idea that fragile, delicate things can still have positive, illuminating qualities.",
+ deep:"By opening with a positive, almost hopeful image of paper's fragility as something that allows light through, rather than simply weak or flimsy, Dharker reframes fragility throughout the poem as potentially valuable rather than purely negative, complicating a simple reading of paper as merely weak.",
+ context:"Reflects Dharker's wider poetic interest in migration, borders and the constructed, often fragile nature of official documentation.",
+ useFor:"Essays on fragility, human power, or Dharker's use of extended metaphor."},
+{text:"docile as paper", speaker:"Carol Rumens — The Emigrée", act:"stanza 2", characters:['The Emigrée'], themes:['Place','Memory'],
+ meaning:"The speaker describes her remembered city as harmless and completely under her imaginative control, unlike its uncertain real-world present.",
+ technique:"Simile; personification (the city as an obedient companion); irony (given the city's possibly threatened real state).",
+ solid:"Comparing the city to something 'docile as paper' shows the speaker feels completely in control of her memory of it, even though the real city may be dangerous.",
+ deep:"The simile's irony is central: the speaker can render her remembered city entirely 'docile' and controllable precisely because it exists only in memory, which lets Rumens explore how imagination can offer a form of power and safety unavailable in the speaker's actual, uncertain relationship with her homeland.",
+ context:"Reflects broader themes of exile and displacement relevant to migrants and refugees separated from politically unstable or threatened homelands.",
+ useFor:"Essays on memory, place, or the power of imagination in The Emigrée."},
+{text:"Bandage up me eye with me own history", speaker:"John Agard — Checking Out Me History", act:"refrain-like recurring line", characters:['Checking Out Me History'], themes:['Identity','Education'],
+ meaning:"The speaker accuses a selective education system of blinding him to important aspects of his own cultural history and identity.",
+ technique:"Extended metaphor (blindness/bandage); dialect spelling; direct accusation.",
+ solid:"The metaphor of a bandage over his eye shows how an incomplete education has stopped him from seeing important parts of his own history.",
+ deep:"The metaphor's aggressive verb 'bandage' suggests a deliberate act of restriction rather than simple accidental omission, positioning the education system as an active agent that has damaged, rather than merely neglected, the speaker's access to his own cultural identity.",
+ context:"Reflects Agard's own experience of a British education system that historically marginalised Black historical figures and non-European history.",
+ useFor:"Essays on identity, education, or Agard's critique of institutional power."},
+{text:"which had been the better way to die", speaker:"Beatrice Garland — Kamikaze", act:"closing lines", characters:['Kamikaze'], themes:['Conflict','Honour'],
+ meaning:"The daughter reflects that her father may have privately wondered whether dying in his mission would have been preferable to the social rejection he faced for surviving.",
+ technique:"Rhetorical question (implied); ambiguity; retrospective, reflective tone.",
+ solid:"This line shows that even surviving felt like a kind of defeat for the pilot, since choosing life led to him being rejected by his own family and community.",
+ deep:"The unresolved, questioning tone of this closing line leaves the poem deliberately ambiguous about whether survival or death represents the 'better' outcome, forcing the reader to weigh physical survival against the profound social and psychological cost of dishonour in his community.",
+ context:"Reflects the historical practice of kamikaze pilots during the Second World War, who were culturally expected to sacrifice their lives for Japan.",
+ useFor:"Essays on honour, conflict, or the ambiguous ending of Kamikaze."}
+];
+/* ================= QUIZ BANK ================= */
+const QUIZ_BANK = [
+{type:'poem', q:"Which poem describes a ruined statue in the desert with a shattered face and an arrogant inscription?", opts:["My Last Duchess","Ozymandias","Tissue","London"], a:1, exp:"Ozymandias describes the ruined statue's 'shattered visage' and its boastful inscription."},
+{type:'poem', q:"Which poem is structured as a dramatic monologue spoken by a Duke to a silent envoy?", opts:["The Charge of the Light Brigade","My Last Duchess","Checking Out Me History","Storm on the Island"], a:1, exp:"My Last Duchess is Browning's dramatic monologue spoken entirely by the Duke of Ferrara."},
+{type:'poem', q:"Which poem describes a boy stealing a boat and being frightened by a rising mountain peak?", opts:["The Prelude","Kamikaze","Exposure","Bayonet Charge"], a:0, exp:"This is the central episode of Wordsworth's extract from The Prelude."},
+{type:'quote', q:"Which poem contains the line 'mind-forged manacles'?", opts:["London","Ozymandias","The Emigrée","Tissue"], a:0, exp:"'Mind-forged manacles' appears in Blake's London, describing psychological as well as physical restriction."},
+{type:'quote', q:"Which poem contains the refrain 'But nothing happens'?", opts:["Exposure","Remains","Bayonet Charge","Storm on the Island"], a:0, exp:"Owen's Exposure repeats this refrain to emphasise exhausting, purposeless waiting."},
+{type:'quote', q:"Complete the quote from The Charge of the Light Brigade: 'Theirs not to reason why, / Theirs but to ___'.", opts:["run and hide","do and die","stand and fight","wait and see"], a:1, exp:"The full line is 'Theirs but to do and die', emphasising unquestioning duty."},
+{type:'quote', q:"Which poem describes a 'yellow hare that rolled like a flame'?", opts:["Bayonet Charge","Exposure","Remains","Kamikaze"], a:0, exp:"This image appears in Ted Hughes's Bayonet Charge, showing war's harm to innocent creatures."},
+{type:'quote', q:"Which poem includes the phrase 'his bloody life in my bloody hands'?", opts:["War Photographer","Remains","Poppies","Exposure"], a:1, exp:"This line appears in Simon Armitage's Remains, expressing the soldier's guilt."},
+{type:'quote', q:"Which poem describes the darkroom as feeling like 'a church'?", opts:["War Photographer","Tissue","Poppies","London"], a:0, exp:"Duffy's War Photographer compares the darkroom's ritual to a religious space."},
+{type:'quote', q:"Which poem contains the phrase 'docile as paper'?", opts:["Tissue","The Emigrée","Checking Out Me History","Ozymandias"], a:1, exp:"'Docile as paper' appears in Carol Rumens's The Emigrée, describing the remembered city."},
+{type:'quote', q:"Which poem repeats the refrain 'Dem tell me'?", opts:["Checking Out Me History","London","The Emigrée","Kamikaze"], a:0, exp:"John Agard's Checking Out Me History repeats this phrase to critique a selective education."},
+{type:'theme', q:"Which theme is most directly explored through the Duke's jealous control of his late wife's image?", opts:["Nature","Possessiveness and control","Identity","Distance and detachment"], a:1, exp:"My Last Duchess centres on the Duke's possessive, controlling jealousy."},
+{type:'theme', q:"Which two poems most directly explore conflict's impact through a family member's perspective rather than combat itself?", opts:["Poppies and Kamikaze","Ozymandias and London","Exposure and Bayonet Charge","Tissue and The Emigrée"], a:0, exp:"Both Poppies (a mother) and Kamikaze (a daughter) explore conflict through family perspectives."},
+{type:'theme', q:"Which theme connects Ozymandias and Tissue most strongly?", opts:["The fragility of human power over time","Family loss","Distance from conflict","Duty and sacrifice"], a:0, exp:"Both poems suggest that structures of human power are ultimately fragile and temporary."},
+{type:'theme', q:"Which theme is central to both Checking Out Me History and The Emigrée?", opts:["Identity maintained or reclaimed through memory and language","Military duty","Possessiveness","Distance and detachment"], a:0, exp:"Both poems explore identity being preserved or reclaimed through personal memory and language."},
+{type:'tech', q:"What is the term for a sudden turning point in a poem's tone or focus?", opts:["Caesura","Structural shift (volta)","Sibilance","Refrain"], a:1, exp:"A structural shift, or volta, marks a significant turn in tone, argument or focus."},
+{type:'tech', q:"What technique describes Tennyson's galloping rhythm in The Charge of the Light Brigade?", opts:["Iambic pentameter","Dactylic metre","Free verse","Blank verse"], a:1, exp:"Tennyson uses a dactylic rhythm to mimic the sound of galloping cavalry."},
+{type:'tech', q:"What is the effect of the extended metaphor of paper throughout Tissue?", opts:["It celebrates permanence","It suggests fragility and impermanence of human structures","It focuses only on religion","It has no symbolic meaning"], a:1, exp:"The paper metaphor in Tissue suggests that human power and structures are fragile and temporary."},
+{type:'tech', q:"What technique is being used when Exposure describes the wind as something that 'knives' the soldiers?", opts:["Simile","Personification","Rhyme","Caesura"], a:1, exp:"The wind is personified as an active, violent attacker."},
+{type:'tech', q:"What form is My Last Duchess written in?", opts:["Sonnet","Dramatic monologue","Ballad","Ode"], a:1, exp:"My Last Duchess is a dramatic monologue spoken entirely by the Duke."},
+{type:'context', q:"What historical event is The Charge of the Light Brigade based on?", opts:["The Battle of Waterloo","A disastrous cavalry charge during the Crimean War","The First World War","The Battle of Hastings"], a:1, exp:"Tennyson's poem responds to a real, disastrous 1854 cavalry charge during the Crimean War."},
+{type:'context', q:"Which conflict most directly shaped Wilfred Owen's Exposure?", opts:["The Crimean War","The First World War","The Second World War","The Troubles"], a:1, exp:"Owen wrote from direct experience in the trenches of the First World War."},
+{type:'context', q:"Which poem is based on real testimony from a British soldier who served in Iraq?", opts:["Remains","Bayonet Charge","Kamikaze","The Charge of the Light Brigade"], a:0, exp:"Simon Armitage's Remains draws directly on a real soldier's own account."},
+{type:'context', q:"What historical practice does Kamikaze refer to?", opts:["Trench warfare in WWI","Suicide missions flown by Japanese pilots in WWII","The Crimean War cavalry charge","Cold War conflict"], a:1, exp:"Kamikaze refers to the historical practice of Japanese pilots undertaking suicide missions during the Second World War."},
+{type:'context', q:"Which poem responds to political conflict and unrest in Northern Ireland, though without naming it directly?", opts:["Storm on the Island","London","The Emigrée","Ozymandias"], a:0, exp:"Heaney's Storm on the Island can be read as an allegory for the atmosphere of the Troubles."},
+{type:'tf', q:"True or False: The Emigrée names the specific country the speaker has left.", opts:["True","False"], a:1, exp:"False — Rumens deliberately never names the country, keeping it universal and symbolic."},
+{type:'tf', q:"True or False: The kamikaze pilot in Garland's poem completes his mission and dies as planned.", opts:["True","False"], a:1, exp:"False — he turns back after being moved by the sea and memories of his childhood, survives, but is then shunned by his community."},
+{type:'tf', q:"True or False: My Last Duchess is written entirely in the voice of the murdered Duchess.", opts:["True","False"], a:1, exp:"False — the entire poem is spoken by the Duke; the Duchess never speaks."},
+{type:'compare', q:"Which pairing works well for comparing physical and psychological realities of conflict rather than simple heroism?", opts:["Exposure and Bayonet Charge","Ozymandias and Tissue","Poppies and Kamikaze","London and Checking Out Me History"], a:0, exp:"Exposure and Bayonet Charge both strip away patriotic ideas to focus on the immediate physical and psychological reality of conflict."},
+{type:'compare', q:"Which pairing best compares how power operates through institutions, language and control of people's lives?", opts:["London and Checking Out Me History","The Prelude and Storm on the Island","Remains and War Photographer","The Emigrée and Kamikaze"], a:0, exp:"Both London and Checking Out Me History examine how institutions and controlled narratives restrict or damage individuals' lives and understanding."}
+];
+/* ================= MATCH THE QUOTE GAME ================= */
+const MATCHGAME = [
+{text:"sneer of cold command", answer:'Ozymandias', opts:['Ozymandias','My Last Duchess','Tissue','London'], exp:"This describes the ruined statue's arrogant expression in Shelley's Ozymandias."},
+{text:"mind-forged manacles", answer:'London', opts:['London','Checking Out Me History','The Emigrée','Ozymandias'], exp:"Blake uses this phrase in London to suggest psychological as well as physical restriction."},
+{text:"huge peak, black and huge", answer:'The Prelude', opts:['The Prelude','Storm on the Island','Kamikaze','Exposure'], exp:"This describes the mountain that seems to rise up in Wordsworth's The Prelude."},
+{text:"I gave commands; then all smiles stopped together", answer:'My Last Duchess', opts:['My Last Duchess','Ozymandias','Checking Out Me History','Kamikaze'], exp:"The Duke reveals, through chilling euphemism, that he had his Duchess killed."},
+{text:"Theirs but to do and die", answer:'The Charge of the Light Brigade', opts:['The Charge of the Light Brigade','Exposure','Bayonet Charge','Remains'], exp:"This line from Tennyson's poem emphasises unquestioning military duty."},
+{text:"But nothing happens", answer:'Exposure', opts:['Exposure','Storm on the Island','Bayonet Charge','Remains'], exp:"Owen's repeated refrain emphasises exhausting, purposeless waiting in the trenches."},
+{text:"spits like a tame cat / Turned savage", answer:'Storm on the Island', opts:['Storm on the Island','The Prelude','Exposure','Tissue'], exp:"Heaney describes the sea's sudden, unpredictable violence in Storm on the Island."},
+{text:"King, honour, human dignity, etcetera / Dropped like luxuries", answer:'Bayonet Charge', opts:['Bayonet Charge','Exposure','The Charge of the Light Brigade','Remains'], exp:"Hughes shows patriotic ideals collapsing instantly under real combat conditions."},
+{text:"his bloody life in my bloody hands", answer:'Remains', opts:['Remains','War Photographer','Bayonet Charge','Poppies'], exp:"Armitage's soldier is haunted by guilt over a shooting, described in this repeated phrase."},
+{text:"blackthorns of your hair", answer:'Poppies', opts:['Poppies','Kamikaze','The Emigrée','War Photographer'], exp:"Weir uses this image as the mother recalls her son's appearance before he left."},
+{text:"spools of suffering set out in ordered rows", answer:'War Photographer', opts:['War Photographer','Remains','Tissue','Poppies'], exp:"Duffy describes the photographer's negatives, ordered despite their chaotic content."},
+{text:"Paper that lets the light / shine through", answer:'Tissue', opts:['Tissue','War Photographer','The Emigrée','Ozymandias'], exp:"Dharker opens Tissue with this image, introducing the poem's extended paper metaphor."},
+{text:"docile as paper", answer:'The Emigrée', opts:['The Emigrée','Tissue','Checking Out Me History','London'], exp:"Rumens describes her remembered city as harmless and controllable in this simile."},
+{text:"Bandage up me eye with me own history", answer:'Checking Out Me History', opts:['Checking Out Me History','London','The Emigrée','Kamikaze'], exp:"Agard uses this metaphor to describe how a selective education has restricted his understanding of his own identity."},
+{text:"which had been the better way to die", answer:'Kamikaze', opts:['Kamikaze','The Charge of the Light Brigade','Poppies','Remains'], exp:"This closing question in Garland's poem reflects the pilot's ambiguous, socially punished choice to survive."},
+{text:"chartered streets", answer:'London', opts:['London','Ozymandias','Tissue','Storm on the Island'], exp:"Blake's repeated word 'charter'd' suggests every part of London, even the river, is controlled and owned."},
+{text:"nine-hundred-years-old name", answer:'My Last Duchess', opts:['My Last Duchess','Ozymandias','The Charge of the Light Brigade','Checking Out Me History'], exp:"The Duke boasts of his ancient aristocratic lineage while describing what he expected from his Duchess."},
+{text:"released a song bird from its cage", answer:'Poppies', opts:['Poppies','Kamikaze','War Photographer','The Emigrée'], exp:"Weir's mother uses this hopeful, painful image as she lets her son go."}
+];
+/* ================= CONTEXT ================= */
+const CONTEXT = [
+{t:"Romanticism (Ozymandias, The Prelude, London)", body:"The Romantic era (roughly 1789-1830s) valued imagination, individual feeling and nature, and was often deeply sceptical of established power, industrialisation and empire. Shelley, Wordsworth and Blake were all writing within or close to this movement.",
+ use:"Use this to explain Shelley's scepticism toward tyrannical power in Ozymandias, Wordsworth's reverence for nature's overwhelming, sublime power in The Prelude, and Blake's critique of institutional control in London."},
+{t:"Victorian dramatic monologue and empire (My Last Duchess)", body:"Browning wrote during a period of confident British imperial expansion and rigid social hierarchy. The dramatic monologue form, which Browning helped popularise, let him explore the psychology of a powerful, morally compromised speaker (loosely based on a sixteenth-century Italian Duke) without directly endorsing his views.",
+ use:"Use this to explain how the poem critiques abuses of aristocratic and patriarchal power through the Duke's own unreliable self-presentation, rather than through direct authorial comment."},
+{t:"The Crimean War (The Charge of the Light Brigade)", body:"Tennyson's poem responds to a real, disastrous cavalry charge in 1854 during the Crimean War, caused by a miscommunicated order. Newspaper reports of the event reached the British public relatively quickly, generating both admiration for the soldiers' courage and unease about the command failure.",
+ use:"Use this to explain the tension in the poem between celebrating collective courage and briefly acknowledging serious command failure."},
+{t:"The First World War (Exposure)", body:"Owen wrote from direct personal experience as a serving officer in the trenches, and his poetry, alongside other war poets of the period, significantly challenged earlier, more patriotic representations of conflict common in Victorian and Edwardian writing.",
+ use:"Use this to explain how Owen's first-hand experience shapes the poem's unflinching focus on cold, waiting and futility rather than heroism or glory."},
+{t:"The Troubles in Northern Ireland (Storm on the Island)", body:"Heaney grew up in Northern Ireland during a period of significant sectarian and political conflict known as the Troubles, and his poetry often explores tension and violence indirectly, through natural or domestic imagery rather than direct political statement.",
+ use:"Use this to explain how the poem can be read as an allegory for the atmosphere of unpredictable threat experienced during the Troubles, even though it never mentions conflict directly."},
+{t:"The Second World War (Bayonet Charge and Kamikaze)", body:"Hughes's poem draws partly on his father's experience of the First World War, though its imagery evokes the immediate terror of close combat in any conflict. Garland's poem draws on the historical practice of kamikaze pilots during the Second World War, who were culturally expected to sacrifice their lives in suicide attacks for Japan.",
+ use:"Use this to explain the immediate physical terror explored in Bayonet Charge, and the intense cultural pressure toward sacrificial duty explored in Kamikaze."},
+{t:"Modern conflict journalism (Remains and War Photographer)", body:"Armitage's poem is based directly on testimony from a real British soldier who served in Iraq, while Duffy's poem reflects the twentieth-century rise of photojournalism bringing images of distant conflict to a wider public audience.",
+ use:"Use this to explain how both poems explore lasting psychological trauma and the moral difficulty of representing or processing witnessed violence."},
+{t:"Postcolonial migration and displacement (The Emigrée and Checking Out Me History)", body:"Rumens' poem reflects broader themes of exile and displacement relevant to many migrants and refugees separated from an unstable homeland, while Agard, who was born in Guyana and moved to Britain, directly challenges a Eurocentric British education system that marginalised Black historical figures.",
+ use:"Use this to explain how both poets explore identity being threatened, preserved or reclaimed in the face of displacement or institutional erasure."},
+{t:"Contemporary remembrance culture (Poppies)", body:"Weir's poem was commissioned for a 2009 anthology reflecting on Remembrance and the ongoing experience of military families, published while British troops were still serving in Iraq and Afghanistan.",
+ use:"Use this to explain how the poem's contemporary, domestic perspective updates traditional Remembrance Day imagery, particularly the poppy, with a personal, maternal viewpoint."}
+];
+
+/* ================= COMPARISON PAIRS ================= */
+const COMPARISON_PAIRS = [
+{poemA:'Ozymandias', poemB:'My Last Duchess', theme:"Arrogant power and the desire to control legacy or people", similarity:"Both poems explore an arrogant, controlling powerful male figure exposed by their own words or a wider ironic frame.", difference:"Ozymandias is undercut by an external voice, the traveller and the desert, revealing the failure of his legacy across vast time, whereas the Duke is undercut immediately by his own dramatic monologue, which reveals his fatal jealousy over a real, once-living person.", angle:"Compare how each poet uses structure, a frame narrative versus an unreliable monologue, to expose arrogance from a different distance."},
+{poemA:'Exposure', poemB:'Bayonet Charge', theme:"Physical and psychological realities of conflict rather than simple heroism", similarity:"Both poems reject heroic, patriotic ideas of war to focus on the immediate physical and mental toll on soldiers.", difference:"Exposure focuses on prolonged, collective endurance of cold and waiting across many stanzas; Bayonet Charge focuses on a single soldier's sudden, individual physical terror in one intense moment of attack.", angle:"Compare the different timescales, drawn-out waiting versus instantaneous panic, each poet uses to represent conflict's psychological reality."},
+{poemA:'Remains', poemB:'War Photographer', theme:"Lasting effects of violence and the difficulty of processing what has been witnessed", similarity:"Both poems explore intrusive, unresolved memory of violence and the psychological toll of proximity to death.", difference:"Remains presents a soldier's direct, first-person guilt over an act he personally committed; War Photographer presents a more detached third-person view of a professional observer processing others' suffering.", angle:"Compare direct participant guilt with observer or witness guilt as two different relationships to conflict trauma."},
+{poemA:'London', poemB:'Checking Out Me History', theme:"Power operating through institutions, language and control of people's lives", similarity:"Both poems critique institutions, the Church and monarchy in one case, the education system in the other, that restrict or damage people's understanding of, or freedom within, their own lives.", difference:"Blake presents institutional suffering as widespread, ambient and largely accepted across a whole city; Agard presents a personal, defiant, first-person act of resistance against a specific, named injustice.", angle:"Compare how each poet moves from broad social critique (Blake) to a personal, first-person act of reclaiming or resisting institutional power (Agard)."},
+{poemA:'The Prelude', poemB:'Storm on the Island', theme:"Human confidence challenged by the overwhelming power of nature", similarity:"Both poems begin with a confident, prepared human perspective that is dramatically undercut by nature's unpredictable power.", difference:"The Prelude presents an individual, deeply personal psychological experience in the first person; Storm on the Island presents a collective, communal experience using 'we', possibly extending into wider allegory.", angle:"Compare individual versus collective responses to nature's power, and how each poem's structure supports that focus."},
+{poemA:'Poppies', poemB:'Kamikaze', theme:"Conflict viewed through family relationships, loss and social expectations", similarity:"Both poems explore conflict's impact through a family member's perspective rather than direct combat experience.", difference:"Poppies focuses on a mother's private grief and anxiety after her son's departure; Kamikaze focuses on a father's social rejection by his own family and community after choosing to survive.", angle:"Compare grief caused by absence or loss (Poppies) with grief caused by social rejection despite survival (Kamikaze)."},
+{poemA:'The Emigrée', poemB:'Checking Out Me History', theme:"Identity maintained or recovered through memory and language", similarity:"Both poems present a first-person speaker actively using memory or language to preserve or reclaim a sense of identity under pressure.", difference:"The Emigrée preserves identity through private, internal imaginative memory of a homeland; Checking Out Me History reclaims identity through public, defiant performance and re-education about erased history.", angle:"Compare private, internal strategies with public, defiant strategies for preserving identity under threat."},
+{poemA:'The Charge of the Light Brigade', poemB:'Exposure', theme:"Contrasting representations of war — celebratory heroism vs grim reality", similarity:"Both poems are set during real historical conflicts and consider soldiers' experience of following orders under difficult conditions.", difference:"Tennyson's poem largely celebrates collective courage and glory despite briefly acknowledging a command failure; Owen's poem strips away any sense of glory, focusing entirely on suffering, cold and futility.", angle:"Use this pair to explore how attitudes to war shifted between the Victorian era and the First World War."},
+{poemA:'Tissue', poemB:'Ozymandias', theme:"The fragility of human power and structures over time", similarity:"Both poems suggest that structures of human power, whether physical monuments or paper-based institutions, are ultimately fragile and temporary.", difference:"Ozymandias presents this fragility through a single, dramatic image of a ruined statue in the desert; Tissue presents it through a sustained, wide-ranging metaphor covering many different kinds of paper and structure.", angle:"Compare a single symbolic image with an extended, wide-ranging metaphor as two different structural approaches to the same idea."},
+{poemA:'War Photographer', poemB:'Poppies', theme:"Conflict experienced or processed from a distance from the battlefield", similarity:"Both poems consider conflict from a position of physical safety away from direct combat, while still carrying real emotional weight.", difference:"War Photographer presents a professional, somewhat detached distance, the darkroom, the newspaper audience; Poppies presents an intimate, personal distance, a mother's home, her private memory.", angle:"Compare professional or public distance with personal or domestic distance as two different ways poets explore conflict's reach beyond the battlefield."}
+];
+
+/* ================= STRUCTURE WALKTHROUGH (chain data) ================= */
+const STRUCTURE = [
+{poem:'Ozymandias', intro:"Trace how Shelley moves from a secondhand report to a single, isolated image of emptiness.", steps:[
+  {step:"The traveller's report", detail:"The poem opens with the speaker distancing us from the ruin by reporting another man's account rather than describing it directly.", quote:"traveller from an antique land", shift:"Establishes a frame narrative that immediately distances the reader from Ozymandias, hinting that direct access to his power is already lost."},
+  {step:"The shattered statue's face", detail:"The traveller describes the statue's broken face, its frown and 'sneer of cold command' still legible despite centuries of decay.", quote:"sneer of cold command", shift:"Moves from narration to vivid physical description, capturing the ruler's arrogance frozen in stone even as the stone itself crumbles."},
+  {step:"The sculptor's insight", detail:"The poem credits the sculptor with having read and mocked the king's passions well, embedding artistic judgement into the very stone meant to celebrate him.", quote:"The hand that mocked them", shift:"Introduces a quiet irony: the artist's skill outlasts, and subtly undermines, the ruler he was commissioned to flatter."},
+  {step:"The arrogant inscription", detail:"The pedestal's inscription boasts of Ozymandias's absolute power, commanding other rulers to despair at his 'works'.", quote:"king of kings", shift:"Shifts from description to the ruler's own words, creating maximum dramatic irony as his boast is read against the ruin surrounding it."},
+  {step:"The empty desert", detail:"The poem closes on the vast, bare desert stretching away from the ruin, with no trace of the 'works' the inscription describes.", quote:"lone and level sands", shift:"Ends on emptiness rather than the statue itself, letting nature's indifference have the final word over human pride."}
+]},
+{poem:'My Last Duchess', intro:"Trace how Browning moves the Duke from calm display to a final, chilling reassertion of control.", steps:[
+  {step:"Displaying the portrait", detail:"The Duke proudly shows the envoy a painted portrait of his last Duchess, controlling exactly how she is seen and discussed.", quote:"my last Duchess painted on the wall", shift:"Establishes the Duke's need to control image and narrative from the poem's very first lines."},
+  {step:"Recalling her 'fault'", detail:"The Duke recalls, with growing irritation, how easily pleased and grateful the Duchess was toward everyone, not only himself.", quote:"as if she ranked / My gift", shift:"Shifts from calm display to barely-controlled jealousy, revealing his possessive, entitled expectations of her attention."},
+  {step:"The chilling command", detail:"The Duke reveals, almost casually, that he 'gave commands' after which her smiles 'stopped together', implying he had her killed.", quote:"all smiles stopped together", shift:"The poem's most chilling turn: euphemism replaces direct confession, forcing the reader to infer murder from the Duke's own composed tone."},
+  {step:"Moving to business", detail:"The Duke abruptly shifts the conversation to negotiating a dowry for his next marriage, treating the exchange as a transaction.", quote:"just pretence", shift:"Reveals how quickly the Duke moves past the Duchess's fate, exposing his transactional, unfeeling view of women and marriage."},
+  {step:"The Neptune statue", detail:"The poem closes with the Duke pointing out a bronze statue of Neptune taming a sea-horse, a final image he is proud to own.", quote:"Taming a sea-horse", shift:"Ends on a symbol of dominance and control, reinforcing that the Duke's desire to tame and possess extends beyond his late wife."}
+]},
+{poem:'Bayonet Charge', intro:"Trace how Hughes moves a soldier from disorientation to unresolved, mechanised motion.", steps:[
+  {step:"Waking into chaos", detail:"The poem begins mid-action, with a soldier suddenly running, given no explanation or build-up.", quote:"Suddenly he awoke and was running", shift:"The in medias res opening throws the reader directly into disorientating panic, mirroring the soldier's own lack of preparation."},
+  {step:"The body under pressure", detail:"Hughes describes the soldier's physical sensations in vivid, uncomfortable detail as he stumbles forward.", quote:"raw-seamed hot khaki", shift:"Shifts focus from action to the body itself, emphasising overwhelming physical sensation over rational thought."},
+  {step:"Patriotic ideals collapse", detail:"Abstract ideas like king, honour and dignity are suddenly and completely abandoned as useless under fire.", quote:"Dropped like luxuries", shift:"Marks a decisive turn away from any patriotic justification for war toward pure, immediate survival instinct."},
+  {step:"The hare's suffering", detail:"A wounded hare rolling in the field becomes a vivid, disturbing image of suffering that briefly interrupts the soldier's forward motion.", quote:"yellow hare that rolled like a flame", shift:"Introduces an innocent natural casualty, widening the poem's focus from the soldier's fear to war's indiscriminate harm."},
+  {step:"Blind, mechanised motion", detail:"The poem closes questioning whether the soldier is truly in control of his own actions, or simply a mechanised part of a larger, indifferent system.", quote:"cold clockwork of the stars and nations", shift:"Ends on unresolved uncertainty about free will versus mechanised duty, denying the reader any comforting resolution."}
+]}
+];
+
+/* ================= POWER THEN & NOW (eras compare) ================= */
+const COMPARE_19TH = [
+{point:"Confidence in empire and national power", why:"Explains poems like The Charge of the Light Brigade, which frames military sacrifice within a proud, patriotic national narrative rather than directly questioning the war itself."},
+{point:"Power embodied in individual rulers and aristocrats", why:"Explains why Ozymandias and My Last Duchess focus on a single powerful man, using his own words or legacy to expose the dangers of unchecked personal authority."},
+{point:"Romantic reverence for nature's sublime power", why:"Explains why The Prelude presents an encounter with a mountain as a profound, almost spiritual experience that permanently reshapes the speaker's sense of self."},
+{point:"War represented through public, patriotic rhetoric", why:"Explains why The Charge of the Light Brigade largely celebrates collective glory and courage, only briefly acknowledging the human cost of a command failure."},
+{point:"Institutional critique voiced through symbolism and allegory", why:"Explains why Blake's London critiques the Church and monarchy indirectly, through suffering city-dwellers and symbolic imagery, rather than direct first-person testimony."}
+];
+const COMPARE_MODERN = [
+{point:"Individual psychological trauma becomes central to war poetry", why:"Explains why Exposure, Bayonet Charge and Remains focus closely on soldiers' immediate fear, exhaustion and lasting guilt rather than collective heroism."},
+{point:"Conflict experienced indirectly through media and photography", why:"Explains why War Photographer questions how effectively a distant audience can understand suffering they only glimpse briefly in a newspaper."},
+{point:"Postcolonial and migrant identity becomes central to power and conflict", why:"Explains why Checking Out Me History and The Emigrée explore how identity is threatened, distorted or reclaimed through education, memory and language."},
+{point:"Conflict's effect on family and the home front given direct voice", why:"Explains why Poppies and Kamikaze focus on mothers, daughters and communities left to process conflict's consequences, rather than combat itself."},
+{point:"Human power reframed as fragile and constructed rather than triumphant", why:"Explains why Tissue and Storm on the Island present human structures and confidence as vulnerable to forces, paper's fragility, nature's power, far greater than themselves."}
+];
+/* ================= EXAM PRACTICE PROMPTS ================= */
+const EXAM_PROMPTS = [
+{q:"Compare how poets present the abuse of power in Ozymandias and one other poem.", plan:["Introduce Ozymandias's arrogant inscription as a claim to permanent power.","P1: The statue's 'sneer of cold command' and the irony of its ruined state.","P2: Compare to My Last Duchess — the Duke's control over his late wife's image and memory.","P3: Both speakers' own words ultimately expose, rather than secure, their authority.","Context: Romantic scepticism toward tyranny and empire.","Conclusion: both poets suggest displayed power invites its own exposure and collapse."]},
+{q:"Compare how poets present the effects of conflict on individuals in Exposure and one other poem.", plan:["Introduce Exposure's focus on cold, waiting and futility rather than combat glory.","P1: The refrain 'But nothing happens' and its numbing effect.","P2: Compare to Bayonet Charge — a single soldier's sudden, physical terror.","P3: Both poems reject patriotic or heroic justifications for war.","Context: Owen's first-hand WWI experience vs Hughes's imagined close combat.","Conclusion: both poets prioritise the individual body and mind over collective heroism."]},
+{q:"Compare how poets present ideas about nature's power in The Prelude and one other poem.", plan:["Introduce the boy's initial confidence before the mountain 'strides' after him.","P1: The personified, overwhelming peak and its lasting psychological effect.","P2: Compare to Storm on the Island — a community's confidence undercut by an invisible threat.","P3: Individual (Wordsworth) vs collective (Heaney) responses to nature's power.","Context: the Romantic 'sublime' vs possible allegory for the Troubles.","Conclusion: both poets use nature to expose the limits of human control."]},
+{q:"Compare how poets explore memory and its effects in Poppies and one other poem.", plan:["Introduce the mother's fragmented, anxious memory of her son's departure.","P1: Domestic, textile imagery used to process grief.","P2: Compare to The Emigrée — memory used to preserve, rather than mourn, a lost place.","P3: Both poems show memory reshaping present identity, painfully or protectively.","Context: contemporary remembrance culture vs themes of exile and displacement.","Conclusion: both poets present memory as active and involuntary, not simply nostalgic."]},
+{q:"Compare how poets present the importance of identity in Checking Out Me History and one other poem.", plan:["Introduce Agard's critique of a selective, Eurocentric education.","P1: The 'bandage'/blindness metaphor and the refrain 'Dem tell me'.","P2: Compare to The Emigrée — identity preserved through private memory of a homeland.","P3: Public, defiant reclamation vs private, imaginative preservation.","Context: postcolonial migration and marginalised history.","Conclusion: both poets present identity as something actively maintained, not passively received."]},
+{q:"Compare how poets present the consequences of pride in My Last Duchess and one other poem.", plan:["Introduce the Duke's possessive pride in status and control.","P1: 'Nine-hundred-years-old name' and his jealous response to her warmth.","P2: Compare to Ozymandias — a king's pride in his own permanence, undercut by ruin.","P3: Both poems use structure (monologue, frame narrative) to expose pride from a distance.","Context: Victorian dramatic monologue vs Romantic scepticism toward tyranny.","Conclusion: both poets suggest excessive pride contains the seeds of its own exposure."]}
+];
+/* ================= RENDER: NAVIGATION ================= */
+let currentSection = Store.get('lastSection','overview');
+
+function renderNav(){
+  const html = SECTIONS.map((s,i)=>`<button class="navlink" data-target="${s.id}" role="tab"><span class="num">${String(i+1).padStart(2,'0')}</span>${s.label}</button>`).join('');
+  document.getElementById('navList').innerHTML = html;
+  document.getElementById('navListMobile').innerHTML = html;
+  document.querySelectorAll('.navlink').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ showSection(btn.getAttribute('data-target')); closeDrawer(); });
+  });
+}
+
+function showSection(id){
+  currentSection = id;
+  Store.set('lastSection', id);
+  document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active', s.id === 'section-'+id));
+  document.querySelectorAll('.navlink').forEach(b=>b.classList.toggle('active', b.getAttribute('data-target')===id));
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+}
+
+function closeDrawer(){
+  document.getElementById('mobileDrawer').classList.remove('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded','false');
+}
+document.getElementById('hamburgerBtn').addEventListener('click', ()=>{
+  const d = document.getElementById('mobileDrawer');
+  const open = d.classList.toggle('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded', open?'true':'false');
+});
+document.getElementById('mobileDrawer').addEventListener('click', (e)=>{
+  if(e.target.id === 'mobileDrawer') closeDrawer();
+});
+
+const root = document.getElementById('sectionsRoot');
+function el(html){ const d=document.createElement('div'); d.innerHTML=html; return d.firstElementChild; }
+
+/* ---- 1. OVERVIEW ---- */
+function buildOverview(){
+  const s = el(`<section class="section" id="section-overview">
+    <div class="section-header"><div class="eyebrow">Section 01</div><h1>Overview</h1><div class="desc">Get your bearings before you dive into detail.</div></div>
+
+    <div class="grid two">
+      <div class="card"><h3>Key facts</h3>
+        <p><b>Anthology:</b> AQA Power and Conflict (15 poems)<br>
+        <b>Poets:</b> 15 different poets, spanning the 1810s to the 2000s<br>
+        <b>Exam task:</b> Usually one named poem is printed, and you compare it to one other poem of your choice<br>
+        <b>Genre:</b> Poetry — a mix of sonnets, dramatic monologue, blank verse, free verse and performance poetry</p>
+      </div>
+      <div class="card"><h3>Why this anthology matters for GCSE</h3>
+        <p>Because there is no single plot or cast of characters, exams reward students who can compare methods and viewpoints across poems, not just describe individual content. Strong answers link a poet's specific choices (structure, imagery, sound) to their likely purpose and to a genuinely comparable second poem.</p>
+      </div>
+    </div>
+
+    <div class="card"><h3>Basic premise</h3>
+      <p>The anthology gathers fifteen poems written across roughly two centuries, all exploring power and conflict from very different angles: tyrannical rulers, controlling relationships, military combat, natural power, family loss, and the power of memory and identity. Some poems present power triumphantly; most, in different ways, expose its cost or its fragility.</p>
+    </div>
+
+    <div class="card"><h3>Major themes at a glance</h3>
+      <p><span class="tag blood">Power</span><span class="tag blood">Conflict</span><span class="tag blood">Nature</span><span class="tag gold">Memory</span><span class="tag gold">Identity</span><span class="tag gold">Loss</span><span class="tag">Family</span><span class="tag">Individual vs society</span><span class="tag">Possessiveness</span><span class="tag fog">Guilt</span><span class="tag fog">Pride</span><span class="tag fog">Resistance</span><span class="tag fog">Distance</span><span class="tag fog">Duty and sacrifice</span></p>
+    </div>
+
+    <div class="card"><h3>Why these ideas matter</h3>
+      <p><b>Power</b> runs through almost every poem, whether political, military, personal or institutional, and is repeatedly shown to be more fragile than it first appears.<br><br>
+      <b>Conflict</b> is explored across very different scales, from a single doomed cavalry charge to one soldier's private guilt to a mother's quiet grief.<br><br>
+      <b>Nature, memory and identity</b> often work together — several poets use nature's power, or the pull of memory, to explore how identity is threatened, tested or preserved.<br><br>
+      <b>Family, distance and guilt</b> show conflict's reach beyond the battlefield, into homes, darkrooms and the mind long after events occur.</p>
+    </div>
+
+    <div class="card"><h3>Written across three centuries — why this matters</h3>
+      <p>The anthology deliberately spans a very wide historical range, from Romantic-era poems written around 1815-1819 (Ozymandias, London, The Prelude) through Victorian dramatic monologue and Empire (My Last Duchess, The Charge of the Light Brigade), the First and Second World Wars (Exposure, Bayonet Charge, Kamikaze), to contemporary poems written from the 1990s onward (Poppies, War Photographer, Remains). Comparing across this range lets you trace how ideas about power, heroism and conflict have shifted, from confident public rhetoric toward closer, more psychological and more personal perspectives.</p>
+    </div>
+
+    <div class="card"><h3>What GCSE students need to understand</h3>
+      <ul>
+        <li>That exam questions almost always ask you to compare the named poem with one other poem of your own choosing.</li>
+        <li>How to select a genuinely useful comparison poem — one with a clear similarity and a clear difference, not just a shared single word.</li>
+        <li>That poets' methods (structure, form, imagery, sound) should always be linked to their likely viewpoint or purpose, not analysed in isolation.</li>
+        <li>That exam boards want analysis of poets' methods and possible purposes, not simply a description of what each poem is about.</li>
+      </ul>
+    </div>
+
+    <div class="sixty">
+      <h3>Power and Conflict in 60 Seconds</h3>
+      <p>Fifteen poems, spanning roughly two centuries, explore power and conflict from many different angles. Ozymandias, My Last Duchess and London expose how political, personal and institutional power can be abused, and how it often collapses under its own arrogance. The Prelude and Storm on the Island show human confidence humbled by nature's overwhelming force. The Charge of the Light Brigade, Exposure, Bayonet Charge and Remains trace a shift from celebrating collective heroism toward exposing conflict's immediate terror and lasting psychological damage. Poppies, War Photographer and Kamikaze widen the focus to families and witnesses processing conflict from a distance, while Tissue, The Emigrée and Checking Out Me History use paper, memory and language to explore how fragile human structures, and human identity, really are.</p>
+    </div>
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 2. POEM GUIDE ---- */
+function buildPoemGuide(){
+  let cards = POEMS.map(p=>`
+    <div class="disclosure" data-d>
+      <button class="d-head"><span>${p.name}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <p class="subtle" style="margin-top:10px;">${p.role}</p>
+        <div class="mini-label">Voice / speaker</div><p>${p.who}</p>
+        <div class="mini-label">Core idea</div><p>${p.journey}</p>
+        <div class="mini-label">Who / what is involved</div><p>${p.relationships}</p>
+        <div class="mini-label">Themes</div><p>${p.themes.map(t=>`<span class="tag blood">${t}</span>`).join('')}</p>
+        ${p.quotes.length ? `<div class="mini-label">Essential quotes</div>${p.quotes.map(q=>`<div class="quote-line">"${q}"</div>`).join('')}` : ''}
+        <div class="mini-label">Technique highlights</div><p>${p.techniques.map(t=>`<span class="tag gold">${t}</span>`).join('')}</p>
+        <div class="mini-label">What the poet may be doing</div><p>${p.message}</p>
+        <div class="mini-label">Pairs well with, for comparison</div><ul>${p.pairsWith.map(x=>`<li><b>${x.poem}</b> — ${x.why}</li>`).join('')}</ul>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-poemguide">
+    <div class="section-header"><div class="eyebrow">Section 02</div><h1>Poem Guide</h1><div class="desc">All 15 poems. Tap any poem to see its full profile: form, voice, quotes, technique and comparison partners.</div></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 3. THEMES ---- */
+function buildThemes(){
+  let cards = THEMES.map(t=>`
+    <div class="disclosure" data-d>
+      <button class="d-head"><span>${t.name}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <div class="mini-label">Simple explanation</div><p>${t.explanation}</p>
+        <div class="mini-label">Where it appears</div><p>${t.where}</p>
+        <div class="mini-label">Relevant poems</div><p>${t.characters.map(c=>`<span class="tag">${c}</span>`).join('')}</p>
+        ${t.quotes.length ? `<div class="mini-label">Essential quotations</div>${t.quotes.map(q=>`<div class="quote-line">"${q}"</div>`).join('')}` : ''}
+        <div class="mini-label">Poets' possible message</div><p>${t.message}</p>
+        <div class="mini-label">Useful contextual link</div><p>${t.context}</p>
+        <div class="mini-label">Potential thesis statements</div><ul>${t.thesis.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-themes">
+    <div class="section-header"><div class="eyebrow">Section 03</div><h1>Themes</h1><div class="desc">Fourteen cross-poem themes, each with quotations, context and ready-to-adapt thesis statements.</div></div>
+    <div class="card"><h3>A note on comparing themes across poems</h3><p>Because this is an anthology rather than a single text, the strongest theme-based answers do not simply describe a theme in isolation — they compare how two different poets present it, using specific methods (structure, imagery, sound) linked to each poet's likely viewpoint. Use the 'relevant poems' tags below as a starting point for finding a genuinely comparable second poem, not just any poem that briefly touches the same idea.</p></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 4. QUOTE VAULT ---- */
+function buildQuoteVault(){
+  const allPoems = POEMS.map(p=>p.name);
+  const allThemes = Array.from(new Set(QUOTES.flatMap(q=>q.themes))).sort();
+
+  const s = el(`<section class="section" id="section-quotes">
+    <div class="section-header"><div class="eyebrow">Section 04</div><h1>Quote Vault</h1><div class="desc">Search and filter the anthology's most important quotations. Kept short and used only for educational analysis.</div></div>
+    <div class="qv-controls">
+      <input type="text" id="qvSearch" placeholder="Search quotations..." aria-label="Search quotations">
+      <select id="qvCharFilter" aria-label="Filter by poem"><option value="">All poems</option>${allPoems.map(c=>`<option value="${c}">${c}</option>`).join('')}</select>
+      <select id="qvThemeFilter" aria-label="Filter by theme"><option value="">All themes</option>${allThemes.map(t=>`<option value="${t}">${t}</option>`).join('')}</select>
+    </div>
+    <div class="qv-count" id="qvCount"></div>
+    <div id="qvResults"></div>
+  </section>`);
+  root.appendChild(s);
+
+  function renderQuotes(){
+    const search = document.getElementById('qvSearch').value.toLowerCase().trim();
+    const charF = document.getElementById('qvCharFilter').value;
+    const themeF = document.getElementById('qvThemeFilter').value;
+    const filtered = QUOTES.filter(q=>{
+      const matchesSearch = !search || q.text.toLowerCase().includes(search) || q.speaker.toLowerCase().includes(search);
+      const matchesChar = !charF || q.characters.includes(charF);
+      const matchesTheme = !themeF || q.themes.includes(themeF);
+      return matchesSearch && matchesChar && matchesTheme;
+    });
+    document.getElementById('qvCount').textContent = filtered.length + (filtered.length===1 ? ' quotation found':' quotations found');
+    const container = document.getElementById('qvResults');
+    container.innerHTML = filtered.map((q,i)=>`
+      <div class="qcard" data-idx="${i}">
+        <div class="qtext">"${q.text}"</div>
+        <div class="qmeta">${q.speaker} · ${q.act} · ${q.themes.join(', ')}</div>
+        <button class="qreveal-btn" type="button">Reveal analysis</button>
+        <div class="qdetail">
+          <div class="row"><b>Meaning</b>${q.meaning}</div>
+          <div class="row"><b>Technique</b>${q.technique}</div>
+          <div class="level-toggle">
+            <button type="button" class="lvl-btn active" data-lvl="solid">Solid (Grade 5–6)</button>
+            <button type="button" class="lvl-btn" data-lvl="deep">Deeper (Grade 7–9)</button>
+          </div>
+          <div class="level-block active" data-lvl="solid">${q.solid}</div>
+          <div class="level-block" data-lvl="deep">${q.deep}</div>
+          <div class="row" style="margin-top:10px;"><b>Context</b>${q.context}</div>
+          <div class="row"><b>Use this for</b>${q.useFor}</div>
+        </div>
+      </div>`).join('') || '<p class="subtle">No quotations match your search. Try different filters.</p>';
+
+    container.querySelectorAll('.qreveal-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.qcard');
+        const open = card.classList.toggle('open');
+        btn.textContent = open ? 'Hide analysis' : 'Reveal analysis';
+      });
+    });
+    container.querySelectorAll('.lvl-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.qcard');
+        const lvl = btn.getAttribute('data-lvl');
+        card.querySelectorAll('.lvl-btn').forEach(b=>b.classList.toggle('active', b===btn));
+        card.querySelectorAll('.level-block').forEach(b=>b.classList.toggle('active', b.getAttribute('data-lvl')===lvl));
+      });
+    });
+  }
+  document.getElementById('qvSearch').addEventListener('input', renderQuotes);
+  document.getElementById('qvCharFilter').addEventListener('change', renderQuotes);
+  document.getElementById('qvThemeFilter').addEventListener('change', renderQuotes);
+  renderQuotes();
+}
+
+/* ---- 5. TECHNIQUES ---- */
+function buildTechniques(){
+  const cards = TECHNIQUES.map(t=>`<div class="disclosure" data-d>
+    <button class="d-head"><span>${t.name}</span><span class="chev">›</span></button>
+    <div class="d-body"><div class="inner">
+      <div class="mini-label">Definition</div><p>${t.def}</p>
+      <div class="mini-label">Power and Conflict example</div><p>${t.example}</p>
+      <div class="mini-label">Effect</div><p>${t.effect}</p>
+      <div class="mini-label">How to analyse it</div><p>${t.howto}</p>
+    </div></div>
+  </div>`).join('');
+
+  const s = el(`<section class="section" id="section-techniques">
+    <div class="section-header"><div class="eyebrow">Section 05</div><h1>Techniques</h1><div class="desc">The key methods poets use across the anthology, with clear examples drawn from named poems and analysis guidance.</div></div>
+
+    <div class="card"><h3>Voice, structure, imagery, sound, contrast</h3>
+      <p>Almost every technique worth revising for this anthology falls into one of five groups: <b>voice and perspective</b> (who is speaking, how reliable or limited they are); <b>structure</b> (shifts, repetition, stanza pattern, cyclical endings, caesura, enjambment); <b>imagery</b> (natural, military, religious, bodily, domestic, political); <b>sound</b> (rhythm, rhyme, alliteration, harsh or soft sounds); and <b>contrast</b> (before/after, power/fragility, public/private, patriotic/realistic). Strong essays always link the specific technique to what it reveals about the poet's viewpoint, not just that the technique is present.</p>
+    </div>
+
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 6. CONTEXT ---- */
+function buildContext(){
+  const cards = CONTEXT.map(i=>`<div class="disclosure" data-d>
+    <button class="d-head"><span>${i.t}</span><span class="chev">›</span></button>
+    <div class="d-body"><div class="inner">
+      <p style="margin-top:10px;">${i.body}</p>
+      <div class="mini-label">How can I actually use this in an essay?</div><p>${i.use}</p>
+    </div></div>
+  </div>`).join('');
+
+  const s = el(`<section class="section" id="section-context">
+    <div class="section-header"><div class="eyebrow">Section 06</div><h1>Context</h1><div class="desc">Only the context you can actually use — organised by poem or cluster, always paired with a real essay application.</div></div>
+    <div class="card"><p><b>Important:</b> Never bolt on a historical fact just to prove you know it. Only use context when it genuinely deepens your interpretation of a poet's specific choices in that moment.</p></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 7. COMPARISON PAIRS ---- */
+function buildComparisonPairs(){
+  const cards = COMPARISON_PAIRS.map(c=>`
+    <div class="compare-grid" style="margin-bottom:18px;">
+      <div class="compare-col">
+        <h3>${c.poemA}</h3>
+        <p><b>Shared theme:</b> ${c.theme}</p>
+        <p><b>Similarity:</b> ${c.similarity}</p>
+      </div>
+      <div class="compare-col">
+        <h3>${c.poemB}</h3>
+        <p><b>Difference:</b> ${c.difference}</p>
+        <p class="compare-why"><b>Essay angle:</b> ${c.angle}</p>
+      </div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-comparisonpairs">
+    <div class="section-header"><div class="eyebrow">Section 07</div><h1>Comparison Pairs</h1><div class="desc">Ten reliable comparison routes — the seven fastest pairings plus three more strong options, each with a shared theme, similarity, difference and essay angle.</div></div>
+    <div class="card"><p>A strong comparison is never just 'both poems show power'. Choose a second poem because it gives you something genuinely useful to compare — a clear similarity <i>and</i> a clear difference in viewpoint or method.</p></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 8. STRUCTURE WALKTHROUGH (chain UI) ---- */
+function buildStructureWalkthrough(){
+  let groupsHtml = '';
+  STRUCTURE.forEach(g=>{
+    let stepsHtml = '';
+    g.steps.forEach((st,i)=>{
+      stepsHtml += `<div class="chain-step" data-d>
+        <button class="chain-btn"><span>${i+1}. ${st.step}</span><span class="chev">›</span></button>
+        <div class="chain-body"><div class="chain-inner">
+          <div class="mini-label">What happens here</div><p>${st.detail}</p>
+          <div class="mini-label">Key quotation</div><div class="quote-line">"${st.quote}"</div>
+          <div class="mini-label">What shifts</div><p>${st.shift}</p>
+        </div></div>
+      </div>`;
+      if(i < g.steps.length-1) stepsHtml += `<div class="chain-arrow">↓</div>`;
+    });
+    groupsHtml += `<div class="card"><h3>${g.poem}</h3><p class="subtle">${g.intro}</p></div><div class="chain" style="margin-bottom:26px;">${stepsHtml}</div>`;
+  });
+
+  const s = el(`<section class="section" id="section-structurewalkthrough">
+    <div class="section-header"><div class="eyebrow">Section 08</div><h1>How a Poem Moves</h1><div class="desc">Three poems, traced stanza-by-stanza or moment-by-moment. Tap each step to see the quotation and what shifts.</div></div>
+    ${groupsHtml}
+  </section>`);
+  root.appendChild(s);
+
+  s.querySelectorAll('.chain-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ btn.closest('.chain-step').classList.toggle('open'); });
+  });
+}
+
+/* ---- 9. EXAM ---- */
+function buildExam(){
+  const s = el(`<section class="section" id="section-exam">
+    <div class="section-header"><div class="eyebrow">Section 09</div><h1>Exam Survival</h1><div class="desc">How to actually approach a Power and Conflict comparison question, step by step.</div></div>
+
+    <div class="card" style="text-align:center;">
+      <img src="../images/exam-essentials/power-and-conflict-poetry-exam-essentials.png" alt="The Teacher Vault: Power and Conflict Poetry Exam Essentials one-page revision poster" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--line);display:block;margin:0 auto;" loading="lazy">
+      <p class="subtle" style="margin-top:10px;">The Teacher Vault's one-page <b>Exam Essentials</b> poster for Power and Conflict Poetry — key ideas, poetic methods, context and exam tips for all fifteen poems at a glance. Save it, print it, or pin it above your desk.</p>
+    </div>
+
+    <div class="card"><p>Most exam boards print one named poem and ask you to compare it with one other poem of your own choosing from the anthology. Always check your own exam board's exact format with your teacher, but the planning approach below applies broadly.</p></div>
+
+    <div class="card"><h3>The 30-second planning formula</h3>
+      <ol style="padding-left:20px;">
+        <li>Identify the precise idea in the question — not just the general topic.</li>
+        <li>Choose one strong moment from the named poem.</li>
+        <li>Pick a comparison poem with a clear similarity <b>and</b> difference.</li>
+        <li>Plan 2-3 paired comparison points before you start writing.</li>
+        <li>Link methods to viewpoint, not just technique-spotting.</li>
+      </ol>
+    </div>
+
+    <div class="disclosure open" data-d><button class="d-head"><span>1. Understanding the question</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Underline the key words in the question — usually a theme or idea, plus a command word (e.g. 'compare how poets present'). Every paragraph should keep answering that exact question about both poems.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>2. Choosing your comparison poem</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Choose the second poem because it gives you something useful to compare, not simply because it shares one word with the question. A poem with a clear similarity and a clear difference in viewpoint or method will always produce a stronger answer.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>3. Selecting evidence</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Choose short, precise quotations you can analyse word-by-word from both poems. Never invent or misremember a quotation — an accurate short quote is always stronger than an inaccurate longer one.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>4. Creating a thesis</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>State a clear, arguable position about both poems rather than just restating the question. For example: "Both poets present power as fragile, but Shelley locates that fragility in time, while Browning locates it in the speaker's own self-incriminating words."</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>5. Paragraph structure</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>A reliable structure: Point → Evidence from poem A → Method + effect → Evidence from poem B → Method + effect → Comparison (similarity or difference) → Link back to each poet's likely purpose.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>6. Comparing methods, not just content</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Always ask: what specific structural or language choice creates this effect, and does the comparison poem use a similar or different method to achieve something comparable?</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>7. Incorporating context</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Context should illuminate a poet's specific choices, not replace analysis of them. One well-placed contextual point per poem is worth more than a paragraph of unconnected history.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>8. Writing conclusions</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Don't simply repeat your introduction. Briefly synthesise your strongest comparison points and comment on what the similarity or difference reveals about each poet's overall purpose.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>9. Managing time</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Spend a few minutes planning before you write, using the 30-second formula above. Leave a couple of minutes at the end to check for missing words and unclear sentences.</p></div></div></div>
+
+    <h2 style="margin-top:28px;">Weak vs Strong Analysis</h2>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"Both poems show power because they both have powerful characters in them."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"Shelley exposes Ozymandias's power through an ironic frame narrative that lets time itself undercut his boast, whereas Browning exposes the Duke's power through his own unwittingly self-incriminating monologue — both poets suggest displayed power invites its own exposure."</p></div>
+    </div>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"Exposure uses repetition to show the soldiers are cold and bored."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"Owen's repeated refrain 'But nothing happens' structurally enacts the very futility it describes, denying the poem any satisfying narrative resolution and reframing suffering as prolonged endurance rather than dramatic combat."</p></div>
+    </div>
+
+    <h2 style="margin-top:28px;">Practice questions</h2>
+    <div id="practiceQs"></div>
+  </section>`);
+  root.appendChild(s);
+
+  const container = document.getElementById('practiceQs');
+  container.innerHTML = EXAM_PROMPTS.map((p,i)=>`<div class="card">
+    <h3>${p.q}</h3>
+    <button class="btn secondary" type="button" data-plan="${i}">Reveal planning points</button>
+    <div class="plan-reveal" data-plan-body="${i}" style="display:none;margin-top:12px;">
+      <ol>${p.plan.map(x=>`<li>${x}</li>`).join('')}</ol>
+    </div>
+  </div>`).join('');
+  container.querySelectorAll('[data-plan]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const idx = btn.getAttribute('data-plan');
+      const body = container.querySelector(`[data-plan-body="${idx}"]`);
+      const showing = body.style.display !== 'none';
+      body.style.display = showing ? 'none' : 'block';
+      btn.textContent = showing ? 'Reveal planning points' : 'Hide planning points';
+    });
+  });
+}
+/* ---- 10. QUIZ ---- */
+let quizState = { order: [], idx:0, score:0, answered:false, wrongTopics:{} };
+function shuffle(arr){ const a = arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+const TYPE_LABEL = {poem:'Poem ID', quote:'Quotation', theme:'Theme', tech:'Technique', context:'Context', tf:'True / False', compare:'Comparison logic'};
+
+function buildQuiz(){
+  const s = el(`<section class="section" id="section-quiz">
+    <div class="section-header"><div class="eyebrow">Section 10</div><h1>Quiz</h1><div class="desc">Self-marking revision quiz covering poem identification, quotations, themes, techniques, context and comparison logic.</div></div>
+    <div class="card">
+      <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
+      <div id="quizArea"></div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  startQuiz();
+}
+
+function startQuiz(){
+  quizState = { order: shuffle(QUIZ_BANK.map((_,i)=>i)), idx:0, score:0, answered:false, wrongTopics:{} };
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion(){
+  const area = document.getElementById('quizArea');
+  const total = quizState.order.length;
+  if(quizState.idx >= total){
+    const pct = Math.round((quizState.score/total)*100);
+    document.getElementById('quizProgressBar').style.width = '100%';
+    const weakList = Object.keys(quizState.wrongTopics).sort((a,b)=>quizState.wrongTopics[b]-quizState.wrongTopics[a]);
+    area.innerHTML = `<div class="quiz-result">
+      <div class="score">${quizState.score}/${total}</div>
+      <p class="subtle">${pct}% correct</p>
+      ${weakList.length ? `<div class="weak-areas"><p class="subtle"><b>Areas to revise:</b></p><p>${weakList.map(t=>`<span class="tag blood">${TYPE_LABEL[t]||t}</span>`).join('')}</p></div>` : `<p class="subtle">Strong across every question type — well done!</p>`}
+      <button class="btn blood" id="tryAgainBtn" type="button">Try Again</button>
+      <button class="btn secondary" id="newQuizBtn" type="button" style="margin-left:8px;">New Quiz</button>
+    </div>`;
+    document.getElementById('tryAgainBtn').addEventListener('click', ()=>{ quizState.idx=0; quizState.score=0; quizState.wrongTopics={}; quizState.answered=false; renderQuizQuestion(); });
+    document.getElementById('newQuizBtn').addEventListener('click', startQuiz);
+    return;
+  }
+  document.getElementById('quizProgressBar').style.width = ((quizState.idx/total)*100)+'%';
+  const item = QUIZ_BANK[quizState.order[quizState.idx]];
+  const optOrder = shuffle(item.opts.map((o,i)=>i));
+  quizState.answered = false;
+  area.innerHTML = `
+    <p class="subtle">Question ${quizState.idx+1} of ${total} · <span class="tag gold">${TYPE_LABEL[item.type]||''}</span></p>
+    <div class="quiz-q">${item.q}</div>
+    <div class="quiz-opts">${optOrder.map(oi=>`<button class="quiz-opt" data-oi="${oi}" type="button">${item.opts[oi]}</button>`).join('')}</div>
+    <div class="quiz-explain" id="quizExplain"></div>
+    <div style="margin-top:14px;"><button class="btn" id="quizNextBtn" type="button" style="display:none;">Next question</button></div>
+  `;
+  area.querySelectorAll('.quiz-opt').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(quizState.answered) return;
+      quizState.answered = true;
+      const chosen = parseInt(btn.getAttribute('data-oi'));
+      area.querySelectorAll('.quiz-opt').forEach(b=>{
+        b.setAttribute('disabled','true');
+        const oi = parseInt(b.getAttribute('data-oi'));
+        if(oi === item.a) b.classList.add('correct');
+        else if(oi === chosen) b.classList.add('incorrect');
+      });
+      if(chosen === item.a) quizState.score++;
+      else quizState.wrongTopics[item.type] = (quizState.wrongTopics[item.type]||0)+1;
+      const exp = document.getElementById('quizExplain');
+      exp.textContent = item.exp;
+      exp.classList.add('show');
+      document.getElementById('quizNextBtn').style.display = 'inline-block';
+    });
+  });
+  document.getElementById('quizNextBtn').addEventListener('click', ()=>{ quizState.idx++; renderQuizQuestion(); });
+}
+
+/* ---- 11. MATCH THE QUOTE GAME ---- */
+let mqState = { order: [], idx:0, score:0, answered:false };
+
+function buildMatchGame(){
+  const s = el(`<section class="section" id="section-matchgame">
+    <div class="section-header"><div class="eyebrow">Section 11</div><h1>Match the Quote</h1><div class="desc">A quick, game-like activity. For each quotation, select the poem it comes from.</div></div>
+    <div class="jh-game">
+      <div class="jh-score" id="mqScore"></div>
+      <div class="jh-quote" id="mqQuoteText"></div>
+      <div class="jh-opts" id="mqOpts"></div>
+      <div class="jh-feedback" id="mqFeedback"></div>
+      <button class="btn" id="mqNextBtn" type="button" style="display:none;margin-top:14px;">Next quotation</button>
+      <button class="btn secondary" id="mqRestartBtn" type="button" style="display:none;margin-top:14px;">Play again</button>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  startMQ();
+}
+
+function startMQ(){
+  mqState = { order: shuffle(MATCHGAME.map((_,i)=>i)), idx:0, score:0, answered:false };
+  renderMQ();
+}
+
+function renderMQ(){
+  const total = mqState.order.length;
+  const scoreEl = document.getElementById('mqScore');
+  const feedback = document.getElementById('mqFeedback');
+  const nextBtn = document.getElementById('mqNextBtn');
+  const restartBtn = document.getElementById('mqRestartBtn');
+  feedback.classList.remove('show');
+  feedback.textContent = '';
+  nextBtn.style.display = 'none';
+
+  if(mqState.idx >= total){
+    scoreEl.textContent = `Final score: ${mqState.score}/${total}`;
+    document.getElementById('mqQuoteText').textContent = "Round complete!";
+    document.getElementById('mqOpts').innerHTML = '';
+    restartBtn.style.display = 'inline-block';
+    restartBtn.onclick = startMQ;
+    return;
+  }
+  restartBtn.style.display = 'none';
+  scoreEl.textContent = `Quotation ${mqState.idx+1} of ${total} · Score: ${mqState.score}`;
+  const item = MATCHGAME[mqState.order[mqState.idx]];
+  document.getElementById('mqQuoteText').textContent = `"${item.text}"`;
+  const optsEl = document.getElementById('mqOpts');
+  optsEl.innerHTML = item.opts.map(o=>`<button type="button" data-opt="${o}">${o}</button>`).join('');
+  mqState.answered = false;
+  optsEl.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(mqState.answered) return;
+      mqState.answered = true;
+      const chosen = btn.getAttribute('data-opt');
+      optsEl.querySelectorAll('button').forEach(b=>{
+        b.disabled = true;
+        if(b.getAttribute('data-opt') === item.answer) b.classList.add('correct');
+        else if(b === btn) b.classList.add('incorrect');
+      });
+      if(chosen === item.answer) mqState.score++;
+      feedback.textContent = `${item.answer}. ${item.exp}`;
+      feedback.classList.add('show');
+      nextBtn.style.display = 'inline-block';
+    });
+  });
+}
+document.addEventListener('click', function(e){
+  if(e.target && e.target.id === 'mqNextBtn'){ mqState.idx++; renderMQ(); }
+});
+
+/* ---- 12. POWER THEN & NOW ---- */
+function buildErasCompare(){
+  const s = el(`<section class="section" id="section-erascompare">
+    <div class="section-header"><div class="eyebrow">Section 12</div><h1>Power Then &amp; Now</h1><div class="desc">Understanding the roughly two-century range this anthology covers is essential to comparing poems written in very different periods.</div></div>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <h3>19th-Century Power &amp; Conflict</h3>
+        <p class="subtle" style="margin-top:-6px;">Ozymandias · London · The Prelude · My Last Duchess · The Charge of the Light Brigade</p>
+        <ul>${COMPARE_19TH.map(c=>`<li><b>${c.point}</b><div class="compare-why">Why this matters: ${c.why}</div></li>`).join('')}</ul>
+      </div>
+      <div class="compare-col">
+        <h3>20th/21st-Century Power &amp; Conflict</h3>
+        <p class="subtle" style="margin-top:-6px;">Exposure · Storm on the Island · Bayonet Charge · Remains · Poppies · War Photographer · Tissue · The Emigrée · Checking Out Me History · Kamikaze</p>
+        <ul>${COMPARE_MODERN.map(c=>`<li><b>${c.point}</b><div class="compare-why">Why this matters: ${c.why}</div></li>`).join('')}</ul>
+      </div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 13. LAST MINUTE ---- */
+function buildLastMinute(){
+  const oneLiners = [
+   ["Ozymandias","A ruined statue's arrogant boast is undercut by the empty desert around it."],
+   ["London","A speaker walks London's controlled streets, hearing suffering caused by institutional power."],
+   ["The Prelude","A boy's confident boat theft turns to fear as a mountain seems to rise up and pursue him."],
+   ["My Last Duchess","A Duke's own words reveal he had his last Duchess killed for smiling too readily."],
+   ["The Charge of the Light Brigade","Cavalry soldiers ride to near-certain death after a miscommunicated order."],
+   ["Exposure","Soldiers endure freezing cold and endless waiting more than direct combat."],
+   ["Storm on the Island","An island community prepares for a storm, fearing its invisible, unpredictable power."],
+   ["Bayonet Charge","A soldier's patriotic ideals collapse instantly under the terror of a real charge."],
+   ["Remains","A soldier is haunted by guilt long after shooting a possibly unarmed man."],
+   ["Poppies","A mother privately relives pinning a poppy to her son's blazer before he leaves."],
+   ["War Photographer","A photographer processes war's suffering alone, doubting a distant audience's empathy."],
+   ["Tissue","Paper, in many forms, symbolises how fragile human power and structures really are."],
+   ["The Emigrée","An exile keeps her sunlit childhood city alive in memory despite its uncertain present."],
+   ["Checking Out Me History","A speaker reclaims Black historical figures excluded from his own education."],
+   ["Kamikaze","A pilot who turns back from his mission is shunned by his own family for surviving."]
+  ];
+  const sixThemes = [
+   ["Power","Political, personal and institutional power is repeatedly shown to be more fragile than it appears."],
+   ["Conflict","Explored from collective heroism through to individual psychological trauma."],
+   ["Nature","An overwhelming force that humbles human confidence, sometimes symbolically."],
+   ["Memory","Resurfaces involuntarily, whether as trauma or as a source of resilience."],
+   ["Identity","Actively reclaimed or preserved through memory, language and resistance."],
+   ["Family and loss","Conflict's emotional cost is traced through those left behind, not only combatants."]
+  ];
+  const topQuotes = [
+   ["Look on my works, ye Mighty, and despair!","Ozymandias","Use for power/pride — the anthology's clearest dramatic irony."],
+   ["mind-forged manacles","London","Use for institutional power/control."],
+   ["I gave commands; / Then all smiles stopped together","My Last Duchess","Use for control/possessiveness."],
+   ["Theirs but to do and die","The Charge of the Light Brigade","Use for duty and sacrifice."],
+   ["But nothing happens","Exposure","Use for futility/structure — key refrain."],
+   ["King, honour, human dignity, etcetera / Dropped like luxuries","Bayonet Charge","Use for patriotism vs reality."],
+   ["his bloody life in my bloody hands","Remains","Use for guilt/trauma."],
+   ["docile as paper","The Emigrée","Use for memory/identity."],
+   ["Bandage up me eye with me own history","Checking Out Me History","Use for identity/resistance."],
+   ["which had been the better way to die","Kamikaze","Use for honour/ambiguous endings."]
+  ];
+  const fiveContext = ["Romanticism (Ozymandias, The Prelude, London): scepticism toward tyranny and reverence for nature.","Victorian empire and dramatic monologue (My Last Duchess) and the Crimean War (The Charge of the Light Brigade).","The First and Second World Wars shape Exposure, Bayonet Charge and Kamikaze.","The Troubles in Northern Ireland shape a possible allegorical reading of Storm on the Island.","Modern conflict journalism and postcolonial migration shape Remains, War Photographer, The Emigrée and Checking Out Me History."];
+  const fiveTech = [
+   ["Structural shift","A turning point in tone or focus, e.g. The Prelude's confidence collapsing into fear."],
+   ["Extended metaphor","A single metaphor developed across a whole poem, e.g. paper throughout Tissue."],
+   ["Caesura","A deliberate mid-line pause, e.g. the Duke's chilling confession in My Last Duchess."],
+   ["Dactylic rhythm","A galloping metre mimicking cavalry in The Charge of the Light Brigade."],
+   ["Refrain","A repeated line building futility, e.g. 'But nothing happens' in Exposure."]
+  ];
+  const checklist = ["Answer the actual question, about both poems.","Choose a comparison poem with a real similarity AND difference.","Use precise, accurate short quotations — never invented ones.","Analyse methods, not just what a poem is about.","Link methods to each poet's likely viewpoint or purpose.","Use context only when it deepens interpretation.","Compare across the whole of both poems, not just one line."];
+  const dontDo = ["Don't simply describe or paraphrase a poem's content.","Don't list historical facts disconnected from the text.","Don't invent or misremember quotations, or quote at length.","Don't choose a comparison poem that only shares one surface word.","Don't forget this is poetry — form, structure and sound matter as much as meaning."];
+
+  const s = el(`<section class="section" id="section-lastminute">
+    <div class="section-header"><div class="eyebrow">Section 13</div><h1>Power and Conflict — Last Minute</h1><div class="desc">Exam tomorrow? Start here.</div></div>
+    <button class="btn secondary print-btn" id="printBtn" type="button">Print this page</button>
+
+    <div class="lm-grid">
+      <div class="lm-card"><h3>15 poems in one line each</h3><ul>${oneLiners.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>6 themes you must understand</h3><ul>${sixThemes.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>10 quotations worth remembering</h3><ul>${topQuotes.map(x=>`<li>"${x[0]}" <br><span class="subtle">— ${x[1]} → ${x[2]}</span></li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 contextual clusters</h3><ul>${fiveContext.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 techniques worth recognising</h3><ul>${fiveTech.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>Essay checklist</h3><ul>${checklist.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>Five things NOT to do</h3><ul>${dontDo.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>Fastest comparison routes</h3><ul>${COMPARISON_PAIRS.slice(0,7).map(c=>`<li><b>${c.poemA} + ${c.poemB}</b> — ${c.theme}</li>`).join('')}</ul></div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  document.getElementById('printBtn').addEventListener('click', ()=> window.print());
+}
+
+/* ================= DISCLOSURE BEHAVIOUR (shared) ================= */
+function wireDisclosures(){
+  document.querySelectorAll('.disclosure > .d-head').forEach(head=>{
+    head.addEventListener('click', ()=>{
+      head.parentElement.classList.toggle('open');
+    });
+  });
+}
+
+/* ================= INIT ================= */
+buildOverview();
+buildPoemGuide();
+buildThemes();
+buildQuoteVault();
+buildTechniques();
+buildContext();
+buildComparisonPairs();
+buildStructureWalkthrough();
+buildExam();
+buildQuiz();
+buildMatchGame();
+buildErasCompare();
+buildLastMinute();
+renderNav();
+wireDisclosures();
+showSection(SECTIONS.some(s=>s.id===currentSection) ? currentSection : 'overview');
+
+})();
+</script>
+</body>
+</html>

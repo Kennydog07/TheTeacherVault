@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Teacher Vault — Lord of the Flies QuickNotes</title>
+<style>
+:root{
+  --ink:#0F2E2E;
+  --ink-light:#173D3D;
+  --parchment:#F4EFDD;
+  --parchment-dark:#E8DFC0;
+  --blood:#8C3212;
+  --blood-bright:#C74A1B;
+  --gold:#9C8331;
+  --fog:#3E6B63;
+  --text:#152020;
+  --text-soft:#54615c;
+  --card:#FFFFFF;
+  --line:#DED4B0;
+  --radius:10px;
+  --serif: Georgia, 'Times New Roman', Times, serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --mono: 'Courier New', Courier, monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--parchment);color:var(--text);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased;}
+::selection{background:var(--gold);color:#fff;}
+a{color:var(--blood-bright);}
+button{font-family:inherit;cursor:pointer;}
+h1,h2,h3,h4{font-family:var(--serif);color:var(--ink);margin:0 0 .5em 0;}
+p{margin:0 0 .8em 0;}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:.6em 1em;z-index:999;}
+.skip-link:focus{left:8px;top:8px;}
+.app{display:flex;min-height:100vh;}
+.sidebar{width:250px;flex-shrink:0;background:var(--ink);color:#EDE9DA;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.brand{padding:22px 20px 14px 20px;border-bottom:1px solid rgba(255,255,255,.12);}
+.brand .tv-name{font-family:var(--serif);font-size:1.05rem;letter-spacing:.02em;color:#fff;font-weight:700;}
+.brand .tv-sub{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-top:2px;}
+.brand .play-title{margin-top:14px;font-family:var(--serif);font-size:1.65rem;color:#fff;line-height:1.15;}
+.brand .play-sub{font-size:.78rem;color:#c9c4ac;margin-top:6px;line-height:1.4;}
+.brand-mascot{width:52px;height:52px;object-fit:contain;display:block;margin-bottom:10px;}
+nav.mainnav{padding:10px 0;flex:1;}
+nav.mainnav button.navlink{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:none;color:#d9d5c3;padding:10px 20px;font-size:.88rem;border-left:3px solid transparent;}
+nav.mainnav button.navlink .num{font-family:var(--mono);font-size:.7rem;color:var(--gold);width:18px;flex-shrink:0;}
+nav.mainnav button.navlink:hover{background:rgba(255,255,255,.06);color:#fff;}
+nav.mainnav button.navlink.active{background:rgba(181,67,43,.25);border-left-color:var(--blood-bright);color:#fff;font-weight:600;}
+nav.mainnav button.navlink:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
+.sidebar-footer{padding:14px 20px;font-size:.7rem;color:#8b876f;border-top:1px solid rgba(255,255,255,.1);}
+.topbar{display:none;position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;padding:12px 16px;align-items:center;justify-content:space-between;}
+.topbar .tv-inline{font-family:var(--serif);font-size:1rem;}
+.topbar .tv-inline span{display:block;font-size:.65rem;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;}
+.hamburger{background:none;border:1px solid rgba(255,255,255,.4);color:#fff;padding:8px 10px;border-radius:6px;font-size:.85rem;}
+.mobile-nav-drawer{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.5);}
+.mobile-nav-drawer.open{display:block;}
+.mobile-nav-panel{position:absolute;top:0;left:0;bottom:0;width:80%;max-width:300px;background:var(--ink);overflow-y:auto;padding-bottom:20px;}
+main{flex:1;min-width:0;padding:36px 44px 80px 44px;max-width:980px;}
+.section{display:none;animation:fadein .25s ease;}
+.section.active{display:block;}
+@keyframes fadein{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+.section-header{margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid var(--ink);}
+.section-header .eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blood-bright);font-weight:700;margin-bottom:4px;}
+.section-header h1{font-size:1.9rem;margin-bottom:4px;}
+.section-header .desc{color:var(--text-soft);font-size:.95rem;max-width:640px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-bottom:16px;}
+.card h3{font-size:1.1rem;margin-bottom:8px;}
+.subtle{color:var(--text-soft);font-size:.88rem;}
+.tag{display:inline-block;background:var(--parchment-dark);color:var(--ink);border-radius:999px;padding:2px 10px;font-size:.72rem;margin:2px 4px 2px 0;font-weight:600;}
+.tag.blood{background:#f3e0da;color:var(--blood);}
+.tag.gold{background:#f3ecd6;color:#7a621c;}
+.tag.fog{background:#e4e9ee;color:var(--fog);}
+.btn{display:inline-block;background:var(--ink);color:#fff;border:none;padding:9px 16px;border-radius:7px;font-size:.85rem;font-weight:600;}
+.btn:hover{background:var(--ink-light);}
+.btn.secondary{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+.btn.blood{background:var(--blood-bright);}
+.btn.blood:hover{background:var(--blood);}
+.btn:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+.disclosure{border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;background:var(--card);overflow:hidden;}
+.disclosure > .d-head{width:100%;background:none;border:none;text-align:left;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;font-weight:700;color:var(--ink);font-family:var(--serif);font-size:1.02rem;}
+.disclosure > .d-head:hover{background:var(--parchment);}
+.disclosure > .d-head .chev{transition:transform .2s;color:var(--blood-bright);font-size:1.1rem;}
+.disclosure.open > .d-head .chev{transform:rotate(90deg);}
+.disclosure > .d-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.disclosure.open > .d-body{max-height:4000px;}
+.disclosure > .d-body .inner{padding:0 18px 16px 18px;}
+.d-body .mini-label{font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--blood-bright);margin:12px 0 4px 0;}
+.d-body .mini-label:first-child{margin-top:0;}
+.quote-line{font-family:var(--serif);font-style:italic;color:var(--ink);background:var(--parchment);border-left:3px solid var(--gold);padding:8px 12px;margin:6px 0;font-size:.94rem;}
+.grid{display:grid;gap:14px;}
+.grid.two{grid-template-columns:1fr 1fr;}
+.grid.three{grid-template-columns:repeat(3,1fr);}
+@media(max-width:800px){.grid.two,.grid.three{grid-template-columns:1fr;}}
+.qv-controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;align-items:center;}
+.qv-controls input[type=text], .qv-controls select{padding:9px 12px;border:1px solid var(--line);border-radius:7px;font-size:.9rem;background:#fff;}
+.qv-controls input[type=text]{flex:1;min-width:180px;}
+.qv-count{font-size:.82rem;color:var(--text-soft);margin-bottom:10px;}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-bottom:12px;}
+.qcard .qtext{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);margin-bottom:6px;}
+.qcard .qmeta{font-size:.78rem;color:var(--text-soft);margin-bottom:10px;}
+.qcard .qreveal-btn{font-size:.8rem;background:var(--parchment-dark);border:none;padding:6px 12px;border-radius:6px;color:var(--ink);font-weight:600;}
+.qcard .qdetail{display:none;margin-top:12px;border-top:1px dashed var(--line);padding-top:10px;}
+.qcard.open .qdetail{display:block;}
+.qdetail .row{margin-bottom:8px;}
+.qdetail .row b{color:var(--blood-bright);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:2px;}
+.level-toggle{display:flex;gap:6px;margin:10px 0;}
+.level-toggle button{font-size:.75rem;padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:#fff;}
+.level-toggle button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.level-block{display:none;font-size:.9rem;}
+.level-block.active{display:block;}
+.quiz-progress{height:8px;background:var(--parchment-dark);border-radius:6px;overflow:hidden;margin-bottom:18px;}
+.quiz-progress-bar{height:100%;background:var(--blood-bright);width:0%;transition:width .3s;}
+.quiz-q{font-family:var(--serif);font-size:1.15rem;margin-bottom:14px;}
+.quiz-opts{display:flex;flex-direction:column;gap:8px;}
+.quiz-opt{text-align:left;padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;background:#fff;font-size:.95rem;}
+.quiz-opt:hover{border-color:var(--ink);}
+.quiz-opt.correct{background:#e4f2e6;border-color:#4c9a5f;}
+.quiz-opt.incorrect{background:#f7e4e0;border-color:var(--blood-bright);}
+.quiz-opt[disabled]{cursor:default;}
+.quiz-explain{margin-top:12px;padding:12px 14px;background:var(--parchment);border-radius:8px;font-size:.9rem;display:none;}
+.quiz-explain.show{display:block;}
+.quiz-result{text-align:center;padding:30px 10px;}
+.quiz-result .score{font-family:var(--serif);font-size:3rem;color:var(--ink);}
+.quiz-result .weak-areas{text-align:left;max-width:420px;margin:16px auto;}
+.wvs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+@media(max-width:700px){.wvs{grid-template-columns:1fr;}}
+.wvs .weak{border:1.5px solid #c9776a;background:#fbeeeb;border-radius:8px;padding:14px;}
+.wvs .strong{border:1.5px solid #6a9c76;background:#eef6ef;border-radius:8px;padding:14px;}
+.wvs .lbl{font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+.wvs .weak .lbl{color:#a1392a;}
+.wvs .strong .lbl{color:#3f7a4c;}
+.lm-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:760px){.lm-grid{grid-template-columns:1fr;}}
+.lm-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;}
+.lm-card h3{font-size:1rem;color:var(--blood-bright);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:10px;}
+.lm-card ol,.lm-card ul{margin:0;padding-left:20px;font-size:.88rem;}
+.lm-card li{margin-bottom:6px;}
+.print-btn{margin-bottom:16px;}
+@media print{
+  .sidebar,.topbar,.print-btn,nav,.section-header .desc{display:none !important;}
+  main{padding:0;max-width:100%;}
+  .section{display:block !important;}
+  #section-lastminute{display:block !important;}
+  .section:not(#section-lastminute){display:none !important;}
+  body{background:#fff;}
+}
+.sixty{background:var(--ink);color:#f2efe2;border-radius:var(--radius);padding:20px 22px;margin:18px 0;}
+.sixty h3{color:var(--gold);font-size:.85rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;}
+.sixty p{font-size:.95rem;line-height:1.6;}
+footer.app-footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);color:var(--text-soft);font-size:.78rem;}
+.timeline{display:flex;flex-direction:column;gap:0;margin:16px 0;border-left:3px solid var(--gold);padding-left:18px;}
+.timeline .t-item{position:relative;padding:6px 0 18px 14px;}
+.timeline .t-item::before{content:'';position:absolute;left:-25px;top:9px;width:10px;height:10px;border-radius:50%;background:var(--blood-bright);border:2px solid var(--parchment);}
+.timeline .t-item .t-num{font-family:var(--mono);font-size:.72rem;color:var(--blood-bright);font-weight:700;}
+.timeline .t-item p{margin:2px 0 0 0;font-size:.92rem;}
+.jh-game{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;text-align:center;}
+.jh-quote{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--ink);min-height:90px;display:flex;align-items:center;justify-content:center;padding:0 10px;}
+.jh-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0;}
+@media(max-width:640px){.jh-opts{grid-template-columns:1fr 1fr;}}
+.jh-opts button{padding:12px 8px;border-radius:8px;border:1.5px solid var(--line);background:#fff;font-weight:600;font-size:.85rem;}
+.jh-opts button:hover{border-color:var(--ink);}
+.jh-opts button.correct{background:#e4f2e6;border-color:#4c9a5f;}
+.jh-opts button.incorrect{background:#f7e4e0;border-color:var(--blood-bright);}
+.jh-feedback{background:var(--parchment);border-radius:8px;padding:14px;margin-top:14px;font-size:.9rem;display:none;text-align:left;}
+.jh-feedback.show{display:block;}
+.jh-score{font-size:.85rem;color:var(--text-soft);margin-bottom:10px;}
+.change-grid{display:grid;grid-template-columns:1fr;gap:10px;}
+.change-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+.change-card .cc-head{width:100%;background:none;border:none;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.change-card .cc-name{font-family:var(--serif);font-size:1.1rem;color:var(--ink);font-weight:700;}
+.change-card .cc-meter{display:flex;gap:3px;align-items:center;}
+.change-card .cc-meter .dot{width:10px;height:10px;border-radius:50%;background:var(--line);}
+.change-card .cc-meter .dot.on{background:var(--blood-bright);}
+.change-card .cc-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.change-card.open .cc-body{max-height:700px;}
+.change-card .cc-inner{padding:0 18px 16px 18px;font-size:.92rem;}
+.change-card .cc-note{font-style:italic;color:var(--text-soft);font-size:.82rem;margin-top:8px;}
+.chain{display:flex;flex-direction:column;gap:0;}
+.chain-step{position:relative;}
+.chain-btn{width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;font-family:var(--serif);font-size:1.05rem;color:var(--ink);font-weight:700;}
+.chain-arrow{text-align:center;color:var(--gold);font-size:1.3rem;padding:2px 0;}
+.chain-body{max-height:0;overflow:hidden;transition:max-height .25s ease;background:var(--parchment);border-radius:0 0 var(--radius) var(--radius);}
+.chain-step.open .chain-body{max-height:600px;}
+.chain-step.open .chain-btn{border-radius:var(--radius) var(--radius) 0 0;}
+.chain-inner{padding:14px 18px;font-size:.92rem;}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:700px){.compare-grid{grid-template-columns:1fr;}}
+.compare-col{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;}
+.compare-col h3{text-align:center;background:var(--ink);color:#fff;margin:-18px -18px 14px -18px;padding:12px;border-radius:var(--radius) var(--radius) 0 0;}
+.compare-col ul{padding-left:20px;font-size:.9rem;}
+.compare-col li{margin-bottom:10px;}
+.compare-why{font-size:.85rem;color:var(--text-soft);font-style:italic;margin-top:4px;}
+@media(max-width:900px){
+  .app{flex-direction:column;}
+  .sidebar{display:none;}
+  .topbar{display:flex;}
+  main{padding:24px 18px 60px 18px;}
+  .section-header h1{font-size:1.5rem;}
+  .jh-opts{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div class="app">
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <div class="brand">
+      <img src="../images/mascot-teacher.png" alt="The Teacher Vault mascot" class="brand-mascot">
+      <div class="tv-name">The Teacher Vault</div>
+      <div class="tv-sub">QuickNotes</div>
+      <div class="play-title">Lord of the Flies</div>
+      <div class="play-sub">Everything you actually need for GCSE English Literature.</div>
+    </div>
+    <nav class="mainnav" id="navList" aria-label="Sections"></nav>
+    <div class="sidebar-footer">Free GCSE revision resource.<br>Works fully offline.</div>
+  </aside>
+
+  <div class="topbar">
+    <div class="tv-inline"><span>The Teacher Vault · QuickNotes</span>Lord of the Flies</div>
+    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobileDrawer">☰ Menu</button>
+  </div>
+  <div class="mobile-nav-drawer" id="mobileDrawer">
+    <div class="mobile-nav-panel">
+      <div class="brand">
+        <img src="../images/mascot-teacher.png" alt="The Teacher Vault mascot" class="brand-mascot">
+      <div class="tv-name">The Teacher Vault</div>
+        <div class="tv-sub">QuickNotes</div>
+        <div class="play-title">Lord of the Flies</div>
+      </div>
+      <nav class="mainnav" id="navListMobile" aria-label="Sections (mobile)"></nav>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <div id="sectionsRoot"></div>
+    <footer class="app-footer">The Teacher Vault · Lord of the Flies QuickNotes — a free GCSE English Literature revision resource. All explanatory content is original. William Golding died in 1993, and his novel Lord of the Flies (1954) remains firmly in copyright; quotations used here are kept to brief fragments and used only for educational analysis.</footer>
+  </main>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+const Store = {
+  available: (function(){ try{ const k='__tv_test__'; localStorage.setItem(k,'1'); localStorage.removeItem(k); return true; }catch(e){ return false; } })(),
+  get(key, fallback){ if(!Store.available) return fallback; try{ const v = localStorage.getItem('tv_lotf_'+key); return v===null?fallback:JSON.parse(v); }catch(e){ return fallback; } },
+  set(key, val){ if(!Store.available) return; try{ localStorage.setItem('tv_lotf_'+key, JSON.stringify(val)); }catch(e){} }
+};
+
+const SECTIONS = [
+  {id:'overview', label:'Overview'},
+  {id:'plot', label:'Plot'},
+  {id:'characters', label:'Characters'},
+  {id:'themes', label:'Themes'},
+  {id:'quotes', label:'Quote Vault'},
+  {id:'context', label:'Context'},
+  {id:'techniques', label:'Techniques'},
+  {id:'exam', label:'Exam'},
+  {id:'quiz', label:'Quiz'},
+  {id:'whosaidit', label:'Who Said It?'},
+  {id:'civtracker', label:'Civilisation Tracker'},
+  {id:'descent', label:'Descent into Savagery'},
+  {id:'compare', label:"1954 vs the Boys' World"},
+  {id:'lastminute', label:'Last Minute'}
+];
+
+/* ================= CHARACTERS ================= */
+const CHARACTERS = [
+{id:'ralph', name:'Ralph', role:'Athletic, fair-minded boy; elected leader of the group at the novel\'s start',
+ who:"A confident, likeable boy in his early teens who is elected chief because of his calm authority, his athletic assurance, and his possession of the conch. He values shelters, rules and the rescue signal above all else.",
+ journey:"Begins the novel as an optimistic, sun-warmed boy delighted by the island's freedom, and quickly channels that energy into organising shelters, rules and the signal fire. As Jack's hunters grow more powerful and the group's discipline collapses, Ralph struggles increasingly to hold on to reasoned argument, loses control of the assembly, and by the novel's final chapters is reduced to a filthy, terrified boy fleeing for his life, though he never stops trying to appeal to reason and rescue.",
+ relationships:"Works closely with Piggy, whose intelligence he often relies on despite mocking him at times; rivals Jack for leadership throughout; forms a quiet bond with Simon, whose insight he does not fully understand until it is too late.",
+ themes:['Civilisation vs Savagery','Power and Leadership','Democracy vs Dictatorship','Loss of Innocence'],
+ quotes:["we're not savages","It's a good island","law and rescue, or hunting"],
+ message:"Golding may use Ralph to represent the fragile, effortful nature of democratic order — his repeated failure to keep the group focused on rescue may suggest that civilised structures require constant, conscious maintenance rather than existing naturally.",
+ examArgs:[
+  "Ralph's growing inability to hold a train of thought as the novel progresses may dramatise Golding's suggestion that rational, civilised order is fragile and requires sustained collective effort to survive.",
+  "Ralph's reliance on the conch as a symbol of order, and his despair as its authority erodes, positions him as a representative of democratic, rule-based leadership under increasing strain from Jack's more instinctive, authoritarian appeal.",
+  "Ralph's final grief for Piggy and for 'the darkness of man's heart' suggests that his journey ends not in triumph but in a painful, adult recognition of what the island has revealed about human nature."
+ ]},
+{id:'jack', name:'Jack Merridew', role:"Head boy of the choir; becomes leader of a rival, increasingly violent tribe of hunters",
+ who:"An aggressive, status-driven boy who begins the novel as choir leader and is initially outvoted for chief, channelling his frustration into hunting, gradually building his own tribe based on fear, ritual and violence rather than rules or rescue.",
+ journey:"Starts the novel obsessed with maintaining the choir's discipline and later becomes fixated on hunting pigs, developing face-paint and ritual chanting that let him and his hunters act without personal restraint. He challenges Ralph's authority repeatedly, eventually splitting the group entirely and setting up his own tribe at Castle Rock, which rules through fear and violent punishment rather than the conch's agreed order.",
+ relationships:"Rivals Ralph for leadership throughout; treats Piggy with open contempt and cruelty; relies on Roger as his most ruthless enforcer; commands the loyalty, partly through fear, of Samneric and the other boys.",
+ themes:['Power and Leadership','Civilisation vs Savagery','Democracy vs Dictatorship','Violence'],
+ quotes:["Bollocks to the rules!","the English are best at everything","Kill the beast!"],
+ message:"Golding may use Jack to embody the appeal and danger of authoritarian leadership built on fear and ritual, suggesting that the desire for dominance can override reason, especially once social restraints are removed.",
+ examArgs:[
+  "Jack's increasing reliance on face-paint and ritual before he can kill may suggest that violence requires a kind of psychological disguise, allowing him to act without the identity and restraint of ordinary social life.",
+  "Jack's rejection of the conch and Ralph's rules in favour of dictatorial control through fear could be read as Golding's warning about how easily democratic structures can be replaced by charismatic, coercive leadership.",
+  "The contrast between Jack's early obedience to adult-like choir discipline and his later savagery may suggest that a taste for control, once redirected from a socially sanctioned outlet, can become genuinely dangerous."
+ ]},
+{id:'piggy', name:'Piggy', role:"Overweight, asthmatic boy with glasses; Ralph's chief adviser",
+ who:"An intelligent, rational boy repeatedly mocked for his appearance, weight and asthma, whose ideas (the conch, the fire, practical planning) drive much of the group's early organisation despite his consistent social exclusion.",
+ journey:"Introduces the conch and much of the group's early practical thinking, but is bullied and dismissed throughout by nearly everyone, including Ralph at times. His glasses are stolen to make fire for Jack's tribe, leaving him nearly blind, and he is ultimately killed when Roger deliberately dislodges a boulder onto him at Castle Rock, an act that also destroys the conch.",
+ relationships:"Serves as Ralph's most consistent adviser, though Ralph often distances himself from Piggy publicly; is the frequent target of Jack's mockery and Roger's cruelty; has little direct relationship with Simon beyond shared marginal status.",
+ themes:['Civilisation vs Savagery','Rationality vs Instinct','Isolation','Power and Leadership'],
+ quotes:["is scientific, that's what it is","Humans? Or animals? Or savages?","Sucks to your ass-mar"],
+ message:"Golding may use Piggy's combination of intellectual clarity and social vulnerability to suggest that reason alone, without physical or social power, is not enough to prevent a group's descent into savagery.",
+ examArgs:[
+  "Piggy's reliance on logic and rules, contrasted with his physical weakness and low social status, may suggest Golding is questioning whether rational thought can survive without the backing of social power.",
+  "The destruction of Piggy's glasses immediately before his death closely links his personal vulnerability to the group's loss of practical, civilised capability, since the glasses are also the tribe's only means of making fire.",
+  "Piggy's death alongside the shattering of the conch could be read as Golding presenting reason and democratic order as inseparable casualties of the same collapse into violence."
+ ]},
+{id:'simon', name:'Simon', role:"Quiet, sensitive boy; prone to fainting fits, drawn to solitude",
+ who:"A thoughtful, spiritually perceptive boy who works quietly for the good of the group, retreats alone into the forest, and comes to a private understanding of the beast that the other boys are unable or unwilling to accept.",
+ journey:"Helps build shelters without complaint, shows kindness to the littluns, and gradually withdraws to a secret glade in the forest. There he experiences a hallucinatory encounter with the severed pig's head (the 'Lord of the Flies'), which seems to voice the idea that the beast is not an external creature but something within the boys themselves. Rushing down the mountain to share this insight during a wild ritual dance, he is mistaken for the beast in the darkness and killed by the frenzied group, including Ralph and Piggy.",
+ relationships:"Feels a quiet, largely unspoken connection to Ralph; is generally overlooked or considered strange by the other boys; has no real relationship with Jack, whose worldview he implicitly opposes.",
+ themes:['Human Nature','Symbolism and Religious Allusion','Fear','Loss of Innocence'],
+ quotes:["Maybe it's only us","I'm part of you","the beast was harmless and horrible"],
+ message:"Golding may present Simon as a Christ-like figure whose private, painful insight into human nature goes unheard and costs him his life, suggesting that moral clarity is not always enough to prevent tragedy, and may even provoke it.",
+ examArgs:[
+  "Simon's private vision of the Lord of the Flies, in which the pig's head seems to declare 'I'm part of you', could support a reading of Simon as the character who most fully understands Golding's central idea that the beast is internal rather than external.",
+  "The manner of Simon's death, killed by the very group he was trying to enlighten, may be read as Golding's bleakest suggestion that a society descending into fear and violence can destroy the very insight that might have saved it.",
+  "Parallels between Simon's isolated wilderness experience, his symbolic temptation by the Lord of the Flies, and his death can support a biblical or Christ-like allegorical reading of his character, though this remains one interpretation among several."
+ ]},
+{id:'roger', name:'Roger', role:"Quiet, sinister boy in Jack's choir; becomes the tribe's most brutal enforcer",
+ who:"A withdrawn, unsettling boy who begins the novel restrained largely by the lingering habits of civilisation, and who becomes increasingly and deliberately cruel once social and adult authority disappear entirely.",
+ journey:"Initially shown throwing stones near, but deliberately not at, a younger boy, held back by an internalised sense of taboo. As Jack's tribe consolidates power, Roger's cruelty escalates unchecked, torturing a captured boy and ultimately killing Piggy by deliberately levering a boulder down onto him, an act carried out with no restraint or hesitation remaining.",
+ relationships:"Becomes Jack's most loyal and ruthless enforcer at Castle Rock; shows no meaningful relationships of care with any other character in the novel.",
+ themes:['Violence','Human Nature','Civilisation vs Savagery'],
+ quotes:["a civilization that knew nothing of him"],
+ message:"Golding may use Roger's escalating cruelty, unrestrained once adult and social structures vanish, to suggest that some capacity for extreme violence exists within ordinary children, requiring only the removal of external restraint to surface.",
+ examArgs:[
+  "Roger's early restraint from actually hitting a younger boy with stones, explicitly linked by the narrator to the taboo of civilisation, followed by his later unhesitating killing of Piggy, traces a clear arc from repression to unleashed violence.",
+  "As the character with arguably the least explicit inner life or dialogue, Roger's escalating cruelty could be read as Golding presenting sadism as something almost impersonal, existing prior to individual character rather than growing from it.",
+  "Roger's position as Jack's chief enforcer suggests that authoritarian leadership requires a willing agent of violence, implicating him alongside Jack in the tribe's descent into terror."
+ ]},
+{id:'samneric', name:'Samneric (Sam and Eric)', role:"Inseparable twin brothers, treated almost as a single character",
+ who:"Loyal, good-natured twins who support Ralph's leadership for much of the novel, frequently speaking and acting almost in unison, before being coerced into Jack's tribe near the novel's end.",
+ journey:"Work reliably on the fire and shelters as part of Ralph's group, express genuine fear at the idea of a beast, and are eventually captured and, under threat of violence from Roger and Jack's tribe, forced to join Jack's side, ultimately betraying Ralph's hiding place under duress.",
+ relationships:"Loyal to Ralph and Piggy for most of the novel; are overpowered and absorbed into Jack's tribe near the end, showing the limits of individual loyalty under coercion and fear.",
+ themes:['Group Behaviour','Fear','Democracy vs Dictatorship'],
+ quotes:["We told him we got the fire lit","we've got to have rules and obey them"],
+ message:"Golding may use Samneric's eventual capitulation to Jack's tribe to suggest that ordinary, decent individuals can be pulled into complicity with violence through fear and group pressure, rather than through any real change in personal belief.",
+ examArgs:[
+  "Samneric's forced absorption into Jack's tribe, achieved through threats rather than persuasion, may support Golding's wider suggestion that mob behaviour and coercive fear can override individual conscience.",
+  "Because the twins are so often treated as a single unit by the narrative, their eventual split from Ralph's group could be read as symbolic of the wider group's fracture from unified, rule-based society into fearful, coerced conformity.",
+  "The twins' reluctant betrayal of Ralph's hiding place under threat from Roger illustrates how thoroughly Jack's tribe has replaced persuasion and consent with intimidation as its basis of control."
+ ]},
+{id:'percival', name:'Percival Wemys Madison', role:"A very young littlun, prone to crying and fear",
+ who:"One of the youngest boys on the island, whose fear and confusion illustrate how the littluns' anxieties, especially about the 'beastie', spread and intensify among the wider group.",
+ journey:"Introduced reciting his home address as a kind of comforting ritual, Percival becomes increasingly distressed and regressive as the novel progresses. His fear of the beast reflects and amplifies the group's collective anxiety, and by the novel's later chapters he has become almost catatonic with fear and filth.",
+ relationships:"Has little direct relationship with the older boys beyond being one of the littluns whose fears Ralph and the others must try, and largely fail, to manage.",
+ themes:['Fear','Loss of Innocence','Isolation'],
+ quotes:["Percival Wemys Madison, The Vicarage, Harcourt St Anthony","out of the sea"],
+ message:"Golding may use Percival's regression from a reassured, address-reciting small boy into a near-silent, traumatised figure to dramatise how quickly childhood security collapses once fear of the unknown is allowed to take hold, unmanaged by adult reassurance.",
+ examArgs:[
+  "Percival's early habit of reciting his home address, apparently for comfort, and his later inability to do so, may symbolise the erosion of a stabilising connection to ordinary, civilised identity under mounting fear.",
+  "As one of the youngest and most vulnerable littluns, Percival's escalating distress can be used to explore how fear of the beast spreads from younger to older boys, undermining rational leadership from below.",
+  "Percival's marginal, mostly wordless presence throughout the novel may be read as Golding illustrating that the youngest and most powerless members of a group often suffer most acutely from its breakdown, without any means to resist it."
+ ]}
+];
+
+/* ================= THEMES ================= */
+const THEMES = [
+{name:'Civilisation vs Savagery', explanation:"The novel's central theme, tracing the boys' shift from attempting to maintain rules, shelters and a rescue signal toward face-paint, ritual and violence once removed from adult society.",
+ where:"The early assemblies organised around the conch; the later rise of Jack's face-painted, chanting tribe at Castle Rock.",
+ characters:['Ralph','Jack','Piggy'],
+ quotes:["we're not savages","Bollocks to the rules!"],
+ message:"Golding may suggest that civilised behaviour is a thin, actively maintained veneer rather than something natural or permanent, since the boys' descent into savagery occurs remarkably quickly once adult supervision disappears.",
+ context:"Golding's own experience of naval combat in the Second World War, and his awareness of wartime atrocities, may have shaped his sceptical view of how easily 'civilised' people can turn to violence.",
+ thesis:["Golding presents civilisation not as humanity's natural state but as a fragile structure requiring constant, conscious maintenance, one that collapses with striking speed once removed from adult authority.","The declining condition of the conch throughout the novel can be used to trace the boys' broader shift from ordered civilisation towards violent savagery."]},
+{name:'Power and Leadership', explanation:"The novel contrasts two models of leadership: Ralph's elected, rule-based authority and Jack's coercive, fear-based dominance.",
+ where:"Ralph's election by vote in the opening chapter; Jack's later rule through ritual, fear and violent punishment at Castle Rock.",
+ characters:['Ralph','Jack','Piggy'],
+ quotes:["I ought to be chief"],
+ message:"Golding may present Jack's eventual dominance over Ralph's democratic model as a warning about how easily fear-based, charismatic leadership can outcompete reasoned, consent-based authority under pressure.",
+ context:"Post-war Europe had recently witnessed the rise of authoritarian leaders through fear and spectacle, a context that may have informed Golding's portrayal of Jack's tribe.",
+ thesis:["Golding structures the novel's central conflict around two opposing models of leadership, using Jack's eventual triumph over Ralph to suggest that fear-based authority can be more immediately persuasive, if morally inferior, to reasoned consent."]},
+{name:'Fear', explanation:"Fear, especially of the imagined 'beast', becomes a powerful and destabilising force that undermines rational cooperation among the boys.",
+ where:"The littluns' early nightmares about a 'beastie'; Jack's exploitation of the beast's existence to consolidate his own power.",
+ characters:['Percival','Jack','Simon'],
+ quotes:["out of the sea"],
+ message:"Golding may suggest that fear of an external, imagined threat is often more socially destructive than any real danger, since it is the boys' fear of the beast, rather than the beast itself, that fuels the worst violence.",
+ context:"A 1950s audience living with Cold War nuclear anxiety may have recognised parallels between the boys' fear of an invisible, undefined threat and contemporary fears of atomic warfare.",
+ thesis:["Golding presents fear, rather than any genuine external threat, as the primary catalyst for the boys' descent into violence, since the imagined beast proves far more dangerous than any real creature on the island."]},
+{name:'Human Nature', explanation:"The novel explores whether violence and cruelty are innate to human beings or produced by circumstance, largely arguing for the former.",
+ where:"Roger's escalating cruelty once social restraint disappears; Simon's private realisation that the beast is internal.",
+ characters:['Roger','Simon','Jack'],
+ quotes:["Maybe it's only us"],
+ message:"Golding may use the boys' rapid descent into violence to argue that a capacity for cruelty exists within human beings generally, rather than being confined to a particular kind of person or society.",
+ context:"Golding spoke of his belief, informed partly by his wartime experience, that evil originates from within human nature itself rather than from flawed social systems alone.",
+ thesis:["Golding presents violence as an innate human capacity rather than a product of specific social conditions, using the boys' rapid regression to suggest that no group, however 'civilised', is immune."]},
+{name:'Group Behaviour', explanation:"The novel examines how individuals behave differently once absorbed into a crowd, ritual or tribe, often losing personal restraint and responsibility.",
+ where:"The chanting ritual dance during which Simon is killed; Samneric's coerced absorption into Jack's tribe.",
+ characters:['Samneric','Jack','Roger'],
+ quotes:["Kill the beast!"],
+ message:"Golding may suggest that ritual and group chanting allow individuals to act with a violence and lack of personal accountability that they might resist alone, since the group provides both anonymity and momentum.",
+ context:"The mid-twentieth century had witnessed mass rallies and ritualised group violence used to mobilise otherwise ordinary individuals toward atrocity, a context Golding's depiction of ritual chanting may echo.",
+ thesis:["Golding presents ritual and group chanting as mechanisms that dissolve individual moral responsibility, allowing boys who might resist violence alone to participate in it collectively, as in Simon's death."]},
+{name:'Loss of Innocence', explanation:"The novel traces the boys' movement from childhood innocence and play toward violence, cruelty and, in Ralph's case, painful adult awareness.",
+ where:"The playful, sunlit opening exploration of the island; Ralph's final grief for 'the end of innocence' and 'the darkness of man's heart'.",
+ characters:['Ralph','Percival','Simon'],
+ quotes:["the darkness of man's heart"],
+ message:"Golding may use the shift from the boys' early, playful exploration of the island to their later violence to suggest that innocence is lost not gradually but through a series of specific, traumatic events.",
+ context:"Golding's choice to strand young British schoolboys, rather than adults, sharpens the sense of lost innocence, deliberately undercutting the era's adventure-story tradition of resourceful boy heroes.",
+ thesis:["Golding structures the novel to dramatise a rapid, traumatic loss of childhood innocence, using Ralph's final tears to mark the transition from a boy's adventure into an adult, painful understanding of human cruelty."]},
+{name:'Symbolism and Religious Allusion', explanation:"The novel uses several biblical and Christian allusions, particularly around Simon, to deepen its exploration of morality, sacrifice and revealed truth.",
+ where:"Simon's solitary retreat and vision in the forest glade; his death while attempting to bring the group a difficult truth.",
+ characters:['Simon'],
+ quotes:["I'm part of you"],
+ message:"Golding may intend Simon as a partly Christ-like figure, whose isolated suffering, private revelation and death delivering an unwelcome truth invite, without straightforwardly confirming, a religious allegorical reading.",
+ context:"Golding's own broadly Christian cultural background and classical education may have shaped his use of allegorical and biblical structures throughout the novel.",
+ thesis:["Golding's construction of Simon as an isolated visionary who dies attempting to share an unwelcome truth with the group supports a Christ-like allegorical reading, though this remains one interpretation among several critics have proposed."]},
+{name:'Rationality vs Instinct', explanation:"The novel repeatedly sets Piggy's rational, rule-based thinking against Jack's instinctive, appetite-driven behaviour, questioning which ultimately prevails under pressure.",
+ where:"Piggy's insistence on rules and planning; Jack's growing preference for hunting and instinctual violence over discussion.",
+ characters:['Piggy','Jack','Ralph'],
+ quotes:["is scientific, that's what it is"],
+ message:"Golding may suggest that rational thought, embodied by Piggy, proves ultimately less powerful than instinctive, appetite-driven behaviour once physical fear and desire for dominance take hold of a group.",
+ context:"Post-war interest in mass psychology and crowd behaviour may have informed Golding's interest in how quickly rational structures can be overridden by instinct under group pressure.",
+ thesis:["Golding stages a sustained contest between rational and instinctive responses to crisis, ultimately suggesting, through Piggy's death, that reason alone struggles to survive against unrestrained instinct once social structures collapse."]},
+{name:'Isolation', explanation:"The boys' complete isolation from adult society and rescue is the central condition enabling the novel's events, removing external authority and consequence.",
+ where:"The absence of any surviving adult from the crash; the group's repeated, ultimately unsuccessful attempts to maintain a rescue signal.",
+ characters:['Ralph','Piggy'],
+ quotes:[],
+ message:"Golding may use the boys' total isolation to strip away the usual social checks on behaviour, creating a kind of experimental space in which underlying human tendencies can emerge unrestrained.",
+ context:"The unspecified nuclear or global war framing the boys' evacuation implies that even the adult world they have left behind offers no reliable model of restraint or safety.",
+ thesis:["Golding uses the boys' complete isolation from adult authority as a deliberate narrative device, removing external restraint in order to expose what he suggests are innate tendencies otherwise concealed by ordinary social structures."]},
+{name:'Violence', explanation:"Violence escalates steadily across the novel, from restrained hunting to ritual killing and finally the deliberate murder of Piggy and the hunt for Ralph.",
+ where:"The hunters' first successful, exhilarating pig kill; Simon's death during the ritual dance; Roger's deliberate killing of Piggy.",
+ characters:['Roger','Jack','Simon'],
+ quotes:["Kill the pig. Cut her throat. Spill her blood."],
+ message:"Golding may present violence as something that grows more comfortable and ritualised with repetition, moving from an initially uneasy first kill to eventual premeditated murder committed without evident hesitation.",
+ context:"Golding's direct experience of violence during his wartime naval service may have shaped his conviction that ordinary individuals are capable of serious violence under the right conditions.",
+ thesis:["Golding traces a clear escalation in the boys' capacity for violence across the novel, using this progression to argue that violence, once enabled and repeated, becomes increasingly easy and eventually premeditated."]},
+{name:'War', explanation:"The novel is framed by an unspecified global or nuclear war that caused the boys' evacuation, implicitly linking the island's descent into violence to the adult world's own.",
+ where:"The boys' initial arrival by plane, evacuated from a war-torn world; the naval officer's rescue at the novel's end, himself part of an ongoing adult conflict.",
+ characters:['Ralph','Piggy'],
+ quotes:[],
+ message:"Golding may use the frame of an unnamed adult war to suggest that the violence the boys recreate in miniature on the island is not an aberration but a continuation of adult society's own capacity for organised destruction.",
+ context:"Written in the early 1950s, shortly after the Second World War and amid growing Cold War nuclear anxiety, the novel's war frame reflects genuine contemporary fears about global conflict.",
+ thesis:["Golding's unspecified war frame narrative implicitly undermines any easy separation between the boys' savagery and adult civilisation, suggesting that the violence on the island echoes, rather than contrasts with, the war beyond it."]},
+{name:'Democracy vs Dictatorship', explanation:"The conch-based assembly model, in which every boy may speak and decisions are reached by discussion and vote, is gradually replaced by Jack's unquestioned, fear-based rule at Castle Rock.",
+ where:"The early assemblies, in which the conch grants the right to speak; Jack's later tribe, in which dissent is punished with violence.",
+ characters:['Ralph','Jack','Piggy'],
+ quotes:["we're not savages"],
+ message:"Golding may use the shift from the conch's democratic authority to Jack's dictatorial control to dramatise how easily consent-based structures can be replaced by coercive power, especially once fear becomes widespread.",
+ context:"Post-war Europe's recent experience of totalitarian regimes may have informed Golding's portrayal of how a democratic model can be displaced by authoritarian rule under sufficiently intense group fear.",
+ thesis:["Golding structures the novel's political arc around the conch's declining authority and Jack's rising dictatorship, presenting this shift as a warning about the fragility of democratic consent under conditions of fear."]}
+];
+
+/* ================= TECHNIQUES ================= */
+const TECHNIQUES = [
+{name:'Symbolism', def:"An object, image or event representing a deeper idea beyond its literal meaning.", example:"The conch represents ordered discussion and agreed authority; the signal fire represents rescue and connection to the wider world; the Lord of the Flies represents the boys' own capacity for violence.", effect:"Allows Golding to condense complex ideas about civilisation, fear and human nature into concrete, memorable images that develop across the novel.", howto:"Identify what the symbol represents and trace how its physical condition changes across the novel to track a wider thematic shift."},
+{name:'Allegory', def:"A narrative in which characters, objects or events systematically represent abstract ideas or a broader argument.", example:"The boys' society can be read as a small-scale allegory for wider human civilisation, with Ralph and Jack representing competing political and moral philosophies.", effect:"Elevates the boys' island experience from an isolated adventure story into a broader argument about human nature and society.", howto:"When making an allegorical reading, always tie the abstract idea back to a specific, textual detail rather than asserting the allegory alone."},
+{name:'Foreshadowing', def:"Hints or clues that anticipate later events.", example:"The early, still-restrained violence of the first pig hunt foreshadows the far more serious violence to come, including Simon's and Piggy's deaths.", effect:"Builds a growing sense of unease and inevitability as small early instances of violence anticipate the novel's later catastrophic events.", howto:"Identify the later event being anticipated and explain how the earlier detail primes the reader's expectations."},
+{name:'Biblical / Christian allusion', def:"References or structural parallels to Christian scripture or symbolism.", example:"Simon's isolated retreat, his vision, and his death delivering an unwelcome truth to the group invite comparison with a Christ-like sacrificial figure.", effect:"Adds a further symbolic and moral dimension to Simon's death, framing it as a kind of martyrdom or sacrifice rather than simply a tragic accident.", howto:"Support any allegorical or biblical reading with specific textual parallels, and acknowledge that this remains one possible interpretation."},
+{name:'Pathetic fallacy', def:"Attributing human emotion to the natural world, or using weather and setting to reflect a scene's mood.", example:"The island's bright, inviting beauty in the early chapters gradually gives way to storms, fire and a scarred, blackened landscape as the boys' violence intensifies.", effect:"Reinforces the novel's central theme by making the island's physical decline mirror the boys' moral decline.", howto:"Connect a specific change in setting or weather directly to the emotional or thematic shift occurring in the plot at that moment."},
+{name:'Structure', def:"The overall shape and pacing of the narrative, including how it builds toward, or departs from, particular patterns.", example:"The novel moves from an idyllic, adventure-story opening toward an increasingly fractured, violent final third, undercutting the traditional boys' adventure narrative it initially resembles.", effect:"The novel's descending structure, from paradise to violence, reinforces Golding's critique of the boys' adventure-story tradition, particularly R. M. Ballantyne's The Coral Island.", howto:"Discuss how the pacing or ordering of events itself contributes to meaning, not just the individual events."},
+{name:'Light / dark imagery', def:"The use of light and darkness to symbolise clarity, safety, danger or moral corruption.", example:"The darkness of the forest at night, associated with fear of the beast, contrasts with the brightness of the beach and lagoon associated with rescue and order.", effect:"Reinforces the association between darkness, fear and violence, and between light, safety and rational order.", howto:"Link a specific instance of light or dark imagery directly to the emotional or moral state of the scene it appears in."},
+{name:'Irony', def:"A gap between what is expected or said and what actually occurs or is meant.", example:"The naval officer's rescue of the boys, framed as an escape from savagery, occurs against the backdrop of the adult world's own ongoing, unnamed war.", effect:"Undercuts any comfortable sense that adult civilisation is simply the opposite of the boys' savagery, since the rescuing officer's own world is also at war.", howto:"Identify the gap between surface meaning and underlying implication, and explain what that gap suggests about Golding's wider argument."},
+{name:'Characterisation through physical appearance', def:"Using a character's physical description to suggest their personality or role.", example:"Piggy's overweight build, glasses and asthma mark him from the outset as physically vulnerable, foreshadowing his social exclusion and eventual death.", effect:"Allows Golding to signal a character's likely fate or social position quickly, reinforcing the group's tendency to judge by appearance rather than character.", howto:"Analyse how a specific physical detail is used symbolically, rather than simply describing what a character looks like."},
+{name:'Repetition / chant', def:"Deliberate reuse of a word or phrase for emphasis, often building rhythm or ritual intensity.", example:"\"Kill the beast! Cut his throat! Spill his blood!\" is chanted repeatedly by the hunters, evolving from an earlier hunting chant into the ritual during which Simon is killed.", effect:"The chant's rhythmic repetition builds ritual, trance-like intensity, allowing the group to act with a violence beyond what any individual boy might commit alone.", howto:"Explain what psychological or ritual effect the specific repeated words are creating, not just that repetition occurs."},
+{name:'Setting as antagonist', def:"A setting that actively works against the characters or reflects a hostile, threatening force, rather than functioning as mere backdrop.", example:"The island, initially depicted as a paradise, becomes an active site of danger, division and eventually inferno as the boys' violence and the fire they set to smoke out Ralph grow more destructive.", effect:"Positions the island itself as complicit in the boys' descent, its beauty and resources gradually consumed by the same violence it once seemed to hold at bay.", howto:"Track specific descriptive changes to the setting and connect them explicitly to the boys' escalating conflict."},
+{name:'Foil characters', def:"Characters whose contrasting qualities highlight and clarify each other's characteristics.", example:"Ralph and Jack function as foils in their contrasting approaches to leadership; Piggy and Simon function as foils in their contrasting kinds of intelligence, rational versus intuitive.", effect:"Sharpens the reader's understanding of each character by highlighting what they are not, as much as what they are.", howto:"When analysing a foil relationship, explicitly state both characters' contrasting qualities and explain what that contrast reveals thematically."}
+];
+
+/* ================= QUOTE VAULT ================= */
+const QUOTES = [
+{text:"we're not savages", speaker:"Ralph", ch:"2", characters:['Ralph'], themes:['Civilisation vs Savagery','Democracy vs Dictatorship'],
+ meaning:"Ralph insists that the group must keep rules and act in an orderly, civilised way, rather than descending into disorder.",
+ technique:"Direct, declarative statement; first-person plural asserting group identity.",
+ solid:"By saying 'we're not savages', Ralph shows he believes the group should behave in a civilised, rule-following way, not give in to chaos.",
+ deep:"The plural pronoun 'we're' reveals Ralph's continuing belief in a shared, collective identity built around rules, even as the novel repeatedly demonstrates how fragile that identity actually is. The line becomes increasingly ironic as the novel progresses, since the boys' behaviour moves steadily closer to the very savagery Ralph is trying to deny.",
+ context:"Reflects Golding's broader argument that 'civilised' identity is a social construction rather than a fixed, guaranteed trait, one that can dissolve rapidly under pressure.",
+ useFor:"Essays on civilisation vs savagery, Ralph's leadership, or dramatic irony across the novel."},
+{text:"It's a good island", speaker:"Ralph", ch:"1", characters:['Ralph'], themes:['Loss of Innocence','Civilisation vs Savagery'],
+ meaning:"Ralph expresses early, uncomplicated delight at the island's beauty and the freedom of being away from adult supervision.",
+ technique:"Simple, short declarative sentence; optimistic tone.",
+ solid:"This shows Ralph's excitement and innocence at the very start of the novel, before he understands the dangers the island and the group will bring.",
+ deep:"The simplicity of the sentence structure mirrors the boys' initial, childlike understanding of their situation, an innocence Golding will systematically dismantle across the following chapters. The line's optimism becomes a deliberate point of contrast with the scarred, blackened island of the novel's final chapters.",
+ context:"Reflects the boys' initial inherited assumptions from adventure fiction, such as The Coral Island, in which stranded boys typically enjoy safe, resourceful fun.",
+ useFor:"Essays on loss of innocence, structure, or the contrast between the novel's opening and ending."},
+{text:"Bollocks to the rules!", speaker:"Jack", ch:"8", characters:['Jack'], themes:['Power and Leadership','Democracy vs Dictatorship'],
+ meaning:"Jack openly rejects the authority of the conch and the group's agreed rules in favour of hunting and personal power.",
+ technique:"Blunt expletive; short, forceful exclamation.",
+ solid:"This shows Jack no longer cares about the rules the group agreed on, and wants to do what he wants instead.",
+ deep:"The crude, explosive register of the line marks a clear rhetorical break from the ordered, conch-sanctioned speech of earlier assemblies, dramatising Jack's rejection of consent-based authority in favour of appetite and force. This moment can be read as the structural turning point after which Jack's tribe operates entirely outside the group's original democratic model.",
+ context:"Reflects Golding's wider suggestion that democratic order can be discarded quickly once a rival, more immediately gratifying form of power becomes available.",
+ useFor:"Essays on power, democracy vs dictatorship, or Jack's characterisation."},
+{text:"the English are best at everything", speaker:"Jack", ch:"2", characters:['Jack'], themes:['Civilisation vs Savagery','Power and Leadership'],
+ meaning:"Jack confidently claims that the boys' nationality guarantees good, capable behaviour, an assumption the novel goes on to dismantle.",
+ technique:"Sweeping generalisation; dramatic irony given later events.",
+ solid:"This shows Jack's confident but ultimately mistaken belief that being British automatically means the boys will behave well and manage the island successfully.",
+ deep:"The claim functions as an early piece of dramatic irony, since the reader gradually realises that nationality offers no protection against the violence the boys prove capable of; Golding may be directly critiquing complacent, nationalistic assumptions about inherent civility inherited from the boys' adventure-story tradition.",
+ context:"Reflects, and critiques, mid-century British assumptions of national superiority and decency, assumptions the novel's events steadily undermine.",
+ useFor:"Essays on civilisation vs savagery, irony, or Golding's critique of the boys' adventure-story assumptions."},
+{text:"Kill the beast! Cut his throat! Spill his blood!", speaker:"The hunters", ch:"9", characters:['Jack','Roger'], themes:['Group Behaviour','Violence'],
+ meaning:"The hunters' ritual chant, originally used for hunting pigs, is repeated here during the frenzied dance in which Simon is mistaken for the beast and killed.",
+ technique:"Tricolon; imperative verbs; ritualistic repetition.",
+ solid:"The repeated, violent commands show how excited and out of control the group has become, chanting together right before they kill Simon by mistake.",
+ deep:"The tricolon's escalating imperatives ('Kill... Cut... Spill') build a rhythmic, trance-like momentum that allows the group to act with a collective violence exceeding what any individual boy might commit alone, directly enabling Simon's death. The chant's evolution from a hunting cry into a killing ritual traces the novel's wider escalation from restrained hunting to uncontrolled violence.",
+ context:"Reflects Golding's interest in how ritual and group chanting were used historically to mobilise ordinary individuals toward organised violence.",
+ useFor:"Essays on group behaviour, ritual, or Simon's death as the novel's central turning point."},
+{text:"Kill the pig. Cut her throat. Spill her blood.", speaker:"The hunters", ch:"4", characters:['Jack'], themes:['Violence','Group Behaviour'],
+ meaning:"The hunters' earlier chant, used to celebrate their first successful pig kill, before it later evolves into the more dangerous 'beast' version.",
+ technique:"Tricolon; ritualistic repetition; rhythmic, song-like structure.",
+ solid:"This shows the hunters celebrating their first kill with a chant, an early sign of how hunting is becoming exciting and ritualised for them.",
+ deep:"Establishing the chant's structure early, before its later, deadlier repetition, allows Golding to trace a clear line of escalation: the same rhythmic pattern that once celebrated a pig kill will later accompany Simon's murder, suggesting violence becomes normalised through repetition and ritual rather than through any single dramatic decision.",
+ context:"Reflects the earliest stage of the hunters' violence, still framed as legitimate, celebratory hunting rather than uncontrolled aggression.",
+ useFor:"Essays on foreshadowing, the escalation of violence, or repetition as a technique."},
+{text:"Sucks to your ass-mar!", speaker:"Jack", ch:"1", characters:['Jack','Piggy'], themes:['Isolation','Civilisation vs Savagery'],
+ meaning:"Jack mocks Piggy's asthma almost immediately after meeting him, establishing a pattern of cruelty and exclusion that continues throughout the novel.",
+ technique:"Mocking, dismissive tone; childish insult.",
+ solid:"This early insult shows Jack quickly targeting Piggy's weakness, setting up the bullying and exclusion Piggy will face for the rest of the novel.",
+ deep:"Occurring within the novel's opening pages, this casual cruelty establishes Piggy's social vulnerability before any wider breakdown of order has occurred, suggesting that some capacity for exclusion and mockery exists among the boys from the very beginning, prior to any 'descent' into savagery.",
+ context:"Reflects the casual cruelty of playground hierarchy familiar to Golding's original readers, given a darker significance once removed from adult supervision.",
+ useFor:"Essays on Piggy's characterisation, bullying and exclusion, or Jack's characterisation."},
+{text:"is scientific, that's what it is", speaker:"Piggy", ch:"2", characters:['Piggy'], themes:['Rationality vs Instinct'],
+ meaning:"Piggy insists that the world, including the boys' situation, can be understood and managed through logic and scientific reasoning rather than fear or superstition.",
+ technique:"Colloquial, assertive phrasing; appeal to rational authority.",
+ solid:"This shows Piggy's belief that logical thinking, not fear or imagination, is the right way to understand and solve the group's problems.",
+ deep:"Piggy's appeal to the 'scientific' directly opposes the superstitious fear of the beast that increasingly dominates the group, positioning him as the novel's clearest voice of Enlightenment-style rationalism, a voice that Golding ultimately presents as tragically unable to prevail against fear and instinct.",
+ context:"Reflects a post-war faith in scientific rationalism that Golding's novel arguably questions, given how little power reason ultimately holds against fear.",
+ useFor:"Essays on rationality vs instinct, Piggy's characterisation, or the limits of reason."},
+{text:"Humans? Or animals? Or savages?", speaker:"Piggy", ch:"11", characters:['Piggy'], themes:['Civilisation vs Savagery','Rationality vs Instinct'],
+ meaning:"Piggy directly challenges Jack's tribe, near the novel's climax, to consider what kind of beings they have become.",
+ technique:"Rhetorical tricolon; escalating rhetorical questions.",
+ solid:"This shows Piggy still trying to use reasoned argument, even at the most dangerous moment, to make the other boys think about how far they have fallen from civilised behaviour.",
+ deep:"The escalating tricolon moves from 'humans' through 'animals' to the most damning term, 'savages', structurally forcing Jack's tribe to confront a hierarchy of moral decline; that this reasoned appeal fails to prevent Piggy's death immediately afterwards underscores Golding's bleak suggestion that rational argument alone cannot restrain a group already committed to violence.",
+ context:"Reflects the novel's broader argument that appeals to reason, however clearly made, may not be sufficient once fear and group violence have taken hold.",
+ useFor:"Essays on Piggy's death, rationality vs instinct, or the limits of persuasion against mob violence."},
+{text:"Maybe it's only us", speaker:"Simon", ch:"5", characters:['Simon'], themes:['Human Nature','Fear'],
+ meaning:"Simon tentatively suggests to the group that the 'beast' they fear may not be an external creature, but something within the boys themselves.",
+ technique:"Tentative modal 'maybe'; understated, hesitant phrasing.",
+ solid:"This shows Simon starting to realise, earlier than anyone else, that the real danger might come from the boys themselves rather than from any monster on the island.",
+ deep:"The hesitant, qualified phrasing reflects both Simon's inarticulacy and the sheer difficulty of expressing an idea the rest of the group is unwilling to hear; Golding may use Simon's failure to be properly understood here to foreshadow the later, fatal consequences of the group's refusal to accept uncomfortable truths.",
+ context:"Reflects Golding's central thesis, informed by his wartime experience, that the true source of human violence lies within human nature rather than in any external monster.",
+ useFor:"Essays on Simon's insight, human nature, or the central meaning of the beast."},
+{text:"I'm part of you", speaker:"The Lord of the Flies", ch:"8", characters:['Simon','Jack'], themes:['Symbolism and Religious Allusion','Human Nature'],
+ meaning:"In Simon's hallucinatory vision, the severed pig's head seems to tell him that the true beast is internal, a part of every boy rather than a separate creature.",
+ technique:"Personification; direct address; symbolic revelation.",
+ solid:"This shows the pig's head, in Simon's imagination, confirming that the beast is not a real monster but something that exists inside the boys themselves.",
+ deep:"By having the imagined voice of the Lord of the Flies articulate the novel's central thematic revelation directly to Simon, Golding stages the novel's most explicit moment of symbolic and psychological confrontation, blurring the line between hallucination and genuine insight in a way that invites, without confirming, a supernatural or allegorical reading.",
+ context:"Reflects Golding's use of the 'Lord of the Flies' as a translation of Beelzebub, a name associated with the devil, reinforcing the moment's allegorical weight.",
+ useFor:"Essays on symbolism, Simon's death, or the meaning of the beast."},
+{text:"the beast was harmless and horrible", speaker:"Narrator", ch:"6", characters:['Simon'], themes:['Fear','Symbolism and Religious Allusion'],
+ meaning:"The narrator describes the true source of the boys' 'beast from air': the harmless, decaying body of a dead parachutist, made horrifying only by the boys' fear and imagination.",
+ technique:"Oxymoron; ironic juxtaposition.",
+ solid:"This shows that the 'beast' the boys are so afraid of is actually just a dead body, not a real monster, revealing how much of the danger exists only in their imagination.",
+ deep:"The oxymoronic pairing of 'harmless' and 'horrible' captures precisely the gap between objective reality and the boys' fear-distorted perception, reinforcing Golding's suggestion that the beast's power lies entirely in what the boys project onto it rather than in any inherent threat.",
+ context:"Reflects the unspecified war framing the novel, since the parachutist is himself a casualty of the same adult conflict the boys have been evacuated from.",
+ useFor:"Essays on fear, symbolism, or the irony of the beast's true identity."},
+{text:"a civilization that knew nothing of him", speaker:"Narrator (describing Roger)", ch:"4", characters:['Roger'], themes:['Violence','Human Nature'],
+ meaning:"The narrator explains that Roger's early restraint from throwing stones directly at a younger boy is held in place only by the invisible, absent authority of civilisation, not by any genuine personal morality.",
+ technique:"Personification of 'civilization'; ironic understatement.",
+ solid:"This shows that Roger only avoids hurting the younger boy because of old habits from the adult world, not because he actually cares, which hints that his restraint won't last.",
+ deep:"By locating Roger's restraint in an external, almost mechanical force ('a civilization') rather than internal conscience, Golding suggests that Roger's later, unhesitating violence was always latent, requiring only the literal absence of adult society to be released, a chilling foreshadowing of his role in Piggy's death.",
+ context:"Reflects Golding's broader argument that civilised restraint may often be external and conditional rather than a fixed, internal trait.",
+ useFor:"Essays on Roger's characterisation, human nature, or foreshadowing."},
+{text:"out of the sea", speaker:"Percival", ch:"5", characters:['Percival'], themes:['Fear'],
+ meaning:"Percival claims that the beast comes from the sea, a vague, unverifiable idea that nonetheless spreads fear through the assembly.",
+ technique:"Vague, unspecific claim; childlike uncertainty.",
+ solid:"This shows how even a small, frightened boy's vague claim about the beast can spread fear through the whole group, even though nobody can actually check if it's true.",
+ deep:"The very vagueness of Percival's claim is what makes it so dangerous: because the beast's origin from the sea cannot be verified or disproved, Golding suggests fear of the unknown is far harder to counter with reason than a fear grounded in something concrete.",
+ context:"Reflects the difficulty of countering diffuse, unfalsifiable fears with rational argument, a dynamic Golding may have observed in wartime and post-war anxieties.",
+ useFor:"Essays on fear, the littluns, or the limits of Piggy and Ralph's rational leadership."},
+{text:"the darkness of man's heart", speaker:"Narrator", ch:"12", characters:['Ralph'], themes:['Loss of Innocence','Human Nature'],
+ meaning:"In the novel's closing lines, the narrator describes Ralph weeping for the end of childhood innocence and for his new, painful understanding of human cruelty.",
+ technique:"Metaphor; elevated, poetic register; biblical undertone.",
+ solid:"This shows Ralph finally understanding, with great sadness, how capable people, including his own friends, are of real cruelty and violence.",
+ deep:"The metaphor of 'darkness' within the human 'heart' relocates the source of evil from any external beast to human interiority itself, crystallising the novel's central thesis in its very final lines and marking Ralph's transition from childhood optimism to a devastating, adult understanding of human nature.",
+ context:"Reflects Golding's own view, shaped by his wartime experience, that human beings carry the capacity for great cruelty within themselves rather than only in external monsters or enemies.",
+ useFor:"Essays on the ending, loss of innocence, human nature, or Ralph's development — a central quotation for the whole novel."},
+{text:"law and rescue, or hunting", speaker:"Ralph", ch:"11", characters:['Ralph'], themes:['Civilisation vs Savagery','Power and Leadership'],
+ meaning:"Ralph poses a direct rhetorical question to himself and the reader about which is truly more valuable: ordered rescue, or violent hunting.",
+ technique:"Rhetorical question; antithesis.",
+ solid:"This shows Ralph trying to work out which is really more important — following rules and trying to get rescued, or giving in to hunting and violence like Jack's tribe.",
+ deep:"By this late stage, Ralph's confident certainty from earlier chapters has become a genuine, troubled question, suggesting that even the novel's clearest advocate for civilisation has begun to feel the pull of the alternative Jack represents, deepening the novel's exploration of how fragile such convictions truly are under pressure.",
+ context:"Reflects the novel's broader argument that civilisation requires active, effortful choice rather than being an automatic or guaranteed default.",
+ useFor:"Essays on Ralph's development, civilisation vs savagery, or the novel's central moral question."},
+{text:"put up a better show than that", speaker:"The naval officer", ch:"12", characters:['Ralph','Jack'], themes:['Irony','War'],
+ meaning:"The rescuing naval officer expresses mild disappointment that a group of British boys could not manage their island society better, unaware of the violence and deaths that have actually occurred.",
+ technique:"Understatement; dramatic irony; formal, dismissive register.",
+ solid:"This shows the officer completely misunderstanding how serious the boys' situation really was, treating it lightly even though two boys have died.",
+ deep:"The officer's casual understatement, delivered by a representative of the very adult, warring world that framed the boys' evacuation, creates a final, devastating irony: the adult he represents is no less capable of organised violence than the boys, even as he stands in judgement of their 'poor show'.",
+ context:"Reflects the novel's framing war, since the officer's own naval uniform and mission implicitly connect him to the same capacity for large-scale violence the novel critiques in the boys.",
+ useFor:"Essays on the ending, irony, or the novel's argument that adult society is not simply the opposite of the boys' savagery."},
+{text:"I ought to be chief", speaker:"Jack", ch:"1", characters:['Jack'], themes:['Power and Leadership'],
+ meaning:"Jack argues for his own right to lead the group, based on his position as head of the choir, immediately after Ralph is elected chief instead.",
+ technique:"Modal verb 'ought' asserting entitlement; direct claim to authority.",
+ solid:"This shows that Jack feels he deserves to be leader and is unhappy from the very start that Ralph was chosen instead of him.",
+ deep:"Jack's use of 'ought', implying a moral or natural entitlement to leadership rather than an earned or agreed one, reveals from the novel's opening chapter that his understanding of authority is fundamentally different from the consent-based model the conch represents, foreshadowing his later rejection of democratic process entirely.",
+ context:"Reflects wider questions about what legitimately justifies leadership: election and consent, as with Ralph, or status and self-assertion, as with Jack.",
+ useFor:"Essays on power and leadership, Jack's characterisation, or the contrast between Ralph and Jack."},
+{text:"We told him we got the fire lit", speaker:"Samneric", ch:"12", characters:['Samneric'], themes:['Group Behaviour','Fear'],
+ meaning:"Sam and Eric, now coerced members of Jack's tribe, quietly warn Ralph that Jack's group knows his hiding place, even while nominally serving the tribe that has absorbed them.",
+ technique:"Reported speech; hushed, urgent tone.",
+ solid:"This shows that even after being forced into Jack's tribe, Samneric still feel some loyalty to Ralph and try to warn him, even though they are too frightened to fully help him.",
+ deep:"The twins' quiet warning, delivered even while nominally serving Jack's tribe, illustrates the persistence of some residual conscience beneath coerced conformity, complicating any simple reading of Samneric as having fully become part of the violence around them.",
+ context:"Reflects Golding's suggestion that fear-based conformity does not necessarily eliminate individual conscience entirely, even where it successfully compels outward obedience.",
+ useFor:"Essays on Samneric, group behaviour, or the limits of coercion."},
+{text:"we've got to have rules and obey them", speaker:"Ralph", ch:"2", characters:['Ralph'], themes:['Civilisation vs Savagery','Democracy vs Dictatorship'],
+ meaning:"Ralph argues, early in the novel, that the group's survival and order depend on establishing and following agreed rules.",
+ technique:"Modal verb 'got to' presenting rule-following as necessity; declarative statement.",
+ solid:"This shows Ralph's early belief that rules are essential for the group to stay organised and safe, setting up his approach to leadership for the rest of the novel.",
+ deep:"The urgency of 'got to', rather than a softer suggestion, signals Ralph's genuine conviction that rules are not optional decoration but a structural necessity, a belief the novel goes on to test severely as the practical authority of those very rules steadily erodes.",
+ context:"Reflects a broadly democratic, consent-based model of authority that the novel places in direct and escalating conflict with Jack's alternative.",
+ useFor:"Essays on Ralph's leadership, civilisation vs savagery, or the conch's authority."}
+];
+
+/* ================= QUIZ BANK ================= */
+const QUIZ_BANK = [
+{type:'mc', q:"How do the boys arrive on the island?", opts:["They sail there on a boat","Their plane crashes while evacuating a war","They are shipwrecked exploring the ocean","They are dropped off by their parents"], a:1, exp:"The boys are being evacuated by plane from an unspecified war when the plane crashes, stranding them on the island with no surviving adults."},
+{type:'mc', q:"What is the conch primarily used for?", opts:["Calling pigs","Granting the right to speak at assemblies","Signalling danger only","Storing food"], a:1, exp:"The conch, found by Piggy and blown by Ralph, is used to summon assemblies and grant the exclusive right to speak."},
+{type:'char', q:"Who is elected chief at the first assembly?", opts:["Jack","Piggy","Ralph","Simon"], a:2, exp:"Ralph is elected chief, largely due to his calm authority, his athletic presence, and his possession of the conch."},
+{type:'char', q:"Who introduces the idea of using the conch to call assemblies?", opts:["Ralph","Piggy","Jack","Roger"], a:1, exp:"Piggy explains what the conch is and how it could be used to call the other boys together."},
+{type:'mc', q:"What is the boys' first, most urgent priority according to Ralph?", opts:["Hunting pigs","Building a signal fire for rescue","Exploring every part of the island","Finding fresh water only"], a:1, exp:"Ralph insists that keeping a signal fire burning to attract rescue should be the group's top priority."},
+{type:'mc', q:"What causes a passing ship to miss the boys' signal?", opts:["The fire was never built","The fire goes out while the hunters are away hunting a pig","A storm hides the smoke","The boys deliberately put it out"], a:1, exp:"Jack and the hunters leave the fire unattended to hunt a pig, letting it go out just as a ship passes."},
+{type:'char', q:"Who leads the choir at the start of the novel, later becoming the head of the hunters?", opts:["Ralph","Piggy","Jack","Roger"], a:2, exp:"Jack leads the choir at the novel's start and later transforms them into his group of hunters."},
+{type:'theme', q:"What does the conch's declining condition across the novel most directly symbolise?", opts:["The boys' growing hunting skill","The erosion of democratic, rule-based order","Increasing rainfall on the island","The boys' improving friendships"], a:1, exp:"As the novel progresses, the conch loses its authority and is eventually destroyed, symbolising the collapse of the boys' democratic order."},
+{type:'quote', q:"Which character says 'we're not savages'?", opts:["Ralph","Jack","Piggy","Roger"], a:0, exp:"Ralph insists on this early in the novel, defending the value of rules and order."},
+{type:'quote', q:"Which character says 'Bollocks to the rules!'?", opts:["Ralph","Jack","Simon","Piggy"], a:1, exp:"Jack shouts this as he rejects the conch's authority and the group's agreed rules."},
+{type:'quote', q:"Complete Piggy's question: 'What are we? Humans? Or animals? Or ___?'", opts:["monsters","savages","hunters","children"], a:1, exp:"Piggy's full question is: 'What are we? Humans? Or animals? Or savages?', challenging the tribe near the novel's climax."},
+{type:'char', q:"Which character retreats alone to a forest glade and experiences a vision involving a pig's head on a stick?", opts:["Ralph","Piggy","Simon","Roger"], a:2, exp:"Simon retreats to a secret glade, where he encounters the Lord of the Flies, the severed pig's head."},
+{type:'mc', q:"What does the 'Lord of the Flies' literally refer to in the novel?", opts:["A ghost","A severed pig's head covered in flies, mounted on a stick","A type of bird on the island","The name of the island itself"], a:1, exp:"The Lord of the Flies is the pig's head Jack's hunters leave as an offering to the beast, mounted on a sharpened stick."},
+{type:'theme', q:"What does Simon come to realise about the nature of the beast?", opts:["It is a large sea creature","It does not exist at all, in any form","It exists within the boys themselves, not as an external creature","It is actually a wild pig"], a:2, exp:"Simon realises that the true 'beast' is a capacity for violence within the boys themselves, not an external monster."},
+{type:'mc', q:"How does Simon die?", opts:["He falls from a cliff","He is mistaken for the beast and killed by the group during a ritual dance","He drowns while swimming","Jack deliberately murders him alone"], a:1, exp:"Simon is killed by the frenzied group, including Ralph and Piggy, who mistake him for the beast during a chanting ritual dance in the dark."},
+{type:'char', q:"Which character is responsible for deliberately killing Piggy?", opts:["Jack","Roger","Ralph","Samneric"], a:1, exp:"Roger deliberately dislodges a boulder that strikes and kills Piggy at Castle Rock."},
+{type:'mc', q:"What happens to the conch at the moment Piggy is killed?", opts:["Nothing, it survives intact","It is shattered by the same boulder that kills Piggy","Ralph throws it into the sea","Jack takes it as a trophy"], a:1, exp:"The boulder that kills Piggy also shatters the conch he is holding, symbolically ending the group's democratic order."},
+{type:'mc', q:"What is stolen from Piggy earlier in the novel to help Jack's tribe make fire?", opts:["His shoes","His glasses","His shirt","His knife"], a:1, exp:"Jack's tribe raids Ralph's camp and steals Piggy's glasses, which they need as a lens to start fires."},
+{type:'char', q:"Which pair of characters are so often described acting and speaking together they are almost treated as one character?", opts:["Ralph and Piggy","Jack and Roger","Sam and Eric","Simon and Percival"], a:2, exp:"Sam and Eric, the twins known as Samneric, are frequently described acting and speaking almost as a single unit."},
+{type:'mc', q:"How does the novel end?", opts:["The boys are never found","A naval officer arrives, having seen smoke from a fire set to hunt Ralph","The boys build a boat and escape themselves","Jack becomes the boys' recognised, official leader"], a:1, exp:"A naval officer, drawn by smoke from the fire Jack's tribe set to flush out and kill Ralph, arrives and ends the hunt."},
+{type:'tech', q:"What technique describes the naval officer's rescue occurring against the backdrop of the adult world's own ongoing war?", opts:["Foreshadowing","Irony","Repetition","Pathetic fallacy"], a:1, exp:"This is irony: the officer rescues the boys from savagery while himself belonging to an adult world at war."},
+{type:'tech', q:"What term describes the island's shift from a bright, inviting paradise to a scarred, burning landscape mirroring the boys' moral decline?", opts:["Pathetic fallacy / setting as antagonist","Dramatic irony","Characterisation","Foreshadowing only"], a:0, exp:"The island's physical decline mirroring the boys' moral decline is an example of pathetic fallacy and setting functioning almost as an antagonist."},
+{type:'tech', q:"What is the effect of the hunters' repeated chant 'Kill the beast! Cut his throat! Spill his blood!'?", opts:["It has no real effect on the boys","It builds ritual, trance-like intensity that allows collective violence beyond individual restraint","It is only used comically","It calms the boys down before sleep"], a:1, exp:"The chant's rhythmic repetition builds a ritual intensity that enables the group to act with a violence individual boys might otherwise resist."},
+{type:'context', q:"What kind of global event frames the boys' evacuation to the island?", opts:["A natural disaster only","An unspecified nuclear or global war","A school trip gone wrong","A shipwreck during peacetime"], a:1, exp:"The boys are being evacuated because of an unspecified nuclear or global war, linking their island experience to adult conflict."},
+{type:'context', q:"What personal experience is thought to have shaped Golding's pessimistic view of human nature in the novel?", opts:["His time as a schoolteacher only","His service in the Royal Navy during the Second World War","His childhood on a tropical island","His career as a diplomat"], a:1, exp:"Golding's service in the Royal Navy during the Second World War is widely thought to have shaped his bleak view of human nature."},
+{type:'context', q:"Which earlier boys' adventure novel is the story sometimes read as a critical response to?", opts:["Treasure Island","The Coral Island","Robinson Crusoe","Swallows and Amazons"], a:1, exp:"Lord of the Flies is often read as a critical response to R. M. Ballantyne's The Coral Island, an earlier, far more optimistic adventure story."},
+{type:'tf', q:"True or False: An adult survives the plane crash and helps guide the boys throughout the novel.", opts:["True","False"], a:1, exp:"False — no adult survives the crash, and the boys are left entirely without adult supervision or guidance."},
+{type:'tf', q:"True or False: Golding presents the boys' descent into violence as caused mainly by outside supernatural forces rather than the boys themselves.", opts:["True","False"], a:1, exp:"False — the novel, especially through Simon's insight, presents the violence as originating within the boys themselves, not from an external supernatural beast."},
+{type:'theme', q:"Which theme is most directly explored through Roger's escalating violence once free from adult restraint?", opts:["Isolation","Human Nature","Gender","Democracy vs Dictatorship"], a:1, exp:"Roger's escalating cruelty, unleashed once adult restraint disappears, is central to the novel's exploration of human nature."}
+];
+
+/* ================= WHO SAID IT GAME ================= */
+const WHOSAIDIT = [
+{text:"We're not savages.", answer:'Ralph', opts:['Ralph','Jack','Piggy','Roger'], exp:"Ralph insists on this early in the novel, defending the value of rules and civilised order."},
+{text:"Bollocks to the rules!", answer:'Jack', opts:['Jack','Ralph','Simon','Piggy'], exp:"Jack shouts this as he openly rejects the conch's authority and the group's agreed rules."},
+{text:"the English are best at everything", answer:'Jack', opts:['Jack','Ralph','Piggy','Roger'], exp:"Jack confidently, and ironically, claims the boys' nationality guarantees good behaviour."},
+{text:"Sucks to your ass-mar!", answer:'Jack', opts:['Jack','Roger','Ralph','Samneric'], exp:"Jack mocks Piggy's asthma within the novel's opening pages, establishing his cruelty early."},
+{text:"Fatty", answer:'Jack', opts:['Jack','Ralph','Roger','Simon'], exp:"Jack uses this dismissive nickname for Piggy, part of a pattern of mockery that continues throughout the novel."},
+{text:"is scientific, that's what it is", answer:'Piggy', opts:['Piggy','Ralph','Simon','Jack'], exp:"Piggy insists on rational, scientific explanations over fear and superstition."},
+{text:"Humans? Or animals? Or savages?", answer:'Piggy', opts:['Piggy','Ralph','Simon','Samneric'], exp:"Piggy challenges Jack's tribe with this escalating question shortly before his death."},
+{text:"Maybe it's only us", answer:'Simon', opts:['Simon','Ralph','Piggy','Percival'], exp:"Simon tentatively suggests the beast may be within the boys themselves, not an external creature."},
+{text:"I'm part of you", answer:'The Lord of the Flies', opts:['The Lord of the Flies','Jack','Roger','Ralph'], exp:"In Simon's vision, the pig's head seems to voice this chilling revelation about the true nature of the beast."},
+{text:"we've got to have rules and obey them", answer:'Ralph', opts:['Ralph','Piggy','Jack','Simon'], exp:"Ralph argues early in the novel that rules are essential to the group's survival and order."},
+{text:"law and rescue, or hunting", answer:'Ralph', opts:['Ralph','Piggy','Jack','Samneric'], exp:"Ralph poses this troubled rhetorical question to himself late in the novel, weighing civilisation against savagery."},
+{text:"I ought to be chief", answer:'Jack', opts:['Jack','Ralph','Roger','Piggy'], exp:"Jack argues for his own right to lead immediately after Ralph is elected chief instead."},
+{text:"out of the sea", answer:'Percival', opts:['Percival','Simon','Piggy','Samneric'], exp:"Percival's vague, unverifiable claim about the beast's origin spreads fear through the assembly."},
+{text:"put up a better show than that", answer:'The naval officer', opts:['The naval officer','Jack','Ralph','Roger'], exp:"The rescuing naval officer makes this understated remark, unaware of the violence and deaths that actually occurred."},
+{text:"We told him we got the fire lit", answer:'Samneric', opts:['Samneric','Piggy','Percival','Roger'], exp:"Sam and Eric, now coerced into Jack's tribe, still quietly try to warn Ralph."},
+{text:"Kill the beast! Cut his throat! Spill his blood!", answer:'The hunters', opts:['The hunters','Ralph and Piggy','The littluns','The naval officer'], exp:"The tribe's ritual chant is shouted collectively during the frenzied dance in which Simon is killed."},
+{text:"Kill the pig. Cut her throat. Spill her blood.", answer:'The hunters', opts:['The hunters','Ralph','Piggy','Percival'], exp:"This earlier version of the chant celebrates the hunters' first successful pig kill."},
+{text:"the darkness of man's heart", answer:'Narrator', opts:['Narrator','Ralph','Piggy','The naval officer'], exp:"In the novel's closing lines, the narrator describes Ralph's grief for the cruelty the island has revealed in human nature."}
+];
+
+/* ================= CIVILISATION TRACKER DATA ================= */
+const CHANGE_DATA = [
+{name:'Ralph', level:3, begin:"Confident, sunlit, athletic boy delighted by the island's freedom, quickly established as elected chief through the group's vote.", end:"A filthy, exhausted, terrified boy hunted across the island by Jack's tribe, yet still the character most consistently trying to appeal to reason and order even as it collapses around him.", learns:"That maintaining order and rescue-focused priorities requires constant, active effort against fear, boredom and rival appeals to instinct, and that this effort can still fail despite his best intentions.", refuses:"To fully abandon reasoned, rule-based leadership even once its practical authority has almost entirely disappeared, continuing to value the conch and rescue until the very end.", quote:"law and rescue, or hunting"},
+{name:'Jack', level:5, begin:"Disciplined, status-conscious leader of the choir, initially still operating within a recognisably adult-sanctioned structure of authority.", end:"Self-declared chief of a violent, face-painted tribe ruling through fear, ritual and physical punishment, entirely independent of the conch's authority.", learns:"That fear and ritual can command loyalty and obedience more immediately and completely than reasoned argument or elected authority.", refuses:"Any accountability for the deaths of Simon and Piggy, or for the violent methods by which his tribe maintains control.", quote:"Bollocks to the rules!"},
+{name:'Roger', level:5, begin:"A quiet, watchful boy shown deliberately not hitting a younger boy with stones, held back by an internalised, almost automatic sense of taboo.", end:"The tribe's most brutal enforcer, torturing a captive and deliberately killing Piggy with a boulder, entirely without hesitation or restraint.", learns:"That the social and adult restraints that once governed his behaviour have no force once removed from ordinary civilisation, freeing him to act on impulses he once suppressed.", refuses:"Any form of restraint, remorse or accountability once Jack's tribe legitimises violence as a means of control.", quote:"a civilization that knew nothing of him"},
+{name:'Piggy', level:1, begin:"An intelligent, rule-minded boy already excluded and mocked for his weight, glasses and asthma, relying on logic to earn a place in the group.", end:"Still committed to reason and rules right up to his death, but now almost blind without his stolen glasses and entirely without protection from Jack's tribe.", learns:"Little in terms of outlook — Piggy's belief in reason, planning and rules remains essentially constant throughout, even as it becomes less and less able to protect him.", refuses:"To abandon rational argument and appeals to fairness, even when physically confronting Jack's armed, hostile tribe at Castle Rock.", quote:"Humans? Or animals? Or savages?"},
+{name:'Samneric', level:4, begin:"Loyal, hardworking twins who support Ralph's leadership, tend the signal fire, and speak so closely in unison they are often treated as a single character.", end:"Frightened, coerced members of Jack's tribe, having been captured and threatened into joining, ultimately forced to reveal Ralph's hiding place under duress.", learns:"That loyalty to Ralph's rules offers little protection once Jack's tribe controls the island through fear and superior numbers.", refuses:"To fully embrace Jack's worldview even after joining his tribe, retaining enough residual loyalty to Ralph to warn him privately before betraying his location under further threat.", quote:"We told him we got the fire lit"}
+];
+
+/* ================= DESCENT INTO SAVAGERY DATA ================= */
+const CHAIN = [
+{who:'Ralph', action:"Is elected chief and establishes the conch as the group's symbol of order.", detail:"At the first assembly, the boys vote Ralph chief over Jack, largely due to his calm authority and possession of the conch, which Piggy has taught them to use to call meetings and control who may speak.", quote:"we're not savages", message:"Golding may use this founding moment to show that the boys initially choose reasoned, consent-based leadership over Jack's more forceful claim to authority, establishing a democratic model that the rest of the novel will test and ultimately undermine."},
+{who:'The hunters', action:"Neglect the signal fire to pursue their first successful pig hunt, allowing a passing ship to go unnoticed.", detail:"While Jack leads his hunters after a pig, the signal fire is allowed to go out, and a ship passes the island without seeing any distress signal, representing the group's first major, consequential failure to prioritise rescue.", quote:"Kill the pig. Cut her throat. Spill her blood.", message:"Golding may use this moment to mark the first clear point at which hunting and immediate excitement are prioritised over the group's long-term, rational goal of rescue."},
+{who:'The littluns', action:"Spread growing fear of a mysterious 'beast', destabilising the group's rational decision-making.", detail:"Rumours and nightmares among the youngest boys about a 'beastie', encouraged by Percival's claim that it comes from the sea, spread anxiety through the whole group, undermining Ralph and Piggy's attempts to maintain calm, practical order.", quote:"out of the sea", message:"Golding may suggest that unfounded fear, once it takes hold of even the youngest and least powerful members of a group, can destabilise a community's capacity for rational cooperation far more than any genuine external threat."},
+{who:'Jack and the hunters', action:"Experience the intense, ritualised thrill of their first successful pig kill.", detail:"The hunters' first successful, bloody kill of a pig produces an intoxicating mixture of excitement and violence, quickly ritualised into a chant and dance that will later be repeated with even more dangerous consequences.", quote:"Kill the beast! Cut his throat! Spill his blood!", message:"Golding may use the hunters' visible thrill at their first kill to suggest that violence, once experienced, generates its own dangerous momentum and appeal, making further, escalating violence more likely rather than less."},
+{who:'The tribe, in the frenzy of a ritual dance', action:"Mistake Simon for the beast and kill him in the chaos and darkness.", detail:"Simon, rushing down from the mountain in the dark and rain to share his discovery that the beast is not real, is caught in the tribe's chanting, dancing ritual and killed by the frenzied group, including Ralph and Piggy, who are swept into the violence themselves.", quote:"Kill the beast! Cut his throat! Spill his blood!", message:"Golding may present Simon's death as the novel's clearest demonstration of how ritual and group frenzy can override individual moral restraint, implicating even usually rational characters like Ralph and Piggy in collective violence."},
+{who:'Roger', action:"Deliberately kills Piggy and destroys the conch by levering a boulder from Castle Rock.", detail:"During a confrontation between Ralph's remaining group and Jack's tribe at Castle Rock, Roger deliberately dislodges a boulder that strikes and kills Piggy, simultaneously shattering the conch he is holding, symbolically ending any remaining democratic authority.", quote:"Humans? Or animals? Or savages?", message:"Golding may use the simultaneous destruction of Piggy and the conch to suggest that reasoned, democratic authority and its most vulnerable defenders fall together once violence is allowed to go entirely unchecked."},
+{who:"Jack's tribe, then the naval officer", action:"Hunt Ralph across the burning island until a naval officer's arrival ends the pursuit.", detail:"With Piggy dead and the conch destroyed, Jack's tribe sets the island ablaze in an effort to flush out and kill Ralph, who is only saved when the smoke from the fire attracts a passing naval ship, whose officer arrives just as Ralph is being hunted.", quote:"put up a better show than that", message:"Golding may use the naval officer's arrival, itself made possible only by the destructive fire meant to kill Ralph, to create a deeply ironic rescue that undercuts any comfortable sense that adult intervention represents a return to genuine civilisation."}
+];
+
+/* ================= COMPARE DATA ================= */
+const COMPARE_READERS = [
+{point:"Direct awareness of WWII atrocities and the Holocaust", why:"Explains why Golding's original readers would recognise the boys' capacity for organised cruelty as historically plausible rather than far-fetched, having recently witnessed genocide committed by ostensibly civilised societies."},
+{point:"Knowledge of the atomic bomb and Cold War nuclear anxiety", why:"Explains why the novel's unspecified nuclear or global war frame narrative would feel immediately urgent and credible to a 1950s readership living with real fears of atomic conflict."},
+{point:"Real historical examples of civil and social order collapsing under conflict", why:"Explains why readers would find the boys' rapid descent into tribalism and violence historically grounded rather than an implausible exaggeration."},
+{point:"Golding's own WWII naval service and combat experience", why:"Explains the pessimistic authority behind the novel's view of human nature, since Golding drew directly on his own experience of violence and its ordinary perpetrators."},
+{point:"Familiarity with, and scepticism toward, the boys' adventure story tradition (e.g. The Coral Island)", why:"Explains why readers would recognise the novel as a deliberate, critical response to earlier optimistic adventure fiction about resourceful, well-behaved British boys surviving alone."}
+];
+const COMPARE_BOYS = [
+{point:"Naive, adventure-story optimism inherited from books like The Coral Island", why:"Explains the boys' early confidence that their island experience will resemble a fun, resourceful adventure rather than a genuine crisis."},
+{point:"Belief that they are safe from the adult world's violence", why:"Explains the boys' initial failure to recognise that the war framing their evacuation has already demonstrated adult society's own capacity for organised violence."},
+{point:"Assumption that 'British boys' would behave decently by nature", why:"Explains the boys' shock, particularly Ralph's, at how quickly their own group descends into violence, since they initially assume good behaviour is guaranteed by nationality or upbringing."},
+{point:"Confidence that rescue and rules will resolve any problems that arise", why:"Explains the boys' early reliance on the conch and signal fire as sufficient solutions, underestimating how quickly fear and rival leadership can undermine agreed structures."},
+{point:"Initial trust in their own inherent goodness and self-control", why:"Explains why characters like Ralph are genuinely unprepared for the extent of the violence the group, including himself, proves capable of by the novel's end."}
+];
+
+/* ================= RENDER: NAVIGATION ================= */
+let currentSection = Store.get('lastSection','overview');
+
+function renderNav(){
+  const html = SECTIONS.map((s,i)=>`<button class="navlink" data-target="${s.id}" role="tab"><span class="num">${String(i+1).padStart(2,'0')}</span>${s.label}</button>`).join('');
+  document.getElementById('navList').innerHTML = html;
+  document.getElementById('navListMobile').innerHTML = html;
+  document.querySelectorAll('.navlink').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ showSection(btn.getAttribute('data-target')); closeDrawer(); });
+  });
+}
+
+function showSection(id){
+  currentSection = id;
+  Store.set('lastSection', id);
+  document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active', s.id === 'section-'+id));
+  document.querySelectorAll('.navlink').forEach(b=>b.classList.toggle('active', b.getAttribute('data-target')===id));
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+}
+
+function closeDrawer(){
+  document.getElementById('mobileDrawer').classList.remove('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded','false');
+}
+document.getElementById('hamburgerBtn').addEventListener('click', ()=>{
+  const d = document.getElementById('mobileDrawer');
+  const open = d.classList.toggle('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded', open?'true':'false');
+});
+document.getElementById('mobileDrawer').addEventListener('click', (e)=>{
+  if(e.target.id === 'mobileDrawer') closeDrawer();
+});
+
+const root = document.getElementById('sectionsRoot');
+function el(html){ const d=document.createElement('div'); d.innerHTML=html; return d.firstElementChild; }
+
+/* ---- 1. OVERVIEW ---- */
+function buildOverview(){
+  const s = el(`<section class="section" id="section-overview">
+    <div class="section-header"><div class="eyebrow">Section 01</div><h1>Overview</h1><div class="desc">Get your bearings before you dive into detail.</div></div>
+
+    <div class="grid two">
+      <div class="card"><h3>Key facts</h3>
+        <p><b>Author:</b> William Golding<br>
+        <b>First published:</b> 1954<br>
+        <b>Setting:</b> An uninhabited tropical island, reached after a plane evacuating the boys from an unspecified nuclear or global war crashes<br>
+        <b>Time setting:</b> An unspecified future war, deliberately left vague by Golding<br>
+        <b>Genre:</b> Allegorical novel / dystopian survival fiction</p>
+      </div>
+      <div class="card"><h3>Why the novel matters for GCSE</h3>
+        <p>Its tightly controlled symbolism and steadily escalating structure make it ideal for studying how a novelist builds an argument through narrative form, not just plot. It rewards students who track how objects, settings and imagery change meaning across the whole novel, not just what happens in any single chapter.</p>
+      </div>
+    </div>
+
+    <div class="card"><h3>Basic premise</h3>
+      <p>A group of British schoolboys, evacuated by plane during an unspecified war, are stranded alone on a tropical island after their plane crashes and no adults survive. They attempt to build a functioning society, electing Ralph as leader and using a conch shell to organise assemblies and rules. As fear of a mysterious 'beast' grows and Jack's hunters gain power, the group's fragile cooperation collapses into rival factions, ritual, and eventually murder, until a naval officer's arrival, drawn by a fire meant to kill Ralph, brings the violence to an abrupt end.</p>
+    </div>
+
+    <div class="card"><h3>Major themes at a glance</h3>
+      <p><span class="tag blood">Civilisation vs Savagery</span><span class="tag blood">Power and Leadership</span><span class="tag blood">Fear</span><span class="tag gold">Human Nature</span><span class="tag gold">Group Behaviour</span><span class="tag gold">Loss of Innocence</span><span class="tag">Symbolism and Religious Allusion</span><span class="tag">Rationality vs Instinct</span><span class="tag">Isolation</span><span class="tag fog">Violence</span><span class="tag fog">War</span><span class="tag fog">Democracy vs Dictatorship</span></p>
+    </div>
+
+    <div class="card"><h3>Why these ideas matter</h3>
+      <p><b>Civilisation vs savagery</b> sits at the heart of the novel — how quickly, and how completely, ordered rules give way to violence once adult supervision disappears.<br><br>
+      <b>Power and leadership</b> contrasts Ralph's elected, rule-based authority with Jack's coercive, fear-based dominance.<br><br>
+      <b>Fear and human nature</b> examine what actually drives the boys' descent: not a real monster, but their own capacity for cruelty.<br><br>
+      <b>Symbolism, rationality and group behaviour</b> show how Golding builds his argument through recurring objects and crowd psychology as much as through individual character.<br><br>
+      <b>War and isolation</b> frame the whole novel, linking the boys' island in miniature to the adult world's own capacity for organised violence.</p>
+    </div>
+
+    <div class="card"><h3>Written in 1954 — why this matters</h3>
+      <p>Golding wrote Lord of the Flies shortly after serving in the Royal Navy during the Second World War, and shortly after the world had witnessed both the atrocities of the Holocaust and the first use of atomic weapons. This context may have shaped his deeply sceptical view of human nature, and his choice to frame the boys' evacuation around an unspecified nuclear or global war deliberately links the boys' island in miniature to the adult world's own capacity for organised destruction. The novel is also frequently read as a direct, critical response to earlier, far more optimistic boys' adventure fiction, particularly R. M. Ballantyne's 1858 novel The Coral Island, whose stranded, resourceful and well-behaved young heroes Golding's boys initially resemble, before their behaviour diverges catastrophically.</p>
+    </div>
+
+    <div class="card"><h3>What GCSE students need to understand</h3>
+      <ul>
+        <li>That the novel's unspecified war framing is central to its meaning, deliberately blurring any easy separation between the boys' savagery and the adult world's own violence.</li>
+        <li>How Golding uses recurring symbols (the conch, the fire, Piggy's glasses, the beast, the Lord of the Flies) as deliberately as he uses plot and dialogue to build his argument.</li>
+        <li>That Simon's private insight, that the beast is internal rather than external, is the novel's central thematic revelation.</li>
+        <li>That exam boards want analysis of Golding's methods and possible purposes, not simply a retelling of events.</li>
+      </ul>
+    </div>
+
+    <div class="sixty">
+      <h3>Lord of the Flies in 60 Seconds</h3>
+      <p>A group of British schoolboys, evacuated by plane from an unspecified war, are stranded alone on a tropical island after their plane crashes. Ralph is elected leader and, with Piggy's help, establishes rules, shelters and a signal fire using a conch shell to organise assemblies. Jack, head of the choir, grows increasingly obsessed with hunting, and as fear of a mysterious 'beast' spreads through the group, his hunters break away into a rival, ritualistic tribe. Simon, retreating alone into the forest, comes to realise the beast is not a real creature but something within the boys themselves, but is killed by the frenzied group before he can properly share this insight. Jack's tribe steals Piggy's glasses to make fire, and when Ralph confronts them, Roger deliberately kills Piggy and destroys the conch. Jack's tribe then hunts Ralph across the island, setting it ablaze, until a naval officer, drawn by the smoke, arrives just in time to end the violence.</p>
+    </div>
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 2. PLOT ---- */
+const PLOT = [
+{n:'Early Island', t:'The plane crash', happens:"A plane evacuating the boys from an unspecified war crashes on a remote, uninhabited tropical island. No adults survive, leaving the boys entirely alone.", why:"Establishes the total isolation from adult authority that makes the rest of the novel's events possible, and frames the boys' situation against an unspecified adult war.", chars:["Ralph","Piggy"], themes:["Isolation","War"], quote:"It's a good island"},
+{n:'Early Island', t:'The conch, the assembly, and Ralph\'s election', happens:"Ralph and Piggy find the conch shell, use it to call the other boys together, and Ralph is elected chief over Jack, largely due to his calm authority and possession of the conch.", why:"Establishes the conch as the group's central symbol of democratic, rule-based order, and sets up the rivalry between Ralph and Jack that will structure the whole novel.", chars:["Ralph","Piggy","Jack"], themes:["Democracy vs Dictatorship","Power and Leadership"], quote:"we've got to have rules and obey them"},
+{n:'Early Island', t:'Early rules and Jack\'s choir become hunters', happens:"The group establishes basic rules, shelters and a signal fire, while Jack's choir, initially still under some discipline, gradually redirect their energy toward hunting pigs.", why:"Shows the group's initial, genuine attempt to build a functioning society, while also planting the seed of Jack's alternative, hunting-focused priorities.", chars:["Jack","Ralph"], themes:["Civilisation vs Savagery","Power and Leadership"], quote:"I ought to be chief"},
+{n:'Fear Grows', t:'First sighting of a \'beastie\'', happens:"A young littlun claims to have seen a frightening 'beastie' in the night, introducing a fear of an unknown creature that will grow throughout the novel.", why:"Introduces fear as a major destabilising force, one that will prove far more socially destructive than any real threat on the island.", chars:["Percival"], themes:["Fear"], quote:"out of the sea"},
+{n:'Fear Grows', t:'The signal fire\'s neglect and a missed ship', happens:"While Jack and his hunters pursue their first pig hunt, the signal fire is allowed to go out, and a passing ship sails by without seeing any distress signal.", why:"Marks the first clear moment at which hunting is prioritised over rescue, escalating the tension between Ralph's and Jack's competing priorities.", chars:["Jack","Ralph"], themes:["Civilisation vs Savagery","Power and Leadership"], quote:"Kill the pig. Cut her throat. Spill her blood."},
+{n:'Fear Grows', t:'The community splits over priorities', happens:"Ralph and Piggy continue to prioritise rescue and order, while Jack and his hunters increasingly focus on hunting, ritual and the thrill of violence, deepening the group's division.", why:"Establishes the structural split between rescue-focused and hunting-focused factions that will define the rest of the novel.", chars:["Ralph","Jack","Piggy"], themes:["Democracy vs Dictatorship","Group Behaviour"], quote:"we're not savages"},
+{n:'Descent', t:'Jack\'s hunters make their first kill', happens:"Jack's hunters successfully kill a pig for the first time, celebrating with an intoxicating, ritualised chant and dance that reveals the dark thrill violence now holds for them.", why:"Marks the first significant escalation of violence in the novel, establishing a ritual pattern that will later accompany far more dangerous events.", chars:["Jack","Roger"], themes:["Violence","Group Behaviour"], quote:"Kill the pig. Cut her throat. Spill her blood."},
+{n:'Descent', t:'Jack challenges Ralph\'s authority', happens:"At a tense assembly, Jack openly challenges Ralph's leadership and the authority of the conch, before storming off to form his own breakaway tribe.", why:"Marks the formal fracture of the group's original democratic structure into two rival factions.", chars:["Jack","Ralph","Piggy"], themes:["Power and Leadership","Democracy vs Dictatorship"], quote:"Bollocks to the rules!"},
+{n:'Descent', t:'The Lord of the Flies and Simon\'s vision', happens:"Jack's hunters leave a pig's head on a stake as an offering to the beast. Simon, alone in a forest glade, experiences a hallucinatory vision in which the head, now swarming with flies, seems to speak to him.", why:"Introduces the novel's central symbol and its most explicit statement of Golding's thematic argument about the true nature of the beast.", chars:["Simon","Jack"], themes:["Symbolism and Religious Allusion","Human Nature"], quote:"I'm part of you"},
+{n:'Descent', t:"Simon's realisation about the beast", happens:"Simon comes to understand that the beast the boys fear is not an external creature at all, but something that exists within the boys themselves.", why:"Delivers the novel's central thematic revelation, though Simon's difficulty communicating it foreshadows the tragedy to come.", chars:["Simon"], themes:["Human Nature","Fear"], quote:"Maybe it's only us"},
+{n:'Collapse', t:"Simon's death", happens:"Rushing down from the mountain during a storm to share his discovery, Simon is mistaken for the beast in the darkness and chaos of a ritual dance, and is killed by the frenzied group, including Ralph and Piggy.", why:"The novel's central tragedy, demonstrating how ritual and group frenzy can override individual moral restraint entirely.", chars:["Simon","Jack","Roger"], themes:["Group Behaviour","Violence"], quote:"Kill the beast! Cut his throat! Spill his blood!"},
+{n:'Collapse', t:"Theft of Piggy's glasses and fire", happens:"Jack's tribe raids Ralph's remaining camp at night and steals Piggy's glasses, needed to make fire, leaving Piggy nearly blind and the group without their own means of making fire.", why:"Strips Piggy of both his sight and his last remaining practical usefulness, foreshadowing his death.", chars:["Piggy","Jack"], themes:["Rationality vs Instinct","Power and Leadership"], quote:"Humans? Or animals? Or savages?"},
+{n:'Collapse', t:"Piggy's death and the conch destroyed", happens:"Ralph and Piggy confront Jack's tribe at Castle Rock to demand the glasses back. Roger deliberately dislodges a boulder that kills Piggy and shatters the conch he is holding.", why:"Ends both the novel's most consistent voice of reason and its central symbol of democratic order in a single, brutal moment.", chars:["Piggy","Roger","Jack"], themes:["Violence","Democracy vs Dictatorship"], quote:"a civilization that knew nothing of him"},
+{n:'Collapse', t:"The hunt for Ralph and the naval officer's arrival", happens:"With Piggy dead and the conch destroyed, Jack's tribe hunts Ralph across the island, setting it on fire to smoke him out, until a naval officer, drawn by the smoke, arrives on the beach and ends the pursuit.", why:"Brings the novel to its ironic close: rescue arrives only because of the very fire meant to kill Ralph, and comes from an adult world itself at war.", chars:["Ralph","Jack"], themes:["Irony","War"], quote:"put up a better show than that"}
+];
+
+function buildPlot(){
+  let cards = '';
+  PLOT.forEach(p=>{
+    cards += `<div class="disclosure" data-d>
+      <button class="d-head"><span>${p.n} — ${p.t}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <div class="mini-label">What happens</div><p>${p.happens}</p>
+        <div class="mini-label">Why it matters</div><p>${p.why}</p>
+        <div class="mini-label">Characters involved</div><p>${p.chars.map(c=>`<span class="tag">${c}</span>`).join('')}</p>
+        <div class="mini-label">Themes</div><p>${p.themes.map(t=>`<span class="tag blood">${t}</span>`).join('')}</p>
+        ${p.quote ? `<div class="mini-label">Useful quotation</div><div class="quote-line">"${p.quote}"</div>` : ''}
+      </div></div>
+    </div>`;
+  });
+
+  const fourteenEvents = PLOT.map(p=>p.t);
+
+  const s = el(`<section class="section" id="section-plot">
+    <div class="section-header"><div class="eyebrow">Section 02</div><h1>Plot</h1><div class="desc">The whole novel, stage by stage. Tap any event to expand it.</div></div>
+    <div class="card"><h3>Whole Novel in 14 Events</h3>
+      <div class="timeline">${fourteenEvents.map((e,i)=>`<div class="t-item"><div class="t-num">${String(i+1).padStart(2,'0')}</div><p>${e}</p></div>`).join('')}</div>
+    </div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 3. CHARACTERS ---- */
+function buildCharacters(){
+  let cards = CHARACTERS.map(c=>`
+    <div class="disclosure" data-d>
+      <button class="d-head"><span>${c.name}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <p class="subtle" style="margin-top:10px;">${c.role}</p>
+        <div class="mini-label">Who are they?</div><p>${c.who}</p>
+        <div class="mini-label">Character journey</div><p>${c.journey}</p>
+        <div class="mini-label">Key relationships</div><p>${c.relationships}</p>
+        <div class="mini-label">Themes connected to this character</div><p>${c.themes.map(t=>`<span class="tag blood">${t}</span>`).join('')}</p>
+        ${c.quotes.length ? `<div class="mini-label">Essential quotes</div>${c.quotes.map(q=>`<div class="quote-line">"${q}"</div>`).join('') } ` : ''}
+        <div class="mini-label">What Golding may be saying</div><p>${c.message}</p>
+        <div class="mini-label">Exam arguments to develop</div><ul>${c.examArgs.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-characters">
+    <div class="section-header"><div class="eyebrow">Section 03</div><h1>Characters</h1><div class="desc">Tap a character to see their full profile: journey, relationships, quotes and exam arguments.</div></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 4. THEMES ---- */
+function buildThemes(){
+  let cards = THEMES.map(t=>`
+    <div class="disclosure" data-d>
+      <button class="d-head"><span>${t.name}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <div class="mini-label">Simple explanation</div><p>${t.explanation}</p>
+        <div class="mini-label">Where it appears</div><p>${t.where}</p>
+        <div class="mini-label">Relevant characters</div><p>${t.characters.map(c=>`<span class="tag">${c}</span>`).join('')}</p>
+        ${t.quotes.length ? `<div class="mini-label">Essential quotations</div>${t.quotes.map(q=>`<div class="quote-line">"${q}"</div>`).join('')}` : ''}
+        <div class="mini-label">Golding's possible message</div><p>${t.message}</p>
+        <div class="mini-label">Useful contextual link</div><p>${t.context}</p>
+        <div class="mini-label">Potential thesis statements</div><ul>${t.thesis.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-themes">
+    <div class="section-header"><div class="eyebrow">Section 04</div><h1>Themes</h1><div class="desc">Twelve core themes, each with quotations, context and ready-to-adapt thesis statements.</div></div>
+    <div class="card"><h3>A note on civilisation vs savagery</h3><p>This is the novel's strongest and most important theme. Golding draws a clear distinction between the boys' initial attempt at <b>civilisation</b> — rules, shelters, the conch, the signal fire — and their eventual descent into <b>savagery</b> — face-paint, ritual, violence and dictatorship. Almost every other theme in the novel (power, fear, human nature, group behaviour, symbolism) can be read as a different lens through which this central conflict plays out. Different characters represent different responses to this conflict: Ralph and Piggy represent civilisation and reason; Jack and Roger represent savagery and instinct; Simon represents a deeper, largely unheard insight into why the conflict exists at all.</p></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 5. QUOTE VAULT ---- */
+function buildQuoteVault(){
+  const allChars = ['Ralph','Jack','Piggy','Simon','Roger','Samneric','Percival'];
+  const allThemes = Array.from(new Set(QUOTES.flatMap(q=>q.themes))).sort();
+
+  const s = el(`<section class="section" id="section-quotes">
+    <div class="section-header"><div class="eyebrow">Section 05</div><h1>Quote Vault</h1><div class="desc">Search and filter the novel's most important quotations. Kept short and used only for educational analysis.</div></div>
+    <div class="qv-controls">
+      <input type="text" id="qvSearch" placeholder="Search quotations..." aria-label="Search quotations">
+      <select id="qvCharFilter" aria-label="Filter by character"><option value="">All characters</option>${allChars.map(c=>`<option value="${c}">${c}</option>`).join('')}</select>
+      <select id="qvThemeFilter" aria-label="Filter by theme"><option value="">All themes</option>${allThemes.map(t=>`<option value="${t}">${t}</option>`).join('')}</select>
+    </div>
+    <div class="qv-count" id="qvCount"></div>
+    <div id="qvResults"></div>
+  </section>`);
+  root.appendChild(s);
+
+  function renderQuotes(){
+    const search = document.getElementById('qvSearch').value.toLowerCase().trim();
+    const charF = document.getElementById('qvCharFilter').value;
+    const themeF = document.getElementById('qvThemeFilter').value;
+    const filtered = QUOTES.filter(q=>{
+      const matchesSearch = !search || q.text.toLowerCase().includes(search) || q.speaker.toLowerCase().includes(search);
+      const matchesChar = !charF || q.characters.includes(charF);
+      const matchesTheme = !themeF || q.themes.includes(themeF);
+      return matchesSearch && matchesChar && matchesTheme;
+    });
+    document.getElementById('qvCount').textContent = filtered.length + (filtered.length===1 ? ' quotation found':' quotations found');
+    const container = document.getElementById('qvResults');
+    container.innerHTML = filtered.map((q,i)=>`
+      <div class="qcard" data-idx="${i}">
+        <div class="qtext">"${q.text}"</div>
+        <div class="qmeta">${q.speaker} · Ch. ${q.ch} · ${q.themes.join(', ')}</div>
+        <button class="qreveal-btn" type="button">Reveal analysis</button>
+        <div class="qdetail">
+          <div class="row"><b>Meaning</b>${q.meaning}</div>
+          <div class="row"><b>Technique</b>${q.technique}</div>
+          <div class="level-toggle">
+            <button type="button" class="lvl-btn active" data-lvl="solid">Solid (Grade 5–6)</button>
+            <button type="button" class="lvl-btn" data-lvl="deep">Deeper (Grade 7–9)</button>
+          </div>
+          <div class="level-block active" data-lvl="solid">${q.solid}</div>
+          <div class="level-block" data-lvl="deep">${q.deep}</div>
+          <div class="row" style="margin-top:10px;"><b>Context</b>${q.context}</div>
+          <div class="row"><b>Use this for</b>${q.useFor}</div>
+        </div>
+      </div>`).join('') || '<p class="subtle">No quotations match your search. Try different filters.</p>';
+
+    container.querySelectorAll('.qreveal-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.qcard');
+        const open = card.classList.toggle('open');
+        btn.textContent = open ? 'Hide analysis' : 'Reveal analysis';
+      });
+    });
+    container.querySelectorAll('.lvl-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.qcard');
+        const lvl = btn.getAttribute('data-lvl');
+        card.querySelectorAll('.lvl-btn').forEach(b=>b.classList.toggle('active', b===btn));
+        card.querySelectorAll('.level-block').forEach(b=>b.classList.toggle('active', b.getAttribute('data-lvl')===lvl));
+      });
+    });
+  }
+  document.getElementById('qvSearch').addEventListener('input', renderQuotes);
+  document.getElementById('qvCharFilter').addEventListener('change', renderQuotes);
+  document.getElementById('qvThemeFilter').addEventListener('change', renderQuotes);
+  renderQuotes();
+}
+
+/* ---- 6. CONTEXT ---- */
+function buildContext(){
+  const items = [
+  {t:"1950s Britain and Post-War Europe", body:"Written in 1954, less than a decade after the Second World War ended, the novel emerged from a period of continued rationing, reconstruction and growing Cold War tension across Britain and Europe.",
+   use:"Use this to explain the immediate cultural backdrop against which Golding's pessimistic view of human nature would have felt urgent and current to his original readers."},
+  {t:"The Second World War and the Holocaust", body:"Golding's original readers had recently learned the full scale of Nazi atrocities and the Holocaust, direct evidence that supposedly 'civilised' societies were capable of organised, industrial-scale cruelty.",
+   use:"Use this to explain why the boys' rapid descent into violence would have seemed historically plausible, rather than an exaggerated or unrealistic premise, to a 1954 readership."},
+  {t:"The Atomic Bomb and Cold War Anxiety", body:"The atomic bombings of Hiroshima and Nagasaki in 1945, and the growing threat of nuclear war between the USA and USSR through the early 1950s, created widespread anxiety about a possible future global conflict.",
+   use:"Use this to explain the significance of the novel's unspecified nuclear or global war frame narrative, and why a contemporary audience would find this scenario immediately credible."},
+  {t:"Golding's Naval Service", body:"Golding served in the Royal Navy during the Second World War, seeing combat action including involvement in the sinking of the Bismarck and the D-Day landings, experiences that appear to have shaped his conviction that ordinary people are capable of serious violence.",
+   use:"Use this, sparingly, to explain the pessimistic authority behind the novel's portrayal of violence, but always connect it back to a specific textual choice rather than treating biography as a substitute for analysis."},
+  {t:"The Coral Island and the Boys' Adventure Tradition", body:"R. M. Ballantyne's 1858 novel The Coral Island depicts stranded British boys behaving resourcefully and decently throughout their island adventure; Golding deliberately echoes its setup while presenting a starkly different, far more violent outcome.",
+   use:"Use this to explain the significance of the boys' early, adventure-story optimism, and how Golding's novel can be read as a direct, critical response to this earlier, more comforting tradition."},
+  {t:"Public School Culture", body:"The boys are implied to come from a British private or grammar school background, evident in details like the choir and their initial deference to adult-like structures of discipline and hierarchy.",
+   use:"Use this to explain the boys' initial assumptions about order and leadership, and to explore how quickly these inherited, class-specific structures collapse once removed from the adult institutions that usually enforce them."},
+  {t:"Christianity and Biblical Allegory", body:"Golding's broadly Christian cultural background and classical education inform several biblical allusions in the novel, particularly Simon's Christ-like isolation, vision and sacrificial death.",
+   use:"Use this to support, carefully and with textual evidence, a religious or allegorical reading of Simon's character, while acknowledging that this remains one interpretation among several."},
+  {t:"Golding's Views on Human Nature", body:"Golding has described his belief that the roots of human evil lie within human nature itself, rather than being produced solely by flawed social or political systems, a view the novel's events consistently support.",
+   use:"Use this sparingly to explain the novel's central thesis about human nature, but always connect it back to specific characters and events (Roger's violence, Simon's death) rather than treating it as a substitute for textual analysis."}
+  ];
+  const cards = items.map(i=>`<div class="disclosure" data-d>
+    <button class="d-head"><span>${i.t}</span><span class="chev">›</span></button>
+    <div class="d-body"><div class="inner">
+      <p style="margin-top:10px;">${i.body}</p>
+      <div class="mini-label">How can I actually use this in an essay?</div><p>${i.use}</p>
+    </div></div>
+  </div>`).join('');
+
+  const s = el(`<section class="section" id="section-context">
+    <div class="section-header"><div class="eyebrow">Section 06</div><h1>Context</h1><div class="desc">Only the context you can actually use — always paired with a real essay application.</div></div>
+    <div class="card"><p><b>Important:</b> Never bolt on a historical fact just to prove you know it. Only use context when it genuinely deepens your interpretation of Golding's choices in that specific moment.</p></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 7. TECHNIQUES ---- */
+function buildTechniques(){
+  const cards = TECHNIQUES.map(t=>`<div class="disclosure" data-d>
+    <button class="d-head"><span>${t.name}</span><span class="chev">›</span></button>
+    <div class="d-body"><div class="inner">
+      <div class="mini-label">Definition</div><p>${t.def}</p>
+      <div class="mini-label">Lord of the Flies example</div><p>${t.example}</p>
+      <div class="mini-label">Effect</div><p>${t.effect}</p>
+      <div class="mini-label">How to analyse it</div><p>${t.howto}</p>
+    </div></div>
+  </div>`).join('');
+
+  const s = el(`<section class="section" id="section-techniques">
+    <div class="section-header"><div class="eyebrow">Section 07</div><h1>Techniques</h1><div class="desc">The key narrative and structural methods Golding uses, with clear examples and analysis guidance.</div></div>
+
+    <div class="card"><h3>Why do symbols matter so much in this novel?</h3>
+      <p>Golding builds much of his argument through a small set of recurring objects and images rather than through dialogue alone: the conch, the signal fire, Piggy's glasses, the beast, and the Lord of the Flies itself. Each of these physically changes across the novel — the conch cracks and is finally shattered; the fire is lit, neglected, and eventually turned into a weapon; the glasses are stolen and broken — and tracking these changes is one of the most reliable ways to build a strong analytical argument. Because the novel is relatively short and tightly structured, examiners particularly reward students who can trace a symbol's changing condition across multiple chapters, rather than analysing it in only one isolated moment.</p>
+    </div>
+
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 8. EXAM ---- */
+function buildExam(){
+  const s = el(`<section class="section" id="section-exam">
+    <div class="section-header"><div class="eyebrow">Section 08</div><h1>Exam Survival</h1><div class="desc">How to actually approach a Lord of the Flies exam question, step by step.</div></div>
+
+    <div class="card" style="text-align:center;">
+      <img src="../images/exam-essentials/lord-of-the-flies-exam-essentials.png" alt="The Teacher Vault: Lord of the Flies Exam Essentials one-page revision poster" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--line);display:block;margin:0 auto;" loading="lazy">
+      <p class="subtle" style="margin-top:10px;">The Teacher Vault's one-page <b>Exam Essentials</b> poster for Lord of the Flies — plot, characters, themes, key quotes, context, structure and vocabulary at a glance. Save it, print it, or pin it above your desk.</p>
+    </div>
+
+    <div class="card"><p>Exam boards differ in exact format — some give you a printed extract and ask you to connect it to the whole novel; others ask a discursive essay question without an extract. Always check your own exam board's format with your teacher, but the analytical skills below apply broadly.</p></div>
+
+    <div class="disclosure open" data-d><button class="d-head"><span>1. Understanding the question</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Underline the key words in the question — usually a character, theme, or idea, plus a command word (e.g. 'explore', 'how does Golding present'). Every paragraph should keep answering that exact question.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>2. Selecting evidence</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Choose short, precise quotations you can analyse word-by-word. Never invent or misremember a quotation — an accurate short quote is always stronger than an inaccurate longer one.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>3. Creating a thesis</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>State a clear, arguable position rather than just restating the question. For example: "Golding presents Jack's rise to power as a deliberate structural warning about how fear-based leadership can outcompete reasoned, democratic authority."</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>4. Paragraph structure</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>A reliable structure: Point → Evidence (short quotation) → Method (technique + effect) → Context (only if it adds insight) → Link back to Golding's likely purpose.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>5. Analysing narrative methods</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Always ask: why this specific word, image, or structural choice, not a similar one? Consider narrative methods (pacing, structure, symbolism) alongside dialogue.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>6. Analysing symbolism and structure</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Symbols are not incidental description — treat the changing condition of the conch, the fire, and Piggy's glasses as deliberate choices carrying meaning across the whole novel, not just in one scene.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>7. Discussing character development</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Track how a character's language and behaviour shift across the novel's chapters, rather than treating them as static from the novel's opening.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>8. Incorporating context</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Context should illuminate Golding's choices, not replace analysis of them. One well-placed contextual point is worth more than a paragraph of history with no link to the text.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>9. Connecting ideas across the whole novel</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Always show how a moment connects to a wider pattern across the whole novel, not just the chapter in front of you.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>10. Writing conclusions</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Don't simply repeat your introduction. Briefly synthesise your strongest points and comment on Golding's overall argument about human nature and civilisation.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>11. Managing time</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Spend a few minutes planning before you write. Leave a couple of minutes at the end to check for missing words and unclear sentences.</p></div></div></div>
+
+    <h2 style="margin-top:28px;">Character or Theme?</h2>
+    <div class="card"><p>Some questions focus mainly on a <b>character</b> ("How does Golding present Jack?"), others mainly on a <b>theme</b> ("How does Golding present fear?"), and some genuinely combine both ("How does Golding use Piggy to explore reason and exclusion?"). Read the question carefully: if it names a character, your argument should stay anchored to that character's specific words and actions throughout, even while discussing the themes they represent. If it names a theme, you can draw on multiple characters as evidence, but should still discuss specific characters' words and methods rather than describing the theme abstractly.</p></div>
+
+    <h2 style="margin-top:28px;">Weak vs Strong Analysis</h2>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"Jack is evil because he likes hunting."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"Golding's presentation of Jack's growing reliance on face-paint and ritual chanting before he can kill suggests that violence requires a kind of psychological disguise, implying that even Jack cannot act without first shedding the identity his 'civilised' upbringing once gave him."</p></div>
+    </div>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"The conch is a symbol of power."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"The conch's gradual decline, from a source of unquestioned authority at the novel's opening to a cracked, ignored object shattered alongside Piggy's death, allows Golding to trace the erosion of democratic order as a physical, visible process rather than an abstract idea."</p></div>
+    </div>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"Simon is a good character who dies for no reason."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"The manner of Simon's death, killed by the very group he was trying to enlighten about the true nature of the beast, positions him as a Christ-like figure whose moral insight is both proven correct and tragically unheard, deepening Golding's bleak argument about the difficulty of confronting uncomfortable truths."</p></div>
+    </div>
+
+    <h2 style="margin-top:28px;">Practice questions</h2>
+    <div id="practiceQs"></div>
+  </section>`);
+  root.appendChild(s);
+
+  const practice = [
+   {q:"How does Golding present the struggle between Ralph and Jack?", plan:["Introduce Ralph and Jack as representing two opposing models of leadership.","P1: Ralph's election and reliance on the conch's democratic authority.","P2: Jack's growing rejection of rules in favour of hunting and ritual.","P3: Jack's formal challenge to Ralph's authority and the group's fracture.","Context: post-war scepticism about democratic order under pressure.","Conclusion: Golding uses their rivalry to dramatise the fragility of civilisation."]},
+   {q:"How is fear used to change behaviour on the island?", plan:["Introduce fear of the beast as a major destabilising force.","P1: The littluns' early nightmares and Percival's vague claims.","P2: Jack's exploitation of the beast's existence to consolidate power.","P3: The role of fear and ritual frenzy in Simon's death.","Context: Cold War nuclear anxiety shaping Golding's original readers.","Conclusion: Golding presents fear as more socially destructive than any real threat."]},
+   {q:"How does Golding use Piggy to explore reason and exclusion?", plan:["Introduce Piggy as the novel's clearest voice of rational thought.","P1: Piggy's introduction of the conch and his early practical ideas.","P2: The consistent mockery and exclusion Piggy faces despite his usefulness.","P3: The destruction of his glasses and his death alongside the conch.","Context: post-war faith in reason questioned by the novel's events.","Conclusion: Golding suggests reason alone cannot survive without social power."]},
+   {q:"How does the novel challenge ideas about civilisation and human nature?", plan:["Introduce the novel's central argument that civilisation is fragile.","P1: The boys' early, genuine attempt to build ordered society.","P2: The rapid collapse of that order once fear and instinct take hold.","P3: Simon's realisation that the true beast is internal, not external.","Context: Golding's wartime experience and post-war pessimism.","Conclusion: Golding presents savagery as a constant human possibility, not an aberration."]},
+   {q:"How does Golding present Jack as a leader?", plan:["Introduce Jack's shift from choir leader to tribal dictator.","P1: Jack's early frustration at losing the vote for chief.","P2: His use of face-paint, ritual and fear to build loyalty.","P3: His formal rejection of the conch's authority.","Context: post-war experience of authoritarian leaders rising through fear.","Conclusion: Golding presents Jack's model as effective but morally catastrophic."]},
+   {q:"How does Golding present Simon?", plan:["Introduce Simon as the novel's most spiritually perceptive character.","P1: His quiet kindness and withdrawal into solitude.","P2: His vision of the Lord of the Flies and his realisation about the beast.","P3: The tragic irony of his death at the hands of the group he tried to help.","Context: biblical and Christ-like allusion in his characterisation.","Conclusion: Golding presents Simon's insight as true but tragically unheard."]},
+   {q:"How does Golding present the significance of the conch?", plan:["Introduce the conch as the novel's central symbol of democratic order.","P1: Its introduction and use to establish assemblies and rules.","P2: Its declining authority as Jack's tribe grows in power.","P3: Its destruction alongside Piggy's death at Castle Rock.","Context: post-war interest in the fragility of democratic institutions.","Conclusion: Golding uses the conch to physically trace civilisation's collapse."]},
+   {q:"How does Golding use symbolism to explore human nature?", plan:["Introduce Golding's use of recurring symbolic objects.","P1: The beast as a projection of the boys' own fear and violence.","P2: The Lord of the Flies as a direct statement of the novel's thesis.","P3: The island's shift from paradise to scarred, burning landscape.","Context: Golding's broadly Christian and allegorical influences.","Conclusion: Golding uses symbolism to argue that darkness originates within human nature."]},
+   {q:"How does Golding present the ending of the novel?", plan:["Introduce the ironic circumstances of the boys' rescue.","P1: The naval officer's arrival, drawn by the fire meant to kill Ralph.","P2: The officer's understated, uncomprehending reaction to events.","P3: Ralph's grief for lost innocence and 'the darkness of man's heart'.","Context: the unspecified adult war framing the whole novel.","Conclusion: Golding undercuts any comfortable sense that rescue means real safety."]},
+   {q:"How does Golding present the role of violence in the novel?", plan:["Introduce violence as an escalating pattern across the novel.","P1: The hunters' first, still-uneasy pig kill.","P2: The ritual chanting and dance during which Simon is killed.","P3: Roger's premeditated, unhesitating killing of Piggy.","Context: Golding's own experience of wartime violence.","Conclusion: Golding presents violence as becoming easier and more premeditated with repetition."]}
+  ];
+  const container = document.getElementById('practiceQs');
+  container.innerHTML = practice.map((p,i)=>`<div class="card">
+    <h3>${p.q}</h3>
+    <button class="btn secondary" type="button" data-plan="${i}">Reveal planning points</button>
+    <div class="plan-reveal" data-plan-body="${i}" style="display:none;margin-top:12px;">
+      <ol>${p.plan.map(x=>`<li>${x}</li>`).join('')}</ol>
+    </div>
+  </div>`).join('');
+  container.querySelectorAll('[data-plan]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const idx = btn.getAttribute('data-plan');
+      const body = container.querySelector(`[data-plan-body="${idx}"]`);
+      const showing = body.style.display !== 'none';
+      body.style.display = showing ? 'none' : 'block';
+      btn.textContent = showing ? 'Reveal planning points' : 'Hide planning points';
+    });
+  });
+}
+
+/* ---- 9. QUIZ ---- */
+let quizState = { order: [], idx:0, score:0, answered:false, wrongTopics:{} };
+function shuffle(arr){ const a = arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+const TYPE_LABEL = {mc:'Plot & detail', tf:'True / False', char:'Character', quote:'Quotation', theme:'Theme', context:'Context', tech:'Technique'};
+
+function buildQuiz(){
+  const s = el(`<section class="section" id="section-quiz">
+    <div class="section-header"><div class="eyebrow">Section 09</div><h1>Quiz</h1><div class="desc">Self-marking revision quiz covering plot, characters, quotations, themes, context, techniques and structure.</div></div>
+    <div class="card">
+      <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
+      <div id="quizArea"></div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  startQuiz();
+}
+
+function startQuiz(){
+  quizState = { order: shuffle(QUIZ_BANK.map((_,i)=>i)), idx:0, score:0, answered:false, wrongTopics:{} };
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion(){
+  const area = document.getElementById('quizArea');
+  const total = quizState.order.length;
+  if(quizState.idx >= total){
+    const pct = Math.round((quizState.score/total)*100);
+    document.getElementById('quizProgressBar').style.width = '100%';
+    const weakList = Object.keys(quizState.wrongTopics).sort((a,b)=>quizState.wrongTopics[b]-quizState.wrongTopics[a]);
+    area.innerHTML = `<div class="quiz-result">
+      <div class="score">${quizState.score}/${total}</div>
+      <p class="subtle">${pct}% correct</p>
+      ${weakList.length ? `<div class="weak-areas"><p class="subtle"><b>Areas to revise:</b></p><p>${weakList.map(t=>`<span class="tag blood">${TYPE_LABEL[t]||t}</span>`).join('')}</p></div>` : `<p class="subtle">Strong across every question type — well done!</p>`}
+      <button class="btn blood" id="tryAgainBtn" type="button">Try Again</button>
+      <button class="btn secondary" id="newQuizBtn" type="button" style="margin-left:8px;">New Quiz</button>
+    </div>`;
+    document.getElementById('tryAgainBtn').addEventListener('click', ()=>{ quizState.idx=0; quizState.score=0; quizState.wrongTopics={}; quizState.answered=false; renderQuizQuestion(); });
+    document.getElementById('newQuizBtn').addEventListener('click', startQuiz);
+    return;
+  }
+  document.getElementById('quizProgressBar').style.width = ((quizState.idx/total)*100)+'%';
+  const item = QUIZ_BANK[quizState.order[quizState.idx]];
+  const optOrder = shuffle(item.opts.map((o,i)=>i));
+  quizState.answered = false;
+  area.innerHTML = `
+    <p class="subtle">Question ${quizState.idx+1} of ${total} · <span class="tag gold">${TYPE_LABEL[item.type]||''}</span></p>
+    <div class="quiz-q">${item.q}</div>
+    <div class="quiz-opts">${optOrder.map(oi=>`<button class="quiz-opt" data-oi="${oi}" type="button">${item.opts[oi]}</button>`).join('')}</div>
+    <div class="quiz-explain" id="quizExplain"></div>
+    <div style="margin-top:14px;"><button class="btn" id="quizNextBtn" type="button" style="display:none;">Next question</button></div>
+  `;
+  area.querySelectorAll('.quiz-opt').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(quizState.answered) return;
+      quizState.answered = true;
+      const chosen = parseInt(btn.getAttribute('data-oi'));
+      area.querySelectorAll('.quiz-opt').forEach(b=>{
+        b.setAttribute('disabled','true');
+        const oi = parseInt(b.getAttribute('data-oi'));
+        if(oi === item.a) b.classList.add('correct');
+        else if(oi === chosen) b.classList.add('incorrect');
+      });
+      if(chosen === item.a) quizState.score++;
+      else quizState.wrongTopics[item.type] = (quizState.wrongTopics[item.type]||0)+1;
+      const exp = document.getElementById('quizExplain');
+      exp.textContent = item.exp;
+      exp.classList.add('show');
+      document.getElementById('quizNextBtn').style.display = 'inline-block';
+    });
+  });
+  document.getElementById('quizNextBtn').addEventListener('click', ()=>{ quizState.idx++; renderQuizQuestion(); });
+}
+
+/* ---- 10. WHO SAID IT GAME ---- */
+let wsiState = { order: [], idx:0, score:0, answered:false };
+
+function buildWhoSaidIt(){
+  const s = el(`<section class="section" id="section-whosaidit">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Who Said It?</h1><div class="desc">A quick, game-like activity. For each quotation, select who said it.</div></div>
+    <div class="jh-game">
+      <div class="jh-score" id="wsiScore"></div>
+      <div class="jh-quote" id="wsiQuoteText"></div>
+      <div class="jh-opts" id="wsiOpts"></div>
+      <div class="jh-feedback" id="wsiFeedback"></div>
+      <button class="btn" id="wsiNextBtn" type="button" style="display:none;margin-top:14px;">Next quotation</button>
+      <button class="btn secondary" id="wsiRestartBtn" type="button" style="display:none;margin-top:14px;">Play again</button>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  startWSI();
+}
+
+function startWSI(){
+  wsiState = { order: shuffle(WHOSAIDIT.map((_,i)=>i)), idx:0, score:0, answered:false };
+  renderWSI();
+}
+
+function renderWSI(){
+  const total = wsiState.order.length;
+  const scoreEl = document.getElementById('wsiScore');
+  const feedback = document.getElementById('wsiFeedback');
+  const nextBtn = document.getElementById('wsiNextBtn');
+  const restartBtn = document.getElementById('wsiRestartBtn');
+  feedback.classList.remove('show');
+  feedback.textContent = '';
+  nextBtn.style.display = 'none';
+
+  if(wsiState.idx >= total){
+    scoreEl.textContent = `Final score: ${wsiState.score}/${total}`;
+    document.getElementById('wsiQuoteText').textContent = "Round complete!";
+    document.getElementById('wsiOpts').innerHTML = '';
+    restartBtn.style.display = 'inline-block';
+    restartBtn.onclick = startWSI;
+    return;
+  }
+  restartBtn.style.display = 'none';
+  scoreEl.textContent = `Quotation ${wsiState.idx+1} of ${total} · Score: ${wsiState.score}`;
+  const item = WHOSAIDIT[wsiState.order[wsiState.idx]];
+  document.getElementById('wsiQuoteText').textContent = `"${item.text}"`;
+  const optsEl = document.getElementById('wsiOpts');
+  optsEl.innerHTML = item.opts.map(o=>`<button type="button" data-opt="${o}">${o}</button>`).join('');
+  wsiState.answered = false;
+  optsEl.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(wsiState.answered) return;
+      wsiState.answered = true;
+      const chosen = btn.getAttribute('data-opt');
+      optsEl.querySelectorAll('button').forEach(b=>{
+        b.disabled = true;
+        if(b.getAttribute('data-opt') === item.answer) b.classList.add('correct');
+        else if(b === btn) b.classList.add('incorrect');
+      });
+      if(chosen === item.answer) wsiState.score++;
+      feedback.textContent = `${item.answer}. ${item.exp}`;
+      feedback.classList.add('show');
+      nextBtn.style.display = 'inline-block';
+    });
+  });
+}
+document.addEventListener('click', function(e){
+  if(e.target && e.target.id === 'wsiNextBtn'){ wsiState.idx++; renderWSI(); }
+});
+
+/* ---- 11. CIVILISATION TRACKER ---- */
+function buildCivTracker(){
+  const cards = CHANGE_DATA.map(c=>`
+    <div class="change-card" data-d>
+      <button class="cc-head">
+        <span class="cc-name">${c.name}</span>
+        <span class="cc-meter">${[1,2,3,4,5].map(n=>`<span class="dot${n<=c.level?' on':''}"></span>`).join('')}</span>
+      </button>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="mini-label">Beginning of the novel</div><p>${c.begin}</p>
+        <div class="mini-label">End of the novel</div><p>${c.end}</p>
+        <div class="mini-label">What they learn</div><p>${c.learns}</p>
+        <div class="mini-label">What they refuse to learn</div><p>${c.refuses}</p>
+        <div class="mini-label">Evidence</div><div class="quote-line">"${c.quote}"</div>
+        <p class="cc-note">The dots represent how far each character moves from civilised behaviour toward savagery (or, for Piggy, how consistently they resist that pull) — use this as a starting point for your own argument, not a final answer.</p>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-civtracker">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Civilisation Tracker</h1><div class="desc">Tap each character to see how far they move between civilisation and savagery across the novel.</div></div>
+    <div class="card"><p class="subtle">The dots represent an interpretative judgement of each character's movement toward savagery, not a precise or objective score — good essays will debate and justify their own view.</p></div>
+    <div class="change-grid">${cards}</div>
+  </section>`);
+  root.appendChild(s);
+
+  s.querySelectorAll('.cc-head').forEach(head=>{
+    head.addEventListener('click', ()=>{ head.parentElement.classList.toggle('open'); });
+  });
+}
+
+/* ---- 12. DESCENT INTO SAVAGERY ---- */
+function buildDescent(){
+  let stepsHtml = '';
+  CHAIN.forEach((c,i)=>{
+    stepsHtml += `<div class="chain-step" data-d>
+      <button class="chain-btn"><span>${c.who} — ${c.action}</span><span class="chev">›</span></button>
+      <div class="chain-body"><div class="chain-inner">
+        <div class="mini-label">What happened</div><p>${c.detail}</p>
+        <div class="mini-label">Key quotation</div><div class="quote-line">"${c.quote}"</div>
+        <div class="mini-label">Golding's message</div><p>${c.message}</p>
+      </div></div>
+    </div>`;
+    if(i < CHAIN.length-1) stepsHtml += `<div class="chain-arrow">↓</div>`;
+  });
+
+  const s = el(`<section class="section" id="section-descent">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Descent into Savagery</h1><div class="desc">Tap each stage to see how the group moves, step by step, from ordered society to violence.</div></div>
+    <div class="card"><p><b>Important:</b> This is not a claim that the descent was inevitable from the very first page. Golding traces a specific, escalating sequence of choices and failures — use this chain as a starting point to debate how and why each stage leads to the next, not as a fixed, unavoidable path.</p></div>
+    <div class="chain">${stepsHtml}</div>
+  </section>`);
+  root.appendChild(s);
+
+  s.querySelectorAll('.chain-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ btn.closest('.chain-step').classList.toggle('open'); });
+  });
+}
+
+/* ---- 13. 1954 vs THE BOYS' WORLD ---- */
+function buildCompare(){
+  const s = el(`<section class="section" id="section-compare">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>1954 vs the Boys' World</h1><div class="desc">Understanding the gap between what Golding's original readers knew and what the boys initially assume is essential to understanding the novel's irony and purpose.</div></div>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <h3>What 1954 Readers Knew</h3>
+        <ul>${COMPARE_READERS.map(c=>`<li><b>${c.point}</b><div class="compare-why">Why this matters in the novel: ${c.why}</div></li>`).join('')}</ul>
+      </div>
+      <div class="compare-col">
+        <h3>What the Boys Assume</h3>
+        <ul>${COMPARE_BOYS.map(c=>`<li><b>${c.point}</b><div class="compare-why">Why this matters in the novel: ${c.why}</div></li>`).join('')}</ul>
+      </div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 14. LAST MINUTE ---- */
+function buildLastMinute(){
+  const plot14 = PLOT.map(p=>p.t);
+  const sevenChars = [
+   ["Ralph","Elected leader trying to hold onto rescue, rules and order even as it collapses around him."],
+   ["Jack","Rejected choir leader who becomes a violent, fear-driven tribal dictator."],
+   ["Piggy","Rational, rule-minded adviser, mocked and excluded throughout, killed alongside the conch."],
+   ["Simon","Quiet, perceptive boy who realises the beast is internal, and is killed for trying to share this."],
+   ["Roger","Restrained at first, becomes the tribe's most brutal, unhesitating enforcer."],
+   ["Samneric","Loyal twins eventually coerced into Jack's tribe through fear and threats."],
+   ["Percival","A young, frightened littlun whose regression reflects the group's spreading fear."]
+  ];
+  const sixThemes = [
+   ["Civilisation vs Savagery","The novel's central theme — ordered rules versus violent, ritual-driven instinct."],
+   ["Power and Leadership","Ralph's democratic model versus Jack's fear-based dictatorship."],
+   ["Fear","Fear of the beast proves more socially destructive than any real threat."],
+   ["Human Nature","Golding suggests the capacity for cruelty exists within all the boys, not just a few."],
+   ["Loss of Innocence","The boys move from playful exploration to violence and, for Ralph, painful adult understanding."],
+   ["War","An unspecified adult war frames the whole novel, undercutting any easy separation from the boys' own violence."]
+  ];
+  const quotes15 = [
+   ["we're not savages","Ralph","Use for civilisation vs savagery/dramatic irony."],
+   ["Bollocks to the rules!","Jack","Use for power/democracy vs dictatorship — central turning point."],
+   ["Maybe it's only us","Simon","Use for human nature/the true meaning of the beast."],
+   ["I'm part of you","The Lord of the Flies","Use for symbolism/Simon's vision — central quote."],
+   ["the darkness of man's heart","Narrator","Use for the ending/loss of innocence/human nature — central quote."],
+   ["Humans? Or animals? Or savages?","Piggy","Use for Piggy's death/rationality vs instinct."],
+   ["Kill the beast! Cut his throat! Spill his blood!","The hunters","Use for group behaviour/ritual/Simon's death."],
+   ["a civilization that knew nothing of him","Narrator, on Roger","Use for human nature/foreshadowing Roger's violence."],
+   ["put up a better show than that","The naval officer","Use for irony/the ending/war."],
+   ["It's a good island","Ralph","Use for loss of innocence/structure — contrast with the ending."],
+   ["I ought to be chief","Jack","Use for power and leadership/Jack's characterisation."],
+   ["out of the sea","Percival","Use for fear/the littluns."],
+   ["Sucks to your ass-mar!","Jack","Use for Piggy's exclusion/bullying."],
+   ["law and rescue, or hunting","Ralph","Use for civilisation vs savagery/Ralph's development."],
+   ["we've got to have rules and obey them","Ralph","Use for democracy vs dictatorship/the conch's authority."]
+  ];
+  const fiveContext = ["1954: written shortly after WWII, amid Cold War nuclear anxiety.","Golding's own Royal Navy combat service shaped his pessimistic view of human nature.","The Coral Island (1858): the optimistic adventure novel Golding's story critiques.","The unspecified nuclear/global war frames the boys' evacuation and the ending.","Golding's broadly Christian background informs Simon's Christ-like allegorical role."];
+  const fiveTech = [
+   ["Symbolism","The conch, fire and glasses physically change to track the boys' collapse."],
+   ["Pathetic fallacy / setting as antagonist","The island shifts from paradise to scarred, burning landscape."],
+   ["Irony","The naval officer's rescue occurs against the backdrop of the adult world's own war."],
+   ["Repetition / chant","'Kill the beast!' builds ritual intensity enabling collective violence."],
+   ["Foil characters","Ralph vs Jack, and Piggy vs Simon, sharpen the novel's contrasting ideas."]
+  ];
+  const checklist = ["Answer the actual question.","Make a clear argument.","Use precise, accurate evidence — never invented quotations.","Analyse narrative methods, not just what happens.","Discuss Golding's purpose.","Link context naturally, not as a bolt-on.","Refer to the whole novel, not just one chapter."];
+  const dontDo = ["Don't simply retell the plot.","Don't list historical facts disconnected from the text.","Don't invent or misremember quotations.","Don't call Golding a playwright — he was a novelist.","Don't forget that Simon's insight, not any real monster, is the novel's central idea about the beast."];
+
+  const s = el(`<section class="section" id="section-lastminute">
+    <div class="section-header"><div class="eyebrow">Section 10</div><h1>Lord of the Flies — Last Minute</h1><div class="desc">Exam tomorrow? Start here.</div></div>
+    <button class="btn secondary print-btn" id="printBtn" type="button">Print this page</button>
+
+    <div class="sixty">
+      <h3>Lord of the Flies in 60 Seconds</h3>
+      <p>British schoolboys, evacuated by plane from an unspecified war, are stranded on a tropical island with no surviving adults. Ralph is elected chief and, with Piggy's help, sets up rules, shelters and a signal fire using a conch shell. Jack, the choir leader, grows obsessed with hunting, and as fear of a 'beast' spreads, his hunters break away into a violent, ritualistic tribe. Simon, alone in the forest, realises the beast is not a real creature but something within the boys themselves — but is killed by the frenzied group before he can properly explain this. Jack's tribe steals Piggy's glasses for fire, and when Ralph confronts them, Roger kills Piggy and smashes the conch. Jack's tribe then hunts Ralph across the burning island, until a naval officer, drawn by the smoke, arrives just in time.</p>
+    </div>
+
+    <div class="lm-grid">
+      <div class="lm-card"><h3>Plot in 14 points</h3><ol>${plot14.map(x=>`<li>${x}</li>`).join('')}</ol></div>
+      <div class="lm-card"><h3>7 characters you must understand</h3><ul>${sevenChars.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>6 themes you must understand</h3><ul>${sixThemes.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>15 quotations worth remembering</h3><ul>${quotes15.map(x=>`<li>"${x[0]}" <br><span class="subtle">— ${x[1]} → ${x[2]}</span></li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 contextual ideas</h3><ul>${fiveContext.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 techniques worth recognising</h3><ul>${fiveTech.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>Essay checklist</h3><ul>${checklist.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>Five things NOT to do</h3><ul>${dontDo.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  document.getElementById('printBtn').addEventListener('click', ()=> window.print());
+}
+
+/* ================= DISCLOSURE BEHAVIOUR (shared) ================= */
+function wireDisclosures(){
+  document.querySelectorAll('.disclosure > .d-head').forEach(head=>{
+    head.addEventListener('click', ()=>{
+      head.parentElement.classList.toggle('open');
+    });
+  });
+}
+
+/* ================= INIT ================= */
+buildOverview();
+buildPlot();
+buildCharacters();
+buildThemes();
+buildQuoteVault();
+buildContext();
+buildTechniques();
+buildExam();
+buildQuiz();
+buildWhoSaidIt();
+buildCivTracker();
+buildDescent();
+buildCompare();
+buildLastMinute();
+renderNav();
+wireDisclosures();
+showSection(SECTIONS.some(s=>s.id===currentSection) ? currentSection : 'overview');
+
+})();
+</script>
+</body>
+</html>

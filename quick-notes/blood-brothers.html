@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Teacher Vault — Blood Brothers QuickNotes</title>
+<style>
+:root{
+  --ink:#122237;
+  --ink-light:#1E3653;
+  --parchment:#EEEEE7;
+  --parchment-dark:#DFE0D6;
+  --blood:#7C1F26;
+  --blood-bright:#A6323A;
+  --gold:#8E7A3E;
+  --fog:#4A5C6B;
+  --text:#1c2430;
+  --text-soft:#5b6470;
+  --card:#FFFFFF;
+  --line:#D9DAD0;
+  --radius:10px;
+  --serif: Georgia, 'Times New Roman', Times, serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --mono: 'Courier New', Courier, monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--parchment);color:var(--text);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased;}
+::selection{background:var(--gold);color:#fff;}
+a{color:var(--blood-bright);}
+button{font-family:inherit;cursor:pointer;}
+h1,h2,h3,h4{font-family:var(--serif);color:var(--ink);margin:0 0 .5em 0;}
+p{margin:0 0 .8em 0;}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:.6em 1em;z-index:999;}
+.skip-link:focus{left:8px;top:8px;}
+.app{display:flex;min-height:100vh;}
+.sidebar{width:250px;flex-shrink:0;background:var(--ink);color:#EDE9DA;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.brand{padding:22px 20px 14px 20px;border-bottom:1px solid rgba(255,255,255,.12);}
+.brand .tv-name{font-family:var(--serif);font-size:1.05rem;letter-spacing:.02em;color:#fff;font-weight:700;}
+.brand .tv-sub{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-top:2px;}
+.brand .play-title{margin-top:14px;font-family:var(--serif);font-size:1.65rem;color:#fff;line-height:1.15;}
+.brand .play-sub{font-size:.78rem;color:#c9c4ac;margin-top:6px;line-height:1.4;}
+.brand-mascot{width:52px;height:52px;object-fit:contain;display:block;margin-bottom:10px;}
+nav.mainnav{padding:10px 0;flex:1;}
+nav.mainnav button.navlink{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:none;color:#d9d5c3;padding:10px 20px;font-size:.88rem;border-left:3px solid transparent;}
+nav.mainnav button.navlink .num{font-family:var(--mono);font-size:.7rem;color:var(--gold);width:18px;flex-shrink:0;}
+nav.mainnav button.navlink:hover{background:rgba(255,255,255,.06);color:#fff;}
+nav.mainnav button.navlink.active{background:rgba(181,67,43,.25);border-left-color:var(--blood-bright);color:#fff;font-weight:600;}
+nav.mainnav button.navlink:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
+.sidebar-footer{padding:14px 20px;font-size:.7rem;color:#8b876f;border-top:1px solid rgba(255,255,255,.1);}
+.topbar{display:none;position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;padding:12px 16px;align-items:center;justify-content:space-between;}
+.topbar .tv-inline{font-family:var(--serif);font-size:1rem;}
+.topbar .tv-inline span{display:block;font-size:.65rem;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;}
+.hamburger{background:none;border:1px solid rgba(255,255,255,.4);color:#fff;padding:8px 10px;border-radius:6px;font-size:.85rem;}
+.mobile-nav-drawer{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.5);}
+.mobile-nav-drawer.open{display:block;}
+.mobile-nav-panel{position:absolute;top:0;left:0;bottom:0;width:80%;max-width:300px;background:var(--ink);overflow-y:auto;padding-bottom:20px;}
+main{flex:1;min-width:0;padding:36px 44px 80px 44px;max-width:980px;}
+.section{display:none;animation:fadein .25s ease;}
+.section.active{display:block;}
+@keyframes fadein{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+.section-header{margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid var(--ink);}
+.section-header .eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blood-bright);font-weight:700;margin-bottom:4px;}
+.section-header h1{font-size:1.9rem;margin-bottom:4px;}
+.section-header .desc{color:var(--text-soft);font-size:.95rem;max-width:640px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-bottom:16px;}
+.card h3{font-size:1.1rem;margin-bottom:8px;}
+.subtle{color:var(--text-soft);font-size:.88rem;}
+.tag{display:inline-block;background:var(--parchment-dark);color:var(--ink);border-radius:999px;padding:2px 10px;font-size:.72rem;margin:2px 4px 2px 0;font-weight:600;}
+.tag.blood{background:#f3e0da;color:var(--blood);}
+.tag.gold{background:#f3ecd6;color:#7a621c;}
+.tag.fog{background:#e4e9ee;color:var(--fog);}
+.btn{display:inline-block;background:var(--ink);color:#fff;border:none;padding:9px 16px;border-radius:7px;font-size:.85rem;font-weight:600;}
+.btn:hover{background:var(--ink-light);}
+.btn.secondary{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+.btn.blood{background:var(--blood-bright);}
+.btn.blood:hover{background:var(--blood);}
+.btn:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+.disclosure{border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;background:var(--card);overflow:hidden;}
+.disclosure > .d-head{width:100%;background:none;border:none;text-align:left;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;font-weight:700;color:var(--ink);font-family:var(--serif);font-size:1.02rem;}
+.disclosure > .d-head:hover{background:var(--parchment);}
+.disclosure > .d-head .chev{transition:transform .2s;color:var(--blood-bright);font-size:1.1rem;}
+.disclosure.open > .d-head .chev{transform:rotate(90deg);}
+.disclosure > .d-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.disclosure.open > .d-body{max-height:4000px;}
+.disclosure > .d-body .inner{padding:0 18px 16px 18px;}
+.d-body .mini-label{font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--blood-bright);margin:12px 0 4px 0;}
+.d-body .mini-label:first-child{margin-top:0;}
+.quote-line{font-family:var(--serif);font-style:italic;color:var(--ink);background:var(--parchment);border-left:3px solid var(--gold);padding:8px 12px;margin:6px 0;font-size:.94rem;}
+.grid{display:grid;gap:14px;}
+.grid.two{grid-template-columns:1fr 1fr;}
+.grid.three{grid-template-columns:repeat(3,1fr);}
+@media(max-width:800px){.grid.two,.grid.three{grid-template-columns:1fr;}}
+.qv-controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;align-items:center;}
+.qv-controls input[type=text], .qv-controls select{padding:9px 12px;border:1px solid var(--line);border-radius:7px;font-size:.9rem;background:#fff;}
+.qv-controls input[type=text]{flex:1;min-width:180px;}
+.qv-count{font-size:.82rem;color:var(--text-soft);margin-bottom:10px;}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-bottom:12px;}
+.qcard .qtext{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);margin-bottom:6px;}
+.qcard .qmeta{font-size:.78rem;color:var(--text-soft);margin-bottom:10px;}
+.qcard .qreveal-btn{font-size:.8rem;background:var(--parchment-dark);border:none;padding:6px 12px;border-radius:6px;color:var(--ink);font-weight:600;}
+.qcard .qdetail{display:none;margin-top:12px;border-top:1px dashed var(--line);padding-top:10px;}
+.qcard.open .qdetail{display:block;}
+.qdetail .row{margin-bottom:8px;}
+.qdetail .row b{color:var(--blood-bright);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:2px;}
+.level-toggle{display:flex;gap:6px;margin:10px 0;}
+.level-toggle button{font-size:.75rem;padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:#fff;}
+.level-toggle button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.level-block{display:none;font-size:.9rem;}
+.level-block.active{display:block;}
+.quiz-progress{height:8px;background:var(--parchment-dark);border-radius:6px;overflow:hidden;margin-bottom:18px;}
+.quiz-progress-bar{height:100%;background:var(--blood-bright);width:0%;transition:width .3s;}
+.quiz-q{font-family:var(--serif);font-size:1.15rem;margin-bottom:14px;}
+.quiz-opts{display:flex;flex-direction:column;gap:8px;}
+.quiz-opt{text-align:left;padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;background:#fff;font-size:.95rem;}
+.quiz-opt:hover{border-color:var(--ink);}
+.quiz-opt.correct{background:#e4f2e6;border-color:#4c9a5f;}
+.quiz-opt.incorrect{background:#f7e4e0;border-color:var(--blood-bright);}
+.quiz-opt[disabled]{cursor:default;}
+.quiz-explain{margin-top:12px;padding:12px 14px;background:var(--parchment);border-radius:8px;font-size:.9rem;display:none;}
+.quiz-explain.show{display:block;}
+.quiz-result{text-align:center;padding:30px 10px;}
+.quiz-result .score{font-family:var(--serif);font-size:3rem;color:var(--ink);}
+.quiz-result .weak-areas{text-align:left;max-width:420px;margin:16px auto;}
+.wvs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+@media(max-width:700px){.wvs{grid-template-columns:1fr;}}
+.wvs .weak{border:1.5px solid #c9776a;background:#fbeeeb;border-radius:8px;padding:14px;}
+.wvs .strong{border:1.5px solid #6a9c76;background:#eef6ef;border-radius:8px;padding:14px;}
+.wvs .lbl{font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+.wvs .weak .lbl{color:#a1392a;}
+.wvs .strong .lbl{color:#3f7a4c;}
+.lm-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:760px){.lm-grid{grid-template-columns:1fr;}}
+.lm-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;}
+.lm-card h3{font-size:1rem;color:var(--blood-bright);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:10px;}
+.lm-card ol,.lm-card ul{margin:0;padding-left:20px;font-size:.88rem;}
+.lm-card li{margin-bottom:6px;}
+.print-btn{margin-bottom:16px;}
+@media print{
+  .sidebar,.topbar,.print-btn,nav,.section-header .desc{display:none !important;}
+  main{padding:0;max-width:100%;}
+  .section{display:block !important;}
+  #section-lastminute{display:block !important;}
+  .section:not(#section-lastminute){display:none !important;}
+  body{background:#fff;}
+}
+.sixty{background:var(--ink);color:#f2efe2;border-radius:var(--radius);padding:20px 22px;margin:18px 0;}
+.sixty h3{color:var(--gold);font-size:.85rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;}
+.sixty p{font-size:.95rem;line-height:1.6;}
+footer.app-footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);color:var(--text-soft);font-size:.78rem;}
+.timeline{display:flex;flex-direction:column;gap:0;margin:16px 0;border-left:3px solid var(--gold);padding-left:18px;}
+.timeline .t-item{position:relative;padding:6px 0 18px 14px;}
+.timeline .t-item::before{content:'';position:absolute;left:-25px;top:9px;width:10px;height:10px;border-radius:50%;background:var(--blood-bright);border:2px solid var(--parchment);}
+.timeline .t-item .t-num{font-family:var(--mono);font-size:.72rem;color:var(--blood-bright);font-weight:700;}
+.timeline .t-item p{margin:2px 0 0 0;font-size:.92rem;}
+.jh-game{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;text-align:center;}
+.jh-quote{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--ink);min-height:90px;display:flex;align-items:center;justify-content:center;padding:0 10px;}
+.jh-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0;}
+@media(max-width:640px){.jh-opts{grid-template-columns:1fr 1fr;}}
+.jh-opts button{padding:12px 8px;border-radius:8px;border:1.5px solid var(--line);background:#fff;font-weight:600;font-size:.85rem;}
+.jh-opts button:hover{border-color:var(--ink);}
+.jh-opts button.correct{background:#e4f2e6;border-color:#4c9a5f;}
+.jh-opts button.incorrect{background:#f7e4e0;border-color:var(--blood-bright);}
+.jh-feedback{background:var(--parchment);border-radius:8px;padding:14px;margin-top:14px;font-size:.9rem;display:none;text-align:left;}
+.jh-feedback.show{display:block;}
+.jh-score{font-size:.85rem;color:var(--text-soft);margin-bottom:10px;}
+.change-grid{display:grid;grid-template-columns:1fr;gap:10px;}
+.change-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+.change-card .cc-head{width:100%;background:none;border:none;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.change-card .cc-name{font-family:var(--serif);font-size:1.1rem;color:var(--ink);font-weight:700;}
+.change-card .cc-meter{display:flex;gap:3px;align-items:center;}
+.change-card .cc-meter .dot{width:10px;height:10px;border-radius:50%;background:var(--line);}
+.change-card .cc-meter .dot.on{background:var(--blood-bright);}
+.change-card .cc-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.change-card.open .cc-body{max-height:700px;}
+.change-card .cc-inner{padding:0 18px 16px 18px;font-size:.92rem;}
+.change-card .cc-note{font-style:italic;color:var(--text-soft);font-size:.82rem;margin-top:8px;}
+.chain{display:flex;flex-direction:column;gap:0;}
+.chain-step{position:relative;}
+.chain-btn{width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;font-family:var(--serif);font-size:1.05rem;color:var(--ink);font-weight:700;}
+.chain-arrow{text-align:center;color:var(--gold);font-size:1.3rem;padding:2px 0;}
+.chain-body{max-height:0;overflow:hidden;transition:max-height .25s ease;background:var(--parchment);border-radius:0 0 var(--radius) var(--radius);}
+.chain-step.open .chain-body{max-height:600px;}
+.chain-step.open .chain-btn{border-radius:var(--radius) var(--radius) 0 0;}
+.chain-inner{padding:14px 18px;font-size:.92rem;}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:700px){.compare-grid{grid-template-columns:1fr;}}
+.compare-col{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;}
+.compare-col h3{text-align:center;background:var(--ink);color:#fff;margin:-18px -18px 14px -18px;padding:12px;border-radius:var(--radius) var(--radius) 0 0;}
+.compare-col ul{padding-left:20px;font-size:.9rem;}
+.compare-col li{margin-bottom:10px;}
+.compare-why{font-size:.85rem;color:var(--text-soft);font-style:italic;margin-top:4px;}
+@media(max-width:900px){
+  .app{flex-direction:column;}
+  .sidebar{display:none;}
+  .topbar{display:flex;}
+  main{padding:24px 18px 60px 18px;}
+  .section-header h1{font-size:1.5rem;}
+  .jh-opts{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div class="app">
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <div class="brand">
+      <img src="../images/mascot-teacher.png" alt="The Teacher Vault mascot" class="brand-mascot">
+      <div class="tv-name">The Teacher Vault</div>
+      <div class="tv-sub">QuickNotes</div>
+      <div class="play-title">Blood Brothers</div>
+      <div class="play-sub">Everything you actually need for GCSE English Literature.</div>
+    </div>
+    <nav class="mainnav" id="navList" aria-label="Sections"></nav>
+    <div class="sidebar-footer">Free GCSE revision resource.<br>Works fully offline.</div>
+  </aside>
+
+  <div class="topbar">
+    <div class="tv-inline"><span>The Teacher Vault · QuickNotes</span>Blood Brothers</div>
+    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobileDrawer">☰ Menu</button>
+  </div>
+  <div class="mobile-nav-drawer" id="mobileDrawer">
+    <div class="mobile-nav-panel">
+      <div class="brand">
+        <img src="../images/mascot-teacher.png" alt="The Teacher Vault mascot" class="brand-mascot">
+      <div class="tv-name">The Teacher Vault</div>
+        <div class="tv-sub">QuickNotes</div>
+        <div class="play-title">Blood Brothers</div>
+      </div>
+      <nav class="mainnav" id="navListMobile" aria-label="Sections (mobile)"></nav>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <div id="sectionsRoot"></div>
+    <footer class="app-footer">The Teacher Vault · Blood Brothers QuickNotes — a free GCSE English Literature revision resource. All explanatory content is original. Willy Russell's <em>Blood Brothers</em> (first performed 1983) is a modern play still fully in copyright, unlike many older set texts — so quotations used here are deliberately kept to brief verbal cues only (a handful of words at most), used solely for educational analysis. Students should build their own short quotation bank directly from their own copy of the play.</footer>
+  </main>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+const Store = {
+  available: (function(){ try{ const k='__tv_test__'; localStorage.setItem(k,'1'); localStorage.removeItem(k); return true; }catch(e){ return false; } })(),
+  get(key, fallback){ if(!Store.available) return fallback; try{ const v = localStorage.getItem('tv_bb_'+key); return v===null?fallback:JSON.parse(v); }catch(e){ return fallback; } },
+  set(key, val){ if(!Store.available) return; try{ localStorage.setItem('tv_bb_'+key, JSON.stringify(val)); }catch(e){} }
+};
+
+const SECTIONS = [
+  {id:'overview', label:'Overview'},
+  {id:'plot', label:'Plot'},
+  {id:'characters', label:'Characters'},
+  {id:'themes', label:'Themes'},
+  {id:'quotes', label:'Quote Vault'},
+  {id:'context', label:'Context'},
+  {id:'techniques', label:'Techniques'},
+  {id:'exam', label:'Exam'},
+  {id:'quiz', label:'Quiz'},
+  {id:'whosaidit', label:'Who Said It?'},
+  {id:'fatetracker', label:'Fate or Choice?'},
+  {id:'chainofconsequences', label:'Chain of Consequences'},
+  {id:'twincompare', label:'Nature vs Nurture'},
+  {id:'lastminute', label:'Last Minute'}
+];
+
+/* ================= CHARACTERS ================= */
+const CHARACTERS = [
+{id:'mrsjohnstone', name:'Mrs Johnstone', role:"Mother of Mickey and, secretly, of Edward too; a working-class Liverpool mother",
+ who:"An exhausted but warm, resourceful mother of many children, left to bring up her family largely alone after her husband leaves; already struggling financially when she learns she is expecting twins, and works as a cleaner for the wealthier Mrs Lyons to make ends meet.",
+ journey:"Persuaded by Mrs Lyons to give up one of the twins in secret, in exchange for an easier life for her and her remaining children, she carries the weight of this decision silently for years. She watches both sons grow up without ever being able to explain their connection, and is finally forced to reveal the truth in the play's devastating climax, arriving just as it becomes fatally too late.",
+ relationships:"Birth mother to both Mickey and Edward, though only able to openly raise Mickey as her own; former cleaner, and later reluctant secret-keeper, for Mrs Lyons; proud, anxious observer of Mickey's marriage to Linda and his later struggles.",
+ themes:['Poverty and unemployment','Secrets and consequences','Gender and motherhood'],
+ quotes:["easy terms","bright new day","tell me it's not true"],
+ message:"Russell may present Mrs Johnstone as both a genuinely loving, resourceful mother and a woman trapped by poverty into an impossible bargain, so that audience sympathy for her sits alongside recognition that the secret she agrees to keep helps set the whole tragedy in motion.",
+ examArgs:[
+  "Russell structures Mrs Johnstone's opening situation, already struggling before she even learns she is expecting twins, so that her later decision to give up Edward reads as a product of poverty and desperation rather than a simple lack of maternal feeling.",
+  "The dramatic irony of Mrs Johnstone watching both her sons grow up without being able to explain their connection generates sustained audience sympathy, even as her silence also directly enables the tragedy to unfold.",
+  "Mrs Johnstone's final, too-late revelation of the truth can be read as the play's clearest statement that secrecy, however well-intentioned, ultimately fails to protect anyone."
+ ]},
+{id:'mickey', name:'Mickey Johnstone', role:"Mrs Johnstone's son, raised on a Liverpool council estate; Edward's unknowing twin",
+ who:"An energetic, funny, endlessly imaginative child whose confidence and humour give way, across the play, to unemployment, depression and eventual desperation as his adult circumstances close in around him.",
+ journey:"Begins the play as a cheeky, playful seven-year-old who instantly bonds with Edward and swears blood brotherhood with him. As a teenager he falls for Linda, but leaving school for insecure factory work marks the start of his harder adult path. Losing his job, pressured by his brother Sammy into a robbery, and imprisoned as a result, Mickey emerges depressed and dependent on prescribed medication, his marriage under serious strain, before the final revelation of his true relationship to Edward pushes him toward the play's fatal climax.",
+ relationships:"Unknowing twin brother, then blood brother, to Edward; husband to Linda; younger brother pressured into crime by Sammy; son to Mrs Johnstone, whose secret shapes his entire life without his knowledge until it is almost over.",
+ themes:['Social class and inequality','Nature versus nurture','Mental health','Poverty and unemployment'],
+ quotes:["we're blood brothers","gone to the dogs","just playing, Mam"],
+ message:"Russell may use Mickey's steep decline from confident child to depressed, unemployed adult to argue that social and economic circumstance, far more than personal character, shapes what becomes of a working-class life.",
+ examArgs:[
+  "The contrast between Mickey's confident, funny childhood and his unemployed, medicated adulthood is one of Russell's clearest devices for dramatising how social and economic circumstance, rather than personal character, shapes a working-class life.",
+  "Mickey's drift toward crime under pressure from Sammy, and the harsh consequences that follow, can be read as Russell's critique of a society offering few legitimate routes out of poverty for young men in his position.",
+  "Mickey's mental health decline after prison, and his dependence on prescribed medication, gives Russell's wider social critique a psychological as well as an economic dimension."
+ ]},
+{id:'edward', name:'Edward Lyons', role:"Mrs Lyons' adopted son, raised in a comfortable, privately-educated household; Mickey's unknowing twin",
+ who:"A curious, generous and rule-breaking-for-fun child who grows into a confident, well-meaning young man, protected at every stage by wealth and opportunity he mostly fails to recognise as such.",
+ journey:"Meets Mickey by chance as a child and immediately values their friendship, largely oblivious to the social gulf between them. Sent away for a private education and then university, he loses touch with Mickey for years before their friendship resumes in adolescence. Returning as an adult into a position of local influence, Edward reconnects warmly with Linda, unaware of quite how much his closeness to her, and his continued good fortune, are wounding a brother he does not yet know he has, until the play's final, fatal confrontation.",
+ relationships:"Unknowing twin brother, then blood brother, to Mickey; adopted son to the increasingly controlling Mrs Lyons; a close, ultimately dangerous, source of comfort to Linda as Mickey struggles.",
+ themes:['Social class and inequality','Nature versus nurture','Friendship across class lines','Education and opportunity'],
+ quotes:["let's be blood brothers","he's my friend","long Sunday afternoon"],
+ message:"Russell may use Edward's genuine warmth alongside his consistent blindness to his own privilege to critique class inequality without turning him into a simple villain, suggesting that comfort can make injustice invisible to those who benefit from it.",
+ examArgs:[
+  "Edward's genuine warmth toward Mickey and Linda, combined with his consistent inability to recognise his own privilege, allows Russell to critique class inequality without reducing Edward himself to a simple villain.",
+  "Edward's smooth transition from private education to university to local influence dramatises, almost without comment, how opportunity compounds across a single, protected life.",
+  "Edward's role in the play's climax, largely unaware of the danger he is in until the very end, underscores how little control even privileged characters ultimately have over consequences set in motion long before they were born."
+ ]},
+{id:'mrslyons', name:'Mrs Lyons', role:"Edward's adoptive mother; wealthy, childless wife of a businessman",
+ who:"An anxious, increasingly possessive woman whose desperation for a child of her own leads her to manipulate Mrs Johnstone into secrecy, and whose guilt and superstition harden, over years, into obsessive control.",
+ journey:"Persuades a desperate Mrs Johnstone to give up one of her twins, binding her to silence with a chilling superstition about separated twins. As Edward grows close to Mickey, Mrs Lyons' fear of exposure escalates into dismissing Mrs Johnstone from her job and eventually moving her family away. Years of buried guilt and controlling behaviour finally unravel in the play's climax, when she reveals the truth to Mickey and hands him a gun, directly triggering the tragedy she spent so long trying to prevent.",
+ relationships:"Adoptive mother to Edward; former employer, then manipulator, of Mrs Johnstone; the character whose long-kept secret and final confession most directly ignite the play's fatal ending.",
+ themes:['Secrets and consequences','Superstition and fate','Gender and motherhood','Guilt and complicity'],
+ quotes:["one of us must die","shoes upon the table","he's your brother"],
+ message:"Russell may present Mrs Lyons as neither straightforwardly villainous nor simply sympathetic, using her unravelling to show how guilt, superstition and desperate love, left unaddressed for years, can curdle into genuinely destructive control.",
+ examArgs:[
+  "Mrs Lyons' escalating paranoia and controlling behaviour can be read as Russell's exploration of how guilt and superstition, left unaddressed, can deform a person's relationships over many years.",
+  "Because Mrs Lyons manipulates Mrs Johnstone using superstition rather than force, Russell complicates any simple reading of her as purely villainous, instead presenting her as someone whose desperation for motherhood curdles into obsession.",
+  "Mrs Lyons' act of finally telling Mickey the truth, and handing him the gun, positions her as the character whose long-buried guilt most directly triggers the play's final tragedy."
+ ]},
+{id:'linda', name:'Linda', role:"Childhood friend of both twins; later Mickey's wife",
+ who:"A loyal, warm and practical girl who joins Mickey and Edward's childhood games and grows into a woman trying, against mounting odds, to hold a struggling marriage and family together.",
+ journey:"Forms an easy, affectionate bond with both boys as a child, and falls for Mickey as a teenager in a gentle, tentative romance. As an adult she marries Mickey young, has his child, and works hard to support the family through his unemployment, imprisonment and depression, all while her friendship with the more stable, attentive Edward deepens into something the play leaves genuinely ambiguous.",
+ relationships:"Childhood friend, then wife, of Mickey; a source of comfort and increasing emotional complication for Edward; caught, without ever choosing to be, between two men whose lives she cannot know are as connected as they are.",
+ themes:['Family and loyalty','Friendship across class lines','Gender and motherhood','Mental health'],
+ quotes:["not saying a word","stand by him","light romance"],
+ message:"Russell may present Linda sympathetically as a woman genuinely caught between loyalty and circumstance, rather than as either a simple heroine or a straightforward betrayer of her marriage.",
+ examArgs:[
+  "Linda's loyalty to Mickey through unemployment, imprisonment and depression, set against her growing closeness to Edward, allows Russell to present her sympathetically as caught between duty and circumstance rather than as simply unfaithful.",
+  "Linda's trajectory from carefree childhood playmate to an adult managing a collapsing marriage mirrors the play's wider argument about how quickly working-class stability can be eroded by external economic pressure.",
+  "Because Linda is connected to both twins without knowing the secret that links them, her situation dramatises how personal relationships can be reshaped by forces individuals cannot see or control."
+ ]},
+{id:'sammy', name:'Sammy Johnstone', role:"Mickey's older brother; a troubled figure drawn early into petty crime",
+ who:"A restless, difficult child whose minor delinquency escalates, by adulthood, into serious criminal behaviour, and who directly pressures Mickey into the robbery that leads to his imprisonment.",
+ journey:"Shown from childhood as a source of mischief and minor trouble within the Johnstone household, Sammy's path darkens steadily as he grows older, culminating in his recruitment of a desperate, unemployed Mickey as lookout for an armed robbery that turns violent.",
+ relationships:"Older brother to Mickey, whom he pressures into crime despite (or perhaps compounded by) their family loyalty; a minor but structurally crucial presence whose choices tighten the chain of consequence leading toward the play's tragedy.",
+ themes:['Poverty and unemployment','Guilt and complicity','Family and loyalty'],
+ quotes:["hold the gun","our kid","just keep watch"],
+ message:"Russell may use Sammy to show a bleaker, more compressed version of the same economic and social pressures shaping Mickey, without softening him with Mickey's warmth or charm, suggesting how easily circumstance can harden into criminality when no better options are offered.",
+ examArgs:[
+  "Sammy's escalation from childhood mischief to serious adult crime offers Russell a bleaker, more compressed version of the same social pressures shaping Mickey's own decline, without the benefit of any of Mickey's warmth or likeability.",
+  "By making Sammy the character who directly pressures Mickey into the robbery, Russell keeps responsibility for the tragedy distributed across multiple characters and circumstances rather than locating it in a single villain."
+ ]},
+{id:'narrator', name:'The Narrator', role:"A chorus-like, structural figure rather than a conventional character within the plot",
+ who:"An unnamed, unsettling, seemingly all-knowing presence who comments directly on the action, repeatedly warns of the tragedy to come, and questions the audience about who, or what, is really to blame.",
+ journey:"Opens the play by revealing that the twins are already dead before the story properly begins, then returns throughout to mark the passage of time, invoke superstition and fate, and comment on the widening gap between the brothers' lives, before closing the play with a direct challenge to the audience's own judgement.",
+ relationships:"Interacts with every character indirectly through commentary and direct audience address, rather than through conventional dramatic dialogue or plot involvement.",
+ themes:['Superstition and fate','Guilt and complicity','Secrets and consequences'],
+ quotes:["the devil's got your number","did you never hear","tell me it's not true"],
+ message:"Russell may use the Narrator to hold fate, superstition and social causation in deliberate tension throughout the play, refusing to let the audience settle on a single, comfortable explanation for the tragedy.",
+ examArgs:[
+  "As a chorus-like figure who is never named or fully explained, the Narrator allows Russell to comment directly on fate, superstition and social class without needing a conventional character motivation.",
+  "The Narrator's repeated direct questions to the audience position them as active judges of the story's events, reinforcing the play's concern with collective as well as individual responsibility for what happens to Mickey and Edward.",
+  "Because the Narrator opens the play by revealing the twins' deaths, Russell trades conventional suspense about what happens for a different kind of tension about how and why it happens, inviting the audience to weigh fate against social causation throughout."
+ ]}
+];
+
+/* ================= THEMES ================= */
+const THEMES = [
+{name:'Social class and inequality', explanation:"Explores how vastly different material circumstances, despite the twins' identical starting point, shape opportunity, behaviour and ultimately fate.",
+ where:"The contrast between Mickey's council estate childhood and Edward's private education; the unequal consequences the boys face for near-identical childhood mischief.",
+ characters:['Mickey','Edward','Mrs Johnstone','Mrs Lyons'],
+ quotes:["long Sunday afternoon","just playing, Mam"],
+ message:"Russell may use the twins' identical biology but starkly different upbringings to argue that social class, far more than individual character or effort, determines a person's life chances.",
+ context:"The period the play depicts saw significant regional inequality and limited social mobility in Britain, particularly in northern industrial cities like Liverpool.",
+ thesis:["Russell structures the entire play around the twins' shared genetics and radically different environments to argue that class, not character, principally determines opportunity and outcome.","The unequal consequences Mickey and Edward face for near-identical childhood behaviour exposes how class shapes not just opportunity but the way individuals are judged by wider society."]},
+{name:'Nature versus nurture', explanation:"Questions how far a person's outcomes are determined by innate character versus upbringing and environment, staged directly through genetically identical twins raised apart.",
+ where:"The montage of contrasting childhood scenes; the boys' diverging paths in education, work and eventual fate.",
+ characters:['Mickey','Edward'],
+ quotes:["long Sunday afternoon"],
+ message:"Russell may use the twin device precisely because it isolates environment as a variable, since any difference between Mickey and Edward cannot be explained by genetics alone.",
+ context:"Nature-versus-nurture debates have long informed British discussions of social policy, poverty and opportunity.",
+ thesis:["By making Mickey and Edward genetically identical twins, Russell removes genetic difference as an explanation for their divergent fates, placing the weight of his argument squarely on environment and social circumstance."]},
+{name:'Superstition and fate', explanation:"Explores whether the tragedy is genuinely fated, as recurring superstitions suggest, or the product of human choices and social conditions.",
+ where:"The Narrator's recurring warnings; Mrs Lyons' superstition about twins separated at birth; the shoes-on-the-table motif.",
+ characters:['The Narrator','Mrs Lyons'],
+ quotes:["the devil's got your number","one of us must die"],
+ message:"Russell may use superstition as a structural device to build tension and inevitability, while still leaving room for the audience to see how real social and economic choices, not just fate, cause the tragedy.",
+ context:"Folk superstitions about twins, luck and fate are a genuine part of British and wider folk tradition, which Russell draws on theatrically.",
+ thesis:["Russell uses the language of fate and superstition throughout the play, but structures the plot so that concrete social causes, poverty, secrecy and class inequality, remain equally responsible for the tragedy.","The Narrator's superstitious warnings create dramatic inevitability while simultaneously inviting the audience to question whether fate is really to blame, or whether it offers characters a convenient excuse."]},
+{name:'Childhood and adulthood', explanation:"Traces how the freedom and imagination of childhood give way, unevenly, to the constraints of adult class, employment and responsibility.",
+ where:"The playful games and role-play of childhood; the harsher realities of unemployment, marriage and crime in adulthood.",
+ characters:['Mickey','Edward','Linda'],
+ quotes:["my friend"],
+ message:"Russell may suggest that childhood offers a brief period of genuine equality and connection across class lines, which adulthood, shaped by unequal opportunity, gradually erodes.",
+ context:"Reflects wider social patterns in which childhood friendships across class lines often become harder to sustain as education and employment diverge.",
+ thesis:["Russell presents childhood as a space of genuine, class-blind connection between Mickey and Edward, only for adulthood to expose how thoroughly class ultimately reshapes that early equality."]},
+{name:'Education and opportunity', explanation:"Shows how access to schooling directly shapes the twins' adult prospects, from Edward's private education and university to Mickey's early departure into limited factory work.",
+ where:"The contrast between Edward's schooling and university path and Mickey's early exit from education into precarious employment.",
+ characters:['Mickey','Edward'],
+ quotes:[],
+ message:"Russell may present education as one of the clearest, most concrete mechanisms by which class inequality is reproduced across a single generation.",
+ context:"Access to private and higher education remained strongly correlated with family income and background throughout the period the play depicts.",
+ thesis:["Russell uses the twins' contrasting educational paths as a concrete mechanism explaining their otherwise puzzling divergence in adult opportunity and status."]},
+{name:'Secrets and consequences', explanation:"Explores how the initial secret of the twins' separation, kept for years by both mothers, ultimately produces catastrophic consequences once revealed too late.",
+ where:"Mrs Johnstone and Mrs Lyons' original pact; Mrs Lyons' escalating attempts to protect the secret; its devastating revelation in the play's climax.",
+ characters:['Mrs Johnstone','Mrs Lyons','Mickey'],
+ quotes:["he's your brother"],
+ message:"Russell may suggest that secrets kept out of fear rather than genuine protection tend to cause more harm the longer they are maintained.",
+ context:"No additional historical context is needed here beyond the play's own internal logic and structure.",
+ thesis:["Russell structures the entire plot around the consequences of a single kept secret, using its catastrophic, too-late revelation to argue that concealment, however well-intentioned, ultimately fails those it claims to protect."]},
+{name:'Family and loyalty', explanation:"Examines competing loyalties, between blood family, adoptive family, and chosen friendship, and how these loyalties are tested by circumstance.",
+ where:"Mrs Johnstone's continued care for both sons despite being unable to acknowledge Edward; Sammy's pull on Mickey despite the trouble he causes; Linda's loyalty to Mickey under strain.",
+ characters:['Mrs Johnstone','Sammy','Linda','Mickey'],
+ quotes:["our kid","stand by him"],
+ message:"Russell may present family loyalty as a genuine, sustaining force in working-class life, even where it also draws characters into damaging situations.",
+ context:"Reflects the importance of extended family and community loyalty within many working-class communities.",
+ thesis:["Russell presents family loyalty as double-edged, both sustaining Mickey through hardship and drawing him into the very crime that leads to his downfall."]},
+{name:'Mental health', explanation:"Traces Mickey's psychological decline through unemployment, imprisonment and medication, giving the play's class critique a personal, human dimension.",
+ where:"Mickey's transformation from confident child to depressed, medicated adult; other characters' harsh judgement of his condition.",
+ characters:['Mickey'],
+ quotes:["madman","gone to the dogs"],
+ message:"Russell may use Mickey's mental health decline to show that the human cost of unemployment and poverty is measured in psychological as well as material terms.",
+ context:"Public understanding and treatment of depression and mental illness were considerably more limited during the period the play depicts than today.",
+ thesis:["Russell uses Mickey's psychological decline to give abstract arguments about unemployment and poverty a concrete, deeply human cost."]},
+{name:'Friendship across class lines', explanation:"Explores whether genuine friendship can survive, or is ultimately undone by, significant differences in class and opportunity.",
+ where:"Mickey and Edward's childhood blood-brother pact; their teenage reunion; the strain placed on their bond by adult inequality and jealousy.",
+ characters:['Mickey','Edward'],
+ quotes:["we're blood brothers","my friend"],
+ message:"Russell may suggest that genuine affection can cross class lines in childhood, but struggles to survive unchanged once adult inequality makes itself fully felt.",
+ context:"No additional historical context is needed here beyond the play's own dramatisation of the friendship.",
+ thesis:["Russell presents Mickey and Edward's friendship as genuine but ultimately unable to withstand the practical inequalities that adulthood exposes between them."]},
+{name:'Guilt and complicity', explanation:"Examines how different characters' choices, some large, some small, combine to produce the play's tragic outcome, distributing responsibility rather than locating it in one villain.",
+ where:"Mrs Lyons' manipulation and eventual confession; Sammy's pressure on Mickey; Mrs Johnstone's original decision to give up Edward.",
+ characters:['Mrs Lyons','Sammy','Mrs Johnstone'],
+ quotes:[],
+ message:"Russell may present guilt and complicity as cumulative and shared, so that no single character's choice alone explains the tragedy.",
+ context:"No additional historical context is needed here beyond the play's own structure.",
+ thesis:["Russell distributes responsibility for the tragedy across multiple characters and choices, resisting any simple assignment of blame to a single villain."]},
+{name:'Poverty and unemployment', explanation:"Grounds the play's tragedy in concrete economic hardship, from Mrs Johnstone's early financial desperation to Mickey's adult unemployment and crime.",
+ where:"Mrs Johnstone's opening situation; the local economic decline that costs Mickey his job; Sammy's pressure toward crime.",
+ characters:['Mrs Johnstone','Mickey','Sammy'],
+ quotes:["easy terms","gone to the dogs"],
+ message:"Russell may use recurring, concrete details of poverty to root his social critique in lived economic reality rather than abstract argument.",
+ context:"Reflects genuine regional economic decline and unemployment in parts of Britain, particularly Liverpool, during the period the play depicts.",
+ thesis:["Russell grounds the play's tragedy in specific, recurring economic pressures, arguing that poverty and unemployment, not individual failing, principally drive Mickey's downfall."]},
+{name:'Gender and motherhood', explanation:"Contrasts two very different mothers, Mrs Johnstone and Mrs Lyons, and the different pressures and choices each faces because of her class and circumstances.",
+ where:"Mrs Johnstone's overwhelmed, resourceful motherhood; Mrs Lyons' desperate, controlling attempt to become a mother through secrecy.",
+ characters:['Mrs Johnstone','Mrs Lyons','Linda'],
+ quotes:[],
+ message:"Russell may present motherhood itself as shaped by class, so that two women's very different capacities to provide security for a child stem from economic circumstance as much as personal character.",
+ context:"Reflects the significant practical pressures facing working-class mothers, alongside wider social expectations placed on women as caregivers.",
+ thesis:["Russell uses Mrs Johnstone and Mrs Lyons as contrasting studies in motherhood shaped by class, suggesting that economic security, not maternal feeling alone, determines a mother's practical options."]},
+{name:'Violence and its consequences', explanation:"Traces the escalation from childhood play-violence, toy guns and the 'bogey man' game, to the real violence of the robbery and the play's fatal climax.",
+ where:"The children's gun games; Sammy's robbery; the final shooting.",
+ characters:['Mickey','Sammy','Edward'],
+ quotes:["hold the gun"],
+ message:"Russell may use the recurring gun motif to suggest that violence, once treated as harmless play, can escalate into real tragedy once circumstances such as poverty, pressure and desperation close in around a person.",
+ context:"No additional historical context is needed here beyond the play's own symbolic structure.",
+ thesis:["Russell's escalation of the gun from childhood toy to real weapon structures the entire play's argument about how quickly circumstance can turn ordinary behaviour into tragedy."]}
+];
+
+/* ================= TECHNIQUES ================= */
+const TECHNIQUES = [
+{name:'The Narrator as chorus', def:"A chorus-like figure who comments on the action, addresses the audience directly, and is not bound by the normal rules of character or scene.", example:"The Narrator opens the play revealing the twins are already dead, then reappears throughout to comment on events and warn of the approaching tragedy.", effect:"Creates a sense of inevitability and keeps the audience positioned as active judges of the unfolding story rather than passive observers.", howto:"Explain what the Narrator's specific intervention at that moment adds, foreboding, judgement, structural pacing, rather than simply noting that he appears."},
+{name:'Dramatic irony', def:"When the audience knows something the characters do not.", example:"The audience knows from the opening that Mickey and Edward are twins destined to die, long before the characters themselves learn the truth.", effect:"Creates sustained tension and poignancy across the whole play, since even light, comic scenes are shadowed by the audience's foreknowledge.", howto:"Identify precisely what the audience knows that the characters don't at that moment, and explain how that gap shapes emotional or thematic impact."},
+{name:'Foreshadowing via superstition', def:"Hints and warnings, delivered through superstition and folk belief, that anticipate the play's tragic ending.", example:"The shoes-on-the-table motif and the Narrator's recurring warnings both hint at disaster long before it occurs.", effect:"Builds a mounting sense of dread across the play, while also raising the question of whether fate or circumstance is really to blame.", howto:"Connect the specific superstition to the later event it anticipates, and consider whether Russell endorses or questions the superstition itself."},
+{name:'Doubling and parallel scenes', def:"Structurally similar scenes, staged for both twins, that invite direct comparison.", example:"Childhood scenes of play are staged in parallel for Mickey and Edward, showing the same games unfolding very differently depending on setting and supervision.", effect:"Makes the play's argument about class and nurture visible through staging and structure, not just dialogue.", howto:"Identify the two parallel moments being compared and explain precisely what the comparison reveals about class or opportunity."},
+{name:'Music and song as storytelling', def:"Songs that carry plot, character and theme rather than functioning as decorative interludes.", example:"Recurring musical refrains mark key turning points and emotional states across the play, from childhood games to Mickey's later despair.", effect:"Allows Russell to compress time, mark structural repetition, and intensify emotion in ways spoken dialogue alone could not achieve as economically.", howto:"Treat a song's recurrence, tone or lyrics as a deliberate authorial choice, analysing its function in the scene rather than simply noting that a song occurs."},
+{name:'Simultaneous / split staging', def:"Staging that presents two locations or actions at once, inviting direct visual comparison.", example:"Scenes contrasting Mickey's and Edward's childhood environments are staged so the audience can see both households, sometimes almost side by side.", effect:"Makes class contrast immediate and visual, reinforcing the play's argument without needing extended dialogue.", howto:"Discuss what the staged juxtaposition itself communicates, treating stagecraft as seriously as spoken text."},
+{name:'Symbolism — the toy gun', def:"An object, a toy gun used in childhood play, that gains deeper, darker meaning as the play develops.", example:"The children's toy gun and 'cops and robbers' games are echoed later by the real gun used in the robbery and the play's fatal climax.", effect:"Converts an innocent childhood detail into a chilling marker of how quickly circumstance can escalate play into real danger.", howto:"Trace the object across the play's timeline, explaining how its meaning shifts as context changes."},
+{name:"Symbolism — the 'bogey man' game", def:"A childhood role-play game referenced repeatedly, symbolising an unnamed, looming threat.", example:"Children's 'bogey man' games run through the play's early scenes as an image of imagined, half-understood danger.", effect:"Works alongside the Narrator's warnings to build a sense that real danger is approaching, disguised at first as harmless play.", howto:"Connect the game's imagery of hidden threat to the play's actual, later source of danger."},
+{name:'Dialect and register as class markers', def:"Differences in accent, vocabulary and sentence structure used to signal a character's class background.", example:"Mickey's Liverpudlian dialect and colloquial phrasing contrast with Edward's more standard, educated register.", effect:"Makes class difference audible as well as visible, reinforcing the play's social argument through language itself.", howto:"Quote or paraphrase a short, specific dialect feature and explain what it signals about a character's background or attitude."},
+{name:"Repetition of the Narrator's refrains", def:"Recurring phrases or musical motifs delivered by the Narrator at structurally significant moments.", example:"Warnings about fate and superstition recur across the play, gaining new weight each time they return.", effect:"Builds inevitability and reminds the audience of the promised tragedy, even during lighter or more comic scenes.", howto:"Track where a specific refrain recurs and explain what has changed, dramatically, each time it returns."},
+{name:'Cyclical structure', def:"A structure that begins at, or near, its own ending before returning to explain how events led there.", example:"The play opens with the twins already dead, then rewinds to show the years of choices and circumstance that led to that outcome.", effect:"Removes conventional plot suspense about what happens, replacing it with tension about how and why it happens.", howto:"Explain how opening with the ending changes what kind of tension the audience experiences across the rest of the play."},
+{name:'Contrasting settings', def:"Two sharply different physical environments used to dramatise social contrast.", example:"Mickey's crowded council estate is staged in direct contrast to Edward's comfortable, spacious family home.", effect:"Makes social inequality immediately visible on stage, without needing to state it explicitly in dialogue.", howto:"Describe the specific contrast in staging or setting and connect it directly to the play's class argument."},
+{name:'Stage directions as social commentary', def:"Written instructions describing setting, movement or tone that carry implicit authorial judgement.", example:"Stage directions describing the relative comfort or crowding of each household quietly reinforce the play's class critique.", effect:"Allows Russell to shape audience perception of class difference even in moments without explicit dialogue on the subject.", howto:"Treat stage directions as authorial commentary, analysing what a specific direction implies rather than simply describing the setting."},
+{name:'Direct address to the audience', def:"Moments where the Narrator speaks or gestures directly toward the audience, breaking the fourth wall.", example:"The Narrator repeatedly poses questions directly to the audience, inviting them to judge the characters' choices.", effect:"Positions the audience as active participants in judging the play's moral questions, rather than passive observers.", howto:"Explain what specific question or judgement the audience is being invited to make at that moment, and why."}
+];
+
+/* ================= QUOTE VAULT ================= */
+const QUOTES = [
+{text:"the devil's got your number", speaker:"The Narrator", act:"Recurring", characters:['The Narrator'], themes:['Superstition and fate'],
+ meaning:"A recurring warning from the Narrator suggesting that dark forces, or simply bad luck, are tracking the twins from the very start.",
+ technique:"Direct audience address; an ominous refrain repeated at key moments to build dramatic tension.",
+ solid:"This spooky-sounding phrase, repeated by the Narrator, makes the audience feel that something bad is going to happen to the twins long before it does.",
+ deep:"As a repeated refrain rather than a one-off line, this phrase works structurally as much as poetically, resurfacing at moments of heightened risk to remind the audience of the promised tragedy and to blur the line between supernatural fate and the very real social pressures closing in on Mickey.",
+ context:"Superstition about twins and fate runs through British folk tradition, and Russell uses it theatrically rather than literally, leaving open whether the tragedy is really fated or socially caused.",
+ useFor:"Essays on fate versus social causation, or on the Narrator's function as chorus."},
+{text:"shoes upon the table", speaker:"The Narrator", act:"Act One", characters:['The Narrator','Mrs Lyons'], themes:['Superstition and fate','Secrets and consequences'],
+ meaning:"References the superstition that new shoes placed on a table bring bad luck, introduced around the time of the secret adoption.",
+ technique:"Symbolic stage image combined with a sung refrain.",
+ solid:"Shows how a small superstitious detail is used to hint that the deal being made between the two mothers will end badly.",
+ deep:"Connecting domestic, everyday superstition to the play's larger tragic machinery lets Russell suggest inevitability through folk belief rather than heavy-handed plotting, while still leaving room for the audience to see the human choices underneath.",
+ context:"Shoes-on-the-table is a real, commonly cited British superstition, giving the moment an air of ordinary, recognisable dread rather than invented mysticism.",
+ useFor:"Essays on foreshadowing or on the play's blending of the supernatural with the everyday."},
+{text:"easy terms", speaker:"Mrs Johnstone", act:"Act One", characters:['Mrs Johnstone'], themes:['Poverty and unemployment','Social class and inequality'],
+ meaning:"Refers to Mrs Johnstone's habit of buying household goods on credit she can barely afford, a small detail establishing her financial precarity.",
+ technique:"A recurring motif and song refrain used to characterise economic hardship through an ordinary, specific detail rather than abstract description.",
+ solid:"Shows that Mrs Johnstone is always in debt and struggling to get by, which explains why Mrs Lyons' offer feels tempting.",
+ deep:"This small commercial detail grounds the play's social critique in lived, material specifics rather than abstraction, making Mrs Johnstone's later decision to give up a child feel like the product of relentless daily pressure rather than a simple moral failing.",
+ context:"Buying goods on credit ('the never-never') was a common working-class practice in mid-to-late twentieth-century Britain, reflecting genuine economic insecurity.",
+ useFor:"Essays on poverty, class, or Mrs Johnstone's characterisation."},
+{text:"one of us must die", speaker:"Mrs Lyons", act:"Act One", characters:['Mrs Lyons','Mrs Johnstone'], themes:['Superstition and fate','Secrets and consequences'],
+ meaning:"A paraphrased cue for Mrs Lyons' superstitious warning that twins separated at birth will both die if either learns the truth.",
+ technique:"Superstition used as a manipulative rhetorical device; ominous, escalating tone.",
+ solid:"Shows Mrs Lyons using a frightening superstition to pressure Mrs Johnstone into secrecy.",
+ deep:"Whether or not the audience takes the superstition literally, its narrative function is to bind both women, and the play itself, to an ideology of fate that conveniently displaces responsibility away from the very human choices Mrs Lyons is making in that moment.",
+ context:"The device echoes older folk beliefs about twins and doubles, but Russell may be using it as much to critique superstition as a form of denial as to endorse it.",
+ useFor:"Essays on fate versus choice, or Mrs Lyons' manipulation of Mrs Johnstone."},
+{text:"we're blood brothers", speaker:"Mickey and Edward", act:"Act One", characters:['Mickey','Edward'], themes:['Friendship across class lines','Childhood and adulthood','Nature versus nurture'],
+ meaning:"The boys' childhood pact, sworn in ignorance of their real, biological brotherhood.",
+ technique:"Dramatic irony; a ritual childhood ceremony staged with heavy symbolic weight.",
+ solid:"Shows the boys forming a close friendship without knowing they are actually related, which makes it feel extra sad later on.",
+ deep:"The audience's superior knowledge transforms a simple childhood game into a moment of profound dramatic irony, since the boys are performing a symbolic bond that is, unknown to them, already biologically true, letting Russell make the play's social tragedy feel personal rather than abstract.",
+ context:"Blood-brother pacts were a common childhood ritual, giving the moment a recognisable, ordinary charm that intensifies the later tragedy.",
+ useFor:"Essays on dramatic irony, friendship, or nature versus nurture."},
+{text:"long Sunday afternoon", speaker:"The Narrator", act:"Act One", characters:['Mickey','Edward','The Narrator'], themes:['Social class and inequality','Nature versus nurture'],
+ meaning:"A refrain accompanying scenes contrasting the boys' very different, class-shaped childhood leisure.",
+ technique:"A repeated song refrain structuring a montage; contrast.",
+ solid:"This phrase helps show how differently Mickey and Edward spend their time growing up, even though they're really brothers.",
+ deep:"By returning to this same phrase across scenes of contrasting play, Russell structurally underlines his nature-versus-nurture argument, letting rhythm and repetition do the comparative work that dialogue alone could not achieve as economically.",
+ context:"Reflects real class-based differences in mid-to-late twentieth-century British childhoods, from access to space and activities to adult supervision.",
+ useFor:"Essays on structure, class contrast, or nature versus nurture."},
+{text:"just playing, Mam", speaker:"Mickey", act:"Act One", characters:['Mickey'], themes:['Social class and inequality','Violence and its consequences'],
+ meaning:"Mickey's defensive explanation after being caught by a policeman during a childhood game involving a toy gun.",
+ technique:"Understatement; dramatic irony, foreshadowing the real gun later in the play.",
+ solid:"Shows Mickey getting into trouble for something that seems harmless, which becomes much more serious and frightening later in the play.",
+ deep:"The toy gun and Mickey's innocent excuse anticipate, in miniature, the real violence of the play's climax, so a moment of childish mischief becomes, in retrospect, a chilling piece of foreshadowing about how thin the line between play and consequence proves to be for someone in Mickey's position.",
+ context:"Reflects how working-class children's ordinary behaviour was, and often still is, treated with more suspicion by authority than equivalent behaviour from wealthier children.",
+ useFor:"Essays on foreshadowing, the symbolism of the gun, or class-based double standards."},
+{text:"my friend", speaker:"Mickey and Edward", act:"Act Two", characters:['Mickey','Edward'], themes:['Friendship across class lines'],
+ meaning:"A refrain marking the boys' renewed teenage friendship after years apart.",
+ technique:"A repeated refrain; the return of earlier musical/thematic material.",
+ solid:"Shows that even after years apart and very different lives, Mickey and Edward's friendship picks back up easily.",
+ deep:"Reprising earlier musical material to mark the reunion invites the audience to measure how much, or how little, has really changed between the boys since childhood, setting up the increasingly unequal terms on which that friendship will now be tested.",
+ context:"No additional context is required beyond the play's own structure, since the effect relies on audience memory of the earlier motif.",
+ useFor:"Essays on structure, friendship, or the theme of change over time."},
+{text:"not saying a word", speaker:"Linda", act:"Act Two", characters:['Linda','Mickey'], themes:['Family and loyalty'],
+ meaning:"A refrain accompanying the tentative early stages of Mickey and Linda's teenage romance.",
+ technique:"Understatement; a comic, gentle tone contrasted with the play's darker later material.",
+ solid:"Shows Linda and Mickey's romance starting shyly and light-heartedly, which makes their later hardship feel even sadder.",
+ deep:"The deliberately light, comic register of this refrain functions structurally as a kind of held breath before the play's tone darkens permanently, so its charm becomes retrospectively poignant once the marriage it leads to comes under severe strain.",
+ context:"No additional context is required, since the effect depends on tonal contrast with later scenes.",
+ useFor:"Essays on structure, tone, or Linda and Mickey's relationship."},
+{text:"gone to the dogs", speaker:"Mickey", act:"Act Two", characters:['Mickey'], themes:['Poverty and unemployment','Mental health'],
+ meaning:"Mickey's own bleak assessment of his prospects once unemployment sets in.",
+ technique:"A colloquial idiom; a bitter, resigned tone.",
+ solid:"Shows Mickey feeling hopeless and defeated once he loses his job, in stark contrast to his confident, funny childhood self.",
+ deep:"The shift from Mickey's earlier playful register to this flat, defeated idiom charts, in miniature, the psychological cost of unemployment that the play dramatises more fully across Act Two, showing how economic circumstance reshapes not just opportunity but identity and voice.",
+ context:"Reflects the real impact of regional unemployment in late-twentieth-century Britain, particularly in cities like Liverpool.",
+ useFor:"Essays on unemployment, mental health, or Mickey's characterisation."},
+{text:"hold the gun", speaker:"Sammy", act:"Act Two", characters:['Sammy','Mickey'], themes:['Violence and its consequences','Guilt and complicity'],
+ meaning:"Sammy pressures Mickey into involvement with a real weapon during the robbery.",
+ technique:"Symbolism, the gun motif returning from childhood, now literal and dangerous; peer and family pressure dramatised through direct instruction.",
+ solid:"Shows Sammy dragging Mickey into serious crime, turning the childhood toy gun into something genuinely dangerous.",
+ deep:"The literal gun replacing the childhood toy makes explicit a symbolic thread Russell has been building since Act One, converting a marker of innocent play into an instrument of the adult consequences poverty and family pressure have made almost inevitable for Mickey.",
+ context:"Reflects how economic desperation and family loyalty can combine to draw individuals into escalating criminal risk.",
+ useFor:"Essays on symbolism, the gun motif, or Sammy's role in the tragedy."},
+{text:"our kid", speaker:"Mickey", act:"Act Two", characters:['Mickey','Sammy'], themes:['Family and loyalty','Guilt and complicity'],
+ meaning:"An affectionate, resigned term Mickey uses about Sammy despite the trouble Sammy brings him.",
+ technique:"A colloquial register signalling family loyalty and Liverpudlian dialect.",
+ solid:"Shows that even though Sammy gets Mickey into serious trouble, Mickey still feels loyal to him as family.",
+ deep:"This small piece of dialect captures the pull of family loyalty even where it is clearly damaging, complicating any simple reading of Mickey purely as an innocent victim of circumstance rather than also a participant, however reluctant, in his own downfall.",
+ context:"Dialect terms like this reflect Russell's use of authentic Liverpudlian speech patterns to ground the play's social realism.",
+ useFor:"Essays on dialect and class, family loyalty, or guilt and complicity."},
+{text:"light romance", speaker:"The Narrator", act:"Act Two", characters:['The Narrator','Edward','Linda'], themes:['Friendship across class lines','Family and loyalty'],
+ meaning:"The Narrator's wry commentary on the growing closeness between Edward and Linda while Mickey struggles.",
+ technique:"Choric commentary; ironic understatement given the seriousness of what follows.",
+ solid:"Shows the Narrator hinting that something is developing between Linda and Edward, which becomes a serious problem for Mickey later.",
+ deep:"The Narrator's deliberately light phrasing for something with such heavy consequences is characteristically ironic, forcing the audience to hold two tones, playful commentary and encroaching disaster, at once, which is central to how Russell builds tension without ever losing the play's wit.",
+ context:"No additional context is required beyond the Narrator's established choric role.",
+ useFor:"Essays on the Narrator's function, dramatic irony, or the Linda/Edward/Mickey triangle."},
+{text:"madman", speaker:"Company", act:"Act Two", characters:['Mickey'], themes:['Mental health'],
+ meaning:"A harsh label applied to Mickey once his medicated, depressed state becomes visible to others.",
+ technique:"Harsh, reductive labelling used to critique social attitudes to mental illness.",
+ solid:"Shows other people judging Mickey unfairly once his mental health struggles become obvious, rather than understanding what caused them.",
+ deep:"The crudeness of this label stands in stark, deliberate contrast to the detailed social causes the play has shown for Mickey's condition, inviting the audience to judge the label itself, not Mickey, as the real failure of sympathy and understanding.",
+ context:"Reflects limited public understanding of mental illness and depression in the period the play depicts.",
+ useFor:"Essays on mental health, stigma, or Mickey's decline."},
+{text:"he's your brother", speaker:"Mrs Lyons", act:"Act Two", characters:['Mrs Lyons','Mickey'], themes:['Secrets and consequences','Superstition and fate'],
+ meaning:"A paraphrased cue for the moment Mrs Lyons finally reveals the truth of the twins' relationship to Mickey.",
+ technique:"Climactic revelation; dramatic irony resolved at the worst possible moment.",
+ solid:"Shows the secret finally coming out, but far too late and in the worst possible way, which leads directly to the tragedy.",
+ deep:"Withholding this revelation until Mickey is already armed and desperate is a deliberate structural choice, converting information the audience has held for the entire play into the specific trigger for violence, making painfully clear that the tragedy stems from timing and circumstance as much as from any single villain.",
+ context:"No additional context is required, since its power depends entirely on the audience's accumulated dramatic-irony knowledge.",
+ useFor:"Essays on structure, dramatic irony, or the play's climax."},
+{text:"tell me it's not true", speaker:"Mrs Johnstone and Company", act:"Epilogue", characters:['Mrs Johnstone','The Narrator'], themes:['Superstition and fate','Secrets and consequences'],
+ meaning:"The anguished final refrain following the twins' deaths, questioning whether the tragedy could really have happened.",
+ technique:"A repeated refrain; direct emotional address; company/ensemble delivery.",
+ solid:"Shows the characters' and audience's shared disbelief and grief at the tragic, sudden ending.",
+ deep:"Shifting this refrain from an individual character's private grief to a shared company delivery collapses the distance between stage and audience, implicating everyone watching in the question of whether such a preventable tragedy could really happen, and by extension, whether it still does, in different forms, in real communities.",
+ context:"Functions as the play's title-referencing final number, tying its emotional close directly back to its central concerns.",
+ useFor:"Essays on the play's ending, tone, or its wider social message."},
+{text:"did you never hear", speaker:"The Narrator", act:"Recurring", characters:['The Narrator'], themes:['Superstition and fate','Guilt and complicity'],
+ meaning:"The Narrator's repeated, pointed question inviting the audience to recall superstitions or warnings that the characters themselves ignore.",
+ technique:"A rhetorical question; direct audience address; anaphora across repetitions.",
+ solid:"Shows the Narrator repeatedly asking the audience if they remember the warnings, building tension about what is coming.",
+ deep:"The repeated rhetorical question positions the audience as a kind of jury throughout the play, gradually accumulating both narrative information and moral responsibility for judging what they are watching, which pays off directly in the play's final direct challenge to the audience.",
+ context:"Draws on a long tradition of choric, audience-implicating narration in popular musical theatre.",
+ useFor:"Essays on the Narrator's function, dramatic irony, or audience positioning."},
+{text:"stand by him", speaker:"Linda", act:"Act Two", characters:['Linda','Mickey'], themes:['Family and loyalty','Mental health'],
+ meaning:"Linda's resolve to support Mickey through his unemployment, imprisonment and depression.",
+ technique:"A declarative, determined tone, contrasted against the pull she feels toward Edward.",
+ solid:"Shows Linda trying hard to stay loyal to Mickey even though things are very difficult and she is drawn to Edward's more stable life.",
+ deep:"The tension between this stated resolve and Linda's later closeness to Edward is never resolved into simple blame, letting Russell present her as a woman genuinely caught between loyalty and circumstance rather than as either a straightforward heroine or a straightforward betrayer.",
+ context:"Reflects the real strain unemployment and mental illness can place on working-class marriages and families.",
+ useFor:"Essays on Linda's characterisation, family and loyalty, or mental health."}
+];
+
+/* ================= QUIZ BANK ================= */
+const QUIZ_BANK = [
+{type:'mc', q:"What does Mrs Johnstone discover early in the play that she cannot afford?", opts:["That she is expecting twins","That she has lost her job","That her husband is returning","That she has won money"], a:0, exp:"Already struggling financially, Mrs Johnstone discovers she is pregnant with twins she cannot afford to raise alone."},
+{type:'mc', q:"Who persuades Mrs Johnstone to give up one of the twins?", opts:["Mickey","Mrs Lyons","The Narrator","Sammy"], a:1, exp:"Mrs Lyons, unable to have children of her own, persuades Mrs Johnstone to give her one of the twins in secret."},
+{type:'char', q:"What superstition does Mrs Lyons use to frighten Mrs Johnstone into silence?", opts:["That twins separated at birth will both die if either learns the truth","That the house is haunted","That new moons bring bad luck to strangers","That the twins will grow up to hate each other"], a:0, exp:"Mrs Lyons warns that twins separated at birth will both die if either ever learns they were a twin, binding Mrs Johnstone to secrecy."},
+{type:'mc', q:"About how old are Mickey and Edward when they first meet and become blood brothers?", opts:["Around seven","Around fourteen","Around eighteen","Around four"], a:0, exp:"The boys meet as young children, around the age of seven, and swear themselves blood brothers without knowing they are actually related."},
+{type:'char', q:"Who joins Mickey and Edward's childhood games and later marries Mickey?", opts:["Linda","Sammy","Mrs Lyons","The Narrator"], a:0, exp:"Linda, a neighbourhood girl, joins the boys' games as a child and later marries Mickey as an adult."},
+{type:'mc', q:"Why does Mrs Lyons dismiss Mrs Johnstone from her job as cleaner?", opts:["Mrs Johnstone stole from her","She fears Mrs Johnstone's closeness to Edward will expose the secret","Mrs Johnstone asked for a pay rise","The family moved abroad"], a:1, exp:"Mrs Lyons grows anxious about Mrs Johnstone's continued closeness to Edward and dismisses her to protect the secret."},
+{type:'mc', q:"What are Mickey and Edward caught doing by a policeman as children?", opts:["Playing with a toy gun and catapults","Stealing sweets","Fighting each other","Skipping school"], a:0, exp:"The boys are caught playing a game involving a toy gun and catapults, foreshadowing the real gun used later in the play."},
+{type:'char', q:"Who is Mickey's troubled older brother?", opts:["Sammy","Edward","Gerald","A character not in the play"], a:0, exp:"Sammy is Mickey's older brother, whose escalating criminal behaviour eventually pressures Mickey into the robbery."},
+{type:'mc', q:"What happens to Mickey's job as the local economy declines?", opts:["He is promoted","He loses it","He becomes self-employed","He retires early"], a:1, exp:"Mickey loses his factory job as the local economy declines, beginning his period of unemployment and hardship."},
+{type:'mc', q:"What does Sammy pressure Mickey into during Act Two?", opts:["A robbery","A wedding","A house move","A protest"], a:0, exp:"Sammy pressures Mickey into acting as lookout for a robbery that turns violent."},
+{type:'mc', q:"What is Mickey sent to prison for?", opts:["His part in a robbery that turns violent","Theft from Edward","Assaulting a policeman","Fraud"], a:0, exp:"Mickey is imprisoned for his involvement in the robbery Sammy pressures him into."},
+{type:'mc', q:"What does Mickey become dependent on after his release from prison?", opts:["Alcohol","Prescribed medication for depression","Gambling","A new job"], a:1, exp:"After prison, Mickey is prescribed medication for depression and becomes dependent on it."},
+{type:'mc', q:"What role does Edward take on after returning from university?", opts:["A position of local influence","A factory worker","A soldier","A teacher"], a:0, exp:"Edward returns from university into a position of local influence and public standing."},
+{type:'char', q:"Who does Linda increasingly turn to for support while Mickey struggles?", opts:["Edward","Sammy","The Narrator","Mrs Lyons"], a:0, exp:"As Mickey struggles with unemployment, imprisonment and depression, Linda turns increasingly to Edward for support."},
+{type:'char', q:"Who finally reveals to Mickey that Edward is his twin brother?", opts:["Mrs Lyons","Mrs Johnstone","Linda","Sammy"], a:0, exp:"Mrs Lyons, unravelled by guilt and jealousy, finally reveals the truth to Mickey."},
+{type:'mc', q:"What does Mrs Lyons give Mickey at the moment she reveals the truth?", opts:["A gun","A letter","Money","A photograph"], a:0, exp:"Mrs Lyons presses a gun into Mickey's hands as she reveals that Edward is his brother."},
+{type:'mc', q:"How does the play end?", opts:["Both twins are reconciled happily","Mickey shoots Edward and is then shot by police, killing both brothers","Edward moves abroad","Mrs Johnstone reveals the secret with no consequences"], a:1, exp:"In the play's tragic climax, Mickey shoots Edward and is then shot by police, so both twins die within moments of each other."},
+{type:'theme', q:"Which theme is most directly explored by the twins' identical biology but radically different upbringings?", opts:["Nature versus nurture","Gender","Religion","Colonial history"], a:0, exp:"The twin device isolates environment as the key variable, making nature versus nurture central to the play."},
+{type:'theme', q:"What does the Narrator's repeated questioning of the audience most strongly build?", opts:["Comic relief only","A sense of fate, foreboding and audience judgement","Confusion about the plot","Sympathy for Mrs Lyons only"], a:1, exp:"The Narrator's recurring, pointed questions build a sense of impending fate and position the audience as judges of the unfolding events."},
+{type:'theme', q:"Which theme is most clearly shown by Mickey's unemployment and depression?", opts:["Mental health and poverty/unemployment","Religion","Colonial history","Gender only"], a:0, exp:"Mickey's decline dramatises the combined themes of poverty, unemployment and mental health."},
+{type:'tech', q:"What is the term for the audience knowing the boys are twins when the characters do not?", opts:["Dramatic irony","Alliteration","Onomatopoeia","Enjambment"], a:0, exp:"This is dramatic irony: the audience's superior knowledge shapes how they experience the boys' friendship and its tragic ending."},
+{type:'tech', q:"What is the Narrator best described as, structurally?", opts:["A minor background character","A chorus-like, omniscient device commenting on and foreshadowing events","A silent extra","A second Mrs Lyons"], a:1, exp:"The Narrator functions as a chorus-like device, commenting on events and repeatedly foreshadowing the tragedy."},
+{type:'tech', q:"What does the toy gun becoming a real gun later in the play demonstrate?", opts:["Symbolism, turning a childhood motif into a marker of adult consequence","Comic relief only","A change in setting","Nothing significant"], a:0, exp:"The gun motif is a clear example of symbolism, converting an object of childhood play into a marker of real, adult danger."},
+{type:'tech', q:"What structural device has the play open with the twins' deaths already revealed?", opts:["Cyclical/circular structure","A flashback with no framing","Linear chronology only","A dream sequence"], a:0, exp:"The play uses a cyclical structure, opening with the ending before returning to explain how events led there."},
+{type:'tech', q:"What technique is shown through the play's use of Liverpudlian dialect and differing registers for Mickey and Edward?", opts:["Dialect and register as class markers","Rhyme scheme","Iambic pentameter","Sonnet form"], a:0, exp:"Differences in dialect and register between Mickey and Edward signal their differing class backgrounds."},
+{type:'context', q:"In what city, broadly, is Blood Brothers understood to be set?", opts:["Liverpool","London","Manchester","Glasgow"], a:0, exp:"The play is set in and around Liverpool, drawing on its specific social and economic history."},
+{type:'context', q:"What social and economic backdrop most shapes Mickey's adult struggles?", opts:["Regional unemployment and deprivation in late-20th-century Britain","Wartime rationing","Victorian factory conditions","The 1960s space race"], a:0, exp:"Mickey's adult struggles are shaped by regional unemployment and economic deprivation in late-20th-century Britain."},
+{type:'tf', q:"True or False: Blood Brothers is a straight, non-musical stage play.", opts:["True","False"], a:1, exp:"False — Blood Brothers is a musical; songs carry plot and theme throughout, rather than functioning as mere decoration."},
+{type:'context', q:"What genre is Blood Brothers most accurately described as?", opts:["A musical / modern tragedy","A Shakespearean history play","A silent film script","A radio drama only"], a:0, exp:"Blood Brothers is best described as a musical and a modern tragedy, first performed in 1983."},
+{type:'mc', q:"Which character's despair over unemployment is captured by the cue 'gone to the dogs'?", opts:["Mickey","Edward","Sammy","The Narrator"], a:0, exp:"This bleak self-assessment reflects Mickey's hopelessness once unemployment takes hold."}
+];
+
+/* ================= WHO SAID IT GAME ================= */
+const WHOSAIDIT = [
+{text:"the devil's got your number", answer:'The Narrator', opts:['The Narrator','Mrs Lyons','Mickey','Linda'], exp:"This is a recurring choric warning delivered by the Narrator throughout the play."},
+{text:"shoes upon the table", answer:'The Narrator', opts:['The Narrator','Mrs Johnstone','Edward','Sammy'], exp:"A superstition-laden refrain associated with the secret adoption, delivered by the Narrator."},
+{text:"easy terms", answer:'Mrs Johnstone', opts:['Mrs Johnstone','Mrs Lyons','Linda','The Narrator'], exp:"Reflects Mrs Johnstone's habit of buying on credit, establishing her poverty."},
+{text:"one of us must die", answer:'Mrs Lyons', opts:['Mrs Lyons','Mrs Johnstone','The Narrator','Linda'], exp:"Mrs Lyons' superstitious warning, used to frighten Mrs Johnstone into secrecy."},
+{text:"we're blood brothers", answer:'Mickey and Edward', opts:['Mickey and Edward','Sammy and Mickey','Linda and Edward','Mrs Lyons and Mrs Johnstone'], exp:"The childhood pact sworn by the twins, unaware of their real relationship."},
+{text:"long Sunday afternoon", answer:'The Narrator', opts:['The Narrator','Mickey','Edward','Mrs Lyons'], exp:"A refrain accompanying the montage contrasting the boys' childhoods."},
+{text:"just playing, Mam", answer:'Mickey', opts:['Mickey','Edward','Sammy','Linda'], exp:"Mickey's excuse after being caught by a policeman playing with a toy gun."},
+{text:"my friend", answer:'Mickey and Edward', opts:['Mickey and Edward','Linda and Mickey','Sammy and Mickey','Mrs Lyons and Edward'], exp:"A refrain marking their renewed teenage friendship."},
+{text:"not saying a word", answer:'Linda', opts:['Linda','Mrs Johnstone','Mrs Lyons','The Narrator'], exp:"The refrain of Linda and Mickey's shy early teenage romance."},
+{text:"gone to the dogs", answer:'Mickey', opts:['Mickey','Edward','Sammy','The Narrator'], exp:"Mickey's bleak self-assessment once unemployment sets in."},
+{text:"hold the gun", answer:'Sammy', opts:['Sammy','Edward','The Narrator','Mrs Lyons'], exp:"Sammy pressures Mickey during the robbery."},
+{text:"our kid", answer:'Mickey', opts:['Mickey','Edward','Linda','Mrs Johnstone'], exp:"Mickey's affectionate, dialect term for Sammy despite the trouble he causes."},
+{text:"light romance", answer:'The Narrator', opts:['The Narrator','Mrs Lyons','Sammy','Mrs Johnstone'], exp:"The Narrator's wry commentary on Edward and Linda's growing closeness."},
+{text:"madman", answer:'Company', opts:['Company','Mickey','Edward','Mrs Johnstone'], exp:"A harsh label applied to Mickey once his mental health struggles become visible."},
+{text:"he's your brother", answer:'Mrs Lyons', opts:['Mrs Lyons','Mrs Johnstone','Linda','Sammy'], exp:"Mrs Lyons finally reveals the truth to Mickey in the play's climax."},
+{text:"tell me it's not true", answer:'Company', opts:['Company','Mickey','Edward','Sammy'], exp:"The anguished final refrain sung after the twins' deaths."},
+{text:"did you never hear", answer:'The Narrator', opts:['The Narrator','Mrs Lyons','Linda','Edward'], exp:"The Narrator's recurring rhetorical question implicating the audience."},
+{text:"stand by him", answer:'Linda', opts:['Linda','Mrs Johnstone','Mrs Lyons','The Narrator'], exp:"Linda's resolve to support Mickey despite his struggles."}
+];
+
+/* ================= FATE TRACKER DATA ================= */
+const CHANGE_DATA = [
+{name:'Mickey', level:5, begin:"Confident, funny, endlessly energetic child who invents games and instantly bonds with Edward.", end:"Unemployed, depressed and dependent on medication, finally driven to a moment of desperate violence.", learns:"That his class and circumstances close down opportunities that were never really open to him, however much energy or humour he brings.", refuses:"To fully see Edward's privilege as anything other than personal luck rather than something systemic, until it is far too late.", quote:"gone to the dogs"},
+{name:'Edward', level:2, begin:"Curious, generous, rule-breaking-for-fun child, protected at every turn by wealth and attentive parenting.", end:"Outwardly successful, kind and well-meaning, but still largely unaware of how much his life has been shaped by advantages he never has to think about.", learns:"Real affection for Mickey and Linda, and some awareness of inequality, though Russell may suggest not its full depth.", refuses:"To recognise how much his own comfort has come at Mickey's expense.", quote:"long Sunday afternoon"},
+{name:'Mrs Johnstone', level:3, begin:"A young, overwhelmed mother making an impossible choice out of love and desperation.", end:"Resigned and watchful after years of carrying the secret alone, and finally devastated by its consequences.", learns:"That a decision made to protect her children could not, in the end, protect either of them.", refuses:"To ever fully forgive herself, though the play invites the audience to judge her more gently than she judges herself.", quote:"tell me it's not true"},
+{name:'Mrs Lyons', level:4, begin:"Anxious, desperate to become a mother, determined to make Edward hers by any means necessary.", end:"Increasingly controlling and isolated by her own guilt and superstition, ultimately unravelled into an act of destructive spite.", learns:"Very little in a positive sense; if anything, her fear deepens rather than resolves across the play.", refuses:"To accept responsibility for the secret she created, instead blaming fate and superstition.", quote:"one of us must die"},
+{name:'Linda', level:3, begin:"A loyal, easy-going childhood friend of both boys, drawn gently into a teenage romance with Mickey.", end:"A woman worn down by holding a struggling marriage together, eventually caught between loyalty to Mickey and the comfort she finds with Edward.", learns:"The practical, exhausting cost of loving someone whose circumstances are collapsing around him.", refuses:"To give up on Mickey entirely, even as she is drawn toward the stability Edward can offer.", quote:"stand by him"}
+];
+
+/* ================= CHAIN OF CONSEQUENCES DATA ================= */
+const CHAIN = [
+{who:'Mrs Johnstone', action:"Gives up baby Edward under pressure from Mrs Lyons.", detail:"Already struggling with poverty and a large family, Mrs Johnstone is persuaded by Mrs Lyons' promise of an easier life and a superstitious warning to give up one of her twins in secret.", quote:"easy terms", message:"Russell may use this to show how economic desperation, not a lack of love, drives Mrs Johnstone's decision, complicating any simple judgement of her as an unfit or careless mother."},
+{who:'Mrs Lyons', action:"Lets fear and superstition poison her relationship with her own choice, and with Mrs Johnstone.", detail:"Rather than confronting the secret honestly, Mrs Lyons manages her guilt through increasing control, dismissing Mrs Johnstone and eventually moving her family away to protect the lie.", quote:"one of us must die", message:"Russell may use Mrs Lyons' escalating fear to show how unaddressed guilt can deform a person's choices over many years, spreading harm well beyond the original decision."},
+{who:'Mickey and Edward', action:"Cross class lines to become blood brothers, despite Mrs Lyons trying to keep them apart.", detail:"The boys' instinctive, unknowing bond survives Mrs Lyons' attempts to separate them, resuming easily even after years apart as teenagers.", quote:"we're blood brothers", message:"Russell may present this bond as evidence that genuine connection can cross class lines in childhood, making its later erosion by adult inequality feel all the more tragic."},
+{who:'Mickey', action:"Unemployment, imprisonment and declining mental health widen the gap between the brothers.", detail:"As Mickey loses his job, is drawn into crime by Sammy, and is imprisoned, his adult life diverges sharply from Edward's, deepening both his hardship and his resentment.", quote:"gone to the dogs", message:"Russell may use this widening gap to argue that structural inequality, not personal failing, is chiefly responsible for how differently the twins' lives unfold."},
+{who:'Linda', action:"Turns to Edward for support as Mickey struggles.", detail:"Worn down by Mickey's unemployment, imprisonment and depression, Linda finds comfort and stability in her continuing friendship with Edward, without ever intending to hurt Mickey.", quote:"stand by him", message:"Russell may use Linda's situation to show how poverty and mental illness can strain even a genuinely loving marriage, without reducing anyone involved to a simple villain."},
+{who:'Mrs Lyons and Mickey', action:"The truth is finally revealed and the twins die.", detail:"Unravelled by years of guilt and jealousy, Mrs Lyons tells Mickey the truth and gives him a gun; in the resulting confrontation, both twins die within moments of each other.", quote:"he's your brother", message:"Russell may present this final link as the tragic culmination of every earlier choice in the chain, showing how small, individually explicable decisions can combine into an outcome no single person intended."}
+];
+
+/* ================= NATURE VS NURTURE COMPARE DATA ================= */
+const MICKEY_ENV = [
+{point:"Overcrowded council housing and real material poverty", why:"Explains the daily stress and narrowed horizons Mickey grows up with, long before any choice of his own is involved."},
+{point:"A large state school with little individual attention", why:"Leaves Mickey with few qualifications and limited options once he leaves education early."},
+{point:"Precarious factory employment, vulnerable to local economic decline", why:"Directly triggers the unemployment and financial pressure that push Mickey toward crime."},
+{point:"Little family support beyond his own overstretched mother, and no real institutional safety net", why:"Leaves Mickey's depression and medication dependence largely unaddressed once his mental health declines."},
+{point:"Limited social confidence and opportunity by adulthood", why:"Shows how an early setback, like his imprisonment, compounds rather than fades with time, unlike the same setback might for someone with more resources."}
+];
+const EDWARD_ENV = [
+{point:"A comfortable, spacious home with a mother anxious to give him every material advantage", why:"Provides Edward with security and stability that free him to focus on ambition rather than survival."},
+{point:"Private education and encouragement toward university", why:"Opens doors, a respected career, eventual local influence, that are never realistically available to Mickey."},
+{point:"A stable, if emotionally complicated, path into a respected public role", why:"Shows how privilege converts smoothly into adult status and authority, almost without Edward needing to try."},
+{point:"Access to social and institutional support, including his mother's determined (if damaging) protectiveness", why:"Shows that even Mrs Lyons' controlling behaviour reflects resources and attention Mickey's family simply cannot spare."},
+{point:"Confidence and social ease that let him move between different worlds", why:"Illustrates how privilege can look like personal charm rather than circumstance, often invisible to Edward himself."}
+];
+
+/* ================= RENDER: NAVIGATION ================= */
+let currentSection = Store.get('lastSection','overview');
+
+function renderNav(){
+  const html = SECTIONS.map((s,i)=>`<button class="navlink" data-target="${s.id}" role="tab"><span class="num">${String(i+1).padStart(2,'0')}</span>${s.label}</button>`).join('');
+  document.getElementById('navList').innerHTML = html;
+  document.getElementById('navListMobile').innerHTML = html;
+  document.querySelectorAll('.navlink').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ showSection(btn.getAttribute('data-target')); closeDrawer(); });
+  });
+}
+
+function showSection(id){
+  currentSection = id;
+  Store.set('lastSection', id);
+  document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active', s.id === 'section-'+id));
+  document.querySelectorAll('.navlink').forEach(b=>b.classList.toggle('active', b.getAttribute('data-target')===id));
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+}
+
+function closeDrawer(){
+  document.getElementById('mobileDrawer').classList.remove('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded','false');
+}
+document.getElementById('hamburgerBtn').addEventListener('click', ()=>{
+  const d = document.getElementById('mobileDrawer');
+  const open = d.classList.toggle('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded', open?'true':'false');
+});
+document.getElementById('mobileDrawer').addEventListener('click', (e)=>{
+  if(e.target.id === 'mobileDrawer') closeDrawer();
+});
+
+const root = document.getElementById('sectionsRoot');
+function el(html){ const d=document.createElement('div'); d.innerHTML=html; return d.firstElementChild; }
+
+/* ---- 1. OVERVIEW ---- */
+function buildOverview(){
+  const s = el(`<section class="section" id="section-overview">
+    <div class="section-header"><div class="eyebrow">Section 01</div><h1>Overview</h1><div class="desc">Get your bearings before you dive into detail.</div></div>
+
+    <div class="grid two">
+      <div class="card"><h3>Key facts</h3>
+        <p><b>Playwright:</b> Willy Russell<br>
+        <b>First performed:</b> 1983 (Liverpool Playhouse; West End from 1988)<br>
+        <b>Setting:</b> Liverpool — a working-class council estate and, in contrast, a comfortable, privately-owned house<br>
+        <b>Time span:</b> From the twins' birth through to their adulthood, roughly the late 1960s to the early 1980s<br>
+        <b>Genre:</b> Musical / modern tragedy, narrated by a chorus-like figure</p>
+      </div>
+      <div class="card"><h3>Why the play matters for GCSE</h3>
+        <p>Its accessible, sung-through structure and single powerful twin-device make it an ideal text for studying how a writer builds a social argument through structure and staging, not just dialogue — and for practising analysis of a modern play using short, precise verbal cues rather than long quotation.</p>
+      </div>
+    </div>
+
+    <div class="card"><h3>Basic premise</h3>
+      <p>Struggling to support her family alone, Mrs Johnstone is persuaded by the wealthier, childless Mrs Lyons to give up one of the twins she is expecting. Raised apart, unaware they are brothers, Mickey and Edward meet as children and become firm friends, even as their contrasting environments steadily shape very different lives. As adults, Mickey's unemployment, imprisonment and declining mental health widen the gap between them, while Edward's comfortable path continues largely undisturbed. The secret that separated them at birth is finally revealed only in the play's tragic, fatal climax.</p>
+    </div>
+
+    <div class="card"><h3>Major themes at a glance</h3>
+      <p><span class="tag blood">Social class and inequality</span><span class="tag blood">Nature versus nurture</span><span class="tag blood">Superstition and fate</span><span class="tag gold">Secrets and consequences</span><span class="tag gold">Childhood and adulthood</span><span class="tag gold">Education and opportunity</span><span class="tag">Family and loyalty</span><span class="tag">Mental health</span><span class="tag">Friendship across class lines</span><span class="tag fog">Guilt and complicity</span><span class="tag fog">Poverty and unemployment</span><span class="tag fog">Gender and motherhood</span><span class="tag fog">Violence and its consequences</span></p>
+    </div>
+
+    <div class="card"><h3>Why these ideas matter</h3>
+      <p><b>Social class and nature versus nurture</b> sit at the heart of the play — identical twins, raised in radically different environments, let Russell isolate environment as the real driver of opportunity and outcome.<br><br>
+      <b>Superstition and fate</b> run alongside this social argument throughout, via the Narrator's warnings, raising the question of how far the tragedy is fated versus caused by real, avoidable choices.<br><br>
+      <b>Secrets, guilt and family loyalty</b> shape how the adults around the twins behave, and ultimately how the truth is (too late) revealed.<br><br>
+      <b>Poverty, unemployment and mental health</b> give the play's social argument a concrete, human cost through Mickey's adult decline.<br><br>
+      <b>Childhood, friendship and education</b> trace how an early, class-blind bond between the boys is gradually reshaped, and finally destroyed, by adult inequality.</p>
+    </div>
+
+    <div class="card"><h3>Two brothers, one secret — why the twin device matters</h3>
+      <p>Russell's decision to make Mickey and Edward biological twins, rather than simply two boys from different backgrounds, is central to the play's argument. Because the boys share identical genetics, any difference in how their lives unfold cannot be explained by nature; it must come from nurture, meaning the environment, opportunity and treatment each receives. The device lets Russell stage a social argument with genuine dramatic force: audiences watch two versions of essentially the same person diverge sharply because of the different worlds they are raised in, making the play's critique of class inequality feel personal and inescapable rather than merely theoretical.</p>
+    </div>
+
+    <div class="card"><h3>What GCSE students need to understand</h3>
+      <ul>
+        <li>That the twin device exists specifically to isolate environment from genetics, making the play's nature-versus-nurture argument concrete rather than abstract.</li>
+        <li>How Russell uses the Narrator, music and structure as deliberately as dialogue to build his argument and create dramatic irony.</li>
+        <li>That Blood Brothers is a modern, still-copyrighted play, so exam responses should rely on short, precise verbal cues and detailed scene reference rather than lengthy quotation.</li>
+        <li>That exam boards want analysis of Russell's methods and purpose, not simply a retelling of events.</li>
+      </ul>
+    </div>
+
+    <div class="sixty">
+      <h3>Blood Brothers in 60 Seconds</h3>
+      <p>Struggling financially and already raising several children alone, Mrs Johnstone discovers she is expecting twins. The wealthier, childless Mrs Lyons persuades her to give up one baby in secret, warning that separated twins who learn the truth will both die. Raised apart, Mickey and Edward meet by chance as children and become blood brothers, joined by their friend Linda, unaware they are actually related. As they grow, Mickey's working-class upbringing and Edward's private education pull their lives in very different directions: Mickey struggles with unemployment, is pressured by his brother Sammy into a robbery, and is imprisoned, emerging depressed and dependent on medication, while Edward returns from university into a comfortable, influential adult life. As Linda turns to Edward for support and Mickey's jealousy and desperation grow, Mrs Lyons, unravelled by years of guilt, finally tells Mickey the truth and presses a gun into his hands. In the devastating climax that follows, both brothers die within moments of each other, and the Narrator closes the play by asking the audience who, or what, is really to blame.</p>
+    </div>
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 2. PLOT ---- */
+const PLOT = [
+{n:'Prologue', t:"The twins' fate is announced", happens:"The Narrator opens the play by revealing that the bodies of Mickey and Edward, twins separated at birth, already lie dead; Mrs Johnstone appears, and the story rewinds to explain how it happened.", why:"Establishes the play's cyclical, tragic structure from the very first moments, so the audience watches everything that follows already knowing how it ends.", chars:["The Narrator","Mrs Johnstone"], themes:["Superstition and fate"], quote:"tell me it's not true"},
+{n:'Act One', t:"Mrs Johnstone's situation", happens:"Left to support a large family largely alone, Mrs Johnstone works as a cleaner for the wealthier Mrs Lyons and discovers she is expecting twins she cannot afford to raise.", why:"Sets up the poverty and desperation that make Mrs Lyons' later proposal seem, however wrongly, like a reasonable solution.", chars:["Mrs Johnstone","Mrs Lyons"], themes:["Poverty and unemployment","Gender and motherhood"], quote:"easy terms"},
+{n:'Act One', t:"The pact — Mrs Lyons' proposal and the secret adoption", happens:"The childless Mrs Lyons persuades Mrs Johnstone to give her one baby in secret, promising an easier life for her and her other children; the women swear an oath as Mrs Lyons introduces a chilling superstition about twins parted at birth. Once Edward is settled, Mrs Lyons, increasingly anxious about Mrs Johnstone's continued closeness to the baby, dismisses her from her cleaning job entirely.", why:"The central inciting decision of the play — a choice made out of financial desperation and emotional manipulation that determines everything that follows.", chars:["Mrs Johnstone","Mrs Lyons"], themes:["Secrets and consequences","Superstition and fate","Poverty and unemployment"], quote:"one of us must die"},
+{n:'Act One', t:"Mickey and Edward meet — blood brothers", happens:"Years later, seven-year-old Mickey meets Edward while playing outside; unaware they are related, the boys strike up an instant friendship, cut their palms and swear themselves 'blood brothers'. Linda, a neighbourhood girl, joins their games.", why:"The emotional heart of the play — an unknowing bond between twins kept apart by class and secrecy.", chars:["Mickey","Edward","Linda"], themes:["Childhood and adulthood","Friendship across class lines","Nature versus nurture"], quote:"we're blood brothers"},
+{n:'Act One', t:"Mrs Lyons' fear escalates", happens:"Horrified to discover Edward's friendship with a local, working-class boy, Mrs Lyons tries to forbid the friendship and eventually moves her family away, further isolating Edward and deepening her own paranoia about the secret being discovered.", why:"Demonstrates how superstition and guilt combine to drive Mrs Lyons toward increasingly controlling, damaging decisions.", chars:["Mrs Lyons","Edward"], themes:["Superstition and fate","Secrets and consequences"], quote:"not to play with him"},
+{n:'Act One', t:"Growing up in contrasting worlds", happens:"A montage of childhood scenes contrasts Mickey's rough, crowded council estate upbringing with Edward's comfortable, closely supervised private education, even as the two boys, and later Linda, continue to find ways to play together.", why:"Makes the play's nature-versus-nurture argument visible on stage, showing identical starting points diverging sharply because of environment.", chars:["Mickey","Edward","Linda"], themes:["Social class and inequality","Nature versus nurture","Education and opportunity"], quote:"long Sunday afternoon"},
+{n:'Act One', t:"The catapult incident and unequal consequences", happens:"Playing a game with catapults and a toy gun, the children are caught by a policeman; Mickey is marched home and harshly scolded by his mother, while Edward's mischief is met with far milder consequences in his own household.", why:"A small, concrete moment that foreshadows the play's fatal climax while dramatising how differently the same behaviour is judged across class lines.", chars:["Mickey","Edward"], themes:["Social class and inequality","Violence and its consequences"], quote:"just playing, Mam"},
+{n:'Act Two', t:"Reunited as teenagers", happens:"After years apart following the Lyons family's move, Mickey and Edward encounter one another again as teenagers; their friendship resumes easily, and Linda remains close to them both.", why:"Re-establishes the bond that class and secrecy have failed to destroy, setting up the more serious consequences of adulthood.", chars:["Mickey","Edward","Linda"], themes:["Friendship across class lines","Childhood and adulthood"], quote:"my friend"},
+{n:'Act Two', t:"Diverging paths — school, work and romance", happens:"Mickey leaves school for a factory job while Edward heads off to university; meanwhile Mickey and Linda's friendship develops into a tentative teenage romance.", why:"Marks the point where education and opportunity visibly begin to separate the twins' adult prospects.", chars:["Mickey","Edward","Linda"], themes:["Education and opportunity","Social class and inequality"], quote:"not saying a word"},
+{n:'Act Two', t:"Unemployment and a marriage under strain", happens:"Mickey loses his factory job as the local economy declines; he and Linda marry young and start a family, but mounting financial pressure and Mickey's declining confidence and mood put real strain on their relationship.", why:"Shows concretely how unemployment erodes not just income but Mickey's mental health and sense of self-worth.", chars:["Mickey","Linda"], themes:["Poverty and unemployment","Mental health","Family and loyalty"], quote:"gone to the dogs"},
+{n:'Act Two', t:"Sammy's pressure and the robbery", happens:"Desperate for money, Mickey is drawn by his troubled older brother Sammy into acting as lookout for a robbery; the situation turns violent and Mickey is arrested.", why:"Converts economic desperation directly into criminal consequence, tightening the play's chain of cause and effect toward tragedy.", chars:["Mickey","Sammy"], themes:["Poverty and unemployment","Violence and its consequences","Guilt and complicity"], quote:"hold the gun"},
+{n:'Act Two', t:"Imprisonment", happens:"Mickey is sent to prison for his part in the robbery, separating him from Linda and their child during a period that deepens his depression.", why:"A direct, class-shaped consequence Edward never faces for comparable youthful mischief, sharpening the play's social critique.", chars:["Mickey"], themes:["Poverty and unemployment","Mental health"], quote:"our kid"},
+{n:'Act Two', t:"Edward's return and Linda's support", happens:"Edward returns from university into a position of local influence and reconnects with Linda, offering practical and emotional support while Mickey struggles; their closeness grows as Mickey's absence and decline continue.", why:"Builds the romantic and emotional triangle that intensifies Mickey's jealousy once he learns of it.", chars:["Edward","Linda","Mickey"], themes:["Friendship across class lines","Family and loyalty"], quote:"light romance"},
+{n:'Act Two', t:"Mickey's medicated decline", happens:"Released from prison, Mickey is prescribed tablets for depression and becomes dependent on them; unable to hold down work or shake his despair, his relationship with Linda deteriorates further.", why:"Dramatises the play's mental health theme directly, showing how poverty, unemployment and imprisonment combine to devastate a person.", chars:["Mickey","Linda"], themes:["Mental health","Poverty and unemployment"], quote:"madman"},
+{n:'Act Two', t:"Mrs Lyons reveals the truth", happens:"Increasingly unravelled by guilt and jealousy, Mrs Lyons tells Mickey that Edward is his twin brother and that Edward has been close to Linda, then presses a gun into his hands.", why:"The final, catastrophic act of a secret kept too long, converting years of guilt and superstition into immediate danger.", chars:["Mrs Lyons","Mickey"], themes:["Secrets and consequences","Guilt and complicity","Superstition and fate"], quote:"he's your brother"},
+{n:'Act Two', t:"The final confrontation, the twins' deaths, and the Narrator's closing address", happens:"Mickey confronts Edward with the gun outside the council building; Mrs Johnstone arrives and finally reveals the truth about the twins in front of everyone. In the chaos the gun goes off, killing Edward, and Mickey is shot by police, so both brothers die within moments of each other. The Narrator and company close the play by directly questioning the audience about who, or what, is really to blame — fate, superstition, or the choices and social conditions that shaped both brothers' lives.", why:"The play's tragic climax and closing address, in which the secret is finally spoken but far too late, and the audience is pushed to weigh superstition, social class and individual responsibility for themselves.", chars:["Mickey","Edward","Mrs Johnstone","Mrs Lyons","Linda","The Narrator"], themes:["Secrets and consequences","Violence and its consequences","Superstition and fate"], quote:"tell me it's not true"}
+];
+
+function buildPlot(){
+  let cards = '';
+  PLOT.forEach(p=>{
+    cards += `<div class="disclosure" data-d>
+      <button class="d-head"><span>${p.n} — ${p.t}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <div class="mini-label">What happens</div><p>${p.happens}</p>
+        <div class="mini-label">Why it matters</div><p>${p.why}</p>
+        <div class="mini-label">Characters involved</div><p>${p.chars.map(c=>`<span class="tag">${c}</span>`).join('')}</p>
+        <div class="mini-label">Themes</div><p>${p.themes.map(t=>`<span class="tag blood">${t}</span>`).join('')}</p>
+        ${p.quote ? `<div class="mini-label">Useful verbal cue</div><div class="quote-line">"${p.quote}"</div>` : ''}
+      </div></div>
+    </div>`;
+  });
+
+  const twelveEvents = [
+   "Mrs Johnstone, already struggling, discovers she is expecting twins.",
+   "Mrs Lyons persuades her to give up one baby in secret, using a superstitious warning.",
+   "Mrs Lyons dismisses Mrs Johnstone from her cleaning job to protect the secret.",
+   "Mickey and Edward meet as children and swear themselves blood brothers; Linda joins them.",
+   "The children grow up in sharply contrasting environments and are caught in a childhood gun-game incident.",
+   "Mickey and Edward reunite as teenagers after years apart; Mickey and Linda's romance begins.",
+   "Mickey leaves school for factory work while Edward goes to university.",
+   "Mickey loses his job as the local economy declines and marries Linda under financial strain.",
+   "Sammy pressures Mickey into a robbery that turns violent, and Mickey is imprisoned.",
+   "Edward returns from university into local influence and grows close to Linda as Mickey struggles.",
+   "Mickey, medicated for depression after prison, declines further as his marriage strains.",
+   "Mrs Lyons reveals the truth to Mickey and hands him a gun, triggering the fatal confrontation."
+  ];
+
+  const s = el(`<section class="section" id="section-plot">
+    <div class="section-header"><div class="eyebrow">Section 02</div><h1>Plot</h1><div class="desc">From the twins' conception to the play's tragic climax. Tap any event to expand it.</div></div>
+    <div class="card"><h3>Whole Play in 12 Events</h3>
+      <div class="timeline">${twelveEvents.map((e,i)=>`<div class="t-item"><div class="t-num">${String(i+1).padStart(2,'0')}</div><p>${e}</p></div>`).join('')}</div>
+    </div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 3. CHARACTERS ---- */
+function buildCharacters(){
+  let cards = CHARACTERS.map(c=>`
+    <div class="disclosure" data-d>
+      <button class="d-head"><span>${c.name}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <p class="subtle" style="margin-top:10px;">${c.role}</p>
+        <div class="mini-label">Who are they?</div><p>${c.who}</p>
+        <div class="mini-label">Character journey</div><p>${c.journey}</p>
+        <div class="mini-label">Key relationships</div><p>${c.relationships}</p>
+        <div class="mini-label">Themes connected to this character</div><p>${c.themes.map(t=>`<span class="tag blood">${t}</span>`).join('')}</p>
+        ${c.quotes.length ? `<div class="mini-label">Essential verbal cues</div>${c.quotes.map(q=>`<div class="quote-line">"${q}"</div>`).join('') } ` : ''}
+        <div class="mini-label">What Russell may be saying</div><p>${c.message}</p>
+        <div class="mini-label">Exam arguments to develop</div><ul>${c.examArgs.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-characters">
+    <div class="section-header"><div class="eyebrow">Section 03</div><h1>Characters</h1><div class="desc">Tap a character to see their full profile: journey, relationships, verbal cues and exam arguments.</div></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 4. THEMES ---- */
+function buildThemes(){
+  let cards = THEMES.map(t=>`
+    <div class="disclosure" data-d>
+      <button class="d-head"><span>${t.name}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <div class="mini-label">Simple explanation</div><p>${t.explanation}</p>
+        <div class="mini-label">Where it appears</div><p>${t.where}</p>
+        <div class="mini-label">Relevant characters</div><p>${t.characters.map(c=>`<span class="tag">${c}</span>`).join('')}</p>
+        ${t.quotes.length ? `<div class="mini-label">Useful verbal cues</div>${t.quotes.map(q=>`<div class="quote-line">"${q}"</div>`).join('')}` : ''}
+        <div class="mini-label">Russell's possible message</div><p>${t.message}</p>
+        <div class="mini-label">Useful contextual link</div><p>${t.context}</p>
+        <div class="mini-label">Potential thesis statements</div><ul>${t.thesis.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-themes">
+    <div class="section-header"><div class="eyebrow">Section 04</div><h1>Themes</h1><div class="desc">Thirteen core themes, each with verbal cues, context and ready-to-adapt thesis statements.</div></div>
+    <div class="card"><h3>A note on nature versus nurture</h3><p>This is the play's central structuring idea. Russell makes Mickey and Edward genetically identical twins specifically so that any difference in their lives cannot be explained by nature — it must come from nurture: environment, opportunity and treatment. Almost every other theme in the play (class, education, poverty, mental health, family) can be read as a different lens through which this central argument plays out. The Narrator's language of fate and superstition runs alongside this social argument throughout, and part of the play's power lies in never fully resolving how much weight to give each explanation.</p></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 5. QUOTE VAULT ---- */
+function buildQuoteVault(){
+  const allChars = ['The Narrator','Mrs Johnstone','Mickey','Edward','Mrs Lyons','Linda','Sammy'];
+  const allThemes = Array.from(new Set(QUOTES.flatMap(q=>q.themes))).sort();
+
+  const s = el(`<section class="section" id="section-quotes">
+    <div class="section-header"><div class="eyebrow">Section 05</div><h1>Quote Vault</h1><div class="desc">Search and filter the play's key verbal cues. Blood Brothers is a modern, copyrighted play, so quotations here are deliberately kept short and used only for educational analysis.</div></div>
+    <div class="qv-controls">
+      <input type="text" id="qvSearch" placeholder="Search verbal cues..." aria-label="Search verbal cues">
+      <select id="qvCharFilter" aria-label="Filter by character"><option value="">All characters</option>${allChars.map(c=>`<option value="${c}">${c}</option>`).join('')}</select>
+      <select id="qvThemeFilter" aria-label="Filter by theme"><option value="">All themes</option>${allThemes.map(t=>`<option value="${t}">${t}</option>`).join('')}</select>
+    </div>
+    <div class="qv-count" id="qvCount"></div>
+    <div id="qvResults"></div>
+  </section>`);
+  root.appendChild(s);
+
+  function renderQuotes(){
+    const search = document.getElementById('qvSearch').value.toLowerCase().trim();
+    const charF = document.getElementById('qvCharFilter').value;
+    const themeF = document.getElementById('qvThemeFilter').value;
+    const filtered = QUOTES.filter(q=>{
+      const matchesSearch = !search || q.text.toLowerCase().includes(search) || q.speaker.toLowerCase().includes(search);
+      const matchesChar = !charF || q.characters.includes(charF);
+      const matchesTheme = !themeF || q.themes.includes(themeF);
+      return matchesSearch && matchesChar && matchesTheme;
+    });
+    document.getElementById('qvCount').textContent = filtered.length + (filtered.length===1 ? ' verbal cue found':' verbal cues found');
+    const container = document.getElementById('qvResults');
+    container.innerHTML = filtered.map((q,i)=>`
+      <div class="qcard" data-idx="${i}">
+        <div class="qtext">"${q.text}"</div>
+        <div class="qmeta">${q.speaker} · ${q.act} · ${q.themes.join(', ')}</div>
+        <button class="qreveal-btn" type="button">Reveal analysis</button>
+        <div class="qdetail">
+          <div class="row"><b>Meaning</b>${q.meaning}</div>
+          <div class="row"><b>Technique</b>${q.technique}</div>
+          <div class="level-toggle">
+            <button type="button" class="lvl-btn active" data-lvl="solid">Solid (Grade 5–6)</button>
+            <button type="button" class="lvl-btn" data-lvl="deep">Deeper (Grade 7–9)</button>
+          </div>
+          <div class="level-block active" data-lvl="solid">${q.solid}</div>
+          <div class="level-block" data-lvl="deep">${q.deep}</div>
+          <div class="row" style="margin-top:10px;"><b>Context</b>${q.context}</div>
+          <div class="row"><b>Use this for</b>${q.useFor}</div>
+        </div>
+      </div>`).join('') || '<p class="subtle">No verbal cues match your search. Try different filters.</p>';
+
+    container.querySelectorAll('.qreveal-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.qcard');
+        const open = card.classList.toggle('open');
+        btn.textContent = open ? 'Hide analysis' : 'Reveal analysis';
+      });
+    });
+    container.querySelectorAll('.lvl-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.qcard');
+        const lvl = btn.getAttribute('data-lvl');
+        card.querySelectorAll('.lvl-btn').forEach(b=>b.classList.toggle('active', b===btn));
+        card.querySelectorAll('.level-block').forEach(b=>b.classList.toggle('active', b.getAttribute('data-lvl')===lvl));
+      });
+    });
+  }
+  document.getElementById('qvSearch').addEventListener('input', renderQuotes);
+  document.getElementById('qvCharFilter').addEventListener('change', renderQuotes);
+  document.getElementById('qvThemeFilter').addEventListener('change', renderQuotes);
+  renderQuotes();
+}
+
+/* ---- 6. CONTEXT ---- */
+function buildContext(){
+  const items = [
+  {t:"Liverpool and economic decline", body:"Liverpool experienced significant deindustrialisation and rising unemployment through the 1970s and into the 1980s, as docks and traditional industries declined, hitting working-class communities especially hard.",
+   use:"Use this to explain the real economic backdrop to Mickey's factory job loss and long-term unemployment, and why legitimate routes out of poverty felt so limited for characters like him."},
+  {t:"Class in Britain", body:"Despite post-war welfare reforms, significant class divisions and limited social mobility persisted in Britain throughout the period the play depicts, shaping access to education, housing and employment.",
+   use:"Use this to explain why Mickey and Edward's identical starting point produces such different adult outcomes, and to support arguments about the play's social critique."},
+  {t:"Willy Russell's background", body:"Russell grew up in a working-class family near Liverpool, left school with few qualifications, and worked as a hairdresser before eventually becoming a writer, giving him direct, personal insight into the class barriers his plays go on to explore.",
+   use:"Use this sparingly to support arguments about the play's authenticity and social concern, but always connect it back to specific textual choices rather than treating it as a substitute for analysis."},
+  {t:"Blood Brothers as a musical", body:"First staged in 1983, Blood Brothers is a sung-through musical that blends the emotional scale of musical theatre with gritty British social realism, using songs to carry plot and theme rather than purely for entertainment.",
+   use:"Use this to explain why analysing a song's recurrence, tone or placement is just as valid as analysing spoken dialogue when discussing the play's methods."},
+  {t:"Superstition and folklore", body:"Many communities hold superstitions about twins, luck and fate, including beliefs about separated twins sharing a connected destiny; Russell draws on this folk tradition theatrically without necessarily endorsing it as literal truth.",
+   use:"Use this to explain the function of the Narrator's warnings and Mrs Lyons' superstition, while still considering whether Russell ultimately favours a social or a fated explanation for the tragedy."},
+  {t:"Mental health awareness historically", body:"Public understanding and treatment of depression and mental illness were considerably more limited and more stigmatised during the period the play depicts than they are today.",
+   use:"Use this to explain why other characters respond to Mickey's decline with judgement rather than support, and to deepen analysis of his mental health theme."},
+  {t:"Nature versus nurture debate", body:"A long-running question in psychology and social policy about how far genetics versus environment and upbringing shape a person's character and outcomes.",
+   use:"Use this to explain why Russell specifically chose twins, rather than two unrelated characters, to dramatise his argument about class and opportunity."},
+  {t:"1980s unemployment in the UK", body:"Deindustrialisation and factory closures led to high unemployment in many parts of Britain in the early 1980s, particularly affecting northern English cities.",
+   use:"Use this to ground Mickey's job loss and subsequent decline in real, recognisable economic conditions rather than treating it as an isolated personal failing."}
+  ];
+  const cards = items.map(i=>`<div class="disclosure" data-d>
+    <button class="d-head"><span>${i.t}</span><span class="chev">›</span></button>
+    <div class="d-body"><div class="inner">
+      <p style="margin-top:10px;">${i.body}</p>
+      <div class="mini-label">How can I actually use this in an essay?</div><p>${i.use}</p>
+    </div></div>
+  </div>`).join('');
+
+  const s = el(`<section class="section" id="section-context">
+    <div class="section-header"><div class="eyebrow">Section 06</div><h1>Context</h1><div class="desc">Only the context you can actually use — always paired with a real essay application.</div></div>
+    <div class="card"><p><b>Important:</b> Never bolt on a historical fact just to prove you know it. Only use context when it genuinely deepens your interpretation of Russell's choices in that specific moment.</p></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 7. TECHNIQUES ---- */
+function buildTechniques(){
+  const cards = TECHNIQUES.map(t=>`<div class="disclosure" data-d>
+    <button class="d-head"><span>${t.name}</span><span class="chev">›</span></button>
+    <div class="d-body"><div class="inner">
+      <div class="mini-label">Definition</div><p>${t.def}</p>
+      <div class="mini-label">Blood Brothers example</div><p>${t.example}</p>
+      <div class="mini-label">Effect</div><p>${t.effect}</p>
+      <div class="mini-label">How to analyse it</div><p>${t.howto}</p>
+    </div></div>
+  </div>`).join('');
+
+  const s = el(`<section class="section" id="section-techniques">
+    <div class="section-header"><div class="eyebrow">Section 07</div><h1>Techniques</h1><div class="desc">The key dramatic, structural and musical methods Russell uses, with clear examples and analysis guidance.</div></div>
+
+    <div class="card"><h3>Why does the Narrator control the play?</h3>
+      <p>The Narrator dominates the play's structure as much as its content. Never given a name or a place within the plot itself, he opens the play by revealing the tragedy's ending, then reappears throughout to comment on events, invoke superstition, and question the audience directly. Because he stands outside the normal cause-and-effect of scenes between characters, his interventions consistently reset the mood, from playful to ominous, and remind the audience of the fate they already know is coming. Students should consider the Narrator not just as a voice with opinions, but as a structural device Russell uses to control pacing, foreboding and audience judgement across the entire play.</p>
+    </div>
+
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 8. EXAM ---- */
+function buildExam(){
+  const s = el(`<section class="section" id="section-exam">
+    <div class="section-header"><div class="eyebrow">Section 08</div><h1>Exam Survival</h1><div class="desc">How to actually approach a Blood Brothers exam question, step by step.</div></div>
+
+    <div class="card" style="text-align:center;">
+      <img src="../images/exam-essentials/blood-brothers-exam-essentials.png" alt="The Teacher Vault: Blood Brothers Exam Essentials one-page revision poster" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--line);display:block;margin:0 auto;" loading="lazy">
+      <p class="subtle" style="margin-top:10px;">The Teacher Vault's one-page <b>Exam Essentials</b> poster for Blood Brothers — plot, characters, themes, key quotes, context, structure and vocabulary at a glance. Save it, print it, or pin it above your desk.</p>
+    </div>
+
+    <div class="card"><p>Exam boards differ in exact format — some give you a printed extract and ask you to connect it to the whole play; others ask a discursive essay question without an extract. Always check your own exam board's format with your teacher, but the analytical skills below apply broadly.</p></div>
+
+    <div class="disclosure open" data-d><button class="d-head"><span>1. Understanding the question</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Underline the key words in the question — usually a character, theme, or idea, plus a command word (e.g. 'explore', 'how does Russell present'). Every paragraph should keep answering that exact question.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>2. Selecting evidence — short cues only</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Because Blood Brothers is a modern, copyrighted play, you do not need — and should not attempt — long quotations from memory. Learn a small number of very short verbal cues (two to five words) from your own copy, and combine them with precise, detailed reference to specific scenes, actions and staged contrasts. Precise scene reference, well explained, is just as strong as a long quotation.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>3. Creating a thesis</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>State a clear, arguable position rather than just restating the question. For example: "Russell structures the play's contrasting childhoods to argue that environment, not character, principally determines the twins' fates."</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>4. Paragraph structure</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>A reliable structure: Point → Evidence (a short cue or precise scene reference) → Method (technique + effect) → Context (only if it adds insight) → Link back to Russell's likely purpose.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>5. Analysing dramatic and musical methods</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Always ask: why this specific staging choice, song, or contrast, not a similar one? Consider music, simultaneous staging and the Narrator's interventions alongside dialogue.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>6. Analysing stage directions</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Stage directions are authorial commentary, not incidental detail. Treat descriptions of setting, contrast and movement as deliberate choices carrying meaning, especially in scenes contrasting Mickey and Edward's households.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>7. Discussing character development</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Track how a character's language, confidence and circumstances shift across the play, rather than treating them as static from their first appearance.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>8. Incorporating context</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Context should illuminate Russell's choices, not replace analysis of them. One well-placed contextual point about Liverpool or unemployment is worth more than a paragraph of history with no link to the text.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>9. Connecting ideas across the whole play</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Always show how a moment connects to a wider pattern across the whole play, not just the scene in front of you — for example, tracing the gun motif from childhood game to fatal weapon.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>10. Writing conclusions</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Don't simply repeat your introduction. Briefly synthesise your strongest points and comment on Russell's overall social message about class, fate and opportunity.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>11. Managing time</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Spend a few minutes planning before you write. Leave a couple of minutes at the end to check for missing words and unclear sentences.</p></div></div></div>
+
+    <h2 style="margin-top:28px;">Character or Theme?</h2>
+    <div class="card"><p>Some questions focus mainly on a <b>character</b> ("How does Russell present Mrs Lyons?"), others mainly on a <b>theme</b> ("How does Russell present social class?"), and some genuinely combine both ("How does Russell use Mickey to explore ideas about class and opportunity?"). Read the question carefully: if it names a character, your argument should stay anchored to that character's specific choices and language throughout, even while discussing the themes they represent. If it names a theme, you can draw on multiple characters as evidence, but should still discuss specific moments and methods rather than describing the theme abstractly.</p></div>
+
+    <h2 style="margin-top:28px;">Weak vs Strong Analysis</h2>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"Mickey has a hard life because he is poor."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"Russell's staged contrast between Mickey's overcrowded upbringing and Edward's private education, dramatised through parallel childhood scenes, converts an abstract argument about class inequality into a concrete, visible comparison the audience cannot ignore."</p></div>
+    </div>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"The Narrator is a mysterious character who says spooky things."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"By opening the play with the twins already dead, Russell uses the Narrator's cyclical framing to trade conventional plot suspense for a different kind of tension, forcing the audience to focus on how and why the tragedy happens rather than what happens."</p></div>
+    </div>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"Mrs Lyons is evil because she lies to Mrs Johnstone."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"Mrs Lyons' escalating control, driven by genuine desperation for a child of her own, complicates any simple reading of her as a straightforward villain, positioning her instead as a study in how unaddressed guilt and superstition can deform even a well-meaning relationship."</p></div>
+    </div>
+
+    <h2 style="margin-top:28px;">Practice questions</h2>
+    <div id="practiceQs"></div>
+  </section>`);
+  root.appendChild(s);
+
+  const practice = [
+   {q:"How does Russell present the theme of social class in Blood Brothers?", plan:["Introduce the twin device as a way of isolating environment from genetics.","P1: The contrast between Mickey's and Edward's childhood environments.","P2: Their unequal consequences for similar childhood mischief.","P3: How education and employment widen the gap in adulthood.","Context: regional inequality and limited social mobility.","Conclusion: Russell structures the whole play around this contrast to argue class, not character, determines outcome."]},
+   {q:"How does Russell present Mrs Johnstone as both responsible and trapped by circumstance?", plan:["Introduce her opening poverty and the impossible choice she is offered.","P1: Her financial desperation and the pressure Mrs Lyons applies.","P2: Her ongoing silence and its cost to her across the play.","P3: Her final, too-late attempt to reveal the truth.","Context: economic hardship and limited support for working-class mothers.","Conclusion: Russell balances sympathy for Mrs Johnstone with recognition of her role in enabling the tragedy."]},
+   {q:"How does Russell use the Narrator to create a sense of fate and audience judgement?", plan:["Introduce the Narrator's chorus-like, structural role.","P1: The cyclical opening revealing the twins' deaths.","P2: Recurring superstitious refrains and warnings.","P3: Direct questions posed to the audience.","Context: superstition and folk belief about twins and fate.","Conclusion: the Narrator holds fate and social causation in deliberate tension throughout."]},
+   {q:"How does Russell present the change from childhood into adulthood across the play?", plan:["Introduce childhood as a space of shared, class-blind play.","P1: The boys' games and blood-brother pact.","P2: Diverging paths through education and employment.","P3: How adult inequality strains the friendship.","Context: class-based differences in childhood and adult opportunity.","Conclusion: Russell presents adulthood as gradually eroding an early, genuine equality."]},
+   {q:"How does Russell present Mickey and Edward's friendship?", plan:["Introduce the blood-brother pact and its dramatic irony.","P1: Their instinctive childhood bond.","P2: Its resumption in adolescence despite years apart.","P3: The strain placed on it by adult inequality and jealousy.","Context: friendship across class lines in the period depicted.","Conclusion: Russell presents genuine affection ultimately unable to withstand real inequality."]},
+   {q:"How does Russell present Mrs Lyons?", plan:["Introduce her desperation for a child and its consequences.","P1: Her manipulation of Mrs Johnstone using superstition.","P2: Her escalating control and isolation as guilt builds.","P3: Her final, catastrophic revelation to Mickey.","Context: superstition as a way of displacing responsibility.","Conclusion: Russell complicates a simple villain reading of Mrs Lyons."]},
+   {q:"How does Russell explore ideas about nature versus nurture through the twins?", plan:["Introduce the twins' identical genetics as a deliberate structural choice.","P1: Parallel childhood scenes showing contrasting environments.","P2: Diverging education and employment paths.","P3: Their ultimately fatal divergence in adulthood.","Context: nature-versus-nurture debate in social policy.","Conclusion: Russell uses the twins to argue environment, not genetics, principally shapes outcome."]},
+   {q:"How does Russell present the effects of unemployment on Mickey?", plan:["Introduce Mickey's confident, playful childhood as a baseline.","P1: His job loss as the local economy declines.","P2: His drift toward crime under Sammy's pressure.","P3: His depression and dependence on medication after prison.","Context: regional unemployment in late-20th-century Britain.","Conclusion: Russell gives his social critique of unemployment a concrete, psychological cost."]},
+   {q:"How does Russell present Linda?", plan:["Introduce her as a loyal childhood friend of both boys.","P1: Her tentative teenage romance with Mickey.","P2: Her efforts to support Mickey through hardship.","P3: Her growing closeness to Edward as Mickey struggles.","Context: strain placed on working-class marriages by unemployment.","Conclusion: Russell presents Linda sympathetically as caught between loyalty and circumstance."]},
+   {q:"How does Russell use the motif of the gun across the play?", plan:["Introduce the gun's first appearance as a childhood toy.","P1: The catapult and toy-gun incident and its unequal consequences.","P2: Sammy pressuring Mickey with a real gun during the robbery.","P3: The gun's role in the play's fatal climax.","Context: symbolism and escalation as dramatic techniques.","Conclusion: Russell uses the gun to structure the play's whole argument about how circumstance escalates."]}
+  ];
+  const container = document.getElementById('practiceQs');
+  container.innerHTML = practice.map((p,i)=>`<div class="card">
+    <h3>${p.q}</h3>
+    <button class="btn secondary" type="button" data-plan="${i}">Reveal planning points</button>
+    <div class="plan-reveal" data-plan-body="${i}" style="display:none;margin-top:12px;">
+      <ol>${p.plan.map(x=>`<li>${x}</li>`).join('')}</ol>
+    </div>
+  </div>`).join('');
+  container.querySelectorAll('[data-plan]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const idx = btn.getAttribute('data-plan');
+      const body = container.querySelector(`[data-plan-body="${idx}"]`);
+      const showing = body.style.display !== 'none';
+      body.style.display = showing ? 'none' : 'block';
+      btn.textContent = showing ? 'Reveal planning points' : 'Hide planning points';
+    });
+  });
+}
+
+/* ---- 9. QUIZ ---- */
+let quizState = { order: [], idx:0, score:0, answered:false, wrongTopics:{} };
+function shuffle(arr){ const a = arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+const TYPE_LABEL = {mc:'Plot & detail', tf:'True / False', char:'Character', quote:'Quotation', theme:'Theme', context:'Context', tech:'Technique'};
+
+function buildQuiz(){
+  const s = el(`<section class="section" id="section-quiz">
+    <div class="section-header"><div class="eyebrow">Section 09</div><h1>Quiz</h1><div class="desc">Self-marking revision quiz covering plot, characters, verbal cues, themes, context, techniques and structure.</div></div>
+    <div class="card">
+      <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
+      <div id="quizArea"></div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  startQuiz();
+}
+
+function startQuiz(){
+  quizState = { order: shuffle(QUIZ_BANK.map((_,i)=>i)), idx:0, score:0, answered:false, wrongTopics:{} };
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion(){
+  const area = document.getElementById('quizArea');
+  const total = quizState.order.length;
+  if(quizState.idx >= total){
+    const pct = Math.round((quizState.score/total)*100);
+    document.getElementById('quizProgressBar').style.width = '100%';
+    const weakList = Object.keys(quizState.wrongTopics).sort((a,b)=>quizState.wrongTopics[b]-quizState.wrongTopics[a]);
+    area.innerHTML = `<div class="quiz-result">
+      <div class="score">${quizState.score}/${total}</div>
+      <p class="subtle">${pct}% correct</p>
+      ${weakList.length ? `<div class="weak-areas"><p class="subtle"><b>Areas to revise:</b></p><p>${weakList.map(t=>`<span class="tag blood">${TYPE_LABEL[t]||t}</span>`).join('')}</p></div>` : `<p class="subtle">Strong across every question type — well done!</p>`}
+      <button class="btn blood" id="tryAgainBtn" type="button">Try Again</button>
+      <button class="btn secondary" id="newQuizBtn" type="button" style="margin-left:8px;">New Quiz</button>
+    </div>`;
+    document.getElementById('tryAgainBtn').addEventListener('click', ()=>{ quizState.idx=0; quizState.score=0; quizState.wrongTopics={}; quizState.answered=false; renderQuizQuestion(); });
+    document.getElementById('newQuizBtn').addEventListener('click', startQuiz);
+    return;
+  }
+  document.getElementById('quizProgressBar').style.width = ((quizState.idx/total)*100)+'%';
+  const item = QUIZ_BANK[quizState.order[quizState.idx]];
+  const optOrder = shuffle(item.opts.map((o,i)=>i));
+  quizState.answered = false;
+  area.innerHTML = `
+    <p class="subtle">Question ${quizState.idx+1} of ${total} · <span class="tag gold">${TYPE_LABEL[item.type]||''}</span></p>
+    <div class="quiz-q">${item.q}</div>
+    <div class="quiz-opts">${optOrder.map(oi=>`<button class="quiz-opt" data-oi="${oi}" type="button">${item.opts[oi]}</button>`).join('')}</div>
+    <div class="quiz-explain" id="quizExplain"></div>
+    <div style="margin-top:14px;"><button class="btn" id="quizNextBtn" type="button" style="display:none;">Next question</button></div>
+  `;
+  area.querySelectorAll('.quiz-opt').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(quizState.answered) return;
+      quizState.answered = true;
+      const chosen = parseInt(btn.getAttribute('data-oi'));
+      area.querySelectorAll('.quiz-opt').forEach(b=>{
+        b.setAttribute('disabled','true');
+        const oi = parseInt(b.getAttribute('data-oi'));
+        if(oi === item.a) b.classList.add('correct');
+        else if(oi === chosen) b.classList.add('incorrect');
+      });
+      if(chosen === item.a) quizState.score++;
+      else quizState.wrongTopics[item.type] = (quizState.wrongTopics[item.type]||0)+1;
+      const exp = document.getElementById('quizExplain');
+      exp.textContent = item.exp;
+      exp.classList.add('show');
+      document.getElementById('quizNextBtn').style.display = 'inline-block';
+    });
+  });
+  document.getElementById('quizNextBtn').addEventListener('click', ()=>{ quizState.idx++; renderQuizQuestion(); });
+}
+
+/* ---- 10. WHO SAID IT GAME ---- */
+let wsiState = { order: [], idx:0, score:0, answered:false };
+
+function buildWhoSaidIt(){
+  const s = el(`<section class="section" id="section-whosaidit">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Who Said It?</h1><div class="desc">A quick, game-like activity. For each verbal cue, select who it belongs to.</div></div>
+    <div class="jh-game">
+      <div class="jh-score" id="wsiScore"></div>
+      <div class="jh-quote" id="wsiQuoteText"></div>
+      <div class="jh-opts" id="wsiOpts"></div>
+      <div class="jh-feedback" id="wsiFeedback"></div>
+      <button class="btn" id="wsiNextBtn" type="button" style="display:none;margin-top:14px;">Next cue</button>
+      <button class="btn secondary" id="wsiRestartBtn" type="button" style="display:none;margin-top:14px;">Play again</button>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  startWSI();
+}
+
+function startWSI(){
+  wsiState = { order: shuffle(WHOSAIDIT.map((_,i)=>i)), idx:0, score:0, answered:false };
+  renderWSI();
+}
+
+function renderWSI(){
+  const total = wsiState.order.length;
+  const scoreEl = document.getElementById('wsiScore');
+  const feedback = document.getElementById('wsiFeedback');
+  const nextBtn = document.getElementById('wsiNextBtn');
+  const restartBtn = document.getElementById('wsiRestartBtn');
+  feedback.classList.remove('show');
+  feedback.textContent = '';
+  nextBtn.style.display = 'none';
+
+  if(wsiState.idx >= total){
+    scoreEl.textContent = `Final score: ${wsiState.score}/${total}`;
+    document.getElementById('wsiQuoteText').textContent = "Round complete!";
+    document.getElementById('wsiOpts').innerHTML = '';
+    restartBtn.style.display = 'inline-block';
+    restartBtn.onclick = startWSI;
+    return;
+  }
+  restartBtn.style.display = 'none';
+  scoreEl.textContent = `Cue ${wsiState.idx+1} of ${total} · Score: ${wsiState.score}`;
+  const item = WHOSAIDIT[wsiState.order[wsiState.idx]];
+  document.getElementById('wsiQuoteText').textContent = `"${item.text}"`;
+  const optsEl = document.getElementById('wsiOpts');
+  optsEl.innerHTML = item.opts.map(o=>`<button type="button" data-opt="${o}">${o}</button>`).join('');
+  wsiState.answered = false;
+  optsEl.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(wsiState.answered) return;
+      wsiState.answered = true;
+      const chosen = btn.getAttribute('data-opt');
+      optsEl.querySelectorAll('button').forEach(b=>{
+        b.disabled = true;
+        if(b.getAttribute('data-opt') === item.answer) b.classList.add('correct');
+        else if(b === btn) b.classList.add('incorrect');
+      });
+      if(chosen === item.answer) wsiState.score++;
+      feedback.textContent = `${item.answer}. ${item.exp}`;
+      feedback.classList.add('show');
+      nextBtn.style.display = 'inline-block';
+    });
+  });
+}
+document.addEventListener('click', function(e){
+  if(e.target && e.target.id === 'wsiNextBtn'){ wsiState.idx++; renderWSI(); }
+});
+
+/* ---- 11. FATE OR CHOICE? ---- */
+function buildFateTracker(){
+  const cards = CHANGE_DATA.map(c=>`
+    <div class="change-card" data-d>
+      <button class="cc-head">
+        <span class="cc-name">${c.name}</span>
+        <span class="cc-meter">${[1,2,3,4,5].map(n=>`<span class="dot${n<=c.level?' on':''}"></span>`).join('')}</span>
+      </button>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="mini-label">Beginning of play</div><p>${c.begin}</p>
+        <div class="mini-label">End of play</div><p>${c.end}</p>
+        <div class="mini-label">What they learn</div><p>${c.learns}</p>
+        <div class="mini-label">What they refuse to learn</div><p>${c.refuses}</p>
+        <div class="mini-label">Evidence</div><div class="quote-line">"${c.quote}"</div>
+        <p class="cc-note">Whether change here is really "chosen" or driven by fate and circumstance is a matter of interpretation, not a fixed score — use this as a starting point for your own argument, not a final answer.</p>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-fatetracker">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Fate or Choice?</h1><div class="desc">Tap each character to see how far their journey looks like fate closing in, versus a series of human choices.</div></div>
+    <div class="card"><p class="subtle">The dots represent an interpretative judgement of how far each character's fate feels driven by circumstance rather than by their own choices, not a precise or objective score — good essays will debate and justify their own view.</p></div>
+    <div class="change-grid">${cards}</div>
+  </section>`);
+  root.appendChild(s);
+
+  s.querySelectorAll('.cc-head').forEach(head=>{
+    head.addEventListener('click', ()=>{ head.parentElement.classList.toggle('open'); });
+  });
+}
+
+/* ---- 12. CHAIN OF CONSEQUENCES ---- */
+function buildChainOfConsequences(){
+  let stepsHtml = '';
+  CHAIN.forEach((c,i)=>{
+    stepsHtml += `<div class="chain-step" data-d>
+      <button class="chain-btn"><span>${c.who} — ${c.action}</span><span class="chev">›</span></button>
+      <div class="chain-body"><div class="chain-inner">
+        <div class="mini-label">What happened</div><p>${c.detail}</p>
+        <div class="mini-label">Key verbal cue</div><div class="quote-line">"${c.quote}"</div>
+        <div class="mini-label">Russell's possible message</div><p>${c.message}</p>
+      </div></div>
+    </div>`;
+    if(i < CHAIN.length-1) stepsHtml += `<div class="chain-arrow">↓</div>`;
+  });
+
+  const s = el(`<section class="section" id="section-chainofconsequences">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Chain of Consequences</h1><div class="desc">Tap each stage to see how a chain of individually explicable choices combines into tragedy.</div></div>
+    <div class="card"><p><b>Important:</b> This is not a claim that every character bears exactly equal responsibility. The characters' contributions differ significantly in nature, timing and severity — use this chain as a starting point to debate the degree and type of responsibility each character holds, not as a fixed ranking.</p></div>
+    <div class="chain">${stepsHtml}</div>
+  </section>`);
+  root.appendChild(s);
+
+  s.querySelectorAll('.chain-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ btn.closest('.chain-step').classList.toggle('open'); });
+  });
+}
+
+/* ---- 13. NATURE VS NURTURE ---- */
+function buildTwinCompare(){
+  const s = el(`<section class="section" id="section-twincompare">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Nature vs Nurture</h1><div class="desc">Same biology, different worlds — the environments and outcomes that separate Mickey and Edward, side by side.</div></div>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <h3>Mickey's Environment &amp; Outcomes</h3>
+        <ul>${MICKEY_ENV.map(c=>`<li><b>${c.point}</b><div class="compare-why">Why it matters: ${c.why}</div></li>`).join('')}</ul>
+      </div>
+      <div class="compare-col">
+        <h3>Edward's Environment &amp; Outcomes</h3>
+        <ul>${EDWARD_ENV.map(c=>`<li><b>${c.point}</b><div class="compare-why">Why it matters: ${c.why}</div></li>`).join('')}</ul>
+      </div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 14. LAST MINUTE ---- */
+function buildLastMinute(){
+  const plot12 = ["Mrs Johnstone, already struggling, discovers she is expecting twins.","Mrs Lyons persuades her to give up one baby in secret, using a superstitious warning.","Mrs Lyons dismisses Mrs Johnstone from her cleaning job to protect the secret.","Mickey and Edward meet as children and swear themselves blood brothers; Linda joins them.","The children grow up in sharply contrasting environments and are caught in a childhood gun-game incident.","Mickey and Edward reunite as teenagers after years apart; Mickey and Linda's romance begins.","Mickey leaves school for factory work while Edward goes to university.","Mickey loses his job as the local economy declines and marries Linda under financial strain.","Sammy pressures Mickey into a robbery that turns violent, and Mickey is imprisoned.","Edward returns from university into local influence and grows close to Linda as Mickey struggles.","Mickey, medicated for depression after prison, declines further as his marriage strains.","Mrs Lyons reveals the truth to Mickey and hands him a gun, triggering the fatal confrontation and both twins' deaths."];
+  const sixChars = [
+   ["The Narrator","Chorus-like, omniscient figure who reveals the twins' fate from the outset and repeatedly questions the audience about blame and responsibility."],
+   ["Mrs Johnstone","Loving, resourceful, but trapped by poverty into giving up one of her twin sons in secret."],
+   ["Mickey","Confident, funny child who declines into unemployment, imprisonment and depression as an adult."],
+   ["Edward","Privileged, generous, but largely unaware of how much his life has been shaped by advantage."],
+   ["Mrs Lyons","Desperate for a child, increasingly controlling and guilt-ridden, and the one who finally reveals the truth."],
+   ["Linda","Loyal childhood friend of both boys who becomes Mickey's wife, and is drawn toward Edward as Mickey struggles."]
+  ];
+  const fiveThemes = [
+   ["Social class and inequality","Identical twins, radically different upbringings and outcomes — the play's central social argument."],
+   ["Nature versus nurture","The twin device isolates environment as the real driver of opportunity and fate."],
+   ["Superstition and fate","The Narrator's warnings and Mrs Lyons' superstition build inevitability alongside real social causation."],
+   ["Secrets and consequences","The original secret, kept for years, produces catastrophic consequences once revealed too late."],
+   ["Poverty, unemployment and mental health","Mickey's decline gives the play's social critique a concrete, human, psychological cost."]
+  ];
+  const quotes15 = [
+   ["the devil's got your number","The Narrator","Use for fate/superstition."],
+   ["shoes upon the table","The Narrator","Use for foreshadowing/superstition."],
+   ["easy terms","Mrs Johnstone","Use for poverty/class."],
+   ["one of us must die","Mrs Lyons","Use for superstition/fate — central cue."],
+   ["we're blood brothers","Mickey and Edward","Use for friendship/dramatic irony."],
+   ["long Sunday afternoon","The Narrator","Use for class contrast/nature vs nurture."],
+   ["just playing, Mam","Mickey","Use for foreshadowing/the gun motif."],
+   ["my friend","Mickey and Edward","Use for friendship/structure."],
+   ["not saying a word","Linda","Use for Linda and Mickey's relationship."],
+   ["gone to the dogs","Mickey","Use for unemployment/mental health."],
+   ["hold the gun","Sammy","Use for symbolism/violence."],
+   ["our kid","Mickey","Use for family loyalty/dialect."],
+   ["light romance","The Narrator","Use for the Linda/Edward/Mickey triangle."],
+   ["madman","Company","Use for mental health/stigma."],
+   ["he's your brother","Mrs Lyons","Use for the play's climax/dramatic irony resolved."]
+  ];
+  const fiveContext = ["Liverpool's deindustrialisation and rising unemployment in the 1970s–80s shape Mickey's adult struggles.","Persistent class divisions and limited social mobility in Britain despite post-war reforms.","Willy Russell's own working-class background informs the play's social concern.","Nature-versus-nurture debate — why Russell specifically chose twins to dramatise class.","Superstition and folklore about twins and fate, used theatrically rather than literally."];
+  const fiveTech = [
+   ["Dramatic irony","The audience knows the boys are twins destined to die long before the characters do."],
+   ["Cyclical structure","The play opens with the twins already dead, then rewinds to explain how."],
+   ["Symbolism (the gun)","A childhood toy gun becomes the real weapon of the play's fatal climax."],
+   ["Music and song as storytelling","Recurring refrains carry plot, character and theme, not just decoration."],
+   ["The Narrator as chorus","An omniscient, structural figure who foreshadows and questions the audience directly."]
+  ];
+  const checklist = ["Answer the actual question.","Make a clear argument.","Use precise, accurate short cues — never invented or lengthy quotations.","Analyse dramatic and musical methods, not just what happens.","Discuss Russell's purpose.","Link context naturally, not as a bolt-on.","Refer to the whole play, not just one moment."];
+  const dontDo = ["Don't simply retell the plot.","Don't quote long passages from memory — Blood Brothers is still in copyright.","Don't list historical facts disconnected from the text.","Don't call Russell a novelist — he is a playwright and lyricist.","Don't forget that this is a musical, meant to be staged and sung, not just read."];
+
+  const s = el(`<section class="section" id="section-lastminute">
+    <div class="section-header"><div class="eyebrow">Section 10</div><h1>Blood Brothers — Last Minute</h1><div class="desc">Exam tomorrow? Start here.</div></div>
+    <button class="btn secondary print-btn" id="printBtn" type="button">Print this page</button>
+
+    <div class="lm-grid">
+      <div class="lm-card"><h3>Plot in 12 points</h3><ol>${plot12.map(x=>`<li>${x}</li>`).join('')}</ol></div>
+      <div class="lm-card"><h3>6 characters you must understand</h3><ul>${sixChars.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 themes you must understand</h3><ul>${fiveThemes.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>15 verbal cues worth remembering</h3><ul>${quotes15.map(x=>`<li>"${x[0]}" <br><span class="subtle">— ${x[1]} → ${x[2]}</span></li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 contextual ideas</h3><ul>${fiveContext.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 techniques worth recognising</h3><ul>${fiveTech.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>Essay checklist</h3><ul>${checklist.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>Five things NOT to do</h3><ul>${dontDo.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  document.getElementById('printBtn').addEventListener('click', ()=> window.print());
+}
+
+/* ================= DISCLOSURE BEHAVIOUR (shared) ================= */
+function wireDisclosures(){
+  document.querySelectorAll('.disclosure > .d-head').forEach(head=>{
+    head.addEventListener('click', ()=>{
+      head.parentElement.classList.toggle('open');
+    });
+  });
+}
+
+/* ================= INIT ================= */
+buildOverview();
+buildPlot();
+buildCharacters();
+buildThemes();
+buildQuoteVault();
+buildContext();
+buildTechniques();
+buildExam();
+buildQuiz();
+buildWhoSaidIt();
+buildFateTracker();
+buildChainOfConsequences();
+buildTwinCompare();
+buildLastMinute();
+renderNav();
+wireDisclosures();
+showSection(SECTIONS.some(s=>s.id===currentSection) ? currentSection : 'overview');
+
+})();
+</script>
+</body>
+</html>

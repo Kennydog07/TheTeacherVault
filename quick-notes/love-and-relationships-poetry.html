@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Teacher Vault — Love and Relationships Poetry QuickNotes</title>
+<style>
+:root{
+  --ink:#3B1F33;
+  --ink-light:#4E2C43;
+  --parchment:#FBF3F0;
+  --parchment-dark:#F1DFD8;
+  --blood:#8C3B54;
+  --blood-bright:#B14C67;
+  --gold:#B98B4E;
+  --fog:#6B5B6E;
+  --text:#2b1f28;
+  --text-soft:#6b5b63;
+  --card:#FFFFFF;
+  --line:#EAD9D2;
+  --radius:10px;
+  --serif: Georgia, 'Times New Roman', Times, serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --mono: 'Courier New', Courier, monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--parchment);color:var(--text);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased;}
+::selection{background:var(--gold);color:#fff;}
+a{color:var(--blood-bright);}
+button{font-family:inherit;cursor:pointer;}
+h1,h2,h3,h4{font-family:var(--serif);color:var(--ink);margin:0 0 .5em 0;}
+p{margin:0 0 .8em 0;}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:.6em 1em;z-index:999;}
+.skip-link:focus{left:8px;top:8px;}
+.app{display:flex;min-height:100vh;}
+.sidebar{width:250px;flex-shrink:0;background:var(--ink);color:#EDE9DA;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.brand{padding:22px 20px 14px 20px;border-bottom:1px solid rgba(255,255,255,.12);}
+.brand .tv-name{font-family:var(--serif);font-size:1.05rem;letter-spacing:.02em;color:#fff;font-weight:700;}
+.brand .tv-sub{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-top:2px;}
+.brand .play-title{margin-top:14px;font-family:var(--serif);font-size:1.5rem;color:#fff;line-height:1.15;}
+.brand .play-sub{font-size:.78rem;color:#c9c4ac;margin-top:6px;line-height:1.4;}
+.brand-mascot{width:52px;height:52px;object-fit:contain;display:block;margin-bottom:10px;}
+nav.mainnav{padding:10px 0;flex:1;}
+nav.mainnav button.navlink{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:none;color:#d9d5c3;padding:10px 20px;font-size:.88rem;border-left:3px solid transparent;}
+nav.mainnav button.navlink .num{font-family:var(--mono);font-size:.7rem;color:var(--gold);width:18px;flex-shrink:0;}
+nav.mainnav button.navlink:hover{background:rgba(255,255,255,.06);color:#fff;}
+nav.mainnav button.navlink.active{background:rgba(181,67,43,.25);border-left-color:var(--blood-bright);color:#fff;font-weight:600;}
+nav.mainnav button.navlink:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
+.sidebar-footer{padding:14px 20px;font-size:.7rem;color:#8b876f;border-top:1px solid rgba(255,255,255,.1);}
+.topbar{display:none;position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;padding:12px 16px;align-items:center;justify-content:space-between;}
+.topbar .tv-inline{font-family:var(--serif);font-size:1rem;}
+.topbar .tv-inline span{display:block;font-size:.65rem;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;}
+.hamburger{background:none;border:1px solid rgba(255,255,255,.4);color:#fff;padding:8px 10px;border-radius:6px;font-size:.85rem;}
+.mobile-nav-drawer{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.5);}
+.mobile-nav-drawer.open{display:block;}
+.mobile-nav-panel{position:absolute;top:0;left:0;bottom:0;width:80%;max-width:300px;background:var(--ink);overflow-y:auto;padding-bottom:20px;}
+main{flex:1;min-width:0;padding:36px 44px 80px 44px;max-width:980px;}
+.section{display:none;animation:fadein .25s ease;}
+.section.active{display:block;}
+@keyframes fadein{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+.section-header{margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid var(--ink);}
+.section-header .eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blood-bright);font-weight:700;margin-bottom:4px;}
+.section-header h1{font-size:1.9rem;margin-bottom:4px;}
+.section-header .desc{color:var(--text-soft);font-size:.95rem;max-width:640px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-bottom:16px;}
+.card h3{font-size:1.1rem;margin-bottom:8px;}
+.subtle{color:var(--text-soft);font-size:.88rem;}
+.tag{display:inline-block;background:var(--parchment-dark);color:var(--ink);border-radius:999px;padding:2px 10px;font-size:.72rem;margin:2px 4px 2px 0;font-weight:600;}
+.tag.blood{background:#f3e0e6;color:var(--blood);}
+.tag.gold{background:#f3ecd6;color:#7a621c;}
+.tag.fog{background:#e7e3e8;color:var(--fog);}
+.btn{display:inline-block;background:var(--ink);color:#fff;border:none;padding:9px 16px;border-radius:7px;font-size:.85rem;font-weight:600;}
+.btn:hover{background:var(--ink-light);}
+.btn.secondary{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+.btn.blood{background:var(--blood-bright);}
+.btn.blood:hover{background:var(--blood);}
+.btn:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+.disclosure{border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;background:var(--card);overflow:hidden;}
+.disclosure > .d-head{width:100%;background:none;border:none;text-align:left;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;font-weight:700;color:var(--ink);font-family:var(--serif);font-size:1.02rem;}
+.disclosure > .d-head:hover{background:var(--parchment);}
+.disclosure > .d-head .chev{transition:transform .2s;color:var(--blood-bright);font-size:1.1rem;}
+.disclosure.open > .d-head .chev{transform:rotate(90deg);}
+.disclosure > .d-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.disclosure.open > .d-body{max-height:4000px;}
+.disclosure > .d-body .inner{padding:0 18px 16px 18px;}
+.d-body .mini-label{font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--blood-bright);margin:12px 0 4px 0;}
+.d-body .mini-label:first-child{margin-top:0;}
+.quote-line{font-family:var(--serif);font-style:italic;color:var(--ink);background:var(--parchment);border-left:3px solid var(--gold);padding:8px 12px;margin:6px 0;font-size:.94rem;}
+.grid{display:grid;gap:14px;}
+.grid.two{grid-template-columns:1fr 1fr;}
+.grid.three{grid-template-columns:repeat(3,1fr);}
+@media(max-width:800px){.grid.two,.grid.three{grid-template-columns:1fr;}}
+.qv-controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;align-items:center;}
+.qv-controls input[type=text], .qv-controls select{padding:9px 12px;border:1px solid var(--line);border-radius:7px;font-size:.9rem;background:#fff;}
+.qv-controls input[type=text]{flex:1;min-width:180px;}
+.qv-count{font-size:.82rem;color:var(--text-soft);margin-bottom:10px;}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-bottom:12px;}
+.qcard .qtext{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);margin-bottom:6px;}
+.qcard .qmeta{font-size:.78rem;color:var(--text-soft);margin-bottom:10px;}
+.qcard .qreveal-btn{font-size:.8rem;background:var(--parchment-dark);border:none;padding:6px 12px;border-radius:6px;color:var(--ink);font-weight:600;}
+.qcard .qdetail{display:none;margin-top:12px;border-top:1px dashed var(--line);padding-top:10px;}
+.qcard.open .qdetail{display:block;}
+.qdetail .row{margin-bottom:8px;}
+.qdetail .row b{color:var(--blood-bright);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:2px;}
+.level-toggle{display:flex;gap:6px;margin:10px 0;}
+.level-toggle button{font-size:.75rem;padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:#fff;}
+.level-toggle button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.level-block{display:none;font-size:.9rem;}
+.level-block.active{display:block;}
+.quiz-progress{height:8px;background:var(--parchment-dark);border-radius:6px;overflow:hidden;margin-bottom:18px;}
+.quiz-progress-bar{height:100%;background:var(--blood-bright);width:0%;transition:width .3s;}
+.quiz-q{font-family:var(--serif);font-size:1.15rem;margin-bottom:14px;}
+.quiz-opts{display:flex;flex-direction:column;gap:8px;}
+.quiz-opt{text-align:left;padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;background:#fff;font-size:.95rem;}
+.quiz-opt:hover{border-color:var(--ink);}
+.quiz-opt.correct{background:#e4f2e6;border-color:#4c9a5f;}
+.quiz-opt.incorrect{background:#f7e4e0;border-color:var(--blood-bright);}
+.quiz-opt[disabled]{cursor:default;}
+.quiz-explain{margin-top:12px;padding:12px 14px;background:var(--parchment);border-radius:8px;font-size:.9rem;display:none;}
+.quiz-explain.show{display:block;}
+.quiz-result{text-align:center;padding:30px 10px;}
+.quiz-result .score{font-family:var(--serif);font-size:3rem;color:var(--ink);}
+.quiz-result .weak-areas{text-align:left;max-width:420px;margin:16px auto;}
+.wvs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+@media(max-width:700px){.wvs{grid-template-columns:1fr;}}
+.wvs .weak{border:1.5px solid #c9776a;background:#fbeeeb;border-radius:8px;padding:14px;}
+.wvs .strong{border:1.5px solid #6a9c76;background:#eef6ef;border-radius:8px;padding:14px;}
+.wvs .lbl{font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+.wvs .weak .lbl{color:#a1392a;}
+.wvs .strong .lbl{color:#3f7a4c;}
+.lm-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:760px){.lm-grid{grid-template-columns:1fr;}}
+.lm-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;}
+.lm-card h3{font-size:1rem;color:var(--blood-bright);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:10px;}
+.lm-card ol,.lm-card ul{margin:0;padding-left:20px;font-size:.88rem;}
+.lm-card li{margin-bottom:6px;}
+.print-btn{margin-bottom:16px;}
+@media print{
+  .sidebar,.topbar,.print-btn,nav,.section-header .desc{display:none !important;}
+  main{padding:0;max-width:100%;}
+  .section{display:block !important;}
+  #section-lastminute{display:block !important;}
+  .section:not(#section-lastminute){display:none !important;}
+  body{background:#fff;}
+}
+.sixty{background:var(--ink);color:#f2efe2;border-radius:var(--radius);padding:20px 22px;margin:18px 0;}
+.sixty h3{color:var(--gold);font-size:.85rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;}
+.sixty p{font-size:.95rem;line-height:1.6;}
+footer.app-footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);color:var(--text-soft);font-size:.78rem;}
+.timeline{display:flex;flex-direction:column;gap:0;margin:16px 0;border-left:3px solid var(--gold);padding-left:18px;}
+.timeline .t-item{position:relative;padding:6px 0 18px 14px;}
+.timeline .t-item::before{content:'';position:absolute;left:-25px;top:9px;width:10px;height:10px;border-radius:50%;background:var(--blood-bright);border:2px solid var(--parchment);}
+.timeline .t-item .t-num{font-family:var(--mono);font-size:.72rem;color:var(--blood-bright);font-weight:700;}
+.timeline .t-item p{margin:2px 0 0 0;font-size:.92rem;}
+.jh-game{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;text-align:center;}
+.jh-quote{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--ink);min-height:90px;display:flex;align-items:center;justify-content:center;padding:0 10px;}
+.jh-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0;}
+@media(max-width:640px){.jh-opts{grid-template-columns:1fr 1fr;}}
+.jh-opts button{padding:12px 8px;border-radius:8px;border:1.5px solid var(--line);background:#fff;font-weight:600;font-size:.85rem;}
+.jh-opts button:hover{border-color:var(--ink);}
+.jh-opts button.correct{background:#e4f2e6;border-color:#4c9a5f;}
+.jh-opts button.incorrect{background:#f7e4e0;border-color:var(--blood-bright);}
+.jh-feedback{background:var(--parchment);border-radius:8px;padding:14px;margin-top:14px;font-size:.9rem;display:none;text-align:left;}
+.jh-feedback.show{display:block;}
+.jh-score{font-size:.85rem;color:var(--text-soft);margin-bottom:10px;}
+.change-grid{display:grid;grid-template-columns:1fr;gap:10px;}
+.change-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+.change-card .cc-head{width:100%;background:none;border:none;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.change-card .cc-name{font-family:var(--serif);font-size:1.1rem;color:var(--ink);font-weight:700;}
+.change-card .cc-meter{display:flex;gap:3px;align-items:center;}
+.change-card .cc-meter .dot{width:10px;height:10px;border-radius:50%;background:var(--line);}
+.change-card .cc-meter .dot.on{background:var(--blood-bright);}
+.change-card .cc-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.change-card.open .cc-body{max-height:700px;}
+.change-card .cc-inner{padding:0 18px 16px 18px;font-size:.92rem;}
+.change-card .cc-note{font-style:italic;color:var(--text-soft);font-size:.82rem;margin-top:8px;}
+.chain{display:flex;flex-direction:column;gap:0;}
+.chain-step{position:relative;}
+.chain-btn{width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;font-family:var(--serif);font-size:1.05rem;color:var(--ink);font-weight:700;}
+.chain-arrow{text-align:center;color:var(--gold);font-size:1.3rem;padding:2px 0;}
+.chain-body{max-height:0;overflow:hidden;transition:max-height .25s ease;background:var(--parchment);border-radius:0 0 var(--radius) var(--radius);}
+.chain-step.open .chain-body{max-height:600px;}
+.chain-step.open .chain-btn{border-radius:var(--radius) var(--radius) 0 0;}
+.chain-inner{padding:14px 18px;font-size:.92rem;}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:700px){.compare-grid{grid-template-columns:1fr;}}
+.compare-col{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;}
+.compare-col h3{text-align:center;background:var(--ink);color:#fff;margin:-18px -18px 14px -18px;padding:12px;border-radius:var(--radius) var(--radius) 0 0;}
+.compare-col ul{padding-left:20px;font-size:.9rem;}
+.compare-col li{margin-bottom:10px;}
+.compare-why{font-size:.85rem;color:var(--text-soft);font-style:italic;margin-top:4px;}
+.pair-block{margin-bottom:26px;}
+.pair-block .pair-theme{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blood-bright);font-weight:700;margin-bottom:6px;}
+.pair-block .pair-title{font-family:var(--serif);font-size:1.2rem;color:var(--ink);margin-bottom:10px;}
+.pair-notes{margin-top:12px;}
+.pair-notes .mini-label{font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--blood-bright);margin:10px 0 4px 0;}
+.poem-block{margin-bottom:8px;}
+.poem-block h2{font-size:1.25rem;margin-bottom:6px;}
+@media(max-width:900px){
+  .app{flex-direction:column;}
+  .sidebar{display:none;}
+  .topbar{display:flex;}
+  main{padding:24px 18px 60px 18px;}
+  .section-header h1{font-size:1.5rem;}
+  .jh-opts{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div class="app">
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <div class="brand">
+      <img src="../images/mascot-teacher.png" alt="The Teacher Vault mascot" class="brand-mascot">
+      <div class="tv-name">The Teacher Vault</div>
+      <div class="tv-sub">QuickNotes</div>
+      <div class="play-title">Love and Relationships Poetry</div>
+      <div class="play-sub">Fifteen poems, one anthology — everything you need for AQA GCSE English Literature.</div>
+    </div>
+    <nav class="mainnav" id="navList" aria-label="Sections"></nav>
+    <div class="sidebar-footer">Free GCSE revision resource.<br>Works fully offline.</div>
+  </aside>
+
+  <div class="topbar">
+    <div class="tv-inline"><span>The Teacher Vault · QuickNotes</span>Love and Relationships Poetry</div>
+    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobileDrawer">☰ Menu</button>
+  </div>
+  <div class="mobile-nav-drawer" id="mobileDrawer">
+    <div class="mobile-nav-panel">
+      <div class="brand">
+        <img src="../images/mascot-teacher.png" alt="The Teacher Vault mascot" class="brand-mascot">
+      <div class="tv-name">The Teacher Vault</div>
+        <div class="tv-sub">QuickNotes</div>
+        <div class="play-title">Love and Relationships Poetry</div>
+      </div>
+      <nav class="mainnav" id="navListMobile" aria-label="Sections (mobile)"></nav>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <div id="sectionsRoot"></div>
+    <footer class="app-footer">The Teacher Vault · Love and Relationships Poetry QuickNotes — a free GCSE English Literature revision resource. All explanatory content is original. Poems by Lord Byron, Percy Bysshe Shelley, Robert Browning, Elizabeth Barrett Browning, Thomas Hardy, Charlotte Mew, Maura Dooley, Cecil Day-Lewis, Charles Causley, Seamus Heaney, Simon Armitage, Carol Ann Duffy, Owen Sheers, Daljit Nagra and Andrew Waterhouse are referenced here for educational analysis. Several of these poems remain in copyright as part of a live AQA GCSE anthology, so quotations are kept to short fragments only — never a full stanza or complete poem.</footer>
+  </main>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+const Store = {
+  available: (function(){ try{ const k='__tv_test__'; localStorage.setItem(k,'1'); localStorage.removeItem(k); return true; }catch(e){ return false; } })(),
+  get(key, fallback){ if(!Store.available) return fallback; try{ const v = localStorage.getItem('tv_lar_'+key); return v===null?fallback:JSON.parse(v); }catch(e){ return fallback; } },
+  set(key, val){ if(!Store.available) return; try{ localStorage.setItem('tv_lar_'+key, JSON.stringify(val)); }catch(e){} }
+};
+
+const SECTIONS = [
+  {id:'overview', label:'Overview'},
+  {id:'poemguide', label:'Poem Guide'},
+  {id:'themes', label:'Themes'},
+  {id:'quotes', label:'Quote Vault'},
+  {id:'techniques', label:'Techniques'},
+  {id:'context', label:'Context'},
+  {id:'comparisonpairs', label:'Comparison Pairs'},
+  {id:'structurewalkthrough', label:'How a Poem Moves'},
+  {id:'exam', label:'Exam'},
+  {id:'quiz', label:'Quiz'},
+  {id:'matchgame', label:'Match the Quote'},
+  {id:'erascompare', label:'Love Then & Now'},
+  {id:'lastminute', label:'Last Minute'}
+];
+
+/* ================= POEMS ================= */
+const POEMS = [
+{id:'whenwetwoparted', title:"When We Two Parted", poet:"Lord Byron",
+ form:"Four octaves (eight-line stanzas) with a tight ABAB rhyme scheme and mostly short, clipped lines in dimeter and trimeter; the compressed rhythm mirrors the poem's restrained, broken emotion.",
+ coreidea:"The poem mourns the end of a secret relationship, remembered years after it ended. The speaker recalls the physical coldness of the final parting, hints that the woman later behaved in a way that damaged her reputation, and imagines a future meeting that would have to pass in awkward silence. Because the affair was hidden, the speaker cannot openly grieve or explain his continuing pain, so the poem becomes a private outlet for a loss he is not fully able to voice in public.",
+ voice:"First person, addressed directly to the former lover ('thee'); a reflective, mournful adult voice looking back rather than narrating events as they happen.",
+ quotes:["pale grew thy cheek and cold","half broken-hearted","In silence and tears","Long, long shall I rue thee"],
+ techniques:["Semantic field of coldness and death","Repetition of 'silence'","Half-rhyme and broken syntax","Oxymoron"],
+ themes:["Separation & distance","Memory & retrospection","Loss & death","Communication"],
+ message:"Byron may be drawing on his own history of secret, scandal-prone relationships, using the poem's guarded, understated language to suggest that grief kept hidden from public view can be just as lasting and painful as grief that is openly acknowledged.",
+ pairs:[{title:"Neutral Tones", why:"both poems remember the painful end of a relationship long after it happened, using cold, drained imagery to convey lasting bitterness."}]},
+{id:'lovesphilosophy', title:"Love's Philosophy", poet:"Percy Bysshe Shelley",
+ form:"Two regular stanzas of eight lines each with a controlled ABABCDCD rhyme scheme; the balanced, song-like structure mirrors the speaker's confident, rhythmic argument.",
+ coreidea:"The speaker builds a persuasive argument for physical and emotional union by pointing to examples of things joining together throughout the natural world — rivers flowing into the ocean, winds mingling, one flower clasping another. Having established that 'nothing in the world is single', the poem turns this observation into a direct, almost flirtatious appeal to the person he is addressing, asking why, if all of nature unites, the two of them alone should remain apart.",
+ voice:"First person speaker directly addressing a silent 'thou'/'thee'; persuasive and rhetorical, building an argument rather than simply describing feeling.",
+ quotes:["Nothing in the world is single","in one spirit meet and mingle","If thou kiss not me?"],
+ techniques:["Rhetorical questions","Anaphora","Personification of nature","Extended natural imagery"],
+ themes:["Romantic love & desire","Communication","Joy & celebration"],
+ message:"Shelley may intend the poem's confident logic to be read as a genuine celebration of natural union, though some readers see the speaker's argument as a charming but self-interested piece of persuasion, using nature to pressure rather than simply express affection.",
+ pairs:[{title:"Sonnet 29 - 'I think of thee!'", why:"both poems use extended natural imagery to express intense desire for closeness with a loved one."}]},
+{id:'porphyriaslover', title:"Porphyria's Lover", poet:"Robert Browning",
+ form:"A dramatic monologue in a single unbroken stanza using a tight, insistent ABABB rhyme scheme; the regular rhyme sits uneasily against the disturbing content, suggesting the speaker's calm, controlled state of mind.",
+ coreidea:"The speaker describes Porphyria visiting him during a storm, tending the fire and declaring her love for him, though the poem hints she is prevented by pride or social position from committing to him fully and openly. In the moment he believes she 'worships' him completely, he strangles her with her own hair to preserve that perfect instant forever, then sits holding her body through the night, believing he has done nothing wrong. The poem never punishes or condemns him within the text, leaving his chilling self-justification to speak for itself.",
+ voice:"First person dramatic monologue; an unreliable, disturbingly calm narrator recounting his own actions without remorse.",
+ quotes:["murmuring how she loved me","in one long yellow string","That moment she was mine, mine, fair","God has not said a word"],
+ techniques:["Dramatic monologue","Pathetic fallacy (the storm)","Enjambment","Unreliable narration"],
+ themes:["Obsession & control","Gender roles & power","Romantic love & desire","Possessiveness"],
+ message:"Browning may be using the speaker's calm, self-justifying tone to expose the danger of treating love as something to possess and control, though the poem deliberately withholds any authorial judgement, leaving readers to draw their own conclusions about his disturbing logic.",
+ pairs:[{title:"The Farmer's Bride", why:"both poems present relationships shaped by a male speaker's need for control over a woman who cannot fully consent or escape."}]},
+{id:'sonnet29', title:"Sonnet 29 - 'I think of thee!'", poet:"Elizabeth Barrett Browning",
+ form:"A Petrarchan (Italian) sonnet of fourteen lines, divided into an octave and sestet with a volta partway through, where the speaker's argument shifts from imagined thought to a demand for real presence.",
+ coreidea:"The speaker compares her constant thoughts of her lover to wild vines that wrap so thickly around a tree that they begin to obscure it completely. Rather than being content with this abundance of imagined closeness, she ultimately wants the real, physical presence of the beloved to strip away the excess of thought and replace it with reality, suggesting that imagination, however intense, is no substitute for genuine intimacy.",
+ voice:"First person, direct address to 'thee'; intimate and urgent, moving from patient description to an almost commanding final appeal.",
+ quotes:["my thoughts do twine and bud","Renew thy presence","I am too near thee"],
+ techniques:["Extended metaphor (tree and vine)","Volta","Imperative mood","Natural imagery"],
+ themes:["Romantic love & desire","Communication"],
+ message:"Barrett Browning may be suggesting that imagined or written expressions of love, however elaborate, ultimately depend on and long for real physical connection, resisting any simple reading of the poem as purely celebrating imaginative devotion.",
+ pairs:[{title:"Love's Philosophy", why:"both poems use extended natural imagery to express a longing for union with a loved one."}]},
+{id:'neutraltones', title:"Neutral Tones", poet:"Thomas Hardy",
+ form:"Four regular quatrains with an ABBA rhyme scheme and controlled, mostly monosyllabic language; the tight structure contrasts with the emotional bleakness described.",
+ coreidea:"The speaker recalls standing by a pond with a former lover on a grey winter's day as their relationship was ending, noticing drained, colourless details — a white sun, grey leaves, a bitter smile. The final stanza returns to the present tense, revealing that this cold, static memory has permanently shaped the speaker's view of love as something that inevitably deceives and disappoints, with the original scene's imagery recurring to show its lasting grip on him.",
+ voice:"First person retrospective narrator, addressing no one directly but recalling a shared 'we'; flat, restrained, emotionally guarded tone.",
+ quotes:["a grin of bitterness","the God-curst sun","wrings with wrong","keen lessons that love deceives"],
+ techniques:["Pathetic fallacy","Colour imagery (grey/white)","Simile","Cyclical structure"],
+ themes:["Separation & distance","Memory & retrospection","Loss & death"],
+ message:"Hardy may use the poem's drained, colourless imagery to suggest that a single painful ending can permanently colour a person's later understanding of love, without ever explicitly explaining what caused the relationship's collapse.",
+ pairs:[{title:"When We Two Parted", why:"both poems recall the bitter, lasting aftermath of a relationship's end using cold, drained imagery."}]},
+{id:'lettersfromyorkshire', title:"Letters from Yorkshire", poet:"Maura Dooley",
+ form:"Free verse across four stanzas of varying length with no fixed rhyme scheme, giving the poem a conversational, natural rhythm that mirrors ordinary letter-writing.",
+ coreidea:"The speaker, based indoors in the south, reflects on letters received from a friend or lover in Yorkshire who works outdoors on the land, describing a moment when he saw a hare and let the dogs run on rather than give chase. The poem contrasts their different daily lives — his physical, outdoor labour against her indoor, domestic and intellectual world — before concluding that despite this contrast, their connection remains genuine, simply a different, undramatic way that two lives can care for each other across distance.",
+ voice:"First person, reflecting on a correspondent addressed as 'you'; warm and thoughtful, gently comparing two contrasting lifestyles.",
+ quotes:["he saw a hare and let the dogs run on","pictures, punctuation","two lives, can care for each other in a distance"],
+ techniques:["Enjambment","Contrast (indoor/outdoor)","Sensory imagery","Rhetorical question"],
+ themes:["Separation & distance","Communication","Romantic love & desire"],
+ message:"Dooley may be suggesting that emotional closeness does not depend on physical proximity or grand romantic gesture, presenting the quiet exchange of letters as its own valid, sustaining form of connection.",
+ pairs:[{title:"Winter Swans", why:"both poems explore how emotional closeness can survive or return despite distance, whether physical or emotional."}]},
+{id:'farmersbride', title:"The Farmer's Bride", poet:"Charlotte Mew",
+ form:"A dramatic monologue in irregular stanzas and rhyme, using rural dialect vocabulary; the fluctuating structure mirrors the speaker's frustrated, unsettled state of mind.",
+ coreidea:"The farmer describes marrying a young woman who was frightened by the marriage from the outset, ran away soon after, and was caught and brought back, becoming increasingly withdrawn and isolated within the household. He repeatedly describes her through animal and nature imagery — a frightened hare, a leveret, a bird — rather than as a full person with her own voice, and the poem ends with his frustrated, barely-restrained physical desire for her as she sleeps elsewhere in the house, guarded rather than loved.",
+ voice:"First person dramatic monologue in the voice of the husband; the wife herself never speaks, existing only through his description of her.",
+ quotes:["too young maybe","should properly have been a woman's child","the brown of her—the down of her hair"],
+ techniques:["Dialect","Extended animal/nature metaphor","Rhetorical questions","Structural shift to desire"],
+ themes:["Marriage","Obsession & control","Gender roles & power","Separation & distance"],
+ message:"Mew may be using the husband's own words to expose, without his awareness, the isolation and fear his young wife experiences within a marriage she never freely chose, critiquing a system in which a woman's consent was rarely genuinely considered.",
+ pairs:[{title:"Porphyria's Lover", why:"both poems present unequal relationships shaped by male control and a woman who is denied a voice of her own."}]},
+{id:'walkingaway', title:"Walking Away", poet:"Cecil Day-Lewis",
+ form:"Four stanzas of five lines each with a loose, irregular rhyme scheme that avoids strict regularity, suiting the poem's reflective, unresolved tone as a parent revisits an old memory.",
+ coreidea:"The speaker recalls watching his young son walk away across a school playing field eighteen years earlier, one of the child's first small steps toward independence. Using images of a seed scattering and a satellite pulled from its orbit, the speaker conveys both the pain and the necessity of letting a child go, concluding that real love is ultimately proved not by holding on, but by the willingness to let someone become themselves through separation.",
+ voice:"First person parent, addressing the memory retrospectively; tender and wistful, written by a father reflecting on his son.",
+ quotes:["like a satellite / wrenched from its orbit","a hesitant figure, eddying away","love is proved in the letting go"],
+ techniques:["Extended metaphor (seed, satellite)","Simile","Pathetic fallacy","Oxymoron"],
+ themes:["Family love (parent-child)","Separation & distance","Independence"],
+ message:"Day-Lewis may be suggesting that genuine parental love requires the difficult, ongoing willingness to release a child into independence, rather than protecting or holding on to them indefinitely.",
+ pairs:[{title:"Mother, any distance", why:"both poems explore parental love expressed through the difficult process of allowing a child to become independent."}]},
+{id:'edenrock', title:"Eden Rock", poet:"Charles Causley",
+ form:"Four stanzas of varying length in free verse with gentle, controlled pacing; the final short stanza slows the poem down for its quiet closing image.",
+ coreidea:"The speaker imagines meeting his parents, fixed forever at a youthful age, at a picnic spot called Eden Rock — his mother pouring tea, his father crossing a stream with the family dog, both waiting for him. The idealised, timeless scene, its title recalling the biblical Eden, suggests a paradise beyond ordinary time, and the poem's closing image, describing the stream as 'narrow enough to step across', may present death not as something to fear but as a small, gentle step toward reunion with loved ones already lost.",
+ voice:"First person speaker recalling or imagining his parents; calm and nostalgic, moving between memory and imagination without clearly separating the two.",
+ quotes:["twenty-five years held apart","Not proven. Whatever it was I saw","narrow enough to step across"],
+ techniques:["Symbolism (Eden/paradise)","Enjambment","Biblical allusion","Ambiguous, timeless tone"],
+ themes:["Family love (parent-child)","Memory & retrospection","Loss & death"],
+ message:"Causley may be using the poem's dreamlike blending of memory and imagination to offer a gentle, comforting reflection on death, though the poem's own uncertainty — 'not proven' — means this reading should not be presented as its single, definite meaning.",
+ pairs:[{title:"Climbing My Grandfather", why:"both poems reconstruct a family bond through detailed, affectionate, imaginative memory."}]},
+{id:'follower', title:"Follower", poet:"Seamus Heaney",
+ form:"Six quatrains with a mostly regular ABAB rhyme scheme, giving the poem a steady, narrative rhythm that shifts noticeably in tone in its final stanza.",
+ coreidea:"The speaker recalls childhood admiration for his father's skill and strength while ploughing, describing wanting to grow up and follow exactly in his footsteps, though as a small child he mostly got in the way, stumbling behind him. The final stanza performs a striking role reversal: the father, now old, is the one who stumbles and follows, unable to be shaken off, while the adult speaker has effectively taken his father's earlier position — a shift that recontextualises the whole poem's earlier admiration.",
+ voice:"First person, recalling childhood memory before shifting into a brief, unsettling present-tense final stanza; admiring, then quietly poignant.",
+ quotes:["shoulders globed like a full sail strung","I wanted to grow up and plough","keeps stumbling behind me"],
+ techniques:["Structural volta / role reversal","Nautical and agricultural imagery","Rhyme","Sensory detail"],
+ themes:["Family love (parent-child)","Memory & retrospection","Independence"],
+ message:"Heaney may be using the poem's late reversal to suggest that admiration between parent and child inevitably shifts as roles change with age, though the poem stops short of stating explicitly how the speaker feels about this new responsibility.",
+ pairs:[{title:"Before You Were Mine", why:"both poems show an adult speaker re-evaluating a parent through the lens of memory, shifting how that parent is understood."}]},
+{id:'motheranydistance', title:"Mother, any distance", poet:"Simon Armitage",
+ form:"A single extended stanza that echoes a sonnet's fourteen-line structure while stretching and loosening it, using enjambment throughout to mirror the poem's themes of extension and reaching beyond limits.",
+ coreidea:"The speaker's mother helps him measure the rooms of a new house he is moving into, holding one end of a tape measure while he moves further away with the other, an ordinary domestic task that becomes an extended metaphor for the son's move toward independence while remaining connected to his mother. As the tape measure runs out and the son climbs alone to a loft hatch reaching toward open sky, the poem captures the mixed excitement and uncertainty of independence, balanced against the enduring, elastic connection to a parent.",
+ voice:"First person, direct address to 'Mother'; intimate and tender, blending ordinary domestic detail with metaphorical significance.",
+ quotes:["acres of the walls, the prairies of the floors","hand to hand, I feel the tug","to fall or fly"],
+ techniques:["Extended metaphor (tape measure)","Enjambment","Direct address","Spatial imagery"],
+ themes:["Family love (parent-child)","Independence","Separation & distance"],
+ message:"Armitage may be suggesting that independence and connection are not opposites but can coexist, with the stretching tape measure symbolising a bond that extends without necessarily breaking.",
+ pairs:[{title:"Walking Away", why:"both poems explore parental love expressed through the process, and anxiety, of a child gaining independence."}]},
+{id:'beforeyouweremine', title:"Before You Were Mine", poet:"Carol Ann Duffy",
+ form:"Four stanzas of five lines each, written in free verse with a conversational, intimate tone that moves fluidly between imagined past and lived present.",
+ coreidea:"The speaker, a daughter, imagines her mother's carefree life as a young woman before having children, prompted by an old photograph showing her laughing with friends outside a cinema. The nostalgic, admiring tone is complicated by the poem's title and possessive language, hinting that the daughter's own existence marked the end of that youthful freedom, before the poem closes with an imagined memory of the child running to her glamorous, married mother, blending imagination and real affection.",
+ voice:"First person daughter directly addressing her mother as 'you'; nostalgic and admiring, with a gentle undertone of possessiveness.",
+ quotes:["my loud, possessive yell","ten years away from the corner you laugh on","polka-dot dress blows round your legs"],
+ techniques:["Direct address","Sensory, nostalgic imagery","Allusion (Marilyn Monroe)","Possessive pronouns"],
+ themes:["Family love (parent-child)","Memory & retrospection","Identity","Possessiveness"],
+ message:"Duffy may be suggesting that becoming a parent involves a genuine, if bittersweet, loss of an earlier identity, while the poem's warm, admiring tone shows the daughter's imaginative attempt to reconnect with the mother she never knew.",
+ pairs:[{title:"Follower", why:"both poems show an adult speaker re-evaluating a parent through vivid, affectionate memory and imagination."}]},
+{id:'winterswans', title:"Winter Swans", poet:"Owen Sheers",
+ form:"Four stanzas, mostly quatrains with one three-line stanza, using loose but noticeable rhyme and enjambment to mirror the couple's tentative movement toward reconciliation.",
+ coreidea:"A couple walk around a lake or reservoir after days of heavy rain, following an unspecified period of tension or conflict between them. Watching a pair of swans move together gracefully on the water, gliding as though 'in unison', the speaker contrasts this effortless natural partnership with the couple's own strained relationship, before the poem's final image, of their hands touching and folding together, suggests a small, tentative step toward reconnection.",
+ voice:"First person, describing a shared 'we' walking together; observational, becoming quietly hopeful by the poem's end.",
+ quotes:["The clouds had given up","porcelain","folded like a pair of wings settling"],
+ techniques:["Nature symbolism (swans)","Pathetic fallacy","Extended metaphor","Simile"],
+ themes:["Reconciliation","Communication","Romantic love & desire"],
+ message:"Sheers may be using the swans' effortless natural partnership to highlight, by contrast, how much more difficult and deliberate reconciliation between two people can be, while the poem's gentle final gesture suggests hope without guaranteeing a full resolution.",
+ pairs:[{title:"Letters from Yorkshire", why:"both poems explore how emotional closeness can survive or return despite distance or difficulty."}]},
+{id:'singhsong', title:"Singh Song!", poet:"Daljit Nagra",
+ form:"Free verse written in a phonetic transcription of British Punjabi-inflected English, with an informal, playful rhythm and a recurring romantic refrain set apart from the main narrative.",
+ coreidea:"The speaker, a young British-Punjabi shopkeeper, describes neglecting the family shop, falling asleep at odd hours and closing early, so that he can spend time with his new wife upstairs. The poem contrasts his father's traditional disapproval and the demands of running the family business with the playful, joyful energy of new marriage, presenting the wife as spirited and capable in her own right rather than a passive figure, while the poem's distinctive dialect voice asserts a confident, multicultural British-Asian identity.",
+ voice:"First person shopkeeper narrator using a distinct phonetic dialect; humorous and affectionate, occasionally shifting into a more lyrical romantic register for the refrain sections.",
+ quotes:["my bride","she effin at my mum"],
+ techniques:["Phonetic dialect spelling","Refrain","Humour","Code-switching / structural contrast"],
+ themes:["Marriage","Joy & celebration","Identity","Gender roles & power"],
+ message:"Nagra may be using humour and dialect to celebrate a confident, multicultural British identity, while also gently subverting expectations of duty and traditional gender roles through the wife's spirited independence.",
+ pairs:[{title:"Porphyria's Lover", why:"both poems explore power within a relationship, though Nagra's playful subversion of expectation contrasts sharply with the obsessive control shown by Browning's speaker."}]},
+{id:'climbingmygrandfather', title:"Climbing My Grandfather", poet:"Andrew Waterhouse",
+ form:"A single continuous stanza in free verse, sustaining one extended metaphor throughout without any structural break, mirroring the poem's uninterrupted, careful climb.",
+ coreidea:"The speaker describes climbing over his grandfather's body as though scaling a rock face or mountain, treating his cardigan buttons, belt and hands as physical footholds, and his face, described in terms of crags and creases, as a landscape to be carefully navigated. The poem's gentle, careful tone and its final image of reaching the grandfather's head, 'shining, snow-capped', suggest deep affection, patience and respect, framing the grandfather's body itself as something vast, safe and worth exploring closely.",
+ voice:"First person, addressed to no one directly, narrating the imagined climb in careful present tense; tender, patient, quietly admiring.",
+ quotes:["I begin, as a good climber would","the crags and folds of his face","shining, snow-capped"],
+ techniques:["Extended metaphor (grandfather as landscape)","Sustained conceit","Tactile, sensory imagery","Gentle, controlled tone"],
+ themes:["Family love (parent-child)","Memory & retrospection","Identity"],
+ message:"Waterhouse may be using the mountain-climbing conceit to express both the physical frailty and the enduring, protective significance of an elderly relative, treating the grandfather's body with a sense of wonder rather than simply describing his decline.",
+ pairs:[{title:"Eden Rock", why:"both poems reconstruct a close family bond through detailed, affectionate, carefully imagined memory."}]}
+];
+
+/* ================= THEMES ================= */
+const THEMES = [
+{name:'Romantic love & desire', explanation:"Several poems express intense romantic longing or physical desire, whether through persuasive argument, disturbing obsession, or quiet imagined intimacy.",
+ where:"Shelley's natural argument for union; Barrett Browning's overwhelming thoughts of her lover; Browning's speaker's fatal need to possess Porphyria completely.",
+ characters:["Love's Philosophy","Sonnet 29 - 'I think of thee!'","Porphyria's Lover","Winter Swans","Singh Song!"],
+ quotes:["Nothing in the world is single","my thoughts do twine and bud","That moment she was mine, mine, fair"],
+ message:"Poets may present desire as anywhere on a spectrum from joyful and mutual to possessive and destructive, suggesting that the intensity of romantic feeling does not by itself guarantee a healthy relationship.",
+ context:"Romantic and Victorian poets often used natural imagery or dramatic monologue to explore desire more openly than was typical in polite social conversation of the period.",
+ thesis:["Poets present romantic desire across a spectrum from persuasive celebration (Shelley) to disturbing possession (Browning), suggesting intensity of feeling alone cannot indicate whether a relationship is healthy.","Several poets use extended natural imagery to give private, intense desire a sense of scale and inevitability, whether that desire is presented positively or with unease."]},
+{name:'Family love (parent-child)', explanation:"Many of the modern poems focus on the bond between parent and child, often exploring how that love is expressed through everyday moments, separation, or memory rather than grand declaration.",
+ where:"A father watching his son walk away across a school field; a mother helping measure a new home; a daughter imagining her mother's youth; a speaker's careful, affectionate memory of a grandfather.",
+ characters:["Walking Away","Mother, any distance","Eden Rock","Follower","Before You Were Mine","Climbing My Grandfather"],
+ quotes:["love is proved in the letting go","hand to hand, I feel the tug","I begin, as a good climber would"],
+ message:"Poets may suggest that parental and familial love is most powerfully expressed not through possession or control, but through small, ordinary acts of trust, release and careful attention.",
+ context:"Several of these poems are drawn from the poets' own family experience — Day-Lewis wrote directly about his son, and Heaney's early poetry frequently drew on his own father and childhood farm.",
+ thesis:["Poets present family love as most visible not in dramatic declaration but in small, ordinary gestures — a measured room, a remembered walk, a careful climb.","Several poems use extended metaphor (measuring, mountaineering, orbiting satellites) to give physical, tangible shape to the otherwise abstract experience of familial love."]},
+{name:'Separation & distance', explanation:"Physical or emotional distance between two people recurs throughout the anthology, sometimes as painful loss and sometimes as a necessary or even connecting force.",
+ where:"Byron's secret, ended relationship; letters exchanged between two very different lives; a farmer's wife emotionally withdrawn within her own home; a son moving into physical independence.",
+ characters:["When We Two Parted","Letters from Yorkshire","Walking Away","Mother, any distance","The Farmer's Bride"],
+ quotes:["In silence and tears","two lives, can care for each other in a distance","a hesitant figure, eddying away"],
+ message:"Poets may present distance as double-edged: sometimes a source of grief and severed connection, but at other times, as in Letters from Yorkshire, a condition that can still hold real closeness within it.",
+ context:"Letter-writing and long-distance relationships were, and remain, a common way that love is sustained across geographic separation, giving several poems in this cluster real everyday relevance.",
+ thesis:["Poets present distance not as a single, simple obstacle to love but as a condition that can either damage a relationship (When We Two Parted) or, surprisingly, sustain it (Letters from Yorkshire)."]},
+{name:'Memory & retrospection', explanation:"A number of poems are structured as an adult speaker looking back — on a lost relationship, a childhood memory, or a parent now understood differently with age.",
+ where:"Hardy's cold, static recollection of a failed relationship; Heaney's shift from childhood admiration to present-day role reversal; Duffy's imagined reconstruction of her mother's youth.",
+ characters:["Neutral Tones","Eden Rock","Follower","Before You Were Mine","Climbing My Grandfather","When We Two Parted"],
+ quotes:["keen lessons that love deceives","keeps stumbling behind me","ten years away from the corner you laugh on"],
+ message:"Poets may suggest that memory is never a neutral record of the past, but is actively reshaped by the speaker's present feelings, needs and sense of loss.",
+ context:"Many of these poems were written well after the events they describe, giving their retrospective voice a reflective, sometimes idealised or bitter quality depending on the poet's present emotional state.",
+ thesis:["Poets present memory as an active, selective process rather than a neutral record, using retrospective narration to reveal as much about the speaker's present feelings as about the past itself."]},
+{name:'Obsession & control', explanation:"Two of the earlier poems present relationships defined by one person's need to dominate, possess or control another, often with disturbing consequences.",
+ where:"Browning's speaker strangling Porphyria to fix their relationship in a permanent, controlled moment; Mew's farmer describing his young wife through possessive, animal imagery.",
+ characters:["Porphyria's Lover","The Farmer's Bride"],
+ quotes:["That moment she was mine, mine, fair","too young maybe","the brown of her—the down of her hair"],
+ message:"Both poets may be using a first-person male voice to expose, rather than endorse, the danger of treating a partner as something to be owned or perfectly preserved rather than as an equal, autonomous person.",
+ context:"Both poems were written in periods when women had significantly less legal and social power within relationships, a context that shapes how each male speaker is able to exert control with little resistance or consequence.",
+ thesis:["Both poets use an unreliable or self-justifying male speaker to expose the danger of conflating love with possession, allowing each woman's silence within the text to speak to her lack of power."]},
+{name:'Marriage', explanation:"Marriage is presented very differently across the anthology, from an isolating, unwanted arrangement to a joyful, teasing partnership that resists convention.",
+ where:"The Farmer's Bride's young wife trapped in a marriage she never freely chose; Singh Song!'s playful, loving marriage that disrupts traditional shopkeeping duty.",
+ characters:["The Farmer's Bride","Singh Song!"],
+ quotes:["should properly have been a woman's child","my bride","she effin at my mum"],
+ message:"Poets may use contrasting depictions of marriage to show how much the experience of marriage depends on consent, equality and genuine affection between partners, rather than on the institution itself.",
+ context:"Attitudes to marriage and women's consent within it have shifted enormously between the early-twentieth-century setting of The Farmer's Bride and Nagra's contemporary, multicultural British setting.",
+ thesis:["Poets present marriage across a spectrum from isolating obligation (Mew) to joyful partnership (Nagra), suggesting the institution itself matters less than the equality and affection within it."]},
+{name:'Loss & death', explanation:"Several poems confront loss directly, whether the death of a relationship, the death of loved ones, or an imagined reunion beyond death.",
+ where:"Hardy's bitter memory of a relationship's collapse; Causley's gentle imagining of reunion with deceased parents; Byron's lasting grief over a relationship he cannot openly mourn.",
+ characters:["Neutral Tones","Eden Rock","When We Two Parted"],
+ quotes:["keen lessons that love deceives","narrow enough to step across","Long, long shall I rue thee"],
+ message:"Poets may present loss and death not as a single fixed experience, but as something interpreted very differently depending on the nature of what has been lost — a relationship, a parent, or a private grief that could never be openly shared.",
+ context:"Causley's gentle, almost comforting treatment of death can be usefully contrasted with the Victorian period's often more formal or fearful approach to mortality.",
+ thesis:["Poets present loss and death across a wide emotional range, from Hardy's bitter permanence to Causley's gentle, hopeful ambiguity about reunion beyond death."]},
+{name:'Communication', explanation:"How people express, share or fail to share their feelings — through letters, persuasive speech, silence or gesture — is central to several poems.",
+ where:"Letters exchanged across geographic distance; Shelley's persuasive rhetorical appeal; the wordless closing gesture of hands touching in Winter Swans.",
+ characters:["Letters from Yorkshire","Love's Philosophy","Sonnet 29 - 'I think of thee!'","Winter Swans"],
+ quotes:["pictures, punctuation","What is all this sweet work worth","folded like a pair of wings settling"],
+ message:"Poets may suggest that genuine connection does not always require words at all — a shared gesture, a letter, or an ordinary act of noticing can communicate as much as direct declaration.",
+ context:"Before digital communication, letters were often the primary way that geographically separated loved ones maintained an emotional connection, giving Letters from Yorkshire particular historical resonance.",
+ thesis:["Poets present communication as taking many forms beyond speech itself — written letters, persuasive rhetoric, or a single wordless gesture can all carry genuine emotional connection."]},
+{name:'Independence', explanation:"The tension between staying close to someone and becoming genuinely independent from them, especially between parent and child, runs through several poems.",
+ where:"A son measuring out his own new home while his mother still holds one end of the tape; a father watching his son walk further away across a playing field.",
+ characters:["Mother, any distance","Walking Away","Follower"],
+ quotes:["to fall or fly","love is proved in the letting go","I wanted to grow up and plough"],
+ message:"Poets may present independence and connection as compatible rather than opposing forces, suggesting that a strong bond can stretch to accommodate distance without necessarily breaking.",
+ context:"These poems reflect a broadly modern, Western understanding of adolescence and early adulthood as a gradual, supported process of separation from parents, rather than a single dramatic break.",
+ thesis:["Poets present the process of gaining independence as something that can coexist with, rather than threaten, a lasting parental bond, symbolised through images of elastic or extending connection."]},
+{name:'Possessiveness', explanation:"A number of speakers describe those they love using language of ownership, whether playfully, protectively, or in genuinely disturbing ways.",
+ where:"Duffy's daughter reflecting on her own 'possessive yell' as a baby; Browning's speaker declaring Porphyria 'mine, mine'; Byron's continued claim on a lover long after their parting.",
+ characters:["Before You Were Mine","Porphyria's Lover","When We Two Parted"],
+ quotes:["my loud, possessive yell","That moment she was mine, mine, fair","Long, long shall I rue thee"],
+ message:"Poets may use possessive language to reveal very different underlying emotions — from Duffy's gentle, self-aware nostalgia to Browning's genuinely dangerous need for total ownership.",
+ context:"Comparing possessive language across these poems shows how the same linguistic pattern (claiming someone as 'mine') can carry drastically different emotional and moral weight depending on context.",
+ thesis:["Poets use similar possessive language and pronouns to very different effect, ranging from Duffy's self-aware, affectionate nostalgia to Browning's genuinely disturbing need for total control."]},
+{name:'Joy & celebration', explanation:"Not every poem in the anthology is defined by loss or difficulty — some celebrate love as a source of genuine happiness and playful energy.",
+ where:"Nagra's shopkeeper neglecting his duties for the joy of his new marriage; Shelley's confident, almost gleeful persuasive argument for romantic union.",
+ characters:["Singh Song!","Love's Philosophy"],
+ quotes:["my bride","Nothing in the world is single"],
+ message:"Poets may use playful tone, humour or confident rhetorical energy to show that love can be a source of straightforward happiness, not only pain or complication.",
+ context:"Nagra's poem in particular reflects a confident, contemporary British-Asian voice that resists older, more solemn poetic conventions around love and marriage.",
+ thesis:["Poets use humour, playful voice and confident rhetorical energy to present love as capable of straightforward joy, offering a useful contrast to the anthology's more painful or complicated relationships."]},
+{name:'Gender roles & power', explanation:"Several poems reveal unequal power between men and women, whether through a controlling male speaker, a woman's limited voice, or a poem's deliberate subversion of expected gender roles.",
+ where:"Mew's silenced, controlled young wife; Browning's fatally possessive speaker; Nagra's spirited, business-minded wife who resists traditional expectation.",
+ characters:["The Farmer's Bride","Porphyria's Lover","Singh Song!","Before You Were Mine"],
+ quotes:["too young maybe","That moment she was mine, mine, fair","she effin at my mum"],
+ message:"Poets may use contrasting depictions of gender and power to invite readers to consider how much a relationship's fairness depends on whether both partners hold a genuine, equal voice.",
+ context:"Attitudes to women's legal and social power have changed enormously across the period this anthology spans, from Mew's early-twentieth-century setting to Nagra's contemporary, multicultural Britain.",
+ thesis:["Poets use differing degrees of voice and agency given to female characters to expose unequal gendered power, ranging from near-total silencing (Mew, Browning) to confident subversion of expectation (Nagra)."]}
+];
+
+/* ================= TECHNIQUES ================= */
+const TECHNIQUES = [
+{name:'Dramatic monologue', def:"A poem written as if spoken aloud by a single character to a silent listener, revealing that character's mindset through their own words.", example:"Porphyria's Lover and The Farmer's Bride are both dramatic monologues spoken entirely by a male character about the woman he controls.", effect:"Allows the poet to expose a speaker's disturbing logic or self-justification without direct authorial comment, letting the reader judge the gap between what is said and what is revealed.", howto:"Identify what the speaker's own words unintentionally reveal about their character, rather than simply summarising what they say."},
+{name:'Extended metaphor', def:"A single metaphor developed and sustained across most or all of a poem, rather than used briefly.", example:"Armitage sustains the image of measuring a house with a tape measure throughout Mother, any distance to represent a son's growing independence.", effect:"Gives an abstract idea (independence, memory, connection) a consistent, concrete shape the reader can follow and reinterpret as the poem develops.", howto:"Track how the central image develops or shifts across the whole poem, not just in one line, and explain what each stage adds to its meaning."},
+{name:'Pathetic fallacy', def:"Giving weather or landscape human emotions, so that the natural world appears to reflect a character's inner state.", example:"The storm in Porphyria's Lover and the drained, grey winter scene in Neutral Tones both mirror the emotional tone of each poem.", effect:"Creates atmosphere and reinforces mood without the poet needing to state a character's feelings directly.", howto:"Identify the specific weather or natural detail, then explain precisely which emotion or mood it mirrors at that point in the poem."},
+{name:'Enjambment', def:"When a sentence or phrase runs on past the end of a line without punctuation, carrying meaning across the line break.", example:"Armitage uses heavy enjambment throughout Mother, any distance to mirror the poem's themes of stretching, reaching and extending beyond limits.", effect:"Creates a sense of movement, continuation or urgency, and can be used to delay or emphasise a key word placed just after the break.", howto:"Note which word or phrase is emphasised by falling right after the line break, and explain why the poet may have chosen that placement."},
+{name:'Rhetorical question', def:"A question asked for effect or persuasive impact, not expecting a literal answer.", example:"Shelley closes Love's Philosophy with the question 'What is all this sweet work worth / If thou kiss not me?'", effect:"Builds a persuasive, argumentative tone and invites the reader (or the poem's silent addressee) to agree with the speaker's logic.", howto:"Explain what the question is really arguing for, and what response the speaker clearly wants, even though no answer is given."},
+{name:'Symbolism', def:"An object, image or event that represents a deeper idea beyond its literal meaning.", example:"The narrow stream in Eden Rock symbolises the small, unfrightening step between life and death; the swans in Winter Swans symbolise effortless, lifelong partnership.", effect:"Condenses a complex emotional or thematic idea into a single, memorable image the reader can return to.", howto:"State clearly what the symbol represents and connect it explicitly to the poem's wider themes or the speaker's situation."},
+{name:'Dialect / phonetic spelling', def:"Writing that represents a particular regional or cultural accent through non-standard spelling, syntax or vocabulary.", example:"Nagra writes Singh Song! phonetically to reflect a British Punjabi-inflected voice; Mew uses rural dialect words in The Farmer's Bride.", effect:"Grounds the poem in a specific voice, culture or setting, and can either celebrate identity (Nagra) or emphasise a character's isolation or difference (Mew).", howto:"Explain what the specific dialect choice reveals about the speaker's identity, culture or social position, not simply that dialect is present."},
+{name:'Volta / structural shift', def:"A clear turning point in a poem's argument, tone or perspective, often positioned near the end.", example:"Follower shifts sharply in its final stanza to reveal a role reversal between father and son; Sonnet 29 turns from imagined thought to a demand for real presence.", effect:"Forces the reader to reinterpret everything that came before in light of the new information or shift in perspective.", howto:"Identify exactly where the shift occurs and explain how it changes or complicates the reader's understanding of the earlier stanzas."},
+{name:'Direct address & pronouns', def:"When a speaker addresses another person directly, often using 'you' or a named relationship such as 'Mother'.", example:"Duffy addresses her mother directly as 'you' throughout Before You Were Mine; Armitage addresses 'Mother' directly in his poem's title and opening.", effect:"Creates intimacy and immediacy, making the poem feel like a private, personal address rather than a general statement about love or family.", howto:"Consider what the specific pronoun or form of address reveals about the closeness, distance or power balance between speaker and addressee."},
+{name:'Simile', def:"A direct comparison between two things using 'like' or 'as'.", example:"Day-Lewis compares his son to 'a satellite / wrenched from its orbit' in Walking Away; Sheers compares joined hands to 'a pair of wings settling' in Winter Swans.", effect:"Makes an abstract emotional experience, such as loss or reconciliation, vivid and physically imaginable for the reader.", howto:"Explain precisely what quality the simile's two compared elements share, and why that comparison suits the poem's emotional moment."},
+{name:'Sensory / tactile imagery', def:"Language appealing to physical senses, especially touch, to make a description feel immediate and real.", example:"Waterhouse describes the physical texture of his grandfather's body — cardigan buttons, crags and folds of skin — throughout Climbing My Grandfather.", effect:"Creates intimacy and physical closeness between speaker and subject, often reinforcing tenderness or careful attention.", howto:"Identify which specific sense is being appealed to and explain what emotional quality (care, wonder, discomfort) that sensory detail creates."},
+{name:'Refrain', def:"A repeated line, phrase or stanza recurring at intervals throughout a poem.", example:"Singh Song! uses a recurring romantic refrain, set apart in a different register from the poem's shop-based narrative.", effect:"Creates rhythm and structure, while also marking a clear contrast between two different registers or moods within the same poem.", howto:"Explain what changes, if anything, each time the refrain reappears, and what contrast it creates with the surrounding stanzas."},
+{name:'Caesura', def:"A deliberate pause or break within a line of poetry, often created through punctuation.", example:"Hardy's short, halting phrases in Neutral Tones and Byron's clipped lines in When We Two Parted both use caesura to control pacing.", effect:"Slows the reader down at a key emotional moment, mimicking hesitation, restraint or emotional difficulty.", howto:"Identify exactly where the pause falls and explain what emotional effect that specific interruption creates."},
+{name:'Tricolon / repetition', def:"The deliberate repetition of a word, phrase or grammatical structure, often in a group of three, for emphasis.", example:"Browning repeats 'mine' in 'That moment she was mine, mine, fair'; Shelley repeats 'nothing... single' and 'no... without' patterns across Love's Philosophy.", effect:"Builds emotional intensity or rhetorical force, drawing the reader's attention to the repeated idea as the poem's central claim.", howto:"State exactly what is repeated and explain what specific emotional or persuasive effect the repetition intensifies."},
+{name:'Structure & stanza form', def:"The poet's choice of stanza length, rhyme scheme and overall shape, which can reinforce or undercut a poem's content.", example:"Porphyria's Lover's unbroken single stanza mirrors its speaker's unbroken, uninterrupted control; Climbing My Grandfather's single continuous stanza mirrors its uninterrupted climb.", effect:"Reinforces the poem's central idea on a structural level, so that form itself carries meaning alongside content.", howto:"Always ask why the poet chose this specific stanza structure rather than a more conventional alternative, and connect that choice to the poem's content."}
+];
+
+/* ================= QUOTE VAULT ================= */
+const QUOTES = [
+{text:"pale grew thy cheek and cold", speaker:"Lord Byron — When We Two Parted", act:"stanza 1", characters:["When We Two Parted"], themes:["Separation & distance","Loss & death"],
+ meaning:"The speaker recalls the physical coldness of his final parting from his lover, foreshadowing the emotional coldness that follows.",
+ technique:"Semantic field of coldness; caesura.",
+ solid:"The word 'cold' shows the moment of parting felt physically unpleasant, suggesting the relationship was already dying at that point.",
+ deep:"The physical coldness described here anticipates the poem's wider semantic field of death and decay, collapsing the literal moment of parting into a symbol for the relationship's emotional death, before the speaker has even explained why it ended.",
+ context:"Byron's own reputation for secretive, scandal-prone relationships may inform the poem's guarded, undisclosed sense of loss.",
+ useFor:"Essays on separation, loss, or Byron's use of coldness imagery."},
+{text:"Long, long shall I rue thee", speaker:"Lord Byron — When We Two Parted", act:"final stanza", characters:["When We Two Parted"], themes:["Memory & retrospection","Possessiveness"],
+ meaning:"The speaker declares that his regret and grief over the relationship will last a very long time, possibly permanently.",
+ technique:"Repetition ('long, long'); direct address.",
+ solid:"Repeating 'long' emphasises just how much time the speaker expects to spend regretting this lost relationship.",
+ deep:"The doubled 'long, long' stretches the line itself, mimicking the drawn-out grief it describes, while the continued direct address to 'thee' shows the speaker still emotionally bound to a person he can no longer publicly acknowledge.",
+ context:"The poem's guarded language reflects the social risk of an exposed affair in Regency-era Britain, where reputation carried serious consequence.",
+ useFor:"Essays on memory, unresolved grief, or possessiveness after a relationship ends."},
+{text:"Nothing in the world is single", speaker:"Percy Bysshe Shelley — Love's Philosophy", act:"stanza 1", characters:["Love's Philosophy"], themes:["Romantic love & desire","Communication"],
+ meaning:"The speaker opens his argument by claiming everything in nature is paired or connected, laying the groundwork for his persuasive appeal.",
+ technique:"Declarative statement; anaphora.",
+ solid:"This confident opening claim sets up the whole poem's argument that if nature always pairs up, people should too.",
+ deep:"The absolute, universal claim positions the speaker's argument as natural law rather than personal opinion, a rhetorical strategy that makes his subsequent romantic request feel less like persuasion and more like an inevitable conclusion.",
+ context:"Shelley's Romantic-era belief in nature as a source of emotional and philosophical truth underpins the poem's confident logic.",
+ useFor:"Essays on persuasion, nature imagery, or romantic desire."},
+{text:"If thou kiss not me?", speaker:"Percy Bysshe Shelley — Love's Philosophy", act:"final line", characters:["Love's Philosophy"], themes:["Romantic love & desire","Communication"],
+ meaning:"The poem's closing rhetorical question directly challenges the addressee to justify why they alone should resist the natural pattern of union.",
+ technique:"Rhetorical question; direct address.",
+ solid:"Ending on a question puts pressure on the person being addressed, making the whole poem feel like a persuasive argument rather than a simple love poem.",
+ deep:"The rhetorical question withholds a literal answer, placing the poem's entire persuasive weight on the reader's or addressee's imagined response, which sustains the poem's flirtatious, unresolved energy right to its final word.",
+ context:"Playful, persuasive courtship poetry was a well-established Romantic-era convention that Shelley adapts here through natural imagery.",
+ useFor:"Essays on persuasion, structure, or Shelley's rhetorical technique."},
+{text:"That moment she was mine, mine, fair", speaker:"Robert Browning — Porphyria's Lover", act:"mid-poem", characters:["Porphyria's Lover"], themes:["Obsession & control","Possessiveness"],
+ meaning:"The speaker declares that in the instant before he kills her, Porphyria fully and completely belonged to him.",
+ technique:"Repetition of 'mine'; caesura.",
+ solid:"Repeating 'mine' twice shows how desperate the speaker is to possess Porphyria completely, treating her as an object he owns rather than a person.",
+ deep:"The doubled possessive pronoun, interrupted by caesura, exposes the speaker's warped logic: he equates total possession with total love, a conflation that directly enables the violence that follows in the very next lines.",
+ context:"Victorian ideas about male ownership within relationships gave a disturbed speaker like this relatively little social check on his behaviour.",
+ useFor:"Essays on obsession, control, or possessiveness — a central quotation for this theme."},
+{text:"God has not said a word", speaker:"Robert Browning — Porphyria's Lover", act:"final line", characters:["Porphyria's Lover"], themes:["Obsession & control","Gender roles & power"],
+ meaning:"The speaker closes the poem believing his actions have gone entirely unpunished and unjudged, even by a divine authority.",
+ technique:"Understatement; withheld judgement.",
+ solid:"This final line is unsettling because the speaker seems to think he's done nothing wrong, since no punishment has come.",
+ deep:"Browning's refusal to provide any authorial or divine condemnation within the poem itself forces the reader to supply the moral judgement the text withholds, making the silence itself the poem's most disturbing structural choice.",
+ context:"Dramatic monologues by Browning frequently withhold explicit moral commentary, trusting the speaker's own words to expose their character.",
+ useFor:"Essays on narrative unreliability, structure, or the poem's chilling final effect."},
+{text:"my thoughts do twine and bud", speaker:"Elizabeth Barrett Browning — Sonnet 29", act:"octave", characters:["Sonnet 29 - 'I think of thee!'"], themes:["Romantic love & desire","Communication"],
+ meaning:"The speaker describes her constant thoughts of her lover growing and multiplying like living plant growth.",
+ technique:"Extended metaphor (vine/tree); natural imagery.",
+ solid:"Comparing her thoughts to a growing plant shows how quickly and naturally her love for him keeps expanding.",
+ deep:"The organic, uncontrollable growth implied by 'twine and bud' suggests thought itself becomes excessive, almost overwhelming the object of affection it surrounds, setting up the poem's later volta demanding real presence instead.",
+ context:"Barrett Browning wrote this within a sonnet sequence originally composed privately for her own husband, Robert Browning, during their courtship.",
+ useFor:"Essays on extended metaphor, desire, or the structure of Petrarchan sonnets."},
+{text:"Renew thy presence", speaker:"Elizabeth Barrett Browning — Sonnet 29", act:"sestet, volta", characters:["Sonnet 29 - 'I think of thee!'"], themes:["Romantic love & desire"],
+ meaning:"The speaker shifts from describing imagined thought to directly demanding the beloved's real, physical return.",
+ technique:"Imperative mood; volta.",
+ solid:"This direct command shows the speaker deciding that imagining her lover isn't enough — she wants him actually there.",
+ deep:"The imperative marks the poem's volta precisely, pivoting from the passive, growing imagery of the octave to an active demand, suggesting that imagination, however abundant, is ultimately a poor substitute for genuine presence.",
+ context:"The sonnet form's traditional octave/sestet turn allows Barrett Browning to structurally enact the shift from thought to desired reality.",
+ useFor:"Essays on structure, volta, or the tension between imagination and reality."},
+{text:"a grin of bitterness", speaker:"Thomas Hardy — Neutral Tones", act:"stanza 2", characters:["Neutral Tones"], themes:["Separation & distance","Memory & retrospection"],
+ meaning:"The speaker recalls his former lover's smile as bitter and lifeless rather than warm or affectionate.",
+ technique:"Oxymoron; harsh imagery.",
+ solid:"Describing a smile as bitter is unusual and shows the relationship had already turned sour and unhappy by this point.",
+ deep:"The oxymoronic pairing of 'grin' (usually joyful) with 'bitterness' captures the relationship's fundamental corruption, where even an expression of apparent warmth has curdled into something hollow and hostile.",
+ context:"Hardy's characteristically bleak, pessimistic view of love and fate recurs across much of his wider poetic and novelistic work.",
+ useFor:"Essays on breakdown, memory, or Hardy's bleak tone."},
+{text:"keen lessons that love deceives", speaker:"Thomas Hardy — Neutral Tones", act:"final stanza", characters:["Neutral Tones"], themes:["Memory & retrospection","Loss & death"],
+ meaning:"The speaker concludes that this early painful experience has permanently taught him that love inevitably disappoints and deceives.",
+ technique:"Cyclical structure; abstract noun 'lessons'.",
+ solid:"Calling this a 'lesson' shows the speaker feels this single painful memory has permanently changed how he understands love.",
+ deep:"By framing heartbreak as a 'lesson' rather than a single event, Hardy suggests the damage is permanent and instructive, generalising one relationship's failure into a lasting, cynical philosophy of love itself.",
+ context:"The poem's drained, colourless imagery recurs in this final stanza, reinforcing how completely the original scene has shaped the speaker's outlook.",
+ useFor:"Essays on cyclical structure, memory, or Hardy's pessimistic view of love."},
+{text:"he saw a hare and let the dogs run on", speaker:"Maura Dooley — Letters from Yorkshire", act:"stanza 1", characters:["Letters from Yorkshire"], themes:["Separation & distance","Communication"],
+ meaning:"The speaker recalls a small, vivid detail from a letter describing an ordinary countryside moment.",
+ technique:"Sensory imagery; enjambment.",
+ solid:"This small, specific detail shows the speaker values even the tiny, everyday moments shared through letters from someone she cares about.",
+ deep:"The specificity of this single ordinary image, rather than a grand romantic gesture, suggests Dooley locates real intimacy in small shared details, implying that genuine connection can be built from the texture of daily life rather than dramatic declaration.",
+ context:"Letter-writing has long been an ordinary but meaningful way that geographically separated loved ones sustain emotional connection.",
+ useFor:"Essays on communication, distance, or Dooley's use of ordinary imagery."},
+{text:"too young maybe", speaker:"Charlotte Mew — The Farmer's Bride", act:"stanza 1", characters:["The Farmer's Bride"], themes:["Marriage","Gender roles & power"],
+ meaning:"The farmer reflects that his bride may have been too young for marriage, though he shows little concern about acting on this observation.",
+ technique:"Colloquial understatement; caesura.",
+ solid:"This casual comment shows the farmer knew his bride was very young, but married her anyway without much concern.",
+ deep:"The dismissive, understated 'maybe' reveals the farmer's troubling lack of genuine reflection on the power imbalance in his marriage, treating a serious concern about consent almost as an afterthought.",
+ context:"Early-twentieth-century marriage law offered very limited protection or genuine choice to young women in the farmer's wife's position.",
+ useFor:"Essays on marriage, consent, or gendered power imbalance."},
+{text:"the brown of her—the down of her hair", speaker:"Charlotte Mew — The Farmer's Bride", act:"final stanza", characters:["The Farmer's Bride"], themes:["Obsession & control","Romantic love & desire"],
+ meaning:"The poem closes with the farmer's frustrated physical desire for his wife, described through fragmented, obsessive focus on her hair.",
+ technique:"Repetition; fragmented syntax; sensory imagery.",
+ solid:"Focusing so closely on just her hair shows how much the farmer desires her physically, even though she remains emotionally distant from him.",
+ deep:"The fragmented, repetitive syntax mimics obsessive, circling thought, reducing his wife to a single physical detail and revealing that his desire remains fundamentally about possession rather than genuine intimacy or understanding.",
+ context:"The poem's ending leaves the marriage's central tension — desire without consent or connection — unresolved rather than comfortably concluded.",
+ useFor:"Essays on obsession, desire, or the poem's unsettling ending."},
+{text:"wrenched from its orbit", speaker:"Cecil Day-Lewis — Walking Away", act:"stanza 2", characters:["Walking Away"], themes:["Family love (parent-child)","Separation & distance"],
+ meaning:"The speaker compares his son's small act of independence to a violent, forceful separation, like a satellite torn from its orbit.",
+ technique:"Simile; scientific/cosmic imagery.",
+ solid:"Comparing his son to a satellite being torn away shows how painful and significant this small moment of separation felt to the speaker.",
+ deep:"The violence of 'wrenched', applied to something as ordinary as a child walking across a school field, reveals the disproportionate emotional weight a parent can attach to even small steps toward a child's independence.",
+ context:"Day-Lewis wrote this poem directly about a real memory involving his own son, giving the poem an autobiographical emotional weight.",
+ useFor:"Essays on parental love, separation, or simile."},
+{text:"love is proved in the letting go", speaker:"Cecil Day-Lewis — Walking Away", act:"final line", characters:["Walking Away"], themes:["Family love (parent-child)","Independence"],
+ meaning:"The speaker concludes that real parental love is demonstrated through the willingness to release a child into independence, not through holding on.",
+ technique:"Paradox; aphoristic closing statement.",
+ solid:"This final line sums up the whole poem's message — that a parent shows real love by letting their child become independent, even though it's hard.",
+ deep:"The paradox of proving love through separation, rather than through closeness, reframes the poem's earlier pain as evidence of love rather than a failure of it, giving the poem's ending a hard-won, resolved quality.",
+ context:"This reflects a broadly modern understanding of healthy parenting as one that supports rather than prevents a child's growing independence.",
+ useFor:"Essays on parental love, independence, or the poem's concluding argument."},
+{text:"twenty-five years held apart", speaker:"Charles Causley — Eden Rock", act:"stanza 1", characters:["Eden Rock"], themes:["Memory & retrospection","Family love (parent-child)"],
+ meaning:"The speaker notes the significant time gap between the remembered or imagined scene and the poem's present moment.",
+ technique:"Specific numerical detail; understatement.",
+ solid:"Mentioning this exact number of years shows how much time has passed since this memory, or imagined memory, took place.",
+ deep:"The precise numerical distance, held against the timeless, unaging quality of the parents in the scene, subtly signals the poem's blurring of memory and imagination, since the speaker could not literally remember a moment before his own birth.",
+ context:"The poem's title alludes to the biblical Eden, framing the scene as an idealised, paradise-like memory beyond ordinary time.",
+ useFor:"Essays on memory, symbolism, or the poem's blending of imagination and recollection."},
+{text:"narrow enough to step across", speaker:"Charles Causley — Eden Rock", act:"final line", characters:["Eden Rock"], themes:["Loss & death","Family love (parent-child)"],
+ meaning:"The poem's closing image describes the boundary between life and death, or past and present, as small and unthreatening rather than frightening.",
+ technique:"Symbolism; understatement.",
+ solid:"Describing the stream as narrow suggests death might not be something to fear, but a small, easy step toward being reunited with loved ones.",
+ deep:"The deliberate smallness of the symbolic boundary works against traditional fearful depictions of death, offering instead a gentle, comforting closing image, though the poem's earlier hedge — 'not proven' — means this reading should not be taken as certain.",
+ context:"Causley's accessible, often deceptively simple style frequently addressed serious themes like memory and mortality with unusual gentleness.",
+ useFor:"Essays on symbolism, death, or the poem's ambiguous, comforting tone."},
+{text:"shoulders globed like a full sail strung", speaker:"Seamus Heaney — Follower", act:"stanza 1", characters:["Follower"], themes:["Family love (parent-child)","Memory & retrospection"],
+ meaning:"The speaker describes his father's powerful, skilled physical presence while ploughing, comparing him to a ship under full sail.",
+ technique:"Simile; nautical imagery.",
+ solid:"Comparing his father's shoulders to a full sail shows how strong, capable and impressive the speaker found him as a child.",
+ deep:"The nautical simile elevates an ordinary farming task into something almost heroic, establishing the childhood admiration that the poem's final stanza will later dramatically undercut through role reversal.",
+ context:"Heaney's early poetry frequently drew on his own childhood on a working farm in rural Northern Ireland.",
+ useFor:"Essays on admiration, structure, or Heaney's use of simile."},
+{text:"keeps stumbling behind me", speaker:"Seamus Heaney — Follower", act:"final stanza", characters:["Follower"], themes:["Family love (parent-child)","Independence"],
+ meaning:"In the poem's final lines, the now-elderly father is the one following and stumbling, reversing the childhood roles established earlier.",
+ technique:"Structural volta; role reversal.",
+ solid:"This final line shows a big change from earlier in the poem — now it's the father, not the child, who is struggling to keep up.",
+ deep:"The precise mirroring of earlier verbs ('stumbling', 'behind') recontextualises the whole poem retrospectively, showing that admiration and dependency between parent and child are not fixed but shift as both age.",
+ context:"The poem's late, unsettling shift reflects a common experience of adult children beginning to care for ageing parents.",
+ useFor:"Essays on role reversal, ageing, or the poem's structural turn."},
+{text:"acres of the walls, the prairies of the floors", speaker:"Simon Armitage — Mother, any distance", act:"opening lines", characters:["Mother, any distance"], themes:["Family love (parent-child)","Independence"],
+ meaning:"The speaker exaggerates the size of his new, empty house using expansive landscape imagery, capturing his sense of nervous excitement.",
+ technique:"Hyperbole; extended metaphor.",
+ solid:"Describing an empty house as 'acres' and 'prairies' shows how big and overwhelming this new independent space feels to the speaker.",
+ deep:"The hyperbolic scale, applied to an ordinary domestic space, mirrors the emotional enormity of independence itself, suggesting the physical measuring task is really a way of measuring the far larger, less tangible experience of leaving home.",
+ context:"The poem uses an everyday, relatable domestic task — moving house — as the vehicle for its deeper exploration of independence.",
+ useFor:"Essays on independence, hyperbole, or extended metaphor."},
+{text:"to fall or fly", speaker:"Simon Armitage — Mother, any distance", act:"final line", characters:["Mother, any distance"], themes:["Independence","Separation & distance"],
+ meaning:"The poem ends on an unresolved image of the son reaching toward open sky, uncertain whether independence will mean failure or freedom.",
+ technique:"Ambiguity; open ending.",
+ solid:"Ending on 'fall or fly' shows the speaker isn't sure whether becoming independent will go well or badly — it could be either.",
+ deep:"The poem's refusal to resolve this final ambiguity captures the genuine uncertainty of independence more honestly than a neatly reassuring ending would, leaving the tape measure's connection to his mother as the only certainty offered.",
+ context:"The image of reaching toward open sky through a loft hatch provides a fittingly literal, physical end-point for the poem's extended measuring metaphor.",
+ useFor:"Essays on ambiguity, independence, or the poem's unresolved ending."},
+{text:"my loud, possessive yell", speaker:"Carol Ann Duffy — Before You Were Mine", act:"stanza 1", characters:["Before You Were Mine"], themes:["Possessiveness","Family love (parent-child)"],
+ meaning:"The speaker describes her own future birth as an intrusive, possessive event that will end her mother's carefree youth.",
+ technique:"Self-aware possessive language; harsh consonants.",
+ solid:"Calling her own future cry 'possessive' shows the speaker is aware that becoming a mother took something away from her mum's freedom.",
+ deep:"By applying possessive, almost aggressive language to her own infant self, Duffy shows unusual self-awareness, acknowledging that the daughter's very existence represents a kind of claim on her mother's independent identity.",
+ context:"Duffy's wider poetry often explores women's interior lives and identities beyond their roles as mothers or wives.",
+ useFor:"Essays on possessiveness, identity, or Duffy's self-aware tone."},
+{text:"folded like a pair of wings settling", speaker:"Owen Sheers — Winter Swans", act:"final line", characters:["Winter Swans"], themes:["Reconciliation","Communication"],
+ meaning:"The poem closes with the couple's hands touching and settling together, gently suggesting a tentative step toward reconciliation.",
+ technique:"Simile; nature imagery echoing the swans.",
+ solid:"Comparing their joined hands to wings settling shows a small, gentle, hopeful moment of the couple coming back together after a difficult time.",
+ deep:"The simile deliberately echoes the swans described earlier in the poem, allowing the couple's small physical gesture to inherit the swans' symbolic association with graceful, effortless partnership, without overstating how fully resolved their conflict now is.",
+ context:"The poem follows an unspecified period of tension between the couple, walking together after days of heavy rain.",
+ useFor:"Essays on reconciliation, simile, or the poem's use of the swans as symbol."},
+{text:"she effin at my mum", speaker:"Daljit Nagra — Singh Song!", act:"early stanza", characters:["Singh Song!"], themes:["Marriage","Gender roles & power"],
+ meaning:"The speaker describes his wife's confrontational, spirited relationship with his mother, resisting easy assumptions about a quiet, obedient daughter-in-law.",
+ technique:"Phonetic dialect spelling; humour.",
+ solid:"This line shows the speaker's wife isn't shy or passive — she stands up for herself, even against her mother-in-law.",
+ deep:"The playful, dialect-spelled understatement of open conflict subverts traditional expectations of a submissive daughter-in-law, presenting the wife's spirited independence with clear affection rather than disapproval.",
+ context:"Nagra's poem reflects a confident, contemporary British-Punjabi voice that resists older, more solemn poetic conventions around marriage.",
+ useFor:"Essays on gender roles, humour, or Nagra's dialect voice."},
+{text:"the crags and folds of his face", speaker:"Andrew Waterhouse — Climbing My Grandfather", act:"mid-poem", characters:["Climbing My Grandfather"], themes:["Family love (parent-child)","Memory & retrospection"],
+ meaning:"The speaker describes his grandfather's aged, wrinkled face using landscape imagery, as though it were a mountain to be climbed.",
+ technique:"Extended metaphor; tactile imagery.",
+ solid:"Describing his grandfather's face as 'crags and folds' compares it to a mountain, showing the speaker's careful, affectionate attention to every detail of him.",
+ deep:"By mapping his grandfather's aged features onto the language of landscape, Waterhouse reframes physical signs of age not as decline but as a vast, worthy terrain to be respectfully explored, sustaining the poem's central conceit with genuine tenderness.",
+ context:"The poem sustains a single extended metaphor across its entire single stanza without structural break, mirroring the careful, continuous climb it describes.",
+ useFor:"Essays on extended metaphor, ageing, or affectionate family memory."}
+];
+
+/* ================= QUIZ BANK ================= */
+const QUIZ_BANK = [
+{type:'poem', q:"Which poem is a dramatic monologue spoken by a man who strangles his lover to preserve a perfect moment?", opts:["Porphyria's Lover","The Farmer's Bride","When We Two Parted","Neutral Tones"], a:0, exp:"In Porphyria's Lover, Browning's speaker strangles Porphyria with her own hair, believing this freezes their relationship in a perfect, controlled instant."},
+{type:'poem', q:"Which poem uses a tape measure as an extended metaphor for a son's growing independence?", opts:["Mother, any distance","Walking Away","Follower","Eden Rock"], a:0, exp:"Armitage's Mother, any distance uses the measuring of a new house as an extended metaphor for independence while remaining connected to his mother."},
+{type:'poem', q:"Which poem imagines the speaker's parents waiting for him at an idealised picnic spot?", opts:["Eden Rock","Climbing My Grandfather","Before You Were Mine","Follower"], a:0, exp:"Causley's Eden Rock imagines a timeless reunion with his parents at the picnic spot the poem is named after."},
+{type:'poem', q:"Which poem is written in a phonetic transcription of British Punjabi-inflected English?", opts:["Singh Song!","Before You Were Mine","Letters from Yorkshire","The Farmer's Bride"], a:0, exp:"Nagra's Singh Song! uses phonetic dialect spelling throughout to reflect its speaker's British-Punjabi voice."},
+{type:'poem', q:"Which poem centres on a farmer's frustrated account of his young, frightened wife?", opts:["The Farmer's Bride","Porphyria's Lover","Mother, any distance","Winter Swans"], a:0, exp:"Mew's The Farmer's Bride is a dramatic monologue spoken by a husband about his isolated, frightened young wife."},
+{type:'poem', q:"Which poem ends with a role reversal, showing an elderly father now stumbling behind his adult son?", opts:["Follower","Walking Away","Mother, any distance","Climbing My Grandfather"], a:0, exp:"Heaney's Follower shifts in its final stanza to show the father now following the speaker, reversing their earlier childhood roles."},
+{type:'quote', q:"Which poem contains the line 'Nothing in the world is single'?", opts:["Love's Philosophy","Sonnet 29 - 'I think of thee!'","Winter Swans","Neutral Tones"], a:0, exp:"Shelley opens Love's Philosophy with this claim, building his argument that the speaker and his addressee should also unite."},
+{type:'quote', q:"Which poem contains the phrase 'a grin of bitterness'?", opts:["Neutral Tones","When We Two Parted","Follower","Eden Rock"], a:0, exp:"Hardy uses this oxymoronic phrase in Neutral Tones to describe his former lover's lifeless, bitter smile."},
+{type:'quote', q:"Complete the line from Walking Away: 'love is proved in the ___'.", opts:["letting go","holding on","waiting","asking"], a:0, exp:"Day-Lewis's poem concludes that genuine parental love is proved through the willingness to let a child become independent."},
+{type:'quote', q:"Which poem includes the image of hands folding 'like a pair of wings settling'?", opts:["Winter Swans","Letters from Yorkshire","Sonnet 29 - 'I think of thee!'","Eden Rock"], a:0, exp:"Sheers closes Winter Swans with this simile, echoing the poem's swan imagery to suggest gentle reconciliation."},
+{type:'quote', q:"Which poem describes thoughts that 'twine and bud' around a loved one?", opts:["Sonnet 29 - 'I think of thee!'","Love's Philosophy","Before You Were Mine","Climbing My Grandfather"], a:0, exp:"Barrett Browning uses this extended plant metaphor early in Sonnet 29 to describe her constantly growing thoughts of her lover."},
+{type:'theme', q:"Which two poems most directly explore obsession and control within a relationship?", opts:["Porphyria's Lover and The Farmer's Bride","Love's Philosophy and Sonnet 29","Eden Rock and Follower","Singh Song! and Winter Swans"], a:0, exp:"Both poems present a male speaker exerting disturbing control over a woman who has little power to resist or escape."},
+{type:'theme', q:"Which theme is most clearly explored in both Walking Away and Mother, any distance?", opts:["Parental love expressed through separation","Obsession and control","Marriage","Joy and celebration"], a:0, exp:"Both poems show a parent grappling with the difficult, necessary process of letting a child become independent."},
+{type:'theme', q:"Which poem explores possessiveness through a daughter's imagined view of her mother's youth?", opts:["Before You Were Mine","Follower","Eden Rock","Winter Swans"], a:0, exp:"Duffy's Before You Were Mine uses possessive language ('my loud, possessive yell') to explore the daughter's complicated feelings about her mother's lost youth."},
+{type:'theme', q:"Which poem most directly explores joy and celebration within marriage?", opts:["Singh Song!","The Farmer's Bride","When We Two Parted","Neutral Tones"], a:0, exp:"Nagra's Singh Song! presents marriage as a source of playful joy that disrupts the speaker's shopkeeping duties."},
+{type:'tech', q:"What is the term for a poem written as if spoken by a single character to a silent listener?", opts:["Dramatic monologue","Sonnet","Ode","Ballad"], a:0, exp:"Porphyria's Lover and The Farmer's Bride are both examples of dramatic monologue."},
+{type:'tech', q:"What technique is used when weather or landscape reflects a character's emotional state, as in Neutral Tones?", opts:["Pathetic fallacy","Dramatic irony","Enjambment","Caesura"], a:0, exp:"Pathetic fallacy gives natural or weather imagery human emotion, mirroring a character's inner state."},
+{type:'tech', q:"In Mother, any distance, what technique does Armitage use to compare measuring a house to gaining independence?", opts:["Extended metaphor","Simile","Onomatopoeia","Alliteration"], a:0, exp:"The tape measure and house-measuring task are sustained as an extended metaphor for independence throughout the poem."},
+{type:'tech', q:"What is the term for lines of poetry that run on without punctuation, carrying meaning past the line break?", opts:["Enjambment","Caesura","End-stopping","Assonance"], a:0, exp:"Enjambment allows a sentence to continue past the line break, often creating momentum or emphasis."},
+{type:'tech', q:"Which technique does Byron use with the repeated word 'silence' in When We Two Parted?", opts:["Repetition","Symbolism","Dialect","Refrain"], a:0, exp:"Byron repeats 'silence' to emphasise the speaker's inability to openly discuss or grieve his hidden relationship."},
+{type:'context', q:"In roughly what period were the Romantic and Victorian poems in this anthology (When We Two Parted, Love's Philosophy, Porphyria's Lover, Sonnet 29, Neutral Tones, The Farmer's Bride) written?", opts:["The early-to-mid nineteenth century through to the early twentieth century","The late eighteenth century only","The mid-twentieth century","The 1980s"], a:0, exp:"These poems span roughly the 1810s to the early 1900s, from Byron and Shelley through to Hardy and Mew."},
+{type:'context', q:"Which poet in this anthology writes in a phonetic transcription reflecting a British Punjabi-Sikh background?", opts:["Daljit Nagra","Seamus Heaney","Simon Armitage","Owen Sheers"], a:0, exp:"Daljit Nagra's Singh Song! uses phonetic dialect to reflect a confident British-Punjabi voice."},
+{type:'context', q:"Who wrote Walking Away, addressing the poem to his own son?", opts:["Cecil Day-Lewis","Charles Causley","Andrew Waterhouse","Simon Armitage"], a:0, exp:"Cecil Day-Lewis wrote Walking Away directly about a real memory involving his own son."},
+{type:'context', q:"Which era's attitudes to women's limited legal and social power are most relevant to understanding The Farmer's Bride?", opts:["The early-twentieth-century / Edwardian era","The 1980s","Ancient Rome","The 1960s"], a:0, exp:"Charlotte Mew's poem, published in 1912, reflects a period when young women had very limited legal power or genuine choice within marriage."},
+{type:'compare', q:"Which pairing would best support an essay about how emotional closeness can survive physical or emotional distance?", opts:["Letters from Yorkshire and Winter Swans","Porphyria's Lover and The Farmer's Bride","When We Two Parted and Neutral Tones","Singh Song! and Before You Were Mine"], a:0, exp:"Both poems show connection surviving or returning despite distance — geographic in Letters from Yorkshire, emotional in Winter Swans."},
+{type:'compare', q:"Which pair of poems both use extended natural imagery to build a persuasive argument for closeness?", opts:["Love's Philosophy and Sonnet 29","Follower and Before You Were Mine","Eden Rock and Climbing My Grandfather","Mother, any distance and Walking Away"], a:0, exp:"Both Love's Philosophy and Sonnet 29 use extended natural imagery (rivers/winds; a vine and tree) to express desire for union."},
+{type:'compare', q:"Which two poems both show an adult speaker re-evaluating a parent through memory?", opts:["Follower and Before You Were Mine","Winter Swans and Letters from Yorkshire","Porphyria's Lover and Singh Song!","Sonnet 29 - 'I think of thee!' and Love's Philosophy"], a:0, exp:"Both poems show an adult child looking back and reassessing how they understand a parent."},
+{type:'tf', q:"True or False: Porphyria's Lover explicitly states that the speaker is punished or arrested for his actions.", opts:["True","False"], a:1, exp:"False — the poem deliberately withholds any judgement or punishment, ending only with 'God has not said a word'."},
+{type:'tf', q:"True or False: Eden Rock definitively confirms that the speaker has died.", opts:["True","False"], a:1, exp:"False — the poem remains deliberately ambiguous, hedging with the line 'Not proven. Whatever it was I saw.'"},
+{type:'tf', q:"True or False: All fifteen poems in this AQA anthology are written in strict, regular rhyming stanzas.", opts:["True","False"], a:1, exp:"False — several poems (Letters from Yorkshire, Eden Rock, Mother, any distance, Climbing My Grandfather, Singh Song!) use free verse with no fixed rhyme scheme."}
+];
+
+/* ================= MATCH THE QUOTE GAME ================= */
+const MATCHGAME = [
+{text:"pale grew thy cheek and cold", answer:"When We Two Parted", opts:["When We Two Parted","Neutral Tones","Eden Rock","Follower"], exp:"Byron uses this line early in When We Two Parted to recall the cold physical moment of his final parting from his lover."},
+{text:"Nothing in the world is single", answer:"Love's Philosophy", opts:["Sonnet 29 - 'I think of thee!'","Love's Philosophy","Winter Swans","Mother, any distance"], exp:"This is the opening claim of Shelley's persuasive argument in Love's Philosophy."},
+{text:"That moment she was mine, mine, fair", answer:"Porphyria's Lover", opts:["The Farmer's Bride","Singh Song!","When We Two Parted","Porphyria's Lover"], exp:"Browning's speaker in Porphyria's Lover declares this just before he kills her, showing his need for total possession."},
+{text:"my thoughts do twine and bud", answer:"Sonnet 29 - 'I think of thee!'", opts:["Love's Philosophy","Climbing My Grandfather","Before You Were Mine","Sonnet 29 - 'I think of thee!'"], exp:"Barrett Browning describes her growing thoughts of her lover using this plant metaphor in Sonnet 29."},
+{text:"a grin of bitterness", answer:"Neutral Tones", opts:["When We Two Parted","Winter Swans","Eden Rock","Neutral Tones"], exp:"Hardy uses this oxymoronic phrase in Neutral Tones to describe his former lover's lifeless smile."},
+{text:"he saw a hare and let the dogs run on", answer:"Letters from Yorkshire", opts:["The Farmer's Bride","Follower","Walking Away","Letters from Yorkshire"], exp:"This small, vivid rural detail comes from a letter described in Dooley's Letters from Yorkshire."},
+{text:"too young maybe", answer:"The Farmer's Bride", opts:["Porphyria's Lover","Before You Were Mine","Singh Song!","The Farmer's Bride"], exp:"The farmer reflects on his young wife's age with this casual understatement in The Farmer's Bride."},
+{text:"wrenched from its orbit", answer:"Walking Away", opts:["Mother, any distance","Follower","Climbing My Grandfather","Walking Away"], exp:"Day-Lewis compares his son's small act of independence to this violent cosmic image in Walking Away."},
+{text:"narrow enough to step across", answer:"Eden Rock", opts:["Climbing My Grandfather","Winter Swans","Neutral Tones","Eden Rock"], exp:"Causley's Eden Rock closes with this gentle image of the boundary between life and death."},
+{text:"I wanted to grow up and plough", answer:"Follower", opts:["Walking Away","Climbing My Grandfather","Mother, any distance","Follower"], exp:"The young speaker's childhood admiration for his father is expressed in this line from Heaney's Follower."},
+{text:"acres of the walls, the prairies of the floors", answer:"Mother, any distance", opts:["Walking Away","Eden Rock","Letters from Yorkshire","Mother, any distance"], exp:"Armitage uses this hyperbolic landscape imagery to describe an empty new house in Mother, any distance."},
+{text:"my loud, possessive yell", answer:"Before You Were Mine", opts:["Follower","Sonnet 29 - 'I think of thee!'","Winter Swans","Before You Were Mine"], exp:"Duffy's speaker uses this self-aware possessive phrase to describe her own infancy in Before You Were Mine."},
+{text:"folded like a pair of wings settling", answer:"Winter Swans", opts:["Letters from Yorkshire","Love's Philosophy","Eden Rock","Winter Swans"], exp:"Sheers closes Winter Swans with this simile describing the couple's joined hands."},
+{text:"she effin at my mum", answer:"Singh Song!", opts:["The Farmer's Bride","Before You Were Mine","Porphyria's Lover","Singh Song!"], exp:"This playful, dialect-spelled line from Singh Song! shows the speaker's spirited, independent wife."},
+{text:"the crags and folds of his face", answer:"Climbing My Grandfather", opts:["Eden Rock","Follower","Walking Away","Climbing My Grandfather"], exp:"Waterhouse describes his grandfather's aged face using this landscape imagery in Climbing My Grandfather."},
+{text:"Long, long shall I rue thee", answer:"When We Two Parted", opts:["Neutral Tones","Sonnet 29 - 'I think of thee!'","The Farmer's Bride","When We Two Parted"], exp:"Byron closes When We Two Parted with this declaration of lasting regret."},
+{text:"God has not said a word", answer:"Porphyria's Lover", opts:["The Farmer's Bride","Neutral Tones","When We Two Parted","Porphyria's Lover"], exp:"Browning's disturbing final line in Porphyria's Lover shows the speaker believes he has gone unjudged."},
+{text:"keen lessons that love deceives", answer:"Neutral Tones", opts:["When We Two Parted","Eden Rock","Walking Away","Neutral Tones"], exp:"Hardy concludes Neutral Tones with this bitter reflection on what the memory taught him about love."}
+];
+
+/* ================= COMPARISON PAIRS ================= */
+const COMPARISON_PAIRS = [
+{poemA:"When We Two Parted", poetA:"Lord Byron", poemB:"Neutral Tones", poetB:"Thomas Hardy", theme:"Painful endings, remembered long afterwards",
+ colA:"Recalls a secret relationship's cold, silent end and the lasting private grief it caused.", colB:"Recalls a relationship's breakdown through drained, colourless natural imagery by a pond.",
+ similarity:"Both poems are structured as an adult speaker's retrospective memory of a relationship's ending, and both use cold, physical imagery to convey lasting emotional damage.",
+ difference:"Byron's grief is tied to secrecy and social reputation, while Hardy's speaker generalises his pain into a wider, bitter philosophy that 'love deceives'.",
+ angle:"Compare how both poets use cold or drained imagery to suggest that the pain of a relationship's end can outlast the relationship itself."},
+{poemA:"Porphyria's Lover", poetA:"Robert Browning", poemB:"The Farmer's Bride", poetB:"Charlotte Mew", theme:"Unequal relationships shaped by control",
+ colA:"A disturbed speaker takes total, fatal control over a woman to preserve a 'perfect' moment forever.", colB:"A husband's frustrated narration reveals a young wife isolated and controlled within a marriage she never freely chose.",
+ similarity:"Both poems are dramatic monologues spoken entirely by a male voice, in which a woman is denied any voice of her own and is treated as something to be possessed.",
+ difference:"Browning's poem ends in fatal violence within a single dramatic night, while Mew's poem depicts a slower, ongoing emotional isolation within an entire marriage.",
+ angle:"Compare how both poets use the dramatic monologue form to expose, without direct authorial comment, the danger of a relationship built on control rather than equality."},
+{poemA:"Walking Away", poetA:"Cecil Day-Lewis", poemB:"Mother, any distance", poetB:"Simon Armitage", theme:"Parental love expressed through separation",
+ colA:"A father recalls watching his son take an early step toward independence, concluding love is proved by letting go.", colB:"A son and mother measure a new home together, dramatising the son's move toward independence while remaining connected.",
+ similarity:"Both poems present parental love not as holding on, but as supporting a child's movement toward independence, using extended metaphor (satellite/seed; tape measure) to capture this process.",
+ difference:"Day-Lewis writes from the parent's retrospective viewpoint about a past memory, while Armitage writes from the child's own perspective about a more immediate, ongoing experience.",
+ angle:"Compare how both poets use extended metaphor to suggest that genuine parental love can coexist with, rather than resist, a child's growing independence."},
+{poemA:"Follower", poetA:"Seamus Heaney", poemB:"Before You Were Mine", poetB:"Carol Ann Duffy", theme:"Adult speakers re-evaluate their parents through memory",
+ colA:"A son's childhood admiration for his powerful father is reversed by a striking final role-reversal in old age.", colB:"A daughter imaginatively reconstructs her mother's carefree youth from an old photograph, tinged with gentle possessiveness.",
+ similarity:"Both poems show an adult speaker looking back and reshaping their understanding of a parent, using vivid, detailed memory or imagination to do so.",
+ difference:"Heaney's poem moves from admiration to an unsettling structural reversal, while Duffy's poem moves from nostalgic admiration to a gentle acknowledgement of what her birth may have cost her mother.",
+ angle:"Compare how both poets use structure and memory to show how an adult's understanding of a parent can shift and deepen over time."},
+{poemA:"Eden Rock", poetA:"Charles Causley", poemB:"Climbing My Grandfather", poetB:"Andrew Waterhouse", theme:"Family bonds reconstructed through detailed memory",
+ colA:"Imagines a timeless, idealised reunion with deceased parents at a remembered picnic spot.", colB:"Reimagines a grandfather's body as a landscape to be carefully, affectionately climbed and explored.",
+ similarity:"Both poems use gentle, detailed, imaginative reconstruction to express deep affection for an older family member, avoiding sentimentality through careful, specific imagery.",
+ difference:"Causley's poem is explicitly concerned with death and possible reunion beyond it, while Waterhouse's poem focuses on tender physical closeness in the present, without addressing death directly.",
+ angle:"Compare how both poets use extended, carefully-detailed imagery to express affection for family members without relying on direct, sentimental statement."},
+{poemA:"Winter Swans", poetA:"Owen Sheers", poemB:"Letters from Yorkshire", poetB:"Maura Dooley", theme:"Closeness surviving or returning despite distance",
+ colA:"A couple's strained relationship shows a tentative sign of reconciliation while watching swans on a walk.", colB:"Two people in contrasting daily lives maintain genuine connection through letters despite physical distance.",
+ similarity:"Both poems suggest that emotional closeness can survive or return despite difficulty, whether emotional tension or physical separation, without needing a dramatic, conclusive resolution.",
+ difference:"Sheers' poem addresses a couple's argument and emotional distance despite physical closeness, while Dooley's poem addresses physical distance despite emotional closeness.",
+ angle:"Compare how both poets suggest that connection between two people does not depend on constant physical or emotional proximity."},
+{poemA:"Love's Philosophy", poetA:"Percy Bysshe Shelley", poemB:"Sonnet 29 - 'I think of thee!'", poetB:"Elizabeth Barrett Browning", theme:"Desire for closeness expressed through natural imagery",
+ colA:"Uses examples of natural union (rivers, winds, mountains) to persuasively argue for romantic union.", colB:"Uses an extended metaphor of a vine wrapping a tree to express overwhelming, constant thought of a loved one.",
+ similarity:"Both poems use extended natural imagery to express intense romantic desire, and both build toward a decisive final appeal for closeness.",
+ difference:"Shelley's speaker addresses an unnamed 'thou' persuasively and outwardly, while Barrett Browning's speaker turns inward before demanding her lover's real presence in a personal, sonnet-form volta.",
+ angle:"Compare how both poets use natural imagery to move from observation toward a direct, personal appeal for closeness."},
+{poemA:"Porphyria's Lover", poetA:"Robert Browning", poemB:"Singh Song!", poetB:"Daljit Nagra", theme:"Power and control within a relationship",
+ colA:"A disturbed male speaker exerts fatal, total control over a woman to preserve his idea of a perfect relationship.", colB:"A playful male speaker's account is shaped by his spirited, independent wife, who resists rather than accepts control.",
+ similarity:"Both poems are narrated in the first person by a male speaker reflecting on his relationship with a woman, and both reveal that relationship's power dynamic through the speaker's own words.",
+ difference:"Browning's poem presents power as fatal possession with the woman entirely silenced, while Nagra's poem presents a relationship where the wife's spirited independence actively resists any such control.",
+ angle:"Compare how both poets reveal a relationship's power dynamic through a first-person male narrator, contrasting Browning's disturbing control with Nagra's celebration of the wife's independence."},
+{poemA:"Sonnet 29 - 'I think of thee!'", poetA:"Elizabeth Barrett Browning", poemB:"Winter Swans", poetB:"Owen Sheers", theme:"Imagined versus real closeness",
+ colA:"Constant imagined thought of a lover ultimately proves insufficient, prompting a demand for real physical presence.", colB:"A couple's real, physical closeness (joined hands) offers a small, genuine sign of reconciliation after emotional distance.",
+ similarity:"Both poems conclude that genuine, physical closeness matters more than distance, thought or imagination alone in sustaining a relationship.",
+ difference:"Barrett Browning's poem is concerned with the gap between imagined and real presence in an ongoing, healthy relationship, while Sheers' poem addresses the gap opened by unspecified conflict between two people who are already physically together.",
+ angle:"Compare how both poets present physical closeness or presence as something a relationship ultimately depends on, beyond thought or intention alone."},
+{poemA:"The Farmer's Bride", poetA:"Charlotte Mew", poemB:"Mother, any distance", poetB:"Simon Armitage", theme:"Control versus trust within a close relationship",
+ colA:"A husband's controlling, possessive narration reveals a marriage built on fear and isolation rather than trust.", colB:"A mother and son's collaborative, trusting relationship allows the son to move toward independence while remaining connected.",
+ similarity:"Both poems explore a close relationship shaped by physical and emotional distance, using domestic or physical imagery (a household; a tape measure) to explore that distance.",
+ difference:"Mew's poem presents distance as isolating and involuntary, imposed by a controlling husband, while Armitage's poem presents distance as a healthy, voluntary and ultimately shared process.",
+ angle:"Compare how both poets use domestic imagery to present very different kinds of distance within a close relationship — one controlling and isolating, one supportive and trusting."}
+];
+
+/* ================= HOW A POEM MOVES (STRUCTURE WALKTHROUGH) ================= */
+const STRUCTURE_WALKTHROUGH = [
+{poem:"Neutral Tones", poet:"Thomas Hardy", intro:"Hardy structures this poem as four regular quatrains that move from a specific remembered scene toward a generalised, bitter conclusion about love itself.",
+ steps:[
+  {label:"Stanza 1 — setting the cold scene", quote:"your face", note:"The poem opens by fixing the scene in cold, drained, wintry imagery — a pond, a white sun, grey leaves — establishing the emotional temperature of the whole memory before any events are described."},
+  {label:"Stanza 2 — exchanged words and a dead smile", quote:"a grin of bitterness", note:"The couple's words and expressions are recalled, but warmth curdles into bitterness; the oxymoronic 'dead' smile marks the moment affection visibly fails."},
+  {label:"Stanza 3 — bitter aftermath", quote:"like an ominous bird", note:"A simile compares the ending relationship to an ominous bird in flight, extending the poem's mood from a single scene into a sense of foreboding and inevitable loss."},
+  {label:"Stanza 4 — return to the present, and a lasting lesson", quote:"keen lessons that love deceives", note:"The poem shifts from past to present tense, revealing that this single cold memory has permanently shaped the speaker's cynical view of love, with the grey, drained imagery recurring to confirm its lasting grip."}
+ ]},
+{poem:"Mother, any distance", poet:"Simon Armitage", intro:"Armitage structures this poem as one continuous, unbroken stanza that stretches and loosens a sonnet-like shape, its lack of a stanza break mirroring the poem's themes of extension and reaching outward.",
+ steps:[
+  {label:"Opening — mother helps measure the new house", quote:"acres of the walls", note:"The poem begins with an ordinary domestic task, mother and son measuring an empty new home, establishing a comic, hyperbolic scale to the space."},
+  {label:"The tape measure as connecting metaphor", quote:"hand to hand, I feel the tug", note:"The physical tape measure becomes a metaphor for the umbilical-like connection between mother and son, one that can stretch without breaking."},
+  {label:"The son moves further away, alone", quote:"space-walk the ceiling", note:"As the son moves to measure upper floors alone, the imagery shifts to isolation and distance, suggesting the growing separateness of independence."},
+  {label:"Reaching the loft hatch", quote:"reporting metres, centimetres back to base", note:"The son continues reporting measurements back to his mother even as he moves further away, showing connection maintained even amid growing distance."},
+  {label:"Final image — open sky", quote:"to fall or fly", note:"The poem ends with the son reaching toward open sky beyond where the tape measure can reach, an unresolved, ambiguous image balancing the risk and freedom of full independence."}
+ ]},
+{poem:"Eden Rock", poet:"Charles Causley", intro:"Causley structures this poem across four stanzas of decreasing length, slowing the pace toward its brief, quiet final image.",
+ steps:[
+  {label:"Stanza 1 — parents waiting, fixed in time", quote:"twenty-five years held apart", note:"The poem opens by fixing the speaker's parents at a permanently youthful age, immediately blurring ordinary chronological time."},
+  {label:"Stanza 2 — domestic, sensory detail", quote:"the sky whitening", note:"Gentle, precise sensory details (tea poured, a dog present) build a calm, idealised, almost paradise-like domestic scene."},
+  {label:"Stanza 3 — the father crossing the stream", quote:"He is trying to laugh", note:"The father's ambiguous gesture while crossing the stream introduces a note of gentle uncertainty into the otherwise tranquil scene."},
+  {label:"Acknowledging the impossible memory", quote:"Not proven. Whatever it was I saw", note:"The speaker admits this cannot be a literal memory, since he was not yet born, openly blurring the line between memory and imagination."},
+  {label:"Final image — a narrow, crossable boundary", quote:"narrow enough to step across", note:"The poem's closing image presents the boundary between life and death as small and gentle rather than frightening, offering a quiet, hopeful, if deliberately unproven, note of possible reunion."}
+ ]}
+];
+
+/* ================= LOVE THEN & NOW (ERAS COMPARE) ================= */
+const ERAS_OLDER = [
+{point:"Love as intense, persuasive declaration", why:"Explains why poems like Love's Philosophy build an elaborate rhetorical argument for union, treating romantic desire as something to be persuasively won rather than simply shared."},
+{point:"Male speakers control the narrative voice", why:"Explains why women in Porphyria's Lover and The Farmer's Bride are seen only through a male speaker's account, with little or no voice of their own."},
+{point:"Secrecy and reputation shape romantic grief", why:"Explains why When We Two Parted's speaker cannot openly mourn his lost relationship, since exposure would have carried real social consequence."},
+{point:"Nature used as argument or mirror for emotion", why:"Explains the extended natural imagery in Love's Philosophy and Neutral Tones, reflecting a wider Romantic and Victorian convention of nature as a source of emotional and moral truth."},
+{point:"Marriage constrained by limited female agency", why:"Explains the isolation of the young wife in The Farmer's Bride, whose consent and comfort within marriage receive minimal consideration by her husband or the wider society around them."}
+];
+const ERAS_MODERN = [
+{point:"Parent-child bonds explored through everyday imagery", why:"Explains why Mother, any distance and Walking Away use ordinary domestic tasks and settings to express profound feelings about independence and separation."},
+{point:"Memory and loss reconciled gently, without religious certainty", why:"Explains the tentative, hedged tone of Eden Rock and the tender, non-religious closeness of Climbing My Grandfather when addressing age, memory and mortality."},
+{point:"Connection maintained across geographic distance", why:"Explains why Letters from Yorkshire treats ordinary written correspondence as a genuine, sustaining form of emotional connection despite physical separation."},
+{point:"Multicultural British identity shapes depictions of love", why:"Explains the confident, phonetic dialect voice of Singh Song!, which presents a specifically British-Punjabi experience of marriage and family expectation."},
+{point:"Female poets reclaim mothers' and women's interior lives", why:"Explains why Before You Were Mine imaginatively reconstructs a mother's own youth and identity, giving voice to an experience the Romantic and Victorian poems rarely explore."}
+];
+
+/* ================= CONTEXT ================= */
+const CONTEXT_ITEMS = [
+{t:"Lord Byron — When We Two Parted", body:"Byron (1788–1824) was a leading Romantic poet notorious for scandalous, often secretive personal relationships; the poem is widely thought to allude to his own affair, possibly with Lady Frances Webster, which had to remain hidden from public knowledge.",
+ use:"Use this to explain the poem's guarded secrecy and inability to openly grieve, connecting it to the real social risk exposed affairs carried in Regency-era Britain."},
+{t:"Percy Bysshe Shelley — Love's Philosophy", body:"Shelley (1792–1822) was a major Romantic poet associated with radical political and philosophical ideas, including a belief that observing natural law could reveal deeper emotional and moral truths.",
+ use:"Use this to explain why the poem treats natural union as a persuasive, almost philosophical argument for human love, reflecting Shelley's wider Romantic belief in nature as a source of truth."},
+{t:"Robert Browning — Porphyria's Lover", body:"Browning (1812–1889) was a pioneer of the dramatic monologue form in early Victorian poetry, frequently giving voice to disturbed or morally troubling speakers without direct authorial judgement.",
+ use:"Use this to explain why the poem withholds moral commentary, since Browning's dramatic monologues typically let a speaker's own words expose their character without narratorial intervention."},
+{t:"Elizabeth Barrett Browning — Sonnet 29", body:"Barrett Browning (1806–1861) wrote this poem as part of Sonnets from the Portuguese, a sequence originally composed privately for her own husband, the poet Robert Browning, during their courtship.",
+ use:"Use this to explain the poem's intense, private intimacy by noting it was written for her own husband rather than composed for a general audience."},
+{t:"Thomas Hardy — Neutral Tones", body:"Hardy (1840–1928) was a novelist and poet known for a characteristically bleak, often pessimistic view of love and fate across his wider body of work, sometimes linked to his own troubled first marriage.",
+ use:"Use this to explain the poem's disillusioned tone about love by connecting it to Hardy's wider reputation for pessimism about relationships and fate."},
+{t:"Charlotte Mew — The Farmer's Bride", body:"Mew (1869–1928) was writing in the early twentieth century, a period when married women had very limited legal power over their own bodies and decisions within marriage.",
+ use:"Use this to explain the young wife's powerlessness and fear by referencing the limited legal protections available to women in this period."},
+{t:"Maura Dooley — Letters from Yorkshire", body:"Dooley is a contemporary British poet whose work frequently reflects on ordinary, everyday relationships and the small, undramatic details of daily communication and care.",
+ use:"Use this to explain the poem's focus on ordinary connection rather than grand romantic gesture, referencing Dooley's characteristic interest in everyday experience."},
+{t:"Cecil Day-Lewis — Walking Away", body:"Day-Lewis (1904–1972), a twentieth-century poet and UK Poet Laureate, wrote this poem directly about a real memory of watching his own son walk away across a school playing field.",
+ use:"Use this to explain the poem's personal, autobiographical weight by noting it was written directly about the poet's own son."},
+{t:"Charles Causley — Eden Rock", body:"Causley (1917–2003) was a Cornish poet known for an accessible, often deceptively simple style that frequently explored memory, childhood and loss with unusual gentleness.",
+ use:"Use this to explain the poem's gentle, accessible tone about death and memory by referencing Causley's characteristic simplicity even when addressing serious themes."},
+{t:"Seamus Heaney — Follower", body:"Heaney (1939–2013) was a major Irish poet whose early poetry frequently drew on his own childhood on a working family farm in rural Northern Ireland and his relationship with his father.",
+ use:"Use this to explain the poem's detailed agricultural imagery and father-son dynamic by referencing Heaney's own upbringing on a working farm."},
+{t:"Simon Armitage — Mother, any distance", body:"Armitage is a contemporary British poet known for accessible, conversational language that frequently blends ordinary domestic detail with deeper metaphorical meaning.",
+ use:"Use this to explain the poem's blend of everyday domestic detail (measuring a house) with metaphorical significance by referencing Armitage's characteristic conversational style."},
+{t:"Carol Ann Duffy — Before You Were Mine", body:"Duffy, a contemporary poet and former UK Poet Laureate, frequently explores female experience, identity and family relationships from a personal, reflective perspective across her wider work.",
+ use:"Use this to explain the poem's focus on the mother's own lost youth and identity by referencing Duffy's wider interest in reclaiming women's interior lives in her poetry."},
+{t:"Owen Sheers — Winter Swans", body:"Sheers is a contemporary Welsh poet whose work often uses natural landscape and wildlife imagery to explore human relationships and emotional states.",
+ use:"Use this to explain the poem's use of the swans as a symbol for the couple's relationship by referencing Sheers's characteristic use of nature imagery to explore emotion."},
+{t:"Daljit Nagra — Singh Song!", body:"Nagra is a contemporary British poet of Punjabi-Sikh heritage, known for using phonetic dialect and humour to explore British-Asian identity and challenge expectations about immigrant experience.",
+ use:"Use this to explain the poem's distinctive dialect voice and humour by referencing Nagra's wider exploration of confident, multicultural British identity."},
+{t:"Andrew Waterhouse — Climbing My Grandfather", body:"Waterhouse (1958–2001) was a contemporary British poet whose accessible free verse often explored close personal relationships and the natural world with quiet tenderness.",
+ use:"Use this to explain the poem's tender, careful tone toward an elderly relative by referencing Waterhouse's broader interest in close personal relationships."}
+];
+
+/* ================= RENDER: NAVIGATION ================= */
+let currentSection = Store.get('lastSection','overview');
+
+function renderNav(){
+  const html = SECTIONS.map((s,i)=>`<button class="navlink" data-target="${s.id}" role="tab"><span class="num">${String(i+1).padStart(2,'0')}</span>${s.label}</button>`).join('');
+  document.getElementById('navList').innerHTML = html;
+  document.getElementById('navListMobile').innerHTML = html;
+  document.querySelectorAll('.navlink').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ showSection(btn.getAttribute('data-target')); closeDrawer(); });
+  });
+}
+
+function showSection(id){
+  currentSection = id;
+  Store.set('lastSection', id);
+  document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active', s.id === 'section-'+id));
+  document.querySelectorAll('.navlink').forEach(b=>b.classList.toggle('active', b.getAttribute('data-target')===id));
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+}
+
+function closeDrawer(){
+  document.getElementById('mobileDrawer').classList.remove('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded','false');
+}
+document.getElementById('hamburgerBtn').addEventListener('click', ()=>{
+  const d = document.getElementById('mobileDrawer');
+  const open = d.classList.toggle('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded', open?'true':'false');
+});
+document.getElementById('mobileDrawer').addEventListener('click', (e)=>{
+  if(e.target.id === 'mobileDrawer') closeDrawer();
+});
+
+const root = document.getElementById('sectionsRoot');
+function el(html){ const d=document.createElement('div'); d.innerHTML=html; return d.firstElementChild; }
+
+/* ---- 1. OVERVIEW ---- */
+function buildOverview(){
+  const s = el(`<section class="section" id="section-overview">
+    <div class="section-header"><div class="eyebrow">Section 01</div><h1>Overview</h1><div class="desc">Get your bearings across all fifteen poems before you dive into detail.</div></div>
+
+    <div class="grid two">
+      <div class="card"><h3>Key facts</h3>
+        <p><b>Anthology:</b> AQA GCSE English Literature, Love and Relationships cluster<br>
+        <b>Number of poems:</b> Fifteen<br>
+        <b>Span:</b> Early nineteenth century (Byron) to contemporary poets (Nagra, Waterhouse)<br>
+        <b>Exam format:</b> Usually one printed poem plus a comparison with a second poem of your choice from the anthology<br>
+        <b>Skills tested:</b> Analysis of language, form and structure, and comparison across poems</p>
+      </div>
+      <div class="card"><h3>Why this cluster matters for GCSE</h3>
+        <p>Because these fifteen poems span roughly two hundred years and many different poetic forms, this cluster rewards students who can compare methods and ideas confidently across poems, not just analyse one poem in isolation. Strong comparison — not memorised pairing — is the single most valuable exam skill here.</p>
+      </div>
+    </div>
+
+    <div class="card"><h3>Basic premise of the cluster</h3>
+      <p>"Love and Relationships" gathers fifteen poems exploring many different kinds of love — romantic desire, marriage, family bonds, obsession, loss and reconciliation — across very different voices, forms and historical periods. Some poems present love as joyful and freely chosen; others present it as controlling, isolating or painfully lost. No single poem defines the whole cluster: the strongest exam answers select whichever comparison poem best answers the specific question asked, rather than forcing a memorised pairing.</p>
+    </div>
+
+    <div class="card"><h3>Major themes at a glance</h3>
+      <p><span class="tag blood">Romantic love & desire</span><span class="tag blood">Family love</span><span class="tag blood">Separation & distance</span><span class="tag gold">Memory & retrospection</span><span class="tag gold">Obsession & control</span><span class="tag gold">Marriage</span><span class="tag">Loss & death</span><span class="tag">Communication</span><span class="tag">Independence</span><span class="tag fog">Possessiveness</span><span class="tag fog">Joy & celebration</span><span class="tag fog">Gender roles & power</span></p>
+    </div>
+
+    <div class="card"><h3>Why these ideas matter</h3>
+      <p><b>Romantic love and desire</b> range from persuasive, joyful union to disturbing possession, so never assume "love poem" automatically means a positive portrayal.<br><br>
+      <b>Family love</b> dominates the modern poems in this cluster, often expressed through separation, memory or ordinary domestic moments rather than grand declaration.<br><br>
+      <b>Obsession, control and possessiveness</b> connect several of the earlier poems, exposing how power imbalance can distort what looks, on the surface, like devotion.<br><br>
+      <b>Memory and retrospection</b> shape how nearly every poem's speaker understands their relationship — the past is rarely presented as a neutral, settled fact.<br><br>
+      <b>Comparison</b> is the cluster's central exam skill — always let the specific question, not a memorised pairing, decide which two poems you compare.</p>
+    </div>
+
+    <div class="card"><h3>Two centuries of love poetry — why the range matters</h3>
+      <p>The six earliest poems in this cluster (Byron, Shelley, Browning, Barrett Browning, Hardy, Mew) span the Romantic and Victorian/Edwardian periods, when women typically held far less legal and social power within relationships, and when secrecy or reputation could carry real social risk. The remaining nine poems are contemporary, largely twentieth and twenty-first century, and focus far more on family bonds, memory and multicultural identity than on courtship or marriage in the earlier sense. Understanding this historical range helps explain why the cluster's poems treat power, gender and love so differently.</p>
+    </div>
+
+    <div class="card"><h3>What GCSE students need to understand</h3>
+      <ul>
+        <li>That "love" in this cluster covers romantic, marital, familial and even obsessive relationships — never assume a single narrow definition.</li>
+        <li>How each poet's chosen form and structure (dramatic monologue, sonnet, free verse, dialect) reinforces their poem's central idea.</li>
+        <li>That exam boards reward genuine comparison of methods and ideas, not simply two separate analyses placed side by side.</li>
+        <li>That context should only be used where it genuinely deepens interpretation of a specific poetic choice, not as a bolt-on fact.</li>
+      </ul>
+    </div>
+
+    <div class="sixty">
+      <h3>Love and Relationships in 60 Seconds</h3>
+      <p>This AQA cluster gathers fifteen poems exploring love in many forms. Byron, Shelley, Browning, Barrett Browning, Hardy and Mew, writing across the Romantic, Victorian and Edwardian periods, explore secretive grief, persuasive desire, disturbing obsession and unequal marriage. The remaining nine contemporary poets — Dooley, Day-Lewis, Causley, Heaney, Armitage, Duffy, Sheers, Nagra and Waterhouse — turn more toward family bonds, memory, distance and multicultural identity, often finding love in ordinary domestic moments rather than grand romantic gesture. Across the whole cluster, poets use natural imagery, extended metaphor, dramatic monologue and distinctive structural choices to explore how love can unite, damage, sustain or transform the people within it.</p>
+    </div>
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 2. POEM GUIDE ---- */
+function buildPoemGuide(){
+  let cards = POEMS.map(p=>`
+    <div class="disclosure" data-d>
+      <button class="d-head"><span>${p.title}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <p class="subtle" style="margin-top:10px;">${p.poet}</p>
+        <div class="mini-label">Form & structure</div><p>${p.form}</p>
+        <div class="mini-label">Core idea</div><p>${p.coreidea}</p>
+        <div class="mini-label">Voice, speaker & addressee</div><p>${p.voice}</p>
+        <div class="mini-label">Themes</div><p>${p.themes.map(t=>`<span class="tag blood">${t}</span>`).join('')}</p>
+        ${p.quotes.length ? `<div class="mini-label">Essential quotes</div>${p.quotes.map(q=>`<div class="quote-line">"${q}"</div>`).join('')}` : ''}
+        <div class="mini-label">Technique highlights</div><ul>${p.techniques.map(t=>`<li>${t}</li>`).join('')}</ul>
+        <div class="mini-label">What the poet may be doing</div><p>${p.message}</p>
+        <div class="mini-label">Pairs well with</div><ul>${p.pairs.map(x=>`<li><b>${x.title}</b> — ${x.why}</li>`).join('')}</ul>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-poemguide">
+    <div class="section-header"><div class="eyebrow">Section 02</div><h1>Poem Guide</h1><div class="desc">All fifteen poems. Tap any title to see its full profile: form, core idea, voice, quotes, technique and comparison partners.</div></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 3. THEMES ---- */
+function buildThemes(){
+  let cards = THEMES.map(t=>`
+    <div class="disclosure" data-d>
+      <button class="d-head"><span>${t.name}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <div class="mini-label">Simple explanation</div><p>${t.explanation}</p>
+        <div class="mini-label">Where it appears</div><p>${t.where}</p>
+        <div class="mini-label">Relevant poems</div><p>${t.characters.map(c=>`<span class="tag">${c}</span>`).join('')}</p>
+        ${t.quotes.length ? `<div class="mini-label">Essential quotations</div>${t.quotes.map(q=>`<div class="quote-line">"${q}"</div>`).join('')}` : ''}
+        <div class="mini-label">Poets' possible message</div><p>${t.message}</p>
+        <div class="mini-label">Useful contextual link</div><p>${t.context}</p>
+        <div class="mini-label">Potential thesis statements</div><ul>${t.thesis.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-themes">
+    <div class="section-header"><div class="eyebrow">Section 03</div><h1>Themes</h1><div class="desc">Twelve cross-poem themes, each with linked poems, quotations, context and ready-to-adapt thesis statements.</div></div>
+    <div class="card"><h3>A note on comparing themes across poems</h3><p>Because this cluster contains fifteen poems spanning two centuries, almost every theme below appears, in some form, across several poems. The strongest exam answers do not simply list which poems share a theme — they explain <b>how</b> each poet's specific methods (form, structure, imagery, voice) shape a distinct version of that shared theme. Use this section to identify strong comparison pairs, then develop the comparison using the Poem Guide and Quote Vault sections.</p></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 4. QUOTE VAULT ---- */
+function buildQuoteVault(){
+  const allPoems = POEMS.map(p=>p.title);
+  const allThemes = Array.from(new Set(QUOTES.flatMap(q=>q.themes))).sort();
+
+  const s = el(`<section class="section" id="section-quotes">
+    <div class="section-header"><div class="eyebrow">Section 04</div><h1>Quote Vault</h1><div class="desc">Search and filter the anthology's most important quotations. Kept short and used only for educational analysis.</div></div>
+    <div class="qv-controls">
+      <input type="text" id="qvSearch" placeholder="Search quotations..." aria-label="Search quotations">
+      <select id="qvCharFilter" aria-label="Filter by poem"><option value="">All poems</option>${allPoems.map(c=>`<option value="${c}">${c}</option>`).join('')}</select>
+      <select id="qvThemeFilter" aria-label="Filter by theme"><option value="">All themes</option>${allThemes.map(t=>`<option value="${t}">${t}</option>`).join('')}</select>
+    </div>
+    <div class="qv-count" id="qvCount"></div>
+    <div id="qvResults"></div>
+  </section>`);
+  root.appendChild(s);
+
+  function renderQuotes(){
+    const search = document.getElementById('qvSearch').value.toLowerCase().trim();
+    const charF = document.getElementById('qvCharFilter').value;
+    const themeF = document.getElementById('qvThemeFilter').value;
+    const filtered = QUOTES.filter(q=>{
+      const matchesSearch = !search || q.text.toLowerCase().includes(search) || q.speaker.toLowerCase().includes(search);
+      const matchesChar = !charF || q.characters.includes(charF);
+      const matchesTheme = !themeF || q.themes.includes(themeF);
+      return matchesSearch && matchesChar && matchesTheme;
+    });
+    document.getElementById('qvCount').textContent = filtered.length + (filtered.length===1 ? ' quotation found':' quotations found');
+    const container = document.getElementById('qvResults');
+    container.innerHTML = filtered.map((q,i)=>`
+      <div class="qcard" data-idx="${i}">
+        <div class="qtext">"${q.text}"</div>
+        <div class="qmeta">${q.speaker} · ${q.act} · ${q.themes.join(', ')}</div>
+        <button class="qreveal-btn" type="button">Reveal analysis</button>
+        <div class="qdetail">
+          <div class="row"><b>Meaning</b>${q.meaning}</div>
+          <div class="row"><b>Technique</b>${q.technique}</div>
+          <div class="level-toggle">
+            <button type="button" class="lvl-btn active" data-lvl="solid">Solid (Grade 5–6)</button>
+            <button type="button" class="lvl-btn" data-lvl="deep">Deeper (Grade 7–9)</button>
+          </div>
+          <div class="level-block active" data-lvl="solid">${q.solid}</div>
+          <div class="level-block" data-lvl="deep">${q.deep}</div>
+          <div class="row" style="margin-top:10px;"><b>Context</b>${q.context}</div>
+          <div class="row"><b>Use this for</b>${q.useFor}</div>
+        </div>
+      </div>`).join('') || '<p class="subtle">No quotations match your search. Try different filters.</p>';
+
+    container.querySelectorAll('.qreveal-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.qcard');
+        const open = card.classList.toggle('open');
+        btn.textContent = open ? 'Hide analysis' : 'Reveal analysis';
+      });
+    });
+    container.querySelectorAll('.lvl-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.qcard');
+        const lvl = btn.getAttribute('data-lvl');
+        card.querySelectorAll('.lvl-btn').forEach(b=>b.classList.toggle('active', b===btn));
+        card.querySelectorAll('.level-block').forEach(b=>b.classList.toggle('active', b.getAttribute('data-lvl')===lvl));
+      });
+    });
+  }
+  document.getElementById('qvSearch').addEventListener('input', renderQuotes);
+  document.getElementById('qvCharFilter').addEventListener('change', renderQuotes);
+  document.getElementById('qvThemeFilter').addEventListener('change', renderQuotes);
+  renderQuotes();
+}
+
+/* ---- 5. TECHNIQUES ---- */
+function buildTechniques(){
+  const cards = TECHNIQUES.map(t=>`<div class="disclosure" data-d>
+    <button class="d-head"><span>${t.name}</span><span class="chev">›</span></button>
+    <div class="d-body"><div class="inner">
+      <div class="mini-label">Definition</div><p>${t.def}</p>
+      <div class="mini-label">Example from the anthology</div><p>${t.example}</p>
+      <div class="mini-label">Effect</div><p>${t.effect}</p>
+      <div class="mini-label">How to analyse it</div><p>${t.howto}</p>
+    </div></div>
+  </div>`).join('');
+
+  const s = el(`<section class="section" id="section-techniques">
+    <div class="section-header"><div class="eyebrow">Section 05</div><h1>Techniques</h1><div class="desc">The key poetic and structural methods used across the anthology, with clear examples and analysis guidance.</div></div>
+
+    <div class="card"><h3>Why form and structure matter so much in this cluster</h3>
+      <p>Because these fifteen poems span dramatic monologue, sonnet, ballad-like quatrains, dialect free verse and single unbroken stanzas, form is rarely incidental — poets frequently choose a structure that reinforces their poem's central idea. An unbroken stanza can mirror obsessive control (Porphyria's Lover) or an uninterrupted climb (Climbing My Grandfather); a sonnet's volta can dramatise a shift from thought to demand (Sonnet 29) or from admiration to reversal (Follower). Always ask why a poet chose this specific form, not just what technique appears within it.</p>
+    </div>
+
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 6. CONTEXT ---- */
+function buildContext(){
+  const cards = CONTEXT_ITEMS.map(i=>`<div class="disclosure" data-d>
+    <button class="d-head"><span>${i.t}</span><span class="chev">›</span></button>
+    <div class="d-body"><div class="inner">
+      <p style="margin-top:10px;">${i.body}</p>
+      <div class="mini-label">How can I actually use this in an essay?</div><p>${i.use}</p>
+    </div></div>
+  </div>`).join('');
+
+  const s = el(`<section class="section" id="section-context">
+    <div class="section-header"><div class="eyebrow">Section 06</div><h1>Context</h1><div class="desc">Only the context you can actually use — always paired with a real essay application, poet by poet.</div></div>
+    <div class="card"><p><b>Important:</b> Never bolt on a biographical or historical fact just to prove you know it. Only use context when it genuinely deepens your interpretation of a poet's specific choices in that poem.</p></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 7. COMPARISON PAIRS ---- */
+function buildComparisonPairs(){
+  const blocks = COMPARISON_PAIRS.map(p=>`
+    <div class="pair-block card">
+      <div class="pair-theme">Shared focus: ${p.theme}</div>
+      <div class="pair-title">${p.poemA} &amp; ${p.poemB}</div>
+      <div class="compare-grid">
+        <div class="compare-col"><h3>${p.poemA}<br><span style="font-size:.7rem;font-weight:400;">${p.poetA}</span></h3><p>${p.colA}</p></div>
+        <div class="compare-col"><h3>${p.poemB}<br><span style="font-size:.7rem;font-weight:400;">${p.poetB}</span></h3><p>${p.colB}</p></div>
+      </div>
+      <div class="pair-notes">
+        <div class="mini-label">Similarity</div><p>${p.similarity}</p>
+        <div class="mini-label">Difference</div><p>${p.difference}</p>
+        <div class="mini-label">Suggested essay angle</div><p>${p.angle}</p>
+      </div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-comparisonpairs">
+    <div class="section-header"><div class="eyebrow">Section 07</div><h1>Comparison Pairs</h1><div class="desc">Ten strong comparison routes through the anthology, each with a shared theme, a similarity, a difference and a suggested essay angle.</div></div>
+    <div class="card"><p><b>Remember:</b> these are strong starting points, not the only correct pairings. Always let the exact wording of the exam question decide your second poem — a pairing that works brilliantly for one question may not suit a differently-worded one.</p></div>
+    ${blocks}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 8. HOW A POEM MOVES (STRUCTURE WALKTHROUGH — CHAIN UI) ---- */
+function buildStructureWalkthrough(){
+  const poemBlocks = STRUCTURE_WALKTHROUGH.map(pw=>{
+    let stepsHtml = '';
+    pw.steps.forEach((st,i)=>{
+      stepsHtml += `<div class="chain-step" data-d>
+        <button class="chain-btn"><span>${st.label}</span><span class="chev">›</span></button>
+        <div class="chain-body"><div class="chain-inner">
+          <div class="mini-label">What shifts here</div><p>${st.note}</p>
+          <div class="mini-label">Textual anchor</div><div class="quote-line">"${st.quote}"</div>
+        </div></div>
+      </div>`;
+      if(i < pw.steps.length-1) stepsHtml += `<div class="chain-arrow">↓</div>`;
+    });
+    return `<div class="poem-block">
+      <h2>${pw.poem} <span class="subtle" style="font-family:var(--sans);font-size:.85rem;">— ${pw.poet}</span></h2>
+      <p class="subtle">${pw.intro}</p>
+      <div class="chain">${stepsHtml}</div>
+    </div>`;
+  }).join('<div style="height:8px;"></div>');
+
+  const s = el(`<section class="section" id="section-structurewalkthrough">
+    <div class="section-header"><div class="eyebrow">Section 08</div><h1>How a Poem Moves</h1><div class="desc">Three poems, traced step by step. Tap each stage to see how the poem shifts stanza by stanza.</div></div>
+    <div class="card"><p><b>Why this matters:</b> examiners consistently reward students who can track how a poem develops or changes across its structure, not just students who can quote from anywhere within it. Use these three worked examples as a model for tracing structure in any poem in the anthology.</p></div>
+    ${poemBlocks}
+  </section>`);
+  root.appendChild(s);
+
+  s.querySelectorAll('.chain-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ btn.closest('.chain-step').classList.toggle('open'); });
+  });
+}
+
+/* ---- 9. EXAM ---- */
+function buildExam(){
+  const s = el(`<section class="section" id="section-exam">
+    <div class="section-header"><div class="eyebrow">Section 09</div><h1>Exam Survival</h1><div class="desc">How to actually approach a Love and Relationships comparison question, step by step.</div></div>
+
+    <div class="card" style="text-align:center;">
+      <img src="../images/exam-essentials/love-and-relationships-poetry-exam-essentials.png" alt="The Teacher Vault: Love and Relationships Poetry Exam Essentials one-page revision poster" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--line);display:block;margin:0 auto;" loading="lazy">
+      <p class="subtle" style="margin-top:10px;">The Teacher Vault's one-page <b>Exam Essentials</b> poster for Love and Relationships Poetry — key ideas, poetic methods, context and exam tips for all fifteen poems at a glance. Save it, print it, or pin it above your desk.</p>
+    </div>
+
+    <div class="card"><p>AQA's format typically prints one poem from the anthology in full on the exam paper and asks you to compare it with one other poem of your own choice from the cluster. Always check your own exam board's exact format with your teacher, but the analytical and comparative skills below apply broadly.</p></div>
+
+    <div class="disclosure open" data-d><button class="d-head"><span>1. Understanding the question</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Underline the key focus in the question — usually a theme or idea such as love, distance, family, conflict, memory or control. Do not force a memorised comparison; choose the second poem that lets you build the clearest argument about that exact focus.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>2. Selecting your second poem</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Use the Comparison Pairs section as a starting bank of strong routes, but always check the specific question's wording first — a pairing built for one focus may not suit a differently-worded question.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>3. Selecting evidence</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Choose short, precise quotations you can analyse word-by-word. Never invent or misremember a quotation — an accurate short quote is always stronger than an inaccurate longer one.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>4. Creating a thesis</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>State a clear, arguable comparative position rather than just restating the question. For example: "Both poets present love as something that must be actively persuaded or fought for, though Shelley's speaker uses joyful natural argument while Browning's uses disturbing possession."</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>5. Paragraph structure</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>A reliable structure for each point: Poem A evidence and method → Poem B evidence and method → explicit comparison (similarity or difference) → context if it adds insight → link back to each poet's likely purpose.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>6. Comparing methods, not just content</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Always compare how each poet achieves an effect (form, structure, imagery, voice), not just what each poem is broadly "about". Two poems can share a theme while using completely different methods to explore it.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>7. Using structure as evidence</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Stanza form, rhyme scheme and structural shifts (a volta, a role reversal, a cyclical ending) are as valid as quotation-level analysis — see How a Poem Moves for worked examples of tracking structure across a poem.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>8. Incorporating context</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Context should illuminate a poet's specific choices, not replace analysis of them. One well-placed contextual point is worth more than a paragraph of biography with no link to the text.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>9. Balancing your two poems</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Give roughly equal weight and depth of analysis to both poems — an answer that analyses one poem in detail and mentions the second only briefly rarely reaches the top mark bands for comparison.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>10. Writing conclusions</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Don't simply repeat your introduction. Briefly synthesise your strongest comparative point and comment on what the comparison reveals about each poet's wider purpose.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>11. Managing time</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Spend a few minutes planning both poems before you write. Leave a couple of minutes at the end to check for missing words and unclear comparative links.</p></div></div></div>
+
+    <h2 style="margin-top:28px;">Theme or Method?</h2>
+    <div class="card"><p>Some comparison questions focus mainly on a <b>theme</b> ("Compare how poets present the pain of lost love"), while others foreground a <b>method</b> ("Compare how poets use natural imagery to present relationships"). Read the question carefully: if it names a theme, both poems' relevant content matters most, but you should still discuss the specific methods each poet uses. If it foregrounds a method, keep returning to that specific technique in both poems, rather than drifting into general content summary.</p></div>
+
+    <h2 style="margin-top:28px;">Weak vs Strong Analysis</h2>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"Both poems are about love ending, which is sad."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"Both Byron and Hardy use cold, physical imagery to convey a relationship's collapse, though Byron's secrecy-driven grief contrasts with Hardy's generalised, cynical conclusion that 'love deceives'."</p></div>
+    </div>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"Porphyria's Lover is about a man who kills his girlfriend, which is scary."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"Browning's use of an unreliable dramatic monologue, withholding any authorial judgement of the speaker's actions, forces the reader to supply the moral condemnation the text itself refuses to state."</p></div>
+    </div>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"Mother, any distance is about a boy moving into a new house."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"Armitage sustains the measuring-tape as an extended metaphor throughout the poem's single unbroken stanza, structurally enacting a bond that stretches to accommodate distance without ever fully breaking."</p></div>
+    </div>
+
+    <h2 style="margin-top:28px;">Practice comparison questions</h2>
+    <div id="practiceQs"></div>
+  </section>`);
+  root.appendChild(s);
+
+  const practice = [
+   {q:"Compare how poets present the pain of lost or ended love in When We Two Parted and one other poem.", plan:["Introduce both poems' shared focus on the lasting pain of a relationship's end.","P1: Byron's cold, secretive grief and inability to publicly mourn.","P2: your chosen second poem's method for conveying lasting pain (e.g. Neutral Tones' drained imagery).","P3: compare the specific imagery or structural choices each poet uses to convey this pain.","Context: secrecy and reputation in Byron's era, or the poet's wider pessimism in your second choice.","Conclusion: what the comparison reveals about how poets convey lasting emotional damage."]},
+   {q:"Compare how poets present the power of persuasion or nature's influence in Love's Philosophy and one other poem.", plan:["Introduce Shelley's persuasive, nature-based argument for union.","P1: Shelley's rhetorical questions and extended natural imagery.","P2: your chosen second poem's use of persuasion or natural imagery (e.g. Sonnet 29's vine metaphor).","P3: compare how directly each poem's argument is aimed at its addressee.","Context: Romantic-era belief in nature as emotional truth.","Conclusion: what each poet's persuasive method reveals about the nature of their desire."]},
+   {q:"Compare how poets present parents' love for their children in Walking Away and one other poem.", plan:["Introduce parental love expressed through separation or connection.","P1: Day-Lewis's extended metaphor of the satellite wrenched from orbit.","P2: your chosen second poem's method (e.g. Mother, any distance's tape measure).","P3: compare whether each poem presents separation as painful, necessary, or both.","Context: modern understandings of supporting a child's independence.","Conclusion: what both poets suggest genuine parental love requires."]},
+   {q:"Compare how poets present controlling relationships in Porphyria's Lover and one other poem.", plan:["Introduce control and power imbalance as a shared focus.","P1: Browning's speaker's fatal need for total possession.","P2: your chosen second poem's presentation of control (e.g. The Farmer's Bride's isolating marriage).","P3: compare how each poem gives, or denies, the controlled woman a voice.","Context: limited legal and social power for women in each poem's period.","Conclusion: what each poet's use of dramatic monologue reveals about unequal power."]},
+   {q:"Compare how poets use memory to explore family relationships in Eden Rock and one other poem.", plan:["Introduce memory as a way of reconstructing or reconsidering a family relationship.","P1: Causley's idealised, ambiguous imagined reunion with his parents.","P2: your chosen second poem's use of memory (e.g. Follower's childhood admiration and reversal, or Before You Were Mine's imagined youth).","P3: compare how certain or uncertain each poem's memory or imagination appears to be.","Context: each poet's own biographical relationship to the memory described.","Conclusion: what each poet suggests about memory's reliability or emotional value."]},
+   {q:"Compare how poets present the difficulties, and rewards, of communication across distance in Letters from Yorkshire and one other poem.", plan:["Introduce distance as either damaging or, surprisingly, sustaining connection.","P1: Dooley's undramatic, letter-based connection despite geographic distance.","P2: your chosen second poem's presentation of distance (e.g. Winter Swans' emotional distance despite physical closeness).","P3: compare what ultimately closes or maintains the gap in each poem.","Context: letter-writing as a historically common way of sustaining long-distance relationships.","Conclusion: what each poet suggests about what genuine connection actually requires."]}
+  ];
+  const container = document.getElementById('practiceQs');
+  container.innerHTML = practice.map((p,i)=>`<div class="card">
+    <h3>${p.q}</h3>
+    <button class="btn secondary" type="button" data-plan="${i}">Reveal planning points</button>
+    <div class="plan-reveal" data-plan-body="${i}" style="display:none;margin-top:12px;">
+      <ol>${p.plan.map(x=>`<li>${x}</li>`).join('')}</ol>
+    </div>
+  </div>`).join('');
+  container.querySelectorAll('[data-plan]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const idx = btn.getAttribute('data-plan');
+      const body = container.querySelector(`[data-plan-body="${idx}"]`);
+      const showing = body.style.display !== 'none';
+      body.style.display = showing ? 'none' : 'block';
+      btn.textContent = showing ? 'Reveal planning points' : 'Hide planning points';
+    });
+  });
+}
+
+/* ---- 10. QUIZ ---- */
+let quizState = { order: [], idx:0, score:0, answered:false, wrongTopics:{} };
+function shuffle(arr){ const a = arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+const TYPE_LABEL = {poem:'Poem identification', quote:'Quotation', theme:'Theme', tech:'Technique', context:'Context', compare:'Comparison', tf:'True / False'};
+
+function buildQuiz(){
+  const s = el(`<section class="section" id="section-quiz">
+    <div class="section-header"><div class="eyebrow">Section 10</div><h1>Quiz</h1><div class="desc">Self-marking revision quiz covering poem identification, quotations, themes, techniques, context and comparison.</div></div>
+    <div class="card">
+      <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
+      <div id="quizArea"></div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  startQuiz();
+}
+
+function startQuiz(){
+  quizState = { order: shuffle(QUIZ_BANK.map((_,i)=>i)), idx:0, score:0, answered:false, wrongTopics:{} };
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion(){
+  const area = document.getElementById('quizArea');
+  const total = quizState.order.length;
+  if(quizState.idx >= total){
+    const pct = Math.round((quizState.score/total)*100);
+    document.getElementById('quizProgressBar').style.width = '100%';
+    const weakList = Object.keys(quizState.wrongTopics).sort((a,b)=>quizState.wrongTopics[b]-quizState.wrongTopics[a]);
+    area.innerHTML = `<div class="quiz-result">
+      <div class="score">${quizState.score}/${total}</div>
+      <p class="subtle">${pct}% correct</p>
+      ${weakList.length ? `<div class="weak-areas"><p class="subtle"><b>Areas to revise:</b></p><p>${weakList.map(t=>`<span class="tag blood">${TYPE_LABEL[t]||t}</span>`).join('')}</p></div>` : `<p class="subtle">Strong across every question type — well done!</p>`}
+      <button class="btn blood" id="tryAgainBtn" type="button">Try Again</button>
+      <button class="btn secondary" id="newQuizBtn" type="button" style="margin-left:8px;">New Quiz</button>
+    </div>`;
+    document.getElementById('tryAgainBtn').addEventListener('click', ()=>{ quizState.idx=0; quizState.score=0; quizState.wrongTopics={}; quizState.answered=false; renderQuizQuestion(); });
+    document.getElementById('newQuizBtn').addEventListener('click', startQuiz);
+    return;
+  }
+  document.getElementById('quizProgressBar').style.width = ((quizState.idx/total)*100)+'%';
+  const item = QUIZ_BANK[quizState.order[quizState.idx]];
+  const optOrder = shuffle(item.opts.map((o,i)=>i));
+  quizState.answered = false;
+  area.innerHTML = `
+    <p class="subtle">Question ${quizState.idx+1} of ${total} · <span class="tag gold">${TYPE_LABEL[item.type]||''}</span></p>
+    <div class="quiz-q">${item.q}</div>
+    <div class="quiz-opts">${optOrder.map(oi=>`<button class="quiz-opt" data-oi="${oi}" type="button">${item.opts[oi]}</button>`).join('')}</div>
+    <div class="quiz-explain" id="quizExplain"></div>
+    <div style="margin-top:14px;"><button class="btn" id="quizNextBtn" type="button" style="display:none;">Next question</button></div>
+  `;
+  area.querySelectorAll('.quiz-opt').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(quizState.answered) return;
+      quizState.answered = true;
+      const chosen = parseInt(btn.getAttribute('data-oi'));
+      area.querySelectorAll('.quiz-opt').forEach(b=>{
+        b.setAttribute('disabled','true');
+        const oi = parseInt(b.getAttribute('data-oi'));
+        if(oi === item.a) b.classList.add('correct');
+        else if(oi === chosen) b.classList.add('incorrect');
+      });
+      if(chosen === item.a) quizState.score++;
+      else quizState.wrongTopics[item.type] = (quizState.wrongTopics[item.type]||0)+1;
+      const exp = document.getElementById('quizExplain');
+      exp.textContent = item.exp;
+      exp.classList.add('show');
+      document.getElementById('quizNextBtn').style.display = 'inline-block';
+    });
+  });
+  document.getElementById('quizNextBtn').addEventListener('click', ()=>{ quizState.idx++; renderQuizQuestion(); });
+}
+
+/* ---- 11. MATCH THE QUOTE GAME ---- */
+let matchState = { order: [], idx:0, score:0, answered:false };
+
+function buildMatchGame(){
+  const s = el(`<section class="section" id="section-matchgame">
+    <div class="section-header"><div class="eyebrow">Section 11</div><h1>Match the Quote</h1><div class="desc">A quick, game-like activity. For each quotation, select the poem it comes from.</div></div>
+    <div class="jh-game">
+      <div class="jh-score" id="matchScore"></div>
+      <div class="jh-quote" id="matchQuoteText"></div>
+      <div class="jh-opts" id="matchOpts"></div>
+      <div class="jh-feedback" id="matchFeedback"></div>
+      <button class="btn" id="matchNextBtn" type="button" style="display:none;margin-top:14px;">Next quotation</button>
+      <button class="btn secondary" id="matchRestartBtn" type="button" style="display:none;margin-top:14px;">Play again</button>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  startMatchGame();
+}
+
+function startMatchGame(){
+  matchState = { order: shuffle(MATCHGAME.map((_,i)=>i)), idx:0, score:0, answered:false };
+  renderMatchGame();
+}
+
+function renderMatchGame(){
+  const total = matchState.order.length;
+  const scoreEl = document.getElementById('matchScore');
+  const feedback = document.getElementById('matchFeedback');
+  const nextBtn = document.getElementById('matchNextBtn');
+  const restartBtn = document.getElementById('matchRestartBtn');
+  feedback.classList.remove('show');
+  feedback.textContent = '';
+  nextBtn.style.display = 'none';
+
+  if(matchState.idx >= total){
+    scoreEl.textContent = `Final score: ${matchState.score}/${total}`;
+    document.getElementById('matchQuoteText').textContent = "Round complete!";
+    document.getElementById('matchOpts').innerHTML = '';
+    restartBtn.style.display = 'inline-block';
+    restartBtn.onclick = startMatchGame;
+    return;
+  }
+  restartBtn.style.display = 'none';
+  scoreEl.textContent = `Quotation ${matchState.idx+1} of ${total} · Score: ${matchState.score}`;
+  const item = MATCHGAME[matchState.order[matchState.idx]];
+  document.getElementById('matchQuoteText').textContent = `"${item.text}"`;
+  const optsEl = document.getElementById('matchOpts');
+  optsEl.innerHTML = item.opts.map(o=>`<button type="button" data-opt="${o}">${o}</button>`).join('');
+  matchState.answered = false;
+  optsEl.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(matchState.answered) return;
+      matchState.answered = true;
+      const chosen = btn.getAttribute('data-opt');
+      optsEl.querySelectorAll('button').forEach(b=>{
+        b.disabled = true;
+        if(b.getAttribute('data-opt') === item.answer) b.classList.add('correct');
+        else if(b === btn) b.classList.add('incorrect');
+      });
+      if(chosen === item.answer) matchState.score++;
+      feedback.textContent = `${item.answer}. ${item.exp}`;
+      feedback.classList.add('show');
+      nextBtn.style.display = 'inline-block';
+    });
+  });
+}
+document.addEventListener('click', function(e){
+  if(e.target && e.target.id === 'matchNextBtn'){ matchState.idx++; renderMatchGame(); }
+});
+
+/* ---- 12. LOVE THEN & NOW (ERAS COMPARE) ---- */
+function buildErasCompare(){
+  const s = el(`<section class="section" id="section-erascompare">
+    <div class="section-header"><div class="eyebrow">Section 12</div><h1>Love Then &amp; Now</h1><div class="desc">Comparing the anthology's six Romantic/Victorian poems against its nine contemporary poems reveals how ideas about love, power and family have shifted across two centuries.</div></div>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <h3>Romantic &amp; Victorian Love Poems</h3>
+        <p class="subtle" style="margin-top:-6px;">When We Two Parted · Love's Philosophy · Porphyria's Lover · Sonnet 29 · Neutral Tones · The Farmer's Bride</p>
+        <ul>${ERAS_OLDER.map(c=>`<li><b>${c.point}</b><div class="compare-why">Why this matters: ${c.why}</div></li>`).join('')}</ul>
+      </div>
+      <div class="compare-col">
+        <h3>Modern Family &amp; Relationship Poems</h3>
+        <p class="subtle" style="margin-top:-6px;">Letters from Yorkshire · Walking Away · Eden Rock · Follower · Mother, any distance · Before You Were Mine · Winter Swans · Singh Song! · Climbing My Grandfather</p>
+        <ul>${ERAS_MODERN.map(c=>`<li><b>${c.point}</b><div class="compare-why">Why this matters: ${c.why}</div></li>`).join('')}</ul>
+      </div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 13. LAST MINUTE ---- */
+function buildLastMinute(){
+  const cheatSheet = POEMS.map(p=>[p.title, p.poet, p.coreidea.split('. ')[0]+'.']);
+  const fiveThemes = [
+   ["Romantic love & desire","Ranges from persuasive, joyful union to disturbing possession — never assume positivity."],
+   ["Family love (parent-child)","The dominant modern theme — expressed through separation, memory and ordinary moments."],
+   ["Obsession, control & possessiveness","Connects several earlier poems, exposing how power imbalance can distort apparent devotion."],
+   ["Memory & retrospection","Shapes nearly every speaker's understanding — the past is rarely a neutral, settled fact."],
+   ["Separation & distance","Can be damaging (When We Two Parted) or, surprisingly, sustaining (Letters from Yorkshire)."]
+  ];
+  const topQuotes = [
+   ["pale grew thy cheek and cold","Byron, When We Two Parted","Use for separation, coldness, lasting grief."],
+   ["Nothing in the world is single","Shelley, Love's Philosophy","Use for persuasion, natural imagery, desire."],
+   ["That moment she was mine, mine, fair","Browning, Porphyria's Lover","Use for obsession and control — central quote."],
+   ["my thoughts do twine and bud","Barrett Browning, Sonnet 29","Use for extended metaphor, desire."],
+   ["keen lessons that love deceives","Hardy, Neutral Tones","Use for memory, cynicism about love."],
+   ["two lives, can care for each other in a distance","Dooley, Letters from Yorkshire","Use for communication across distance."],
+   ["too young maybe","Mew, The Farmer's Bride","Use for marriage, consent, gendered power."],
+   ["love is proved in the letting go","Day-Lewis, Walking Away","Use for parental love, independence."],
+   ["narrow enough to step across","Causley, Eden Rock","Use for loss, death, symbolism."],
+   ["keeps stumbling behind me","Heaney, Follower","Use for role reversal, ageing."],
+   ["to fall or fly","Armitage, Mother, any distance","Use for independence, ambiguity."],
+   ["my loud, possessive yell","Duffy, Before You Were Mine","Use for possessiveness, identity."],
+   ["folded like a pair of wings settling","Sheers, Winter Swans","Use for reconciliation, nature symbolism."],
+   ["she effin at my mum","Nagra, Singh Song!","Use for gender roles, humour, marriage."],
+   ["the crags and folds of his face","Waterhouse, Climbing My Grandfather","Use for extended metaphor, family memory."]
+  ];
+  const fiveContext = ["Byron, Shelley, Browning, Barrett Browning, Hardy and Mew span the Romantic to Edwardian eras (1810s–1912).","Women had far less legal and social power within relationships in the earlier poems' periods.","Several modern poets (Day-Lewis, Heaney) drew directly on real family memories.","Nagra's phonetic dialect reflects a confident, contemporary British-Punjabi identity.","Causley's and Waterhouse's gentle tone toward death and ageing avoids fear or formality."];
+  const fiveTech = [
+   ["Dramatic monologue","Porphyria's Lover and The Farmer's Bride both expose a controlling male speaker through his own words."],
+   ["Extended metaphor","Mother, any distance's tape measure and Climbing My Grandfather's mountain both sustain one image throughout."],
+   ["Pathetic fallacy","Weather or landscape mirrors emotional states in Porphyria's Lover and Neutral Tones."],
+   ["Structural volta","Follower and Sonnet 29 both use a late shift to recontextualise everything before it."],
+   ["Dialect & phonetic spelling","Singh Song! and The Farmer's Bride both use non-standard voice to ground identity or isolation."]
+  ];
+  const checklist = ["Answer the exact focus of the question.","Choose your second poem based on the question, not memorised habit.","Make a clear comparative argument.","Use precise, accurate short quotations — never invented ones.","Analyse poetic methods, not just content.","Link context naturally, not as a bolt-on.","Give both poems roughly equal depth of analysis."];
+  const dontDo = ["Don't simply summarise each poem's plot in turn.","Don't list biographical facts disconnected from the text.","Don't invent or misremember quotations.","Don't force a memorised pairing that doesn't fit the question.","Don't forget to compare methods (form, structure, imagery), not only content."];
+
+  const s = el(`<section class="section" id="section-lastminute">
+    <div class="section-header"><div class="eyebrow">Section 13</div><h1>Love and Relationships — Last Minute</h1><div class="desc">Exam tomorrow? Start here.</div></div>
+    <button class="btn secondary print-btn" id="printBtn" type="button">Print this page</button>
+
+    <div class="sixty">
+      <h3>The anthology's throughlines in 60 seconds</h3>
+      <p>Fifteen poems explore love across two centuries and many forms — romantic, marital, familial, obsessive. The six earliest poems (Byron to Mew) explore desire, secrecy, obsession and unequal marriage within Romantic and Victorian/Edwardian social constraints, often through persuasive rhetoric or dramatic monologue. The nine contemporary poems turn toward family bonds, memory, distance and multicultural identity, frequently locating love in ordinary domestic detail rather than grand declaration. Across the whole cluster, extended metaphor, natural and pathetic-fallacy imagery, and deliberate structural choices (a volta, a role reversal, an unbroken stanza) consistently do as much work as direct statement — always let the exact exam question, not a memorised pairing, choose your comparison.</p>
+    </div>
+
+    <div class="lm-grid">
+      <div class="lm-card"><h3>15 poems in one line each</h3><ul>${cheatSheet.map(x=>`<li><b>${x[0]}</b> (${x[1]}): ${x[2]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 themes you must understand</h3><ul>${fiveThemes.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>15 quotations worth remembering</h3><ul>${topQuotes.map(x=>`<li>"${x[0]}" <br><span class="subtle">— ${x[1]} → ${x[2]}</span></li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 contextual ideas</h3><ul>${fiveContext.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 techniques worth recognising</h3><ul>${fiveTech.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>Essay checklist</h3><ul>${checklist.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>Five things NOT to do</h3><ul>${dontDo.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  document.getElementById('printBtn').addEventListener('click', ()=> window.print());
+}
+
+/* ================= DISCLOSURE BEHAVIOUR (shared) ================= */
+function wireDisclosures(){
+  document.querySelectorAll('.disclosure > .d-head').forEach(head=>{
+    head.addEventListener('click', ()=>{
+      head.parentElement.classList.toggle('open');
+    });
+  });
+}
+
+/* ================= INIT ================= */
+buildOverview();
+buildPoemGuide();
+buildThemes();
+buildQuoteVault();
+buildTechniques();
+buildContext();
+buildComparisonPairs();
+buildStructureWalkthrough();
+buildExam();
+buildQuiz();
+buildMatchGame();
+buildErasCompare();
+buildLastMinute();
+renderNav();
+wireDisclosures();
+showSection(SECTIONS.some(s=>s.id===currentSection) ? currentSection : 'overview');
+
+})();
+</script>
+</body>
+</html>
+

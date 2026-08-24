@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Teacher Vault — Animal Farm QuickNotes</title>
+<style>
+:root{
+  --ink:#20301F;
+  --ink-light:#2C4029;
+  --parchment:#F3EFE0;
+  --parchment-dark:#E6E0C4;
+  --blood:#7A1E1E;
+  --blood-bright:#A62B2B;
+  --gold:#8E7B2E;
+  --fog:#4E5C42;
+  --text:#1c2419;
+  --text-soft:#5a6152;
+  --card:#FFFFFF;
+  --line:#DAD8C0;
+  --radius:10px;
+  --serif: Georgia, 'Times New Roman', Times, serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --mono: 'Courier New', Courier, monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--parchment);color:var(--text);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased;}
+::selection{background:var(--gold);color:#fff;}
+a{color:var(--blood-bright);}
+button{font-family:inherit;cursor:pointer;}
+h1,h2,h3,h4{font-family:var(--serif);color:var(--ink);margin:0 0 .5em 0;}
+p{margin:0 0 .8em 0;}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:.6em 1em;z-index:999;}
+.skip-link:focus{left:8px;top:8px;}
+.app{display:flex;min-height:100vh;}
+.sidebar{width:250px;flex-shrink:0;background:var(--ink);color:#EDE9DA;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.brand{padding:22px 20px 14px 20px;border-bottom:1px solid rgba(255,255,255,.12);}
+.brand .tv-name{font-family:var(--serif);font-size:1.05rem;letter-spacing:.02em;color:#fff;font-weight:700;}
+.brand .tv-sub{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-top:2px;}
+.brand .play-title{margin-top:14px;font-family:var(--serif);font-size:1.65rem;color:#fff;line-height:1.15;}
+.brand .play-sub{font-size:.78rem;color:#c9c4ac;margin-top:6px;line-height:1.4;}
+.brand-mascot{width:52px;height:52px;object-fit:contain;display:block;margin-bottom:10px;}
+nav.mainnav{padding:10px 0;flex:1;}
+nav.mainnav button.navlink{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:none;color:#d9d5c3;padding:10px 20px;font-size:.88rem;border-left:3px solid transparent;}
+nav.mainnav button.navlink .num{font-family:var(--mono);font-size:.7rem;color:var(--gold);width:18px;flex-shrink:0;}
+nav.mainnav button.navlink:hover{background:rgba(255,255,255,.06);color:#fff;}
+nav.mainnav button.navlink.active{background:rgba(166,43,43,.25);border-left-color:var(--blood-bright);color:#fff;font-weight:600;}
+nav.mainnav button.navlink:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
+.sidebar-footer{padding:14px 20px;font-size:.7rem;color:#8b876f;border-top:1px solid rgba(255,255,255,.1);}
+.topbar{display:none;position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;padding:12px 16px;align-items:center;justify-content:space-between;}
+.topbar .tv-inline{font-family:var(--serif);font-size:1rem;}
+.topbar .tv-inline span{display:block;font-size:.65rem;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;}
+.hamburger{background:none;border:1px solid rgba(255,255,255,.4);color:#fff;padding:8px 10px;border-radius:6px;font-size:.85rem;}
+.mobile-nav-drawer{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.5);}
+.mobile-nav-drawer.open{display:block;}
+.mobile-nav-panel{position:absolute;top:0;left:0;bottom:0;width:80%;max-width:300px;background:var(--ink);overflow-y:auto;padding-bottom:20px;}
+main{flex:1;min-width:0;padding:36px 44px 80px 44px;max-width:980px;}
+.section{display:none;animation:fadein .25s ease;}
+.section.active{display:block;}
+@keyframes fadein{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+.section-header{margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid var(--ink);}
+.section-header .eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blood-bright);font-weight:700;margin-bottom:4px;}
+.section-header h1{font-size:1.9rem;margin-bottom:4px;}
+.section-header .desc{color:var(--text-soft);font-size:.95rem;max-width:640px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-bottom:16px;}
+.card h3{font-size:1.1rem;margin-bottom:8px;}
+.subtle{color:var(--text-soft);font-size:.88rem;}
+.tag{display:inline-block;background:var(--parchment-dark);color:var(--ink);border-radius:999px;padding:2px 10px;font-size:.72rem;margin:2px 4px 2px 0;font-weight:600;}
+.tag.blood{background:#f3e0da;color:var(--blood);}
+.tag.gold{background:#f3ecd6;color:#7a621c;}
+.tag.fog{background:#e4e9ee;color:var(--fog);}
+.btn{display:inline-block;background:var(--ink);color:#fff;border:none;padding:9px 16px;border-radius:7px;font-size:.85rem;font-weight:600;}
+.btn:hover{background:var(--ink-light);}
+.btn.secondary{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+.btn.blood{background:var(--blood-bright);}
+.btn.blood:hover{background:var(--blood);}
+.btn:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+.disclosure{border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;background:var(--card);overflow:hidden;}
+.disclosure > .d-head{width:100%;background:none;border:none;text-align:left;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;font-weight:700;color:var(--ink);font-family:var(--serif);font-size:1.02rem;}
+.disclosure > .d-head:hover{background:var(--parchment);}
+.disclosure > .d-head .chev{transition:transform .2s;color:var(--blood-bright);font-size:1.1rem;}
+.disclosure.open > .d-head .chev{transform:rotate(90deg);}
+.disclosure > .d-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.disclosure.open > .d-body{max-height:4000px;}
+.disclosure > .d-body .inner{padding:0 18px 16px 18px;}
+.d-body .mini-label{font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--blood-bright);margin:12px 0 4px 0;}
+.d-body .mini-label:first-child{margin-top:0;}
+.quote-line{font-family:var(--serif);font-style:italic;color:var(--ink);background:var(--parchment);border-left:3px solid var(--gold);padding:8px 12px;margin:6px 0;font-size:.94rem;}
+.grid{display:grid;gap:14px;}
+.grid.two{grid-template-columns:1fr 1fr;}
+.grid.three{grid-template-columns:repeat(3,1fr);}
+@media(max-width:800px){.grid.two,.grid.three{grid-template-columns:1fr;}}
+.qv-controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;align-items:center;}
+.qv-controls input[type=text], .qv-controls select{padding:9px 12px;border:1px solid var(--line);border-radius:7px;font-size:.9rem;background:#fff;}
+.qv-controls input[type=text]{flex:1;min-width:180px;}
+.qv-count{font-size:.82rem;color:var(--text-soft);margin-bottom:10px;}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-bottom:12px;}
+.qcard .qtext{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);margin-bottom:6px;}
+.qcard .qmeta{font-size:.78rem;color:var(--text-soft);margin-bottom:10px;}
+.qcard .qreveal-btn{font-size:.8rem;background:var(--parchment-dark);border:none;padding:6px 12px;border-radius:6px;color:var(--ink);font-weight:600;}
+.qcard .qdetail{display:none;margin-top:12px;border-top:1px dashed var(--line);padding-top:10px;}
+.qcard.open .qdetail{display:block;}
+.qdetail .row{margin-bottom:8px;}
+.qdetail .row b{color:var(--blood-bright);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:2px;}
+.level-toggle{display:flex;gap:6px;margin:10px 0;}
+.level-toggle button{font-size:.75rem;padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:#fff;}
+.level-toggle button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.level-block{display:none;font-size:.9rem;}
+.level-block.active{display:block;}
+.quiz-progress{height:8px;background:var(--parchment-dark);border-radius:6px;overflow:hidden;margin-bottom:18px;}
+.quiz-progress-bar{height:100%;background:var(--blood-bright);width:0%;transition:width .3s;}
+.quiz-q{font-family:var(--serif);font-size:1.15rem;margin-bottom:14px;}
+.quiz-opts{display:flex;flex-direction:column;gap:8px;}
+.quiz-opt{text-align:left;padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;background:#fff;font-size:.95rem;}
+.quiz-opt:hover{border-color:var(--ink);}
+.quiz-opt.correct{background:#e4f2e6;border-color:#4c9a5f;}
+.quiz-opt.incorrect{background:#f7e4e0;border-color:var(--blood-bright);}
+.quiz-opt[disabled]{cursor:default;}
+.quiz-explain{margin-top:12px;padding:12px 14px;background:var(--parchment);border-radius:8px;font-size:.9rem;display:none;}
+.quiz-explain.show{display:block;}
+.quiz-result{text-align:center;padding:30px 10px;}
+.quiz-result .score{font-family:var(--serif);font-size:3rem;color:var(--ink);}
+.quiz-result .weak-areas{text-align:left;max-width:420px;margin:16px auto;}
+.wvs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+@media(max-width:700px){.wvs{grid-template-columns:1fr;}}
+.wvs .weak{border:1.5px solid #c9776a;background:#fbeeeb;border-radius:8px;padding:14px;}
+.wvs .strong{border:1.5px solid #6a9c76;background:#eef6ef;border-radius:8px;padding:14px;}
+.wvs .lbl{font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+.wvs .weak .lbl{color:#a1392a;}
+.wvs .strong .lbl{color:#3f7a4c;}
+.lm-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:760px){.lm-grid{grid-template-columns:1fr;}}
+.lm-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;}
+.lm-card h3{font-size:1rem;color:var(--blood-bright);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:10px;}
+.lm-card ol,.lm-card ul{margin:0;padding-left:20px;font-size:.88rem;}
+.lm-card li{margin-bottom:6px;}
+.print-btn{margin-bottom:16px;}
+@media print{
+  .sidebar,.topbar,.print-btn,nav,.section-header .desc{display:none !important;}
+  main{padding:0;max-width:100%;}
+  .section{display:block !important;}
+  #section-lastminute{display:block !important;}
+  .section:not(#section-lastminute){display:none !important;}
+  body{background:#fff;}
+}
+.sixty{background:var(--ink);color:#f2efe2;border-radius:var(--radius);padding:20px 22px;margin:18px 0;}
+.sixty h3{color:var(--gold);font-size:.85rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;}
+.sixty p{font-size:.95rem;line-height:1.6;}
+footer.app-footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);color:var(--text-soft);font-size:.78rem;}
+.timeline{display:flex;flex-direction:column;gap:0;margin:16px 0;border-left:3px solid var(--gold);padding-left:18px;}
+.timeline .t-item{position:relative;padding:6px 0 18px 14px;}
+.timeline .t-item::before{content:'';position:absolute;left:-25px;top:9px;width:10px;height:10px;border-radius:50%;background:var(--blood-bright);border:2px solid var(--parchment);}
+.timeline .t-item .t-num{font-family:var(--mono);font-size:.72rem;color:var(--blood-bright);font-weight:700;}
+.timeline .t-item p{margin:2px 0 0 0;font-size:.92rem;}
+.jh-game{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;text-align:center;}
+.jh-quote{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--ink);min-height:90px;display:flex;align-items:center;justify-content:center;padding:0 10px;}
+.jh-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0;}
+@media(max-width:640px){.jh-opts{grid-template-columns:1fr 1fr;}}
+.jh-opts button{padding:12px 8px;border-radius:8px;border:1.5px solid var(--line);background:#fff;font-weight:600;font-size:.85rem;}
+.jh-opts button:hover{border-color:var(--ink);}
+.jh-opts button.correct{background:#e4f2e6;border-color:#4c9a5f;}
+.jh-opts button.incorrect{background:#f7e4e0;border-color:var(--blood-bright);}
+.jh-feedback{background:var(--parchment);border-radius:8px;padding:14px;margin-top:14px;font-size:.9rem;display:none;text-align:left;}
+.jh-feedback.show{display:block;}
+.jh-score{font-size:.85rem;color:var(--text-soft);margin-bottom:10px;}
+.change-grid{display:grid;grid-template-columns:1fr;gap:10px;}
+.change-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+.change-card .cc-head{width:100%;background:none;border:none;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.change-card .cc-name{font-family:var(--serif);font-size:1.1rem;color:var(--ink);font-weight:700;}
+.change-card .cc-meter{display:flex;gap:3px;align-items:center;}
+.change-card .cc-meter .dot{width:10px;height:10px;border-radius:50%;background:var(--line);}
+.change-card .cc-meter .dot.on{background:var(--blood-bright);}
+.change-card .cc-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.change-card.open .cc-body{max-height:700px;}
+.change-card .cc-inner{padding:0 18px 16px 18px;font-size:.92rem;}
+.change-card .cc-note{font-style:italic;color:var(--text-soft);font-size:.82rem;margin-top:8px;}
+.chain{display:flex;flex-direction:column;gap:0;}
+.chain-step{position:relative;}
+.chain-btn{width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;font-family:var(--serif);font-size:1.05rem;color:var(--ink);font-weight:700;}
+.chain-arrow{text-align:center;color:var(--gold);font-size:1.3rem;padding:2px 0;}
+.chain-body{max-height:0;overflow:hidden;transition:max-height .25s ease;background:var(--parchment);border-radius:0 0 var(--radius) var(--radius);}
+.chain-step.open .chain-body{max-height:600px;}
+.chain-step.open .chain-btn{border-radius:var(--radius) var(--radius) 0 0;}
+.chain-inner{padding:14px 18px;font-size:.92rem;}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:700px){.compare-grid{grid-template-columns:1fr;}}
+.compare-col{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;}
+.compare-col h3{text-align:center;background:var(--ink);color:#fff;margin:-18px -18px 14px -18px;padding:12px;border-radius:var(--radius) var(--radius) 0 0;}
+.compare-col ul{padding-left:20px;font-size:.9rem;}
+.compare-col li{margin-bottom:10px;}
+.compare-why{font-size:.85rem;color:var(--text-soft);font-style:italic;margin-top:4px;}
+@media(max-width:900px){
+  .app{flex-direction:column;}
+  .sidebar{display:none;}
+  .topbar{display:flex;}
+  main{padding:24px 18px 60px 18px;}
+  .section-header h1{font-size:1.5rem;}
+  .jh-opts{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div class="app">
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <div class="brand">
+      <img src="../images/mascot-teacher.png" alt="The Teacher Vault mascot" class="brand-mascot">
+      <div class="tv-name">The Teacher Vault</div>
+      <div class="tv-sub">QuickNotes</div>
+      <div class="play-title">Animal Farm</div>
+      <div class="play-sub">Everything you actually need for GCSE English Literature.</div>
+    </div>
+    <nav class="mainnav" id="navList" aria-label="Sections"></nav>
+    <div class="sidebar-footer">Free GCSE revision resource.<br>Works fully offline.</div>
+  </aside>
+
+  <div class="topbar">
+    <div class="tv-inline"><span>The Teacher Vault · QuickNotes</span>Animal Farm</div>
+    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobileDrawer">☰ Menu</button>
+  </div>
+  <div class="mobile-nav-drawer" id="mobileDrawer">
+    <div class="mobile-nav-panel">
+      <div class="brand">
+        <img src="../images/mascot-teacher.png" alt="The Teacher Vault mascot" class="brand-mascot">
+      <div class="tv-name">The Teacher Vault</div>
+        <div class="tv-sub">QuickNotes</div>
+        <div class="play-title">Animal Farm</div>
+      </div>
+      <nav class="mainnav" id="navListMobile" aria-label="Sections (mobile)"></nav>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <div id="sectionsRoot"></div>
+    <footer class="app-footer">The Teacher Vault · Animal Farm QuickNotes — a free GCSE English Literature revision resource. All explanatory content is original. George Orwell died in 1950, so his novella Animal Farm (1945) is now in the UK public domain — but quotations used here are still kept brief and used only for educational analysis, in the same house style as every other title in this series.</footer>
+  </main>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+const Store = {
+  available: (function(){ try{ const k='__tv_test__'; localStorage.setItem(k,'1'); localStorage.removeItem(k); return true; }catch(e){ return false; } })(),
+  get(key, fallback){ if(!Store.available) return fallback; try{ const v = localStorage.getItem('tv_af_'+key); return v===null?fallback:JSON.parse(v); }catch(e){ return fallback; } },
+  set(key, val){ if(!Store.available) return; try{ localStorage.setItem('tv_af_'+key, JSON.stringify(val)); }catch(e){} }
+};
+
+const SECTIONS = [
+  {id:'overview', label:'Overview'},
+  {id:'plot', label:'Plot'},
+  {id:'characters', label:'Characters'},
+  {id:'themes', label:'Themes'},
+  {id:'quotes', label:'Quote Vault'},
+  {id:'context', label:'Context'},
+  {id:'techniques', label:'Techniques'},
+  {id:'exam', label:'Exam'},
+  {id:'quiz', label:'Quiz'},
+  {id:'whosaidit', label:'Who Said It?'},
+  {id:'powertracker', label:'Power Tracker'},
+  {id:'commandments', label:'The Seven Commandments'},
+  {id:'compare', label:'Farm vs Revolution'},
+  {id:'lastminute', label:'Last Minute'}
+];
+
+/* ================= CHARACTERS ================= */
+const CHARACTERS = [
+{id:'napoleon', name:'Napoleon', role:'Large, fierce-looking Berkshire boar; becomes the farm\'s dictator',
+ who:"One of the two leading pigs after the Rebellion, initially working alongside Snowball but revealed over time to be ruthlessly ambitious and far more interested in personal control than in argument or persuasion.",
+ journey:"Says little at early meetings but works quietly to build his own power base, notably by secretly rearing a litter of puppies away from the other animals. He uses the ferocious dogs they become to drive Snowball off the farm, ends open debate and the Sunday Meetings, and gradually assumes total control — taking credit for the windmill, moving into the farmhouse, trading with neighbouring farmers, ordering executions, and eventually walking on two legs and socialising with humans as an equal.",
+ relationships:"Rival to Snowball, whom he removes by Chapter Five; relies heavily on Squealer to justify his decisions to the other animals; commands the guard dogs personally; ultimately treats Boxer, once devotedly loyal to him, as entirely expendable.",
+ themes:['Power and corruption','Totalitarianism','Propaganda','Fear and violence'],
+ quotes:["Comrade Napoleon","Napoleon is always right","he did not appear to be going to make a speech"],
+ message:"Orwell may use Napoleon's steady, calculated rise to dramatise how revolutionary leadership can curdle into personal dictatorship, though the character also works as a more general warning about the corrupting effect of unchecked power rather than a portrait of one specific individual alone.",
+ examArgs:[
+  "Napoleon's decision to rear the puppies in secret from early in the novella shows Orwell building his path to power gradually and deliberately, so that his later seizure of control feels inevitable rather than sudden.",
+  "Napoleon's growing list of titles and honours, and his eventual adoption of human habits such as walking on two legs, can be read as Orwell charting a precise, escalating loss of the farm's original revolutionary principles.",
+  "Because Napoleon rarely speaks directly and instead lets Squealer justify his actions, Orwell arguably presents real power as operating through control of information as much as through open argument."
+ ]},
+{id:'snowball', name:'Snowball', role:"Vigorous, idealistic pig; Napoleon's rival, driven off the farm",
+ who:"The other leading pig after the Rebellion, more inventive and a livelier speaker than Napoleon, who throws himself into organising the farm's committees and improving its efficiency.",
+ journey:"Works energetically to teach animals to read, organise farm labour and develop detailed plans for a windmill that he argues will dramatically reduce the animals' workload. He debates Napoleon openly at the Sunday Meetings and fights bravely in the Battle of the Cowshed, but is chased off the farm by Napoleon's dogs before a vote on the windmill can be held, and is never seen on the farm again — though Squealer continues to invoke him as a scapegoat for years afterwards.",
+ relationships:"Rival to Napoleon; his windmill plan is later claimed as Napoleon's own idea; blamed retrospectively for nearly every problem that subsequently occurs on the farm.",
+ themes:['Revolution and betrayal','Memory and history','Propaganda'],
+ quotes:["Snowball was Jones's agent","ran for his life","reduce their working week to three days"],
+ message:"Orwell may use Snowball's abrupt removal and later vilification to show how a revolution's more idealistic or genuinely reforming figures can be erased from the official record once a rival consolidates power, though the text also leaves real ambiguity about how trustworthy Snowball's own motives were.",
+ examArgs:[
+  "Snowball's expulsion, timed to prevent a vote he seemed likely to win, structurally demonstrates how quickly open political debate can be replaced by force once one leader controls violence.",
+  "The retrospective rewriting of Snowball's role, from co-leader of the Rebellion to secret traitor, allows Orwell to dramatise how totalitarian regimes construct convenient historical scapegoats.",
+  "Because Snowball never returns to defend himself, Orwell denies the reader any certainty about his true character, which arguably reinforces the novella's wider point that propaganda thrives on the absence of contradiction."
+ ]},
+{id:'squealer', name:'Squealer', role:"Small, persuasive pig; Napoleon's chief propagandist and spokesman",
+ who:"A brilliant talker able to turn almost any argument, however implausible, in Napoleon's favour, deployed repeatedly to explain away broken promises and growing inequality.",
+ journey:"Appears from early in the novella as Napoleon's mouthpiece, first explaining the pigs' claim to milk and windfall apples, then justifying the move into the farmhouse, the trade with humans, the altered commandments and, eventually, the executions. His persuasive skill only increases as the inequalities he must justify become more extreme.",
+ relationships:"A loyal instrument of Napoleon; frequently seen altering the painted Seven Commandments; treats the other animals' limited memory and literacy, especially the sheep's, as tools to be exploited.",
+ themes:['Propaganda','Language and control','Education and literacy'],
+ quotes:["Surely, comrades, you do not want Jones back?","in league with Jones from the very start","he could turn black into white"],
+ message:"Orwell may use Squealer to show that outright violence is not the only, or even the primary, tool of totalitarian control — persuasive language, selective memory and constant repetition can secure obedience just as effectively.",
+ examArgs:[
+  "Squealer's habitual rhetorical question, asking whether the animals want Jones back, reveals a specific propaganda technique: reframing any criticism of the pigs as a dangerous step toward the old regime.",
+  "Squealer's role in physically repainting the Seven Commandments dramatises Orwell's wider argument that control of written language and record-keeping is central to sustaining political power.",
+  "The narrator's comment that Squealer 'could turn black into white' presents him almost as a magician of language, suggesting Orwell sees skilled rhetoric as a genuinely dangerous political weapon."
+ ]},
+{id:'boxer', name:'Boxer', role:"Enormous, immensely strong cart-horse; the farm's most loyal worker",
+ who:"A hardworking, good-natured but not especially clever horse whose strength and unquestioning loyalty make him indispensable to the farm's labour, particularly the windmill.",
+ journey:"Throws himself into every task with his personal motto 'I will work harder', plays a key role defending the farm during the Battle of the Cowshed and rebuilding the windmill after the storm, and adopts 'Napoleon is always right' as a second motto once doubts might otherwise arise. When he finally collapses from overwork, the pigs arrange for him to be taken away in a van that the other animals belatedly realise belongs to a horse slaughterer.",
+ relationships:"Closest to Clover, who tries and fails to warn him as he is taken away; utterly loyal to Napoleon and the pigs' leadership, which he never seriously questions.",
+ themes:['Loyalty','Class and exploitation','Passivity and complicity'],
+ quotes:["I will work harder","Napoleon is always right","if Comrade Napoleon says it, it must be right"],
+ message:"Orwell may use Boxer to represent the exploited working class more broadly, whose loyalty and labour are essential to those in power but whose welfare is ultimately treated as disposable once they can no longer work.",
+ examArgs:[
+  "Boxer's two personal mottos trace a clear arc from admirable work ethic to dangerous, uncritical obedience, allowing Orwell to show how genuine virtues can be turned against those who hold them.",
+  "The pigs' claim that Boxer is being taken to hospital, when he is in fact sold to a knacker, makes his fate one of the novella's clearest and most devastating uses of dramatic irony.",
+  "Because Boxer never learns to read beyond a few letters, Orwell links his tragic exploitation directly to the theme of education and literacy as tools of both empowerment and control."
+ ]},
+{id:'benjamin', name:'Benjamin', role:"Cynical, long-lived donkey; the farm's most perceptive but least active animal",
+ who:"An intelligent animal who reads as well as any pig but rarely speaks, and who remains privately sceptical of the Rebellion's promises from the very beginning.",
+ journey:"Consistently predicts, in a resigned rather than hopeful tone, that donkeys live a long time and that things go on much the same whoever is nominally in charge. He shows genuine feeling only when Boxer is taken away, racing after the van and desperately trying to alert the other animals to what is really happening, though by then it is already too late.",
+ relationships:"Closest to Boxer, whom he ultimately cannot save; keeps his distance from the pigs' politics without ever actively resisting them.",
+ themes:['Passivity and complicity','Memory and history','Fear and violence'],
+ quotes:["donkeys live a long time","nothing ever changes"],
+ message:"Orwell may use Benjamin to suggest that clear-sighted understanding alone is not enough to prevent injustice, raising an uncomfortable question about whether cynical passivity is itself a form of complicity.",
+ examArgs:[
+  "Benjamin's refusal to either believe in the Rebellion's promises or actively oppose the pigs' abuses makes him a useful figure for essays on complicity, since Orwell suggests that seeing the truth is not the same as acting on it.",
+  "Benjamin's uncharacteristic urgency when Boxer is taken to the knacker's van marks one of the novella's most emotionally significant moments, showing that his detachment has limits.",
+  "Because Benjamin can read fluently throughout the novella, Orwell uses him to demonstrate that literacy alone does not guarantee resistance to injustice without the will to act on what one reads."
+ ]},
+{id:'oldmajor', name:'Old Major', role:"Prize-winning boar whose speech inspires the Rebellion",
+ who:"An elderly, highly respected pig who, shortly before his death, calls a meeting to share a dream of a world without human oppression and to lay out the founding principles of what becomes Animalism.",
+ journey:"Delivers a single powerful speech early in the novella, describing the animals' exploitation under Man and urging rebellion, before teaching the assembled animals the song 'Beasts of England'. He dies naturally only days later, but his ideas are developed by Snowball, Napoleon and Squealer into a full political philosophy.",
+ relationships:"An inspirational figure to every animal on the farm, especially Snowball and Napoleon, who each go on to interpret and reshape his ideas very differently.",
+ themes:['Revolution and betrayal','Utopia vs reality','Memory and history'],
+ quotes:["Man is the only creature that consumes without producing","All men are enemies. All animals are comrades","Beasts of England"],
+ message:"Orwell may use Old Major to present the genuine, appealing logic of the original revolutionary ideal, so that the novella's later betrayal of his principles feels like a real loss rather than the inevitable failure of a naive fantasy.",
+ examArgs:[
+  "Old Major's speech gives the animals' rebellion a clear, reasoned moral basis, which makes its later corruption by the pigs feel like a betrayal of genuine ideals rather than simply the exposure of a flawed idea.",
+  "Because Old Major dies before the Rebellion actually happens, Orwell ensures his vision is never tested by him personally, leaving it open for others to interpret, and ultimately distort, in his name.",
+  "The song 'Beasts of England', taught by Old Major and later suppressed by Napoleon, can be tracked across the novella as a symbol of how far the farm has drifted from its founding principles."
+ ]},
+{id:'mollie', name:'Mollie', role:"Vain, pretty white mare fond of ribbons and sugar",
+ who:"A self-interested animal largely uninterested in politics or principle, who values her own comfort and appearance far more than the Rebellion's ideals.",
+ journey:"Asks self-centred questions at Old Major's meeting about whether ribbons and sugar will still be allowed after the Rebellion, struggles to adapt to a life of shared labour, and eventually disappears from the farm entirely, later reportedly seen pulling a smart cart and being fed sugar by a human owner.",
+ relationships:"Largely apart from the other animals' political life; her departure is barely mourned and quickly explained away by the pigs.",
+ themes:['Utopia vs reality','Loyalty'],
+ quotes:["will there still be sugar?","ribbons"],
+ message:"Orwell may use Mollie as an early, low-stakes sign that not every animal genuinely embraces the Rebellion's ideals, complicating any reading of the farm's early period as one of perfect, universal commitment to equality.",
+ examArgs:[
+  "Mollie's early questions about sugar and ribbons introduce doubt about the Rebellion's universal appeal well before Napoleon's corruption becomes visible, suggesting self-interest was present from the very beginning.",
+  "Mollie's quiet departure, and the pigs' dismissive response to it, can be read as an early example of how inconvenient truths are simply left unaddressed on the farm rather than confronted."
+ ]},
+{id:'sheep', name:'The Sheep', role:"Large flock of sheep, treated collectively rather than as individuals",
+ who:"An undifferentiated group whose main function is bleating slogans, most famously 'Four legs good, two legs bad', frequently at moments that conveniently drown out dissenting voices or difficult questions.",
+ journey:"Are trained by Snowball to reduce Animalism to a simple maxim early in the novella, and are later retrained by Squealer to bleat the revised slogan 'Four legs good, two legs better' just as the pigs themselves begin walking on two legs.",
+ relationships:"Used repeatedly by the pigs to interrupt debate at crucial moments, including during the confrontation that leads to Snowball's expulsion.",
+ themes:['Propaganda','Language and control','Passivity and complicity'],
+ quotes:["Four legs good, two legs bad","Four legs good, two legs better"],
+ message:"Orwell may use the sheep to represent uncritical mass repetition of political slogans, showing how simplified, repeated language can crowd out genuine debate and make manipulation easier to achieve.",
+ examArgs:[
+  "The sheep's chanting is repeatedly timed to interrupt genuine debate, most notably during the confrontation between Snowball and Napoleon, making them a structural tool of propaganda rather than simply a comic detail.",
+  "The seamless replacement of 'two legs bad' with 'two legs better' demonstrates Orwell's argument that repeated slogans can be updated to justify almost any new position, so long as they continue to sound familiar and simple.",
+  "Because the sheep never individually think or speak, Orwell uses them to dramatise the risks of political passivity taken to its most extreme, uncritical form."
+ ]},
+{id:'clover', name:'Clover', role:"Motherly, hardworking cart-horse; Boxer's close companion",
+ who:"A gentle, broadly loyal mare who nonetheless retains a faint, troubled memory of the Rebellion's original principles, sensing that the farm has changed even when she cannot always articulate exactly how.",
+ journey:"Supports Boxer devotedly throughout his years of labour, tries in vain to warn him as the knacker's van takes him away, and is among the animals who look on, uncertain and afraid, at the novella's final scene as the pigs and humans become indistinguishable.",
+ relationships:"Closest companion to Boxer, whose death affects her profoundly; occasionally attempts, without real success, to compare the farm's current rules to her memory of the original commandments.",
+ themes:['Memory and history','Loyalty','Passivity and complicity'],
+ quotes:["Boxer!","this was not what we had hoped for"],
+ message:"Orwell may use Clover's dim, uncertain sense that something has gone wrong, without the confidence or literacy to prove it, to dramatise how the deliberate erosion of memory and record-keeping disarms even loyal, well-intentioned animals.",
+ examArgs:[
+  "Clover's attempt to check the actual wording of the commandments against her memory of them, despite being unable to read fully herself, highlights Orwell's wider theme of literacy as a form of political power.",
+  "Clover's helpless response to Boxer's removal gives the novella's central act of betrayal genuine emotional weight, rather than presenting it as only an abstract political point."
+ ]}
+];
+
+/* ================= THEMES ================= */
+const THEMES = [
+{name:'Power and corruption', explanation:"The novella traces how power, once concentrated in the hands of a few, tends to corrupt those who hold it, regardless of the noble principles used to justify seizing it in the first place.",
+ where:"Napoleon's use of the guard dogs to remove Snowball; the pigs' steady accumulation of privileges, from milk and apples through to the farmhouse and human clothing.",
+ characters:['Napoleon','Snowball','Squealer'],
+ quotes:["Napoleon is always right","Comrade Napoleon"],
+ message:"Orwell may present power as corrupting almost inevitably once it becomes concentrated and unaccountable, rather than suggesting any single leader is uniquely evil from the outset.",
+ context:"Orwell wrote the novella partly in response to what he saw as the betrayal of socialist ideals under Stalin's Soviet Union.",
+ thesis:["Orwell presents power as something that corrupts gradually rather than suddenly, tracing each small increase in the pigs' privilege as a further step away from the farm's founding equality.","The transformation of Napoleon from committee member to feared dictator allows Orwell to dramatise how quickly unaccountable power can escalate once initial checks, such as open debate, are removed."]},
+{name:'Propaganda', explanation:"The deliberate use of persuasive, often misleading language and selective information to control what the animals believe and to justify the pigs' growing privileges.",
+ where:"Squealer's repeated justifications for inequality; the altered Seven Commandments; the sheep's slogans drowning out debate.",
+ characters:['Squealer','Napoleon','The Sheep'],
+ quotes:["Surely, comrades, you do not want Jones back?"],
+ message:"Orwell may suggest that propaganda succeeds less through outright lies than through constant repetition, selective framing, and the exploitation of animals too trusting, forgetful or afraid to challenge it.",
+ context:"Orwell had direct experience of wartime propaganda through his work for the BBC, which likely shaped his interest in how language can be used to manipulate.",
+ thesis:["Orwell uses Squealer's shifting justifications to demonstrate that propaganda need not be internally consistent, only persistently and confidently repeated, in order to succeed.","The novella presents propaganda and fear as working together, since Squealer's persuasive arguments are always backed, ultimately, by the implicit threat of Napoleon's dogs."]},
+{name:'Education and literacy', explanation:"The novella links the animals' differing levels of literacy directly to their vulnerability to manipulation, since only a few animals can read well enough to check the pigs' claims against the original commandments.",
+ where:"The pigs teach themselves to read fluently while most other animals learn only a handful of letters; the sheep cannot read at all and rely entirely on slogans.",
+ characters:['Squealer','Benjamin','Boxer','The Sheep'],
+ quotes:[],
+ message:"Orwell may suggest that unequal access to literacy and education is one of the clearest mechanisms by which the pigs entrench and protect their growing power.",
+ context:"Widespread literacy and universal education were significant, relatively recent achievements in early twentieth-century Britain, making their absence a pointed detail within the novella's allegory.",
+ thesis:["Orwell presents literacy as a form of political power, since only the pigs and a very small number of other animals can meaningfully verify whether the farm's rules have actually changed.","Boxer's limited ability to read beyond a few letters directly enables his tragic willingness to trust the pigs' assurances about his own welfare without question."]},
+{name:'Class and exploitation', explanation:"Even after the Rebellion abolishes human ownership, a new hierarchy quickly forms between the ruling pigs and the labouring animals, echoing the very class exploitation the Rebellion was meant to end.",
+ where:"The pigs' claim to milk, apples and eventually the farmhouse; Boxer's relentless labour and ultimate abandonment once he can no longer work.",
+ characters:['Napoleon','Boxer','Squealer'],
+ quotes:["I will work harder"],
+ message:"Orwell may present the recreation of class exploitation after the Rebellion as evidence that removing one ruling class does not automatically prevent the formation of another, particularly without genuine, sustained accountability.",
+ context:"Orwell's own experiences of poverty and his interest in working-class life shaped his sensitivity to exploitation in both real and allegorical political systems.",
+ thesis:["Orwell structures the novella so that the animals' new exploitation under the pigs closely mirrors their old exploitation under Mr Jones, suggesting the identity of the ruling class matters less than the structure of unaccountable power itself.","Boxer's fate demonstrates that a system built on the language of equality can still exploit its most loyal, hardworking members just as thoroughly as the system it replaced."]},
+{name:'Fear and violence', explanation:"Force and intimidation, principally through Napoleon's guard dogs and the public executions, become essential tools for maintaining the pigs' authority once persuasion alone is not enough.",
+ where:"The dogs driving Snowball off the farm; the executions of animals who supposedly confess to treachery in league with Snowball.",
+ characters:['Napoleon'],
+ quotes:[],
+ message:"Orwell may suggest that even a regime dependent on persuasive language ultimately requires the threat, and eventually the use, of violence to secure genuine obedience.",
+ context:"The show trials and executions of political opponents under Stalin's regime provide a close real-world parallel to the novella's confessions and executions.",
+ thesis:["Orwell presents fear as propaganda's necessary partner, since Squealer's persuasive language is always backed by the animals' awareness of what Napoleon's dogs are capable of.","The executions mark a decisive structural turning point in the novella, after which open dissent effectively disappears from the farm entirely."]},
+{name:'Memory and history', explanation:"The pigs repeatedly rewrite the farm's rules and its past, exploiting the other animals' poor memory and limited literacy to prevent them from challenging the present.",
+ where:"The steady alteration of the Seven Commandments; Squealer's shifting accounts of Snowball's role in the Rebellion and the Battle of the Cowshed.",
+ characters:['Squealer','Clover','Benjamin'],
+ quotes:["Snowball was Jones's agent"],
+ message:"Orwell may argue that controlling a society's understanding of its own past is one of the most powerful tools available to those seeking to control its present and future.",
+ context:"The systematic falsification of official Soviet records and photographs under Stalin is widely cited as a close real-world parallel to this theme.",
+ thesis:["Orwell demonstrates that historical memory, once it can be rewritten by those in power, ceases to function as a meaningful check on that power at all.","Clover's inability to confirm whether the commandments have really changed, despite her vague sense that something is wrong, shows how the erosion of reliable memory disarms even animals who are not actively deceived by propaganda."]},
+{name:'Revolution and betrayal', explanation:"The novella traces the gap between the genuinely inspiring ideals of Old Major's original speech and the eventual betrayal of nearly every one of those ideals by the pigs who claim to uphold them.",
+ where:"Old Major's vision of equality and shared labour in Chapter One; its systematic reversal by the novella's end.",
+ characters:['Old Major','Napoleon','Snowball'],
+ quotes:["All men are enemies. All animals are comrades"],
+ message:"Orwell may use the widening gap between Old Major's original vision and the farm's final state to suggest that revolutions are most vulnerable not at the moment of overthrow, but in the unglamorous, gradual process of consolidating power afterwards.",
+ context:"Orwell was a committed democratic socialist who supported the original aims of the Russian Revolution while remaining sharply critical of what he saw as its betrayal under Stalin.",
+ thesis:["Orwell structures the novella's plot as a slow, deliberate betrayal of revolutionary ideals rather than a single dramatic reversal, making the corruption feel disturbingly plausible rather than simple morality-tale villainy.","The final image of pigs and humans becoming indistinguishable completes the novella's argument that a revolution can, without constant vigilance, simply reproduce the system it originally overthrew."]},
+{name:'Language and control', explanation:"Control over language, from simplified slogans to the wording of the commandments themselves, proves to be one of the pigs' most effective instruments of political control.",
+ where:"The reduction of Animalism to 'Four legs good, two legs bad'; Squealer's careful, persuasive rewording of the farm's rules.",
+ characters:['Squealer','The Sheep'],
+ quotes:["Four legs good, two legs bad"],
+ message:"Orwell may argue that political power depends as much on controlling how people talk and think about events as it does on controlling their physical actions.",
+ context:"Orwell's later essay 'Politics and the English Language' develops closely related concerns about the relationship between imprecise language and political dishonesty.",
+ thesis:["Orwell uses the shrinking and simplification of political language across the novella, from Old Major's reasoned speech to the sheep's single slogan, to show how complexity is deliberately eliminated to prevent genuine critical thought.","The physical alteration of the painted commandments dramatises, in a uniquely visual way, Orwell's wider argument that whoever controls a society's language controls its version of the truth."]},
+{name:'Utopia vs reality', explanation:"The optimistic, idealistic vision of the Rebellion's early days is steadily and painfully replaced by a reality little better, and in some ways worse, than the animals' life under Mr Jones.",
+ where:"The early harvest, worked with genuine collective enthusiasm; the novella's final scene, where pigs and humans are indistinguishable.",
+ characters:['Old Major','Boxer','Clover'],
+ quotes:[],
+ message:"Orwell may use the widening gap between the farm's utopian promise and its grim eventual reality to warn against assuming that good intentions alone are sufficient to guarantee a just and lasting political outcome.",
+ context:"The novella belongs to a long tradition of utopian and dystopian fiction that tests ideal political visions against realistic, often disappointing, behaviour.",
+ thesis:["Orwell deliberately allows the reader to witness the Rebellion's genuine early hope so that its later betrayal feels like a real loss rather than an inevitable failure the reader expected from the outset.","The final scene's collapse of the pig/human distinction functions as the novella's bleakest possible answer to its own opening utopian promise."]},
+{name:'Loyalty', explanation:"Several animals, above all Boxer, display a loyalty to the farm's leadership so complete that it prevents them from questioning even the most damaging decisions.",
+ where:"Boxer's adoption of 'Napoleon is always right' as a personal motto; Clover's continued devotion despite her private unease.",
+ characters:['Boxer','Clover'],
+ quotes:["Napoleon is always right"],
+ message:"Orwell may present loyalty as a genuine virtue that nonetheless becomes dangerous once it is directed uncritically toward a leader rather than toward a set of shared, examined principles.",
+ context:"The novella's portrayal of loyalty without scrutiny closely parallels totalitarian regimes' reliance on absolute, unquestioning devotion from their populations.",
+ thesis:["Orwell uses Boxer's loyalty to demonstrate that admirable personal virtues, such as hard work and trust, can be exploited just as effectively as fear when directed toward an unaccountable leader.","The contrast between Boxer's unwavering loyalty and Benjamin's detached scepticism allows Orwell to explore two very different, and equally limited, responses to living under an unjust system."]},
+{name:'Passivity and complicity', explanation:"Several animals, particularly Benjamin, understand more about what is really happening on the farm than they admit, raising uncomfortable questions about the moral cost of remaining silent.",
+ where:"Benjamin's persistent refusal to challenge the pigs directly despite privately recognising their manipulation.",
+ characters:['Benjamin','Clover'],
+ quotes:["nothing ever changes"],
+ message:"Orwell may use Benjamin's passivity to suggest that clear understanding of injustice, without any accompanying willingness to act, can itself become a form of complicity in allowing that injustice to continue.",
+ context:"Orwell's own political writing frequently criticised intellectuals and observers who recognised totalitarian abuses but failed to oppose them meaningfully.",
+ thesis:["Orwell presents Benjamin's cynicism as a genuine warning rather than simple wisdom, since his correct understanding of events never translates into any effective resistance to them.","Benjamin's sudden, desperate urgency when Boxer is taken away suggests that passivity has real limits, but that by the time those limits are reached, it is often already too late to act."]},
+{name:'Totalitarianism', explanation:"The novella depicts the machinery of a totalitarian system in miniature: a single all-powerful leader, a loyal propaganda apparatus, an armed enforcement wing, and a controlled, rewritten version of history.",
+ where:"Napoleon's total control by the novella's final chapters, enforced by his dogs and explained by Squealer, with dissent effectively eliminated.",
+ characters:['Napoleon','Squealer'],
+ quotes:[],
+ message:"Orwell may intend the farm's final state as a compact, generalisable model of how totalitarian systems function, rather than a portrait limited only to Stalin's Soviet Union specifically.",
+ context:"Orwell's wider body of work, including Nineteen Eighty-Four, shows a sustained personal concern with the mechanisms and dangers of totalitarian government.",
+ thesis:["Orwell constructs the farm's final political structure as a working model of totalitarianism, in which propaganda, fear, and control of history operate together rather than independently.","The novella's brevity and simplicity, contrasted with the scale of the political system it depicts, allow Orwell to expose totalitarianism's core mechanisms with unusual clarity."]}
+];
+
+/* ================= TECHNIQUES ================= */
+const TECHNIQUES = [
+{name:'Allegory', def:"A narrative in which characters, objects and events consistently represent a separate, deeper layer of meaning, often historical or political.", example:"The farm's entire political trajectory, from rebellion through propaganda to dictatorship, closely mirrors real events of the Russian Revolution and its aftermath.", effect:"Allows Orwell to critique a specific, real political history while also making a more general point about revolution and power that extends beyond that one historical case.", howto:"Always identify both the literal event on the farm and its likely allegorical meaning, but avoid reducing every detail to a single fixed real-world equivalent."},
+{name:'Anthropomorphism', def:"Giving animals human characteristics, behaviours, speech and motivations.", example:"The pigs hold committee meetings, debate policy, and eventually learn to walk on two legs and wear clothes.", effect:"Creates a satirical distance that allows Orwell to critique human political behaviour without directly naming real individuals or nations.", howto:"Consider what is gained by using animals rather than human characters at a specific moment, particularly where an animal's species-typical behaviour reinforces the political point being made."},
+{name:'Satire', def:"The use of humour, exaggeration or irony to criticise real people, institutions or events.", example:"The pigs' escalating list of self-granted privileges, always accompanied by an elaborate justification from Squealer.", effect:"Makes serious political criticism more accessible and memorable, while also exposing the absurdity of the pigs' hypocrisy.", howto:"Identify the specific target being satirised and explain what particular flaw or hypocrisy the satire exposes."},
+{name:'Dramatic and situational irony', def:"A gap between what characters believe or expect and what the reader understands to be true.", example:"The animals are told Boxer is being taken to hospital, when the reader can identify from the van's markings that he is being sold to a slaughterer.", effect:"Creates a devastating emotional impact by allowing the reader to understand the tragedy of Boxer's fate before the animals themselves realise it.", howto:"State clearly what the reader understands that the characters do not, and explain how that gap shapes the reader's emotional and critical response."},
+{name:'Symbolism', def:"An object, animal or event that represents a deeper political or thematic idea.", example:"The windmill symbolises both genuine progress and the pigs' capacity to redirect the fruits of the animals' labour toward their own goals.", effect:"Condenses a complex political argument into a single, memorable and recurring image the reader can track across the novella.", howto:"Explain what the symbol represents and trace how its meaning develops or shifts across different points in the story."},
+{name:'Repetition and sloganeering', def:"The deliberate, repeated use of simple phrases to reinforce a political message and discourage independent thought.", example:"The sheep's chant of 'Four legs good, two legs bad', repeated at moments that conveniently disrupt genuine debate.", effect:"Demonstrates how simplified, repeated language can replace, rather than support, genuine political reasoning.", howto:"Note both the content of the repeated phrase and the specific moment at which it is deployed, since timing is often as significant as wording."},
+{name:'Euphemism', def:"Softened or misleading language used to disguise an uncomfortable or damaging truth.", example:"Squealer's explanations for the pigs' privileges and for Boxer's removal consistently avoid describing what is actually happening in plain terms.", effect:"Allows the pigs to commit or excuse serious wrongdoing while avoiding language that would make that wrongdoing obvious to the other animals.", howto:"Identify the plain, literal truth being obscured, then explain precisely how the chosen wording disguises or softens it."},
+{name:'Foreshadowing', def:"Hints or clues that anticipate later events.", example:"The early, apparently minor privileges the pigs grant themselves, such as the milk and apples, anticipate their much greater privileges by the novella's end.", effect:"Builds a slow, mounting sense of unease well before the pigs' corruption becomes fully explicit.", howto:"Identify the later event being anticipated and explain how the earlier detail prepares the reader to expect it."},
+{name:'Cyclical structure', def:"A narrative structure that returns to, or closely echoes, its starting point, suggesting repetition rather than genuine progress.", example:"The novella's final scene, in which pigs and humans become indistinguishable, echoes the very oppression the Rebellion originally set out to end.", effect:"Suggests that removing one ruling group does not, on its own, guarantee lasting change if the underlying structures of power remain unchallenged.", howto:"Compare the novella's opening and closing situations directly, and explain what has, and has not, genuinely changed between them."},
+{name:'Characterisation through species', def:"Using an animal's real-world characteristics or reputation to shape how a character is understood.", example:"Boxer's status as an enormous, powerful but not especially clever cart-horse directly shapes his role as a loyal, exploited labourer.", effect:"Allows Orwell to communicate a character's role and vulnerabilities efficiently, using the reader's existing associations with that species.", howto:"Explain how a specific animal's real-world traits or reputation reinforce the political or social role Orwell gives that character."},
+{name:'Rhetorical questions', def:"Questions asked for persuasive effect rather than to invite a genuine answer.", example:"Squealer's repeated question asking whether the animals want Jones back, used whenever the pigs' privileges are challenged.", effect:"Shuts down genuine debate by reframing any criticism as a dangerously naive step toward the old regime.", howto:"Explain what the rhetorical question implies without stating it directly, and how that implication discourages the listener from continuing to object."},
+{name:'Fable and "fairy story" framing', def:"Orwell's own subtitle for the novella, positioning it within the tradition of simple, moral animal stories even while addressing serious political history.", example:"The novella's short, plain chapters and clear animal characters echo traditional fable conventions, even as its content addresses real twentieth-century politics.", effect:"The deceptively simple, accessible form makes the novella's serious political critique more widely readable, while also making its darker final message more unsettling by contrast.", howto:"Consider how the fable form's usual simplicity and reassurance is deliberately undercut by the novella's genuinely bleak conclusion."},
+{name:'Narrative voice and tone', def:"The novella is narrated in a calm, largely detached, matter-of-fact voice, even when describing disturbing events.", example:"The executions and Boxer's removal are described in the same measured, understated tone as the farm's everyday routines.", effect:"The contrast between the narrator's calm tone and the disturbing content described can make certain events feel even more shocking to the reader.", howto:"Identify a moment where tone and content seem mismatched, and explain what effect that mismatch has on the reader."},
+{name:'Structural escalation', def:"The novella's chapter-by-chapter structure traces a steady, escalating pattern of small inequalities compounding into total dictatorship.", example:"Each chapter typically introduces a further erosion of the farm's original principles, from the pigs' claim to milk and apples through to the final merging of pigs and humans.", effect:"Makes the farm's eventual dictatorship feel like the plausible, cumulative result of many small steps rather than a single dramatic seizure of power.", howto:"Track a specific change (a commandment, a privilege, a piece of rhetoric) across multiple chapters to show how Orwell builds his argument incrementally."}
+];
+
+/* ================= QUOTE VAULT ================= */
+const QUOTES = [
+{text:"Man is the only creature that consumes without producing", speaker:"Old Major", act:"1", characters:['Old Major'], themes:['Revolution and betrayal','Class and exploitation'],
+ meaning:"Old Major argues that humans exploit animals' labour while contributing nothing productive themselves.",
+ technique:"Absolute, generalising claim; simple declarative sentence establishing a clear political grievance.",
+ solid:"This line gives the animals a simple, powerful reason to resent human control, since it presents Man as purely exploitative.",
+ deep:"The absolute claim, allowing no exception, is rhetorically powerful but also simplifies a genuinely complex relationship, foreshadowing the kind of oversimplified political language the pigs will later exploit for their own purposes.",
+ context:"Reflects Orwell's own socialist critique of capitalist exploitation of labour, echoing Marxist ideas about the extraction of value from workers.",
+ useFor:"Essays on revolution, exploitation, or the persuasive power of Old Major's founding rhetoric."},
+{text:"All men are enemies. All animals are comrades", speaker:"Old Major", act:"1", characters:['Old Major'], themes:['Revolution and betrayal','Utopia vs reality'],
+ meaning:"Old Major establishes a simple, absolute division between exploitative humans and united animals.",
+ technique:"Parallel, antithetical sentence structure; absolute categorisation.",
+ solid:"The stark contrast between 'enemies' and 'comrades' makes Old Major's political message simple and easy for every animal to remember.",
+ deep:"The neat, binary structure of this founding principle proves unable to survive the novella's later moral complexity, since the pigs eventually become functionally indistinguishable from the human enemies this line describes, exposing the danger of oversimplified political slogans.",
+ context:"Reflects the language of international socialist solidarity, in which 'comrade' functioned as a term of political unity across class lines.",
+ useFor:"Essays on Old Major, revolutionary ideals, or the novella's cyclical structure."},
+{text:"Four legs good, two legs bad", speaker:"The Sheep", act:"3", characters:['The Sheep','Snowball'], themes:['Propaganda','Language and control'],
+ meaning:"A simplified summary of Animalism, designed by Snowball to be memorable even for the least intelligent animals.",
+ technique:"Simple, rhyme-like repetition; reductive political slogan.",
+ solid:"This short, catchy phrase makes it easy for even the sheep to repeat, but it reduces a complex philosophy into something almost meaningless.",
+ deep:"The sheep's mechanical repetition of this slogan, especially when timed to interrupt genuine political debate, demonstrates Orwell's argument that simplified language can actively prevent, rather than support, critical thought.",
+ context:"Reflects Orwell's wider concern, developed further in his essay 'Politics and the English Language', about the political dangers of simplified or imprecise language.",
+ useFor:"Essays on propaganda, the sheep, or language and control."},
+{text:"I will work harder", speaker:"Boxer", act:"3", characters:['Boxer'], themes:['Loyalty','Class and exploitation'],
+ meaning:"Boxer's personal response to any setback or difficulty on the farm, reflecting his complete dedication to hard work.",
+ technique:"Short, simple, repeated personal motto.",
+ solid:"This motto shows how hardworking and loyal Boxer is, but also how easily his dedication can be relied upon and exploited.",
+ deep:"The motto's simplicity mirrors Boxer's own limited capacity for critical reflection, so that his admirable work ethic becomes, tragically, the very quality that makes his exploitation possible.",
+ context:"Can be read as reflecting the ideal of the tireless 'model worker', a figure heavily promoted in Soviet propaganda of the period.",
+ useFor:"Essays on Boxer, exploitation, or loyalty."},
+{text:"All animals are equal", speaker:"The Seven Commandments", act:"2", characters:['Snowball','Napoleon','Squealer'], themes:['Revolution and betrayal','Utopia vs reality'],
+ meaning:"The final and most important of the Seven Commandments, summarising the Rebellion's core promise.",
+ technique:"Simple, absolute declarative statement.",
+ solid:"This commandment states the Rebellion's most important promise in the simplest possible terms.",
+ deep:"Positioned as the final and seemingly most fundamental commandment, its later, ironic amendment makes it the clearest single marker of how far the farm has strayed from its founding principles by the novella's end.",
+ context:"Echoes the language of formal political declarations of equal rights and citizenship.",
+ useFor:"Essays on the Seven Commandments, equality, or the novella's cyclical structure."},
+{text:"Napoleon is always right", speaker:"Boxer", act:"5", characters:['Boxer','Napoleon'], themes:['Loyalty','Propaganda'],
+ meaning:"Boxer's second personal motto, adopted once doubts about Napoleon's leadership might otherwise arise.",
+ technique:"Absolute personal declaration functioning almost as a private slogan.",
+ solid:"This shows Boxer has stopped questioning Napoleon completely, trusting him without needing any actual evidence.",
+ deep:"The shift from Boxer's first motto about effort to this second motto about blind trust in leadership marks a significant and troubling escalation, showing how personal virtue can be redirected into political obedience.",
+ context:"Mirrors the uncritical personal devotion demanded by, and often genuinely offered to, totalitarian leaders in twentieth-century regimes.",
+ useFor:"Essays on Boxer, loyalty, or the mechanics of totalitarian obedience."},
+{text:"Surely, comrades, you do not want Jones back?", speaker:"Squealer", act:"5", characters:['Squealer'], themes:['Propaganda','Fear and violence'],
+ meaning:"Squealer's standard rhetorical defence whenever the pigs' growing privileges are questioned by other animals.",
+ technique:"Rhetorical question; false dilemma implying only two possible outcomes.",
+ solid:"This question makes any criticism of the pigs sound as if it would bring back Mr Jones, which stops the other animals arguing further.",
+ deep:"The false dilemma embedded in this question collapses a wide range of possible outcomes into just two extremes, illustrating how propaganda narrows political imagination by making dissent feel dangerously irresponsible rather than reasonable.",
+ context:"Echoes real propaganda techniques used to suppress internal criticism by framing it as disloyalty during a time of ongoing external threat.",
+ useFor:"Essays on Squealer, propaganda, or rhetorical technique."},
+{text:"Snowball was Jones's agent", speaker:"Squealer", act:"5", characters:['Squealer','Snowball'], themes:['Memory and history','Propaganda'],
+ meaning:"Squealer's retrospective claim that Snowball secretly worked for the farm's former human owner throughout the Rebellion.",
+ technique:"Historical revisionism presented as established fact.",
+ solid:"This shows the pigs can simply say something happened, even if it clearly contradicts what everyone remembers, and expect to be believed.",
+ deep:"By retroactively rewriting Snowball's entire role in the Rebellion, Orwell demonstrates that control over a community's shared history is as politically powerful as control over its present actions, since it removes any past standard against which current leadership can be judged.",
+ context:"Closely parallels the systematic rewriting of Soviet official history to remove or vilify figures who had fallen from favour, notably Trotsky.",
+ useFor:"Essays on memory and history, Squealer, or propaganda."},
+{text:"No animal shall sleep in a bed", speaker:"The Seven Commandments", act:"2", characters:['Snowball','Napoleon'], themes:['Revolution and betrayal'],
+ meaning:"One of the original Seven Commandments, reflecting the Rebellion's early rejection of comfortable human habits.",
+ technique:"Short, absolute prohibition.",
+ solid:"This rule shows the animals originally wanted to live simply and avoid copying human luxuries.",
+ deep:"The commandment's later alteration to permit beds 'with sheets' provides one of the clearest, most trackable examples of the gradual, incremental erosion of the Rebellion's founding principles.",
+ context:"Reflects a broader early revolutionary rejection of the comforts and habits associated with the previous ruling class.",
+ useFor:"Essays on the Seven Commandments, or gradual corruption."},
+{text:"No animal shall sleep in a bed with sheets", speaker:"The Seven Commandments (altered)", act:"6", characters:['Squealer','Napoleon'], themes:['Language and control','Revolution and betrayal'],
+ meaning:"The pigs' self-serving alteration of the original commandment once they have moved into the farmhouse and begun sleeping in beds.",
+ technique:"Minimal textual addition creating a significant practical loophole.",
+ solid:"Adding just two words lets the pigs keep sleeping in beds while pretending they haven't broken the rule.",
+ deep:"The minimal, almost invisible nature of this alteration demonstrates Orwell's precise understanding of how political language can be manipulated through small, easily overlooked changes rather than dramatic rewrites.",
+ context:"Mirrors the way official language can be subtly revised to permit behaviour that would otherwise be recognised as a clear breach of stated principle.",
+ useFor:"Essays on the Seven Commandments, language and control, or Squealer's methods."},
+{text:"No animal shall drink alcohol", speaker:"The Seven Commandments", act:"2", characters:['Snowball','Napoleon'], themes:['Revolution and betrayal'],
+ meaning:"An original commandment reflecting the Rebellion's rejection of another human vice.",
+ technique:"Short, absolute prohibition.",
+ solid:"This rule shows the animals wanted to avoid human bad habits like drinking.",
+ deep:"Its later amendment to allow drinking 'to excess' follows the same pattern as the bed commandment, showing Orwell building a consistent, recognisable method of corruption across multiple commandments rather than a single isolated example.",
+ context:"Reflects genuine early Soviet-era rhetoric around discipline and the rejection of perceived bourgeois vices.",
+ useFor:"Essays on the Seven Commandments or gradual corruption."},
+{text:"No animal shall drink alcohol to excess", speaker:"The Seven Commandments (altered)", act:"8", characters:['Squealer','Napoleon'], themes:['Language and control'],
+ meaning:"The pigs' altered version of the alcohol commandment, following Napoleon's own drunken behaviour.",
+ technique:"Vague qualifying phrase creating deliberate ambiguity.",
+ solid:"Adding 'to excess' means the pigs can drink as much as they like and just claim it wasn't excessive.",
+ deep:"The vagueness of 'excess' as a standard, left entirely to the pigs' own judgement, shows how imprecise language can be weaponised to make a rule effectively unenforceable against those in power.",
+ context:"Can be read as echoing the private excesses enjoyed by political elites even in regimes publicly committed to austerity and equality.",
+ useFor:"Essays on language and control, or the Seven Commandments."},
+{text:"No animal shall kill any other animal", speaker:"The Seven Commandments", act:"2", characters:['Snowball','Napoleon'], themes:['Revolution and betrayal'],
+ meaning:"An original commandment establishing the animals' fundamental rejection of violence between each other.",
+ technique:"Short, absolute prohibition.",
+ solid:"This rule shows the animals originally believed no animal should ever kill another.",
+ deep:"Positioned among the founding commandments, its later qualification directly follows the novella's first executions, making the connection between violence and linguistic revision especially explicit and disturbing.",
+ context:"Reflects a genuine early revolutionary ideal of internal unity and non-violence among the newly liberated population.",
+ useFor:"Essays on the Seven Commandments, or fear and violence."},
+{text:"No animal shall kill any other animal without cause", speaker:"The Seven Commandments (altered)", act:"7", characters:['Squealer','Napoleon'], themes:['Fear and violence','Language and control'],
+ meaning:"The pigs' justification, after Napoleon orders the execution of several animals, for a rule that originally prohibited killing entirely.",
+ technique:"Qualifying phrase shifting an absolute prohibition into a conditional one.",
+ solid:"Adding 'without cause' means the pigs can execute animals and just claim they had a good reason.",
+ deep:"This alteration directly follows the executions, making explicit the connection between political violence and the retrospective legal or linguistic justification required to make that violence acceptable.",
+ context:"Closely parallels the show trials and executions of alleged 'traitors' and 'saboteurs' during Stalin's Great Purge.",
+ useFor:"Essays on fear and violence, the Seven Commandments, or Squealer's methods."},
+{text:"All animals are equal, but some animals are more equal than others", speaker:"The Seven Commandments (final)", act:"10", characters:['Napoleon','Squealer'], themes:['Revolution and betrayal','Power and corruption'],
+ meaning:"The single commandment that survives to the novella's end, replacing all seven originals and openly contradicting the Rebellion's founding promise.",
+ technique:"Paradox; self-contradicting comparative structure.",
+ solid:"This famous, contradictory sentence shows that the pigs have completely abandoned the idea of equality while still claiming to support it.",
+ deep:"The grammatically impossible comparative, 'more equal', exposes the fundamental incoherence of the pigs' position while also perfectly capturing how political language can be stretched to justify almost any inequality, making this arguably the novella's single most quoted line for good reason.",
+ context:"Frequently cited as a compact summary of Orwell's wider critique of political doublespeak and hypocrisy, ideas he developed further in Nineteen Eighty-Four.",
+ useFor:"Essays on power and corruption, language and control, or the novella's central irony — a cornerstone quotation."},
+{text:"Beasts of England", speaker:"Old Major", act:"1", characters:['Old Major'], themes:['Revolution and betrayal','Memory and history'],
+ meaning:"The stirring anthem Old Major teaches the animals, expressing hope for a future free from human oppression.",
+ technique:"Intertextual song reference; symbolic recurring motif.",
+ solid:"This song represents the animals' original hope and excitement about the Rebellion.",
+ deep:"The song's eventual suppression by Napoleon, once it is judged no longer appropriate to the farm's new reality, functions as a precise symbolic marker of how far the leadership has moved from the Rebellion's original spirit.",
+ context:"Echoes the function of real revolutionary anthems, such as 'The Internationale', in building collective political identity and hope.",
+ useFor:"Essays on memory and history, symbolism, or revolution and betrayal."},
+{text:"Four legs good, two legs better", speaker:"The Sheep", act:"10", characters:['The Sheep','Squealer'], themes:['Language and control','Propaganda'],
+ meaning:"The sheep's revised chant, taught to them by Squealer just as the pigs themselves begin walking on two legs.",
+ technique:"Minimal alteration of an established slogan; irony.",
+ solid:"Changing just one word lets the sheep support the exact opposite of what they used to believe, without noticing the contradiction.",
+ deep:"The ease with which this slogan is updated, using the same simple rhythm as the original, shows Orwell's precise understanding of how propaganda can reverse its own content entirely so long as its familiar form remains unchanged.",
+ context:"Demonstrates the same propaganda logic used throughout Soviet-era rewriting of official positions to match whatever the current leadership required.",
+ useFor:"Essays on the sheep, propaganda, or the novella's final chapter."},
+{text:"the pigs did not actually work, but directed and supervised", speaker:"Narrator", act:"3", characters:['Napoleon','Snowball','Squealer'], themes:['Class and exploitation','Power and corruption'],
+ meaning:"An early narrative observation that the pigs have already exempted themselves from physical labour, even while other animals work.",
+ technique:"Understated, matter-of-fact narration; early foreshadowing.",
+ solid:"This shows that even quite early on, the pigs were already treating themselves differently from the other animals.",
+ deep:"The calm, unremarkable tone in which the narrator reports this detail is itself significant, normalising an inequality that will only grow, and demonstrating Orwell's technique of burying important warnings inside seemingly minor descriptive statements.",
+ context:"Reflects genuine early divisions of labour within revolutionary leadership structures, in which theoretical direction was often prioritised over manual labour.",
+ useFor:"Essays on foreshadowing, class and exploitation, or narrative voice."},
+{text:"impossible to say which was which", speaker:"Narrator", act:"10", characters:['Napoleon'], themes:['Power and corruption','Utopia vs reality'],
+ meaning:"The novella's final observation, describing the other animals' inability to distinguish between the pigs and the human farmers they are dining and negotiating with.",
+ technique:"Understated closing image; symbolic visual merging.",
+ solid:"This final line shows that the pigs have become just as bad as the humans they originally rebelled against.",
+ deep:"Ending the novella on this quiet, visual observation rather than an explicit political statement allows Orwell to let the allegory's full implications land without over-explaining them, trusting the reader to recognise the devastating completeness of the Rebellion's betrayal.",
+ context:"Functions as the culmination of the novella's cyclical structure, directly echoing Old Major's original division between animals and humans in Chapter One.",
+ useFor:"Essays on the ending, cyclical structure, or power and corruption — an essential closing quotation."},
+{text:"reduce their working week to three days", speaker:"Snowball", act:"5", characters:['Snowball'], themes:['Utopia vs reality','Revolution and betrayal'],
+ meaning:"Part of Snowball's optimistic case for building the windmill, promising the animals significantly reduced labour once it is completed.",
+ technique:"Specific, concrete promise; persuasive rhetoric.",
+ solid:"This shows Snowball genuinely believed the windmill would make life easier for the other animals.",
+ deep:"The specificity of this promise makes its later, complete failure to materialise, since the windmill instead becomes another tool for extracting yet more labour, a particularly pointed example of the gap between revolutionary promise and eventual reality.",
+ context:"Echoes genuine promises of dramatically improved living standards made to justify the sacrifices demanded by Soviet industrialisation projects such as the Five-Year Plans.",
+ useFor:"Essays on the windmill's symbolism, utopia vs reality, or Snowball's characterisation."}
+];
+
+/* ================= QUIZ BANK ================= */
+const QUIZ_BANK = [
+{type:'mc', q:"What inspires the animals to rebel against Mr Jones?", opts:["A poor harvest","Old Major's speech about exploitation","A visit from another farm's animals","Boxer's injury"], a:1, exp:"Old Major's speech in Chapter One about exploitation under Man directly inspires the animals' later Rebellion."},
+{type:'mc', q:"What is the name of the philosophy the pigs develop from Old Major's ideas?", opts:["Beastism","Animalism","Farmism","Comradeship"], a:1, exp:"The pigs develop Old Major's ideas into a full philosophy called Animalism."},
+{type:'char', q:"Which pig designs the plans for the windmill?", opts:["Napoleon","Squealer","Snowball","Old Major"], a:2, exp:"Snowball designs the detailed windmill plans, promising a reduced working week."},
+{type:'char', q:"Who drives Snowball off the farm?", opts:["Mr Jones","Napoleon's guard dogs","Boxer","The sheep"], a:1, exp:"Napoleon's nine secretly-reared guard dogs chase Snowball off the farm for good."},
+{type:'mc', q:"What happens to the windmill after the storm?", opts:["It is completed early","It is destroyed and Napoleon blames Snowball","It is sold to Frederick","It is never rebuilt"], a:1, exp:"A storm destroys the half-built windmill, and Napoleon immediately blames Snowball rather than the weather."},
+{type:'char', q:"Who is Napoleon's chief propagandist?", opts:["Squealer","Snowball","Benjamin","Boxer"], a:0, exp:"Squealer serves as Napoleon's chief spokesman, justifying every new inequality."},
+{type:'mc', q:"What happens to Boxer once he collapses from overwork?", opts:["He retires peacefully","He is sold to a horse slaughterer","He is nursed back to health","He is given to Frederick"], a:1, exp:"Boxer is loaded into a van and taken to a horse slaughterer, though the pigs claim he is going to hospital."},
+{type:'char', q:"Which animal remains privately sceptical of the Rebellion from the very beginning?", opts:["Mollie","Benjamin","Clover","Boxer"], a:1, exp:"Benjamin, an intelligent but largely passive donkey, doubts the Rebellion's promises from the very start."},
+{type:'mc', q:"What does Mollie value most, causing her early doubts about the Rebellion?", opts:["Books and reading","Ribbons and sugar","Political meetings","Farm work"], a:1, exp:"Mollie's early questions focus on whether she will still have ribbons and sugar after the Rebellion."},
+{type:'quote', q:"Which animal's personal motto is 'I will work harder'?", opts:["Boxer","Benjamin","Napoleon","Snowball"], a:0, exp:"Boxer repeats 'I will work harder' as his personal response to every setback."},
+{type:'quote', q:"Complete the final, altered commandment: 'All animals are equal, but some animals are ___'.", opts:["braver than others","more equal than others","stronger than others","wiser than others"], a:1, exp:"The final altered commandment reads: 'All animals are equal, but some animals are more equal than others.'"},
+{type:'quote', q:"Who habitually says 'Surely, comrades, you do not want Jones back?'", opts:["Napoleon","Squealer","Snowball","Old Major"], a:1, exp:"Squealer uses this rhetorical question whenever the pigs' privileges are challenged."},
+{type:'quote', q:"What is the sheep's original chant, taught by Snowball?", opts:["Two legs good, four legs bad","Four legs good, two legs bad","All animals unite","Comrade Napoleon"], a:1, exp:"The sheep's original chant, taught by Snowball, is 'Four legs good, two legs bad.'"},
+{type:'theme', q:"Which theme is most directly explored through Squealer's constant justifications?", opts:["Gender","Propaganda","Weather","Farming technique"], a:1, exp:"Squealer's constant justifications for pig privilege are the novella's clearest examples of propaganda."},
+{type:'theme', q:"What is the key difference between Old Major's original vision and the farm's final state?", opts:["There is no real difference","Old Major promised equality; the farm ends with pigs ruling much like humans did","Old Major wanted pigs in charge from the start","Old Major opposed all animal labour"], a:1, exp:"Old Major's vision of full equality is ultimately reversed by the pigs' own dictatorship."},
+{type:'mc', q:"What privilege do the pigs claim for themselves early in the novella, justified by Squealer?", opts:["Extra sleep","Milk and windfall apples","New clothes","A private house"], a:1, exp:"The pigs justify claiming the farm's milk and windfall apples for themselves early in the novella."},
+{type:'tech', q:"What is the term for the sheep's unquestioning repetition of political slogans?", opts:["Symbolism","Sloganeering / repetition","Foreshadowing","Dramatic irony"], a:1, exp:"The sheep's repeated chanting of simple slogans is an example of sloganeering / repetition."},
+{type:'tf', q:"True or False: Animal Farm is set on a real, named historical farm.", opts:["True","False"], a:1, exp:"False — Animal Farm is set on a fictional English farm, not a real, named historical one."},
+{type:'context', q:"Which historical event is Animal Farm most closely understood as an allegory of?", opts:["The French Revolution","The Russian Revolution and its Stalinist aftermath","The American Civil War","The Industrial Revolution"], a:1, exp:"The novella is most widely read as an allegory of the Russian Revolution and its Stalinist aftermath."},
+{type:'context', q:"Which real political figure is Napoleon most often read as representing?", opts:["Lenin","Stalin","Trotsky","Tsar Nicholas II"], a:1, exp:"Napoleon's tactics of purging rivals and consolidating personal power are most often read as paralleling Stalin."},
+{type:'mc', q:"What happens at the very end of the novella?", opts:["The animals overthrow the pigs","The pigs and humans become impossible to tell apart","Mr Jones returns to the farm","The windmill is destroyed again"], a:1, exp:"In the final scene, the other animals can no longer distinguish between the pigs and the human farmers they are dining with."},
+{type:'tech', q:"What technique describes the gap between the reader's understanding and the animals' understanding when Boxer is taken away?", opts:["Foreshadowing","Dramatic irony","Repetition","Rhetorical question"], a:1, exp:"This gap, where the reader grasps Boxer's fate before the animals do, is dramatic irony."},
+{type:'tf', q:"True or False: Snowball returns to the farm later in the novella to defend himself.", opts:["True","False"], a:1, exp:"False — Snowball never returns to the farm after his expulsion."},
+{type:'char', q:"Which two horses are closest companions throughout the novella?", opts:["Boxer and Mollie","Boxer and Clover","Boxer and Benjamin","Clover and Mollie"], a:1, exp:"Boxer and Clover are close companions throughout the novella, particularly during Boxer's decline."},
+{type:'mc', q:"What happens to the Seven Commandments by the end of the novella?", opts:["They remain unchanged","They are reduced to a single, contradictory commandment","They are abolished entirely with no replacement","They are expanded to twenty rules"], a:1, exp:"All seven original commandments are eventually replaced by a single, self-contradicting rule."},
+{type:'context', q:"What is the significance of the novella's subtitle, 'A Fairy Story'?", opts:["It means the story is for very young children only","It positions the serious political content within a simple, deceptively accessible fable form","It has no real significance","It refers to a specific fairy character in the book"], a:1, exp:"The subtitle situates the novella's serious political content within a simple, deceptively accessible fable form."},
+{type:'mc', q:"Who initially teaches the animals the song 'Beasts of England'?", opts:["Napoleon","Snowball","Old Major","Squealer"], a:2, exp:"Old Major teaches the animals 'Beasts of England' in Chapter One, before his death."},
+{type:'theme', q:"What does Boxer's fate most directly illustrate?", opts:["The dangers of literacy","The exploitation of loyal labour once it is no longer useful","The importance of ribbons and sugar","The success of the windmill project"], a:1, exp:"Boxer's fate illustrates how loyal labour can be exploited and then discarded once it is no longer useful."}
+];
+
+/* ================= WHO SAID IT GAME ================= */
+const WHOSAIDIT = [
+{text:"Man is the only creature that consumes without producing.", answer:'Old Major', opts:['Old Major','Napoleon','Snowball','Squealer'], exp:"Old Major's speech about exploitation opens the novella and inspires the Rebellion."},
+{text:"All men are enemies. All animals are comrades.", answer:'Old Major', opts:['Old Major','Squealer','Napoleon','Boxer'], exp:"Old Major's founding principle draws an absolute line between humans and animals."},
+{text:"Four legs good, two legs bad.", answer:'The Sheep', opts:['The Sheep','Boxer','Napoleon','Benjamin'], exp:"Taught early in the novella, this simplified slogan reduces Animalism to a single, memorable line."},
+{text:"Four legs good, two legs better.", answer:'The Sheep', opts:['The Sheep','Boxer','Clover','Napoleon'], exp:"The sheep's slogan is later revised to accommodate the pigs walking on two legs."},
+{text:"I will work harder.", answer:'Boxer', opts:['Boxer','Clover','Benjamin','Napoleon'], exp:"Boxer's personal motto reflects his complete, uncritical dedication to hard work."},
+{text:"Napoleon is always right.", answer:'Boxer', opts:['Boxer','Squealer','Snowball','Mollie'], exp:"Boxer adopts this second motto once doubts about Napoleon's leadership might otherwise arise."},
+{text:"Surely, comrades, you do not want Jones back?", answer:'Squealer', opts:['Squealer','Napoleon','Snowball','Old Major'], exp:"Squealer's habitual rhetorical question is used whenever the pigs' privileges are challenged."},
+{text:"Snowball was Jones's agent.", answer:'Squealer', opts:['Squealer','Napoleon','Benjamin','Clover'], exp:"Squealer retrospectively claims Snowball secretly worked for Mr Jones throughout the Rebellion."},
+{text:"Napoleon has never been known to be wrong.", answer:'Squealer', opts:['Squealer','Napoleon','Snowball','Boxer'], exp:"Squealer insists on Napoleon's flawless judgement whenever his decisions might otherwise be questioned."},
+{text:"Will there still be sugar?", answer:'Mollie', opts:['Mollie','Clover','The Sheep','Boxer'], exp:"Mollie's early question reveals her self-interested priorities rather than genuine political commitment."},
+{text:"Donkeys live a long time.", answer:'Benjamin', opts:['Benjamin','Boxer','Napoleon','Squealer'], exp:"Benjamin's characteristically resigned, cynical prediction reflects his scepticism from the very beginning."},
+{text:"Nothing ever changes.", answer:'Benjamin', opts:['Benjamin','Clover','Mollie','Boxer'], exp:"Benjamin's flat, repeated assessment reflects his belief that changes of leadership rarely improve animals' lives."},
+{text:"We shall reduce their working week to three days.", answer:'Snowball', opts:['Snowball','Napoleon','Squealer','Old Major'], exp:"Part of Snowball's optimistic case for the windmill, promising the animals a shorter working week."},
+{text:"Comrade Napoleon.", answer:'Squealer', opts:['Squealer','Snowball','Benjamin','Mollie'], exp:"Squealer and the other pigs habitually address Napoleon using this reverential title."},
+{text:"Boxer! Boxer!", answer:'Clover', opts:['Clover','Mollie','Benjamin','The Sheep'], exp:"Clover cries out helplessly as Boxer is taken away in the knacker's van."},
+{text:"Beasts of England, beasts of Ireland...", answer:'Old Major', opts:['Old Major','Napoleon','Snowball','Squealer'], exp:"Old Major teaches the animals this hopeful revolutionary song in Chapter One."},
+{text:"This was not what we had hoped for.", answer:'Clover', opts:['Clover','Mollie','Benjamin','The Sheep'], exp:"Clover's private, uncertain reflection captures her dawning unease about how far the farm has changed."},
+{text:"No animal shall kill any other animal without cause.", answer:'Squealer', opts:['Squealer','Napoleon','Snowball','Old Major'], exp:"Squealer announces this altered commandment shortly after Napoleon orders the executions."}
+];
+
+/* ================= POWER TRACKER DATA ================= */
+const CHANGE_DATA = [
+{name:'Napoleon', level:5, begin:"A quiet, not especially articulate pig who says little at early meetings but works steadily to build personal influence, notably by secretly rearing a litter of puppies away from the other animals.", end:"An absolute dictator, addressed with the title 'Comrade Napoleon', who has eliminated open debate, ordered executions, and adopted human habits including walking on two legs and dining with human farmers.", learns:"That total, unaccountable control, secured through force and propaganda rather than persuasion or consent, faces no effective internal challenge once genuine rivals like Snowball are removed.", refuses:"Any genuine accountability to the other animals, and any return to the Rebellion's original principle of equality.", quote:"Napoleon is always right"},
+{name:'Squealer', level:4, begin:"A skilled but relatively junior talker used to explain minor early decisions, such as the pigs' claim to milk and windfall apples.", end:"Napoleon's indispensable master propagandist, capable of justifying almost any decision, however extreme, including executions and the near-total rewriting of the farm's founding rules.", learns:"That persuasive repetition, selective memory and rhetorical questions can secure the other animals' obedience just as effectively as physical force.", refuses:"To ever openly acknowledge a mistake, contradiction, or unjustified privilege on the pigs' part.", quote:"Surely, comrades, you do not want Jones back?"},
+{name:'Boxer', level:1, begin:"An immensely strong, hardworking cart-horse whose loyalty to the farm's leadership is genuine and largely unquestioning from the very beginning.", end:"Still loyal and hardworking right up to his physical collapse, at which point the pigs' true indifference to his welfare becomes clear, though far too late for Boxer himself to act on this understanding.", learns:"Almost nothing changes in his outlook until his final collapse, and even then the full truth of his exploitation only becomes apparent to the other animals after he has already been taken away.", refuses:"To ever seriously question Napoleon's decisions, even when his own health is visibly failing under the workload.", quote:"I will work harder"},
+{name:'Benjamin', level:2, begin:"A clear-sighted, literate donkey who privately doubts the Rebellion's promises from the very beginning, predicting only that life will go on much as before.", end:"Still largely passive, offering no organised resistance to the pigs' rule, though he shows genuine urgency and distress once Boxer is taken to the knacker's van.", learns:"That his private scepticism was justified, but this vindication brings him no real power to change events.", refuses:"To translate his correct understanding of the farm's corruption into any sustained, effective action.", quote:"nothing ever changes"},
+{name:'The Sheep', level:1, begin:"An undifferentiated flock trained early on to repeat the simple slogan 'Four legs good, two legs bad' whenever prompted.", end:"Still bleating slogans on command, now updated to 'Four legs good, two legs better' to accommodate the pigs walking on two legs, without any apparent awareness of the contradiction.", learns:"Nothing — the sheep show no development in understanding across the entire novella.", refuses:"Any independent thought at all, functioning throughout purely as an instrument of the pigs' propaganda.", quote:"Four legs good, two legs better"}
+];
+
+/* ================= SEVEN COMMANDMENTS CHAIN ================= */
+const CHAIN = [
+{who:'The pigs', action:"Alter the Fourth Commandment once they move into the farmhouse and begin sleeping in beds.", detail:"Having taken up residence in Mr Jones's former farmhouse, the pigs begin sleeping in beds, directly contradicting the original rule. Squealer is sent to explain the change, and the commandment painted on the barn wall is quietly altered.", quote:"No animal shall sleep in a bed with sheets", message:"Orwell may use this small, easily overlooked addition to show how political language can be manipulated through minimal, deniable changes rather than dramatic rewrites."},
+{who:'Napoleon and the dogs', action:"Carry out public executions of animals forced to confess to treachery in league with Snowball.", detail:"Several animals are made to confess, apparently under duress or fear, to conspiring with the exiled Snowball, and are then killed by Napoleon's dogs in front of the other animals.", quote:"the smell of blood", message:"Orwell may present this as the moment fear and violence, rather than persuasion alone, become explicit tools of the pigs' rule."},
+{who:'The pigs', action:"Alter the Sixth Commandment to permit killing 'without cause' shortly after the executions.", detail:"Following the animals' unease at the executions, the commandment against killing is discovered to have been quietly rewritten, retrospectively legitimising what has just occurred.", quote:"No animal shall kill any other animal without cause", message:"Orwell may use the timing of this alteration, arriving immediately after the violence it excuses, to expose how political language can be adjusted after the fact to justify actions already taken."},
+{who:'Napoleon', action:"Is discovered drunk after finding the farmhouse's supply of whisky, prompting a further alteration to the rules.", detail:"After a night of drinking leaves Napoleon apparently unwell, the Fifth Commandment is found to have changed, permitting alcohol so long as it is not consumed 'to excess', a standard left entirely to the pigs' own judgement.", quote:"No animal shall drink alcohol to excess", message:"Orwell may use this vague qualifying phrase to show how imprecise language can make a rule effectively unenforceable against those in power."},
+{who:'The pigs', action:"Begin walking on two legs and wearing Mr Jones's old clothes, directly violating the earliest commandments without even bothering to reword them individually.", detail:"Rather than rewriting each remaining commandment one by one, the pigs simply begin acting in open contradiction of them, appearing on their hind legs and dressed in human clothing, while the sheep are retrained to bleat a revised slogan in support.", quote:"Four legs good, two legs better", message:"Orwell may use this shift from careful rewording to open, unexplained contradiction to show the pigs' growing confidence that no explanation is even required any longer."},
+{who:'The pigs', action:"Replace all seven original commandments with a single, self-contradicting statement.", detail:"The other animals find that every original commandment has been painted over, replaced by one final rule that directly contradicts the Rebellion's founding promise of equality.", quote:"All animals are equal, but some animals are more equal than others", message:"Orwell may present this final, single commandment as the novella's clearest possible statement of how completely the Rebellion's original ideals have been reversed."}
+];
+
+const COMPARE_FARM = [
+{point:"Old Major's speech and the vision of Animalism", why:"Establishes the revolutionary ideology that inspires the Rebellion, giving later events a clear original standard to measure betrayal against."},
+{point:"Mr Jones's expulsion from the farm", why:"Marks the moment of overthrow itself, the starting point against which the animals' later situation must be judged."},
+{point:"Napoleon's purge of Snowball using the guard dogs", why:"Shows the elimination of a political rival by force rather than through open debate or a vote."},
+{point:"Squealer's propaganda and the repeated rewriting of the Seven Commandments", why:"Demonstrates how control of information and history is used to manage the other animals' understanding of events."},
+{point:"The dogs raised in secret to enforce Napoleon's authority", why:"Represents the armed, loyal enforcement apparatus that allows Napoleon's rule to go unchallenged."},
+{point:"Boxer's tireless labour and his eventual sale to the knacker", why:"Illustrates how the loyal working animal's labour is exploited and ultimately discarded once no longer useful."},
+{point:"The windmill, built, destroyed and rebuilt through animal labour", why:"Shows how a genuinely ambitious project can be redirected to serve the ruling group's interests rather than the wider community's."}
+];
+const COMPARE_HISTORY = [
+{point:"Marx and Lenin's revolutionary socialist ideology, often read as paralleling Old Major's vision", why:"Understanding this parallel helps explain why Old Major's speech is written with such careful, persuasive political logic rather than simple fantasy."},
+{point:"The overthrow of Tsar Nicholas II, which may parallel Mr Jones's expulsion", why:"Helps contextualise the optimism of the Rebellion's early chapters within a real historical moment of genuine revolutionary hope."},
+{point:"Stalin's rise to power and his purge of political rivals, which may parallel Napoleon's tactics", why:"Supports readings of Napoleon as representing the process by which a revolution's leadership narrows into the hands of one increasingly authoritarian figure."},
+{point:"Soviet state propaganda and the falsification of official records, often read as paralleling Squealer's role", why:"Strengthens analysis of Squealer as representing a specific historical mechanism of political control, not simply personal dishonesty."},
+{point:"The Soviet secret police, such as the NKVD, which may parallel the role of Napoleon's dogs", why:"Helps explain why the dogs' introduction marks such a decisive structural turning point in the novella's plot."},
+{point:"The exploited Soviet industrial and agricultural working class, which may parallel Boxer's fate", why:"Deepens readings of Boxer as representing systemic labour exploitation rather than only an individual tragedy."},
+{point:"The Soviet Five-Year Plans and rapid state-led industrialisation, which may parallel the windmill project", why:"Supports readings of the windmill as symbolising both genuine ambition and the redirection of collective sacrifice toward the ruling group's goals."}
+];
+
+/* ================= RENDER: NAVIGATION ================= */
+let currentSection = Store.get('lastSection','overview');
+
+function renderNav(){
+  const html = SECTIONS.map((s,i)=>`<button class="navlink" data-target="${s.id}" role="tab"><span class="num">${String(i+1).padStart(2,'0')}</span>${s.label}</button>`).join('');
+  document.getElementById('navList').innerHTML = html;
+  document.getElementById('navListMobile').innerHTML = html;
+  document.querySelectorAll('.navlink').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ showSection(btn.getAttribute('data-target')); closeDrawer(); });
+  });
+}
+
+function showSection(id){
+  currentSection = id;
+  Store.set('lastSection', id);
+  document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active', s.id === 'section-'+id));
+  document.querySelectorAll('.navlink').forEach(b=>b.classList.toggle('active', b.getAttribute('data-target')===id));
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+}
+
+function closeDrawer(){
+  document.getElementById('mobileDrawer').classList.remove('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded','false');
+}
+document.getElementById('hamburgerBtn').addEventListener('click', ()=>{
+  const d = document.getElementById('mobileDrawer');
+  const open = d.classList.toggle('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded', open?'true':'false');
+});
+document.getElementById('mobileDrawer').addEventListener('click', (e)=>{
+  if(e.target.id === 'mobileDrawer') closeDrawer();
+});
+
+const root = document.getElementById('sectionsRoot');
+function el(html){ const d=document.createElement('div'); d.innerHTML=html; return d.firstElementChild; }
+
+/* ---- 1. OVERVIEW ---- */
+function buildOverview(){
+  const s = el(`<section class="section" id="section-overview">
+    <div class="section-header"><div class="eyebrow">Section 01</div><h1>Overview</h1><div class="desc">Get your bearings before you dive into detail.</div></div>
+
+    <div class="grid two">
+      <div class="card"><h3>Key facts</h3>
+        <p><b>Author:</b> George Orwell (Eric Arthur Blair)<br>
+        <b>First published:</b> 1945<br>
+        <b>Setting:</b> Manor Farm, later renamed Animal Farm, an unnamed English farm<br>
+        <b>Form:</b> A short allegorical novella, subtitled "A Fairy Story"<br>
+        <b>Genre:</b> Political satire / fable, structured as a beast fable</p>
+      </div>
+      <div class="card"><h3>Why the novella matters for GCSE</h3>
+        <p>Its compact length and simple animal characters make it an ideal text for studying how a writer builds a sustained political argument through allegory, symbolism and careful narrative control, rather than through direct statement.</p>
+      </div>
+    </div>
+
+    <div class="card"><h3>Basic premise</h3>
+      <p>Exploited and neglected by the drunken farmer Mr Jones, the animals of Manor Farm rise up, inspired by old Major's dying vision of a world without human oppression, and drive their owner away. They rename the farm Animal Farm and establish Seven Commandments guaranteeing equality among all animals. Over time, however, the pigs — led first jointly by Snowball and Napoleon, then by Napoleon alone once Snowball is driven out — steadily claim more privileges, rewrite the farm's rules, and use propaganda and force to secure the other animals' obedience, until the pigs become almost indistinguishable from the human rulers they replaced.</p>
+    </div>
+
+    <div class="card"><h3>Major themes at a glance</h3>
+      <p><span class="tag blood">Power and corruption</span><span class="tag blood">Propaganda</span><span class="tag blood">Education and literacy</span><span class="tag gold">Class and exploitation</span><span class="tag gold">Fear and violence</span><span class="tag gold">Memory and history</span><span class="tag">Revolution and betrayal</span><span class="tag">Language and control</span><span class="tag">Utopia vs reality</span><span class="tag fog">Loyalty</span><span class="tag fog">Passivity and complicity</span><span class="tag fog">Totalitarianism</span></p>
+    </div>
+
+    <div class="card"><h3>Why these ideas matter</h3>
+      <p><b>Power and corruption</b> sit at the heart of the novella — the gradual, believable process by which the pigs' leadership curdles into dictatorship is Orwell's central concern.<br><br>
+      <b>Propaganda, education and language</b> show how control of information, not just force, secures the pigs' authority over the other animals.<br><br>
+      <b>Class, exploitation and loyalty</b> are dramatised most powerfully through Boxer's tireless labour and eventual betrayal.<br><br>
+      <b>Memory, history and passivity</b> are examined through the animals' inability, or unwillingness, to hold the pigs to account.<br><br>
+      <b>Revolution and totalitarianism</b> frame the novella's wider warning — that removing one ruling class does not, by itself, guarantee lasting equality.</p>
+    </div>
+
+    <div class="card"><h3>A fable rooted in real history — why this matters</h3>
+      <p>Orwell deliberately wrote Animal Farm as a simple, accessible fable on the surface, while constructing a detailed allegory of the Russian Revolution of 1917 and its betrayal under Stalin beneath it. Reportedly struggling to find a publisher during the Second World War, when Britain's wartime alliance with the Soviet Union made open criticism of Stalin politically awkward, Orwell eventually published the novella in 1945, shortly after the war's end. Its allegorical form allowed him to make a pointed, historically specific political argument while also offering a more general warning about how revolutions can be betrayed by those who claim to lead them — a warning Orwell, a committed democratic socialist, clearly hoped would not be dismissed as simply anti-socialist propaganda.</p>
+    </div>
+
+    <div class="card"><h3>What GCSE students need to understand</h3>
+      <ul>
+        <li>That the novella works simultaneously as a specific historical allegory of the Russian Revolution and as a more general warning about power and propaganda.</li>
+        <li>How Orwell uses animal characters, simplified language and a calm narrative voice as deliberately as plot events to build his argument.</li>
+        <li>That the Seven Commandments function as a trackable device for measuring exactly how far the farm has drifted from its founding principles.</li>
+        <li>That exam boards want analysis of Orwell's methods and purpose, not simply a retelling of events.</li>
+      </ul>
+    </div>
+
+    <div class="sixty">
+      <h3>Animal Farm in 60 Seconds</h3>
+      <p>Inspired by old Major's dying vision of a world free from human exploitation, the animals of Manor Farm rebel against their neglectful owner, Mr Jones, and rename the farm Animal Farm. They establish Seven Commandments promising equality for all. The pigs Snowball and Napoleon initially lead together, but Napoleon uses secretly-reared guard dogs to drive Snowball off the farm, ends open debate, and gradually assumes total control, aided by his propagandist Squealer. The commandments are altered one by one to excuse the pigs' growing privileges — sleeping in beds, drinking alcohol, and eventually killing animals accused of treachery. Boxer, the loyal cart-horse, works himself to collapse rebuilding the windmill, only to be sold to a horse slaughterer once he is no longer useful. By the novella's end, the surviving commandments have been reduced to a single, contradictory rule, and the pigs, now walking on two legs and dining with human farmers, have become impossible for the other animals to distinguish from the humans they originally rebelled against.</p>
+    </div>
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 2. PLOT ---- */
+const PLOT = [
+{n:'Chapter 1', t:"Old Major's speech and the vision of Animalism", happens:"The elderly, respected boar Old Major gathers the animals to describe a dream of a world free from human exploitation, laying out the earliest principles of what will become Animalism and teaching the animals the song 'Beasts of England'.", why:"Establishes the moral and political case for rebellion that later events will be measured against.", chars:["Old Major"], themes:["Revolution and betrayal","Utopia vs reality"], quote:"Man is the only creature that consumes without producing"},
+{n:'Chapter 2', t:"The Rebellion — the animals drive out Mr Jones", happens:"Following Old Major's death, the pigs Snowball, Napoleon and Squealer develop his ideas into Animalism. When Mr Jones neglects the animals during a drinking bout, the animals spontaneously rise up and drive him and his men off the farm, renaming it Animal Farm.", why:"The founding act of liberation that the entire novella's later events must be judged against.", chars:["Napoleon","Snowball","Squealer"], themes:["Revolution and betrayal"], quote:"All men are enemies. All animals are comrades"},
+{n:'Chapter 2', t:"The writing of the Seven Commandments", happens:"The pigs distil Animalism into Seven Commandments, painted on the barn wall, intended as unalterable laws governing the new society.", why:"Creates a fixed, written standard whose gradual corruption becomes one of the novella's central tracking devices.", chars:["Snowball","Napoleon","Squealer"], themes:["Revolution and betrayal","Language and control"], quote:"All animals are equal"},
+{n:'Chapter 3', t:"Early equality — the harvest and shared labour", happens:"The animals bring in the harvest more efficiently than under Mr Jones, working with genuine collective enthusiasm, while the pigs begin directing rather than performing physical labour and quietly claim the milk and windfall apples for themselves.", why:"Presents the Rebellion's brief high point of genuine cooperation alongside the very first, easily overlooked sign of pig privilege.", chars:["Boxer","Squealer","Napoleon"], themes:["Utopia vs reality","Class and exploitation"], quote:"the pigs did not actually work, but directed and supervised"},
+{n:'Chapter 4', t:"The Battle of the Cowshed", happens:"Mr Jones and several men attempt to retake the farm by force but are successfully repelled by the animals, with Snowball playing a prominent, courageous role in the fighting.", why:"Confirms the animals' collective strength while establishing Snowball's genuine leadership credentials shortly before his removal.", chars:["Snowball","Boxer","Napoleon"], themes:["Fear and violence","Revolution and betrayal"], quote:"ran for his life"},
+{n:'Chapter 5', t:"Snowball's windmill plan and growing rivalry with Napoleon", happens:"Snowball develops detailed plans for a windmill that he argues will dramatically reduce the animals' workload, provoking open, increasingly hostile debate with Napoleon, who opposes the project.", why:"Establishes the clearest ideological and personal conflict between the farm's two leading pigs.", chars:["Snowball","Napoleon"], themes:["Utopia vs reality","Power and corruption"], quote:"reduce their working week to three days"},
+{n:'Chapter 5', t:"Napoleon's dogs drive Snowball off the farm", happens:"During the meeting called to vote on the windmill, Napoleon summons nine ferocious dogs, secretly reared from puppies he had taken years earlier, who chase Snowball off the farm for good.", why:"The novella's decisive turning point, replacing open political debate with force.", chars:["Napoleon","Snowball"], themes:["Power and corruption","Fear and violence"], quote:"Snowball was Jones's agent"},
+{n:'Chapter 5', t:"Napoleon ends debate and assumes total control", happens:"Napoleon announces that Sunday Meetings and open debate will end, with all decisions now made by a committee of pigs under his leadership, and Squealer is sent to justify the change to the other animals.", why:"Formalises Napoleon's shift from rival leader to unchallenged authority.", chars:["Napoleon","Squealer"], themes:["Power and corruption","Totalitarianism"], quote:"Surely, comrades, you do not want Jones back?"},
+{n:'Chapter 6', t:"Pigs move into the farmhouse; the commandments begin to change", happens:"The pigs move into Mr Jones's former farmhouse and begin sleeping in beds, and trade begins with neighbouring human farmers despite an earlier resolution against such contact. The Fourth Commandment is discovered to have been altered.", why:"Marks the first clearly visible textual corruption of the farm's founding rules.", chars:["Napoleon","Squealer"], themes:["Language and control","Revolution and betrayal"], quote:"No animal shall sleep in a bed with sheets"},
+{n:'Chapter 6', t:"The storm destroys the half-built windmill", happens:"A violent storm destroys the partially completed windmill, and Napoleon immediately declares that Snowball, not the storm, is responsible, ordering the windmill's reconstruction at once.", why:"Establishes Snowball as a permanent scapegoat for any future misfortune on the farm.", chars:["Napoleon","Squealer"], themes:["Memory and history","Propaganda"], quote:""},
+{n:'Chapter 7', t:"Confessions and executions", happens:"Amid worsening conditions and food shortages, Napoleon forces several animals to publicly confess to secret crimes committed in league with Snowball, and has them executed by his dogs in front of the others.", why:"Introduces open, public violence as an explicit tool of Napoleon's rule for the first time.", chars:["Napoleon"], themes:["Fear and violence","Totalitarianism"], quote:"the smell of blood"},
+{n:'Chapter 7–8', t:"Rebuilding the windmill; Boxer's tireless labour", happens:"The windmill is rebuilt, largely through Boxer's relentless extra effort, while the Sixth and Fifth Commandments are quietly altered following the executions and Napoleon's drinking.", why:"Shows Boxer's loyal labour directly propping up a system that will ultimately discard him.", chars:["Boxer","Squealer"], themes:["Loyalty","Class and exploitation"], quote:"No animal shall kill any other animal without cause"},
+{n:'Chapter 8', t:"Trade with humans and the Battle of the Windmill", happens:"Napoleon's dealings with neighbouring farmer Frederick collapse when Frederick pays with forged notes and then attacks the farm, destroying the newly completed windmill with explosives before being driven off in a costly battle.", why:"Shows the pigs' leadership repeatedly exposing the farm to real danger while still being credited with any eventual, costly victory.", chars:["Napoleon","Boxer"], themes:["Power and corruption","Fear and violence"], quote:""},
+{n:'Chapter 9', t:"Boxer's collapse and sale to the knacker", happens:"Boxer collapses while working on the windmill and is loaded into a van that the pigs claim is taking him to hospital; Benjamin, reading the van's markings, realises too late that Boxer is actually being taken to a horse slaughterer.", why:"The novella's most devastating single illustration of loyal labour exploited and discarded.", chars:["Boxer","Benjamin","Clover"], themes:["Loyalty","Class and exploitation"], quote:"Boxer!"},
+{n:'Chapter 10', t:"Final alteration of the commandments and the closing scene", happens:"Years later, the surviving animals find every original commandment replaced by a single, contradictory rule, and observe the pigs walking on two legs, wearing human clothes, and dining and negotiating with human farmers as equals, until it becomes impossible to distinguish pig from man.", why:"Completes the novella's cyclical structure, showing the Rebellion's founding promise fully and finally reversed.", chars:["Napoleon","Clover"], themes:["Power and corruption","Utopia vs reality"], quote:"impossible to say which was which"}
+];
+
+function buildPlot(){
+  let cards = '';
+  PLOT.forEach(p=>{
+    cards += `<div class="disclosure" data-d>
+      <button class="d-head"><span>${p.n} — ${p.t}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <div class="mini-label">What happens</div><p>${p.happens}</p>
+        <div class="mini-label">Why it matters</div><p>${p.why}</p>
+        <div class="mini-label">Characters involved</div><p>${p.chars.map(c=>`<span class="tag">${c}</span>`).join('')}</p>
+        <div class="mini-label">Themes</div><p>${p.themes.map(t=>`<span class="tag blood">${t}</span>`).join('')}</p>
+        ${p.quote ? `<div class="mini-label">Useful quotation</div><div class="quote-line">"${p.quote}"</div>` : ''}
+      </div></div>
+    </div>`;
+  });
+
+  const twelveEvents = [
+   "Old Major inspires the animals with his speech about exploitation.",
+   "Mr Jones is driven off the farm in the Rebellion.",
+   "The pigs write the Seven Commandments on the barn wall.",
+   "The animals bring in the harvest with real collective enthusiasm.",
+   "The animals defeat Mr Jones's men at the Battle of the Cowshed.",
+   "Napoleon's dogs drive Snowball off the farm for good.",
+   "Napoleon ends open debate and assumes total control.",
+   "The pigs move into the farmhouse and begin altering the commandments.",
+   "Napoleon orders the confession and execution of several animals.",
+   "Boxer is worked to collapse rebuilding the windmill after the Battle of the Windmill.",
+   "Boxer is sold to a horse slaughterer while the pigs claim he is going to hospital.",
+   "The commandments are reduced to one, and the animals can no longer tell pig from man."
+  ];
+
+  const s = el(`<section class="section" id="section-plot">
+    <div class="section-header"><div class="eyebrow">Section 02</div><h1>Plot</h1><div class="desc">All ten chapters. Tap any event to expand it.</div></div>
+    <div class="card"><h3>Whole Novella in 12 Events</h3>
+      <div class="timeline">${twelveEvents.map((e,i)=>`<div class="t-item"><div class="t-num">${String(i+1).padStart(2,'0')}</div><p>${e}</p></div>`).join('')}</div>
+    </div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 3. CHARACTERS ---- */
+function buildCharacters(){
+  let cards = CHARACTERS.map(c=>`
+    <div class="disclosure" data-d>
+      <button class="d-head"><span>${c.name}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <p class="subtle" style="margin-top:10px;">${c.role}</p>
+        <div class="mini-label">Who are they?</div><p>${c.who}</p>
+        <div class="mini-label">Character journey</div><p>${c.journey}</p>
+        <div class="mini-label">Key relationships</div><p>${c.relationships}</p>
+        <div class="mini-label">Themes connected to this character</div><p>${c.themes.map(t=>`<span class="tag blood">${t}</span>`).join('')}</p>
+        ${c.quotes.length ? `<div class="mini-label">Essential quotes</div>${c.quotes.map(q=>`<div class="quote-line">"${q}"</div>`).join('') } ` : ''}
+        <div class="mini-label">What Orwell may be saying</div><p>${c.message}</p>
+        <div class="mini-label">Exam arguments to develop</div><ul>${c.examArgs.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-characters">
+    <div class="section-header"><div class="eyebrow">Section 03</div><h1>Characters</h1><div class="desc">Tap a character to see their full profile: journey, relationships, quotes and exam arguments.</div></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 4. THEMES ---- */
+function buildThemes(){
+  let cards = THEMES.map(t=>`
+    <div class="disclosure" data-d>
+      <button class="d-head"><span>${t.name}</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner">
+        <div class="mini-label">Simple explanation</div><p>${t.explanation}</p>
+        <div class="mini-label">Where it appears</div><p>${t.where}</p>
+        <div class="mini-label">Relevant characters</div><p>${t.characters.map(c=>`<span class="tag">${c}</span>`).join('')}</p>
+        ${t.quotes.length ? `<div class="mini-label">Essential quotations</div>${t.quotes.map(q=>`<div class="quote-line">"${q}"</div>`).join('')}` : ''}
+        <div class="mini-label">Orwell's possible message</div><p>${t.message}</p>
+        <div class="mini-label">Useful contextual link</div><p>${t.context}</p>
+        <div class="mini-label">Potential thesis statements</div><ul>${t.thesis.map(x=>`<li>${x}</li>`).join('')}</ul>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-themes">
+    <div class="section-header"><div class="eyebrow">Section 04</div><h1>Themes</h1><div class="desc">Twelve core themes, each with quotations, context and ready-to-adapt thesis statements.</div></div>
+    <div class="card"><h3>A note on power and corruption</h3><p>This is the novella's strongest and most important theme. Orwell traces a gradual, believable process by which the pigs' leadership — initially justified by a genuine, collectively-held revolutionary ideal — steadily curdles into personal dictatorship. Almost every other theme in the novella (propaganda, memory, language, class) can be read as a different lens through which this central process plays out. Different characters embody different responses to this process: Napoleon and Squealer actively drive it; Boxer and the sheep enable it through uncritical loyalty and obedience; Benjamin and Clover see parts of it clearly but do not, or cannot, stop it.</p></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 5. QUOTE VAULT ---- */
+function buildQuoteVault(){
+  const allChars = ['Old Major','Napoleon','Snowball','Squealer','Boxer','Benjamin','Clover','Mollie','The Sheep'];
+  const allThemes = Array.from(new Set(QUOTES.flatMap(q=>q.themes))).sort();
+
+  const s = el(`<section class="section" id="section-quotes">
+    <div class="section-header"><div class="eyebrow">Section 05</div><h1>Quote Vault</h1><div class="desc">Search and filter the novella's most important quotations. Kept short and used only for educational analysis.</div></div>
+    <div class="qv-controls">
+      <input type="text" id="qvSearch" placeholder="Search quotations..." aria-label="Search quotations">
+      <select id="qvCharFilter" aria-label="Filter by character"><option value="">All characters</option>${allChars.map(c=>`<option value="${c}">${c}</option>`).join('')}</select>
+      <select id="qvThemeFilter" aria-label="Filter by theme"><option value="">All themes</option>${allThemes.map(t=>`<option value="${t}">${t}</option>`).join('')}</select>
+    </div>
+    <div class="qv-count" id="qvCount"></div>
+    <div id="qvResults"></div>
+  </section>`);
+  root.appendChild(s);
+
+  function renderQuotes(){
+    const search = document.getElementById('qvSearch').value.toLowerCase().trim();
+    const charF = document.getElementById('qvCharFilter').value;
+    const themeF = document.getElementById('qvThemeFilter').value;
+    const filtered = QUOTES.filter(q=>{
+      const matchesSearch = !search || q.text.toLowerCase().includes(search) || q.speaker.toLowerCase().includes(search);
+      const matchesChar = !charF || q.characters.includes(charF);
+      const matchesTheme = !themeF || q.themes.includes(themeF);
+      return matchesSearch && matchesChar && matchesTheme;
+    });
+    document.getElementById('qvCount').textContent = filtered.length + (filtered.length===1 ? ' quotation found':' quotations found');
+    const container = document.getElementById('qvResults');
+    container.innerHTML = filtered.map((q,i)=>`
+      <div class="qcard" data-idx="${i}">
+        <div class="qtext">"${q.text}"</div>
+        <div class="qmeta">${q.speaker} · Chapter ${q.act} · ${q.themes.join(', ')}</div>
+        <button class="qreveal-btn" type="button">Reveal analysis</button>
+        <div class="qdetail">
+          <div class="row"><b>Meaning</b>${q.meaning}</div>
+          <div class="row"><b>Technique</b>${q.technique}</div>
+          <div class="level-toggle">
+            <button type="button" class="lvl-btn active" data-lvl="solid">Solid (Grade 5–6)</button>
+            <button type="button" class="lvl-btn" data-lvl="deep">Deeper (Grade 7–9)</button>
+          </div>
+          <div class="level-block active" data-lvl="solid">${q.solid}</div>
+          <div class="level-block" data-lvl="deep">${q.deep}</div>
+          <div class="row" style="margin-top:10px;"><b>Context</b>${q.context}</div>
+          <div class="row"><b>Use this for</b>${q.useFor}</div>
+        </div>
+      </div>`).join('') || '<p class="subtle">No quotations match your search. Try different filters.</p>';
+
+    container.querySelectorAll('.qreveal-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.qcard');
+        const open = card.classList.toggle('open');
+        btn.textContent = open ? 'Hide analysis' : 'Reveal analysis';
+      });
+    });
+    container.querySelectorAll('.lvl-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const card = btn.closest('.qcard');
+        const lvl = btn.getAttribute('data-lvl');
+        card.querySelectorAll('.lvl-btn').forEach(b=>b.classList.toggle('active', b===btn));
+        card.querySelectorAll('.level-block').forEach(b=>b.classList.toggle('active', b.getAttribute('data-lvl')===lvl));
+      });
+    });
+  }
+  document.getElementById('qvSearch').addEventListener('input', renderQuotes);
+  document.getElementById('qvCharFilter').addEventListener('change', renderQuotes);
+  document.getElementById('qvThemeFilter').addEventListener('change', renderQuotes);
+  renderQuotes();
+}
+
+/* ---- 6. CONTEXT ---- */
+function buildContext(){
+  const items = [
+  {t:"George Orwell", body:"Eric Arthur Blair, writing as George Orwell, was a British writer and journalist with strong, self-described democratic socialist convictions, who nonetheless became one of the twentieth century's sharpest critics of totalitarianism in both its fascist and Stalinist forms.",
+   use:"Use this to explain why the novella can simultaneously critique the corruption of the Russian Revolution and remain committed to the revolution's original egalitarian ideals, rather than rejecting socialism altogether."},
+  {t:"The Russian Revolution (1917)", body:"The Bolshevik-led revolution that overthrew Tsarist rule in Russia in 1917 promised a more equal, worker-led society, closely paralleling the animals' initial hopes following the expulsion of Mr Jones.",
+   use:"Use this to explain the genuine optimism and collective energy of the novella's early chapters, before the gradual corruption of the pigs' leadership becomes apparent."},
+  {t:"Stalinism and the Great Purge", body:"Joseph Stalin's consolidation of power in the Soviet Union involved the removal of rivals such as Leon Trotsky, show trials, forced confessions, and executions of alleged traitors during the Great Purge of the 1930s.",
+   use:"Use this to explain the significance of Snowball's expulsion, the forced confessions before the executions in Chapter Seven, and Squealer's constant vilification of Snowball as a scapegoat."},
+  {t:"Trotsky and Snowball", body:"Leon Trotsky, a leading early Bolshevik figure and rival to Stalin, was expelled from the Soviet Union and later vilified in official propaganda, a pattern many critics read as closely reflected in Snowball's expulsion and subsequent treatment.",
+   use:"Use this cautiously to support, rather than replace, close analysis of Snowball's specific actions and eventual absence from the text."},
+  {t:"Soviet Five-Year Plans", body:"Stalin's Five-Year Plans set ambitious industrial and agricultural targets for the Soviet Union, often achieved only through immense strain on ordinary workers, echoing the windmill's demands on the animals' labour.",
+   use:"Use this to explain the significance of the windmill as a project that consumes enormous animal labour while chiefly benefiting the pigs' authority and prestige."},
+  {t:"Publishing difficulties in wartime Britain", body:"Orwell reportedly struggled to find a publisher for the novella during the Second World War, since Britain's wartime alliance with the Soviet Union made overt criticism of Stalin politically awkward; it was eventually published in 1945, shortly after the war's end.",
+   use:"Use this to explain the novella's careful use of allegory rather than direct, explicit political statement, since more open criticism would likely have been considered unpublishable at the time."},
+  {t:"The fable and beast-fable tradition", body:"Animal Farm draws on a long literary tradition of using animal characters to deliver moral or political commentary, stretching back through Aesop's fables to more recent political satire.",
+   use:"Use this to explain Orwell's choice of animal characters and his own subtitle for the novella, 'A Fairy Story', as a deliberate, deceptively simple literary strategy."},
+  {t:"Totalitarianism in the twentieth century", body:"Orwell's direct experience of, and deep concern about, totalitarian political systems, both fascist and communist, shaped much of his later writing, including his more famous novel Nineteen Eighty-Four.",
+   use:"Use this to support readings of the novella as a more general warning about the mechanisms of totalitarian control, not only a specific commentary on Soviet history."}
+  ];
+  const cards = items.map(i=>`<div class="disclosure" data-d>
+    <button class="d-head"><span>${i.t}</span><span class="chev">›</span></button>
+    <div class="d-body"><div class="inner">
+      <p style="margin-top:10px;">${i.body}</p>
+      <div class="mini-label">How can I actually use this in an essay?</div><p>${i.use}</p>
+    </div></div>
+  </div>`).join('');
+
+  const s = el(`<section class="section" id="section-context">
+    <div class="section-header"><div class="eyebrow">Section 06</div><h1>Context</h1><div class="desc">Only the context you can actually use — always paired with a real essay application.</div></div>
+    <div class="card"><p><b>Important:</b> Never bolt on a historical fact just to prove you know it. Only use context when it genuinely deepens your interpretation of Orwell's choices at that specific moment.</p></div>
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 7. TECHNIQUES ---- */
+function buildTechniques(){
+  const cards = TECHNIQUES.map(t=>`<div class="disclosure" data-d>
+    <button class="d-head"><span>${t.name}</span><span class="chev">›</span></button>
+    <div class="d-body"><div class="inner">
+      <div class="mini-label">Definition</div><p>${t.def}</p>
+      <div class="mini-label">Animal Farm example</div><p>${t.example}</p>
+      <div class="mini-label">Effect</div><p>${t.effect}</p>
+      <div class="mini-label">How to analyse it</div><p>${t.howto}</p>
+    </div></div>
+  </div>`).join('');
+
+  const s = el(`<section class="section" id="section-techniques">
+    <div class="section-header"><div class="eyebrow">Section 07</div><h1>Techniques</h1><div class="desc">The key allegorical and narrative methods Orwell uses, with clear examples and analysis guidance.</div></div>
+
+    <div class="card"><h3>Why does allegory matter so much in this novella?</h3>
+      <p>Allegory is not simply decoration in Animal Farm — it is the novella's central method. Almost every event on the farm can be read on two levels at once: as a piece of plot involving specific animal characters, and as a compressed, simplified retelling of real twentieth-century political history. This double structure lets Orwell make a precise historical argument (about the Russian Revolution and Stalinism specifically) while also making a more general, more widely applicable argument about how any revolution can be betrayed by unchecked power, propaganda and passivity. Because the allegory operates so consistently, students should get comfortable moving between the literal farm-level event and its likely political meaning in almost every paragraph of analysis, while still avoiding reducing every single detail to one fixed, oversimplified real-world equivalent.</p>
+    </div>
+
+    ${cards}
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 8. EXAM ---- */
+function buildExam(){
+  const s = el(`<section class="section" id="section-exam">
+    <div class="section-header"><div class="eyebrow">Section 08</div><h1>Exam Survival</h1><div class="desc">How to actually approach an Animal Farm exam question, step by step.</div></div>
+
+    <div class="card" style="text-align:center;">
+      <img src="../images/exam-essentials/animal-farm-exam-essentials.png" alt="The Teacher Vault: Animal Farm Exam Essentials one-page revision poster" style="max-width:100%;height:auto;border-radius:8px;border:1px solid var(--line);display:block;margin:0 auto;" loading="lazy">
+      <p class="subtle" style="margin-top:10px;">The Teacher Vault's one-page <b>Exam Essentials</b> poster for Animal Farm — plot, characters, themes, key quotes, context, structure and vocabulary at a glance. Save it, print it, or pin it above your desk.</p>
+    </div>
+
+    <div class="card"><p>Exam boards differ in exact format — some give you a printed extract and ask you to connect it to the whole novella; others ask a discursive essay question without an extract. Always check your own exam board's format with your teacher, but the analytical skills below apply broadly.</p></div>
+
+    <div class="disclosure open" data-d><button class="d-head"><span>1. Understanding the question</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Underline the key words in the question — usually a character, theme, or idea, plus a command word (e.g. 'explore', 'how does Orwell present'). Every paragraph should keep answering that exact question.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>2. Selecting evidence</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Choose short, precise quotations you can analyse word-by-word. Never invent or misremember a quotation — an accurate short quote is always stronger than an inaccurate longer one.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>3. Creating a thesis</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>State a clear, arguable position rather than just restating the question. For example: "Orwell presents the alteration of the Seven Commandments as a deliberately gradual process, so that the reader recognises how easily small, deniable changes can accumulate into total betrayal."</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>4. Paragraph structure</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>A reliable structure: Point → Evidence (short quotation) → Method (technique + effect) → Context (only if it adds insight) → Link back to Orwell's likely purpose.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>5. Analysing narrative and structural methods</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Always ask: why does this event happen at this specific point in the chapter structure, not earlier or later? Consider structural methods (escalation, cyclical structure, pacing) alongside language choices.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>6. Analysing narrative voice and tone</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>The narrator's calm, understated tone is a deliberate authorial choice, not a neutral or incidental style. Treat moments where tone and disturbing content seem mismatched as especially significant.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>7. Discussing character development</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Track how a character's language, status or behaviour shift across the ten chapters, rather than treating them as static from the novella's opening.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>8. Incorporating context</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Context should illuminate Orwell's choices, not replace analysis of them. One well-placed contextual point about the Russian Revolution or Stalinism is worth more than a paragraph of history with no link to the text.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>9. Connecting ideas across the whole novella</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Always show how a moment connects to a wider pattern across multiple chapters, not just the scene in front of you — the Seven Commandments are especially useful for this.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>10. Writing conclusions</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Don't simply repeat your introduction. Briefly synthesise your strongest points and comment on Orwell's overall political or moral message.</p></div></div></div>
+
+    <div class="disclosure" data-d><button class="d-head"><span>11. Managing time</span><span class="chev">›</span></button>
+      <div class="d-body"><div class="inner"><p>Spend a few minutes planning before you write. Leave a couple of minutes at the end to check for missing words and unclear sentences.</p></div></div></div>
+
+    <h2 style="margin-top:28px;">Character or Theme?</h2>
+    <div class="card"><p>Some questions focus mainly on a <b>character</b> ("How does Orwell present Napoleon?"), others mainly on a <b>theme</b> ("How does Orwell present propaganda?"), and some genuinely combine both ("How does Orwell use Boxer to explore ideas about exploitation?"). Read the question carefully: if it names a character, your argument should stay anchored to that character's specific actions and language throughout, even while discussing the themes they represent. If it names a theme, you can draw on multiple characters as evidence, but should still discuss specific characters' words and methods rather than describing the theme abstractly.</p></div>
+
+    <h2 style="margin-top:28px;">Weak vs Strong Analysis</h2>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"Napoleon is evil because he takes over the farm."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"Orwell's steady, incremental depiction of Napoleon's rise, from quietly rearing guard dogs to openly adopting human titles and habits, presents dictatorship as an accumulation of small, deliberate steps rather than a single dramatic seizure of power."</p></div>
+    </div>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"Squealer is good at lying to the animals."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"Squealer's habitual rhetorical question asking whether the animals want Jones back exemplifies Orwell's wider argument that propaganda succeeds less through outright falsehood than through reframing any criticism as dangerously irresponsible."</p></div>
+    </div>
+    <div class="wvs">
+      <div class="weak"><div class="lbl">Weak</div><p>"Boxer works hard and then dies, which is sad."</p></div>
+      <div class="strong"><div class="lbl">Strong</div><p>"The devastating dramatic irony of Boxer's removal, in which the reader recognises the knacker's van before the animals do, allows Orwell to expose the precise mechanism by which loyal labour is exploited and then discarded once no longer useful."</p></div>
+    </div>
+
+    <h2 style="margin-top:28px;">Practice questions</h2>
+    <div id="practiceQs"></div>
+  </section>`);
+  root.appendChild(s);
+
+  const practice = [
+   {q:"How does Orwell show that language can become a form of political power?", plan:["Introduce Squealer's propaganda role and the altered commandments.","P1: Squealer's rhetorical questions and repeated justifications.","P2: The physical rewriting of the Seven Commandments.","P3: The sheep's slogans crowding out debate.","Context: Orwell's wider concerns about political language.","Conclusion: Orwell presents control of language as central to political control itself."]},
+   {q:"How is Boxer used to expose exploitation?", plan:["Introduce Boxer as the farm's most loyal labourer.","P1: His mottos 'I will work harder' and 'Napoleon is always right'.","P2: His central role in rebuilding the windmill.","P3: His sale to the knacker despite a lifetime of service.","Context: parallels with the exploited industrial worker.","Conclusion: Orwell uses Boxer to expose how loyalty can be exploited by unaccountable power."]},
+   {q:"How does the farm change from revolutionary hope to dictatorship?", plan:["Introduce Old Major's original vision.","P1: The genuine early cooperation after the Rebellion.","P2: Napoleon's use of the dogs to remove Snowball.","P3: The steady alteration of the commandments and the final merging of pig and man.","Context: parallels with the Russian Revolution's aftermath.","Conclusion: Orwell presents this transformation as gradual and cumulative rather than sudden."]},
+   {q:"How does Orwell make the ending both shocking and inevitable?", plan:["Introduce the final scene of pigs and humans together.","P1: Earlier foreshadowing through small pig privileges.","P2: The steady erosion of the commandments across the novella.","P3: The understated narrative tone used even at the climactic final image.","Context: the novella's cyclical structure.","Conclusion: Orwell builds the ending so its shock depends on recognising its inevitability."]},
+   {q:"How does Orwell present Napoleon as a figure of political power?", plan:["Introduce Napoleon's quiet early rise.","P1: The secret rearing of the guard dogs.","P2: The removal of Snowball and the end of debate.","P3: His growing list of titles and human habits.","Context: parallels with Stalin's rise to power.","Conclusion: Orwell presents Napoleon's power as built gradually and then defended by force."]},
+   {q:"How does Orwell present Squealer's role in the pigs' regime?", plan:["Introduce Squealer as Napoleon's chief propagandist.","P1: His justification of early privileges like milk and apples.","P2: His use of rhetorical questions to silence dissent.","P3: His role in rewriting the commandments and Snowball's history.","Context: Soviet state propaganda.","Conclusion: Orwell presents Squealer as showing that persuasion can be as powerful a political tool as force."]},
+   {q:"How does Orwell use Old Major to establish the novella's ideals?", plan:["Introduce Old Major's speech and its persuasive logic.","P1: His critique of human exploitation.","P2: The song 'Beasts of England' as a symbol of hope.","P3: His death before the Rebellion, leaving his vision open to reinterpretation.","Context: revolutionary socialist ideology.","Conclusion: Orwell uses Old Major to give the later betrayal genuine emotional and moral weight."]},
+   {q:"How does Orwell use the sheep to explore propaganda and passivity?", plan:["Introduce the sheep as an uncritical collective.","P1: Their original slogan interrupting genuine debate.","P2: Their retraining to bleat a contradictory revised slogan.","P3: Their complete absence of individual thought throughout.","Context: mass repetition in totalitarian propaganda.","Conclusion: Orwell uses the sheep to show propaganda's most extreme, uncritical form of success."]},
+   {q:"How does Orwell present the theme of memory and history?", plan:["Introduce the repeated alteration of the Seven Commandments.","P1: Squealer's shifting accounts of Snowball's role.","P2: Clover's inability to confirm her own memory of the rules.","P3: The final replacement of all commandments with one contradictory rule.","Context: the falsification of Soviet official records.","Conclusion: Orwell presents control of the past as inseparable from control of the present."]},
+   {q:"How does Orwell use the windmill as a symbol?", plan:["Introduce Snowball's original promise for the windmill.","P1: Its destruction and Napoleon's use of Snowball as scapegoat.","P2: Boxer's exhausting labour rebuilding it.","P3: Its eventual role serving pig prestige rather than animal welfare.","Context: Soviet Five-Year Plans.","Conclusion: Orwell uses the windmill to show ambitious projects can be redirected to serve those in power."]}
+  ];
+  const container = document.getElementById('practiceQs');
+  container.innerHTML = practice.map((p,i)=>`<div class="card">
+    <h3>${p.q}</h3>
+    <button class="btn secondary" type="button" data-plan="${i}">Reveal planning points</button>
+    <div class="plan-reveal" data-plan-body="${i}" style="display:none;margin-top:12px;">
+      <ol>${p.plan.map(x=>`<li>${x}</li>`).join('')}</ol>
+    </div>
+  </div>`).join('');
+  container.querySelectorAll('[data-plan]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const idx = btn.getAttribute('data-plan');
+      const body = container.querySelector(`[data-plan-body="${idx}"]`);
+      const showing = body.style.display !== 'none';
+      body.style.display = showing ? 'none' : 'block';
+      btn.textContent = showing ? 'Reveal planning points' : 'Hide planning points';
+    });
+  });
+}
+
+/* ---- 9. QUIZ ---- */
+let quizState = { order: [], idx:0, score:0, answered:false, wrongTopics:{} };
+function shuffle(arr){ const a = arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+const TYPE_LABEL = {mc:'Plot & detail', tf:'True / False', char:'Character', quote:'Quotation', theme:'Theme', context:'Context', tech:'Technique'};
+
+function buildQuiz(){
+  const s = el(`<section class="section" id="section-quiz">
+    <div class="section-header"><div class="eyebrow">Section 09</div><h1>Quiz</h1><div class="desc">Self-marking revision quiz covering plot, characters, quotations, themes, context, techniques and structure.</div></div>
+    <div class="card">
+      <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
+      <div id="quizArea"></div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  startQuiz();
+}
+
+function startQuiz(){
+  quizState = { order: shuffle(QUIZ_BANK.map((_,i)=>i)), idx:0, score:0, answered:false, wrongTopics:{} };
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion(){
+  const area = document.getElementById('quizArea');
+  const total = quizState.order.length;
+  if(quizState.idx >= total){
+    const pct = Math.round((quizState.score/total)*100);
+    document.getElementById('quizProgressBar').style.width = '100%';
+    const weakList = Object.keys(quizState.wrongTopics).sort((a,b)=>quizState.wrongTopics[b]-quizState.wrongTopics[a]);
+    area.innerHTML = `<div class="quiz-result">
+      <div class="score">${quizState.score}/${total}</div>
+      <p class="subtle">${pct}% correct</p>
+      ${weakList.length ? `<div class="weak-areas"><p class="subtle"><b>Areas to revise:</b></p><p>${weakList.map(t=>`<span class="tag blood">${TYPE_LABEL[t]||t}</span>`).join('')}</p></div>` : `<p class="subtle">Strong across every question type — well done!</p>`}
+      <button class="btn blood" id="tryAgainBtn" type="button">Try Again</button>
+      <button class="btn secondary" id="newQuizBtn" type="button" style="margin-left:8px;">New Quiz</button>
+    </div>`;
+    document.getElementById('tryAgainBtn').addEventListener('click', ()=>{ quizState.idx=0; quizState.score=0; quizState.wrongTopics={}; quizState.answered=false; renderQuizQuestion(); });
+    document.getElementById('newQuizBtn').addEventListener('click', startQuiz);
+    return;
+  }
+  document.getElementById('quizProgressBar').style.width = ((quizState.idx/total)*100)+'%';
+  const item = QUIZ_BANK[quizState.order[quizState.idx]];
+  const optOrder = shuffle(item.opts.map((o,i)=>i));
+  quizState.answered = false;
+  area.innerHTML = `
+    <p class="subtle">Question ${quizState.idx+1} of ${total} · <span class="tag gold">${TYPE_LABEL[item.type]||''}</span></p>
+    <div class="quiz-q">${item.q}</div>
+    <div class="quiz-opts">${optOrder.map(oi=>`<button class="quiz-opt" data-oi="${oi}" type="button">${item.opts[oi]}</button>`).join('')}</div>
+    <div class="quiz-explain" id="quizExplain"></div>
+    <div style="margin-top:14px;"><button class="btn" id="quizNextBtn" type="button" style="display:none;">Next question</button></div>
+  `;
+  area.querySelectorAll('.quiz-opt').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(quizState.answered) return;
+      quizState.answered = true;
+      const chosen = parseInt(btn.getAttribute('data-oi'));
+      area.querySelectorAll('.quiz-opt').forEach(b=>{
+        b.setAttribute('disabled','true');
+        const oi = parseInt(b.getAttribute('data-oi'));
+        if(oi === item.a) b.classList.add('correct');
+        else if(oi === chosen) b.classList.add('incorrect');
+      });
+      if(chosen === item.a) quizState.score++;
+      else quizState.wrongTopics[item.type] = (quizState.wrongTopics[item.type]||0)+1;
+      const exp = document.getElementById('quizExplain');
+      exp.textContent = item.exp;
+      exp.classList.add('show');
+      document.getElementById('quizNextBtn').style.display = 'inline-block';
+    });
+  });
+  document.getElementById('quizNextBtn').addEventListener('click', ()=>{ quizState.idx++; renderQuizQuestion(); });
+}
+
+/* ---- 10. WHO SAID IT GAME ---- */
+let wsiState = { order: [], idx:0, score:0, answered:false };
+
+function buildWhoSaidIt(){
+  const s = el(`<section class="section" id="section-whosaidit">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Who Said It?</h1><div class="desc">A quick, game-like activity. For each quotation, select the character who said it.</div></div>
+    <div class="jh-game">
+      <div class="jh-score" id="wsiScore"></div>
+      <div class="jh-quote" id="wsiQuoteText"></div>
+      <div class="jh-opts" id="wsiOpts"></div>
+      <div class="jh-feedback" id="wsiFeedback"></div>
+      <button class="btn" id="wsiNextBtn" type="button" style="display:none;margin-top:14px;">Next quotation</button>
+      <button class="btn secondary" id="wsiRestartBtn" type="button" style="display:none;margin-top:14px;">Play again</button>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  startWSI();
+}
+
+function startWSI(){
+  wsiState = { order: shuffle(WHOSAIDIT.map((_,i)=>i)), idx:0, score:0, answered:false };
+  renderWSI();
+}
+
+function renderWSI(){
+  const total = wsiState.order.length;
+  const scoreEl = document.getElementById('wsiScore');
+  const feedback = document.getElementById('wsiFeedback');
+  const nextBtn = document.getElementById('wsiNextBtn');
+  const restartBtn = document.getElementById('wsiRestartBtn');
+  feedback.classList.remove('show');
+  feedback.textContent = '';
+  nextBtn.style.display = 'none';
+
+  if(wsiState.idx >= total){
+    scoreEl.textContent = `Final score: ${wsiState.score}/${total}`;
+    document.getElementById('wsiQuoteText').textContent = "Round complete!";
+    document.getElementById('wsiOpts').innerHTML = '';
+    restartBtn.style.display = 'inline-block';
+    restartBtn.onclick = startWSI;
+    return;
+  }
+  restartBtn.style.display = 'none';
+  scoreEl.textContent = `Quotation ${wsiState.idx+1} of ${total} · Score: ${wsiState.score}`;
+  const item = WHOSAIDIT[wsiState.order[wsiState.idx]];
+  document.getElementById('wsiQuoteText').textContent = `"${item.text}"`;
+  const optsEl = document.getElementById('wsiOpts');
+  optsEl.innerHTML = item.opts.map(o=>`<button type="button" data-opt="${o}">${o}</button>`).join('');
+  wsiState.answered = false;
+  optsEl.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(wsiState.answered) return;
+      wsiState.answered = true;
+      const chosen = btn.getAttribute('data-opt');
+      optsEl.querySelectorAll('button').forEach(b=>{
+        b.disabled = true;
+        if(b.getAttribute('data-opt') === item.answer) b.classList.add('correct');
+        else if(b === btn) b.classList.add('incorrect');
+      });
+      if(chosen === item.answer) wsiState.score++;
+      feedback.textContent = `${item.answer}. ${item.exp}`;
+      feedback.classList.add('show');
+      nextBtn.style.display = 'inline-block';
+    });
+  });
+}
+document.addEventListener('click', function(e){
+  if(e.target && e.target.id === 'wsiNextBtn'){ wsiState.idx++; renderWSI(); }
+});
+
+/* ---- 11. POWER TRACKER ---- */
+function buildPowerTracker(){
+  const cards = CHANGE_DATA.map(c=>`
+    <div class="change-card" data-d>
+      <button class="cc-head">
+        <span class="cc-name">${c.name}</span>
+        <span class="cc-meter">${[1,2,3,4,5].map(n=>`<span class="dot${n<=c.level?' on':''}"></span>`).join('')}</span>
+      </button>
+      <div class="cc-body"><div class="cc-inner">
+        <div class="mini-label">Beginning of the novella</div><p>${c.begin}</p>
+        <div class="mini-label">End of the novella</div><p>${c.end}</p>
+        <div class="mini-label">What they learn</div><p>${c.learns}</p>
+        <div class="mini-label">What they refuse to learn</div><p>${c.refuses}</p>
+        <div class="mini-label">Evidence</div><div class="quote-line">"${c.quote}"</div>
+        <p class="cc-note">The dots represent an interpretative judgement of how much a character's position or understanding shifts, not a fixed score — use this as a starting point for your own argument, not a final answer.</p>
+      </div></div>
+    </div>`).join('');
+
+  const s = el(`<section class="section" id="section-powertracker">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Power Tracker</h1><div class="desc">Tap each figure to see how their position, understanding or power shifts across the novella.</div></div>
+    <div class="card"><p class="subtle">The dots represent an interpretative judgement, not a precise or objective score — good essays will debate and justify their own view.</p></div>
+    <div class="change-grid">${cards}</div>
+  </section>`);
+  root.appendChild(s);
+
+  s.querySelectorAll('.cc-head').forEach(head=>{
+    head.addEventListener('click', ()=>{ head.parentElement.classList.toggle('open'); });
+  });
+}
+
+/* ---- 12. THE SEVEN COMMANDMENTS ---- */
+function buildCommandments(){
+  let stepsHtml = '';
+  CHAIN.forEach((c,i)=>{
+    stepsHtml += `<div class="chain-step" data-d>
+      <button class="chain-btn"><span>${c.who} — ${c.action}</span><span class="chev">›</span></button>
+      <div class="chain-body"><div class="chain-inner">
+        <div class="mini-label">What happened</div><p>${c.detail}</p>
+        <div class="mini-label">Key quotation</div><div class="quote-line">"${c.quote}"</div>
+        <div class="mini-label">Orwell's message</div><p>${c.message}</p>
+      </div></div>
+    </div>`;
+    if(i < CHAIN.length-1) stepsHtml += `<div class="chain-arrow">↓</div>`;
+  });
+
+  const s = el(`<section class="section" id="section-commandments">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>The Seven Commandments</h1><div class="desc">Tap each stage to see how the founding rules of Animal Farm are eroded, one by one, across the novella.</div></div>
+    <div class="card"><p><b>Important:</b> The commandments are not altered in a single moment — Orwell spaces these changes across many chapters. Use this chain to track exactly how gradual, and how deniable, each individual step is, rather than treating the farm's corruption as one sudden event.</p></div>
+    <div class="chain">${stepsHtml}</div>
+  </section>`);
+  root.appendChild(s);
+
+  s.querySelectorAll('.chain-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ btn.closest('.chain-step').classList.toggle('open'); });
+  });
+}
+
+/* ---- 13. FARM VS REVOLUTION ---- */
+function buildCompare(){
+  const s = el(`<section class="section" id="section-compare">
+    <div class="section-header"><div class="eyebrow">Bonus</div><h1>Farm vs Revolution</h1><div class="desc">Understanding the historical events behind the allegory is essential to understanding the novella's structure and purpose — but always treat these as possible parallels, not one-to-one equations.</div></div>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <h3>Animal Farm (the allegory)</h3>
+        <ul>${COMPARE_FARM.map(c=>`<li><b>${c.point}</b><div class="compare-why">Why this matters for analysis: ${c.why}</div></li>`).join('')}</ul>
+      </div>
+      <div class="compare-col">
+        <h3>The Russian Revolution &amp; Soviet History (the real events)</h3>
+        <ul>${COMPARE_HISTORY.map(c=>`<li><b>${c.point}</b><div class="compare-why">Why this matters for analysis: ${c.why}</div></li>`).join('')}</ul>
+      </div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+}
+
+/* ---- 14. LAST MINUTE ---- */
+function buildLastMinute(){
+  const plot12 = ["Old Major inspires the animals with his speech about exploitation.","Mr Jones is driven off the farm in the Rebellion.","The pigs write the Seven Commandments on the barn wall.","The animals bring in the harvest with real collective enthusiasm.","The animals defeat Mr Jones's men at the Battle of the Cowshed.","Napoleon's dogs drive Snowball off the farm for good.","Napoleon ends open debate and assumes total control.","The pigs move into the farmhouse and begin altering the commandments.","Napoleon orders the confession and execution of several animals.","Boxer is worked to collapse rebuilding the windmill after the Battle of the Windmill.","Boxer is sold to a horse slaughterer while the pigs claim he is going to hospital.","The commandments are reduced to one, and the animals can no longer tell pig from man."];
+  const sixChars = [
+   ["Napoleon","Ambitious, quietly ruthless pig who eliminates his rival Snowball and becomes the farm's absolute dictator."],
+   ["Snowball","Inventive, idealistic pig whose windmill plan and open leadership style are ended by Napoleon's dogs."],
+   ["Squealer","Napoleon's persuasive spokesman, who justifies every new inequality and rewrites Snowball's history."],
+   ["Boxer","Immensely strong, endlessly loyal cart-horse whose labour is exploited and then discarded once he collapses."],
+   ["Benjamin","Sceptical, literate donkey who understands the pigs' corruption but rarely acts on that understanding."],
+   ["Old Major","Elderly boar whose dying speech inspires the Rebellion and the founding principles of Animalism."]
+  ];
+  const fiveThemes = [
+   ["Power and corruption","The novella's central theme — how concentrated, unaccountable power corrupts even revolutionary leadership."],
+   ["Propaganda","Squealer's constant, shifting justifications show how persuasive language secures obedience."],
+   ["Class and exploitation","A new hierarchy between pigs and other animals recreates the exploitation the Rebellion set out to end."],
+   ["Memory and history","Rewriting the past, especially Snowball's role and the Seven Commandments, prevents the present being challenged."],
+   ["Revolution and betrayal","The widening gap between Old Major's vision and the farm's final state structures the whole novella."]
+  ];
+  const quotes15 = [
+   ["Man is the only creature that consumes without producing","Old Major","Use for revolution/exploitation."],
+   ["All men are enemies. All animals are comrades","Old Major","Use for revolutionary ideals — founding principle."],
+   ["Four legs good, two legs bad","The Sheep","Use for propaganda/language and control."],
+   ["I will work harder","Boxer","Use for loyalty/exploitation."],
+   ["All animals are equal","The Seven Commandments","Use for the Rebellion's founding promise."],
+   ["Napoleon is always right","Boxer","Use for loyalty/totalitarian obedience."],
+   ["Surely, comrades, you do not want Jones back?","Squealer","Use for propaganda's rhetorical technique."],
+   ["Snowball was Jones's agent","Squealer","Use for memory and history/scapegoating."],
+   ["No animal shall sleep in a bed with sheets","The Seven Commandments (altered)","Use for language and control — gradual corruption."],
+   ["No animal shall kill any other animal without cause","The Seven Commandments (altered)","Use for fear and violence."],
+   ["All animals are equal, but some animals are more equal than others","The Seven Commandments (final)","Use for power and corruption — central quote."],
+   ["Beasts of England","Old Major","Use for memory/symbolism of lost ideals."],
+   ["Four legs good, two legs better","The Sheep","Use for propaganda's final reversal."],
+   ["the pigs did not actually work, but directed and supervised","Narrator","Use for foreshadowing/class and exploitation."],
+   ["impossible to say which was which","Narrator","Use for the ending/cyclical structure — essential closing quote."]
+  ];
+  const fiveContext = ["The Russian Revolution (1917) and its early promise of equality.","Stalin's rise to power and the Great Purge of the 1930s.","Trotsky's expulsion and vilification, often paralleled with Snowball.","Soviet Five-Year Plans and their strain on ordinary workers.","Orwell's own democratic socialist beliefs and his opposition to Stalinism."];
+  const fiveTech = [
+   ["Allegory","The farm's political trajectory mirrors real events of the Russian Revolution and its aftermath."],
+   ["Dramatic irony","The reader recognises Boxer's fate before the animals do, from the markings on the knacker's van."],
+   ["Cyclical structure","The final scene, pigs and humans together, echoes the very oppression the Rebellion set out to end."],
+   ["Repetition and sloganeering","The sheep's chants replace genuine debate with simple, repeated phrases."],
+   ["Euphemism","Squealer's language consistently softens or disguises the pigs' wrongdoing."]
+  ];
+  const checklist = ["Answer the actual question.","Make a clear argument.","Use precise, accurate evidence — never invented quotations.","Analyse Orwell's methods, not just what happens.","Discuss Orwell's purpose.","Link context naturally, not as a bolt-on.","Refer to the whole novella, not just one chapter."];
+  const dontDo = ["Don't simply retell the plot.","Don't list historical facts disconnected from the text.","Don't invent or misremember quotations.","Don't call Orwell a novelist only — mention his journalism and essays too where relevant.","Don't reduce every detail to a single fixed real-world equivalent."];
+
+  const s = el(`<section class="section" id="section-lastminute">
+    <div class="section-header"><div class="eyebrow">Section 10</div><h1>Animal Farm — Last Minute</h1><div class="desc">Exam tomorrow? Start here.</div></div>
+    <button class="btn secondary print-btn" id="printBtn" type="button">Print this page</button>
+
+    <div class="lm-grid">
+      <div class="lm-card"><h3>Plot in 12 points</h3><ol>${plot12.map(x=>`<li>${x}</li>`).join('')}</ol></div>
+      <div class="lm-card"><h3>6 characters you must understand</h3><ul>${sixChars.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 themes you must understand</h3><ul>${fiveThemes.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>15 quotations worth remembering</h3><ul>${quotes15.map(x=>`<li>"${x[0]}" <br><span class="subtle">— ${x[1]} → ${x[2]}</span></li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 contextual ideas</h3><ul>${fiveContext.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>5 techniques worth recognising</h3><ul>${fiveTech.map(x=>`<li><b>${x[0]}:</b> ${x[1]}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>Essay checklist</h3><ul>${checklist.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="lm-card"><h3>Five things NOT to do</h3><ul>${dontDo.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+    </div>
+  </section>`);
+  root.appendChild(s);
+  document.getElementById('printBtn').addEventListener('click', ()=> window.print());
+}
+
+/* ================= DISCLOSURE BEHAVIOUR (shared) ================= */
+function wireDisclosures(){
+  document.querySelectorAll('.disclosure > .d-head').forEach(head=>{
+    head.addEventListener('click', ()=>{
+      head.parentElement.classList.toggle('open');
+    });
+  });
+}
+
+/* ================= INIT ================= */
+buildOverview();
+buildPlot();
+buildCharacters();
+buildThemes();
+buildQuoteVault();
+buildContext();
+buildTechniques();
+buildExam();
+buildQuiz();
+buildWhoSaidIt();
+buildPowerTracker();
+buildCommandments();
+buildCompare();
+buildLastMinute();
+renderNav();
+wireDisclosures();
+showSection(SECTIONS.some(s=>s.id===currentSection) ? currentSection : 'overview');
+
+})();
+</script>
+</body>
+</html>
