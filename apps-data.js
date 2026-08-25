@@ -2171,6 +2171,7 @@ const APPS = [
 
   {
     id: "quicknotes-jekyll-and-hyde",
+    landingUrl: "quick-notes/jekyll-and-hyde.html",
     title: "Jekyll & Hyde Quick Notes",
     tagline: "A clear, exam-focused study guide to Stevenson's novella.",
     description: "A concise study guide to Strange Case of Dr Jekyll and Mr Hyde, covering plot, characters, themes and key quotations for GCSE English Literature.",
@@ -2199,6 +2200,7 @@ const APPS = [
   },
   {
     id: "quicknotes-an-inspector-calls",
+    landingUrl: "quick-notes/an-inspector-calls.html",
     title: "An Inspector Calls Quick Notes",
     tagline: "A clear, exam-focused study guide to Priestley's play.",
     description: "A concise study guide to An Inspector Calls, covering plot, characters, themes and key quotations for GCSE English Literature.",
@@ -2227,6 +2229,7 @@ const APPS = [
   },
   {
     id: "quicknotes-macbeth",
+    landingUrl: "quick-notes/macbeth.html",
     title: "Macbeth Quick Notes",
     tagline: "A clear, exam-focused study guide to Shakespeare's tragedy.",
     description: "A concise study guide to Macbeth, covering plot, characters, themes and key quotations for GCSE English Literature.",
@@ -2255,6 +2258,7 @@ const APPS = [
   },
   {
     id: "quicknotes-christmas-carol",
+    landingUrl: "quick-notes/christmas-carol.html",
     title: "A Christmas Carol Quick Notes",
     tagline: "A clear, exam-focused study guide to Dickens' novella.",
     description: "A concise study guide to A Christmas Carol, covering plot, characters, themes and key quotations for GCSE English Literature.",
@@ -2277,6 +2281,7 @@ const APPS = [
   },
   {
     id: "quicknotes-romeo-and-juliet",
+    landingUrl: "quick-notes/romeo-and-juliet.html",
     title: "Romeo and Juliet Quick Notes",
     tagline: "A clear, exam-focused study guide to Shakespeare's tragedy.",
     description: "A concise study guide to Romeo and Juliet, covering plot, characters, themes and key quotations for GCSE English Literature.",
@@ -2299,6 +2304,7 @@ const APPS = [
   },
   {
     id: "quicknotes-animal-farm",
+    landingUrl: "quick-notes/animal-farm.html",
     title: "Animal Farm Quick Notes",
     tagline: "A clear, exam-focused study guide to Orwell's allegory.",
     description: "A concise study guide to Animal Farm, covering plot, characters, themes and key quotations for GCSE English Literature, plus a one-page Exam Essentials poster.",
@@ -2321,6 +2327,7 @@ const APPS = [
   },
   {
     id: "quicknotes-blood-brothers",
+    landingUrl: "quick-notes/blood-brothers.html",
     title: "Blood Brothers Quick Notes",
     tagline: "A clear, exam-focused study guide to Willy Russell's play.",
     description: "A concise study guide to Blood Brothers, covering plot, characters, themes and key quotations for GCSE English Literature, plus a one-page Exam Essentials poster.",
@@ -2343,6 +2350,7 @@ const APPS = [
   },
   {
     id: "quicknotes-lord-of-the-flies",
+    landingUrl: "quick-notes/lord-of-the-flies.html",
     title: "Lord of the Flies Quick Notes",
     tagline: "A clear, exam-focused study guide to Golding's novel.",
     description: "A concise study guide to Lord of the Flies, covering plot, characters, themes and key quotations for GCSE English Literature, plus a one-page Exam Essentials poster.",
@@ -2365,6 +2373,7 @@ const APPS = [
   },
   {
     id: "quicknotes-love-and-relationships-poetry",
+    landingUrl: "quick-notes/love-and-relationships-poetry.html",
     title: "Love and Relationships Poetry Quick Notes",
     tagline: "A clear, exam-focused guide to the AQA Love and Relationships anthology.",
     description: "A concise study guide to all fifteen poems in the Love and Relationships cluster, covering key ideas, poetic methods, context and comparison, plus a one-page Exam Essentials poster.",
@@ -2387,6 +2396,7 @@ const APPS = [
   },
   {
     id: "quicknotes-power-and-conflict-poetry",
+    landingUrl: "quick-notes/power-and-conflict-poetry.html",
     title: "Power and Conflict Poetry Quick Notes",
     tagline: "A clear, exam-focused guide to the AQA Power and Conflict anthology.",
     description: "A concise study guide to all fifteen poems in the Power and Conflict cluster, covering key ideas, poetic methods, context and comparison, plus a one-page Exam Essentials poster.",
