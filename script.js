@@ -286,11 +286,11 @@ function ctaFor(app) {
 function proNote(app) {
   if (app.tier === "lite" && app.proVersionId) {
     const pro = getAppById(app.proVersionId);
-    if (pro) return '<p class="app-card__pro-note">Pro version available &mdash; <a href="app.html?id=' + pro.id + '">' + pro.title + '</a></p>';
+    if (pro) return '<p class="app-card__pro-note">Pro version available &mdash; <a href="' + (pro.landingUrl || ('app.html?id=' + pro.id)) + '">' + pro.title + '</a></p>';
   }
   if (app.tier === "pro" && app.liteVersionId) {
     const lite = getAppById(app.liteVersionId);
-    if (lite) return '<p class="app-card__pro-note">Free Lite version available &mdash; <a href="app.html?id=' + lite.id + '">' + lite.title + '</a></p>';
+    if (lite) return '<p class="app-card__pro-note">Free Lite version available &mdash; <a href="' + (lite.landingUrl || ('app.html?id=' + lite.id)) + '">' + lite.title + '</a></p>';
   }
   return "";
 }

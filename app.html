@@ -239,7 +239,7 @@
             return '<li>' + ICONS.check + ' <span>' + f + '</span></li>';
           }).join("") + '</ul>' +
           '<div class="row-ctas">' +
-            '<a class="btn btn--primary" href="app.html?id=' + pair.id + '">View ' + pair.title + '</a>' +
+            '<a class="btn btn--primary" href="' + (pair.landingUrl || ('app.html?id=' + pair.id)) + '">View ' + pair.title + '</a>' +
           '</div>' +
         '</div>';
     }

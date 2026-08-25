@@ -93,7 +93,7 @@ Each page follows the required structure: breadcrumb → H1 → intro → who it
 
 - The six new landing pages each link to 4 related tools, back to `teacher-tools.html`, and out to Gumroad — none of this existed before (there was no page linking these products to each other at all).
 - Card links across the whole site (`teacher-tools.html`, `apps.html`, `index.html`, and the homepage hero rotation) now route through `landingUrl` for the six products, meaning every existing entry point into the catalogue now feeds into a real content page instead of a thin, JS-only detail view.
-- Not changed, deliberately: `proNote()`'s small "Pro version available" / "Free Lite version available" cross-links on cards still point at `app.html?id=...`. These are a minor, secondary cross-link (not the primary card link), and changing them was lower priority than the fixes above — see Next 30-Day Priorities.
+- `proNote()`'s small "Pro version available" / "Free Lite version available" cross-links on cards, and the matching "Need more?" panel on `app.html`'s own detail view, now also route through `landingUrl` where one exists — closing the one remaining inconsistency flagged in the first pass of this audit.
 
 ---
 
@@ -200,5 +200,4 @@ Based on what actually exists in the repository today — no speculative product
 3. **Commission a proper 1200×630 `og-image.jpg`** so social shares stop using the square logo as a stand-in.
 4. **Add a Christmas Carol Exam Essentials poster** to bring that guide in line with the other 9.
 5. **Decide on `/pro-apps.html` and `/free-apps.html`** as real indexable pages instead of `?tier=` query filters, if you want that segment of the catalogue to be independently rankable.
-6. **Update `proNote()` in `script.js`** so the small "Pro version available" / "Free Lite version available" card cross-links also route through `landingUrl` where one exists, for full consistency with the primary card links.
-7. **Once GSC is verified**, watch which of the Top 20 phrases above actually start pulling impressions, and prioritise the next batch of landing/hub pages based on real query data rather than guesswork.
+6. **Once GSC is verified**, watch which of the Top 20 phrases above actually start pulling impressions, and prioritise the next batch of landing/hub pages based on real query data rather than guesswork.
