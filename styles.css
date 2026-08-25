@@ -1327,6 +1327,7 @@ table.compare td:first-child, table.compare th:first-child { border-right: 1px s
 .prose li { display: flex; gap: 10px; margin-bottom: 8px; font-size: 0.97rem; color: var(--chalk-dim); }
 .prose li::before { content: "\2013"; color: var(--gold-light); flex-shrink: 0; }
 .on-paper.prose li { color: var(--ink-soft); }
+.prose .detail-list li::before { content: none; }
 
 .notice-box {
   border: 1.5px dashed var(--gold);

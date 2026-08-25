@@ -100,14 +100,14 @@ function renderTrustStrip(container) {
 
 const NEWSLETTER_URL = "https://theteachervault.beehiiv.com/subscribe?utm_source=theteachervault&utm_medium=website&utm_campaign=newsletter_signup";
 
-function renderNewsletterCTA(container) {
+function renderNewsletterCTA(container, url) {
   if (!container) return;
   container.innerHTML =
     '<div class="container">' +
       '<div class="newsletter-cta__panel">' +
         '<h2>Get New Free Resources</h2>' +
         '<p class="lede">New teacher tools, classroom resources and pupil revision materials from The Teacher Vault &mdash; straight to your inbox.</p>' +
-        '<a href="' + NEWSLETTER_URL + '" class="btn btn--primary newsletter-cta__btn" aria-label="Subscribe to The Teacher Vault newsletter to get free teacher and pupil resources">Get Free Resources</a>' +
+        '<a href="' + (url || NEWSLETTER_URL) + '" class="btn btn--primary newsletter-cta__btn" aria-label="Subscribe to The Teacher Vault newsletter to get free teacher and pupil resources">Get Free Resources</a>' +
         '<p class="newsletter-cta__note">Free resources &bull; No spam &bull; Unsubscribe anytime</p>' +
       '</div>' +
     '</div>';
