@@ -303,6 +303,9 @@ function ctaFor(app) {
   if (app.fileUrl) {
     return '<a class="btn btn--dark btn--block" href="' + app.fileUrl + '" download>Download PDF ' + ICONS.download + '</a>';
   }
+  if (!app.gumroadUrl) {
+    return '<span class="btn btn--dark btn--block" aria-disabled="true">Coming Soon</span>';
+  }
   const label = app.tier === "pro" ? "Get Pro on Gumroad" : "Download Free on Gumroad";
   return '<a class="btn ' + (app.tier === "pro" ? "btn--primary" : "btn--dark") + ' btn--block" href="' + app.gumroadUrl + '" target="_blank" rel="noopener">' + label + ' ' + ICONS.external + '</a>';
 }
