@@ -29,7 +29,7 @@
     <div class="container text-center">
       <h1>App not found</h1>
       <p class="lede" style="margin:0 auto 20px;">We couldn't find that app. It may have been renamed, or the link may be out of date.</p>
-      <a href="apps.html" class="btn btn--primary">Browse All</a>
+      <a href="/apps.html" class="btn btn--primary">Browse All</a>
     </div>
   </section>
 
@@ -132,10 +132,10 @@
   document.getElementById("canonicalLink").setAttribute("href", "https://theteachervault.com/app.html?id=" + app.id);
 
   // --- Breadcrumb ---
-  var catHref = { teacher: "teacher-tools.html", revision: "student-apps.html", quicknotes: "quick-notes.html" }[app.category];
+  var catHref = { teacher: "/teacher-tools.html", revision: "/student-apps.html", quicknotes: "/quick-notes.html" }[app.category];
   var catName = { teacher: "Teacher Tools", revision: "Student Apps", quicknotes: "Quick Notes" }[app.category];
   document.getElementById("breadcrumb").innerHTML =
-    '<a href="index.html">Home</a> / <a href="' + catHref + '">' + catName + '</a> / ' + app.title;
+    '<a href="/index.html">Home</a> / <a href="' + catHref + '">' + catName + '</a> / ' + app.title;
 
   // --- Header ---
   document.getElementById("categoryLabel").textContent = categoryLabel(app);
@@ -239,7 +239,7 @@
             return '<li>' + ICONS.check + ' <span>' + f + '</span></li>';
           }).join("") + '</ul>' +
           '<div class="row-ctas">' +
-            '<a class="btn btn--primary" href="' + (pair.landingUrl || ('app.html?id=' + pair.id)) + '">View ' + pair.title + '</a>' +
+            '<a class="btn btn--primary" href="' + (pair.landingUrl || ('/app.html?id=' + pair.id)) + '">View ' + pair.title + '</a>' +
           '</div>' +
         '</div>';
     }

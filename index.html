@@ -241,7 +241,7 @@
     var thumb = app.image
       ? '<img class="hero-mini-card__thumb" src="' + app.image + '" alt="" loading="lazy">'
       : '<span class="hero-mini-card__thumb hero-mini-card__thumb--board">' + thumbIcon(app) + '</span>';
-    return '<a class="hero-mini-card ' + posClass + '" href="' + (app.landingUrl || ('app.html?id=' + app.id)) + '">' +
+    return '<a class="hero-mini-card ' + posClass + '" href="' + (app.landingUrl || ('/app.html?id=' + app.id)) + '">' +
       thumb +
       '<span class="hero-mini-card__label"><span class="hero-mini-card__kicker">' + kicker + '</span>' + app.title + '</span>' +
     '</a>';

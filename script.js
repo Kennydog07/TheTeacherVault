@@ -121,28 +121,33 @@ function chalkLogo(size) {
   size = size || "md";
   return (
     '<span class="chalk-logo chalk-logo--' + size + '">' +
-      '<img src="images/logo.png" alt="The Teacher Vault" class="chalk-logo__img" width="320" height="320">' +
+      '<img src="/images/logo.png" alt="The Teacher Vault" class="chalk-logo__img" width="320" height="320">' +
     '</span>'
   );
 }
 
 /* --------------------------------------------------------------------------
    Header + footer templates
+
+   All hrefs here are root-relative (leading "/") rather than page-relative.
+   This is shared markup injected on pages at every folder depth (root,
+   quick-notes/, revision-apps/, teacher-apps/, guides/), so a page-relative
+   "teacher-tools.html" would resolve incorrectly from inside a subfolder.
    -------------------------------------------------------------------------- */
 
 const NAV_LINKS = [
-  { href: "index.html", label: "Home" },
-  { href: "teacher-tools.html", label: "Teacher Tools" },
-  { href: "student-apps.html", label: "Student Apps" },
-  { href: "quick-notes.html", label: "Quick Notes" },
-  { href: "apps.html?tier=pro", label: "Pro Apps" },
-  { href: "about.html", label: "About" },
-  { href: "faq.html", label: "FAQ" }
+  { href: "/index.html", label: "Home" },
+  { href: "/teacher-tools.html", label: "Teacher Tools" },
+  { href: "/student-apps.html", label: "Student Apps" },
+  { href: "/quick-notes.html", label: "Quick Notes" },
+  { href: "/apps.html?tier=pro", label: "Pro Apps" },
+  { href: "/about.html", label: "About" },
+  { href: "/faq.html", label: "FAQ" }
 ];
 
 function currentFile() {
   const path = window.location.pathname.split("/").pop();
-  return path === "" ? "index.html" : path;
+  return "/" + (path === "" ? "index.html" : path);
 }
 
 function renderHeader() {
@@ -157,19 +162,19 @@ function renderHeader() {
 
   return (
     '<div class="site-header__inner">' +
-      '<a href="index.html" aria-label="The Teacher Vault — home">' + chalkLogo("sm") + '</a>' +
+      '<a href="/index.html" aria-label="The Teacher Vault — home">' + chalkLogo("sm") + '</a>' +
       '<nav class="main-nav" aria-label="Primary">' +
         '<div class="main-nav__links">' + linkHtml() + '</div>' +
       '</nav>' +
       '<div class="header-cta">' +
-        '<a href="apps.html" class="btn btn--ghost btn--sm">Browse All Apps</a>' +
+        '<a href="/apps.html" class="btn btn--ghost btn--sm">Browse All Apps</a>' +
         '<button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">' + ICONS.menu + '</button>' +
       '</div>' +
     '</div>' +
     '<div class="mobile-nav" id="mobileNav">' +
       linkHtml() +
-      '<a href="contact.html"' + (here === "contact.html" ? ' aria-current="page"' : '') + '>Contact</a>' +
-      '<a href="apps.html" class="btn btn--primary btn--sm">Browse All Apps</a>' +
+      '<a href="/contact.html"' + (here === "/contact.html" ? ' aria-current="page"' : '') + '>Contact</a>' +
+      '<a href="/apps.html" class="btn btn--primary btn--sm">Browse All Apps</a>' +
     '</div>'
   );
 }
@@ -187,26 +192,26 @@ function renderFooter() {
         '<div class="footer-col">' +
           '<h4>Explore</h4>' +
           '<ul>' +
-            '<li><a href="teacher-tools.html">Teacher Tools</a></li>' +
-            '<li><a href="student-apps.html">Student Apps</a></li>' +
-            '<li><a href="quick-notes.html">Quick Notes</a></li>' +
-            '<li><a href="apps.html?tier=free">Free Apps</a></li>' +
-            '<li><a href="apps.html?tier=pro">Pro Apps</a></li>' +
+            '<li><a href="/teacher-tools.html">Teacher Tools</a></li>' +
+            '<li><a href="/student-apps.html">Student Apps</a></li>' +
+            '<li><a href="/quick-notes.html">Quick Notes</a></li>' +
+            '<li><a href="/apps.html?tier=free">Free Apps</a></li>' +
+            '<li><a href="/apps.html?tier=pro">Pro Apps</a></li>' +
           '</ul>' +
         '</div>' +
         '<div class="footer-col">' +
           '<h4>Company</h4>' +
           '<ul>' +
-            '<li><a href="about.html">About</a></li>' +
-            '<li><a href="faq.html">FAQ</a></li>' +
-            '<li><a href="contact.html">Contact</a></li>' +
+            '<li><a href="/about.html">About</a></li>' +
+            '<li><a href="/faq.html">FAQ</a></li>' +
+            '<li><a href="/contact.html">Contact</a></li>' +
           '</ul>' +
         '</div>' +
         '<div class="footer-col">' +
           '<h4>Legal</h4>' +
           '<ul>' +
-            '<li><a href="privacy.html">Privacy</a></li>' +
-            '<li><a href="terms.html">Terms</a></li>' +
+            '<li><a href="/privacy.html">Privacy</a></li>' +
+            '<li><a href="/terms.html">Terms</a></li>' +
           '</ul>' +
         '</div>' +
       '</div>' +
@@ -305,11 +310,11 @@ function ctaFor(app) {
 function proNote(app) {
   if (app.tier === "lite" && app.proVersionId) {
     const pro = getAppById(app.proVersionId);
-    if (pro) return '<p class="app-card__pro-note">Pro version available &mdash; <a href="' + (pro.landingUrl || ('app.html?id=' + pro.id)) + '">' + pro.title + '</a></p>';
+    if (pro) return '<p class="app-card__pro-note">Pro version available &mdash; <a href="' + (pro.landingUrl || ('/app.html?id=' + pro.id)) + '">' + pro.title + '</a></p>';
   }
   if (app.tier === "pro" && app.liteVersionId) {
     const lite = getAppById(app.liteVersionId);
-    if (lite) return '<p class="app-card__pro-note">Free Lite version available &mdash; <a href="' + (lite.landingUrl || ('app.html?id=' + lite.id)) + '">' + lite.title + '</a></p>';
+    if (lite) return '<p class="app-card__pro-note">Free Lite version available &mdash; <a href="' + (lite.landingUrl || ('/app.html?id=' + lite.id)) + '">' + lite.title + '</a></p>';
   }
   return "";
 }
@@ -318,7 +323,7 @@ function renderAppCard(app) {
   const subjectBadge = (app.subject && app.subject !== "General")
     ? '<span class="badge badge--subject">' + app.subject + '</span>' : "";
   const newBadge = app.isNew ? '<span class="badge badge--new">New</span>' : "";
-  const detailsUrl = app.landingUrl || ('app.html?id=' + app.id);
+  const detailsUrl = app.landingUrl || ('/app.html?id=' + app.id);
 
   return (
     '<article class="app-card" data-id="' + app.id + '" data-category="' + app.category + '" data-tier="' + app.tier + '" data-subject="' + (app.subject || "") + '" data-comingsoon="' + !!app.comingSoon + '">' +
