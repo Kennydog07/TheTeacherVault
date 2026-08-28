@@ -921,6 +921,7 @@ function buildQuoteVault(){
 
   const s = el(`<section class="section" id="section-quotes">
     <div class="section-header"><div class="eyebrow">Section 05</div><h2>Quote Vault</h2><div class="desc">Search and filter the play's most important quotations. All checked against the original text.</div></div>
+    <p class="subtle" style="margin:-6px 0 16px;">Browse the <a href="../gcse-english.html">GCSE English revision hub</a> for more free resources.</p>
     <div class="qv-controls">
       <input type="text" id="qvSearch" placeholder="Search quotations..." aria-label="Search quotations">
       <select id="qvCharFilter" aria-label="Filter by character"><option value="">All characters</option>${allChars.map(c=>`<option value="${c}">${c}</option>`).join('')}</select>
