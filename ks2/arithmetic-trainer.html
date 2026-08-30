@@ -292,12 +292,19 @@
     answerInput.value = ""; answerInput.disabled = false; answerInput.focus();
   }
 
-  function normalise(v){ return String(v).trim().toLowerCase().replace(/\s+/g,""); }
+  function normalise(v){ return String(v).trim().toLowerCase().replace(/\s+/g,"").replace(/^£/,""); }
+  function isCorrectAnswer(given, expected){
+    var g = normalise(given), e = normalise(expected);
+    if (g === e) return true;
+    var numRe = /^-?\d+(\.\d+)?$/;
+    if (numRe.test(g) && numRe.test(e)) return Math.abs(parseFloat(g) - parseFloat(e)) < 1e-9;
+    return false;
+  }
 
   function checkAnswer(){
     if (state.answered) return;
     state.answered = true;
-    var correct = normalise(answerInput.value) === normalise(state.current.answer);
+    var correct = isCorrectAnswer(answerInput.value, state.current.answer);
     var t = state.current.topic;
     if (!state.topicResults[t]) state.topicResults[t] = { correct:0, incorrect:0 };
     if (correct) { state.score++; state.topicResults[t].correct++; } else { state.topicResults[t].incorrect++; }
