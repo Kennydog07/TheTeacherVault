@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KS2 Times Tables Challenge | Free Times Tables Practice | The Teacher Vault</title>
+<meta name="description" content="Free KS2 times tables practice for pupils in Years 3–6. Practise multiplication and division facts with instant feedback and timed challenges.">
+<link rel="canonical" href="https://theteachervault.com/ks2/times-tables-challenge.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KS2 Times Tables Challenge | Free Times Tables Practice | The Teacher Vault">
+<meta property="og:description" content="Free KS2 times tables practice for pupils in Years 3–6. Practise multiplication and division facts with instant feedback and timed challenges.">
+<meta property="og:url" content="https://theteachervault.com/ks2/times-tables-challenge.html">
+<meta property="og:image" content="https://theteachervault.com/images/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KS2 Times Tables Challenge | Free Times Tables Practice | The Teacher Vault">
+<meta name="twitter:description" content="Free KS2 times tables practice for pupils in Years 3–6. Practise multiplication and division facts with instant feedback and timed challenges.">
+<meta name="twitter:image" content="https://theteachervault.com/images/logo.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalApplication",
+  "name": "KS2 Times Tables Challenge",
+  "description": "Free KS2 times tables practice for pupils in Years 3–6. Practise multiplication and division facts with instant feedback and timed challenges.",
+  "url": "https://theteachervault.com/ks2/times-tables-challenge.html",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "isAccessibleForFree": true,
+  "educationalLevel": "KS2",
+  "publisher": { "@type": "Organization", "name": "The Teacher Vault" }
+}
+</script>
+<style>
+  .ks2-panel{background:rgba(247,242,226,0.06);border:1px solid rgba(245,242,232,0.14);border-radius:var(--radius-lg);padding:28px;max-width:640px;margin:0 auto;}
+  .ks2-mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:18px;}
+  .ks2-mode-btn{padding:12px;border-radius:10px;border:2px solid rgba(245,242,232,0.2);background:rgba(255,255,255,0.03);color:var(--chalk-white);cursor:pointer;font-weight:700;font-size:0.92rem;font-family:inherit;}
+  .ks2-mode-btn.active{border-color:var(--gold);background:rgba(201,162,75,0.18);}
+  .ks2-mode-btn:focus-visible{outline:3px solid var(--gold-light);outline-offset:2px;}
+  .ks2-table-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(52px,1fr));gap:8px;margin-bottom:18px;}
+  .ks2-table-chip{padding:10px 0;border-radius:8px;border:2px solid rgba(245,242,232,0.2);background:rgba(255,255,255,0.03);color:var(--chalk-white);cursor:pointer;font-weight:700;font-family:inherit;text-align:center;}
+  .ks2-table-chip.active{border-color:var(--gold);background:rgba(201,162,75,0.22);}
+  .ks2-table-chip:focus-visible{outline:3px solid var(--gold-light);outline-offset:2px;}
+  .ks2-year-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:18px;}
+  .ks2-year-btn{padding:10px;border-radius:10px;border:1.5px dashed rgba(245,242,232,0.3);background:transparent;color:var(--chalk-dim);cursor:pointer;font-size:0.85rem;font-family:inherit;text-align:left;}
+  .ks2-year-btn:hover, .ks2-year-btn:focus-visible{border-color:var(--gold);color:var(--chalk-white);outline:none;}
+  .ks2-question{font-family:Georgia,'Times New Roman',serif;font-size:2rem;color:var(--chalk-white);text-align:center;margin:20px 0 16px;min-height:1.4em;}
+  .ks2-input-row{display:flex;gap:10px;justify-content:center;margin-bottom:16px;}
+  .ks2-input{font-size:1.4rem;padding:12px 16px;border-radius:8px;border:2px solid rgba(245,242,232,0.25);background:rgba(255,255,255,0.04);color:var(--chalk-white);text-align:center;width:140px;font-family:inherit;}
+  .ks2-input:focus{outline:3px solid var(--gold-light);outline-offset:1px;border-color:var(--gold);}
+  .ks2-btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px;}
+  .ks2-feedback{margin-top:16px;padding:14px 16px;border-radius:10px;background:rgba(247,242,226,0.06);font-size:1rem;color:var(--chalk-white);display:none;text-align:center;}
+  .ks2-feedback.show{display:block;}
+  .ks2-feedback.correct{border-left:4px solid #4c9a5f;}
+  .ks2-feedback.incorrect{border-left:4px solid #a62b2b;}
+  .ks2-stats-row{display:flex;justify-content:center;gap:24px;margin-bottom:18px;flex-wrap:wrap;text-align:center;}
+  .ks2-stat__num{font-family:Georgia,serif;font-size:1.5rem;color:var(--chalk-white);display:block;}
+  .ks2-stat__label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--gold-light);}
+  .ks2-timer{text-align:center;font-family:Georgia,serif;font-size:1.1rem;color:var(--gold-light);margin-bottom:6px;}
+  .ks2-endscreen{text-align:center;}
+  .ks2-endscreen h2{color:var(--chalk-white);}
+  .ks2-weak-list{list-style:none;padding:0;margin:12px 0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .ks2-weak-list li{background:rgba(166,43,43,0.18);border:1px solid rgba(166,43,43,0.4);color:var(--chalk-white);padding:4px 12px;border-radius:999px;font-size:0.85rem;}
+  .ks2-hint{text-align:center;color:var(--chalk-dim);font-size:0.85rem;margin-bottom:10px;}
+  @media(max-width:600px){ .ks2-panel{padding:20px 16px;} .ks2-input{width:100%;} .ks2-question{font-size:1.6rem;} }
+</style>
+</head>
+<body data-page="ks2-times-tables">
+<div class="chalk-texture" aria-hidden="true"></div>
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="section" style="padding-bottom:20px;">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="../student-apps.html">Student Resources</a> / Times Tables Challenge</p>
+      <span class="eyebrow">KS2 Maths &middot; Years 3&ndash;6</span>
+      <h1>KS2 Times Tables Challenge</h1>
+      <p class="lede">Practise your times tables and division facts — pick a table (or several), choose a game mode, and see how many you can get right. Free, no login, and it works fully in your browser.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="ks2-panel" id="setupPanel">
+        <h2 style="text-align:center;margin-bottom:16px;">1. Choose your tables</h2>
+        <div class="ks2-year-grid" id="yearQuickSelect"></div>
+        <div class="ks2-table-grid" id="tableGrid"></div>
+        <p class="ks2-hint" id="tableHint">Pick one or more tables, or leave them all selected for a mixed challenge.</p>
+
+        <h2 style="text-align:center;margin:22px 0 16px;">2. Choose a game mode</h2>
+        <div class="ks2-mode-grid" id="modeGrid"></div>
+
+        <div style="text-align:center;">
+          <button class="btn btn--primary" id="startBtn">Start Challenge</button>
+        </div>
+      </div>
+
+      <div class="ks2-panel" id="gamePanel" hidden>
+        <div class="ks2-timer" id="timerDisplay"></div>
+        <div class="ks2-stats-row">
+          <div class="ks2-stat"><span class="ks2-stat__num" id="statScore">0</span><span class="ks2-stat__label">Score</span></div>
+          <div class="ks2-stat"><span class="ks2-stat__num" id="statStreak">0</span><span class="ks2-stat__label">Streak</span></div>
+          <div class="ks2-stat"><span class="ks2-stat__num" id="statBest">0</span><span class="ks2-stat__label">Best Streak</span></div>
+        </div>
+        <div class="ks2-question" id="questionText" aria-live="polite"></div>
+        <form id="answerForm">
+          <div class="ks2-input-row">
+            <label class="sr-only" for="answerInput">Your answer</label>
+            <input class="ks2-input" type="number" inputmode="numeric" id="answerInput" autocomplete="off" required>
+          </div>
+          <div class="ks2-btn-row">
+            <button type="submit" class="btn btn--primary" id="checkBtn">Check Answer</button>
+            <button type="button" class="btn btn--ghost" id="stopBtn">Stop</button>
+          </div>
+        </form>
+        <div class="ks2-feedback" id="feedbackBox" role="status"></div>
+      </div>
+
+      <div class="ks2-panel ks2-endscreen" id="endPanel" hidden>
+        <h2>Challenge Complete!</h2>
+        <div class="ks2-stats-row">
+          <div class="ks2-stat"><span class="ks2-stat__num" id="endScore">0</span><span class="ks2-stat__label">Score</span></div>
+          <div class="ks2-stat"><span class="ks2-stat__num" id="endAccuracy">0%</span><span class="ks2-stat__label">Accuracy</span></div>
+          <div class="ks2-stat"><span class="ks2-stat__num" id="endBestStreak">0</span><span class="ks2-stat__label">Best Streak</span></div>
+        </div>
+        <p id="endMessage" style="color:var(--chalk-dim);"></p>
+        <div id="weakTablesWrap" hidden>
+          <p style="margin-bottom:4px;font-weight:700;color:var(--chalk-white);">Tables to practise more:</p>
+          <ul class="ks2-weak-list" id="weakTablesList"></ul>
+        </div>
+        <p class="ks2-hint" id="deviceBestNote"></p>
+        <div class="ks2-btn-row">
+          <button class="btn btn--primary" id="tryAgainBtn">Try Again</button>
+          <button class="btn btn--ghost" id="changeTablesBtn">Change Tables</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section paper-section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">For parents &amp; teachers</span>
+        <h2>What this practises</h2>
+        <p class="lede">Quick-fire recall of multiplication and division facts for the 2 to 12 times tables — the same fluency the Year 4 Multiplication Tables Check and KS2 SATs arithmetic paper both rely on. The Year group buttons are a starting suggestion for which tables to focus on, not an exact statutory boundary — every child progresses at a different pace, so feel free to mix and match tables.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Keep practising</span>
+        <h2>More Free KS2 Resources</h2>
+      </div>
+      <div class="card-grid" id="relatedGrid"></div>
+    </div>
+  </section>
+
+  <section class="section" style="text-align:center;padding-top:0;">
+    <div class="container">
+      <p class="lede" style="margin:0 auto;">Free resources. Better revision. Brighter futures. <a href="../free-resources.html" style="color:var(--gold-light);text-decoration:underline;">Explore more free resources &rarr;</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  var TABLES = [2,3,4,5,6,7,8,9,10,11,12];
+  var YEAR_PRESETS = {
+    "Year 3 (suggested)": [2,3,4,5,8,10],
+    "Year 4 (suggested)": TABLES.slice(),
+    "Year 5 (suggested)": TABLES.slice(),
+    "Year 6 (suggested)": TABLES.slice()
+  };
+
+  var state = {
+    selectedTables: TABLES.slice(),
+    mode: "practice", // practice | timed60 | q20 | mixdiv
+    score: 0, correct: 0, incorrect: 0,
+    streak: 0, bestStreak: 0,
+    questionCount: 0,
+    maxQuestions: 20,
+    current: null,
+    timerId: null,
+    timeLeft: 60,
+    elapsed: 0,
+    wrongTables: {},
+    running: false
+  };
+
+  function el(html){ var d=document.createElement("div"); d.innerHTML=html.trim(); return d.firstChild; }
+  function $(id){ return document.getElementById(id); }
+
+  /* ---------- Setup UI ---------- */
+  var yearWrap = $("yearQuickSelect");
+  Object.keys(YEAR_PRESETS).forEach(function(label){
+    var btn = el('<button type="button" class="ks2-year-btn">' + label + '</button>');
+    btn.addEventListener("click", function(){
+      state.selectedTables = YEAR_PRESETS[label].slice();
+      renderTableGrid();
+    });
+    yearWrap.appendChild(btn);
+  });
+
+  var tableGrid = $("tableGrid");
+  function renderTableGrid(){
+    tableGrid.innerHTML = "";
+    TABLES.forEach(function(t){
+      var active = state.selectedTables.indexOf(t) > -1;
+      var chip = el('<button type="button" class="ks2-table-chip' + (active ? " active" : "") + '" aria-pressed="' + active + '">' + t + '&times;</button>');
+      chip.addEventListener("click", function(){
+        var idx = state.selectedTables.indexOf(t);
+        if (idx > -1) { state.selectedTables.splice(idx,1); } else { state.selectedTables.push(t); }
+        if (state.selectedTables.length === 0) state.selectedTables = [t];
+        renderTableGrid();
+      });
+      tableGrid.appendChild(chip);
+    });
+  }
+  renderTableGrid();
+
+  var MODES = [
+    { id: "practice", label: "Practice (no timer)" },
+    { id: "timed60", label: "60 Second Challenge" },
+    { id: "q20", label: "20 Question Challenge" },
+    { id: "mixdiv", label: "Multiplication & Division Mix" }
+  ];
+  var modeGrid = $("modeGrid");
+  MODES.forEach(function(m){
+    var btn = el('<button type="button" class="ks2-mode-btn' + (m.id === state.mode ? " active" : "") + '" aria-pressed="' + (m.id===state.mode) + '">' + m.label + '</button>');
+    btn.addEventListener("click", function(){
+      state.mode = m.id;
+      Array.prototype.forEach.call(modeGrid.children, function(b){ b.classList.remove("active"); b.setAttribute("aria-pressed","false"); });
+      btn.classList.add("active");
+      btn.setAttribute("aria-pressed","true");
+    });
+    modeGrid.appendChild(btn);
+  });
+
+  /* ---------- Question generation ---------- */
+  function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+  function makeQuestion(){
+    var table = pick(state.selectedTables);
+    var factor = 1 + Math.floor(Math.random()*12);
+    var isDivision = state.mode === "mixdiv" && Math.random() < 0.5;
+    if (isDivision) {
+      var product = table * factor;
+      return { text: product + " ÷ " + table + " = ?", answer: factor };
+    }
+    // randomise order of the two factors for variety
+    if (Math.random() < 0.5) {
+      return { text: table + " × " + factor + " = ?", answer: table * factor };
+    }
+    return { text: factor + " × " + table + " = ?", answer: table * factor, table: table };
+  }
+
+  /* ---------- Game flow ---------- */
+  var setupPanel = $("setupPanel"), gamePanel = $("gamePanel"), endPanel = $("endPanel");
+  var questionText = $("questionText"), answerInput = $("answerInput"), feedbackBox = $("feedbackBox");
+  var timerDisplay = $("timerDisplay");
+
+  function startGame(){
+    state.score = 0; state.correct = 0; state.incorrect = 0; state.streak = 0; state.bestStreak = 0;
+    state.questionCount = 0; state.wrongTables = {}; state.running = true;
+    state.maxQuestions = state.mode === "q20" ? 20 : Infinity;
+    setupPanel.hidden = true; gamePanel.hidden = false; endPanel.hidden = true;
+    updateStats();
+    if (state.mode === "timed60") {
+      state.timeLeft = 60;
+      timerDisplay.textContent = "Time left: 60s";
+      state.timerId = setInterval(function(){
+        state.timeLeft--;
+        timerDisplay.textContent = "Time left: " + state.timeLeft + "s";
+        if (state.timeLeft <= 0) endGame();
+      }, 1000);
+    } else {
+      timerDisplay.textContent = "";
+    }
+    nextQuestion();
+  }
+
+  function updateStats(){
+    $("statScore").textContent = state.score;
+    $("statStreak").textContent = state.streak;
+    $("statBest").textContent = state.bestStreak;
+  }
+
+  function nextQuestion(){
+    feedbackBox.className = "ks2-feedback";
+    feedbackBox.textContent = "";
+    state.current = makeQuestion();
+    questionText.textContent = state.current.text;
+    answerInput.value = "";
+    answerInput.disabled = false;
+    $("checkBtn").disabled = false;
+    answerInput.focus();
+  }
+
+  $("answerForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    if (!state.running || answerInput.disabled) return;
+    var given = parseInt(answerInput.value, 10);
+    var correct = given === state.current.answer;
+    state.questionCount++;
+    if (correct) {
+      state.score++; state.correct++; state.streak++;
+      if (state.streak > state.bestStreak) state.bestStreak = state.streak;
+      feedbackBox.className = "ks2-feedback show correct";
+      feedbackBox.textContent = "Correct! " + state.current.text.replace("?", state.current.answer);
+    } else {
+      state.incorrect++; state.streak = 0;
+      if (state.current.table) state.wrongTables[state.current.table] = (state.wrongTables[state.current.table]||0)+1;
+      feedbackBox.className = "ks2-feedback show incorrect";
+      feedbackBox.textContent = "Not quite. " + state.current.text.replace("?", state.current.answer);
+    }
+    updateStats();
+    answerInput.disabled = true;
+    $("checkBtn").disabled = true;
+
+    if (state.mode === "q20" && state.questionCount >= state.maxQuestions) {
+      setTimeout(endGame, 900);
+      return;
+    }
+    setTimeout(nextQuestion, state.mode === "timed60" ? 500 : 900);
+  });
+
+  $("stopBtn").addEventListener("click", endGame);
+
+  function endGame(){
+    if (!state.running) return;
+    state.running = false;
+    if (state.timerId) { clearInterval(state.timerId); state.timerId = null; }
+    gamePanel.hidden = true; endPanel.hidden = false;
+    var total = state.correct + state.incorrect;
+    var accuracy = total ? Math.round((state.correct/total)*100) : 0;
+    $("endScore").textContent = state.score;
+    $("endAccuracy").textContent = accuracy + "%";
+    $("endBestStreak").textContent = state.bestStreak;
+    $("endMessage").textContent = accuracy >= 90 ? "Brilliant recall — those facts are really sticking!" :
+      accuracy >= 70 ? "Good progress — a bit more practice and these will be automatic." :
+      "Keep practising these tables a little every day — it really does add up.";
+
+    var weakEntries = Object.keys(state.wrongTables).sort(function(a,b){ return state.wrongTables[b]-state.wrongTables[a]; });
+    if (weakEntries.length) {
+      $("weakTablesWrap").hidden = false;
+      $("weakTablesList").innerHTML = weakEntries.map(function(t){ return "<li>" + t + "&times; table</li>"; }).join("");
+    } else {
+      $("weakTablesWrap").hidden = true;
+    }
+
+    // localStorage: device-level best score, no personal info
+    var noteBits = [];
+    try {
+      if (state.mode === "timed60") {
+        var bestScore = parseInt(localStorage.getItem("tv_ttc_best60") || "0", 10);
+        if (state.score > bestScore) { localStorage.setItem("tv_ttc_best60", String(state.score)); bestScore = state.score; }
+        noteBits.push("Best 60-second score on this device: " + bestScore);
+      }
+      var bestStreakSaved = parseInt(localStorage.getItem("tv_ttc_beststreak") || "0", 10);
+      if (state.bestStreak > bestStreakSaved) { localStorage.setItem("tv_ttc_beststreak", String(state.bestStreak)); bestStreakSaved = state.bestStreak; }
+      noteBits.push("Best streak on this device: " + bestStreakSaved);
+    } catch(e){ /* localStorage unavailable — ignore */ }
+    $("deviceBestNote").textContent = noteBits.join(" · ");
+  }
+
+  $("startBtn").addEventListener("click", startGame);
+  $("tryAgainBtn").addEventListener("click", function(){ endPanel.hidden = true; startGame(); });
+  $("changeTablesBtn").addEventListener("click", function(){ endPanel.hidden = true; setupPanel.hidden = false; });
+
+  /* ---------- Related resources ---------- */
+  var related = ["ks2-year-6-sats-maths","ks2-arithmetic-trainer","sats-english"].map(function(id){ return typeof getAppById === "function" ? getAppById(id) : null; }).filter(Boolean);
+  if (related.length && typeof renderCardGrid === "function") {
+    renderCardGrid(document.getElementById("relatedGrid"), related);
+  }
+})();
+</script>
+</body>
+</html>
