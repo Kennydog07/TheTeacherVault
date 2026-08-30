@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KS2 Arithmetic Trainer | Free Maths Practice | The Teacher Vault</title>
+<meta name="description" content="Practise KS2 arithmetic online with free addition, subtraction, multiplication, division, fractions, decimals and percentages questions.">
+<link rel="canonical" href="https://theteachervault.com/ks2/arithmetic-trainer.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KS2 Arithmetic Trainer | Free Maths Practice | The Teacher Vault">
+<meta property="og:description" content="Practise KS2 arithmetic online with free addition, subtraction, multiplication, division, fractions, decimals and percentages questions.">
+<meta property="og:url" content="https://theteachervault.com/ks2/arithmetic-trainer.html">
+<meta property="og:image" content="https://theteachervault.com/images/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KS2 Arithmetic Trainer | Free Maths Practice | The Teacher Vault">
+<meta name="twitter:description" content="Practise KS2 arithmetic online with free addition, subtraction, multiplication, division, fractions, decimals and percentages questions.">
+<meta name="twitter:image" content="https://theteachervault.com/images/logo.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalApplication",
+  "name": "KS2 Arithmetic Trainer",
+  "description": "Practise KS2 arithmetic online with free addition, subtraction, multiplication, division, fractions, decimals and percentages questions.",
+  "url": "https://theteachervault.com/ks2/arithmetic-trainer.html",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "isAccessibleForFree": true,
+  "educationalLevel": "KS2",
+  "publisher": { "@type": "Organization", "name": "The Teacher Vault" }
+}
+</script>
+<style>
+  .ks2-panel{background:rgba(247,242,226,0.06);border:1px solid rgba(245,242,232,0.14);border-radius:var(--radius-lg);padding:28px;max-width:680px;margin:0 auto;}
+  .ks2-mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:18px;}
+  .ks2-mode-btn{padding:12px 8px;border-radius:10px;border:2px solid rgba(245,242,232,0.2);background:rgba(255,255,255,0.03);color:var(--chalk-white);cursor:pointer;font-weight:700;font-size:0.88rem;font-family:inherit;}
+  .ks2-mode-btn.active{border-color:var(--gold);background:rgba(201,162,75,0.18);}
+  .ks2-mode-btn.disabled{opacity:0.35;cursor:not-allowed;}
+  .ks2-mode-btn:focus-visible{outline:3px solid var(--gold-light);outline-offset:2px;}
+  .ks2-progress-track{height:10px;background:rgba(245,242,232,0.12);border-radius:6px;overflow:hidden;margin-bottom:16px;}
+  .ks2-progress-bar{height:100%;background:var(--gold);width:0%;transition:width .25s;}
+  .ks2-meta{display:flex;justify-content:space-between;font-size:0.82rem;color:var(--chalk-dim);margin-bottom:8px;flex-wrap:wrap;gap:6px;}
+  .ks2-question{font-family:Georgia,'Times New Roman',serif;font-size:1.4rem;color:var(--chalk-white);text-align:center;margin:14px 0 18px;min-height:2em;}
+  .ks2-input-row{display:flex;gap:10px;justify-content:center;margin-bottom:16px;}
+  .ks2-input{font-size:1.3rem;padding:12px 16px;border-radius:8px;border:2px solid rgba(245,242,232,0.25);background:rgba(255,255,255,0.04);color:var(--chalk-white);text-align:center;width:180px;font-family:inherit;}
+  .ks2-input:focus{outline:3px solid var(--gold-light);outline-offset:1px;border-color:var(--gold);}
+  .ks2-btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px;}
+  .ks2-feedback{margin-top:16px;padding:14px 16px;border-radius:10px;background:rgba(247,242,226,0.06);font-size:0.97rem;color:var(--chalk-white);display:none;}
+  .ks2-feedback.show{display:block;}
+  .ks2-feedback.correct{border-left:4px solid #4c9a5f;}
+  .ks2-feedback.incorrect{border-left:4px solid #a62b2b;}
+  .ks2-feedback strong{color:var(--gold-light);}
+  .ks2-stats-row{display:flex;justify-content:center;gap:24px;margin-bottom:18px;flex-wrap:wrap;text-align:center;}
+  .ks2-stat__num{font-family:Georgia,serif;font-size:1.5rem;color:var(--chalk-white);display:block;}
+  .ks2-stat__label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--gold-light);}
+  .ks2-endscreen{text-align:center;}
+  .ks2-endscreen h2{color:var(--chalk-white);}
+  .ks2-topic-list{list-style:none;padding:0;margin:12px 0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .ks2-topic-list li{padding:4px 12px;border-radius:999px;font-size:0.85rem;}
+  .ks2-count-row{display:flex;justify-content:center;gap:10px;margin:14px 0 20px;flex-wrap:wrap;}
+  .ks2-checkbox-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;}
+  .ks2-checkbox{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;border:2px solid rgba(245,242,232,0.2);cursor:pointer;font-size:0.88rem;color:var(--chalk-white);}
+  .ks2-checkbox input{width:16px;height:16px;}
+  .ks2-checkbox.checked{border-color:var(--gold);background:rgba(201,162,75,0.15);}
+  @media(max-width:600px){ .ks2-panel{padding:20px 16px;} .ks2-input{width:100%;} .ks2-question{font-size:1.15rem;} }
+</style>
+</head>
+<body data-page="ks2-arithmetic-trainer">
+<div class="chalk-texture" aria-hidden="true"></div>
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="section" style="padding-bottom:20px;">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="../student-apps.html">Student Resources</a> / Arithmetic Trainer</p>
+      <span class="eyebrow">KS2 Maths &middot; Years 3&ndash;6</span>
+      <h1>KS2 Arithmetic Trainer</h1>
+      <p class="lede">Choose a year level and the topics to practise — questions adjust to match, from simple addition through to percentages. Every question is freshly generated, with a worked explanation whenever you get one wrong.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="ks2-panel" id="setupPanel">
+        <h2 style="text-align:center;margin-bottom:16px;">1. Choose a year level</h2>
+        <div class="ks2-mode-grid" id="yearGrid"></div>
+
+        <h2 style="text-align:center;margin-bottom:12px;">2. Choose topics</h2>
+        <div class="ks2-checkbox-row" id="topicChecks"></div>
+
+        <h2 style="text-align:center;margin-bottom:12px;">3. How many questions?</h2>
+        <div class="ks2-count-row" id="countGrid"></div>
+
+        <h2 style="text-align:center;margin-bottom:12px;">4. Timing</h2>
+        <div class="ks2-mode-grid" id="timingGrid" style="max-width:320px;margin:0 auto 18px;"></div>
+
+        <div style="text-align:center;">
+          <button class="btn btn--primary" id="startBtn">Start Practice</button>
+        </div>
+      </div>
+
+      <div class="ks2-panel" id="gamePanel" hidden>
+        <div class="ks2-meta"><span id="questionCounter"></span><span id="timeDisplay"></span><span id="scoreDisplay"></span></div>
+        <div class="ks2-progress-track"><div class="ks2-progress-bar" id="progressBar"></div></div>
+        <div class="ks2-question" id="questionText" aria-live="polite"></div>
+        <div class="ks2-input-row">
+          <label class="sr-only" for="answerInput">Your answer</label>
+          <input class="ks2-input" type="text" inputmode="decimal" id="answerInput" autocomplete="off">
+        </div>
+        <div class="ks2-btn-row">
+          <button type="button" class="btn btn--primary" id="checkBtn">Check Answer</button>
+          <button type="button" class="btn btn--ghost" id="nextBtn" hidden>Next Question</button>
+        </div>
+        <div class="ks2-feedback" id="feedbackBox" role="status"></div>
+      </div>
+
+      <div class="ks2-panel ks2-endscreen" id="endPanel" hidden>
+        <h2>Practice Report</h2>
+        <div class="ks2-stats-row">
+          <div class="ks2-stat"><span class="ks2-stat__num" id="endScore">0</span><span class="ks2-stat__label">Score</span></div>
+          <div class="ks2-stat"><span class="ks2-stat__num" id="endPercent">0%</span><span class="ks2-stat__label">Percentage</span></div>
+          <div class="ks2-stat" id="endTimeWrap" hidden><span class="ks2-stat__num" id="endTime">0:00</span><span class="ks2-stat__label">Time Taken</span></div>
+        </div>
+        <p id="endStrongest" style="color:var(--chalk-white);font-weight:700;"></p>
+        <p id="endPractiseNext" style="color:var(--chalk-dim);"></p>
+        <div class="ks2-btn-row">
+          <button class="btn btn--primary" id="startAgainBtn">Start Again</button>
+          <button class="btn btn--ghost" id="changeSettingsBtn">Change Settings</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section paper-section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">For parents &amp; teachers</span>
+        <h2>What this practises</h2>
+        <p class="lede">Topics adjust to the year level selected: Year 3 focuses on addition, subtraction, multiplication and division; Year 4 adds fractions and decimals; Year 5 adds percentages; Year 6 and Mixed KS2 cover all seven topics with larger numbers. Numbers are generated freshly each time, so no two practice sessions are identical.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Keep practising</span>
+        <h2>More Free KS2 Resources</h2>
+      </div>
+      <div class="card-grid" id="relatedGrid"></div>
+    </div>
+  </section>
+
+  <section class="section" style="text-align:center;padding-top:0;">
+    <div class="container">
+      <p class="lede" style="margin:0 auto;">Free resources. Better revision. Brighter futures. <a href="../free-resources.html" style="color:var(--gold-light);text-decoration:underline;">Explore more free resources &rarr;</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="maths-generators.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  var YEAR_TOPICS = {
+    "Year 3": { topics: ["addition","subtraction","multiplication","division"], hard: false },
+    "Year 4": { topics: ["addition","subtraction","multiplication","division","fractions","decimals"], hard: false },
+    "Year 5": { topics: ["addition","subtraction","multiplication","division","fractions","decimals","percentages"], hard: false },
+    "Year 6": { topics: ["addition","subtraction","multiplication","division","fractions","decimals","percentages"], hard: true },
+    "Mixed KS2": { topics: ["addition","subtraction","multiplication","division","fractions","decimals","percentages"], hard: true }
+  };
+  var ALL_TOPICS = ["addition","subtraction","multiplication","division","fractions","decimals","percentages"];
+
+  var state = {
+    year: "Year 4",
+    selectedTopics: YEAR_TOPICS["Year 4"].topics.slice(),
+    total: 10,
+    timed: false,
+    index: 0, score: 0, current: null, answered: false,
+    topicResults: {},
+    startTime: null, timerId: null
+  };
+
+  function $(id){ return document.getElementById(id); }
+  function el(html){ var d=document.createElement("div"); d.innerHTML=html.trim(); return d.firstChild; }
+
+  var yearGrid = $("yearGrid");
+  Object.keys(YEAR_TOPICS).forEach(function(y){
+    var btn = el('<button type="button" class="ks2-mode-btn' + (y===state.year?" active":"") + '" aria-pressed="' + (y===state.year) + '">' + y + '</button>');
+    btn.addEventListener("click", function(){
+      state.year = y;
+      state.selectedTopics = YEAR_TOPICS[y].topics.slice();
+      Array.prototype.forEach.call(yearGrid.children, function(b){ b.classList.remove("active"); b.setAttribute("aria-pressed","false"); });
+      btn.classList.add("active"); btn.setAttribute("aria-pressed","true");
+      renderTopicChecks();
+    });
+    yearGrid.appendChild(btn);
+  });
+
+  var topicChecksWrap = $("topicChecks");
+  function renderTopicChecks(){
+    topicChecksWrap.innerHTML = "";
+    var available = YEAR_TOPICS[state.year].topics;
+    ALL_TOPICS.forEach(function(t){
+      if (available.indexOf(t) === -1) return;
+      var checked = state.selectedTopics.indexOf(t) > -1;
+      var label = el('<label class="ks2-checkbox' + (checked ? " checked" : "") + '"><input type="checkbox" ' + (checked?"checked":"") + '> ' + window.TVMaths.topicLabels[t] + '</label>');
+      var cb = label.querySelector("input");
+      cb.addEventListener("change", function(){
+        label.classList.toggle("checked", cb.checked);
+        var idx = state.selectedTopics.indexOf(t);
+        if (cb.checked && idx === -1) state.selectedTopics.push(t);
+        if (!cb.checked && idx > -1) state.selectedTopics.splice(idx,1);
+        if (state.selectedTopics.length === 0) { state.selectedTopics.push(t); cb.checked = true; label.classList.add("checked"); }
+      });
+      topicChecksWrap.appendChild(label);
+    });
+  }
+  renderTopicChecks();
+
+  var COUNTS = [10,20,30];
+  var countGrid = $("countGrid");
+  COUNTS.forEach(function(c){
+    var btn = el('<button type="button" class="ks2-mode-btn' + (c===state.total?" active":"") + '" style="min-width:80px;" aria-pressed="' + (c===state.total) + '">' + c + '</button>');
+    btn.addEventListener("click", function(){
+      state.total = c;
+      Array.prototype.forEach.call(countGrid.children, function(b){ b.classList.remove("active"); b.setAttribute("aria-pressed","false"); });
+      btn.classList.add("active"); btn.setAttribute("aria-pressed","true");
+    });
+    countGrid.appendChild(btn);
+  });
+
+  var timingGrid = $("timingGrid");
+  [["Untimed", false], ["Timed", true]].forEach(function(pair){
+    var btn = el('<button type="button" class="ks2-mode-btn' + (pair[1]===state.timed?" active":"") + '" aria-pressed="' + (pair[1]===state.timed) + '">' + pair[0] + '</button>');
+    btn.addEventListener("click", function(){
+      state.timed = pair[1];
+      Array.prototype.forEach.call(timingGrid.children, function(b){ b.classList.remove("active"); b.setAttribute("aria-pressed","false"); });
+      btn.classList.add("active"); btn.setAttribute("aria-pressed","true");
+    });
+    timingGrid.appendChild(btn);
+  });
+
+  var setupPanel = $("setupPanel"), gamePanel = $("gamePanel"), endPanel = $("endPanel");
+  var questionText = $("questionText"), feedbackBox = $("feedbackBox"), answerInput = $("answerInput");
+  var checkBtn = $("checkBtn"), nextBtn = $("nextBtn");
+
+  function fmtTime(ms){
+    var s = Math.floor(ms/1000);
+    var m = Math.floor(s/60); s = s % 60;
+    return m + ":" + (s<10?"0":"") + s;
+  }
+
+  function startPractice(){
+    state.index = 0; state.score = 0; state.topicResults = {};
+    setupPanel.hidden = true; gamePanel.hidden = false; endPanel.hidden = true;
+    state.startTime = Date.now();
+    if (state.timed) {
+      $("timeDisplay").hidden = false;
+      state.timerId = setInterval(function(){ $("timeDisplay").textContent = fmtTime(Date.now()-state.startTime); }, 1000);
+    } else {
+      $("timeDisplay").textContent = "";
+    }
+    renderQuestion();
+  }
+
+  function renderQuestion(){
+    feedbackBox.className = "ks2-feedback"; feedbackBox.textContent = "";
+    nextBtn.hidden = true; checkBtn.hidden = false; state.answered = false;
+    var topic = state.selectedTopics[Math.floor(Math.random()*state.selectedTopics.length)];
+    var hard = YEAR_TOPICS[state.year].hard;
+    var q = window.TVMaths.arithmeticGenerators[topic](hard);
+    state.current = q; state.current.topic = topic;
+    $("questionCounter").textContent = "Question " + (state.index+1) + " of " + state.total;
+    $("scoreDisplay").textContent = "Score: " + state.score;
+    $("progressBar").style.width = Math.round((state.index/state.total)*100) + "%";
+    questionText.textContent = q.text;
+    answerInput.value = ""; answerInput.disabled = false; answerInput.focus();
+  }
+
+  function normalise(v){ return String(v).trim().toLowerCase().replace(/\s+/g,""); }
+
+  function checkAnswer(){
+    if (state.answered) return;
+    state.answered = true;
+    var correct = normalise(answerInput.value) === normalise(state.current.answer);
+    var t = state.current.topic;
+    if (!state.topicResults[t]) state.topicResults[t] = { correct:0, incorrect:0 };
+    if (correct) { state.score++; state.topicResults[t].correct++; } else { state.topicResults[t].incorrect++; }
+    answerInput.disabled = true;
+    feedbackBox.className = "ks2-feedback show " + (correct?"correct":"incorrect");
+    feedbackBox.innerHTML = (correct ? "<strong>Correct!</strong> " : "<strong>Not quite.</strong> The correct answer is " + state.current.answer + ". ") + (state.current.explain || "");
+    checkBtn.hidden = true; nextBtn.hidden = false; nextBtn.focus();
+  }
+
+  answerInput.addEventListener("keydown", function(ev){ if (ev.key === "Enter") { ev.preventDefault(); checkAnswer(); } });
+  checkBtn.addEventListener("click", checkAnswer);
+  nextBtn.addEventListener("click", function(){
+    state.index++;
+    if (state.index >= state.total) { endPractice(); return; }
+    renderQuestion();
+  });
+
+  function endPractice(){
+    if (state.timerId) { clearInterval(state.timerId); state.timerId = null; }
+    gamePanel.hidden = true; endPanel.hidden = false;
+    var pct = Math.round((state.score/state.total)*100);
+    $("endScore").textContent = state.score;
+    $("endPercent").textContent = pct + "%";
+    if (state.timed) { $("endTimeWrap").hidden = false; $("endTime").textContent = fmtTime(Date.now()-state.startTime); }
+    else { $("endTimeWrap").hidden = true; }
+
+    var best = null, worst = null;
+    Object.keys(state.topicResults).forEach(function(t){
+      var r = state.topicResults[t];
+      var total = r.correct + r.incorrect;
+      var rate = total ? r.correct/total : 0;
+      if (!best || rate > best.rate) best = { topic:t, rate:rate };
+      if (!worst || rate < worst.rate) worst = { topic:t, rate:rate };
+    });
+    $("endStrongest").textContent = best ? "Your strongest area: " + window.TVMaths.topicLabels[best.topic] : "";
+    $("endPractiseNext").textContent = worst ? "Practise next: " + window.TVMaths.topicLabels[worst.topic] : "";
+  }
+
+  $("startBtn").addEventListener("click", startPractice);
+  $("startAgainBtn").addEventListener("click", function(){ endPanel.hidden = true; startPractice(); });
+  $("changeSettingsBtn").addEventListener("click", function(){ endPanel.hidden = true; setupPanel.hidden = false; });
+
+  var related = ["ks2-year-6-sats-maths","ks2-times-tables-challenge","sats-english"].map(function(id){ return typeof getAppById === "function" ? getAppById(id) : null; }).filter(Boolean);
+  if (related.length && typeof renderCardGrid === "function") renderCardGrid(document.getElementById("relatedGrid"), related);
+})();
+</script>
+</body>
+</html>
