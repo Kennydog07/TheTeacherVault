@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KS2 Spelling Challenge | Statutory Word Lists Practice | The Teacher Vault</title>
+<meta name="description" content="Free KS2 spelling practice covering the National Curriculum statutory Year 3/4 and Year 5/6 word lists, plus extra practice words. Four game modes with streak tracking.">
+<link rel="canonical" href="https://theteachervault.com/ks2/spelling-challenge.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KS2 Spelling Challenge | Statutory Word Lists Practice | The Teacher Vault">
+<meta property="og:description" content="Free KS2 spelling practice covering the National Curriculum statutory Year 3/4 and Year 5/6 word lists, plus extra practice words.">
+<meta property="og:url" content="https://theteachervault.com/ks2/spelling-challenge.html">
+<meta property="og:image" content="https://theteachervault.com/images/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KS2 Spelling Challenge | Statutory Word Lists Practice | The Teacher Vault">
+<meta name="twitter:description" content="Free KS2 spelling practice covering the National Curriculum statutory Year 3/4 and Year 5/6 word lists, plus extra practice words.">
+<meta name="twitter:image" content="https://theteachervault.com/images/logo.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalApplication",
+  "name": "KS2 Spelling Challenge",
+  "description": "Free KS2 spelling practice covering the National Curriculum statutory Year 3/4 and Year 5/6 word lists, plus extra practice words. Four game modes with streak tracking.",
+  "url": "https://theteachervault.com/ks2/spelling-challenge.html",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "isAccessibleForFree": true,
+  "educationalLevel": "KS2",
+  "publisher": { "@type": "Organization", "name": "The Teacher Vault" }
+}
+</script>
+<style>
+  .sc-panel{background:rgba(247,242,226,0.06);border:1px solid rgba(245,242,232,0.14);border-radius:var(--radius-lg);padding:28px;max-width:680px;margin:0 auto;}
+  .sc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:18px;}
+  .sc-btn{padding:12px 8px;border-radius:10px;border:2px solid rgba(245,242,232,0.2);background:rgba(255,255,255,0.03);color:var(--chalk-white);cursor:pointer;font-weight:700;font-size:0.88rem;font-family:inherit;text-align:center;}
+  .sc-btn.active{border-color:var(--gold);background:rgba(201,162,75,0.18);}
+  .sc-btn:focus-visible{outline:3px solid var(--gold-light);outline-offset:2px;}
+  .sc-list-badge{display:block;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.04em;margin-top:3px;opacity:0.75;}
+  .sc-stats-row{display:flex;justify-content:center;gap:24px;margin-bottom:18px;flex-wrap:wrap;text-align:center;}
+  .sc-stat__num{font-family:Georgia,serif;font-size:1.5rem;color:var(--chalk-white);display:block;}
+  .sc-stat__label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--gold-light);}
+  .sc-question{text-align:center;margin:14px 0 20px;}
+  .sc-clue{font-family:Georgia,'Times New Roman',serif;font-size:1.2rem;color:var(--chalk-white);margin-bottom:6px;}
+  .sc-tag{display:inline-block;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--gold-light);border:1px solid rgba(201,162,75,0.4);border-radius:999px;padding:2px 10px;margin-top:6px;}
+  .sc-options{display:grid;gap:10px;max-width:420px;margin:0 auto 16px;}
+  .sc-option{padding:12px 16px;border-radius:8px;border:2px solid rgba(245,242,232,0.2);background:rgba(255,255,255,0.03);color:var(--chalk-white);cursor:pointer;font-family:inherit;font-size:1.05rem;}
+  .sc-option:hover{border-color:var(--gold);}
+  .sc-option.correct{border-color:#4c9a5f;background:rgba(76,154,95,0.18);}
+  .sc-option.incorrect{border-color:#a62b2b;background:rgba(166,43,43,0.18);}
+  .sc-option:disabled{cursor:default;}
+  .sc-word-display{font-family:Georgia,serif;font-size:2rem;letter-spacing:0.1em;color:var(--chalk-white);text-align:center;margin-bottom:16px;}
+  .sc-blank-input{width:2.2ch;text-align:center;border:none;border-bottom:2px solid var(--gold-light);background:transparent;color:var(--gold-light);font-family:Georgia,serif;font-size:2rem;padding:0;}
+  .sc-blank-input:focus{outline:none;border-bottom-color:var(--gold);}
+  .sc-input-row{display:flex;gap:10px;justify-content:center;margin-bottom:16px;}
+  .sc-text-input{font-size:1.3rem;padding:10px 16px;border-radius:8px;border:2px solid rgba(245,242,232,0.25);background:rgba(255,255,255,0.04);color:var(--chalk-white);text-align:center;width:260px;font-family:inherit;}
+  .sc-text-input:focus{outline:3px solid var(--gold-light);outline-offset:1px;border-color:var(--gold);}
+  .sc-btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px;}
+  .sc-feedback{margin-top:14px;padding:12px 16px;border-radius:8px;font-size:0.95rem;color:var(--chalk-white);display:none;text-align:center;}
+  .sc-feedback.show{display:block;}
+  .sc-feedback.correct{background:rgba(76,154,95,0.12);border-left:4px solid #4c9a5f;}
+  .sc-feedback.incorrect{background:rgba(166,43,43,0.12);border-left:4px solid #a62b2b;}
+  .sc-endscreen{text-align:center;}
+  .sc-word-pill-list{list-style:none;padding:0;margin:12px 0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .sc-word-pill-list li{padding:4px 12px;border-radius:999px;background:rgba(166,43,43,0.15);border:1px solid rgba(166,43,43,0.4);font-size:0.88rem;color:var(--chalk-white);}
+  .sc-pattern-word-list{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;}
+  .sc-pattern-word{padding:6px 14px;border-radius:999px;border:1px solid rgba(245,242,232,0.25);font-size:0.9rem;color:var(--chalk-dim);}
+  .sc-checkbox-inline{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;font-size:0.85rem;color:var(--chalk-dim);}
+  @media(max-width:600px){ .sc-panel{padding:20px 16px;} .sc-text-input{width:100%;} .sc-word-display{font-size:1.5rem;} }
+</style>
+</head>
+<body data-page="ks2-spelling-challenge">
+<div class="chalk-texture" aria-hidden="true"></div>
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="section" style="padding-bottom:20px;">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="../student-apps.html">Student Resources</a> / Spelling Challenge</p>
+      <span class="eyebrow">KS2 Spelling &middot; Years 3&ndash;6</span>
+      <h1>KS2 Spelling Challenge</h1>
+      <p class="lede">Practise the National Curriculum statutory spelling words for Years 3/4 and Years 5/6, plus extra practice words. Every word is clearly labelled so you know exactly which list it comes from.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+
+      <div class="sc-panel" id="setupPanel">
+        <h2 style="text-align:center;margin-bottom:16px;">1. Choose a word list</h2>
+        <div class="sc-grid" id="listGrid"></div>
+        <h2 style="text-align:center;margin-bottom:16px;">2. Choose a game mode</h2>
+        <div class="sc-grid" id="modeGrid"></div>
+        <div style="text-align:center;">
+          <button class="btn btn--primary" id="startBtn">Start Challenge</button>
+        </div>
+      </div>
+
+      <div class="sc-panel" id="gamePanel" hidden>
+        <div class="sc-stats-row">
+          <div class="sc-stat"><span class="sc-stat__num" id="progressDisplay">0/0</span><span class="sc-stat__label">Progress</span></div>
+          <div class="sc-stat"><span class="sc-stat__num" id="streakDisplay">0</span><span class="sc-stat__label">Streak</span></div>
+          <div class="sc-stat"><span class="sc-stat__num" id="scoreDisplay">0</span><span class="sc-stat__label">Correct</span></div>
+        </div>
+        <div id="questionArea"></div>
+        <div class="sc-btn-row">
+          <button type="button" class="btn btn--primary" id="checkBtn">Check</button>
+          <button type="button" class="btn btn--ghost" id="nextBtn" hidden>Next Word</button>
+        </div>
+        <div class="sc-feedback" id="feedbackBox" role="status"></div>
+      </div>
+
+      <div class="sc-panel sc-endscreen" id="endPanel" hidden>
+        <h2>Challenge Complete!</h2>
+        <div class="sc-stats-row">
+          <div class="sc-stat"><span class="sc-stat__num" id="endScore">0</span><span class="sc-stat__label">Correct</span></div>
+          <div class="sc-stat"><span class="sc-stat__num" id="endPercent">0%</span><span class="sc-stat__label">Accuracy</span></div>
+          <div class="sc-stat"><span class="sc-stat__num" id="endBestStreak">0</span><span class="sc-stat__label">Best Streak</span></div>
+        </div>
+        <div id="endMissedWrap" hidden>
+          <p style="color:var(--chalk-white);font-weight:700;">Words to practise:</p>
+          <ul class="sc-word-pill-list" id="missedWordsList"></ul>
+        </div>
+        <label class="sc-checkbox-inline"><input type="checkbox" id="saveDifficultCheck"> Save these words on this device to practise again later</label>
+        <div class="sc-btn-row">
+          <button class="btn btn--primary" id="retryMissedBtn" hidden>Retry Missed Words</button>
+          <button class="btn btn--ghost" id="startAgainBtn">Start Again</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section paper-section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">For parents &amp; teachers</span>
+        <h2>About the word lists</h2>
+        <p class="lede">The "Year 3/4" and "Year 5/6" lists here are the <strong>statutory</strong> National Curriculum in England spelling lists (English programmes of study, Key Stage 2, Appendix 1) — the exact 100 words per list that schools are required to teach, reproduced in full. The "Extra Practice" list is additional vocabulary that is <strong>not</strong> part of the statutory requirement, included for further practice. The app always shows which list a word belongs to, so it's never mistaken for a curriculum requirement.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Keep practising</span>
+        <h2>More Free KS2 Resources</h2>
+      </div>
+      <div class="card-grid" id="relatedGrid"></div>
+    </div>
+  </section>
+
+  <section class="section" style="text-align:center;padding-top:0;">
+    <div class="container">
+      <p class="lede" style="margin:0 auto;">Free resources. Better revision. Brighter futures. <a href="../free-resources.html" style="color:var(--gold-light);text-decoration:underline;">Explore more free resources &rarr;</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="spelling-data.js"></script>
+<script>
+(function(){
+  "use strict";
+  var ALL_WORDS = window.TVSpelling.words;
+  var LIST_LABEL = { "Y3-4": "Year 3/4 (statutory)", "Y5-6": "Year 5/6 (statutory)", "extra": "Extra Practice (not statutory)" };
+  var LIST_SUB = { "Y3-4": "Statutory", "Y5-6": "Statutory", "extra": "Not statutory" };
+
+  var state = {
+    listFilter: "Y3-4",
+    mode: "choose",
+    queue: [],
+    index: 0,
+    score: 0,
+    streak: 0,
+    bestStreak: 0,
+    missed: [],
+    answered: false,
+    currentBlanks: null
+  };
+
+  function $(id){ return document.getElementById(id); }
+  function el(html){ var d=document.createElement("div"); d.innerHTML=html.trim(); return d.firstChild; }
+  function shuffle(arr){ var a = arr.slice(); for (var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+  function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+  // ---------- distractor generation for "Choose the Correct Spelling" ----------
+  function mutateWord(word){
+    var w = word.split("");
+    var attempts = [
+      function(){ // double a random letter
+        var i = Math.floor(Math.random()*w.length);
+        var copy = w.slice(); copy.splice(i, 0, copy[i]); return copy.join("");
+      },
+      function(){ // remove a random letter (if long enough)
+        if (w.length < 4) return null;
+        var i = Math.floor(Math.random()*w.length);
+        var copy = w.slice(); copy.splice(i, 1); return copy.join("");
+      },
+      function(){ // swap two adjacent letters
+        if (w.length < 3) return null;
+        var i = Math.floor(Math.random()*(w.length-1));
+        var copy = w.slice(); var t = copy[i]; copy[i] = copy[i+1]; copy[i+1] = t; return copy.join("");
+      },
+      function(){ // swap ie <-> ei
+        if (word.indexOf("ie") > -1) return word.replace("ie", "ei");
+        if (word.indexOf("ei") > -1) return word.replace("ei", "ie");
+        return null;
+      },
+      function(){ // swap a single vowel for another
+        var vowels = "aeiou";
+        var idxs = [];
+        for (var i=0;i<w.length;i++){ if (vowels.indexOf(w[i]) > -1) idxs.push(i); }
+        if (!idxs.length) return null;
+        var i2 = pick(idxs);
+        var copy = w.slice();
+        var options = vowels.split("").filter(function(v){ return v !== copy[i2]; });
+        copy[i2] = pick(options);
+        return copy.join("");
+      },
+      function(){ // double consonant instead of single, or vice versa
+        var m = word.match(/([bcdfgjklmnpqrstvwxz])\1/);
+        if (m) return word.replace(m[0], m[1]);
+        return null;
+      }
+    ];
+    var order = shuffle([0,1,2,3,4,5]);
+    for (var k=0;k<order.length;k++){
+      var result = attempts[order[k]]();
+      if (result && result !== word && result.length > 1) return result;
+    }
+    return word + "e";
+  }
+
+  function generateDistractors(word){
+    var seen = {}; seen[word.toLowerCase()] = true;
+    var out = [];
+    var guard = 0;
+    while (out.length < 3 && guard < 60) {
+      guard++;
+      var candidate = mutateWord(word);
+      var key = candidate.toLowerCase();
+      if (!seen[key]) { seen[key] = true; out.push(candidate); }
+    }
+    while (out.length < 3) out.push(word + "x".repeat(out.length+1));
+    return out;
+  }
+
+  // ---------- setup UI ----------
+  var listGrid = $("listGrid");
+  Object.keys(LIST_LABEL).forEach(function(key){
+    var count = ALL_WORDS.filter(function(w){ return w.list === key; }).length;
+    var btn = el('<button type="button" class="sc-btn' + (key===state.listFilter?" active":"") + '" aria-pressed="' + (key===state.listFilter) + '">' + LIST_LABEL[key] + '<span class="sc-list-badge">' + count + ' words</span></button>');
+    btn.addEventListener("click", function(){
+      state.listFilter = key;
+      Array.prototype.forEach.call(listGrid.children, function(b){ b.classList.remove("active"); b.setAttribute("aria-pressed","false"); });
+      btn.classList.add("active"); btn.setAttribute("aria-pressed","true");
+    });
+    listGrid.appendChild(btn);
+  });
+
+  var MODES = { choose: "Choose the Correct Spelling", missing: "Missing Letters", spell: "Spell the Word", patterns: "Spelling Patterns" };
+  var modeGrid = $("modeGrid");
+  Object.keys(MODES).forEach(function(key){
+    var btn = el('<button type="button" class="sc-btn' + (key===state.mode?" active":"") + '" aria-pressed="' + (key===state.mode) + '">' + MODES[key] + '</button>');
+    btn.addEventListener("click", function(){
+      state.mode = key;
+      Array.prototype.forEach.call(modeGrid.children, function(b){ b.classList.remove("active"); b.setAttribute("aria-pressed","false"); });
+      btn.classList.add("active"); btn.setAttribute("aria-pressed","true");
+    });
+    modeGrid.appendChild(btn);
+  });
+
+  var setupPanel = $("setupPanel"), gamePanel = $("gamePanel"), endPanel = $("endPanel");
+  var questionArea = $("questionArea"), feedbackBox = $("feedbackBox");
+  var checkBtn = $("checkBtn"), nextBtn = $("nextBtn");
+
+  function startChallenge(wordsOverride){
+    var pool = wordsOverride || shuffle(ALL_WORDS.filter(function(w){ return w.list === state.listFilter; })).slice(0, 12);
+    state.queue = pool;
+    state.index = 0; state.score = 0; state.streak = 0; state.bestStreak = 0; state.missed = [];
+    setupPanel.hidden = true; endPanel.hidden = true; gamePanel.hidden = false;
+    renderQuestion();
+  }
+
+  function currentWord(){ return state.queue[state.index]; }
+
+  function renderQuestion(){
+    feedbackBox.className = "sc-feedback"; feedbackBox.textContent = "";
+    nextBtn.hidden = true; checkBtn.hidden = false; checkBtn.disabled = false; state.answered = false;
+    $("progressDisplay").textContent = (state.index+1) + "/" + state.queue.length;
+    $("streakDisplay").textContent = state.streak;
+    $("scoreDisplay").textContent = state.score;
+    var w = currentWord();
+    var mode = state.mode;
+    questionArea.innerHTML = "";
+
+    if (mode === "choose") {
+      var opts = shuffle(generateDistractors(w.word).concat([w.word]));
+      var clueDiv = el('<div class="sc-question"><div class="sc-clue">' + w.clue + '</div><span class="sc-tag">' + LIST_SUB[w.list] + '</span></div>');
+      questionArea.appendChild(clueDiv);
+      var optWrap = el('<div class="sc-options"></div>');
+      opts.forEach(function(optText){
+        var b = el('<button type="button" class="sc-option">' + optText + '</button>');
+        b.addEventListener("click", function(){ optWrap.dataset.chosen = optText; Array.prototype.forEach.call(optWrap.children, function(x){ x.classList.toggle("active", x===b); }); });
+        optWrap.appendChild(b);
+      });
+      questionArea.appendChild(optWrap);
+    } else if (mode === "missing") {
+      var letters = w.word.split("");
+      var eligible = [];
+      for (var i=1;i<letters.length-1;i++) eligible.push(i);
+      var blankCount = Math.min(letters.length > 5 ? 3 : 2, eligible.length);
+      var blanks = shuffle(eligible).slice(0, blankCount).sort(function(a,b){return a-b;});
+      state.currentBlanks = blanks;
+      var clueDiv2 = el('<div class="sc-question"><div class="sc-clue">' + w.clue + '</div><span class="sc-tag">' + LIST_SUB[w.list] + '</span></div>');
+      questionArea.appendChild(clueDiv2);
+      var displayWrap = el('<div class="sc-word-display"></div>');
+      letters.forEach(function(ch, i){
+        if (blanks.indexOf(i) > -1) {
+          var input = el('<input type="text" maxlength="1" class="sc-blank-input" data-idx="' + i + '" autocomplete="off">');
+          displayWrap.appendChild(input);
+        } else {
+          displayWrap.appendChild(document.createTextNode(ch));
+        }
+      });
+      questionArea.appendChild(displayWrap);
+      var firstBlank = displayWrap.querySelector("input");
+      if (firstBlank) firstBlank.focus();
+    } else if (mode === "spell") {
+      var clueDiv3 = el('<div class="sc-question"><div class="sc-clue">' + w.clue + '</div><span class="sc-tag">' + LIST_SUB[w.list] + '</span></div>');
+      questionArea.appendChild(clueDiv3);
+      var inputRow = el('<div class="sc-input-row"><label class="sr-only" for="spellInput">Spell the word</label><input type="text" id="spellInput" class="sc-text-input" autocomplete="off" autocapitalize="off" spellcheck="false"></div>');
+      questionArea.appendChild(inputRow);
+      $("spellInput") ? null : null;
+      inputRow.querySelector("input").focus();
+      inputRow.querySelector("input").addEventListener("keydown", function(ev){ if (ev.key === "Enter") { ev.preventDefault(); checkAnswer(); } });
+    } else if (mode === "patterns") {
+      var patternWords = ALL_WORDS.filter(function(x){ return x.pattern === w.pattern && x.list === w.list; });
+      var others = shuffle(patternWords.filter(function(x){ return x.word !== w.word; })).slice(0, 4);
+      var patHeader = el('<div class="sc-question"><div class="sc-clue">Spelling pattern: <strong>' + w.pattern + '</strong></div><span class="sc-tag">' + LIST_SUB[w.list] + '</span></div>');
+      questionArea.appendChild(patHeader);
+      if (others.length) {
+        var listWrap = el('<div class="sc-pattern-word-list"></div>');
+        others.forEach(function(o){ listWrap.appendChild(el('<span class="sc-pattern-word">' + o.word + '</span>')); });
+        questionArea.appendChild(listWrap);
+      }
+      var clueDiv4 = el('<p style="color:var(--chalk-white);text-align:center;">Now spell this word from the same pattern: <strong>' + w.clue + '</strong></p>');
+      questionArea.appendChild(clueDiv4);
+      var inputRow2 = el('<div class="sc-input-row"><label class="sr-only" for="patternInput">Spell the word</label><input type="text" id="patternInput" class="sc-text-input" autocomplete="off" autocapitalize="off" spellcheck="false"></div>');
+      questionArea.appendChild(inputRow2);
+      inputRow2.querySelector("input").focus();
+      inputRow2.querySelector("input").addEventListener("keydown", function(ev){ if (ev.key === "Enter") { ev.preventDefault(); checkAnswer(); } });
+    }
+  }
+
+  function getGivenAnswer(){
+    var w = currentWord();
+    var mode = state.mode;
+    if (mode === "choose") {
+      var optWrap = questionArea.querySelector(".sc-options");
+      return optWrap ? optWrap.dataset.chosen : undefined;
+    } else if (mode === "missing") {
+      var inputs = questionArea.querySelectorAll(".sc-blank-input");
+      var letters = w.word.split("");
+      var ok = true;
+      inputs.forEach(function(inp){
+        var idx = parseInt(inp.dataset.idx, 10);
+        if ((inp.value||"").toLowerCase() !== letters[idx]) ok = false;
+      });
+      return ok ? w.word : "__incorrect__";
+    } else if (mode === "spell") {
+      var si = $("spellInput");
+      return si ? si.value : "";
+    } else if (mode === "patterns") {
+      var pi = $("patternInput");
+      return pi ? pi.value : "";
+    }
+  }
+
+  function checkAnswer(){
+    if (state.answered) return;
+    var w = currentWord();
+    var given = getGivenAnswer();
+    if (given === undefined || given === "") { return; }
+    state.answered = true;
+    var correct = String(given).trim().toLowerCase() === w.word.toLowerCase();
+
+    if (correct) {
+      state.score++; state.streak++;
+      if (state.streak > state.bestStreak) state.bestStreak = state.streak;
+    } else {
+      state.streak = 0;
+      state.missed.push(w);
+    }
+    $("streakDisplay").textContent = state.streak;
+    $("scoreDisplay").textContent = state.score;
+
+    if (state.mode === "choose") {
+      var optWrap = questionArea.querySelector(".sc-options");
+      Array.prototype.forEach.call(optWrap.children, function(b){
+        b.disabled = true;
+        if (b.textContent === w.word) b.classList.add("correct");
+        else if (b.textContent === given && !correct) b.classList.add("incorrect");
+      });
+    } else if (state.mode === "missing") {
+      questionArea.querySelectorAll(".sc-blank-input").forEach(function(inp){ inp.disabled = true; });
+    } else {
+      var inputEl = $("spellInput") || $("patternInput");
+      if (inputEl) inputEl.disabled = true;
+    }
+
+    feedbackBox.className = "sc-feedback show " + (correct ? "correct" : "incorrect");
+    feedbackBox.textContent = correct ? "Correct! \"" + w.word + "\" — " + w.clue + "." : "Not quite. The correct spelling is \"" + w.word + "\" — " + w.clue + ".";
+    checkBtn.hidden = true; nextBtn.hidden = false; nextBtn.focus();
+  }
+
+  checkBtn.addEventListener("click", checkAnswer);
+  nextBtn.addEventListener("click", function(){
+    state.index++;
+    if (state.index >= state.queue.length) { endChallenge(); return; }
+    renderQuestion();
+  });
+
+  function endChallenge(){
+    gamePanel.hidden = true; endPanel.hidden = false;
+    var pct = state.queue.length ? Math.round((state.score/state.queue.length)*100) : 0;
+    $("endScore").textContent = state.score + "/" + state.queue.length;
+    $("endPercent").textContent = pct + "%";
+    $("endBestStreak").textContent = state.bestStreak;
+
+    var missedWrap = $("endMissedWrap"), missedList = $("missedWordsList"), retryBtn = $("retryMissedBtn");
+    if (state.missed.length) {
+      missedWrap.hidden = false;
+      retryBtn.hidden = false;
+      missedList.innerHTML = "";
+      state.missed.forEach(function(w){ missedList.appendChild(el('<li>' + w.word + '</li>')); });
+    } else {
+      missedWrap.hidden = true;
+      retryBtn.hidden = true;
+    }
+
+    var saveCheck = $("saveDifficultCheck");
+    saveCheck.checked = false;
+    saveCheck.onchange = function(){
+      if (saveCheck.checked && state.missed.length) {
+        try {
+          var existing = JSON.parse(localStorage.getItem("tv_spelling_difficult") || "[]");
+          var words = existing.concat(state.missed.map(function(w){ return w.word; }));
+          var unique = words.filter(function(v, i){ return words.indexOf(v) === i; });
+          localStorage.setItem("tv_spelling_difficult", JSON.stringify(unique));
+        } catch (e) { /* localStorage unavailable */ }
+      }
+    };
+  }
+
+  $("startBtn").addEventListener("click", function(){ startChallenge(); });
+  $("startAgainBtn").addEventListener("click", function(){ endPanel.hidden = true; setupPanel.hidden = false; });
+  $("retryMissedBtn").addEventListener("click", function(){ var missedWords = state.missed.slice(); startChallenge(missedWords); });
+
+  var related = ["sats-maths","ks2-times-tables-challenge","ks2-arithmetic-trainer","ks2-inference-detective","sats-english"].map(function(id){ return typeof getAppById === "function" ? getAppById(id) : null; }).filter(Boolean);
+  if (related.length && typeof renderCardGrid === "function") renderCardGrid(document.getElementById("relatedGrid"), related);
+})();
+</script>
+</body>
+</html>

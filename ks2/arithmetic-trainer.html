@@ -347,7 +347,7 @@
   $("startAgainBtn").addEventListener("click", function(){ endPanel.hidden = true; startPractice(); });
   $("changeSettingsBtn").addEventListener("click", function(){ endPanel.hidden = true; setupPanel.hidden = false; });
 
-  var related = ["ks2-year-6-sats-maths","ks2-times-tables-challenge","sats-english"].map(function(id){ return typeof getAppById === "function" ? getAppById(id) : null; }).filter(Boolean);
+  var related = ["sats-maths","ks2-times-tables-challenge","ks2-inference-detective","ks2-spelling-challenge","sats-english"].map(function(id){ return typeof getAppById === "function" ? getAppById(id) : null; }).filter(Boolean);
   if (related.length && typeof renderCardGrid === "function") renderCardGrid(document.getElementById("relatedGrid"), related);
 })();
 </script>
