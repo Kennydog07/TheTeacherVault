@@ -1469,6 +1469,29 @@ const APPS = [
     worksOffline: true,
     noAccount: true
   },
+  {
+    id: "ks2-spag-challenge",
+    title: "SPaG Challenge",
+    tagline: "How strong are your spelling, punctuation and grammar skills?",
+    description: "Free KS2 grammar and punctuation practice covering word classes, sentence structure, verb forms, clauses, Standard English and vocabulary, with an explanation after every question.",
+    category: "revision",
+    keyStage: "KS2",
+    subject: "Primary",
+    audience: "Years 3-6 pupils",
+    tier: "free",
+    price: "Free",
+    gumroadUrl: "",
+    fileUrl: "/ks2/spag-challenge.html",
+    fileType: "app",
+    image: "/images/mascot-teacher-generic.png",
+    icon: "book",
+    featured: false,
+    isNew: true,
+    comingSoon: false,
+    features: ["Years 3&4, Years 5&6, Year 6 SATs Practice and Mixed KS2 levels", "300+ question items across 8 SPaG categories", "An explanation shown after every question, not just right or wrong", "End report splits grammar and punctuation scores separately"],
+    worksOffline: true,
+    noAccount: true
+  },
 
   /* ------------------------------ KS3 STUDENT APPS -------------------------
      Self-contained HTML apps that open in a new tab (fileType: "app"),
