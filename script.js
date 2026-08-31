@@ -194,6 +194,7 @@ function renderFooter() {
           '<ul>' +
             '<li><a href="/teacher-tools.html">Teacher Tools</a></li>' +
             '<li><a href="/student-apps.html">Student Apps</a></li>' +
+            '<li><a href="/early-years.html">Early Years</a></li>' +
             '<li><a href="/quick-notes.html">Quick Notes</a></li>' +
             '<li><a href="/apps.html?tier=free">Free Apps</a></li>' +
             '<li><a href="/apps.html?tier=pro">Pro Apps</a></li>' +
