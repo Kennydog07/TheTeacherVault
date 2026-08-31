@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CVC Word Builder | Free Early Phonics Game | The Teacher Vault</title>
+<meta name="description" content="A free early phonics game for ages 3-5 to build simple CVC words like cat, dog and sun by tapping letter tiles into place.">
+<link rel="canonical" href="https://theteachervault.com/early-years/cvc-word-builder.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CVC Word Builder | Free Early Phonics Game | The Teacher Vault">
+<meta property="og:description" content="A free early phonics game for ages 3-5 to build simple CVC words like cat, dog and sun by tapping letter tiles into place.">
+<meta property="og:url" content="https://theteachervault.com/early-years/cvc-word-builder.html">
+<meta property="og:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CVC Word Builder | Free Early Phonics Game | The Teacher Vault">
+<meta name="twitter:description" content="A free early phonics game for ages 3-5 to build simple CVC words like cat, dog and sun by tapping letter tiles into place.">
+<meta name="twitter:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="early-years.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalApplication",
+  "name": "CVC Word Builder",
+  "description": "A free early phonics game for ages 3-5 to build simple CVC words like cat, dog and sun by tapping letter tiles into place.",
+  "url": "https://theteachervault.com/early-years/cvc-word-builder.html",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "isAccessibleForFree": true,
+  "educationalLevel": "Early Years / Reception",
+  "publisher": { "@type": "Organization", "name": "The Teacher Vault" }
+}
+</script>
+<style>
+.cvc-slots { display:flex; justify-content:center; gap:14px; margin: 18px 0; }
+.cvc-slot {
+  width: 64px; height: 64px;
+  border: 4px dashed var(--ey-orange-light);
+  border-radius: var(--ey-radius-sm);
+  background: #fff;
+  display:flex; align-items:center; justify-content:center;
+  font-size: 1.8rem; font-weight: 800; color: var(--ey-ink);
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+}
+.cvc-slot.is-filled { border-style: solid; border-color: var(--ey-orange); }
+.cvc-slot.is-wrong { border-color: #d9694a; background: #fdefe9; }
+.cvc-slot.is-correct { border-color: var(--ey-green); background: #eef8ef; }
+.cvc-slot:disabled { cursor: default; }
+.cvc-slot:focus-visible { outline: 4px solid var(--ey-yellow); outline-offset: 2px; }
+.cvc-tray { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin: 18px 0; min-height: 74px; }
+.cvc-tile {
+  width: 58px; height: 58px;
+  border: 4px solid var(--ey-bg-soft);
+  border-radius: var(--ey-radius-sm);
+  background: #fff;
+  font-size: 1.6rem; font-weight: 800; color: var(--ey-ink);
+  cursor: pointer;
+  font-family: inherit;
+}
+.cvc-tile:hover { border-color: var(--ey-orange-light); }
+.cvc-tile:focus-visible { outline: 4px solid var(--ey-yellow); outline-offset: 2px; }
+.cvc-tile.is-used { visibility: hidden; }
+.cvc-picture-row { display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap; margin-bottom: 6px; }
+.cvc-picture-card {
+  background: var(--ey-bg-soft);
+  border-radius: var(--ey-radius);
+  padding: 20px 34px;
+  font-size: 4rem;
+  line-height: 1;
+}
+.cvc-tray-row { display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap; }
+@media (max-width: 480px) {
+  .cvc-slot { width: 52px; height: 52px; font-size: 1.4rem; }
+  .cvc-tile { width: 48px; height: 48px; font-size: 1.3rem; }
+  .cvc-picture-card { padding: 16px 24px; font-size: 3rem; }
+}
+</style>
+</head>
+<body data-page="ey-cvc-word-builder" class="ey-page-body">
+<div class="chalk-texture" aria-hidden="true"></div>
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="ey-section" style="padding-bottom:10px;">
+    <div class="ey-container">
+      <p class="ey-breadcrumb"><a href="../index.html">Home</a> / <a href="../early-years.html">Early Years</a> / CVC Word Builder</p>
+      <span class="ey-badge">Ages 3&ndash;5</span>
+      <h1 class="ey-h1">CVC Word Builder</h1>
+      <p class="ey-lede">Build a word!</p>
+    </div>
+  </section>
+
+  <section class="ey-section" style="padding-top:10px;">
+    <div class="ey-container">
+
+      <div class="ey-activity-panel" id="setupPanel">
+        <div class="ey-center" id="setupMascotWrap" style="margin-bottom:18px;"></div>
+        <div class="ey-choice-grid" style="max-width:420px;margin:0 auto;">
+          <button type="button" class="ey-btn ey-btn--primary" id="fiveBtn">5 Words</button>
+          <button type="button" class="ey-btn ey-btn--soft" id="tenBtn">10 Words</button>
+        </div>
+      </div>
+
+      <div class="ey-activity-panel" id="gamePanel" hidden>
+        <div class="ey-progress" id="progressDots"></div>
+
+        <div class="cvc-picture-row">
+          <div id="pointRightWrap"></div>
+          <div class="cvc-picture-card" id="pictureCard" aria-hidden="true"></div>
+        </div>
+
+        <div class="cvc-slots" id="slotsRow"></div>
+
+        <div class="cvc-tray-row">
+          <div class="cvc-tray" id="letterTray"></div>
+          <div id="pointLeftWrap"></div>
+        </div>
+
+        <div class="ey-btn-row" style="text-align:center;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:10px;">
+          <button type="button" class="ey-btn ey-btn--soft ey-btn--sm" id="clearBtn">Clear</button>
+          <button type="button" class="ey-btn ey-btn--primary" id="checkBtn">Check</button>
+        </div>
+
+        <div id="feedbackArea" class="ey-center" style="margin-top:16px;"></div>
+      </div>
+
+      <div class="ey-activity-panel" id="endPanel" hidden>
+        <div class="ey-center">
+          <h2 class="ey-h1" style="font-size:1.8rem;">Great word building!</h2>
+          <div id="endStars"></div>
+          <div id="endMascotWrap" style="margin:10px 0;"></div>
+          <div class="ey-btn-row" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:10px;">
+            <button type="button" class="ey-btn ey-btn--primary" id="playAgainBtn">Play Again</button>
+            <button type="button" class="ey-btn ey-btn--soft" id="changeSettingsBtn">Change Settings</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <details class="ey-grownups">
+    <summary>For Grown-Ups</summary>
+    <div class="ey-body">
+      <p><strong>What this practises:</strong> blending individual letter sounds together to build and spell simple, decodable three-letter words.</p>
+      <p><strong>Suggested age range:</strong> approximately 3&ndash;5 years, especially children who are already confident spotting beginning sounds.</p>
+      <p><strong>How adults can help:</strong> look at the picture together and say the word slowly, stretching out each sound ("c...a...t") before your child chooses the letter tiles. There's no audio in this game, so your voice does the job!</p>
+      <p><strong>What to try next:</strong> if your child needs more practice with individual letters first, <a href="letter-sound-explorer.html">Letter &amp; Sound Explorer</a> is a gentler starting point.</p>
+    </div>
+  </details>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="../early-years/early-years.js"></script>
+<script src="cvc-word-builder-data.js"></script>
+<script>
+(function(){
+  "use strict";
+  var WORDS = window.TVCvcWords;
+  var state = { total: 0, index: 0, queue: [], correctCount: 0, tiles: [], slots: [null, null, null], checked: false };
+
+  function $(id){ return document.getElementById(id); }
+
+  $("setupMascotWrap").innerHTML = EY.mascot("neutral", "The Teacher Vault mascot smiling", { size: 110, animate: "float" }) +
+    '<div style="margin-top:8px;">' + EY.speech("Build a word!") + '</div>';
+
+  var setupPanel = $("setupPanel"), gamePanel = $("gamePanel"), endPanel = $("endPanel");
+
+  $("fiveBtn").addEventListener("click", function(){ startGame(5); });
+  $("tenBtn").addEventListener("click", function(){ startGame(10); });
+
+  function buildQueue(n){
+    var pool = EY.shuffle(WORDS);
+    var queue = [];
+    while (queue.length < n) {
+      queue = queue.concat(EY.shuffle(pool));
+    }
+    return queue.slice(0, n);
+  }
+
+  function startGame(total){
+    state.total = total;
+    state.index = 0;
+    state.correctCount = 0;
+    state.queue = buildQueue(total);
+    setupPanel.hidden = true; endPanel.hidden = true; gamePanel.hidden = false;
+    renderWord();
+  }
+
+  function renderProgress(){
+    var dots = $("progressDots");
+    dots.innerHTML = "";
+    for (var i = 0; i < state.total; i++) {
+      dots.appendChild(EY.el('<span class="ey-progress-dot' + (i < state.index ? " is-done" : "") + '"></span>'));
+    }
+  }
+
+  function renderWord(){
+    renderProgress();
+    var item = state.queue[state.index];
+    state.checked = false;
+    $("pictureCard").textContent = item.icon;
+
+    var letters = item.word.split("");
+    var alphabet = "abcdefghijklmnopqrstuvwxyz".split("").filter(function(c){ return letters.indexOf(c) === -1; });
+    var distractors = EY.pickN(alphabet, 2);
+    var trayLetters = EY.shuffle(letters.concat(distractors));
+
+    state.tiles = trayLetters.map(function(letter, i){ return { id: i, letter: letter, used: false }; });
+    state.slots = [null, null, null];
+
+    $("pointRightWrap").innerHTML = EY.mascot("point-right", "The Teacher Vault mascot pointing at the picture", { size: 64 }) +
+      '<div style="margin-top:4px;">' + EY.speech("What is this?") + '</div>';
+    $("pointLeftWrap").innerHTML = EY.mascot("point-left", "The Teacher Vault mascot pointing at the letter tiles", { size: 64 });
+
+    $("feedbackArea").innerHTML = "";
+    renderSlots();
+    renderTray();
+  }
+
+  function renderSlots(){
+    var row = $("slotsRow");
+    row.innerHTML = "";
+    state.slots.forEach(function(slot, i){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "cvc-slot" + (slot ? " is-filled" : "");
+      b.textContent = slot ? slot.letter : "";
+      b.setAttribute("aria-label", slot ? "Letter " + slot.letter + ", tap to remove" : "Empty letter box " + (i + 1));
+      b.disabled = state.checked && row.dataset.locked === "1";
+      b.addEventListener("click", function(){
+        if (!slot) return;
+        var tile = state.tiles.filter(function(t){ return t.id === slot.tileId; })[0];
+        if (tile) tile.used = false;
+        state.slots[i] = null;
+        clearFeedbackClasses();
+        renderSlots();
+        renderTray();
+      });
+      row.appendChild(b);
+    });
+  }
+
+  function renderTray(){
+    var tray = $("letterTray");
+    tray.innerHTML = "";
+    state.tiles.forEach(function(tile){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "cvc-tile" + (tile.used ? " is-used" : "");
+      b.textContent = tile.letter;
+      b.setAttribute("aria-label", "Letter tile " + tile.letter);
+      b.disabled = tile.used;
+      b.addEventListener("click", function(){
+        var emptyIndex = state.slots.indexOf(null);
+        if (emptyIndex === -1) return;
+        state.slots[emptyIndex] = { tileId: tile.id, letter: tile.letter };
+        tile.used = true;
+        clearFeedbackClasses();
+        renderSlots();
+        renderTray();
+      });
+      tray.appendChild(b);
+    });
+  }
+
+  function clearFeedbackClasses(){
+    $("feedbackArea").innerHTML = "";
+    Array.prototype.forEach.call($("slotsRow").children, function(el){
+      el.classList.remove("is-wrong", "is-correct");
+    });
+  }
+
+  $("clearBtn").addEventListener("click", function(){
+    state.tiles.forEach(function(t){ t.used = false; });
+    state.slots = [null, null, null];
+    clearFeedbackClasses();
+    renderSlots();
+    renderTray();
+  });
+
+  $("checkBtn").addEventListener("click", function(){
+    var item = state.queue[state.index];
+    var fb = $("feedbackArea");
+    if (state.slots.indexOf(null) !== -1) {
+      fb.innerHTML = '<p style="color:var(--ey-ink-soft);font-weight:700;">Fill all the boxes first!</p>';
+      return;
+    }
+    var built = state.slots.map(function(s){ return s.letter; }).join("");
+    var correct = built === item.word;
+    Array.prototype.forEach.call($("slotsRow").children, function(el){
+      el.classList.add(correct ? "is-correct" : "is-wrong");
+    });
+    if (correct) {
+      state.correctCount++;
+      fb.innerHTML =
+        '<p class="ey-visual-word" style="margin-bottom:6px;">' + item.word.toUpperCase() + '</p>' +
+        '<p style="color:var(--ey-green);font-weight:800;font-size:1.1rem;">Great job! You built ' + item.word.toUpperCase() + '!</p>';
+      fb.appendChild(EY.el('<div style="margin-top:14px;"><button type="button" class="ey-btn ey-btn--primary" id="nextWordBtn">Next Word</button></div>'));
+      $("nextWordBtn").addEventListener("click", function(){
+        state.index++;
+        if (state.index >= state.total) { endGame(); return; }
+        renderWord();
+      });
+    } else {
+      fb.innerHTML = '<p style="color:var(--ey-orange-dark);font-weight:800;font-size:1.1rem;">Nearly! Let\'s try again.</p>';
+    }
+  });
+
+  function endGame(){
+    renderProgress();
+    gamePanel.hidden = true; endPanel.hidden = false;
+    var starsOutOf5 = Math.max(1, Math.round((state.correctCount / state.total) * 5));
+    $("endStars").innerHTML = EY.stars(5, starsOutOf5);
+    $("endMascotWrap").innerHTML = EY.mascot("point-up", "The Teacher Vault mascot pointing up at the stars", { size: 110, animate: "bounce" });
+  }
+
+  $("playAgainBtn").addEventListener("click", function(){ startGame(state.total); });
+  $("changeSettingsBtn").addEventListener("click", function(){ endPanel.hidden = true; setupPanel.hidden = false; });
+})();
+</script>
+</body>
+</html>
