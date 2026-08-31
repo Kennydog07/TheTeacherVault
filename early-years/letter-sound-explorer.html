@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Letter Sounds for Children | Free Early Phonics Activity | The Teacher Vault</title>
+<meta name="description" content="A free early phonics activity for ages 3-5 to explore letters and their sounds, find letters, and spot which word starts with a given sound.">
+<link rel="canonical" href="https://theteachervault.com/early-years/letter-sound-explorer.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Letter Sounds for Children | Free Early Phonics Activity | The Teacher Vault">
+<meta property="og:description" content="A free early phonics activity for ages 3-5 to explore letters and their sounds, find letters, and spot which word starts with a given sound.">
+<meta property="og:url" content="https://theteachervault.com/early-years/letter-sound-explorer.html">
+<meta property="og:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Letter Sounds for Children | Free Early Phonics Activity | The Teacher Vault">
+<meta name="twitter:description" content="A free early phonics activity for ages 3-5 to explore letters and their sounds, find letters, and spot which word starts with a given sound.">
+<meta name="twitter:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="early-years.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalApplication",
+  "name": "Letter & Sound Explorer",
+  "description": "A free early phonics activity for ages 3-5 to explore letters and their sounds, find letters, and spot which word starts with a given sound.",
+  "url": "https://theteachervault.com/early-years/letter-sound-explorer.html",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "isAccessibleForFree": true,
+  "educationalLevel": "Early Years / Reception",
+  "publisher": { "@type": "Organization", "name": "The Teacher Vault" }
+}
+</script>
+</head>
+<body data-page="ey-letter-sound-explorer" class="ey-page-body">
+<div class="chalk-texture" aria-hidden="true"></div>
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="ey-section" style="padding-bottom:10px;">
+    <div class="ey-container">
+      <p class="ey-breadcrumb"><a href="../index.html">Home</a> / <a href="../early-years.html">Early Years</a> / Letter &amp; Sound Explorer</p>
+      <span class="ey-badge">Ages 3&ndash;5</span>
+      <h1 class="ey-h1">Letter &amp; Sound Explorer</h1>
+      <p class="ey-lede">Explore letters, find a letter, and spot which word starts with a sound.</p>
+    </div>
+  </section>
+
+  <section class="ey-section" style="padding-top:10px;">
+    <div class="ey-container">
+
+      <div class="ey-mascot-row ey-center" style="justify-content:center;margin-bottom:20px;">
+        <div id="mascotWrap"></div>
+      </div>
+
+      <div class="ey-choice-grid" id="modeGrid" style="max-width:640px;margin-left:auto;margin-right:auto;"></div>
+
+      <div class="ey-activity-panel" id="activityPanel"></div>
+
+    </div>
+  </section>
+
+  <details class="ey-grownups">
+    <summary>For Grown-Ups</summary>
+    <div class="ey-body">
+      <p><strong>What this practises:</strong> recognising letters (upper and lower case), linking letters to their most common initial sound, and spotting the first sound in a simple word.</p>
+      <p><strong>Suggested age range:</strong> approximately 3&ndash;5 years, though older children who need extra phonics support may enjoy it too.</p>
+      <p><strong>How adults can help:</strong> say the letter's sound out loud together (not just its name) &mdash; "mmm" for M, not "em". Little and often works best; a few minutes is plenty.</p>
+      <p><strong>What to try next:</strong> once your child is confident spotting beginning sounds here, <a href="beginning-sounds.html">Beginning Sounds</a> practises the same skill with a wider range of words.</p>
+    </div>
+  </details>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="../early-years/early-years.js"></script>
+<script src="letter-sound-data.js"></script>
+<script>
+(function(){
+  "use strict";
+  var LETTERS = window.TVLetters;
+  var state = { mode: null, current: null, roundStars: 0 };
+
+  function $(id){ return document.getElementById(id); }
+
+  $("mascotWrap").innerHTML = EY.mascot("neutral", "The Teacher Vault mascot smiling", { size: 110, animate: "float" }) +
+    '<div style="margin-top:8px;">' + EY.speech("Let's learn!") + '</div>';
+
+  var MODES = [
+    { id: "explore", label: "Explore Letters" },
+    { id: "find", label: "Find the Letter" },
+    { id: "starts", label: "What Starts With...?" }
+  ];
+  var modeGrid = $("modeGrid");
+  MODES.forEach(function(m){
+    var btn = EY.el('<button type="button" class="ey-choice" style="font-size:1.1rem;">' + m.label + '</button>');
+    btn.addEventListener("click", function(){
+      Array.prototype.forEach.call(modeGrid.children, function(b){ b.classList.remove("ey-choice--active"); });
+      btn.classList.add("ey-choice--active");
+      state.mode = m.id;
+      state.roundStars = 0;
+      if (m.id === "explore") renderExplore();
+      else if (m.id === "find") renderFindRound();
+      else renderStartsRound();
+    });
+    modeGrid.appendChild(btn);
+  });
+
+  var panel = $("activityPanel");
+
+  // ---------------- MODE 1: EXPLORE ----------------
+  function renderExplore(){
+    panel.innerHTML = "";
+    var grid = EY.el('<div class="ey-choice-grid" style="grid-template-columns:repeat(auto-fit,minmax(64px,1fr));"></div>');
+    LETTERS.forEach(function(entry){
+      var b = EY.el('<button type="button" class="ey-choice" style="font-size:1.4rem;min-height:64px;">' + entry.letter + '</button>');
+      b.addEventListener("click", function(){ showLetterDetail(entry); });
+      grid.appendChild(b);
+    });
+    panel.appendChild(grid);
+    panel.appendChild(EY.el('<div id="letterDetail" style="margin-top:20px;"></div>'));
+  }
+
+  function showLetterDetail(entry){
+    var detail = $("letterDetail");
+    if (!detail) return;
+    detail.innerHTML =
+      '<div class="ey-card ey-center ey-mascot--fade-in">' +
+        '<div style="font-family:\'Permanent Marker\',cursive;font-size:4rem;color:var(--ey-orange);">' + entry.letter + ' ' + entry.letter.toLowerCase() + '</div>' +
+        '<div style="font-size:3rem;margin:10px 0;" aria-hidden="true">' + entry.icon + '</div>' +
+        '<div class="ey-visual-word">' + entry.word + '</div>' +
+        (entry.note ? '<p style="color:var(--ey-ink-soft);font-size:0.9rem;margin-top:10px;">' + entry.note + '</p>' : '') +
+      '</div>';
+  }
+
+  // ---------------- MODE 2: FIND THE LETTER ----------------
+  function renderFindRound(){
+    var target = EY.pick(LETTERS);
+    var distractors = EY.pickN(LETTERS.filter(function(l){ return l.letter !== target.letter; }), 3);
+    var options = EY.shuffle([target].concat(distractors));
+    state.current = target;
+
+    panel.innerHTML =
+      '<div class="ey-center" style="margin-bottom:16px;">' + EY.speech("Can you find " + target.letter + "?") + '</div>' +
+      '<div class="ey-choice-grid" id="findGrid" style="max-width:480px;margin:0 auto;"></div>' +
+      '<div id="findStars"></div><div id="findFeedback" class="ey-center"></div>';
+
+    document.getElementById("findStars").innerHTML = EY.stars(5, state.roundStars);
+
+    var grid = document.getElementById("findGrid");
+    options.forEach(function(entry){
+      var b = EY.el('<button type="button" class="ey-choice">' + entry.letter + '</button>');
+      b.addEventListener("click", function(){
+        if (grid.dataset.answered) return;
+        grid.dataset.answered = "1";
+        var correct = entry.letter === target.letter;
+        Array.prototype.forEach.call(grid.children, function(x){
+          x.disabled = true;
+          if (x.textContent === target.letter) x.classList.add("is-correct");
+          else if (x === b) x.classList.add("is-incorrect");
+        });
+        var fb = document.getElementById("findFeedback");
+        if (correct) {
+          state.roundStars = Math.min(5, state.roundStars + 1);
+          document.getElementById("findStars").innerHTML = EY.stars(5, state.roundStars);
+          fb.innerHTML = '<p style="color:var(--ey-green);font-weight:800;">You found it!</p>';
+        } else {
+          fb.innerHTML = '<p style="color:var(--ey-orange-dark);font-weight:800;">Good try! That says ' + entry.letter + ". Let's look again.</p>";
+        }
+        fb.appendChild(EY.el('<div class="ey-btn-row" style="text-align:center;margin-top:14px;"><button type="button" class="ey-btn ey-btn--primary" id="nextFindBtn">Try Another</button></div>'));
+        document.getElementById("nextFindBtn").addEventListener("click", renderFindRound);
+      });
+      grid.appendChild(b);
+    });
+  }
+
+  // ---------------- MODE 3: WHAT STARTS WITH...? ----------------
+  function renderStartsRound(){
+    var target = EY.pick(LETTERS);
+    var distractors = EY.pickN(LETTERS.filter(function(l){ return l.letter !== target.letter; }), 2);
+    var options = EY.shuffle([target].concat(distractors));
+    state.current = target;
+
+    panel.innerHTML =
+      '<div class="ey-center" style="margin-bottom:16px;">' + EY.speech("What starts with " + target.letter.toLowerCase() + "?") + '</div>' +
+      '<div class="ey-choice-grid" id="startsGrid" style="max-width:560px;margin:0 auto;"></div>' +
+      '<div id="startsFeedback" class="ey-center" style="margin-top:14px;"></div>';
+
+    var grid = document.getElementById("startsGrid");
+    options.forEach(function(entry){
+      var b = EY.el('<button type="button" class="ey-choice" style="flex-direction:column;gap:6px;font-size:1.1rem;"><span style="font-size:2rem;" aria-hidden="true">' + entry.icon + '</span>' + entry.word + '</button>');
+      b.addEventListener("click", function(){
+        if (grid.dataset.answered) return;
+        grid.dataset.answered = "1";
+        var correct = entry.letter === target.letter;
+        Array.prototype.forEach.call(grid.children, function(x){
+          x.disabled = true;
+          if (x === b && correct) x.classList.add("is-correct");
+          else if (x === b) x.classList.add("is-incorrect");
+        });
+        var fb = document.getElementById("startsFeedback");
+        fb.innerHTML = correct
+          ? '<p style="color:var(--ey-green);font-weight:800;">Yes! ' + capitalise(entry.word) + " starts with " + target.letter.toLowerCase() + ".</p>"
+          : '<p style="color:var(--ey-orange-dark);font-weight:800;">Nearly! Listen to the start of the words again.</p>';
+        fb.appendChild(EY.el('<div class="ey-btn-row" style="text-align:center;margin-top:14px;"><button type="button" class="ey-btn ey-btn--primary" id="nextStartsBtn">Try Another</button></div>'));
+        document.getElementById("nextStartsBtn").addEventListener("click", renderStartsRound);
+      });
+      grid.appendChild(b);
+    });
+  }
+
+  function capitalise(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+
+  // start on Explore by default
+  modeGrid.children[0].click();
+})();
+</script>
+</body>
+</html>
