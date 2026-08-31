@@ -139,6 +139,16 @@ const NAV_LINKS = [
   { href: "/index.html", label: "Home" },
   { href: "/teacher-tools.html", label: "Teacher Tools" },
   { href: "/student-apps.html", label: "Student Apps" },
+  {
+    label: "Key Stages",
+    children: [
+      { href: "/early-years.html", label: "Early Years (Ages 3–5)" },
+      { href: "/ks2.html", label: "KS2 (SATs)" },
+      { href: "/student-apps.html#ks-KS3", label: "KS3" },
+      { href: "/student-apps.html#ks-KS4", label: "KS4 (GCSE)" },
+      { href: "/student-apps.html#ks-KS5", label: "KS5 (A-Level)" }
+    ]
+  },
   { href: "/quick-notes.html", label: "Quick Notes" },
   { href: "/apps.html?tier=pro", label: "Pro Apps" },
   { href: "/about.html", label: "About" },
@@ -150,13 +160,59 @@ function currentFile() {
   return "/" + (path === "" ? "index.html" : path);
 }
 
+/* Strips any #hash from a nav href before comparing to the current file,
+   so a dropdown item like "/student-apps.html#ks-KS3" still lines up with
+   currentFile() on that page. */
+function navHrefFile(href) {
+  return href.split("#")[0];
+}
+
 function renderHeader() {
   const here = currentFile();
   const hereWithQuery = here + window.location.search;
-  const linkHtml = function (extra) {
+  const isActive = function (href) {
+    return href.indexOf("?") > -1 ? href === hereWithQuery : navHrefFile(href) === here;
+  };
+
+  const desktopLinkHtml = function () {
     return NAV_LINKS.map(function (l) {
-      const active = l.href.indexOf("?") > -1 ? l.href === hereWithQuery : l.href === here;
-      return '<a href="' + l.href + '"' + (active ? ' aria-current="page"' : '') + '>' + l.label + '</a>';
+      if (l.children) {
+        const childActive = l.children.some(function (c) { return isActive(c.href); });
+        return (
+          '<div class="main-nav__dropdown">' +
+            '<button type="button" class="main-nav__dropdown-toggle' + (childActive ? ' is-active' : '') + '" aria-haspopup="true" aria-expanded="false">' +
+              l.label + '<span class="main-nav__dropdown-caret" aria-hidden="true">&#9662;</span>' +
+            '</button>' +
+            '<div class="main-nav__dropdown-menu" role="menu">' +
+              l.children.map(function (c) {
+                return '<a role="menuitem" href="' + c.href + '"' + (isActive(c.href) ? ' aria-current="page"' : '') + '>' + c.label + '</a>';
+              }).join("") +
+            '</div>' +
+          '</div>'
+        );
+      }
+      return '<a href="' + l.href + '"' + (isActive(l.href) ? ' aria-current="page"' : '') + '>' + l.label + '</a>';
+    }).join("");
+  };
+
+  const mobileLinkHtml = function () {
+    return NAV_LINKS.map(function (l) {
+      if (l.children) {
+        const childActive = l.children.some(function (c) { return isActive(c.href); });
+        return (
+          '<div class="mobile-nav__dropdown">' +
+            '<button type="button" class="mobile-nav__dropdown-toggle' + (childActive ? ' is-active' : '') + '" aria-expanded="false">' +
+              l.label + '<span class="mobile-nav__dropdown-caret" aria-hidden="true">&#9662;</span>' +
+            '</button>' +
+            '<div class="mobile-nav__dropdown-menu">' +
+              l.children.map(function (c) {
+                return '<a href="' + c.href + '"' + (isActive(c.href) ? ' aria-current="page"' : '') + '>' + c.label + '</a>';
+              }).join("") +
+            '</div>' +
+          '</div>'
+        );
+      }
+      return '<a href="' + l.href + '"' + (isActive(l.href) ? ' aria-current="page"' : '') + '>' + l.label + '</a>';
     }).join("");
   };
 
@@ -164,7 +220,7 @@ function renderHeader() {
     '<div class="site-header__inner">' +
       '<a href="/index.html" aria-label="The Teacher Vault — home">' + chalkLogo("sm") + '</a>' +
       '<nav class="main-nav" aria-label="Primary">' +
-        '<div class="main-nav__links">' + linkHtml() + '</div>' +
+        '<div class="main-nav__links">' + desktopLinkHtml() + '</div>' +
       '</nav>' +
       '<div class="header-cta">' +
         '<a href="/apps.html" class="btn btn--ghost btn--sm">Browse All Apps</a>' +
@@ -172,7 +228,7 @@ function renderHeader() {
       '</div>' +
     '</div>' +
     '<div class="mobile-nav" id="mobileNav">' +
-      linkHtml() +
+      mobileLinkHtml() +
       '<a href="/contact.html"' + (here === "/contact.html" ? ' aria-current="page"' : '') + '>Contact</a>' +
       '<a href="/apps.html" class="btn btn--primary btn--sm">Browse All Apps</a>' +
     '</div>'
@@ -236,8 +292,44 @@ function mountLayout() {
       const open = document.body.classList.toggle("nav-open");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
       toggle.innerHTML = open ? ICONS.close : ICONS.menu;
+      if (!open) closeAllDropdowns();
     });
   }
+
+  function closeAllDropdowns(except) {
+    document.querySelectorAll(".main-nav__dropdown-toggle, .mobile-nav__dropdown-toggle").forEach(function (btn) {
+      if (btn === except) return;
+      btn.setAttribute("aria-expanded", "false");
+      btn.parentElement.classList.remove("is-open");
+    });
+  }
+
+  if (headerEl) {
+    headerEl.addEventListener("click", function (e) {
+      const btn = e.target.closest(".main-nav__dropdown-toggle, .mobile-nav__dropdown-toggle");
+      if (btn) {
+        const isOpen = btn.getAttribute("aria-expanded") === "true";
+        closeAllDropdowns(isOpen ? null : btn);
+        btn.setAttribute("aria-expanded", isOpen ? "false" : "true");
+        btn.parentElement.classList.toggle("is-open", !isOpen);
+        return;
+      }
+      // Selecting an actual dropdown link (including same-page hash links,
+      // which don't trigger a full navigation) should still close the menus.
+      if (e.target.closest(".main-nav__dropdown-menu a, .mobile-nav__dropdown-menu a")) {
+        closeAllDropdowns();
+        document.body.classList.remove("nav-open");
+        if (toggle) { toggle.setAttribute("aria-expanded", "false"); toggle.innerHTML = ICONS.menu; }
+      }
+    });
+  }
+
+  document.addEventListener("click", function (e) {
+    if (headerEl && !headerEl.contains(e.target)) closeAllDropdowns();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeAllDropdowns();
+  });
 }
 
 /* --------------------------------------------------------------------------

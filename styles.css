@@ -298,6 +298,10 @@ html.no-vault-reveal .vault-reveal { display: none; }
   border-bottom: 1px solid rgba(245, 242, 232, 0.12);
 }
 
+/* So jumping to a #ks-KS3 style anchor doesn't tuck the heading under the
+   sticky header. */
+section[id^="ks-"] { scroll-margin-top: 90px; }
+
 .site-header__inner {
   display: flex;
   align-items: center;
@@ -336,6 +340,75 @@ html.no-vault-reveal .vault-reveal { display: none; }
 .main-nav__links a[aria-current="page"] {
   color: var(--chalk-white);
   border-bottom-color: var(--gold);
+}
+
+/* ---- Desktop "Key Stages" dropdown ---- */
+.main-nav__dropdown { position: relative; }
+
+.main-nav__dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-chalk);
+  font-size: 1.15rem;
+  font-weight: normal;
+  letter-spacing: 0.02em;
+  color: var(--chalk-dim);
+  background: transparent;
+  border: none;
+  padding: 8px 2px;
+  border-bottom: 2px solid transparent;
+  text-shadow: 0 0 10px rgba(245, 242, 232, 0.1);
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.main-nav__dropdown-toggle:hover,
+.main-nav__dropdown-toggle[aria-expanded="true"],
+.main-nav__dropdown-toggle.is-active {
+  color: var(--chalk-white);
+  border-bottom-color: var(--gold);
+}
+
+.main-nav__dropdown-caret {
+  font-size: 0.7em;
+  transition: transform 0.15s ease;
+}
+
+.main-nav__dropdown-toggle[aria-expanded="true"] .main-nav__dropdown-caret {
+  transform: rotate(180deg);
+}
+
+.main-nav__dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 0;
+  min-width: 220px;
+  background: var(--board-green-dark);
+  border: 1px solid rgba(245, 242, 232, 0.14);
+  border-radius: 10px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+  padding: 8px;
+  flex-direction: column;
+  z-index: 60;
+}
+
+.main-nav__dropdown.is-open .main-nav__dropdown-menu { display: flex; }
+
+.main-nav__dropdown-menu a {
+  font-family: var(--font-chalk);
+  font-size: 1.05rem;
+  color: var(--chalk-dim);
+  padding: 9px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.main-nav__dropdown-menu a:hover,
+.main-nav__dropdown-menu a[aria-current="page"] {
+  color: var(--chalk-white);
+  background: rgba(245, 242, 232, 0.08);
 }
 
 .header-cta {
@@ -379,6 +452,47 @@ html.no-vault-reveal .vault-reveal { display: none; }
 .mobile-nav a[aria-current="page"] { color: var(--gold-light); }
 
 .mobile-nav .btn { margin-top: 12px; align-self: flex-start; }
+
+/* ---- Mobile "Key Stages" accordion ---- */
+.mobile-nav__dropdown-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-family: var(--font-chalk);
+  font-size: 1.25rem;
+  font-weight: normal;
+  color: var(--chalk-dim);
+  background: transparent;
+  border: none;
+  padding: 12px 4px;
+  border-bottom: 1px solid rgba(245,242,232,0.08);
+  cursor: pointer;
+}
+
+.mobile-nav__dropdown-toggle.is-active { color: var(--gold-light); }
+
+.mobile-nav__dropdown-caret { font-size: 0.75em; transition: transform 0.15s ease; }
+
+.mobile-nav__dropdown-toggle[aria-expanded="true"] .mobile-nav__dropdown-caret { transform: rotate(180deg); }
+
+.mobile-nav__dropdown-menu {
+  display: none;
+  flex-direction: column;
+  padding-left: 16px;
+}
+
+.mobile-nav__dropdown.is-open .mobile-nav__dropdown-menu { display: flex; }
+
+.mobile-nav__dropdown-menu a {
+  font-family: var(--font-chalk);
+  font-size: 1.1rem;
+  padding: 10px 4px;
+  color: var(--chalk-dim);
+  border-bottom: 1px solid rgba(245,242,232,0.06);
+}
+
+.mobile-nav__dropdown-menu a[aria-current="page"] { color: var(--gold-light); }
 
 body.nav-open .mobile-nav { display: flex; }
 

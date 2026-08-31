@@ -123,6 +123,7 @@
 
       var section = document.createElement("section");
       section.className = "section" + (i % 2 === 1 ? " paper-section" : "");
+      section.id = "ks-" + stage.value;
       section.innerHTML =
         '<div class="container">' +
           '<div class="section-head">' +
