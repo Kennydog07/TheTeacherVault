@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pattern Game for Children | Free Early Years Activity | The Teacher Vault</title>
+<meta name="description" content="A free early years pattern game for ages 3-5. Look carefully at a repeating pattern of shapes and work out what comes next.">
+<link rel="canonical" href="https://theteachervault.com/early-years/pattern-detective.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pattern Game for Children | Free Early Years Activity | The Teacher Vault">
+<meta property="og:description" content="A free early years pattern game for ages 3-5. Look carefully at a repeating pattern of shapes and work out what comes next.">
+<meta property="og:url" content="https://theteachervault.com/early-years/pattern-detective.html">
+<meta property="og:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pattern Game for Children | Free Early Years Activity | The Teacher Vault">
+<meta name="twitter:description" content="A free early years pattern game for ages 3-5. Look carefully at a repeating pattern of shapes and work out what comes next.">
+<meta name="twitter:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="early-years.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalApplication",
+  "name": "Pattern Detective",
+  "description": "A free early years pattern game for ages 3-5. Look carefully at a repeating pattern of shapes and work out what comes next.",
+  "url": "https://theteachervault.com/early-years/pattern-detective.html",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "isAccessibleForFree": true,
+  "educationalLevel": "Early Years / Reception",
+  "publisher": { "@type": "Organization", "name": "The Teacher Vault" }
+}
+</script>
+<style>
+.pd-pattern-row { display:flex; justify-content:center; align-items:center; gap:10px; flex-wrap:wrap; margin: 18px 0; }
+.pd-symbol { font-size: 2.6rem; line-height:1; }
+.pd-symbol-group {
+  display:flex; gap:6px; padding:6px; border-radius:14px;
+}
+.pd-symbol-group.is-clue-a { background: var(--ey-bg-soft); }
+.pd-symbol-group.is-clue-b { background: #fff; border: 2px dashed var(--ey-orange-light); }
+.pd-blank {
+  font-size: 2.6rem; color: var(--ey-orange); font-weight: 800; line-height:1;
+  width: 52px; height: 52px; display:flex; align-items:center; justify-content:center;
+  border: 4px dashed var(--ey-orange-light); border-radius: var(--ey-radius-sm);
+}
+.pd-choice-grid { display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin: 20px 0; }
+.pd-choice {
+  width: 84px; height: 84px; font-size: 2.4rem;
+  border: 4px solid var(--ey-bg-soft); border-radius: var(--ey-radius-sm);
+  background:#fff; cursor:pointer;
+}
+.pd-choice:hover { border-color: var(--ey-orange-light); }
+.pd-choice:focus-visible { outline: 4px solid var(--ey-yellow); outline-offset: 2px; }
+.pd-choice.is-correct { border-color: var(--ey-green); background:#eef8ef; }
+.pd-choice.is-incorrect { border-color:#d9694a; background:#fdefe9; }
+@media (max-width:480px) {
+  .pd-symbol, .pd-blank { font-size: 2rem; }
+  .pd-blank { width:44px; height:44px; }
+  .pd-choice { width:68px; height:68px; font-size:2rem; }
+}
+</style>
+</head>
+<body data-page="ey-pattern-detective" class="ey-page-body">
+<div class="chalk-texture" aria-hidden="true"></div>
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="ey-section" style="padding-bottom:10px;">
+    <div class="ey-container">
+      <p class="ey-breadcrumb"><a href="../index.html">Home</a> / <a href="../early-years.html">Early Years</a> / Pattern Detective</p>
+      <span class="ey-badge">Ages 3&ndash;5</span>
+      <h1 class="ey-h1">Pattern Detective</h1>
+      <p class="ey-lede">What comes next?</p>
+    </div>
+  </section>
+
+  <section class="ey-section" style="padding-top:10px;">
+    <div class="ey-container">
+
+      <div class="ey-mascot-row ey-center" style="justify-content:center;margin-bottom:20px;">
+        <div id="mascotWrap"></div>
+      </div>
+
+      <div class="ey-choice-grid" id="levelGrid" style="max-width:640px;margin-left:auto;margin-right:auto;"></div>
+
+      <div class="ey-activity-panel" id="activityPanel"></div>
+
+    </div>
+  </section>
+
+  <details class="ey-grownups">
+    <summary>For Grown-Ups</summary>
+    <div class="ey-body">
+      <p><strong>What this practises:</strong> spotting and continuing a repeating pattern &mdash; an important early reasoning and pre-maths skill.</p>
+      <p><strong>Suggested age range:</strong> approximately 3&ndash;5 years. Start with the easiest pattern and only move on when it feels simple.</p>
+      <p><strong>How adults can help:</strong> point to each shape in turn and say it out loud together ("circle, square, circle, square..."). The Clue button groups the pattern to make the repeat easier to spot.</p>
+      <p><strong>What to try next:</strong> <a href="numbers-to-10.html">Numbers to 10</a> uses similar early reasoning skills with counting and ordering.</p>
+    </div>
+  </details>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="../early-years/early-years.js"></script>
+<script>
+(function(){
+  "use strict";
+  var state = { level: null, roundStars: 0, showClue: false };
+
+  // Six symbols, each a genuinely different SHAPE (not just a different colour of
+  // the same shape) so the pattern never depends on colour perception alone.
+  var ALPHABET = ["🔴", "🟦", "🔺", "⭐", "🌙", "❤️"];
+
+  var LEVELS = {
+    easy:    { label: "Easy",     units: [["A", "B"]] },
+    medium:  { label: "Medium",   units: [["A", "A", "B"]] },
+    tricky:  { label: "Trickier", units: [["A", "B", "C"]] },
+    hardest: { label: "Hardest",  units: [["A", "B", "B", "C"], ["A", "A", "B", "B"], ["A", "B", "C", "B"], ["A", "B", "C", "D"]] }
+  };
+
+  function $(id){ return document.getElementById(id); }
+  function randInt(min, max){ return min + Math.floor(Math.random() * (max - min + 1)); }
+
+  $("mascotWrap").innerHTML = EY.mascot("neutral", "The Teacher Vault mascot smiling", { size: 110, animate: "float" }) +
+    '<div style="margin-top:8px;">' + EY.speech("Look carefully!") + '</div>';
+
+  var LEVEL_ORDER = ["easy", "medium", "tricky", "hardest"];
+  var levelGrid = $("levelGrid");
+  LEVEL_ORDER.forEach(function(key){
+    var btn = EY.el('<button type="button" class="ey-choice" style="font-size:1.05rem;">' + LEVELS[key].label + '</button>');
+    btn.addEventListener("click", function(){
+      Array.prototype.forEach.call(levelGrid.children, function(b){ b.classList.remove("ey-choice--active"); });
+      btn.classList.add("ey-choice--active");
+      state.level = key;
+      state.roundStars = 0;
+      renderRound();
+    });
+    levelGrid.appendChild(btn);
+  });
+
+  var panel = $("activityPanel");
+
+  function lettersToSymbols(unit){
+    var letters = [];
+    unit.forEach(function(l){ if (letters.indexOf(l) === -1) letters.push(l); });
+    var symbolPool = EY.pickN(ALPHABET, letters.length);
+    var map = {};
+    letters.forEach(function(l, i){ map[l] = symbolPool[i]; });
+    return unit.map(function(l){ return map[l]; });
+  }
+
+  function renderRound(){
+    var levelDef = LEVELS[state.level];
+    var unitLetters = EY.pick(levelDef.units);
+    var unit = lettersToSymbols(unitLetters);
+    var repeats = unit.length <= 2 ? 3 : 2;
+    // Show a random partial extra stretch of the next cycle (not just whole
+    // repeats) so the answer isn't always the unit's first symbol -- a
+    // trivial shortcut a child could learn without reading the pattern.
+    var partialMax = unit.length - 1;
+    var partial = partialMax > 0 ? randInt(0, partialMax) : 0;
+    var totalLen = unit.length * repeats + partial;
+    var displayed = [];
+    for (var i = 0; i < totalLen; i++) displayed.push(unit[i % unit.length]);
+    var correct = unit[displayed.length % unit.length];
+
+    state.showClue = false;
+
+    panel.innerHTML =
+      '<div class="ey-mascot-row" style="justify-content:center;margin-bottom:6px;">' +
+        EY.mascot("point-up", "The Teacher Vault mascot pointing up at the pattern", { size: 64 }) +
+        EY.speech("What comes next?") +
+      '</div>' +
+      '<div class="pd-pattern-row" id="patternRow"></div>' +
+      '<div class="ey-center" style="margin-bottom:6px;"><button type="button" class="ey-btn ey-btn--soft ey-btn--sm" id="clueBtn">Clue</button></div>' +
+      '<div class="pd-choice-grid" id="choiceGrid"></div>' +
+      '<div id="patternStars"></div><div id="patternFeedback" class="ey-center"></div>';
+
+    function renderPatternRow(){
+      var row = $("patternRow");
+      row.innerHTML = "";
+      if (state.showClue) {
+        for (var g = 0; g < repeats; g++) {
+          var group = document.createElement("div");
+          group.className = "pd-symbol-group " + (g % 2 === 0 ? "is-clue-a" : "is-clue-b");
+          for (var j = 0; j < unit.length; j++) {
+            var s = document.createElement("span");
+            s.className = "pd-symbol";
+            s.setAttribute("aria-hidden", "true");
+            s.textContent = unit[j];
+            group.appendChild(s);
+          }
+          row.appendChild(group);
+        }
+      } else {
+        displayed.forEach(function(sym){
+          var s = document.createElement("span");
+          s.className = "pd-symbol";
+          s.setAttribute("aria-hidden", "true");
+          s.textContent = sym;
+          row.appendChild(s);
+        });
+      }
+      var blank = document.createElement("span");
+      blank.className = "pd-blank";
+      blank.textContent = "?";
+      blank.setAttribute("aria-hidden", "true");
+      row.appendChild(blank);
+      row.setAttribute("aria-label", "A repeating pattern, followed by a blank space to fill in");
+    }
+    renderPatternRow();
+
+    $("clueBtn").addEventListener("click", function(){
+      state.showClue = !state.showClue;
+      renderPatternRow();
+    });
+
+    $("patternStars").innerHTML = EY.stars(5, state.roundStars);
+
+    var distractorPool = ALPHABET.filter(function(s){ return s !== correct; });
+    var options = EY.shuffle([correct].concat(EY.pickN(distractorPool, 2)));
+
+    var grid = $("choiceGrid");
+    options.forEach(function(sym){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "pd-choice";
+      b.textContent = sym;
+      b.setAttribute("aria-label", "Choose " + sym);
+      b.addEventListener("click", function(){
+        if (grid.dataset.answered) return;
+        grid.dataset.answered = "1";
+        var isCorrect = sym === correct;
+        Array.prototype.forEach.call(grid.children, function(x){
+          x.disabled = true;
+          if (x.textContent === correct) x.classList.add("is-correct");
+          else if (x === b) x.classList.add("is-incorrect");
+        });
+        var fb = $("patternFeedback");
+        if (isCorrect) {
+          state.roundStars = Math.min(5, state.roundStars + 1);
+          $("patternStars").innerHTML = EY.stars(5, state.roundStars);
+          fb.innerHTML = '<p style="color:var(--ey-green);font-weight:800;">You cracked it!</p>';
+        } else {
+          fb.innerHTML = '<p style="color:var(--ey-orange-dark);font-weight:800;">Good try! Let\'s look again.</p>';
+        }
+        fb.appendChild(EY.el('<div style="margin-top:14px;"><button type="button" class="ey-btn ey-btn--primary" id="nextPatternBtn">Try Another</button></div>'));
+        $("nextPatternBtn").addEventListener("click", renderRound);
+      });
+      grid.appendChild(b);
+    });
+  }
+
+  // start on Easy by default
+  levelGrid.children[0].click();
+})();
+</script>
+</body>
+</html>
