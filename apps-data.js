@@ -1515,6 +1515,29 @@ const APPS = [
     worksOffline: true,
     noAccount: true
   },
+  {
+    id: "ks2-reading-comprehension",
+    title: "Reading Comprehension Practice",
+    tagline: "30+ original texts covering every reading skill.",
+    description: "Free KS2 reading comprehension practice across 30+ original passages in eight genres, testing retrieval, inference, vocabulary, prediction, summarising, author's language and sequencing, with the skill revealed after each answer.",
+    category: "revision",
+    keyStage: "KS2",
+    subject: "Primary",
+    audience: "Years 3-6 pupils",
+    tier: "free",
+    price: "Free",
+    gumroadUrl: "",
+    fileUrl: "/ks2/reading-comprehension.html",
+    fileType: "app",
+    image: "/images/mascot-teacher-generic.png",
+    icon: "book",
+    featured: false,
+    isNew: true,
+    comingSoon: false,
+    features: ["30+ original passages across 8 genres and all KS2 year bands", "Covers all 7 key reading skills, labelled after each answer", "Multiple-choice auto-marked; short answers use Compare Your Answer", "Reading Skills Summary shown only where genuinely calculable"],
+    worksOffline: true,
+    noAccount: true
+  },
 
   /* ------------------------------ KS3 STUDENT APPS -------------------------
      Self-contained HTML apps that open in a new tab (fileType: "app"),

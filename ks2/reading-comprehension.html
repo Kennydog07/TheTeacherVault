@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KS2 Reading Comprehension | Free Reading Practice | The Teacher Vault</title>
+<meta name="description" content="Free KS2 reading comprehension practice for Years 3-6, covering retrieval, inference, vocabulary, prediction, summarising, author's language and sequencing across 30+ original passages.">
+<link rel="canonical" href="https://theteachervault.com/ks2/reading-comprehension.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KS2 Reading Comprehension | Free Reading Practice | The Teacher Vault">
+<meta property="og:description" content="Free KS2 reading comprehension practice for Years 3-6, covering retrieval, inference, vocabulary, prediction, summarising, author's language and sequencing.">
+<meta property="og:url" content="https://theteachervault.com/ks2/reading-comprehension.html">
+<meta property="og:image" content="https://theteachervault.com/images/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KS2 Reading Comprehension | Free Reading Practice | The Teacher Vault">
+<meta name="twitter:description" content="Free KS2 reading comprehension practice for Years 3-6, covering retrieval, inference, vocabulary, prediction, summarising, author's language and sequencing.">
+<meta name="twitter:image" content="https://theteachervault.com/images/logo.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalApplication",
+  "name": "KS2 Reading Comprehension Practice",
+  "description": "Free KS2 reading comprehension practice for Years 3-6, covering retrieval, inference, vocabulary, prediction, summarising, author's language and sequencing across 30+ original passages.",
+  "url": "https://theteachervault.com/ks2/reading-comprehension.html",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "isAccessibleForFree": true,
+  "educationalLevel": "KS2",
+  "publisher": { "@type": "Organization", "name": "The Teacher Vault" }
+}
+</script>
+<style>
+  .rc-panel{background:rgba(247,242,226,0.06);border:1px solid rgba(245,242,232,0.14);border-radius:var(--radius-lg);padding:28px;max-width:760px;margin:0 auto;}
+  .rc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:10px;margin-bottom:18px;}
+  .rc-btn{padding:12px 8px;border-radius:10px;border:2px solid rgba(245,242,232,0.2);background:rgba(255,255,255,0.03);color:var(--chalk-white);cursor:pointer;font-weight:700;font-size:0.9rem;font-family:inherit;text-align:center;}
+  .rc-btn.active{border-color:var(--gold);background:rgba(201,162,75,0.18);}
+  .rc-btn:focus-visible{outline:3px solid var(--gold-light);outline-offset:2px;}
+  .rc-passage-card{background:rgba(255,255,255,0.03);border:1px dashed rgba(201,162,75,0.4);border-radius:12px;padding:10px 16px;margin-bottom:8px;cursor:pointer;color:var(--chalk-white);display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left;width:100%;font-family:inherit;font-size:0.95rem;}
+  .rc-passage-card:hover, .rc-passage-card:focus-visible{border-color:var(--gold);background:rgba(201,162,75,0.12);}
+  .rc-badge{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--gold-light);border:1px solid rgba(201,162,75,0.4);border-radius:999px;padding:2px 8px;white-space:nowrap;}
+  .rc-passage-box{background:rgba(255,255,255,0.04);border-radius:10px;padding:20px;font-family:Georgia,'Times New Roman',serif;font-size:1.05rem;line-height:1.7;color:var(--chalk-white);margin-bottom:22px;}
+  .rc-passage-title{font-family:'Permanent Marker',cursive;color:var(--gold-light);margin-bottom:10px;font-size:1.3rem;}
+  .rc-q-card{background:rgba(201,162,75,0.1);border:1px solid rgba(201,162,75,0.35);border-radius:10px;padding:18px;margin-bottom:16px;}
+  .rc-q-card__q{font-weight:700;color:var(--chalk-white);margin-bottom:10px;}
+  .rc-options{display:grid;gap:8px;margin-bottom:10px;}
+  .rc-option{text-align:left;padding:10px 14px;border-radius:8px;border:2px solid rgba(245,242,232,0.2);background:rgba(255,255,255,0.03);color:var(--chalk-white);cursor:pointer;font-family:inherit;font-size:0.95rem;}
+  .rc-option:hover{border-color:var(--gold);}
+  .rc-option.selected{border-color:var(--gold);background:rgba(201,162,75,0.18);}
+  .rc-option.correct{border-color:#4c9a5f;background:rgba(76,154,95,0.18);}
+  .rc-option.incorrect{border-color:#a62b2b;background:rgba(166,43,43,0.18);}
+  .rc-option:disabled{cursor:default;}
+  .rc-textarea{width:100%;min-height:80px;padding:12px;border-radius:8px;border:2px solid rgba(245,242,232,0.25);background:rgba(255,255,255,0.04);color:var(--chalk-white);font-family:inherit;font-size:0.95rem;resize:vertical;}
+  .rc-textarea:focus{outline:3px solid var(--gold-light);outline-offset:1px;border-color:var(--gold);}
+  .rc-clue-btn{background:none;border:1px solid var(--gold-light);color:var(--gold-light);border-radius:999px;padding:5px 14px;font-size:0.8rem;cursor:pointer;font-family:inherit;margin-bottom:10px;display:block;}
+  .rc-clue-btn:hover{background:rgba(201,162,75,0.15);}
+  .rc-clue-reveal{display:none;margin-top:8px;padding:10px 14px;background:rgba(255,255,255,0.06);border-left:3px solid var(--gold-light);border-radius:6px;font-size:0.9rem;color:var(--chalk-dim);}
+  .rc-clue-reveal.show{display:block;}
+  .rc-feedback{margin-top:8px;padding:12px 14px;border-radius:8px;font-size:0.92rem;display:none;}
+  .rc-feedback.show{display:block;}
+  .rc-feedback.correct{background:rgba(76,154,95,0.12);border-left:4px solid #4c9a5f;color:var(--chalk-white);}
+  .rc-feedback.incorrect{background:rgba(166,43,43,0.12);border-left:4px solid #a62b2b;color:var(--chalk-white);}
+  .rc-skill-tag{display:inline-block;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--gold-light);border:1px solid rgba(201,162,75,0.4);border-radius:999px;padding:2px 10px;margin-top:8px;}
+  .rc-compare-box{margin-top:10px;padding:14px;background:rgba(255,255,255,0.05);border-radius:8px;color:var(--chalk-white);display:none;}
+  .rc-compare-box.show{display:block;}
+  .rc-compare-box h4{color:var(--gold-light);font-size:0.85rem;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px;}
+  .rc-btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px;}
+  .rc-endscreen{text-align:center;}
+  .rc-summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin:18px 0;}
+  .rc-summary-stat{background:rgba(255,255,255,0.04);border-radius:10px;padding:14px;text-align:center;}
+  .rc-summary-stat__num{font-family:Georgia,serif;font-size:1.4rem;color:var(--chalk-white);display:block;}
+  .rc-summary-stat__label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--gold-light);}
+  .rc-back-link{display:inline-block;margin-bottom:16px;color:var(--gold-light);text-decoration:underline;font-size:0.9rem;cursor:pointer;background:none;border:none;font-family:inherit;padding:0;}
+  @media(max-width:600px){ .rc-panel{padding:20px 16px;} }
+</style>
+</head>
+<body data-page="ks2-reading-comprehension">
+<div class="chalk-texture" aria-hidden="true"></div>
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="section" style="padding-bottom:20px;">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="../ks2.html">KS2</a> / Reading Comprehension</p>
+      <span class="eyebrow">KS2 Reading &middot; Years 3&ndash;6</span>
+      <h1>KS2 Reading Comprehension Practice</h1>
+      <p class="lede">30+ original passages across eight genres, testing the full range of reading skills examiners look for: retrieval, inference, vocabulary, prediction, summarising, author's language and sequencing. The skill each question is testing is revealed after you answer, so you learn to recognise question types as well as answer them.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+
+      <div class="rc-panel" id="setupPanel">
+        <h2 style="text-align:center;margin-bottom:16px;">Choose a year group</h2>
+        <div class="rc-grid" id="yearSelect"></div>
+        <h2 style="text-align:center;margin-bottom:12px;">Choose a text</h2>
+        <div id="passageList"></div>
+      </div>
+
+      <div class="rc-panel" id="readingPanel" hidden>
+        <button type="button" class="rc-back-link" id="backToList">&larr; Back to text list</button>
+        <div class="rc-passage-box">
+          <div class="rc-passage-title" id="passageTitle"></div>
+          <div id="passageText"></div>
+        </div>
+        <div id="questionContainer"></div>
+        <div class="rc-btn-row">
+          <button type="button" class="btn btn--primary" id="finishTextBtn">Finish This Text</button>
+        </div>
+      </div>
+
+      <div class="rc-panel rc-endscreen" id="endPanel" hidden>
+        <h2>Reading Skills Summary</h2>
+        <p id="endSummaryIntro" style="color:var(--chalk-white);"></p>
+        <div class="rc-summary-grid" id="skillsSummaryGrid"></div>
+        <div class="rc-btn-row">
+          <button class="btn btn--primary" id="tryAnotherBtn">Try Another Text</button>
+          <button class="btn btn--ghost" id="allTextsBtn">See All Texts</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section paper-section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">For parents &amp; teachers</span>
+        <h2>How Marking Works Here</h2>
+        <p class="lede">Multiple-choice questions have one clearly correct answer and are marked automatically, with a full explanation shown either way. Short-response questions cannot be marked automatically -- instead, pupils compare their own answer against a model answer and the supporting evidence, encouraging them to check their own reasoning rather than chase a single "correct" wording. The Reading Skills Summary only shows a percentage for skills that were tested with objectively-marked multiple-choice questions during that session.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Keep practising</span>
+        <h2>More Free KS2 Resources</h2>
+      </div>
+      <div class="card-grid" id="relatedGrid"></div>
+    </div>
+  </section>
+
+  <section class="section" style="text-align:center;padding-top:0;">
+    <div class="container">
+      <p class="lede" style="margin:0 auto;">Free resources. Better revision. Brighter futures. <a href="../ks2.html" style="color:var(--gold-light);text-decoration:underline;">Back to the KS2 Hub</a> &middot; <a href="../free-resources.html" style="color:var(--gold-light);text-decoration:underline;">Explore more free resources &rarr;</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="reading-comprehension-data.js"></script>
+<script>
+(function(){
+  "use strict";
+  var passages = window.TVReading.passages;
+  var YEARS = ["Y3","Y4","Y5","Y6"];
+  var SKILL_LABELS = { retrieval: "Retrieval", inference: "Inference", vocabulary: "Vocabulary", prediction: "Prediction", summarising: "Summarising", language: "Author's Language", sequencing: "Sequencing" };
+  var state = { year: "All", currentPassage: null, sessionSkillResults: {} };
+
+  function $(id){ return document.getElementById(id); }
+  function el(html){ var d=document.createElement("div"); d.innerHTML=html.trim(); return d.firstChild; }
+
+  var yearSelect = $("yearSelect");
+  ["All"].concat(YEARS).forEach(function(y){
+    var btn = el('<button type="button" class="rc-btn' + (y==="All"?" active":"") + '" aria-pressed="' + (y==="All") + '">' + (y==="All" ? "All Years" : y) + '</button>');
+    btn.addEventListener("click", function(){
+      state.year = y;
+      Array.prototype.forEach.call(yearSelect.children, function(b){ b.classList.remove("active"); b.setAttribute("aria-pressed","false"); });
+      btn.classList.add("active"); btn.setAttribute("aria-pressed","true");
+      renderPassageList();
+    });
+    yearSelect.appendChild(btn);
+  });
+
+  var GENRE_ICON = { Fiction:"📖", "Non-fiction":"📰", Adventure:"🧭", Mystery:"🔎", Nature:"🌿", "History-inspired":"🕰️", "Science-themed":"🔬", "Biography-style":"👤" };
+
+  function renderPassageList(){
+    var list = $("passageList");
+    list.innerHTML = "";
+    var filtered = passages.filter(function(p){ return state.year === "All" || p.year === state.year; });
+    filtered.forEach(function(p){
+      var card = el('<button type="button" class="rc-passage-card"><span>' + (GENRE_ICON[p.genre]||"📄") + ' ' + p.title + '</span><span class="rc-badge">' + p.year + ' &middot; ' + p.genre + '</span></button>');
+      card.addEventListener("click", function(){ openPassage(p.id); });
+      list.appendChild(card);
+    });
+  }
+  renderPassageList();
+
+  var setupPanel = $("setupPanel"), readingPanel = $("readingPanel"), endPanel = $("endPanel");
+
+  function openPassage(id){
+    var p = passages.filter(function(x){ return x.id === id; })[0];
+    if (!p) return;
+    state.currentPassage = p;
+    setupPanel.hidden = true; endPanel.hidden = true; readingPanel.hidden = false;
+    $("passageTitle").textContent = (GENRE_ICON[p.genre]||"📄") + " " + p.title;
+    $("passageText").textContent = p.text;
+    var container = $("questionContainer");
+    container.innerHTML = "";
+    p.questions.forEach(function(q, qi){
+      var card = el('<div class="rc-q-card"><div class="rc-q-card__q">Question ' + (qi+1) + ': ' + q.q + '</div></div>');
+      if (q.type === "mc") {
+        var opts = el('<div class="rc-options"></div>');
+        q.options.forEach(function(optText, oi){
+          var optBtn = el('<button type="button" class="rc-option">' + optText + '</button>');
+          optBtn.addEventListener("click", function(){
+            if (opts.dataset.answered) return;
+            opts.dataset.answered = "1";
+            var correct = oi === q.correct;
+            Array.prototype.forEach.call(opts.children, function(b, bi){
+              b.disabled = true;
+              if (bi === q.correct) b.classList.add("correct");
+              else if (bi === oi) b.classList.add("incorrect");
+            });
+            var fb = card.querySelector(".rc-feedback");
+            fb.classList.add("show", correct ? "correct" : "incorrect");
+            fb.innerHTML = (correct ? "<strong>Correct!</strong> " : "<strong>Not quite.</strong> ") + "Evidence: " + q.evidence;
+            card.querySelector(".rc-skill-tag").hidden = false;
+            if (!state.sessionSkillResults[q.skill]) state.sessionSkillResults[q.skill] = { correct: 0, total: 0, hasMC: true };
+            state.sessionSkillResults[q.skill].total++;
+            state.sessionSkillResults[q.skill].hasMC = true;
+            if (correct) state.sessionSkillResults[q.skill].correct++;
+          });
+          opts.appendChild(optBtn);
+        });
+        card.appendChild(opts);
+        card.appendChild(el('<div class="rc-feedback"></div>'));
+      } else {
+        var ta = el('<textarea class="rc-textarea" placeholder="Write your answer here..."></textarea>');
+        card.appendChild(ta);
+        var compareBtn = el('<button type="button" class="btn btn--ghost btn--sm" style="margin-top:8px;">COMPARE YOUR ANSWER</button>');
+        var compareBox = el('<div class="rc-compare-box"><h4>Example answer</h4><p class="rc-model"></p><h4 style="margin-top:10px;">Evidence from the text</h4><p class="rc-evidence"></p></div>');
+        compareBox.querySelector(".rc-model").textContent = q.model;
+        compareBox.querySelector(".rc-evidence").textContent = q.evidence;
+        compareBtn.addEventListener("click", function(){
+          compareBox.classList.toggle("show");
+          card.querySelector(".rc-skill-tag").hidden = false;
+          if (!state.sessionSkillResults[q.skill]) state.sessionSkillResults[q.skill] = { correct: 0, total: 0, hasMC: false };
+        });
+        card.appendChild(compareBtn);
+        card.appendChild(compareBox);
+      }
+      var skillTag = el('<span class="rc-skill-tag">SKILL: ' + SKILL_LABELS[q.skill].toUpperCase() + '</span>');
+      skillTag.hidden = true;
+      card.appendChild(skillTag);
+      var clueBtn = el('<button type="button" class="rc-clue-btn">NEED A CLUE?</button>');
+      var clueReveal = el('<div class="rc-clue-reveal">Hint: re-read the sentence just before and after where this comes up in the text -- the answer is usually nearby.</div>');
+      clueBtn.addEventListener("click", function(){ clueReveal.classList.toggle("show"); });
+      card.insertBefore(clueBtn, card.children[1]);
+      card.insertBefore(clueReveal, card.children[2]);
+      container.appendChild(card);
+    });
+  }
+
+  $("backToList").addEventListener("click", function(){ readingPanel.hidden = true; setupPanel.hidden = false; });
+
+  $("finishTextBtn").addEventListener("click", function(){
+    readingPanel.hidden = true; endPanel.hidden = false;
+    $("endSummaryIntro").textContent = "You've just finished \"" + state.currentPassage.title + "\". Here's how your reading skills are looking so far this session:";
+    var grid = $("skillsSummaryGrid");
+    grid.innerHTML = "";
+    var anyResults = false;
+    Object.keys(SKILL_LABELS).forEach(function(skillKey){
+      var r = state.sessionSkillResults[skillKey];
+      if (!r) return;
+      anyResults = true;
+      var display = r.hasMC && r.total > 0 ? Math.round((r.correct / r.total) * 100) + "%" : "Practised";
+      grid.appendChild(el('<div class="rc-summary-stat"><span class="rc-summary-stat__num">' + display + '</span><span class="rc-summary-stat__label">' + SKILL_LABELS[skillKey] + '</span></div>'));
+    });
+    if (!anyResults) {
+      grid.appendChild(el('<p style="color:var(--chalk-dim);grid-column:1/-1;">Answer some questions to see your skills summary here.</p>'));
+    }
+  });
+
+  $("tryAnotherBtn").addEventListener("click", function(){
+    var pool = passages.filter(function(p){ return state.year === "All" || p.year === state.year; });
+    var next = pool[Math.floor(Math.random()*pool.length)];
+    endPanel.hidden = true;
+    if (next) openPassage(next.id);
+  });
+  $("allTextsBtn").addEventListener("click", function(){ endPanel.hidden = true; setupPanel.hidden = false; });
+
+  var related = ["ks2-inference-detective", "ks2-spag-challenge", "ks2-sentence-improver", "sats-english"].map(function(id){ return typeof getAppById === "function" ? getAppById(id) : null; }).filter(Boolean);
+  if (related.length && typeof renderCardGrid === "function") renderCardGrid(document.getElementById("relatedGrid"), related);
+})();
+</script>
+</body>
+</html>
