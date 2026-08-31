@@ -1538,6 +1538,29 @@ const APPS = [
     worksOffline: true,
     noAccount: true
   },
+  {
+    id: "ks2-creative-writing-generator",
+    title: "Creative Writing Generator",
+    tagline: "Your next story starts here.",
+    description: "A free KS2 story-idea generator with character, setting, problem, object, mood and opening line prompts, each with 40+ options. Lock the elements you like and regenerate the rest, add an optional writing challenge or timer, and start writing -- nothing is auto-graded.",
+    category: "revision",
+    keyStage: "KS2",
+    subject: "Primary",
+    audience: "Years 3-6 pupils",
+    tier: "free",
+    price: "Free",
+    gumroadUrl: "",
+    fileUrl: "/ks2/creative-writing-generator.html",
+    fileType: "app",
+    image: "/images/mascot-teacher-generic.png",
+    icon: "book",
+    featured: false,
+    isNew: true,
+    comingSoon: false,
+    features: ["6 prompt categories, each with 40+ (opening lines 50+) original options", "Lock individual elements and regenerate the rest", "Optional writing challenges and 10/20-minute timers", "Never marks or grades pupils' writing"],
+    worksOffline: true,
+    noAccount: true
+  },
 
   /* ------------------------------ KS3 STUDENT APPS -------------------------
      Self-contained HTML apps that open in a new tab (fileType: "app"),
