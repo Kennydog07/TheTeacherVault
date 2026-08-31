@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Numbers to 10 | Free Counting Game for Ages 3&ndash;5 | The Teacher Vault</title>
+<meta name="description" content="A free counting game for ages 3-5 to recognise numbers 0-10, count objects, match quantities to numerals, and put numbers in order.">
+<link rel="canonical" href="https://theteachervault.com/early-years/numbers-to-10.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Numbers to 10 | Free Counting Game for Ages 3-5 | The Teacher Vault">
+<meta property="og:description" content="A free counting game for ages 3-5 to recognise numbers 0-10, count objects, match quantities to numerals, and put numbers in order.">
+<meta property="og:url" content="https://theteachervault.com/early-years/numbers-to-10.html">
+<meta property="og:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Numbers to 10 | Free Counting Game for Ages 3-5 | The Teacher Vault">
+<meta name="twitter:description" content="A free counting game for ages 3-5 to recognise numbers 0-10, count objects, match quantities to numerals, and put numbers in order.">
+<meta name="twitter:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="early-years.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalApplication",
+  "name": "Numbers to 10",
+  "description": "A free counting game for ages 3-5 to recognise numbers 0-10, count objects, match quantities to numerals, and put numbers in order.",
+  "url": "https://theteachervault.com/early-years/numbers-to-10.html",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "isAccessibleForFree": true,
+  "educationalLevel": "Early Years / Reception",
+  "publisher": { "@type": "Organization", "name": "The Teacher Vault" }
+}
+</script>
+<style>
+.n10-numeral { font-family:'Permanent Marker',cursive; font-size:5rem; color:var(--ey-orange); line-height:1; }
+.n10-group-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:16px; max-width:640px; margin:0 auto; }
+.n10-group-card {
+  background:#fff; border:4px solid var(--ey-bg-soft); border-radius:var(--ey-radius-sm);
+  padding:16px; cursor:pointer; font-family:inherit; min-height:110px;
+  display:flex; align-items:center; justify-content:center;
+}
+.n10-group-card:hover { border-color:var(--ey-orange-light); }
+.n10-group-card:focus-visible { outline:4px solid var(--ey-yellow); outline-offset:2px; }
+.n10-group-card.is-correct { border-color:var(--ey-green); background:#eef8ef; }
+.n10-group-card.is-incorrect { border-color:#d9694a; background:#fdefe9; }
+.n10-seq-row { display:flex; justify-content:center; gap:14px; align-items:center; flex-wrap:wrap; margin:16px 0; }
+.n10-seq-item { font-family:'Permanent Marker',cursive; font-size:2.6rem; color:var(--ey-ink); }
+.n10-seq-item.n10-seq-blank { color:var(--ey-orange); }
+.n10-order-row { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; min-height:70px; margin:14px 0; }
+.n10-order-tile {
+  width:60px; height:60px; border-radius:var(--ey-radius-sm); border:4px solid var(--ey-bg-soft);
+  background:#fff; font-family:'Permanent Marker',cursive; font-size:1.6rem; color:var(--ey-ink); cursor:pointer;
+}
+.n10-order-tile:hover { border-color:var(--ey-orange-light); }
+.n10-order-tile:focus-visible { outline:4px solid var(--ey-yellow); outline-offset:2px; }
+.n10-order-tile.is-used { visibility:hidden; }
+.n10-order-slot {
+  width:60px; height:60px; border-radius:var(--ey-radius-sm); border:4px dashed var(--ey-orange-light);
+  background:#fff; display:flex; align-items:center; justify-content:center;
+  font-family:'Permanent Marker',cursive; font-size:1.6rem; color:var(--ey-ink);
+}
+.n10-order-slot.is-filled { border-style:solid; border-color:var(--ey-green); background:#eef8ef; }
+@media (max-width:480px) {
+  .n10-numeral { font-size:3.6rem; }
+  .n10-order-tile, .n10-order-slot { width:48px; height:48px; font-size:1.3rem; }
+}
+</style>
+</head>
+<body data-page="ey-numbers-to-10" class="ey-page-body">
+<div class="chalk-texture" aria-hidden="true"></div>
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="ey-section" style="padding-bottom:10px;">
+    <div class="ey-container">
+      <p class="ey-breadcrumb"><a href="../index.html">Home</a> / <a href="../early-years.html">Early Years</a> / Numbers to 10</p>
+      <span class="ey-badge">Ages 3&ndash;5</span>
+      <h1 class="ey-h1">Numbers to 10</h1>
+      <p class="ey-lede">Count. Match. Play.</p>
+    </div>
+  </section>
+
+  <section class="ey-section" style="padding-top:10px;">
+    <div class="ey-container">
+
+      <div class="ey-mascot-row ey-center" style="justify-content:center;margin-bottom:20px;">
+        <div id="mascotWrap"></div>
+      </div>
+
+      <div class="ey-choice-grid" id="modeGrid" style="max-width:760px;margin-left:auto;margin-right:auto;"></div>
+
+      <div class="ey-activity-panel" id="activityPanel"></div>
+
+    </div>
+  </section>
+
+  <details class="ey-grownups">
+    <summary>For Grown-Ups</summary>
+    <div class="ey-body">
+      <p><strong>What this practises:</strong> recognising numerals 0&ndash;10, counting objects accurately, matching quantities to numbers, and ordering numbers.</p>
+      <p><strong>Suggested age range:</strong> approximately 3&ndash;5 years. Younger children may enjoy just exploring "Meet the Numbers" first.</p>
+      <p><strong>How adults can help:</strong> count out loud together, touching each object once as you say each number. If a game feels too tricky, try "Meet the Numbers" again before coming back to it.</p>
+      <p><strong>What to try next:</strong> once counting feels easy, <a href="pattern-detective.html">Pattern Detective</a> uses similar early reasoning skills with shapes and colours.</p>
+    </div>
+  </details>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="../early-years/early-years.js"></script>
+<script>
+(function(){
+  "use strict";
+  var state = { mode: null, roundStars: 0, orderLevel: 1, orderCorrectStreak: 0 };
+  var OBJECT_ICONS = ["🍎", "⭐", "🐱", "🎈", "🦋", "🚗"];
+
+  function $(id){ return document.getElementById(id); }
+  function randInt(min, max){ return min + Math.floor(Math.random() * (max - min + 1)); }
+
+  $("mascotWrap").innerHTML = EY.mascot("neutral", "The Teacher Vault mascot smiling", { size: 110, animate: "float" }) +
+    '<div style="margin-top:8px;">' + EY.speech("How many can you count?") + '</div>';
+
+  var MODES = [
+    { id: "meet", label: "Meet the Numbers" },
+    { id: "count", label: "Count Them" },
+    { id: "match", label: "Match the Number" },
+    { id: "next", label: "What Comes Next?" },
+    { id: "order", label: "Put Them in Order" }
+  ];
+  var modeGrid = $("modeGrid");
+  MODES.forEach(function(m){
+    var btn = EY.el('<button type="button" class="ey-choice" style="font-size:1rem;">' + m.label + '</button>');
+    btn.addEventListener("click", function(){
+      Array.prototype.forEach.call(modeGrid.children, function(b){ b.classList.remove("ey-choice--active"); });
+      btn.classList.add("ey-choice--active");
+      state.mode = m.id;
+      state.roundStars = 0;
+      if (m.id === "meet") renderMeet();
+      else if (m.id === "count") renderCountRound();
+      else if (m.id === "match") renderMatchRound();
+      else if (m.id === "next") renderNextRound();
+      else renderOrderRound();
+    });
+    modeGrid.appendChild(btn);
+  });
+
+  var panel = $("activityPanel");
+
+  function objectRow(icon, count){
+    var out = '<div class="ey-object-row" role="img" aria-label="' + count + ' ' + (count === 1 ? "object" : "objects") + '">';
+    for (var i = 0; i < count; i++) out += '<span aria-hidden="true">' + icon + '</span>';
+    out += '</div>';
+    return out;
+  }
+
+  // ---------------- MODE 1: MEET THE NUMBERS ----------------
+  function renderMeet(){
+    panel.innerHTML = "";
+    var grid = EY.el('<div class="ey-choice-grid" style="grid-template-columns:repeat(auto-fit,minmax(56px,1fr));"></div>');
+    for (var n = 0; n <= 10; n++) {
+      (function(num){
+        var b = EY.el('<button type="button" class="ey-choice" style="font-size:1.4rem;">' + num + '</button>');
+        b.addEventListener("click", function(){ showNumberDetail(num); });
+        grid.appendChild(b);
+      })(n);
+    }
+    panel.appendChild(grid);
+    panel.appendChild(EY.el('<div id="numberDetail" style="margin-top:20px;"></div>'));
+    showNumberDetail(0);
+  }
+
+  function showNumberDetail(num){
+    var detail = $("numberDetail");
+    if (!detail) return;
+    var body = num === 0
+      ? '<p style="color:var(--ey-ink-soft);font-size:1.1rem;margin-top:10px;">Zero! There is nothing here.</p>'
+      : objectRow("🍎", num);
+    detail.innerHTML =
+      '<div class="ey-card ey-center ey-mascot--fade-in">' +
+        '<div class="n10-numeral">' + num + '</div>' +
+        '<div style="margin-top:14px;">' + body + '</div>' +
+      '</div>';
+  }
+
+  // ---------------- MODE 2: COUNT THEM ----------------
+  function renderCountRound(){
+    var target = randInt(1, 10);
+    var icon = EY.pick(OBJECT_ICONS);
+    var distractorPool = [];
+    for (var i = 0; i <= 10; i++) if (i !== target) distractorPool.push(i);
+    var distractors = EY.pickN(distractorPool, 2);
+    var options = EY.shuffle([target].concat(distractors));
+
+    panel.innerHTML =
+      '<div class="ey-mascot-row" style="justify-content:center;margin-bottom:10px;">' +
+        EY.mascot("point-right", "The Teacher Vault mascot pointing at the objects to count", { size: 64 }) +
+        EY.speech("How many can you count?") +
+      '</div>' +
+      objectRow(icon, target) +
+      '<p class="ey-sub ey-center" style="margin-top:16px;">How many are there?</p>' +
+      '<div class="ey-choice-grid" id="countGrid" style="max-width:420px;margin:0 auto;"></div>' +
+      '<div id="countStars"></div><div id="countFeedback" class="ey-center"></div>';
+
+    $("countStars").innerHTML = EY.stars(5, state.roundStars);
+
+    var grid = $("countGrid");
+    options.forEach(function(n){
+      var b = EY.el('<button type="button" class="ey-choice">' + n + '</button>');
+      b.addEventListener("click", function(){
+        if (grid.dataset.answered) return;
+        grid.dataset.answered = "1";
+        var correct = n === target;
+        Array.prototype.forEach.call(grid.children, function(x){
+          x.disabled = true;
+          if (parseInt(x.textContent, 10) === target) x.classList.add("is-correct");
+          else if (x === b) x.classList.add("is-incorrect");
+        });
+        var fb = $("countFeedback");
+        if (correct) {
+          state.roundStars = Math.min(5, state.roundStars + 1);
+          $("countStars").innerHTML = EY.stars(5, state.roundStars);
+          fb.innerHTML = '<p style="color:var(--ey-green);font-weight:800;">Great counting!</p>';
+        } else {
+          fb.innerHTML = '<p style="color:var(--ey-orange-dark);font-weight:800;">Good try! There are ' + target + ". Let's count again.</p>";
+        }
+        fb.appendChild(EY.el('<div style="text-align:center;margin-top:14px;"><button type="button" class="ey-btn ey-btn--primary" id="nextCountBtn">Try Another</button></div>'));
+        $("nextCountBtn").addEventListener("click", renderCountRound);
+      });
+      grid.appendChild(b);
+    });
+  }
+
+  // ---------------- MODE 3: MATCH THE NUMBER ----------------
+  function renderMatchRound(){
+    var target = randInt(1, 10);
+    var icon = EY.pick(OBJECT_ICONS);
+    var usedCounts = [target];
+    var counts = [target];
+    while (counts.length < 3) {
+      var c = randInt(1, 10);
+      if (usedCounts.indexOf(c) === -1) { usedCounts.push(c); counts.push(c); }
+    }
+    counts = EY.shuffle(counts);
+
+    panel.innerHTML =
+      '<div class="ey-mascot-row" style="justify-content:center;margin-bottom:10px;">' +
+        EY.mascot("point-left", "The Teacher Vault mascot pointing at the groups of objects", { size: 64 }) +
+        EY.speech("Can you find " + target + "?") +
+      '</div>' +
+      '<div class="n10-numeral ey-center">' + target + '</div>' +
+      '<div class="n10-group-grid" id="matchGrid" style="margin-top:20px;"></div>' +
+      '<div id="matchStars"></div><div id="matchFeedback" class="ey-center"></div>';
+
+    $("matchStars").innerHTML = EY.stars(5, state.roundStars);
+
+    var grid = $("matchGrid");
+    counts.forEach(function(c){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "n10-group-card";
+      b.innerHTML = objectRow(icon, c);
+      b.setAttribute("aria-label", "Group of " + c);
+      b.addEventListener("click", function(){
+        if (grid.dataset.answered) return;
+        grid.dataset.answered = "1";
+        var correct = c === target;
+        Array.prototype.forEach.call(grid.children, function(x, idx){
+          x.disabled = true;
+          if (counts[idx] === target) x.classList.add("is-correct");
+          else if (x === b) x.classList.add("is-incorrect");
+        });
+        var fb = $("matchFeedback");
+        if (correct) {
+          state.roundStars = Math.min(5, state.roundStars + 1);
+          $("matchStars").innerHTML = EY.stars(5, state.roundStars);
+          fb.innerHTML = '<p style="color:var(--ey-green);font-weight:800;">You found it!</p>';
+        } else {
+          fb.innerHTML = '<p style="color:var(--ey-orange-dark);font-weight:800;">Good try! Let\'s look again.</p>';
+        }
+        fb.appendChild(EY.el('<div style="margin-top:14px;"><button type="button" class="ey-btn ey-btn--primary" id="nextMatchBtn">Try Another</button></div>'));
+        $("nextMatchBtn").addEventListener("click", renderMatchRound);
+      });
+      grid.appendChild(b);
+    });
+  }
+
+  // ---------------- MODE 4: WHAT COMES NEXT? ----------------
+  function renderNextRound(){
+    var start = randInt(0, 7);
+    var seq = [start, start + 1, start + 2];
+    var correct = start + 3;
+    var distractorPool = [];
+    for (var i = 0; i <= 10; i++) if (i !== correct) distractorPool.push(i);
+    var distractors = EY.pickN(distractorPool, 2);
+    var options = EY.shuffle([correct].concat(distractors));
+
+    panel.innerHTML =
+      '<div class="ey-mascot-row" style="justify-content:center;margin-bottom:6px;">' +
+        EY.mascot("point-up", "The Teacher Vault mascot pointing up at the number sequence", { size: 64 }) +
+        EY.speech("What comes next?") +
+      '</div>' +
+      '<div class="n10-seq-row">' +
+        seq.map(function(n){ return '<span class="n10-seq-item">' + n + '</span>'; }).join("") +
+        '<span class="n10-seq-item n10-seq-blank">?</span>' +
+      '</div>' +
+      '<div class="ey-choice-grid" id="nextGrid" style="max-width:420px;margin:0 auto;"></div>' +
+      '<div id="nextStars"></div><div id="nextFeedback" class="ey-center"></div>';
+
+    $("nextStars").innerHTML = EY.stars(5, state.roundStars);
+
+    var grid = $("nextGrid");
+    options.forEach(function(n){
+      var b = EY.el('<button type="button" class="ey-choice">' + n + '</button>');
+      b.addEventListener("click", function(){
+        if (grid.dataset.answered) return;
+        grid.dataset.answered = "1";
+        var isCorrect = n === correct;
+        Array.prototype.forEach.call(grid.children, function(x){
+          x.disabled = true;
+          if (parseInt(x.textContent, 10) === correct) x.classList.add("is-correct");
+          else if (x === b) x.classList.add("is-incorrect");
+        });
+        var fb = $("nextFeedback");
+        if (isCorrect) {
+          state.roundStars = Math.min(5, state.roundStars + 1);
+          $("nextStars").innerHTML = EY.stars(5, state.roundStars);
+          fb.innerHTML = '<p style="color:var(--ey-green);font-weight:800;">Great counting!</p>';
+        } else {
+          fb.innerHTML = '<p style="color:var(--ey-orange-dark);font-weight:800;">Nearly! The next number is ' + correct + ".</p>";
+        }
+        fb.appendChild(EY.el('<div style="text-align:center;margin-top:14px;"><button type="button" class="ey-btn ey-btn--primary" id="nextNextBtn">Try Another</button></div>'));
+        $("nextNextBtn").addEventListener("click", renderNextRound);
+      });
+      grid.appendChild(b);
+    });
+  }
+
+  // ---------------- MODE 5: PUT THEM IN ORDER ----------------
+  function renderOrderRound(){
+    var count = state.orderLevel === 1 ? 3 : 4;
+    var maxVal = state.orderLevel === 1 ? 5 : 10;
+    var nums = [];
+    while (nums.length < count) {
+      var n = randInt(0, maxVal);
+      if (nums.indexOf(n) === -1) nums.push(n);
+    }
+    var correctOrder = nums.slice().sort(function(a, b){ return a - b; });
+    var shuffled = EY.shuffle(nums);
+
+    var tiles = shuffled.map(function(n, i){ return { id: i, value: n, used: false }; });
+    var placed = [];
+
+    panel.innerHTML =
+      '<div class="ey-mascot-row" style="justify-content:center;margin-bottom:10px;">' +
+        EY.mascot("point-up", "The Teacher Vault mascot pointing up at the numbers", { size: 64 }) +
+        EY.speech("Can you put them in order?") +
+      '</div>' +
+      '<p class="ey-sub ey-center">Smallest first!</p>' +
+      '<div class="n10-order-row" id="orderSlots"></div>' +
+      '<div class="n10-order-row" id="orderTiles"></div>' +
+      '<div id="orderFeedback" class="ey-center" style="margin-top:10px;"></div>' +
+      '<div id="orderStars"></div>';
+
+    $("orderStars").innerHTML = EY.stars(5, state.roundStars);
+
+    function renderSlots(){
+      var row = $("orderSlots");
+      row.innerHTML = "";
+      for (var i = 0; i < count; i++) {
+        var filled = placed[i] !== undefined;
+        var el = document.createElement("div");
+        el.className = "n10-order-slot" + (filled ? " is-filled" : "");
+        el.textContent = filled ? placed[i].value : "";
+        row.appendChild(el);
+      }
+    }
+
+    function renderTiles(){
+      var row = $("orderTiles");
+      row.innerHTML = "";
+      tiles.forEach(function(tile){
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "n10-order-tile" + (tile.used ? " is-used" : "");
+        b.textContent = tile.value;
+        b.disabled = tile.used;
+        b.setAttribute("aria-label", "Number " + tile.value);
+        b.addEventListener("click", function(){
+          var nextExpected = correctOrder[placed.length];
+          if (tile.value === nextExpected) {
+            tile.used = true;
+            placed.push(tile);
+            renderSlots();
+            renderTiles();
+            if (placed.length === count) {
+              state.roundStars = Math.min(5, state.roundStars + 1);
+              $("orderStars").innerHTML = EY.stars(5, state.roundStars);
+              state.orderCorrectStreak++;
+              if (state.orderCorrectStreak >= 2 && state.orderLevel === 1) state.orderLevel = 2;
+              $("orderFeedback").innerHTML =
+                '<p style="color:var(--ey-green);font-weight:800;font-size:1.1rem;">You did it!</p>' +
+                '<div style="margin-top:14px;"><button type="button" class="ey-btn ey-btn--primary" id="nextOrderBtn">Try Another</button></div>';
+              $("nextOrderBtn").addEventListener("click", renderOrderRound);
+            }
+          } else {
+            $("orderFeedback").innerHTML = '<p style="color:var(--ey-orange-dark);font-weight:800;">Nearly! Look for the smallest number left.</p>';
+          }
+        });
+        row.appendChild(b);
+      });
+    }
+
+    renderSlots();
+    renderTiles();
+  }
+
+  // start on Meet the Numbers by default
+  modeGrid.children[0].click();
+})();
+</script>
+</body>
+</html>
