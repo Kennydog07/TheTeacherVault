@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beginning Sounds Game | Free Early Phonics Practice | The Teacher Vault</title>
+<meta name="description" content="A free early phonics game for ages 3-5 to practise identifying the beginning sound of simple, familiar words.">
+<link rel="canonical" href="https://theteachervault.com/early-years/beginning-sounds.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Beginning Sounds Game | Free Early Phonics Practice | The Teacher Vault">
+<meta property="og:description" content="A free early phonics game for ages 3-5 to practise identifying the beginning sound of simple, familiar words.">
+<meta property="og:url" content="https://theteachervault.com/early-years/beginning-sounds.html">
+<meta property="og:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Beginning Sounds Game | Free Early Phonics Practice | The Teacher Vault">
+<meta name="twitter:description" content="A free early phonics game for ages 3-5 to practise identifying the beginning sound of simple, familiar words.">
+<meta name="twitter:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="early-years.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalApplication",
+  "name": "Beginning Sounds",
+  "description": "A free early phonics game for ages 3-5 to practise identifying the beginning sound of simple, familiar words.",
+  "url": "https://theteachervault.com/early-years/beginning-sounds.html",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "isAccessibleForFree": true,
+  "educationalLevel": "Early Years / Reception",
+  "publisher": { "@type": "Organization", "name": "The Teacher Vault" }
+}
+</script>
+</head>
+<body data-page="ey-beginning-sounds" class="ey-page-body">
+<div class="chalk-texture" aria-hidden="true"></div>
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="ey-section" style="padding-bottom:10px;">
+    <div class="ey-container">
+      <p class="ey-breadcrumb"><a href="../index.html">Home</a> / <a href="../early-years.html">Early Years</a> / Beginning Sounds</p>
+      <span class="ey-badge">Ages 3&ndash;5</span>
+      <h1 class="ey-h1">Beginning Sounds</h1>
+      <p class="ey-sub">What sound does the word start with?</p>
+    </div>
+  </section>
+
+  <section class="ey-section" style="padding-top:10px;">
+    <div class="ey-container">
+
+      <div id="setupPanel">
+        <div class="ey-mascot-row ey-center" style="justify-content:center;margin-bottom:20px;">
+          <div id="setupMascotWrap"></div>
+        </div>
+        <div class="ey-choice-grid" id="lengthGrid" style="max-width:480px;margin:0 auto;"></div>
+      </div>
+
+      <div class="ey-activity-panel" id="gamePanel" hidden>
+        <div class="ey-progress" id="progressDots"></div>
+        <div class="ey-center" id="mascotPrompt" style="margin-bottom:14px;"></div>
+        <div class="ey-center" style="margin-bottom:16px;">
+          <div style="font-size:4rem;" id="wordIcon" aria-hidden="true"></div>
+          <div class="ey-visual-word" id="wordText"></div>
+        </div>
+        <div class="ey-choice-grid" id="soundGrid" style="max-width:420px;margin:0 auto;grid-template-columns:repeat(3,1fr);"></div>
+        <div id="feedbackArea" class="ey-center" style="margin-top:16px;"></div>
+      </div>
+
+      <div class="ey-activity-panel ey-center" id="endPanel" hidden>
+        <div id="endMascot"></div>
+        <h2 class="ey-h1" style="font-size:2rem;">Great sound spotting!</h2>
+        <div id="endStars"></div>
+        <div class="ey-btn-row" style="justify-content:center;display:flex;gap:14px;flex-wrap:wrap;margin-top:16px;">
+          <button type="button" class="ey-btn ey-btn--primary" id="playAgainBtn">Play Again</button>
+          <button type="button" class="ey-btn ey-btn--soft" id="changeSettingsBtn">Change Settings</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <details class="ey-grownups">
+    <summary>For Grown-Ups</summary>
+    <div class="ey-body">
+      <p><strong>What this practises:</strong> identifying the first sound in a simple, familiar word -- an important early phonics and pre-reading skill.</p>
+      <p><strong>Suggested age range:</strong> approximately 3&ndash;5 years.</p>
+      <p><strong>How adults can help:</strong> say each word slowly and clearly together before choosing an answer, stretching out the first sound a little ("sssun") if your child needs a hint.</p>
+      <p><strong>What to try next:</strong> once beginning sounds feel easy, <a href="cvc-word-builder.html">CVC Word Builder</a> uses the same sounds to build whole words.</p>
+    </div>
+  </details>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="../early-years/early-years.js"></script>
+<script src="beginning-sounds-data.js"></script>
+<script>
+(function(){
+  "use strict";
+  var WORDS = window.TVBeginningSounds;
+  var CONSONANTS = "bcdfghjklmnpqrstvwxyz".split("");
+  var state = { total: 10, index: 0, correctCount: 0, queue: [] };
+
+  function $(id){ return document.getElementById(id); }
+
+  document.getElementById("setupMascotWrap").innerHTML =
+    EY.mascot("neutral", "The Teacher Vault mascot", { size: 110, animate: "float" }) +
+    '<div style="margin-top:8px;">' + EY.speech("What sound does it start with?") + '</div>';
+
+  var LENGTHS = [ { id: "10", label: "10 Questions", total: 10 }, { id: "keep", label: "Keep Playing", total: 20 } ];
+  var lengthGrid = $("lengthGrid");
+  LENGTHS.forEach(function(opt){
+    var btn = EY.el('<button type="button" class="ey-choice" style="font-size:1.15rem;">' + opt.label + '</button>');
+    btn.addEventListener("click", function(){ startGame(opt.total); });
+    lengthGrid.appendChild(btn);
+  });
+
+  var setupPanel = $("setupPanel"), gamePanel = $("gamePanel"), endPanel = $("endPanel");
+
+  function buildQueue(n){
+    var pool = EY.shuffle(WORDS);
+    var queue = [];
+    for (var i = 0; i < n; i++) queue.push(pool[i % pool.length]);
+    return EY.shuffle(queue);
+  }
+
+  function startGame(total){
+    state.total = total;
+    state.index = 0;
+    state.correctCount = 0;
+    state.queue = buildQueue(total);
+    setupPanel.hidden = true; endPanel.hidden = true; gamePanel.hidden = false;
+    renderQuestion();
+  }
+
+  function renderProgress(){
+    var dots = $("progressDots");
+    dots.innerHTML = "";
+    for (var i = 0; i < state.total; i++) {
+      dots.appendChild(EY.el('<span class="ey-progress-dot' + (i < state.index ? " is-done" : "") + '"></span>'));
+    }
+  }
+
+  function renderQuestion(){
+    renderProgress();
+    var item = state.queue[state.index];
+    $("mascotPrompt").innerHTML = EY.speech("What sound does " + item.word + " start with?");
+    $("wordIcon").textContent = item.icon;
+    $("wordText").textContent = item.word.toUpperCase();
+    $("feedbackArea").innerHTML = "";
+
+    var distractorPool = CONSONANTS.filter(function(c){ return c !== item.sound; });
+    var distractors = EY.pickN(distractorPool, 2);
+    var options = EY.shuffle([item.sound].concat(distractors));
+
+    var grid = $("soundGrid");
+    grid.innerHTML = "";
+    delete grid.dataset.answered;
+    options.forEach(function(sound){
+      var b = EY.el('<button type="button" class="ey-choice">' + sound + '</button>');
+      b.addEventListener("click", function(){
+        if (grid.dataset.answered) return;
+        grid.dataset.answered = "1";
+        var correct = sound === item.sound;
+        Array.prototype.forEach.call(grid.children, function(x){
+          x.disabled = true;
+          if (x.textContent === item.sound) x.classList.add("is-correct");
+          else if (x === b) x.classList.add("is-incorrect");
+        });
+        var fb = $("feedbackArea");
+        if (correct) {
+          state.correctCount++;
+          fb.innerHTML = '<p style="color:var(--ey-green);font-weight:800;font-size:1.1rem;">Yes! ' + capitalise(item.word) + " starts with " + item.sound + ".</p>";
+        } else {
+          fb.innerHTML = '<p style="color:var(--ey-orange-dark);font-weight:800;font-size:1.1rem;">Nearly! Listen to the start of ' + item.word + ' again.</p>';
+        }
+        fb.appendChild(EY.el('<div style="margin-top:14px;"><button type="button" class="ey-btn ey-btn--primary" id="nextWordBtn">Next Word</button></div>'));
+        $("nextWordBtn").addEventListener("click", function(){
+          state.index++;
+          if (state.index >= state.total) { endGame(); return; }
+          renderQuestion();
+        });
+      });
+      grid.appendChild(b);
+    });
+  }
+
+  function capitalise(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+
+  function endGame(){
+    gamePanel.hidden = true; endPanel.hidden = false;
+    $("endMascot").innerHTML = EY.mascot("cheer", "The Teacher Vault mascot celebrating", { size: 130, animate: "bounce" });
+    var starsOutOf5 = Math.max(1, Math.round((state.correctCount / state.total) * 5));
+    $("endStars").innerHTML = EY.stars(5, starsOutOf5);
+  }
+
+  $("playAgainBtn").addEventListener("click", function(){ startGame(state.total); });
+  $("changeSettingsBtn").addEventListener("click", function(){ endPanel.hidden = true; setupPanel.hidden = false; });
+})();
+</script>
+</body>
+</html>
