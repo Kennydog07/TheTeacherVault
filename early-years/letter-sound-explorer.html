@@ -124,7 +124,10 @@
     panel.innerHTML = "";
     var grid = EY.el('<div class="ey-choice-grid" style="grid-template-columns:repeat(auto-fit,minmax(64px,1fr));"></div>');
     LETTERS.forEach(function(entry){
-      var b = EY.el('<button type="button" class="ey-choice" style="font-size:1.4rem;min-height:64px;">' + entry.letter + '</button>');
+      var b = EY.el('<button type="button" class="ey-choice" style="min-height:64px;flex-direction:column;gap:1px;">' +
+        '<span style="font-size:1.3rem;line-height:1;">' + entry.letter + '</span>' +
+        '<span style="font-family:var(--font-body);font-weight:800;font-size:1.05rem;line-height:1;">' + entry.letter.toLowerCase() + '</span>' +
+      '</button>');
       b.addEventListener("click", function(){ showLetterDetail(entry); });
       grid.appendChild(b);
     });
@@ -137,7 +140,10 @@
     if (!detail) return;
     detail.innerHTML =
       '<div class="ey-card ey-center ey-mascot--fade-in">' +
-        '<div style="font-family:\'Permanent Marker\',cursive;font-size:4rem;color:var(--ey-orange);">' + entry.letter + ' ' + entry.letter.toLowerCase() + '</div>' +
+        '<div style="display:flex;align-items:baseline;justify-content:center;gap:16px;">' +
+          '<span style="font-family:\'Permanent Marker\',cursive;font-size:4rem;color:var(--ey-orange);">' + entry.letter + '</span>' +
+          '<span style="font-family:var(--font-body);font-weight:800;font-size:3.4rem;color:var(--ey-orange);">' + entry.letter.toLowerCase() + '</span>' +
+        '</div>' +
         '<div style="font-size:3rem;margin:10px 0;" aria-hidden="true">' + entry.icon + '</div>' +
         '<div class="ey-visual-word">' + entry.word + '</div>' +
         (entry.note ? '<p style="color:var(--ey-ink-soft);font-size:0.9rem;margin-top:10px;">' + entry.note + '</p>' : '') +
