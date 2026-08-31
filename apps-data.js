@@ -1492,6 +1492,29 @@ const APPS = [
     worksOffline: true,
     noAccount: true
   },
+  {
+    id: "ks2-sentence-improver",
+    title: "Sentence Improver",
+    tagline: "Turn ordinary sentences into brilliant ones.",
+    description: "A structured KS2 creative writing tool that guides pupils through improving a simple sentence step by step -- choosing a stronger verb, adding detail and description, and considering sentence structure -- with a Free Write mode and self-assessment checklist. No AI marking.",
+    category: "revision",
+    keyStage: "KS2",
+    subject: "Primary",
+    audience: "Years 3-6 pupils",
+    tier: "free",
+    price: "Free",
+    gumroadUrl: "",
+    fileUrl: "/ks2/sentence-improver.html",
+    fileType: "app",
+    image: "/images/mascot-teacher-generic.png",
+    icon: "book",
+    featured: false,
+    isNew: true,
+    comingSoon: false,
+    features: ["65 original starter sentences for Years 3&4 and Years 5&6", "Guided 4-step improvement process with a live sentence preview", "Free Write mode with a self-assessment checklist, never auto-graded", "Every improved example is hand-written, not AI-generated"],
+    worksOffline: true,
+    noAccount: true
+  },
 
   /* ------------------------------ KS3 STUDENT APPS -------------------------
      Self-contained HTML apps that open in a new tab (fileType: "app"),
