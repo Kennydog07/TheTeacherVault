@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KS2 Fractions Practice | Free Fractions Challenge | The Teacher Vault</title>
+<meta name="description" content="Free KS2 fractions practice for Years 3-6 -- recognising, comparing, ordering, adding and subtracting fractions, mixed numbers and more, with instant feedback.">
+<link rel="canonical" href="https://theteachervault.com/ks2/fractions-challenge.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KS2 Fractions Practice | Free Fractions Challenge | The Teacher Vault">
+<meta property="og:description" content="Free KS2 fractions practice for Years 3-6 -- recognising, comparing, ordering, adding and subtracting fractions, mixed numbers and more, with instant feedback.">
+<meta property="og:url" content="https://theteachervault.com/ks2/fractions-challenge.html">
+<meta property="og:image" content="https://theteachervault.com/images/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KS2 Fractions Practice | Free Fractions Challenge | The Teacher Vault">
+<meta name="twitter:description" content="Free KS2 fractions practice for Years 3-6 -- recognising, comparing, ordering, adding and subtracting fractions, mixed numbers and more, with instant feedback.">
+<meta name="twitter:image" content="https://theteachervault.com/images/logo.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalApplication",
+  "name": "KS2 Fractions Challenge",
+  "description": "Free KS2 fractions practice for Years 3-6 -- recognising, comparing, ordering, adding and subtracting fractions, mixed numbers and more, with instant feedback.",
+  "url": "https://theteachervault.com/ks2/fractions-challenge.html",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "isAccessibleForFree": true,
+  "educationalLevel": "KS2",
+  "publisher": { "@type": "Organization", "name": "The Teacher Vault" }
+}
+</script>
+<style>
+  .fc-panel{background:rgba(247,242,226,0.06);border:1px solid rgba(245,242,232,0.14);border-radius:var(--radius-lg);padding:28px;max-width:680px;margin:0 auto;}
+  .fc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:18px;}
+  .fc-btn{padding:12px 8px;border-radius:10px;border:2px solid rgba(245,242,232,0.2);background:rgba(255,255,255,0.03);color:var(--chalk-white);cursor:pointer;font-weight:700;font-size:0.88rem;font-family:inherit;text-align:center;}
+  .fc-btn.active{border-color:var(--gold);background:rgba(201,162,75,0.18);}
+  .fc-btn.disabled{opacity:0.35;cursor:not-allowed;}
+  .fc-btn:focus-visible{outline:3px solid var(--gold-light);outline-offset:2px;}
+  .fc-checkbox-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px;}
+  .fc-checkbox{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;border:2px solid rgba(245,242,232,0.2);cursor:pointer;font-size:0.86rem;color:var(--chalk-white);}
+  .fc-checkbox input{width:16px;height:16px;}
+  .fc-checkbox.checked{border-color:var(--gold);background:rgba(201,162,75,0.15);}
+  .fc-progress-track{height:10px;background:rgba(245,242,232,0.12);border-radius:6px;overflow:hidden;margin-bottom:16px;}
+  .fc-progress-bar{height:100%;background:var(--gold);width:0%;transition:width .25s;}
+  .fc-meta{display:flex;justify-content:space-between;font-size:0.82rem;color:var(--chalk-dim);margin-bottom:8px;}
+  .fc-question{font-family:Georgia,'Times New Roman',serif;font-size:1.35rem;color:var(--chalk-white);text-align:center;margin:14px 0 12px;}
+  .fc-options{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:440px;margin:0 auto 16px;}
+  .fc-option{padding:12px 14px;border-radius:8px;border:2px solid rgba(245,242,232,0.2);background:rgba(255,255,255,0.03);color:var(--chalk-white);cursor:pointer;font-family:inherit;font-size:1.05rem;}
+  .fc-option:hover{border-color:var(--gold);}
+  .fc-option.correct{border-color:#4c9a5f;background:rgba(76,154,95,0.18);}
+  .fc-option.incorrect{border-color:#a62b2b;background:rgba(166,43,43,0.18);}
+  .fc-option:disabled{cursor:default;}
+  .fc-input-row{display:flex;gap:10px;justify-content:center;margin-bottom:16px;}
+  .fc-input{font-size:1.3rem;padding:12px 16px;border-radius:8px;border:2px solid rgba(245,242,232,0.25);background:rgba(255,255,255,0.04);color:var(--chalk-white);text-align:center;width:180px;font-family:inherit;}
+  .fc-input:focus{outline:3px solid var(--gold-light);outline-offset:1px;border-color:var(--gold);}
+  .fc-btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px;}
+  .fc-feedback{margin-top:16px;padding:14px 16px;border-radius:10px;background:rgba(247,242,226,0.06);font-size:0.97rem;color:var(--chalk-white);display:none;}
+  .fc-feedback.show{display:block;}
+  .fc-feedback.correct{border-left:4px solid #4c9a5f;}
+  .fc-feedback.incorrect{border-left:4px solid #a62b2b;}
+  .fc-stats-row{display:flex;justify-content:center;gap:24px;margin-bottom:18px;flex-wrap:wrap;text-align:center;}
+  .fc-stat__num{font-family:Georgia,serif;font-size:1.5rem;color:var(--chalk-white);display:block;}
+  .fc-stat__label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--gold-light);}
+  .fc-endscreen{text-align:center;}
+  @media(max-width:600px){ .fc-panel{padding:20px 16px;} .fc-input{width:100%;} .fc-question{font-size:1.1rem;} .fc-options{grid-template-columns:1fr;} }
+</style>
+</head>
+<body data-page="ks2-fractions-challenge">
+<div class="chalk-texture" aria-hidden="true"></div>
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="section" style="padding-bottom:20px;">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="../ks2.html">KS2</a> / Fractions Challenge</p>
+      <span class="eyebrow">KS2 Maths &middot; Years 3&ndash;6</span>
+      <h1>KS2 Fractions Challenge</h1>
+      <p class="lede">Build your fractions skills one challenge at a time.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="fc-panel" id="setupPanel">
+        <h2 style="text-align:center;margin-bottom:16px;">1. Choose a year level</h2>
+        <div class="fc-grid" id="yearGrid"></div>
+
+        <h2 style="text-align:center;margin-bottom:12px;">2. Choose a mode</h2>
+        <div class="fc-grid" id="modeGrid"></div>
+
+        <div id="topicPickerWrap" hidden>
+          <h2 style="text-align:center;margin-bottom:12px;">3. Choose a topic</h2>
+          <div class="fc-checkbox-row" id="topicChecks"></div>
+        </div>
+
+        <div style="text-align:center;">
+          <button class="btn btn--primary" id="startBtn">Start Challenge</button>
+        </div>
+      </div>
+
+      <div class="fc-panel" id="gamePanel" hidden>
+        <div class="fc-meta"><span id="questionCounter"></span><span id="scoreDisplay"></span></div>
+        <div class="fc-progress-track"><div class="fc-progress-bar" id="progressBar"></div></div>
+        <div id="visualArea"></div>
+        <div class="fc-question" id="questionText"></div>
+        <div id="answerArea"></div>
+        <div class="fc-btn-row">
+          <button type="button" class="btn btn--primary" id="checkBtn">Check Answer</button>
+          <button type="button" class="btn btn--ghost" id="nextBtn" hidden>Next Question</button>
+        </div>
+        <div class="fc-feedback" id="feedbackBox" role="status"></div>
+      </div>
+
+      <div class="fc-panel fc-endscreen" id="endPanel" hidden>
+        <h2>Challenge Complete!</h2>
+        <div class="fc-stats-row">
+          <div class="fc-stat"><span class="fc-stat__num" id="endScore">0</span><span class="fc-stat__label">Score</span></div>
+          <div class="fc-stat"><span class="fc-stat__num" id="endPercent">0%</span><span class="fc-stat__label">Accuracy</span></div>
+        </div>
+        <p id="endStrongest" style="color:var(--chalk-white);font-weight:700;"></p>
+        <p id="endPractiseNext" style="color:var(--chalk-dim);"></p>
+        <div class="fc-btn-row">
+          <button class="btn btn--primary" id="practiseWeakBtn" hidden>Practise Weak Areas</button>
+          <button class="btn btn--ghost" id="startAgainBtn">Change Settings</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section paper-section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">For parents &amp; teachers</span>
+        <h2>What This Practises</h2>
+        <p class="lede">Topics adjust to the year level selected: Year 3 focuses on recognising fractions, fractions of amounts and simple comparisons; Year 4 adds equivalent fractions, ordering and same-denominator addition; Year 5 and Year 6 add subtracting, mixed numbers, improper fractions and calculations across different denominators. Every answer is worked out from scratch and simplified where appropriate, with a worked explanation shown after every question.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Keep practising</span>
+        <h2>More Free KS2 Resources</h2>
+      </div>
+      <div class="card-grid" id="relatedGrid"></div>
+    </div>
+  </section>
+
+  <section class="section" style="text-align:center;padding-top:0;">
+    <div class="container">
+      <p class="lede" style="margin:0 auto;">Free resources. Better revision. Brighter futures. <a href="../ks2.html" style="color:var(--gold-light);text-decoration:underline;">Back to the KS2 Hub</a> &middot; <a href="../free-resources.html" style="color:var(--gold-light);text-decoration:underline;">Explore more free resources &rarr;</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="fractions-generators.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  var TOPIC_LABELS = window.TVFractions.topicLabels;
+  var YEAR_TOPICS = window.TVFractions.yearTopics;
+  var GEN = window.TVFractions.generators;
+
+  var state = {
+    year: "Year 4",
+    mode: "quick",
+    selectedTopics: YEAR_TOPICS["Year 4"].topics.slice(),
+    total: 10,
+    index: 0, score: 0, current: null, answered: false,
+    topicResults: {}
+  };
+
+  function $(id){ return document.getElementById(id); }
+  function el(html){ var d=document.createElement("div"); d.innerHTML=html.trim(); return d.firstChild; }
+
+  var yearGrid = $("yearGrid");
+  Object.keys(YEAR_TOPICS).forEach(function(y){
+    var btn = el('<button type="button" class="fc-btn' + (y===state.year?" active":"") + '" aria-pressed="' + (y===state.year) + '">' + y + '</button>');
+    btn.addEventListener("click", function(){
+      state.year = y;
+      state.selectedTopics = YEAR_TOPICS[y].topics.slice();
+      Array.prototype.forEach.call(yearGrid.children, function(b){ b.classList.remove("active"); b.setAttribute("aria-pressed","false"); });
+      btn.classList.add("active"); btn.setAttribute("aria-pressed","true");
+      renderTopicChecks();
+    });
+    yearGrid.appendChild(btn);
+  });
+
+  var MODES = { quick: "Quick Practice (10)", full: "Full Challenge (20)", topic: "Topic Practice", mixed: "Mixed Challenge" };
+  var modeGrid = $("modeGrid");
+  Object.keys(MODES).forEach(function(key){
+    var btn = el('<button type="button" class="fc-btn' + (key===state.mode?" active":"") + '" aria-pressed="' + (key===state.mode) + '">' + MODES[key] + '</button>');
+    btn.addEventListener("click", function(){
+      state.mode = key;
+      Array.prototype.forEach.call(modeGrid.children, function(b){ b.classList.remove("active"); b.setAttribute("aria-pressed","false"); });
+      btn.classList.add("active"); btn.setAttribute("aria-pressed","true");
+      $("topicPickerWrap").hidden = key !== "topic";
+      state.total = key === "full" ? 20 : 10;
+    });
+    modeGrid.appendChild(btn);
+  });
+
+  var topicChecksWrap = $("topicChecks");
+  function renderTopicChecks(){
+    topicChecksWrap.innerHTML = "";
+    var available = YEAR_TOPICS[state.year].topics;
+    available.forEach(function(t){
+      var label = el('<label class="fc-checkbox checked"><input type="checkbox" checked> ' + TOPIC_LABELS[t] + '</label>');
+      var cb = label.querySelector("input");
+      cb.addEventListener("change", function(){ label.classList.toggle("checked", cb.checked); });
+      cb.dataset.topic = t;
+      topicChecksWrap.appendChild(label);
+    });
+  }
+  renderTopicChecks();
+
+  var setupPanel = $("setupPanel"), gamePanel = $("gamePanel"), endPanel = $("endPanel");
+  var questionText = $("questionText"), answerArea = $("answerArea"), visualArea = $("visualArea"), feedbackBox = $("feedbackBox");
+  var checkBtn = $("checkBtn"), nextBtn = $("nextBtn");
+
+  function activeTopicPool(){
+    if (state.mode === "topic") {
+      var chosen = [];
+      topicChecksWrap.querySelectorAll("input[type=checkbox]").forEach(function(cb){ if (cb.checked) chosen.push(cb.dataset.topic); });
+      return chosen.length ? chosen : YEAR_TOPICS[state.year].topics.slice();
+    }
+    return YEAR_TOPICS[state.year].topics.slice();
+  }
+
+  function startChallenge(topicPoolOverride){
+    state.index = 0; state.score = 0; state.topicResults = {};
+    state.pool = topicPoolOverride || activeTopicPool();
+    setupPanel.hidden = true; gamePanel.hidden = false; endPanel.hidden = true;
+    renderQuestion();
+  }
+
+  function pickTopic(){ return state.pool[Math.floor(Math.random() * state.pool.length)]; }
+
+  function renderQuestion(){
+    feedbackBox.className = "fc-feedback"; feedbackBox.textContent = "";
+    nextBtn.hidden = true; checkBtn.hidden = false; checkBtn.disabled = false; state.answered = false;
+    var topic = pickTopic();
+    var hard = YEAR_TOPICS[state.year].hard;
+    var q = GEN[topic](hard);
+    q.topic = topic;
+    state.current = q;
+    $("questionCounter").textContent = "Question " + (state.index + 1) + " of " + state.total;
+    $("scoreDisplay").textContent = "Score: " + state.score;
+    $("progressBar").style.width = Math.round((state.index / state.total) * 100) + "%";
+    questionText.textContent = q.text;
+    visualArea.innerHTML = q.visual || "";
+    answerArea.innerHTML = "";
+    if (q.options) {
+      var optWrap = el('<div class="fc-options"></div>');
+      q.options.forEach(function(optText, oi){
+        var b = el('<button type="button" class="fc-option">' + optText + '</button>');
+        b.addEventListener("click", function(){
+          if (optWrap.dataset.answered) return;
+          optWrap.dataset.chosen = oi;
+          Array.prototype.forEach.call(optWrap.children, function(x){ x.classList.toggle("active", x===b); });
+        });
+        optWrap.appendChild(b);
+      });
+      answerArea.appendChild(optWrap);
+    } else {
+      var inputRow = el('<div class="fc-input-row"><label class="sr-only" for="fcAnswer">Your answer</label><input type="text" id="fcAnswer" class="fc-input" autocomplete="off"></div>');
+      answerArea.appendChild(inputRow);
+      var input = inputRow.querySelector("input");
+      input.focus();
+      input.addEventListener("keydown", function(ev){ if (ev.key === "Enter") { ev.preventDefault(); checkAnswer(); } });
+    }
+  }
+
+  function normalise(v){ return String(v).trim().toLowerCase().replace(/\s+/g,""); }
+  function isCorrectAnswer(given, expected){
+    var g = normalise(given), e = normalise(expected);
+    if (g === e) return true;
+    var numRe = /^-?\d+(\.\d+)?$/;
+    if (numRe.test(g) && numRe.test(e)) return Math.abs(parseFloat(g) - parseFloat(e)) < 1e-9;
+    return false;
+  }
+
+  function checkAnswer(){
+    if (state.answered) return;
+    var q = state.current;
+    var given;
+    if (q.options) {
+      var optWrap = answerArea.querySelector(".fc-options");
+      if (optWrap.dataset.chosen === undefined) return;
+      given = q.options[parseInt(optWrap.dataset.chosen, 10)];
+    } else {
+      given = $("fcAnswer").value;
+      if (!given) return;
+    }
+    state.answered = true;
+    var correct = isCorrectAnswer(given, q.answer);
+    var t = q.topic;
+    if (!state.topicResults[t]) state.topicResults[t] = { correct: 0, incorrect: 0 };
+    if (correct) { state.score++; state.topicResults[t].correct++; } else { state.topicResults[t].incorrect++; }
+    $("scoreDisplay").textContent = "Score: " + state.score;
+
+    if (q.options) {
+      var optWrap2 = answerArea.querySelector(".fc-options");
+      Array.prototype.forEach.call(optWrap2.children, function(b, idx){
+        b.disabled = true;
+        if (idx === q.correct) b.classList.add("correct");
+        else if (String(idx) === optWrap2.dataset.chosen && !correct) b.classList.add("incorrect");
+      });
+    } else {
+      $("fcAnswer").disabled = true;
+    }
+
+    feedbackBox.className = "fc-feedback show " + (correct ? "correct" : "incorrect");
+    feedbackBox.innerHTML = (correct ? "<strong>Correct!</strong> " : "<strong>Try Again -- the correct answer is " + q.answer + ".</strong> ") + q.explain;
+    checkBtn.hidden = true; nextBtn.hidden = false; nextBtn.focus();
+  }
+
+  checkBtn.addEventListener("click", checkAnswer);
+  nextBtn.addEventListener("click", function(){
+    state.index++;
+    if (state.index >= state.total) { endChallenge(); return; }
+    renderQuestion();
+  });
+
+  function endChallenge(){
+    gamePanel.hidden = true; endPanel.hidden = false;
+    var pct = Math.round((state.score / state.total) * 100);
+    $("endScore").textContent = state.score + "/" + state.total;
+    $("endPercent").textContent = pct + "%";
+
+    var best = null, worst = null;
+    Object.keys(state.topicResults).forEach(function(t){
+      var r = state.topicResults[t];
+      var total = r.correct + r.incorrect;
+      var rate = total ? r.correct / total : 0;
+      if (!best || rate > best.rate) best = { topic: t, rate: rate };
+      if (!worst || rate < worst.rate) worst = { topic: t, rate: rate };
+    });
+    $("endStrongest").textContent = best ? "Your strongest topic: " + TOPIC_LABELS[best.topic] : "";
+    $("endPractiseNext").textContent = worst && worst.rate < 1 ? "Topic to practise next: " + TOPIC_LABELS[worst.topic] : "";
+
+    var weakBtn = $("practiseWeakBtn");
+    if (worst && worst.rate < 1) {
+      weakBtn.hidden = false;
+      weakBtn.onclick = function(){ startChallenge([worst.topic]); };
+    } else {
+      weakBtn.hidden = true;
+    }
+  }
+
+  $("startBtn").addEventListener("click", function(){ startChallenge(); });
+  $("startAgainBtn").addEventListener("click", function(){ endPanel.hidden = true; setupPanel.hidden = false; });
+
+  var related = ["ks2-arithmetic-trainer", "sats-maths", "ks2-spag-challenge", "ks2-times-tables-challenge"].map(function(id){ return typeof getAppById === "function" ? getAppById(id) : null; }).filter(Boolean);
+  if (related.length && typeof renderCardGrid === "function") renderCardGrid(document.getElementById("relatedGrid"), related);
+})();
+</script>
+</body>
+</html>

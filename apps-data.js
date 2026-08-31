@@ -1446,6 +1446,29 @@ const APPS = [
     worksOffline: true,
     noAccount: true
   },
+  {
+    id: "ks2-fractions-challenge",
+    title: "Fractions Challenge",
+    tagline: "Build your fractions skills one challenge at a time.",
+    description: "Free KS2 fractions practice covering recognising, comparing, ordering, adding and subtracting fractions, mixed numbers and improper fractions, adapted to Year 3 through Mixed KS2.",
+    category: "revision",
+    keyStage: "KS2",
+    subject: "Primary",
+    audience: "Years 3-6 pupils",
+    tier: "free",
+    price: "Free",
+    gumroadUrl: "",
+    fileUrl: "/ks2/fractions-challenge.html",
+    fileType: "app",
+    image: "/images/mascot-teacher-generic.png",
+    icon: "book",
+    featured: false,
+    isNew: true,
+    comingSoon: false,
+    features: ["9 fraction topics adapted to Year 3 through Mixed KS2", "Quick Practice, Full Challenge, Topic Practice and Mixed Challenge modes", "Occasional visual fraction bar models", "End report shows your strongest topic and one to practise next"],
+    worksOffline: true,
+    noAccount: true
+  },
 
   /* ------------------------------ KS3 STUDENT APPS -------------------------
      Self-contained HTML apps that open in a new tab (fileType: "app"),
