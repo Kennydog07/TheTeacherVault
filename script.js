@@ -143,6 +143,7 @@ const NAV_LINKS = [
     label: "Key Stages",
     children: [
       { href: "/early-years.html", label: "Early Years (Ages 3–5)" },
+      { href: "/ks1.html", label: "KS1 (Years 1–2)" },
       { href: "/ks2.html", label: "KS2 (SATs)" },
       { href: "/student-apps.html#ks-KS3", label: "KS3" },
       { href: "/student-apps.html#ks-KS4", label: "KS4 (GCSE)" },
