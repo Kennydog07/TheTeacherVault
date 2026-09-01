@@ -1,0 +1,203 @@
+/* ==========================================================================
+   The Teacher Vault -- KS1 visual identity (Years 1-2, ages 5-7).
+   Deliberately sits BETWEEN Early Years (very playful, huge rounded UI) and
+   KS2 (standard chalkboard revision look): still warm, bright and mascot-led,
+   but slightly more grown-up -- smaller radius, calmer palette, room for
+   more reading and a touch of "progress" structure. Reuses the same mascot
+   PNGs and the same EY.* JS helpers from early-years/early-years.js -- no
+   new mascot assets, no duplicated helper logic. Loaded IN ADDITION TO the
+   shared styles.css.
+   ========================================================================== */
+
+:root {
+  --k1-bg: #f7f9f3;
+  --k1-bg-soft: #eaf1e4;
+  --k1-orange: #e8742a;
+  --k1-orange-dark: #c25b1a;
+  --k1-orange-light: #ffb877;
+  --k1-blue: #2f6fb0;
+  --k1-blue-dark: #204d80;
+  --k1-blue-light: #d9e8f7;
+  --k1-green: #3f8a52;
+  --k1-ink: #2b2b28;
+  --k1-ink-soft: #5c5c56;
+  --k1-radius: 20px;
+  --k1-radius-sm: 14px;
+}
+
+.k1-page-body { background: var(--k1-bg); }
+.k1-section { background: var(--k1-bg); padding: 32px 0; }
+.k1-section--soft { background: var(--k1-bg-soft); }
+
+.k1-container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* ---------------- Breadcrumb / badge ---------------- */
+.k1-breadcrumb { font-size: 0.9rem; color: var(--k1-ink-soft); margin-bottom: 14px; }
+.k1-breadcrumb a { color: var(--k1-blue-dark); text-decoration: underline; font-weight: 700; }
+
+.k1-badge {
+  display: inline-block;
+  background: var(--k1-blue);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+
+/* ---------------- Headings ---------------- */
+.k1-h1 {
+  font-family: 'Permanent Marker', cursive;
+  color: var(--k1-orange-dark);
+  font-size: clamp(1.9rem, 4.5vw, 3rem);
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+.k1-sub { font-size: clamp(1.05rem, 2.2vw, 1.3rem); color: var(--k1-ink); font-weight: 700; margin-bottom: 6px; }
+.k1-lede { font-size: 1.02rem; color: var(--k1-ink-soft); max-width: 68ch; }
+
+/* ---------------- Buttons ---------------- */
+.k1-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font-family: inherit; font-weight: 800; font-size: 1.08rem;
+  padding: 15px 30px; border-radius: 999px; border: none; cursor: pointer;
+  min-height: 52px; min-width: 52px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.12);
+}
+.k1-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.12); }
+.k1-btn:focus-visible { outline: 4px solid var(--k1-orange-light); outline-offset: 3px; }
+.k1-btn--primary { background: var(--k1-blue); color: #fff; }
+.k1-btn--primary:hover { background: var(--k1-blue-dark); }
+.k1-btn--soft { background: #fff; color: var(--k1-blue-dark); border: 3px solid var(--k1-blue); }
+.k1-btn--soft:hover { background: var(--k1-blue-light); }
+.k1-btn--sm { font-size: 0.92rem; padding: 9px 20px; min-height: 40px; box-shadow: 0 3px 0 rgba(0,0,0,0.1); }
+
+/* ---------------- Cards ---------------- */
+.k1-card {
+  background: #fff; border-radius: var(--k1-radius); padding: 24px;
+  box-shadow: 0 6px 16px rgba(40,60,30,0.1); border: 3px solid transparent;
+}
+.k1-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+.k1-resource-card {
+  background: #fff; border-radius: var(--k1-radius); padding: 22px; text-align: center;
+  box-shadow: 0 6px 16px rgba(40,60,30,0.1); border: 3px solid transparent;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.k1-resource-card:hover { transform: translateY(-3px); border-color: var(--k1-blue-light); }
+.k1-resource-card__icon { font-size: 2.6rem; line-height: 1; margin-bottom: 10px; }
+.k1-resource-card__title { font-family: 'Permanent Marker', cursive; color: var(--k1-orange-dark); font-size: 1.2rem; margin-bottom: 6px; }
+.k1-resource-card__desc { color: var(--k1-ink-soft); font-size: 0.95rem; margin-bottom: 14px; }
+
+.k1-soon-card {
+  background: var(--k1-bg-soft); border-radius: var(--k1-radius); padding: 20px; text-align: center;
+  opacity: 0.75; border: 3px dashed var(--k1-blue-light);
+}
+.k1-soon-card__icon { font-size: 2.3rem; margin-bottom: 8px; }
+.k1-soon-badge {
+  display: inline-block; background: var(--k1-ink-soft); color: #fff; font-size: 0.68rem;
+  font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; padding: 4px 12px;
+  border-radius: 999px; margin-bottom: 8px;
+}
+
+/* ---------------- Mascot ----------------
+   early-years.js's EY.mascot()/EY.speech()/EY.stars() helpers are reused
+   as-is (same JS, same PNGs) but emit their ORIGINAL "ey-*" class names,
+   since that helper is shared logic, not KS1-specific markup. KS1 styles
+   those classes itself here rather than loading the whole Early Years
+   cream/orange page theme (which would blur the "in-between" look this
+   section needs). early-years.css is never linked from KS1 pages. */
+.ey-mascot, .k1-mascot { display: block; width: 100%; height: auto; object-fit: contain; }
+.ey-mascot--float, .k1-mascot--float { animation: k1-float 3.5s ease-in-out infinite; }
+.ey-mascot--bounce, .k1-mascot--bounce { animation: k1-bounce 0.6s ease; }
+.ey-mascot--fade-in, .k1-mascot--fade-in { animation: k1-fade-in 0.5s ease both; }
+@keyframes k1-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+@keyframes k1-bounce { 0% { transform: scale(1); } 30% { transform: scale(1.1); } 60% { transform: scale(0.97); } 100% { transform: scale(1); } }
+@keyframes k1-fade-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .ey-mascot--float, .ey-mascot--bounce, .ey-mascot--fade-in,
+  .k1-mascot--float, .k1-mascot--bounce, .k1-mascot--fade-in { animation: none !important; }
+}
+
+.ey-speech, .k1-speech {
+  position: relative; background: #fff; color: var(--k1-ink); border-radius: 18px;
+  padding: 9px 16px; font-weight: 800; font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(40,60,30,0.14); display: inline-block;
+}
+.k1-mascot-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.k1-mascot-row--right { flex-direction: row-reverse; }
+
+.ey-stars { font-size: 1.8rem; text-align: center; margin: 10px 0; }
+.ey-star { opacity: 0.25; }
+.ey-star.is-lit { opacity: 1; animation: k1-fade-in 0.4s ease both; }
+@media (prefers-reduced-motion: reduce) { .ey-star.is-lit { animation: none !important; } }
+
+/* ---------------- Choice grids / buttons ---------------- */
+.k1-choice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 14px; margin: 18px 0; }
+.k1-choice {
+  background: #fff; border: 4px solid var(--k1-bg-soft); border-radius: var(--k1-radius-sm);
+  padding: 16px 10px; font-size: 1.35rem; font-weight: 800; color: var(--k1-ink); cursor: pointer;
+  min-height: 72px; display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.15s ease, transform 0.1s ease;
+}
+.k1-choice:hover { border-color: var(--k1-blue-light); }
+.k1-choice:focus-visible { outline: 4px solid var(--k1-orange-light); outline-offset: 2px; }
+.k1-choice.is-correct { border-color: var(--k1-green); background: #edf6ee; }
+.k1-choice.is-incorrect { border-color: #d9694a; background: #fdefe9; }
+.k1-choice:disabled { cursor: default; }
+.k1-choice--active { border-color: var(--k1-blue); background: var(--k1-blue-light); }
+
+/* ---------------- Activity shell ---------------- */
+.k1-activity-panel {
+  background: #fff; border-radius: var(--k1-radius); padding: 28px; max-width: 780px; margin: 0 auto;
+  box-shadow: 0 10px 26px rgba(40,60,30,0.12);
+}
+.k1-progress { display: flex; justify-content: center; gap: 7px; margin-bottom: 16px; flex-wrap: wrap; }
+.k1-progress-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--k1-bg-soft); }
+.k1-progress-dot.is-done { background: var(--k1-blue); }
+
+.k1-stars { font-size: 1.8rem; text-align: center; margin: 10px 0; }
+.k1-star { opacity: 0.25; }
+.k1-star.is-lit { opacity: 1; animation: k1-fade-in 0.4s ease both; }
+@media (prefers-reduced-motion: reduce) { .k1-star.is-lit { animation: none !important; } }
+
+.k1-streak {
+  display: inline-flex; align-items: center; gap: 6px; background: var(--k1-bg-soft);
+  border-radius: 999px; padding: 6px 14px; font-weight: 800; color: var(--k1-orange-dark); font-size: 0.92rem;
+}
+
+/* ---------------- Grown-ups collapsible ---------------- */
+.k1-grownups { background: var(--k1-bg-soft); border-radius: var(--k1-radius); padding: 6px 22px; max-width: 780px; margin: 26px auto 0; }
+.k1-grownups summary { cursor: pointer; font-weight: 800; color: var(--k1-blue-dark); padding: 15px 0; font-size: 1.02rem; list-style: none; }
+.k1-grownups summary::-webkit-details-marker { display: none; }
+.k1-grownups summary::before { content: "▸ "; }
+.k1-grownups[open] summary::before { content: "▾ "; }
+.k1-grownups p, .k1-grownups li { color: var(--k1-ink-soft); font-size: 0.94rem; }
+.k1-grownups .k1-body { padding-bottom: 16px; }
+
+/* ---------------- Journey strip (Early Years -> KS1 -> KS2) ---------------- */
+.k1-journey { display: flex; align-items: stretch; justify-content: center; gap: 14px; flex-wrap: wrap; }
+.k1-journey-step {
+  flex: 1 1 220px; max-width: 280px; background: #fff; border-radius: var(--k1-radius);
+  padding: 20px; text-align: center; box-shadow: 0 6px 16px rgba(40,60,30,0.1);
+  border: 3px solid transparent;
+}
+.k1-journey-step--current { border-color: var(--k1-orange); background: #fff8f0; }
+.k1-journey-step__label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--k1-ink-soft); margin-bottom: 6px; }
+.k1-journey-step__title { font-family: 'Permanent Marker', cursive; color: var(--k1-orange-dark); font-size: 1.2rem; margin-bottom: 8px; }
+.k1-journey-arrow { display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: var(--k1-blue); flex: 0 0 auto; }
+@media (max-width: 760px) { .k1-journey-arrow { transform: rotate(90deg); } }
+
+/* ---------------- Utility ---------------- */
+.k1-center { text-align: center; }
+.k1-visual-word { font-family: 'Permanent Marker', cursive; font-size: clamp(1.5rem, 3.6vw, 2.2rem); color: var(--k1-ink); }
+.k1-object-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; font-size: 2rem; }
+
+@media (max-width: 600px) {
+  .k1-activity-panel { padding: 20px 15px; }
+  .k1-choice { font-size: 1.15rem; min-height: 62px; }
+  .k1-btn { font-size: 1rem; padding: 13px 24px; }
+}
