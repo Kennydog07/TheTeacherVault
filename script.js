@@ -359,7 +359,7 @@ function mountBackToTop() {
 function tierBadge(app) {
   if (app.comingSoon) return '<span class="badge badge--soon">Coming Soon</span>';
   if (app.tier === "pro") return '<span class="badge badge--pro">Pro</span>';
-  if (app.tier === "lite") return '<span class="badge badge--lite">Lite &middot; Free</span>';
+  if (app.tier === "lite") return '<span class="badge badge--lite">Free</span>';
   return '<span class="badge badge--free">Free</span>';
 }
 
@@ -387,7 +387,8 @@ function ctaFor(app) {
     return '<span class="btn btn--dark btn--block" aria-disabled="true">Coming Soon</span>';
   }
   if (app.fileUrl && app.fileType === "app") {
-    return '<a class="btn btn--dark btn--block" href="' + app.fileUrl + '" target="_blank" rel="noopener">Open App ' + ICONS.external + '</a>';
+    const openLabel = app.category === "teacher" ? "Use Free Tool" : "Open App";
+    return '<a class="btn btn--dark btn--block" href="' + app.fileUrl + '" target="_blank" rel="noopener">' + openLabel + ' ' + ICONS.external + '</a>';
   }
   if (app.fileUrl && app.fileType === "poster") {
     return '<a class="btn btn--dark btn--block" href="' + app.fileUrl + '" download>Download Poster ' + ICONS.download + '</a>' +
@@ -410,7 +411,7 @@ function proNote(app) {
   }
   if (app.tier === "pro" && app.liteVersionId) {
     const lite = getAppById(app.liteVersionId);
-    if (lite) return '<p class="app-card__pro-note">Free Lite version available &mdash; <a href="' + (lite.landingUrl || ('/app.html?id=' + lite.id)) + '">' + lite.title + '</a></p>';
+    if (lite) return '<p class="app-card__pro-note">Free version available &mdash; <a href="' + (lite.landingUrl || ('/app.html?id=' + lite.id)) + '">' + lite.title + '</a></p>';
   }
   return "";
 }

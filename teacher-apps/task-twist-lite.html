@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task Twist &mdash; Free | The Teacher Vault</title>
+<meta name="description" content="Turn one classroom task into Support, Core and Challenge versions in seconds — free, offline, no login.">
+<style>
+  :root{
+    --bg:#f4f7fb; --surface:#ffffff; --surface-soft:#eef2fb; --border:#e1e7f2;
+    --text:#1c2536; --text-muted:#5c6780;
+    --brand:#2f5fd0; --brand-dark:#1f3f97; --brand-light:#e8effe;
+    --support:#1f7a5c; --support-bg:#e6f5ef; --support-border:#b9e2d2;
+    --core:#2f5fd0; --core-bg:#eaf1fb; --core-border:#c2d8f2;
+    --challenge:#9a4c1f; --challenge-bg:#fbeee2; --challenge-border:#f0cda6;
+    --radius-lg:22px; --radius-md:16px; --radius-sm:10px;
+    --shadow:0 10px 30px rgba(30,45,90,0.10); --shadow-sm:0 4px 12px rgba(30,45,90,0.08);
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html,body{ margin:0; padding:0; }
+  body{ font-family: var(--font-sans); background: var(--bg); color: var(--text); line-height:1.5; -webkit-font-smoothing: antialiased; }
+  img{ max-width:100%; display:block; }
+  button, select, textarea, input { font-family:inherit; }
+  a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible, textarea:focus-visible, [tabindex]:focus-visible { outline: 3px solid #ffb100; outline-offset: 2px; }
+
+  .wrap{ max-width: 1180px; margin:0 auto; padding: 0 20px 64px; }
+
+  header.app-header{ background: linear-gradient(135deg, var(--brand) 0%, #4a7bf0 100%); color:#fff; padding: 22px 20px; margin-bottom: 28px; }
+  .header-inner{ max-width:1180px; margin:0 auto; display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  .header-inner img.logo{ width:56px; height:56px; border-radius:14px; object-fit:cover; box-shadow: 0 6px 18px rgba(0,0,0,0.25); flex-shrink:0; }
+  .header-titles h1{ margin:0; font-size:1.7rem; letter-spacing:-0.01em; }
+  .header-titles p{ margin:2px 0 0; font-size:0.98rem; color:#dce6ff; }
+  .tier-flag{ margin-left:auto; font-size:0.75rem; font-weight:800; letter-spacing:0.05em; text-transform:uppercase; background:rgba(255,255,255,0.18); padding:6px 14px; border-radius:999px; }
+
+  .card{ background: var(--surface); border:1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: 26px; }
+  .card + .card{ margin-top:22px; }
+
+  .field-row{ display:flex; gap:18px; flex-wrap:wrap; }
+  .field{ flex:1; min-width:200px; }
+  .field label{ display:block; font-weight:700; font-size:0.95rem; margin-bottom:8px; }
+  .field .sub{ font-weight:500; color:var(--text-muted); font-size:0.85rem; }
+  select.big-select, textarea.big-input{
+    width:100%; font-size:1.05rem; padding:14px 16px; border-radius: var(--radius-sm);
+    border:2px solid var(--border); background: var(--surface-soft); color:var(--text);
+  }
+  select.big-select{ font-weight:600; appearance:none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><path d='M5 8l5 5 5-5' stroke='%235c6780' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat:no-repeat; background-position: right 14px center; padding-right: 42px;
+  }
+  select.big-select:hover, textarea.big-input:hover{ border-color: var(--brand); }
+  textarea.big-input{ min-height:120px; resize:vertical; }
+  .char-count{ font-size:0.8rem; color:var(--text-muted); margin-top:6px; text-align:right; }
+
+  .btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; font-weight:700; font-size:1rem; border-radius: var(--radius-sm); border:2px solid transparent; padding:14px 22px; cursor:pointer; transition: transform .05s ease; }
+  .btn:active{ transform: translateY(1px); }
+  .btn-primary{ background: var(--brand); color:#fff; }
+  .btn-primary:hover{ background: var(--brand-dark); }
+  .btn-secondary{ background:#fff; border-color: var(--border); color: var(--text); }
+  .btn-secondary:hover{ border-color: var(--brand); color: var(--brand-dark); }
+  .btn-lg{ font-size:1.2rem; padding:18px 28px; width:100%; }
+  .btn-sm{ font-size:0.85rem; padding:9px 16px; }
+  .btn[disabled]{ opacity:0.5; cursor:not-allowed; }
+  .actions-row{ display:flex; flex-wrap:wrap; gap:12px; margin-top:18px; }
+  .actions-row[hidden]{ display:none; }
+
+  .empty-state{ text-align:center; padding: 56px 24px; background: var(--brand-light); border:2px dashed #c3d3fb; }
+  .empty-state h2{ margin:0 0 10px; font-size:1.5rem; color: var(--brand-dark); }
+  .empty-state p{ margin:0; color: var(--text-muted); font-size:1.02rem; max-width:50ch; margin:0 auto; }
+  .empty-icon{ font-size:2.4rem; margin-bottom:12px; }
+
+  .inline-error{ display:none; background:#fdeaea; border:2px solid #f3b8b8; color:#9a2c2c; padding:12px 16px; border-radius: var(--radius-sm); font-weight:600; margin-top:14px; }
+  .inline-error.show{ display:block; }
+
+  .versions-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:18px; margin-top:8px; }
+  .version-card{ background:#fff; border-radius: var(--radius-md); border:2px solid var(--border); padding:22px; box-shadow: var(--shadow-sm); border-top-width:8px; display:flex; flex-direction:column; gap:14px; }
+  .version-card[data-level="support"]{ border-top-color: var(--support); }
+  .version-card[data-level="core"]{ border-top-color: var(--core); }
+  .version-card[data-level="challenge"]{ border-top-color: var(--challenge); }
+  .version-title{ display:flex; align-items:center; gap:10px; }
+  .version-badge{ font-size:0.78rem; font-weight:800; text-transform:uppercase; letter-spacing:0.05em; padding:6px 14px; border-radius:999px; }
+  .version-card[data-level="support"] .version-badge{ background: var(--support-bg); color: var(--support); }
+  .version-card[data-level="core"] .version-badge{ background: var(--core-bg); color: var(--core); }
+  .version-card[data-level="challenge"] .version-badge{ background: var(--challenge-bg); color: var(--challenge); }
+
+  .version-body{ font-size:1.05rem; line-height:1.6; white-space:pre-line; }
+  .version-section{ margin-top:2px; }
+  .version-section h4{ margin:0 0 6px; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--text-muted); }
+  .chip-list{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip{ background: var(--surface-soft); border:1px solid var(--border); border-radius:999px; padding:6px 12px; font-size:0.9rem; }
+  .starter-list{ margin:0; padding-left:20px; font-size:0.98rem; }
+  .starter-list li{ margin:4px 0; }
+  .version-footer{ margin-top:auto; display:flex; justify-content:flex-end; }
+
+  #toastRegion{ position: fixed; left:50%; bottom:26px; transform: translateX(-50%); display:flex; flex-direction:column; gap:10px; z-index:999; align-items:center; }
+  .toast{ background: var(--text); color:#fff; padding:12px 22px; border-radius:999px; font-weight:700; box-shadow: 0 8px 24px rgba(0,0,0,0.25); animation: toastIn .18s ease; }
+  @keyframes toastIn{ from{ opacity:0; transform: translateY(8px);} to{ opacity:1; transform:none; } }
+
+  .pro-panel{ background: linear-gradient(135deg, #fff7e8, #fff); border:2px solid #f0d9a8; }
+  .pro-panel h2{ margin:0 0 6px; font-size:1.25rem; }
+  .pro-panel p.lede{ margin:0 0 14px; color: var(--text-muted); }
+  .pro-features{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:8px 20px; margin:0 0 18px; padding:0; list-style:none; }
+  .pro-features li{ font-size:0.95rem; display:flex; gap:8px; align-items:flex-start; }
+  .pro-features li::before{ content:"✨"; flex-shrink:0; }
+  .pro-cta{ background:#e8a532; color:#3a2a05; }
+  .pro-cta:hover{ background:#d99416; }
+
+  footer.app-footer{ text-align:center; padding:30px 20px; color: var(--text-muted); font-size:0.92rem; }
+
+  @media (max-width: 720px){
+    .header-titles h1{ font-size:1.4rem; }
+    .card{ padding:20px; }
+  }
+  @media (prefers-reduced-motion: reduce){ *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; } }
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="header-inner">
+    <img class="logo" alt="The Teacher Vault" src="data:image/jpeg;base64,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">
+    <div class="header-titles">
+      <h1>Task Twist</h1>
+      <p>Turn one classroom task into the right task for every learner</p>
+    </div>
+    <span class="tier-flag">Free</span>
+    <a href="/app.html?id=task-twist-lite" style="font-size:13px;font-weight:600;color:inherit;opacity:0.8;text-decoration:none;">&larr; Back to The Teacher Vault</a>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="card">
+    <div class="field-row">
+      <div class="field">
+        <label for="yearGroupSelect">Year Group</label>
+        <select id="yearGroupSelect" class="big-select">
+          <option>Year 1</option><option>Year 2</option><option>Year 3</option>
+          <option selected>Year 4</option><option>Year 5</option><option>Year 6</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="subjectSelect">Subject</label>
+        <select id="subjectSelect" class="big-select">
+          <option>English</option><option>Maths</option><option>Science</option>
+          <option>History</option><option>Geography</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-row" style="margin-top:18px;">
+      <div class="field">
+        <label for="taskTypeSelect">Task type <span class="sub">(optional — helps pick the right scaffolds)</span></label>
+        <select id="taskTypeSelect" class="big-select">
+          <option value="">Let Task Twist decide</option>
+          <option value="writing">Writing</option>
+          <option value="reading">Reading / comprehension</option>
+          <option value="problemsolving">Problem solving</option>
+          <option value="investigation">Investigation</option>
+          <option value="explanation">Explanation</option>
+          <option value="research">Research</option>
+          <option value="discussion">Discussion</option>
+          <option value="practical">Practical activity</option>
+          <option value="general">General classroom task</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field" style="margin-top:18px;">
+      <label for="taskInput">Enter your original classroom task</label>
+      <textarea id="taskInput" class="big-input" maxlength="1000" placeholder="Write a diary entry from the point of view of a Roman soldier."></textarea>
+      <div class="char-count"><span id="charCount">0</span> / 1000</div>
+      <div class="inline-error" id="inlineError">Enter your original classroom task first.</div>
+    </div>
+
+    <div style="margin-top:22px;">
+      <button type="button" class="btn btn-primary btn-lg" id="twistBtn">🌀 Twist My Task</button>
+    </div>
+
+    <div class="actions-row" id="actionsRow" hidden>
+      <button type="button" class="btn btn-secondary" id="againBtn">🔄 Generate Again</button>
+      <button type="button" class="btn btn-secondary" id="copySupportBtn">📋 Copy Support</button>
+      <button type="button" class="btn btn-secondary" id="copyCoreBtn">📋 Copy Core</button>
+      <button type="button" class="btn btn-secondary" id="copyChallengeBtn">📋 Copy Challenge</button>
+      <button type="button" class="btn btn-secondary" id="copyAllBtn">📋 Copy All</button>
+      <button type="button" class="btn btn-secondary" id="clearBtn">🗑️ Clear</button>
+    </div>
+  </section>
+
+  <section class="card" id="resultsCard" style="margin-top:22px;">
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">🌀</div>
+      <h2>Ready to twist a task?</h2>
+      <p>Choose a year group and subject, paste in your task, then generate Support, Core and Challenge versions in one click.</p>
+    </div>
+    <div class="versions-grid" id="versionsGrid" hidden></div>
+  </section>
+
+  <section class="card pro-panel">
+    <h2>Need differentiation for your whole class?</h2>
+    <p class="lede">Task Twist PRO adds:</p>
+    <ul class="pro-features">
+      <li>SEND mode</li>
+      <li>EAL support</li>
+      <li>Greater Depth</li>
+      <li>Individual pupil profiles</li>
+      <li>Six-level differentiation</li>
+      <li>Printable task cards</li>
+      <li>Success criteria</li>
+      <li>Extension activities</li>
+      <li>Questioning prompts</li>
+      <li>Saved tasks</li>
+      <li>Reusable templates</li>
+      <li>Class differentiation planning</li>
+    </ul>
+    <a class="btn pro-cta" href="https://idamaemann.gumroad.com/l/iawgx" target="_blank" rel="noopener">See Task Twist PRO</a>
+  </section>
+
+</div>
+
+<footer class="app-footer">The Teacher Vault — Tools that give teachers their time back</footer>
+<div id="toastRegion" aria-live="polite"></div>
+
+<script>
+/* ============================================================
+   Task Twist Lite — The Teacher Vault
+   Rule-based differentiation engine. No AI, no network calls.
+   ============================================================ */
+
+function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+function pickDistinct(arr, avoid) {
+  if (arr.length <= 1) return arr[0];
+  let choice = pick(arr);
+  let guard = 0;
+  while (choice === avoid && guard < 10) { choice = pick(arr); guard++; }
+  return choice;
+}
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, function (ch) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[ch];
+  });
+}
+
+/* ---------------------------- Year band ---------------------------- */
+function yearBand(yearGroup) {
+  if (yearGroup === "Year 1" || yearGroup === "Year 2") return "ks1";
+  if (yearGroup === "Year 3" || yearGroup === "Year 4") return "lks2";
+  return "uks2";
+}
+
+/* ---------------------------- Task type detection ---------------------------- */
+function detectTaskType(text) {
+  const t = text.toLowerCase();
+  if (/\b(diary|story|poem|narrative|character|letter|write about|description|describe a|describe the)\b/.test(t)) return "writing";
+  if (/\b(read|comprehension|passage|text says|according to|extract)\b/.test(t)) return "reading";
+  if (/\b(solve|calculate|work out|how many|how much|sum|equation|multiply|divide|fraction of)\b/.test(t)) return "problemsolving";
+  if (/\b(investigate|experiment|test|predict|observe|hypothesis|fair test)\b/.test(t)) return "investigation";
+  if (/\b(explain why|explain how|why does|how does|describe how|describe why)\b/.test(t)) return "explanation";
+  if (/\b(research|find out|look up|discover facts|find information)\b/.test(t)) return "research";
+  if (/\b(discuss|debate|opinion|agree or disagree|should we|point of view)\b/.test(t)) return "discussion";
+  if (/\b(make|build|create|design|draw|construct|practical|model)\b/.test(t)) return "practical";
+  return "general";
+}
+const TASK_TYPE_LABELS = {
+  writing: "Writing", reading: "Reading / comprehension", problemsolving: "Problem solving",
+  investigation: "Investigation", explanation: "Explanation", research: "Research",
+  discussion: "Discussion", practical: "Practical activity", general: "General classroom task"
+};
+
+/* ---------------------------- Topic detection & vocabulary ---------------------------- */
+const TOPIC_BANK = [
+  { match: /roman|legion|gladiator|centurion/i, label: "the Romans", vocab: ["empire","legion","invade","settlement","emperor","conquest","senate"] },
+  { match: /egypt|pharaoh|pyramid|mummif|hieroglyph/i, label: "the Egyptians", vocab: ["pharaoh","pyramid","mummify","hieroglyphics","Nile","tomb","artefact"] },
+  { match: /volcano|magma|lava|eruption/i, label: "volcanoes", vocab: ["magma","lava","eruption","crater","tectonic","molten","ash cloud"] },
+  { match: /plant|seed|photosynthes|germinat|pollinat/i, label: "plants", vocab: ["germinate","photosynthesis","nutrients","root","stem","pollination"] },
+  { match: /space|planet|solar system|astronaut|galaxy|moon/i, label: "space", vocab: ["orbit","gravity","galaxy","planet","astronaut","satellite"] },
+  { match: /world war|evacuee|blitz|home front|rationing/i, label: "World War Two", vocab: ["evacuee","rationing","air raid","allies","invasion","shelter"] },
+  { match: /river|erosion|meander|estuary|tributary/i, label: "rivers", vocab: ["erosion","meander","source","tributary","estuary","deposition"] },
+  { match: /minibeast|insect|bug|habitat|invertebrate/i, label: "minibeasts", vocab: ["habitat","camouflage","predator","invertebrate","life cycle"] },
+  { match: /force|magnet|friction|gravity|push|pull/i, label: "forces", vocab: ["force","friction","gravity","magnetic","push","pull"] },
+  { match: /fraction|numerator|denominator/i, label: "fractions", vocab: ["numerator","denominator","equivalent","simplify","whole"] },
+  { match: /viking|longship|norse|raid/i, label: "the Vikings", vocab: ["longship","raid","settlement","warrior","trade","saga"] },
+  { match: /seaside|coast|beach|tide/i, label: "the seaside", vocab: ["coast","tide","erosion","resort","harbour"] },
+  { match: /animal|habitat|carnivore|herbivore|adapt/i, label: "animals and habitats", vocab: ["habitat","carnivore","herbivore","adapt","predator","survive"] }
+];
+function detectTopic(text) {
+  for (let i = 0; i < TOPIC_BANK.length; i++) { if (TOPIC_BANK[i].match.test(text)) return TOPIC_BANK[i]; }
+  return null;
+}
+const GENERIC_VOCAB = {
+  English: { ks1: ["character","setting","word","sentence","story"], lks2: ["character","setting","adjective","paragraph","sentence"], uks2: ["viewpoint","structure","vocabulary","paragraph","effect"] },
+  Maths: { ks1: ["number","add","take away","count","total"], lks2: ["calculate","method","total","pattern","strategy"], uks2: ["calculate","method","strategy","reasoning","efficient"] },
+  Science: { ks1: ["look","notice","same","different","test"], lks2: ["observe","predict","result","evidence","fair test"], uks2: ["observe","predict","evidence","conclusion","variable"] },
+  History: { ks1: ["old","new","then","now","past"], lks2: ["past","evidence","source","timeline","change"], uks2: ["evidence","source","significance","change","interpretation"] },
+  Geography: { ks1: ["place","map","near","far","weather"], lks2: ["location","environment","map","compare","climate"], uks2: ["location","environment","human","physical","compare"] }
+};
+function vocabFor(subject, band, text) {
+  const topic = detectTopic(text);
+  if (topic) return { words: topic.vocab.slice(0, 5), topicLabel: topic.label };
+  const fallback = (GENERIC_VOCAB[subject] && GENERIC_VOCAB[subject][band]) || GENERIC_VOCAB.English[band];
+  return { words: fallback, topicLabel: null };
+}
+
+/* ---------------------------- Sentence starters ---------------------------- */
+const STARTER_BANKS = {
+  ks1: ["I think...", "First, ...", "This is because...", "I can see..."],
+  lks2: ["I think...", "One reason for this is...", "This shows that...", "For example...", "I noticed that..."],
+  uks2: ["I believe that...", "One reason for this is...", "The evidence shows...", "This suggests that...", "In contrast..."]
+};
+function startersFor(band, taskType) {
+  const base = STARTER_BANKS[band].slice();
+  if (taskType === "explanation" || taskType === "discussion") base.push(band === "uks2" ? "This is significant because..." : "This is important because...");
+  return base.slice(0, 4);
+}
+
+/* ---------------------------- Core action templates per task type & tier ---------------------------- */
+/* tier: 0 = support, 1 = core, 2 = challenge */
+const ACTIONS = {
+  writing: [
+    ["Write two or three simple sentences about {topic}. Use the word bank and sentence starters to help you.",
+     "Write a short paragraph about {topic}, using at least one sentence starter and two words from the word bank."],
+    ["Write a well-organised piece about {topic}, using clear paragraphs and the vocabulary you know.",
+     "Complete the task: write a clear, structured piece about {topic} that a reader could easily follow."],
+    ["Write an extended piece about {topic} that develops your ideas across several paragraphs, using precise vocabulary and varied sentence structures to create effect.",
+     "Write an extended, well-organised piece about {topic}. Justify the choices you make (e.g. word choice, structure) and use ambitious vocabulary throughout."]
+  ],
+  reading: [
+    ["Find and underline three pieces of information about {topic} in the text. Use the word bank to help you talk about what you find.",
+     "Answer three simple questions about {topic} by finding the answers directly in the text."],
+    ["Answer questions about {topic} using evidence from the text, explaining your answers in full sentences.",
+     "Read the text carefully and explain, in your own words, what it tells you about {topic}."],
+    ["Compare how {topic} is presented in different parts of the text, using evidence to support your ideas and explaining any inference you make.",
+     "Evaluate how effectively the text explains {topic}, using specific evidence to justify your judgement."]
+  ],
+  problemsolving: [
+    ["Solve one step of the problem about {topic} at a time. Use the worked example and word bank to help you show your method.",
+     "Solve a simplified version of the problem, using pictures, objects or a number line if that helps."],
+    ["Solve the problem about {topic}, showing your method clearly so someone else could follow your working.",
+     "Solve the problem step by step, checking your answer makes sense once you've finished."],
+    ["Solve the problem about {topic}, then explain why your method is efficient and check your answer using a different method.",
+     "Solve the problem, then create a similar problem of your own and explain what makes it harder or easier."]
+  ],
+  investigation: [
+    ["Follow the steps one at a time to investigate {topic}, using the checklist to help you know what to do next.",
+     "Carry out a simplified version of the investigation about {topic} with clear, small steps."],
+    ["Plan and carry out an investigation into {topic}, recording your results clearly.",
+     "Carry out the investigation about {topic}, then explain what your results show."],
+    ["Plan and carry out an investigation into {topic}, then evaluate how reliable your results are and suggest an improvement.",
+     "Carry out the investigation, then explain what might happen if one variable changed and why."]
+  ],
+  explanation: [
+    ["Explain {topic} in one or two simple sentences, using the sentence starters and word bank to help you.",
+     "Complete simple sentences to explain {topic}, using the key vocabulary provided."],
+    ["Explain {topic} clearly in your own words, using full sentences and at least two pieces of vocabulary from the word bank.",
+     "Explain {topic}, making sure your explanation follows a clear order (first, then, finally)."],
+    ["Explain {topic} in detail, showing the cause-and-effect links between different parts, and use evidence to support each point.",
+     "Explain {topic}, then evaluate whether there might be another explanation and say which you find more convincing and why."]
+  ],
+  research: [
+    ["Find two or three facts about {topic} from the source given, and write them down using the word bank to help.",
+     "Find simple facts about {topic} and record them as a short list."],
+    ["Research {topic} using more than one source, and organise what you find under clear headings.",
+     "Research {topic}, then write up what you've found in your own words."],
+    ["Research {topic} using multiple sources, evaluate how reliable each source is, and present a balanced summary of what you find.",
+     "Research {topic}, then use what you find to build and support an argument or viewpoint."]
+  ],
+  discussion: [
+    ["Share your opinion about {topic} using a sentence starter, e.g. ‘I think...’.",
+     "Choose one opinion about {topic} from two given options and explain your choice in one sentence."],
+    ["Give your opinion about {topic} and explain your reason using full sentences.",
+     "Discuss {topic} with a partner, then write down your opinion and one supporting reason."],
+    ["Discuss {topic}, weighing up more than one point of view, and explain which you find most convincing and why.",
+     "Prepare a case for and against {topic}, then reach and justify your own conclusion."]
+  ],
+  practical: [
+    ["Complete the practical task about {topic} one step at a time, using the checklist to tick off each step.",
+     "Complete a simplified version of the task about {topic}, following each step with support."],
+    ["Complete the practical task about {topic}, then record what you did and what happened.",
+     "Complete the practical task about {topic}, explaining your choices as you go."],
+    ["Complete the practical task about {topic}, then explain the choices you made and how you might improve your approach.",
+     "Complete the task, then design your own alternative version and explain why it might work differently."]
+  ],
+  general: [
+    ["Complete a simplified version of the task about {topic}, using the word bank and sentence starters to help you.",
+     "Break the task about {topic} into smaller steps and complete one step at a time, using the checklist."],
+    ["Complete the task about {topic} as set, using clear, well-organised work.",
+     "Complete the task about {topic}, checking your work against the success criteria before you finish."],
+    ["Complete the task about {topic}, then justify your approach and explain how it could be applied to a new situation.",
+     "Complete the task about {topic}, then identify one thing that could be done differently and explain why."]
+  ]
+};
+function actionFor(taskType, tier, topicLabel) {
+  const bank = ACTIONS[taskType] || ACTIONS.general;
+  const options = bank[tier];
+  const chosen = pick(options);
+  return chosen.replace(/\{topic\}/g, topicLabel || "this task");
+}
+
+/* ---------------------------- Support scaffolds ---------------------------- */
+function checklistFor(taskType) {
+  const base = {
+    writing: ["Plan your ideas first", "Write your sentences", "Check capital letters and full stops", "Read it back to check it makes sense"],
+    reading: ["Read the text once all the way through", "Read the question carefully", "Find the answer in the text", "Check your answer makes sense"],
+    problemsolving: ["Read the problem carefully", "Decide what you need to find out", "Show your working", "Check your answer"],
+    investigation: ["Decide what you are testing", "Follow each step in order", "Record what happens", "Check your results make sense"],
+    explanation: ["Think about what happens first", "Use the word bank to help you", "Write your explanation in order", "Check it makes sense"],
+    research: ["Read the source carefully", "Find the key facts", "Write them in your own words", "Check you've answered the question"],
+    discussion: ["Think about your opinion", "Choose a sentence starter", "Give one reason", "Check your sentence makes sense"],
+    practical: ["Gather what you need", "Follow each step in order", "Tick off each step as you go", "Check your finished result"],
+    general: ["Read the task carefully", "Break it into smaller steps", "Complete one step at a time", "Check your work at the end"]
+  };
+  return base[taskType] || base.general;
+}
+
+/* ---------------------------- Success criteria (Lite: light touch, Core only) ---------------------------- */
+const CORE_CRITERIA = {
+  writing: ["I can organise my writing clearly.", "I can use vocabulary that fits the topic.", "I can check my punctuation and spelling."],
+  reading: ["I can find information in the text.", "I can answer questions using evidence.", "I can explain my answers clearly."],
+  problemsolving: ["I can show my method clearly.", "I can solve the problem accurately.", "I can check my answer makes sense."],
+  investigation: ["I can follow the steps of my investigation.", "I can record my results clearly.", "I can explain what my results show."],
+  explanation: ["I can explain my ideas in order.", "I can use key vocabulary correctly.", "I can make my explanation easy to follow."],
+  research: ["I can find relevant facts.", "I can record facts in my own words.", "I can organise my findings clearly."],
+  discussion: ["I can share my opinion clearly.", "I can give a reason for my opinion.", "I can listen to another point of view."],
+  practical: ["I can follow each step of the task.", "I can complete the task carefully.", "I can explain what I did."],
+  general: ["I can complete the task clearly.", "I can use relevant vocabulary.", "I can check my work before finishing."]
+};
+
+/* ---------------------------- Session assembly ---------------------------- */
+let lastSession = null;
+
+function buildVersions(regenerate) {
+  const yearGroup = document.getElementById("yearGroupSelect").value;
+  const subject = document.getElementById("subjectSelect").value;
+  const chosenType = document.getElementById("taskTypeSelect").value;
+  const taskText = document.getElementById("taskInput").value.trim();
+
+  if (!taskText) {
+    document.getElementById("inlineError").classList.add("show");
+    return;
+  }
+  document.getElementById("inlineError").classList.remove("show");
+
+  const band = yearBand(yearGroup);
+  const taskType = chosenType || detectTaskType(taskText);
+  const vocab = vocabFor(subject, band, taskText);
+  const starters = startersFor(band, taskType);
+  const checklist = checklistFor(taskType);
+  const criteria = CORE_CRITERIA[taskType] || CORE_CRITERIA.general;
+
+  lastSession = {
+    yearGroup, subject, taskType, taskText, band, vocab, starters, checklist, criteria,
+    support: actionFor(taskType, 0, vocab.topicLabel),
+    core: actionFor(taskType, 1, vocab.topicLabel),
+    challenge: actionFor(taskType, 2, vocab.topicLabel)
+  };
+  renderVersions();
+}
+
+function renderVersions() {
+  const emptyState = document.getElementById("emptyState");
+  const grid = document.getElementById("versionsGrid");
+  const actionsRow = document.getElementById("actionsRow");
+
+  if (!lastSession) { emptyState.hidden = false; grid.hidden = true; actionsRow.hidden = true; return; }
+  emptyState.hidden = true; grid.hidden = false; actionsRow.hidden = false;
+
+  grid.innerHTML = "";
+  grid.appendChild(buildVersionCard("support", "🧩 Support", lastSession.support, true));
+  grid.appendChild(buildVersionCard("core", "🎯 Core", lastSession.core, false));
+  grid.appendChild(buildVersionCard("challenge", "🚀 Challenge", lastSession.challenge, false));
+}
+
+function buildVersionCard(level, label, bodyText, showScaffolds) {
+  const card = document.createElement("div");
+  card.className = "version-card";
+  card.setAttribute("data-level", level);
+
+  const titleRow = document.createElement("div");
+  titleRow.className = "version-title";
+  const badge = document.createElement("span");
+  badge.className = "version-badge";
+  badge.textContent = label;
+  titleRow.appendChild(badge);
+  card.appendChild(titleRow);
+
+  const body = document.createElement("p");
+  body.className = "version-body";
+  body.textContent = bodyText;
+  card.appendChild(body);
+
+  if (showScaffolds) {
+    const startersSection = document.createElement("div");
+    startersSection.className = "version-section";
+    startersSection.innerHTML = "<h4>Sentence starters</h4>";
+    const ul = document.createElement("ul");
+    ul.className = "starter-list";
+    lastSession.starters.forEach(function (s) { const li = document.createElement("li"); li.textContent = s; ul.appendChild(li); });
+    startersSection.appendChild(ul);
+    card.appendChild(startersSection);
+
+    const vocabSection = document.createElement("div");
+    vocabSection.className = "version-section";
+    vocabSection.innerHTML = "<h4>Word bank</h4>";
+    const chipList = document.createElement("div");
+    chipList.className = "chip-list";
+    lastSession.vocab.words.forEach(function (w) { const chip = document.createElement("span"); chip.className = "chip"; chip.textContent = w; chipList.appendChild(chip); });
+    vocabSection.appendChild(chipList);
+    card.appendChild(vocabSection);
+
+    const checklistSection = document.createElement("div");
+    checklistSection.className = "version-section";
+    checklistSection.innerHTML = "<h4>Checklist</h4>";
+    const cul = document.createElement("ul");
+    cul.className = "starter-list";
+    lastSession.checklist.forEach(function (c) { const li = document.createElement("li"); li.textContent = c; cul.appendChild(li); });
+    checklistSection.appendChild(cul);
+    card.appendChild(checklistSection);
+  }
+
+  if (level === "core") {
+    const critSection = document.createElement("div");
+    critSection.className = "version-section";
+    critSection.innerHTML = "<h4>Success criteria</h4>";
+    const cul = document.createElement("ul");
+    cul.className = "starter-list";
+    lastSession.criteria.forEach(function (c) { const li = document.createElement("li"); li.textContent = "I can " + c.replace(/^I can /i, "").toLowerCase(); cul.appendChild(li); });
+    critSection.appendChild(cul);
+    card.appendChild(critSection);
+  }
+
+  if (level === "challenge") {
+    const promptSection = document.createElement("div");
+    promptSection.className = "version-section";
+    promptSection.innerHTML = "<h4>Push further</h4>";
+    const p = document.createElement("p");
+    p.style.margin = "0"; p.style.color = "var(--text-muted)"; p.style.fontSize = "0.95rem";
+    const pushPrompts = ["Can you justify your choices?", "Can you compare this to a different example?", "Can you explain why this matters?", "What would change if one detail were different?"];
+    p.textContent = pick(pushPrompts);
+    promptSection.appendChild(p);
+    card.appendChild(promptSection);
+  }
+
+  return card;
+}
+
+/* ---------------------------- Copy / toast ---------------------------- */
+function showToast(msg) {
+  const region = document.getElementById("toastRegion");
+  const el = document.createElement("div");
+  el.className = "toast";
+  el.textContent = msg;
+  region.appendChild(el);
+  setTimeout(function () { el.remove(); }, 2200);
+}
+function copyText(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function () { showToast("Copied"); }, function () { fallbackCopy(text); });
+  } else { fallbackCopy(text); }
+}
+function fallbackCopy(text) {
+  const ta = document.createElement("textarea");
+  ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand("copy"); showToast("Copied"); } catch (e) { showToast("Couldn't copy — select and copy manually."); }
+  document.body.removeChild(ta);
+}
+function versionText(level) {
+  if (!lastSession) return "";
+  const labelMap = { support: "SUPPORT", core: "CORE", challenge: "CHALLENGE" };
+  const lines = [labelMap[level] + ":", lastSession[level]];
+  if (level === "support") {
+    lines.push("", "Sentence starters: " + lastSession.starters.join(" / "));
+    lines.push("Word bank: " + lastSession.vocab.words.join(", "));
+    lines.push("Checklist: " + lastSession.checklist.join(" -> "));
+  }
+  if (level === "core") {
+    lines.push("", "Success criteria:");
+    lastSession.criteria.forEach(function (c) { lines.push("- I can " + c.replace(/^I can /i, "").toLowerCase()); });
+  }
+  return lines.join("\n");
+}
+function allText() {
+  if (!lastSession) return "";
+  return [
+    "TASK TWIST — " + lastSession.yearGroup + " " + lastSession.subject,
+    "Original task: " + lastSession.taskText,
+    "",
+    versionText("support"), "",
+    versionText("core"), "",
+    versionText("challenge"), "",
+    "— The Teacher Vault —"
+  ].join("\n");
+}
+
+/* ---------------------------- Wire up UI ---------------------------- */
+document.getElementById("taskInput").addEventListener("input", function () {
+  document.getElementById("charCount").textContent = this.value.length;
+  if (this.value.trim()) document.getElementById("inlineError").classList.remove("show");
+});
+document.getElementById("twistBtn").addEventListener("click", function () { buildVersions(); });
+document.getElementById("againBtn").addEventListener("click", function () { buildVersions(true); });
+document.getElementById("copySupportBtn").addEventListener("click", function () { if (!lastSession) { showToast("Twist a task first."); return; } copyText(versionText("support")); });
+document.getElementById("copyCoreBtn").addEventListener("click", function () { if (!lastSession) { showToast("Twist a task first."); return; } copyText(versionText("core")); });
+document.getElementById("copyChallengeBtn").addEventListener("click", function () { if (!lastSession) { showToast("Twist a task first."); return; } copyText(versionText("challenge")); });
+document.getElementById("copyAllBtn").addEventListener("click", function () { if (!lastSession) { showToast("Twist a task first."); return; } copyText(allText()); });
+document.getElementById("clearBtn").addEventListener("click", function () {
+  document.getElementById("taskInput").value = "";
+  document.getElementById("charCount").textContent = "0";
+  document.getElementById("inlineError").classList.remove("show");
+  lastSession = null;
+  renderVersions();
+});
+</script>
+</body>
+</html>

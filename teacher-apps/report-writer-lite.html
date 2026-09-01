@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Report Writer &mdash; Free | The Teacher Vault</title>
+<meta name="description" content="Free teacher report writer that turns rough notes into clear, consistent pupil report comments in seconds. No sign-up, no download.">
+<style>
+  :root {
+    --navy: #17223b;
+    --navy-soft: #3a4a68;
+    --ink-muted: #5b6780;
+    --accent: #1f7a8c;
+    --accent-dark: #16606f;
+    --accent-tint: #e7f3f5;
+    --teal-2: #2b9aa8;
+    --bg: #f6f8fb;
+    --panel: #ffffff;
+    --border: #e1e6ef;
+    --border-strong: #c9d2e0;
+    --warn-bg: #fff6e0;
+    --warn-border: #e8c368;
+    --warn-text: #6b5211;
+    --radius: 10px;
+    --radius-lg: 14px;
+    --shadow: 0 1px 2px rgba(23, 34, 59, 0.06), 0 6px 20px rgba(23, 34, 59, 0.05);
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: var(--font); background: var(--bg); color: var(--navy); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  .site-header { background: var(--panel); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; gap: 16px; flex-wrap: wrap; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-mark { display: block; width: 52px; height: 52px; border-radius: 11px; object-fit: cover; flex-shrink: 0; box-shadow: 0 1px 3px rgba(23, 34, 59, 0.25); }
+  .brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+  .brand-name { font-size: 13px; color: var(--ink-muted); font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+  .brand-app { font-size: 18px; font-weight: 700; color: var(--navy); }
+  .lite-badge { background: var(--accent-tint); color: var(--accent-dark); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 3px 8px; border-radius: 999px; margin-left: 8px; }
+  main { padding: 28px 0 48px; }
+  .panel { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: 28px; margin-bottom: 22px; }
+  h1 { font-size: 22px; margin: 0 0 6px; font-weight: 700; }
+  h2 { font-size: 18px; margin: 0; font-weight: 700; }
+  .lede { margin: 0 0 18px; color: var(--ink-muted); font-size: 14px; }
+
+  .privacy-note { background: var(--accent-tint); border: 1px solid #cfe6e9; color: var(--accent-dark); border-radius: var(--radius); padding: 12px 14px; font-size: 13.5px; margin-bottom: 20px; }
+  .privacy-note strong { color: var(--navy); }
+
+  .field-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 14px; }
+  .field-row-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 14px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  label { font-size: 13.5px; font-weight: 600; color: var(--navy); }
+  .hint { font-weight: 400; color: var(--ink-muted); font-size: 12.5px; }
+  input[type="text"], select {
+    font-family: inherit; font-size: 14.5px; color: var(--navy); background: #fff;
+    border: 1px solid var(--border-strong); border-radius: 8px; padding: 10px 12px;
+    outline: none; width: 100%; transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  input[type="text"]:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(31,122,140,0.15); }
+  input[type="text"]::placeholder { color: #a3adc2; }
+
+  .toggle-row { display: flex; align-items: center; gap: 12px; margin: 6px 0 20px; padding: 14px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); }
+  .toggle-label { font-size: 13.5px; font-weight: 600; color: var(--navy); cursor: pointer; }
+  .switch { position: relative; display: inline-block; width: 42px; height: 24px; flex-shrink: 0; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider { position: absolute; cursor: pointer; inset: 0; background-color: #c9d2e0; transition: 0.2s; border-radius: 999px; }
+  .slider::before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; top: 3px; background-color: #fff; transition: 0.2s; border-radius: 50%; box-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+  .switch input:checked + .slider { background-color: var(--accent); }
+  .switch input:checked + .slider::before { transform: translateX(18px); }
+
+  .button-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+  .btn { font-family: inherit; font-size: 14px; font-weight: 600; border-radius: 8px; padding: 11px 18px; border: 1px solid transparent; cursor: pointer; transition: all 0.14s ease; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-secondary { background: #fff; border-color: var(--accent); color: var(--accent-dark); }
+  .btn-secondary:hover { background: var(--accent-tint); }
+  .btn-ghost { background: transparent; border-color: var(--border-strong); color: var(--navy-soft); }
+  .btn-ghost:hover { background: var(--bg); border-color: var(--navy-soft); }
+  .btn-danger { color: #b3432c; }
+  .btn-danger:hover { background: #fbeeeb; border-color: #b3432c; }
+  .btn-small { font-size: 13px; padding: 8px 13px; background: #fff; border: 1px solid var(--border-strong); color: var(--navy-soft); border-radius: 7px; }
+  .btn-small:hover { border-color: var(--accent); color: var(--accent-dark); }
+
+  .output-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+  .output-actions { display: flex; gap: 8px; }
+  .warnings { background: var(--warn-bg); border: 1px solid var(--warn-border); color: var(--warn-text); border-radius: var(--radius); padding: 12px 14px; font-size: 13.5px; margin-bottom: 16px; }
+  .warnings ul { margin: 6px 0 0; padding-left: 18px; }
+  .warnings-title { font-weight: 700; color: #6b5211; }
+
+  .editor-wrap { border: 1px solid var(--border-strong); border-radius: var(--radius); background: #fefefe; }
+  .report-output { min-height: 180px; padding: 18px 20px; font-size: 15.5px; line-height: 1.7; color: var(--navy); outline: none; }
+  .report-output:empty::before { content: attr(data-placeholder); color: #9aa4ba; }
+
+  .output-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
+  .word-count { font-size: 13px; color: var(--ink-muted); font-weight: 600; }
+  .copy-toast { font-size: 13px; color: var(--accent-dark); font-weight: 600; background: var(--accent-tint); padding: 5px 10px; border-radius: 6px; }
+
+  .site-footer { border-top: 1px solid var(--border); padding: 20px 0 40px; }
+  .site-footer p { font-size: 12.5px; color: var(--ink-muted); margin: 0; text-align: center; }
+
+  .upgrade-panel { background: linear-gradient(180deg, var(--accent-tint), var(--panel)); border: 1px solid #cfe6e9; }
+  .upgrade-panel h2 { font-size: 17px; color: var(--navy); margin-bottom: 4px; }
+  .upgrade-panel .upgrade-sub { color: var(--ink-muted); font-size: 13.5px; margin: 0 0 16px; }
+  .upgrade-benefits { list-style: none; margin: 0 0 20px; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 18px; }
+  .upgrade-benefits li { font-size: 13.5px; color: var(--navy-soft); display: flex; align-items: flex-start; gap: 8px; }
+  .upgrade-benefits li::before { content: "✓"; color: var(--accent-dark); font-weight: 700; flex-shrink: 0; }
+  .btn-upgrade { background: var(--accent-dark); color: #fff; font-size: 14.5px; padding: 12px 22px; }
+  .btn-upgrade:hover { background: #114b56; }
+  @media (max-width: 640px) { .upgrade-benefits { grid-template-columns: 1fr; } }
+
+  fieldset { border: none; padding: 0; margin: 0 0 20px; }
+  legend { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--navy-soft); padding: 0 0 10px; width: 100%; border-bottom: 1px solid var(--border); margin-bottom: 14px; }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 0 16px; }
+    .panel { padding: 20px; }
+    .field-row, .field-row-2 { grid-template-columns: 1fr; }
+    h1 { font-size: 20px; }
+    .button-row { flex-direction: column; }
+    .button-row .btn { width: 100%; }
+    .output-actions { width: 100%; }
+    .output-actions .btn { flex: 1; }
+  }
+
+  @media print {
+    .site-header, .site-footer, .form-panel, .output-header, .warnings, .output-footer, .upgrade-panel { display: none !important; }
+    body, .wrap, .panel { background: #fff !important; }
+    .panel { box-shadow: none; border: none; padding: 0; }
+    .report-output { border: none; padding: 0; font-size: 13pt; line-height: 1.6; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="brand">
+      <img class="brand-mark" src="data:image/jpeg;base64,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" alt="The Teacher Vault logo">
+      <div class="brand-text">
+        <span class="brand-name">The Teacher Vault</span>
+        <span class="brand-app">Teacher Report Writer <span class="lite-badge">Free</span></span>
+      </div>
+    </div>
+  </div>
+  <a href="/report-writer.html" style="font-size:13px;font-weight:600;color:var(--ink-muted);text-decoration:none;">&larr; Back to The Teacher Vault</a>
+</header>
+
+<main class="wrap">
+
+  <section class="panel form-panel" aria-labelledby="form-heading">
+    <h1 id="form-heading">Quick pupil report comment</h1>
+    <p class="lede">A faster, cut-down version for when you just need a natural-sounding comment in seconds.</p>
+
+    <div class="privacy-note" role="note">
+      <strong>Privacy:</strong> Consider using pupil initials if your school policy restricts identifiable information in third-party tools.
+    </div>
+
+    <form id="report-form" autocomplete="off">
+      <fieldset>
+        <legend>Pupil</legend>
+        <div class="field-row">
+          <div class="field">
+            <label for="firstName">First name</label>
+            <input type="text" id="firstName" placeholder="e.g. Amelia">
+          </div>
+          <div class="field">
+            <label for="pronoun">Pronoun</label>
+            <select id="pronoun">
+              <option value="she">She / her</option>
+              <option value="he">He / him</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="yearGroup">Year group</label>
+            <input type="text" id="yearGroup" placeholder="e.g. Year 5">
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Subject, attainment &amp; effort</legend>
+        <div class="field-row">
+          <div class="field">
+            <label for="subject">Subject</label>
+            <select id="subject">
+              <option value="General">General</option>
+              <option value="English">English</option>
+              <option value="Maths">Maths</option>
+              <option value="Science">Science</option>
+              <option value="History">History</option>
+              <option value="Geography">Geography</option>
+              <option value="Computing">Computing</option>
+              <option value="Art">Art</option>
+              <option value="PE">PE</option>
+              <option value="Music">Music</option>
+              <option value="Religious Education">Religious Education</option>
+              <option value="Modern Foreign Languages">Modern Foreign Languages</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="attainment">Attainment</label>
+            <select id="attainment">
+              <option value="exceptional">Exceptional</option>
+              <option value="above">Above expected</option>
+              <option value="expected" selected>Expected</option>
+              <option value="working_towards">Working towards expected</option>
+              <option value="below">Below expected</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="effort">Effort</label>
+            <select id="effort">
+              <option value="excellent">Excellent</option>
+              <option value="good" selected>Good</option>
+              <option value="variable">Variable</option>
+              <option value="needs_improvement">Needs improvement</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Optional note</legend>
+        <div class="field">
+          <label for="note">Achievement, concern or target <span class="hint">(write as a short sentence, optional)</span></label>
+          <input type="text" id="note" placeholder="e.g. he would benefit from checking his work before handing it in">
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Style &amp; length</legend>
+        <div class="field-row-2">
+          <div class="field">
+            <label for="style">Style</label>
+            <select id="style">
+              <option value="warm">Warm</option>
+              <option value="professional" selected>Professional</option>
+              <option value="concise">Concise</option>
+              <option value="encouraging">Encouraging</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="length">Report length</label>
+            <select id="length">
+              <option value="short">Short — approx. 60 words</option>
+              <option value="standard" selected>Standard — approx. 100 words</option>
+              <option value="detailed">Detailed — approx. 150 words</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="toggle-row">
+        <label class="switch">
+          <input type="checkbox" id="parentFriendly">
+          <span class="slider" aria-hidden="true"></span>
+        </label>
+        <label for="parentFriendly" class="toggle-label">Make wording more parent-friendly <span class="hint">(replaces jargon with plain language)</span></label>
+      </div>
+
+      <div class="button-row">
+        <button type="submit" class="btn btn-primary" id="generateBtn">Generate Report</button>
+        <button type="button" class="btn btn-secondary" id="regenerateBtn">Regenerate</button>
+        <button type="button" class="btn btn-ghost" id="exampleBtn">Load Example</button>
+        <button type="button" class="btn btn-ghost btn-danger" id="clearBtn">Clear</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="panel output-panel" aria-labelledby="output-heading">
+    <div class="output-header">
+      <h2 id="output-heading">Generated report</h2>
+      <div class="output-actions">
+        <button type="button" class="btn btn-small" id="copyBtn">Copy Report</button>
+        <button type="button" class="btn btn-small" id="printBtn">Print</button>
+      </div>
+    </div>
+
+    <div id="warnings" class="warnings" hidden aria-live="polite"></div>
+
+    <div class="editor-wrap">
+      <div id="reportOutput" class="report-output" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Generated report text, editable" data-placeholder="Your generated report will appear here. You can edit it directly before copying or printing."></div>
+    </div>
+
+    <div class="output-footer">
+      <span id="wordCount" class="word-count">0 words</span>
+      <span id="copyToast" class="copy-toast" hidden>Copied to clipboard</span>
+    </div>
+  </section>
+
+  <section class="panel upgrade-panel" id="upgradePanel" hidden aria-labelledby="upgrade-heading">
+    <h2 id="upgrade-heading">Writing reports for a whole class?</h2>
+    <p class="upgrade-sub">Report Writer Pro gives you more control and helps you work through an entire class faster.</p>
+    <ul class="upgrade-benefits">
+      <li>Individual strengths</li>
+      <li>Areas for development</li>
+      <li>Specific achievements</li>
+      <li>Next-step targets</li>
+      <li>Class Report Mode</li>
+      <li>Multiple report versions</li>
+      <li>Repetition checking</li>
+      <li>Save your class session locally</li>
+    </ul>
+    <button type="button" class="btn btn-upgrade" id="getProBtn">Get Report Writer Pro</button>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Report Writer (Free) by The Teacher Vault — runs entirely in your browser. No pupil data is stored or transmitted.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  // Set this to your Report Writer Pro purchase page (e.g. your Gumroad URL) when ready.
+  var PRO_URL = "https://idamaemann.gumroad.com/l/unjcn";
+
+  var ATTAINMENT_LABELS = { exceptional: "Exceptional", above: "Above expected", expected: "Expected", working_towards: "Working towards expected", below: "Below expected" };
+  var ATTAINMENT_PHRASES = { exceptional: "at an exceptional level", above: "above the expected standard", expected: "at the expected standard", working_towards: "towards the expected standard", below: "below the expected standard" };
+  var EFFORT_LABELS = { excellent: "Excellent", good: "Good", variable: "Variable", needs_improvement: "Needs improvement" };
+  var EFFORT_ADJ = { excellent: "excellent", good: "good", variable: "variable", needs_improvement: "inconsistent" };
+  var LENGTH_BUDGETS = { short: 60, standard: 100, detailed: 150 };
+
+  var T_ATTAINMENT = [
+    function (c) { return cap(c.name) + " is currently working " + c.attainmentPhrase + c.subjectClause + "."; },
+    function (c) { return c.subjectLead + cap(c.name) + " is working " + c.attainmentPhrase + "."; },
+    function (c) { return cap(c.name) + "'s attainment" + c.subjectClause + " is " + c.attainmentPhrase + "."; },
+    function (c) { return "This term, " + c.name + "'s work" + c.subjectClause + " has been " + c.attainmentPhrase + "."; },
+    function (c) { return cap(c.name) + " is " + c.attainmentPhrase + c.subjectClause + " this term."; },
+    function (c) { return c.subjectLead + cap(c.name) + "'s progress has been " + c.attainmentPhrase + "."; },
+    function (c) { return "At this point in the term, " + c.pn.possessive + " work" + c.subjectClause + " is " + c.attainmentPhrase + "."; },
+    function (c) { return c.subjectLead + "progress has been " + c.attainmentPhrase + " so far this term."; },
+    function (c) { return cap(c.pn.subject) + " is currently " + c.attainmentPhrase + c.subjectClause + "."; }
+  ];
+
+  var T_EFFORT = [
+    function (c) { return cap(c.name) + "'s effort in lessons has been " + c.effortAdj + "."; },
+    function (c) { return cap(c.name) + " has shown " + c.effortAdj + " effort this term."; },
+    function (c) { return cap(c.pn.subject) + " has approached tasks with " + c.effortAdj + " effort."; },
+    function (c) { return "Effort levels have been " + c.effortAdj + " throughout the term."; },
+    function (c) { return cap(c.name) + " brings " + c.effortAdj + " effort to " + c.pn.possessive + " learning."; },
+    function (c) { return "Overall, " + c.pn.subject + " has put in " + c.effortAdj + " effort."; },
+    function (c) { return "In lessons, " + c.pn.possessive + " effort has generally been " + c.effortAdj + "."; },
+    function (c) { return cap(c.pn.subject) + " has generally approached " + c.pn.possessive + " work with " + c.effortAdj + " effort."; }
+  ];
+
+  var T_NOTE = [
+    function (c) { return "Also worth noting: " + c.noteText + "."; },
+    function (c) { return "In addition: " + c.noteText + "."; },
+    function (c) { return "Worth mentioning: " + c.noteText + "."; },
+    function (c) { return "Worth highlighting: " + c.noteText + "."; },
+    function (c) { return "On a related note: " + c.noteText + "."; },
+    function (c) { return "It is also worth adding that " + c.noteText + "."; },
+    function (c) { return "One further point: " + c.noteText + "."; }
+  ];
+
+  var T_CONTEXT = [
+    function () { return "This has been reflected consistently across a range of tasks this term."; },
+    function () { return "This pattern has been consistent across different types of work this term."; },
+    function () { return "This has been evident in both classwork and homework this term."; },
+    function () { return "This has come through clearly in lessons throughout the term."; },
+    function () { return "This has been a consistent picture across the term as a whole."; },
+    function () { return "This has generally held true across the term."; }
+  ];
+
+  var T_OUTLOOK = [
+    function () { return "Continued focus in this area over the coming term should support further progress."; },
+    function () { return "With consistent practice, this can be built on over the coming weeks."; },
+    function () { return "This will be worth revisiting when reviewing progress later in the term."; },
+    function () { return "Keeping this consistent will help maintain momentum into next term."; },
+    function () { return "Regular opportunities to reinforce this would be beneficial going forward."; },
+    function () { return "This is a sensible focus for the term ahead."; }
+  ];
+
+  var CLOSINGS = {
+    warm: [
+      function (c) { return cap(c.name) + " is a valued member of the class and it has been a pleasure to see " + c.pn.possessive + " progress this term."; },
+      function (c) { return "It has been lovely to see " + c.pn.possessive + " progress this term."; },
+      function (c) { return cap(c.name) + " continues to grow in confidence, and this is reflected in " + c.pn.possessive + " work."; },
+      function (c) { return "With continued support, " + c.name + " is well placed to keep building on this progress."; },
+      function (c) { return cap(c.pn.subject) + " should feel encouraged by the progress made this term."; },
+      function (c) { return "It is a pleasure having " + c.name + " in class, and " + c.pn.subject + " should feel pleased with this term's progress."; }
+    ],
+    professional: [
+      function (c) { return cap(c.name) + " is well placed to continue making progress next term."; },
+      function (c) { return "With continued focus, " + c.pn.subject + " should make further progress next term."; },
+      function (c) { return "Overall, this represents a solid basis to build on next term."; },
+      function (c) { return cap(c.name) + " is encouraged to maintain this approach going forward."; },
+      function (c) { return "This provides a clear basis for " + c.pn.possessive + " continued development."; },
+      function (c) { return "Next term, " + c.pn.subject + " should aim to build on this foundation."; }
+    ],
+    concise: [
+      function () { return "A solid basis for next term."; },
+      function () { return "Good progress to build on."; },
+      function () { return "Continued focus will support further progress."; },
+      function () { return "Well placed to progress next term."; },
+      function () { return "A positive foundation for next term."; },
+      function () { return "A steady basis to build on."; }
+    ],
+    encouraging: [
+      function (c) { return "Keep up the good work, " + c.name + " — this progress is well deserved."; },
+      function (c) { return cap(c.name) + " should feel proud of the progress made this term."; },
+      function (c) { return "With this attitude, " + c.pn.subject + " will keep moving forward well."; },
+      function (c) { return "This is a great foundation to build on next term."; },
+      function (c) { return "Every step forward counts, and " + c.name + " is making them."; },
+      function (c) { return "Keep going, " + c.name + " — this term's progress is a great sign."; }
+    ]
+  };
+
+  var JARGON_MAP = [
+    [/\battainment\b/gi, "progress"],
+    [/\bconsolidate\b/gi, "practise and build on"],
+    [/\barticulate\b/gi, "express clearly"],
+    [/\bcompetency\b/gi, "ability"],
+    [/\bindependent learning\b/gi, "working on their own"],
+    [/\bmetacognition\b/gi, "thinking about how they learn"],
+    [/\bscaffold(ed|ing)?\b/gi, "extra support"],
+    [/\bexam technique\b/gi, "approach to exams"]
+  ];
+
+  function makeParentFriendly(text) {
+    var out = text;
+    JARGON_MAP.forEach(function (pair) { out = out.replace(pair[0], pair[1]); });
+    return out;
+  }
+
+  function cap(s) { if (!s) return s; return s.charAt(0).toUpperCase() + s.slice(1); }
+  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+  // Picks a template, but avoids leading with the pupil's name more than twice per report
+  // so reports don't read as a string of "Amelia... Amelia... Amelia..." sentences.
+  function pickVaried(bank, ctx, nameState) {
+    var order = shuffle(bank.map(function (_, i) { return i; }));
+    var chosen = null;
+    for (var i = 0; i < order.length; i++) {
+      var text = bank[order[i]](ctx);
+      var leadsWithName = text.indexOf(cap(ctx.name)) === 0;
+      if (!leadsWithName || nameState.count < 2) { chosen = text; if (leadsWithName) nameState.count++; break; }
+    }
+    if (chosen === null) { chosen = bank[order[0]](ctx); if (chosen.indexOf(cap(ctx.name)) === 0) nameState.count++; }
+    return chosen;
+  }
+  function wordCount(text) {
+    var trimmed = (text || "").trim();
+    if (!trimmed) return 0;
+    return trimmed.split(/\s+/).filter(Boolean).length;
+  }
+
+  var PRONOUNS = { he: { subject: "he", object: "him", possessive: "his" }, she: { subject: "she", object: "her", possessive: "her" } };
+
+  function getWarnings(data) {
+    var warnings = [];
+    var noteLower = (data.note || "").toLowerCase();
+    var poorEffortPattern = /(rarely completes|rarely finishes|lack(s)? of effort|doesn't try|does not try|not trying|fails to complete|no effort|minimal effort|little effort|doesn't complete|does not complete|avoids (work|tasks)|puts in little effort)/;
+    if ((data.effort === "excellent" || data.effort === "good") && poorEffortPattern.test(noteLower)) {
+      warnings.push("Effort is marked as “" + EFFORT_LABELS[data.effort] + "” but your note mentions issues with completing work or effort. Check these are consistent.");
+    }
+    var strugglingPattern = /(struggles|struggling|behind|difficulty understanding|finds .* difficult|below expected|falling behind|finds it hard to grasp)/;
+    if ((data.attainment === "exceptional" || data.attainment === "above") && strugglingPattern.test(noteLower)) {
+      warnings.push("Attainment is marked as “" + ATTAINMENT_LABELS[data.attainment] + "” but your note mentions struggling with the subject. Check these are consistent.");
+    }
+    return warnings;
+  }
+
+  function buildContext(data) {
+    var pn = PRONOUNS[data.pronoun] || PRONOUNS.she;
+    var subjectClause = data.subject === "General" ? "" : " in " + data.subject;
+    var subjectLead = data.subject === "General" ? "" : "In " + data.subject + ", ";
+    return {
+      name: data.firstName,
+      pn: pn,
+      attainmentPhrase: ATTAINMENT_PHRASES[data.attainment],
+      effortAdj: EFFORT_ADJ[data.effort],
+      subjectClause: subjectClause,
+      subjectLead: subjectLead,
+      noteText: data.note
+    };
+  }
+
+  function generateReportText(data) {
+    var ctx = buildContext(data);
+    var nameState = { count: 0 };
+    var parts = [];
+
+    // Vary which sentence opens the report so reports don't all start the same way.
+    var leadWithEffort = Math.random() < 0.5;
+    var attainmentSentence = pickVaried(T_ATTAINMENT, ctx, nameState);
+    var effortSentence = pickVaried(T_EFFORT, ctx, nameState);
+    if (leadWithEffort) { parts.push(effortSentence, attainmentSentence); }
+    else { parts.push(attainmentSentence, effortSentence); }
+
+    if (data.length === "standard" || data.length === "detailed") {
+      parts.push(pick(T_CONTEXT)(ctx));
+    }
+
+    if (data.note) {
+      parts.push(pick(T_NOTE)(ctx));
+    }
+
+    if (data.length === "detailed") {
+      parts.push(pick(T_OUTLOOK)(ctx));
+    }
+
+    if (data.length !== "short") {
+      parts.push(pickVaried(CLOSINGS[data.style] || CLOSINGS.professional, ctx, nameState));
+    } else {
+      // include closing only if we still have room in the short budget
+      var soFar = wordCount(parts.join(" "));
+      if (soFar < LENGTH_BUDGETS.short) {
+        parts.push(pickVaried(CLOSINGS[data.style] || CLOSINGS.professional, ctx, nameState));
+      }
+    }
+
+    return parts.join(" ");
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var form = document.getElementById("report-form");
+    var reportOutput = document.getElementById("reportOutput");
+    var wordCountEl = document.getElementById("wordCount");
+    var warningsEl = document.getElementById("warnings");
+    var copyToast = document.getElementById("copyToast");
+    var parentFriendlyToggle = document.getElementById("parentFriendly");
+    var upgradePanel = document.getElementById("upgradePanel");
+    var getProBtn = document.getElementById("getProBtn");
+    var lastRawReportText = "";
+
+    getProBtn.addEventListener("click", function () {
+      if (!PRO_URL || PRO_URL === "YOUR_PRO_URL_HERE") { return; }
+      window.open(PRO_URL, "_blank", "noopener");
+    });
+
+    function collectFormData() {
+      return {
+        firstName: (document.getElementById("firstName").value || "").trim(),
+        pronoun: document.getElementById("pronoun").value,
+        yearGroup: (document.getElementById("yearGroup").value || "").trim(),
+        subject: document.getElementById("subject").value,
+        attainment: document.getElementById("attainment").value,
+        effort: document.getElementById("effort").value,
+        note: (document.getElementById("note").value || "").trim(),
+        style: document.getElementById("style").value,
+        length: document.getElementById("length").value
+      };
+    }
+
+    function escapeHtml(str) {
+      var div = document.createElement("div");
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function renderWarnings(list) {
+      if (!list.length) { warningsEl.hidden = true; warningsEl.innerHTML = ""; return; }
+      var html = '<div class="warnings-title">Possible inconsistency detected</div><ul>';
+      list.forEach(function (w) { html += "<li>" + escapeHtml(w) + "</li>"; });
+      html += "</ul>";
+      warningsEl.innerHTML = html;
+      warningsEl.hidden = false;
+    }
+
+    function updateWordCount() {
+      var count = wordCount(reportOutput.innerText || reportOutput.textContent || "");
+      wordCountEl.textContent = count + (count === 1 ? " word" : " words");
+    }
+
+    function generate() {
+      var data = collectFormData();
+      if (!data.firstName) {
+        renderWarnings(["Please enter the pupil's first name before generating a report."]);
+        document.getElementById("firstName").focus();
+        return;
+      }
+      renderWarnings(getWarnings(data));
+      var text = generateReportText(data);
+      lastRawReportText = text;
+      reportOutput.textContent = parentFriendlyToggle.checked ? makeParentFriendly(text) : text;
+      updateWordCount();
+      upgradePanel.hidden = false;
+    }
+
+    form.addEventListener("submit", function (e) { e.preventDefault(); generate(); });
+    document.getElementById("regenerateBtn").addEventListener("click", generate);
+
+    document.getElementById("clearBtn").addEventListener("click", function () {
+      form.reset();
+      reportOutput.textContent = "";
+      lastRawReportText = "";
+      updateWordCount();
+      renderWarnings([]);
+      upgradePanel.hidden = true;
+    });
+
+    document.getElementById("copyBtn").addEventListener("click", function () {
+      var text = reportOutput.innerText || reportOutput.textContent || "";
+      if (!text.trim()) return;
+      var showToast = function () { copyToast.hidden = false; setTimeout(function () { copyToast.hidden = true; }, 1800); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(showToast).catch(function () { fallbackCopy(text); showToast(); });
+      } else {
+        fallbackCopy(text); showToast();
+      }
+    });
+
+    function fallbackCopy(text) {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); } catch (err) { /* no-op */ }
+      document.body.removeChild(ta);
+    }
+
+    document.getElementById("printBtn").addEventListener("click", function () { window.print(); });
+
+    document.getElementById("exampleBtn").addEventListener("click", function () {
+      document.getElementById("firstName").value = "Jake";
+      document.getElementById("pronoun").value = "he";
+      document.getElementById("yearGroup").value = "Year 8";
+      document.getElementById("subject").value = "Science";
+      document.getElementById("attainment").value = "expected";
+      document.getElementById("effort").value = "good";
+      document.getElementById("note").value = "he would benefit from checking his written answers more carefully before handing them in";
+      document.getElementById("style").value = "professional";
+      document.getElementById("length").value = "standard";
+      parentFriendlyToggle.checked = false;
+      generate();
+    });
+
+    parentFriendlyToggle.addEventListener("change", function () {
+      if (lastRawReportText) {
+        reportOutput.textContent = parentFriendlyToggle.checked ? makeParentFriendly(lastRawReportText) : lastRawReportText;
+        updateWordCount();
+      }
+    });
+
+    reportOutput.addEventListener("input", updateWordCount);
+    updateWordCount();
+  });
+})();
+</script>
+</body>
+</html>

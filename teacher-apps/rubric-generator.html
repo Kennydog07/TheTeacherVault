@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rubric Generator &mdash; Free | The Teacher Vault</title>
+<meta name="description" content="Build a clear marking rubric for any assignment in seconds — free, no login, works in your browser. Optional Pro upgrade adds editable criteria and saved rubrics.">
+<style>
+:root {
+  --color-bg: #f5f6fa;
+  --color-surface: #ffffff;
+  --color-surface-alt: #fafbfd;
+  --color-border: #dfe3ea;
+  --color-text: #1c2230;
+  --color-text-muted: #5b6472;
+  --color-text-faint: #8991a0;
+
+  --color-brand: #3730a3;
+  --color-brand-dark: #262566;
+  --color-brand-light: #ecebfb;
+
+  --color-top: #1f7a5c;
+  --color-top-bg: #e6f5ef;
+  --color-upper: #2f5d9c;
+  --color-upper-bg: #eaf1fb;
+  --color-lower: #9a6a1f;
+  --color-lower-bg: #fbf1e2;
+  --color-bottom: #9a3a1f;
+  --color-bottom-bg: #fbeae2;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  --shadow-sm: 0 1px 2px rgba(20, 26, 40, 0.06);
+  --shadow-md: 0 4px 16px rgba(20, 26, 40, 0.08);
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #14171f;
+    --color-surface: #1b1f29;
+    --color-surface-alt: #20242f;
+    --color-border: #2c3140;
+    --color-text: #e8eaf0;
+    --color-text-muted: #a7adba;
+    --color-text-faint: #7a8090;
+    --color-brand-light: #262a45;
+    --color-top-bg: #16281f;
+    --color-upper-bg: #17233a;
+    --color-lower-bg: #2e2717;
+    --color-bottom-bg: #2e1c17;
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+.wrap { max-width: 980px; margin: 0 auto; padding: 24px 20px 64px; }
+
+header.app-header {
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  padding: 16px 20px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+header.app-header img { height: 40px; width: 40px; border-radius: 8px; flex-shrink: 0; object-fit: cover; }
+header.app-header .titles h1 { font-size: 1.05rem; margin: 0; }
+header.app-header .titles p { margin: 2px 0 0; font-size: 0.78rem; color: var(--color-text-muted); }
+.tier-badge {
+  margin-left: auto; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em;
+  text-transform: uppercase; color: var(--color-brand); background: var(--color-brand-light);
+  padding: 4px 10px; border-radius: 999px; white-space: nowrap;
+}
+
+.lede { color: var(--color-text-muted); margin-top: 4px; }
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 22px;
+  margin-top: 20px;
+}
+.card h2 { margin: 0 0 4px; font-size: 1.05rem; }
+.card .hint { margin: 0 0 16px; font-size: 0.85rem; color: var(--color-text-muted); }
+
+.field { margin-bottom: 16px; }
+.field label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; }
+.field .sub { font-weight: 400; color: var(--color-text-faint); }
+textarea, input[type="text"], select {
+  width: 100%; font-family: inherit; font-size: 0.92rem;
+  padding: 10px 12px; border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border); background: var(--color-surface-alt);
+  color: var(--color-text);
+}
+textarea { resize: vertical; min-height: 90px; }
+textarea:focus, input:focus, select:focus { outline: 2px solid var(--color-brand); outline-offset: 1px; }
+
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 620px) { .row2 { grid-template-columns: 1fr; } }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: inherit; font-size: 0.88rem; font-weight: 600;
+  padding: 10px 18px; border-radius: var(--radius-sm); border: 1px solid transparent;
+  cursor: pointer; background: var(--color-brand); color: #fff;
+}
+.btn:hover { background: var(--color-brand-dark); }
+.btn.secondary {
+  background: var(--color-surface); color: var(--color-text); border-color: var(--color-border);
+}
+.btn.secondary:hover { background: var(--color-surface-alt); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+
+.upsell {
+  margin-top: 20px; padding: 16px 18px; border-radius: var(--radius-md);
+  border: 1px dashed var(--color-border); background: var(--color-surface-alt);
+  font-size: 0.85rem; color: var(--color-text-muted);
+}
+.upsell strong { color: var(--color-text); }
+.upsell a { color: var(--color-brand); font-weight: 600; text-decoration: none; }
+.upsell a:hover { text-decoration: underline; }
+
+#outputSection { display: none; }
+.rubric-meta { margin: 0 0 14px; font-size: 0.85rem; color: var(--color-text-muted); }
+.rubric-meta strong { color: var(--color-text); }
+
+.table-scroll { overflow-x: auto; border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+table.rubric { border-collapse: collapse; width: 100%; min-width: 640px; background: var(--color-surface); }
+table.rubric th, table.rubric td { border: 1px solid var(--color-border); padding: 12px 14px; text-align: left; vertical-align: top; font-size: 0.85rem; }
+table.rubric thead th { background: var(--color-surface-alt); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--color-text-muted); }
+table.rubric th.crit-col { width: 170px; }
+table.rubric td.crit-name { font-weight: 700; background: var(--color-surface-alt); }
+table.rubric td.band-0 { background: var(--color-top-bg); }
+table.rubric td.band-1 { background: var(--color-upper-bg); }
+table.rubric td.band-2 { background: var(--color-lower-bg); }
+table.rubric td.band-3 { background: var(--color-bottom-bg); }
+
+.status-msg { margin-top: 10px; font-size: 0.82rem; color: var(--color-text-muted); }
+.notice { font-size: 0.78rem; color: var(--color-text-faint); margin-top: 24px; text-align: center; }
+
+@media print {
+  header.app-header, .card:not(#outputCard), .actions, .upsell, .notice { display: none !important; }
+  body { background: #fff; }
+  .wrap { padding: 0; max-width: 100%; }
+  .table-scroll { overflow: visible; border: none; }
+  table.rubric { min-width: 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <img src="data:image/jpeg;base64,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" alt="The Teacher Vault">
+  <div class="titles">
+    <h1>Rubric Generator</h1>
+    <p>The Teacher Vault</p>
+  </div>
+  <span class="tier-badge">Free</span>
+  <a href="/rubric-generator.html" style="margin-left:14px;font-size:0.78rem;font-weight:600;color:var(--color-text-muted);text-decoration:none;white-space:nowrap;">&larr; Back to The Teacher Vault</a>
+</header>
+
+<div class="wrap">
+  <p class="lede">Fill in a few details about the assignment and get a ready-to-use marking rubric — built from a bank of criteria and descriptors matched to your subject. Nothing leaves your browser.</p>
+
+  <div class="card">
+    <h2>Assignment details</h2>
+    <p class="hint">The more specific your brief, the more relevant the rubric.</p>
+
+    <div class="field">
+      <label for="briefInput">Assignment brief <span class="sub">— what are pupils being asked to do?</span></label>
+      <textarea id="briefInput" placeholder="e.g. Write an extended essay analysing how Priestley presents Mr Birling in An Inspector Calls, using evidence from the text."></textarea>
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label for="subjectInput">Subject</label>
+        <input type="text" id="subjectInput" placeholder="e.g. English, Maths, Science">
+      </div>
+      <div class="field">
+        <label for="yearGroupInput">Year group / grade</label>
+        <input type="text" id="yearGroupInput" placeholder="e.g. Year 10, KS3">
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label for="criteriaCount">Number of criteria</label>
+        <select id="criteriaCount">
+          <option value="3">3 criteria</option>
+          <option value="4" selected>4 criteria</option>
+          <option value="5">5 criteria</option>
+          <option value="6">6 criteria</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="gradeLevels">Grade levels</label>
+        <select id="gradeLevels">
+          <option value="descriptive">Excellent / Good / Satisfactory / Needs Improvement</option>
+          <option value="letters">A / B / C / D</option>
+          <option value="honours">Distinction / Merit / Pass / Not Yet</option>
+          <option value="numeric">4 / 3 / 2 / 1</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="btn" id="generateBtn">Generate rubric</button>
+    </div>
+    <p class="status-msg" id="statusMsg" hidden></p>
+  </div>
+
+  <div class="card" id="outputCard" style="display:none;">
+    <div id="outputSection">
+      <h2>Your rubric</h2>
+      <p class="rubric-meta" id="rubricMeta"></p>
+      <div class="table-scroll">
+        <table class="rubric" id="rubricTable"></table>
+      </div>
+      <div class="actions" style="margin-top:16px;">
+        <button type="button" class="btn secondary" id="copyBtn">Copy as text</button>
+        <button type="button" class="btn secondary" id="printBtn">Print rubric</button>
+        <button type="button" class="btn secondary" id="regenerateBtn">Regenerate</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="upsell">
+    <strong>Need more control?</strong> Rubric Generator Pro adds up to 8 criteria, editable criteria and descriptors, custom grade-level labels, criterion weightings and saved rubrics you can reload later. <a href="https://idamaemann.gumroad.com/l/abucli" target="_blank" rel="noopener">Get Rubric Generator Pro — £2.99</a>.
+  </div>
+
+  <p class="notice">Everything here runs locally in your browser — no account, no upload, no data leaves this page.</p>
+</div>
+
+<script>
+/* ============================================================
+   Rubric Generator — shared generation logic (Lite)
+   Template-based: subject + brief keywords select from a fixed
+   bank of criteria/descriptors. No external calls, no AI.
+   ============================================================ */
+
+var CRITERIA_ORDER = ["understanding", "structure", "evidence", "analysis", "accuracy", "creativity", "presentation", "independence"];
+
+var CRITERIA = {
+  understanding: {
+    name: "Understanding of the Task",
+    tiers: [
+      "Shows a confident, thorough understanding of the task, addressing all its requirements with a clear focus throughout.",
+      "Shows a good understanding of the task, addressing most of its requirements clearly.",
+      "Shows a partial understanding of the task; some requirements are addressed but focus drifts in places.",
+      "Shows limited understanding of the task, with several requirements missing or misunderstood."
+    ]
+  },
+  structure: {
+    name: "Structure & Organisation",
+    tiers: [
+      "Work is logically structured throughout, with a clear beginning, middle and end that guides the reader effortlessly.",
+      "Work is generally well organised, with a clear structure that is mostly easy to follow.",
+      "Work has some structure, but organisation is inconsistent and ideas are not always sequenced logically.",
+      "Work lacks a clear structure; ideas are disorganised and difficult to follow."
+    ]
+  },
+  evidence: {
+    name: "Use of Evidence / Subject Knowledge",
+    tiers: [
+      "Uses well-chosen evidence and precise subject knowledge to support every point made.",
+      "Uses relevant evidence and subject knowledge to support most points.",
+      "Uses some evidence, but points are not always well supported or subject knowledge is limited.",
+      "Uses little or no evidence; points are unsupported and subject knowledge is weak."
+    ],
+    variants: {
+      maths: { name: "Method & Working Shown", tiers: [
+        "Shows clear, complete working for every step, making the method easy to follow and check.",
+        "Shows working for most steps, with the method mostly clear.",
+        "Shows some working, but steps are missing or hard to follow in places.",
+        "Shows little or no working; the method used is unclear."
+      ]},
+      science: { name: "Use of Scientific Evidence & Data", tiers: [
+        "Uses accurate scientific evidence and data precisely to support every conclusion drawn.",
+        "Uses relevant scientific evidence and data to support most conclusions.",
+        "Uses some scientific evidence, but conclusions are not always well supported by data.",
+        "Uses little or no scientific evidence; conclusions are largely unsupported."
+      ]},
+      humanities: { name: "Use of Sources & Evidence", tiers: [
+        "Selects and uses sources and evidence precisely to build a well-supported argument.",
+        "Uses relevant sources and evidence to support most points made.",
+        "Uses some sources or evidence, but points are not always well supported.",
+        "Uses little or no source material; points are largely unsupported."
+      ]}
+    }
+  },
+  analysis: {
+    name: "Analysis & Explanation",
+    tiers: [
+      "Explains ideas in depth, showing perceptive analysis of why and how, not just what.",
+      "Explains ideas clearly, with reasonable analysis of why and how.",
+      "Explains ideas at a basic level; analysis is present but underdeveloped.",
+      "Rarely explains ideas beyond a surface level; little or no analysis."
+    ],
+    variants: {
+      english: { name: "Analysis of Language, Form & Structure", tiers: [
+        "Analyses language, form and structure perceptively, showing a clear understanding of the writer's choices and their effects.",
+        "Analyses language, form and structure clearly, showing understanding of some choices and effects.",
+        "Identifies some language, form or structural features, with basic comment on effect.",
+        "Rarely identifies or comments on language, form or structure."
+      ]}
+    }
+  },
+  accuracy: {
+    name: "Accuracy & Technical Skill",
+    tiers: [
+      "Work is accurate and technically strong throughout, with very few errors.",
+      "Work is mostly accurate, with only minor errors that don't affect understanding.",
+      "Work contains a noticeable number of errors that sometimes affect understanding.",
+      "Work contains frequent errors that significantly affect understanding."
+    ],
+    variants: {
+      english: { name: "Spelling, Punctuation & Grammar", tiers: [
+        "Spelling, punctuation and grammar are consistently accurate, including with more ambitious vocabulary and sentence structures.",
+        "Spelling, punctuation and grammar are mostly accurate, with only occasional errors.",
+        "Spelling, punctuation and grammar contain a noticeable number of errors.",
+        "Frequent errors in spelling, punctuation and grammar make the writing difficult to follow in places."
+      ]},
+      maths: { name: "Mathematical Accuracy", tiers: [
+        "Calculations and mathematical statements are accurate throughout, with no errors.",
+        "Calculations are mostly accurate, with only minor slips.",
+        "Calculations contain a noticeable number of errors.",
+        "Calculations contain frequent errors that affect the final answer."
+      ]},
+      art: { name: "Technique & Skill", tiers: [
+        "Demonstrates confident, well-controlled technique, applied skilfully throughout.",
+        "Demonstrates good technique, applied competently in most places.",
+        "Demonstrates some technical skill, though control is inconsistent.",
+        "Technique is underdeveloped and inconsistently applied."
+      ]},
+      computing: { name: "Technical Accuracy & Functionality", tiers: [
+        "Solution works exactly as intended, with accurate, well-tested logic throughout.",
+        "Solution mostly works as intended, with only minor issues.",
+        "Solution partly works, but contains errors that affect functionality.",
+        "Solution does not work as intended; significant technical errors are present."
+      ]}
+    }
+  },
+  creativity: {
+    name: "Creativity & Originality",
+    tiers: [
+      "Shows genuine originality and creative thinking that goes beyond the obvious approach.",
+      "Shows some original thinking and a personal approach to the task.",
+      "Shows limited originality; the approach is largely conventional.",
+      "Shows little or no original thinking; the approach closely follows a standard template."
+    ]
+  },
+  presentation: {
+    name: "Presentation & Communication",
+    tiers: [
+      "Work is presented clearly and professionally, communicating ideas effectively to the intended audience.",
+      "Work is presented neatly and communicates ideas clearly for the most part.",
+      "Presentation is inconsistent; some ideas are not communicated clearly.",
+      "Presentation is untidy or unclear, making it hard to follow the intended meaning."
+    ]
+  },
+  independence: {
+    name: "Independence & Effort",
+    tiers: [
+      "Shows sustained effort and works independently, going beyond what was minimally required.",
+      "Shows good effort and works independently for most of the task.",
+      "Shows some effort, but relies on support or guidance at several points.",
+      "Shows minimal effort or relies heavily on support throughout."
+    ]
+  }
+};
+
+var GRADE_LABEL_SETS = {
+  descriptive: ["Excellent", "Good", "Satisfactory", "Needs Improvement"],
+  letters: ["A", "B", "C", "D"],
+  honours: ["Distinction", "Merit", "Pass", "Not Yet"],
+  numeric: ["4", "3", "2", "1"]
+};
+
+function subjectFamily(subjectText) {
+  var s = (subjectText || "").toLowerCase();
+  if (/math/.test(s)) return "maths";
+  if (/(comput|coding|programming|ict)/.test(s)) return "computing";
+  if (/(english|literature|writing)/.test(s)) return "english";
+  if (/science|biology|chemistry|physics/.test(s)) return "science";
+  if (/(history|geography|religious|citizenship|humanit)/.test(s)) return "humanities";
+  if (/(art|photograph|design.?tech|dt\b)/.test(s)) return "art";
+  return null;
+}
+
+function criterionFor(key, family) {
+  var base = CRITERIA[key];
+  if (base.variants && family && base.variants[family]) return base.variants[family];
+  return base;
+}
+
+function pickCriteriaKeys(count, brief) {
+  var keys = CRITERIA_ORDER.slice(0, count);
+  var b = (brief || "").toLowerCase();
+  var boost = null;
+  if (/(poster|podcast|presentation|display|slides?)/.test(b)) boost = "presentation";
+  else if (/(project|independent|coursework|homework)/.test(b)) boost = "independence";
+  if (boost && keys.indexOf(boost) === -1 && keys.length > 2) {
+    keys[keys.length - 1] = boost;
+  }
+  return keys;
+}
+
+function buildRubric(input) {
+  var family = subjectFamily(input.subject);
+  var keys = pickCriteriaKeys(input.count, input.brief);
+  var criteria = keys.map(function (key) {
+    var c = criterionFor(key, family);
+    return { name: c.name, tiers: c.tiers.slice() };
+  });
+  return {
+    subject: input.subject,
+    yearGroup: input.yearGroup,
+    brief: input.brief,
+    gradeLabels: GRADE_LABEL_SETS[input.gradeLevelKey],
+    criteria: criteria
+  };
+}
+
+function renderRubricTable(rubric) {
+  var html = "<thead><tr><th class=\"crit-col\">Criteria</th>";
+  rubric.gradeLabels.forEach(function (label) {
+    html += "<th>" + escapeHtml(label) + "</th>";
+  });
+  html += "</tr></thead><tbody>";
+  rubric.criteria.forEach(function (c) {
+    html += "<tr><td class=\"crit-name\">" + escapeHtml(c.name) + "</td>";
+    c.tiers.forEach(function (text, i) {
+      html += "<td class=\"band-" + i + "\">" + escapeHtml(text) + "</td>";
+    });
+    html += "</tr>";
+  });
+  html += "</tbody>";
+  return html;
+}
+
+function rubricAsText(rubric) {
+  var lines = [];
+  lines.push("Marking Rubric" + (rubric.subject ? " — " + rubric.subject : "") + (rubric.yearGroup ? " (" + rubric.yearGroup + ")" : ""));
+  if (rubric.brief) lines.push("Task: " + rubric.brief);
+  lines.push("");
+  rubric.criteria.forEach(function (c) {
+    lines.push(c.name);
+    c.tiers.forEach(function (text, i) {
+      lines.push("  " + rubric.gradeLabels[i] + ": " + text);
+    });
+    lines.push("");
+  });
+  return lines.join("\n").trim();
+}
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, function (ch) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[ch];
+  });
+}
+
+/* ---------------------------- UI wiring ---------------------------- */
+
+var currentRubric = null;
+
+function readInput() {
+  return {
+    brief: document.getElementById("briefInput").value.trim(),
+    subject: document.getElementById("subjectInput").value.trim(),
+    yearGroup: document.getElementById("yearGroupInput").value.trim(),
+    count: parseInt(document.getElementById("criteriaCount").value, 10),
+    gradeLevelKey: document.getElementById("gradeLevels").value
+  };
+}
+
+function showStatus(msg) {
+  var el = document.getElementById("statusMsg");
+  if (!msg) { el.hidden = true; el.textContent = ""; return; }
+  el.hidden = false;
+  el.textContent = msg;
+}
+
+function generate() {
+  var input = readInput();
+  if (!input.brief) {
+    showStatus("Add a short assignment brief so the rubric can be tailored to the task.");
+    return;
+  }
+  showStatus("");
+  currentRubric = buildRubric(input);
+
+  var metaParts = [];
+  if (currentRubric.subject) metaParts.push("<strong>Subject:</strong> " + escapeHtml(currentRubric.subject));
+  if (currentRubric.yearGroup) metaParts.push("<strong>Year group:</strong> " + escapeHtml(currentRubric.yearGroup));
+  document.getElementById("rubricMeta").innerHTML = metaParts.join(" &nbsp;|&nbsp; ") || "";
+  document.getElementById("rubricTable").innerHTML = renderRubricTable(currentRubric);
+  document.getElementById("outputCard").style.display = "block";
+  document.getElementById("outputSection").style.display = "block";
+  document.getElementById("outputCard").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+document.getElementById("generateBtn").addEventListener("click", generate);
+document.getElementById("regenerateBtn").addEventListener("click", generate);
+
+document.getElementById("copyBtn").addEventListener("click", function () {
+  if (!currentRubric) return;
+  var text = rubricAsText(currentRubric);
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function () {
+      showStatus("Rubric copied to clipboard.");
+    }, function () {
+      showStatus("Couldn't copy automatically — select the rubric text and copy manually.");
+    });
+  } else {
+    showStatus("Couldn't copy automatically — select the rubric text and copy manually.");
+  }
+});
+
+document.getElementById("printBtn").addEventListener("click", function () {
+  window.print();
+});
+</script>
+</body>
+</html>

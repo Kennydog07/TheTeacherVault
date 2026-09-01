@@ -1,0 +1,2607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback Fixer &mdash; Free | The Teacher Vault</title>
+<style>
+  :root{
+    --tv-green-900:#15302a;
+    --tv-green-800:#1e4438;
+    --tv-green-700:#2a5c4b;
+    --tv-green-600:#37765f;
+    --tv-green-100:#e7f3ee;
+    --tv-green-50:#f2f9f6;
+    --tv-cream:#fdfbf5;
+    --tv-coral:#ff6b4a;
+    --tv-coral-dark:#e2502f;
+    --tv-blue:#3b82f6;
+    --tv-purple:#8b5cf6;
+    --tv-amber:#f0a93a;
+    --tv-ink:#1f2937;
+    --tv-muted:#6b7280;
+    --tv-border:#e6e2d8;
+    --tv-white:#ffffff;
+    --radius-lg:22px;
+    --radius-md:16px;
+    --radius-sm:10px;
+    --shadow-card:0 6px 20px rgba(21,48,42,0.08), 0 1px 3px rgba(21,48,42,0.06);
+    --shadow-pop:0 12px 32px rgba(21,48,42,0.16);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Segoe UI', system-ui, -apple-system, 'Trebuchet MS', Tahoma, sans-serif;
+    background:linear-gradient(180deg, var(--tv-green-50) 0%, var(--tv-cream) 320px);
+    color:var(--tv-ink);
+    line-height:1.5;
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:980px;margin:0 auto;padding:0 20px 60px;}
+  a{color:inherit;}
+
+  /* ---------- Header ---------- */
+  header.tv-header{
+    background:linear-gradient(135deg, var(--tv-green-900), var(--tv-green-700));
+    padding:26px 20px 34px;
+    color:var(--tv-white);
+    border-bottom:6px solid var(--tv-coral);
+  }
+  .tv-header-inner{
+    max-width:980px;margin:0 auto;
+    display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  }
+  .tv-logo-mark{
+    width:60px;height:60px;flex:0 0 auto;border-radius:14px;overflow:hidden;
+    box-shadow:0 4px 10px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(255,255,255,0.1);
+  }
+  .tv-logo-mark img{width:100%;height:100%;object-fit:cover;display:block;}
+  .tv-brand-text{display:flex;flex-direction:column;gap:2px;}
+  .tv-brand-name{font-size:1.5rem;font-weight:800;letter-spacing:0.2px;}
+  .tv-product-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .tv-product-name{font-size:1.05rem;font-weight:600;color:var(--tv-coral);}
+  .tv-badge{
+    display:inline-block;font-size:0.7rem;font-weight:800;letter-spacing:1px;
+    padding:3px 10px;border-radius:999px;background:rgba(255,255,255,0.14);
+    color:#fff;border:1px solid rgba(255,255,255,0.35);
+  }
+  .tv-tagline{margin-left:auto;font-size:0.88rem;color:rgba(255,255,255,0.75);max-width:260px;text-align:right;}
+  @media (max-width:640px){ .tv-tagline{display:none;} }
+
+  /* ---------- Layout ---------- */
+  main{max-width:980px;margin:-14px auto 0;padding:0 20px 40px;}
+  .card{
+    background:var(--tv-white);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-card);
+    padding:26px;
+    margin-bottom:22px;
+    border:1px solid rgba(21,48,42,0.05);
+  }
+  .card h2{margin:0 0 4px;font-size:1.15rem;color:var(--tv-green-900);}
+  .card .sub{margin:0 0 18px;color:var(--tv-muted);font-size:0.92rem;}
+
+  .step-title{
+    display:flex;align-items:center;gap:10px;margin-bottom:14px;
+  }
+  .step-num{
+    width:28px;height:28px;border-radius:50%;background:var(--tv-green-800);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;flex:0 0 auto;
+  }
+  .step-title h2{margin:0;font-size:1.08rem;}
+
+  .chip-group{display:flex;flex-wrap:wrap;gap:10px;}
+  .chip{
+    border:2px solid var(--tv-border);
+    background:var(--tv-white);
+    color:var(--tv-ink);
+    padding:10px 16px;
+    border-radius:999px;
+    font-size:0.92rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .chip:hover{border-color:var(--tv-green-600);}
+  .chip.active{
+    background:var(--tv-green-800);
+    border-color:var(--tv-green-800);
+    color:#fff;
+    box-shadow:0 3px 10px rgba(30,68,56,0.35);
+  }
+  .chip.active[data-attainment="GD"]{background:var(--tv-purple);border-color:var(--tv-purple);box-shadow:0 3px 10px rgba(139,92,246,0.35);}
+  .chip.active[data-attainment="EXP"]{background:var(--tv-green-700);border-color:var(--tv-green-700);}
+  .chip.active[data-attainment="WT"]{background:var(--tv-amber);border-color:var(--tv-amber);color:#3a2a00;box-shadow:0 3px 10px rgba(240,169,58,0.4);}
+
+  select.tv-select{
+    width:100%;padding:12px 14px;border-radius:var(--radius-sm);border:2px solid var(--tv-border);
+    font-size:0.98rem;font-family:inherit;background:var(--tv-white);color:var(--tv-ink);
+    appearance:none;-webkit-appearance:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9'><path d='M1 1l6 6 6-6' stroke='%231e4438' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;
+  }
+  select.tv-select:focus{outline:none;border-color:var(--tv-green-600);}
+
+  .focus-hint{margin-top:8px;font-size:0.85rem;color:var(--tv-muted);}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:12px 20px;border-radius:var(--radius-sm);border:none;cursor:pointer;
+    font-size:0.95rem;font-weight:700;font-family:inherit;transition:transform .1s ease, box-shadow .15s ease;
+  }
+  .btn:active{transform:scale(0.98);}
+  .btn-primary{
+    background:linear-gradient(135deg, var(--tv-coral), var(--tv-coral-dark));
+    color:#fff;box-shadow:0 6px 18px rgba(255,107,74,0.4);
+    font-size:1.05rem;padding:16px 26px;width:100%;
+  }
+  .btn-primary:hover{box-shadow:0 8px 22px rgba(255,107,74,0.5);}
+  .btn-secondary{background:var(--tv-green-100);color:var(--tv-green-900);}
+  .btn-secondary:hover{background:#dcede5;}
+  .btn-ghost{background:transparent;color:var(--tv-green-800);border:2px solid var(--tv-border);}
+  .btn-ghost:hover{border-color:var(--tv-green-600);}
+  .btn-sm{padding:8px 14px;font-size:0.85rem;}
+  .btn-block{width:100%;}
+  .btn:disabled{opacity:0.5;cursor:not-allowed;}
+
+  .actions-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;}
+
+  /* ---------- Results ---------- */
+  #resultsCard{display:none;}
+  .result-block{
+    border-radius:var(--radius-md);
+    padding:18px 20px;
+    margin-bottom:14px;
+    border-left:6px solid var(--tv-green-700);
+    background:var(--tv-green-50);
+  }
+  .result-block.improve{border-left-color:var(--tv-amber);background:#fff8ec;}
+  .result-block.next{border-left-color:var(--tv-blue);background:#eff5ff;}
+  .result-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
+  .result-label{font-weight:800;font-size:0.82rem;text-transform:uppercase;letter-spacing:0.6px;color:var(--tv-green-800);}
+  .result-block.improve .result-label{color:#a06a15;}
+  .result-block.next .result-label{color:#1e50a8;}
+  .result-text{font-size:1.03rem;color:var(--tv-ink);}
+  .copy-btn{
+    border:none;background:rgba(21,48,42,0.08);color:var(--tv-green-900);
+    padding:6px 12px;border-radius:999px;font-size:0.78rem;font-weight:700;cursor:pointer;
+    display:inline-flex;align-items:center;gap:5px;
+  }
+  .copy-btn:hover{background:rgba(21,48,42,0.16);}
+  .copy-btn.copied{background:var(--tv-green-800);color:#fff;}
+
+  .result-meta{font-size:0.85rem;color:var(--tv-muted);margin-bottom:18px;padding-bottom:14px;border-bottom:1px dashed var(--tv-border);}
+
+  /* ---------- Promo panel ---------- */
+  .promo-card{
+    background:linear-gradient(135deg, var(--tv-green-900), var(--tv-green-700));
+    color:#fff;border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-card);
+    margin-bottom:22px;position:relative;overflow:hidden;
+  }
+  .promo-card::after{
+    content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;
+    background:radial-gradient(circle, rgba(255,107,74,0.25), transparent 70%);
+  }
+  .promo-card h3{margin:0 0 6px;font-size:1.3rem;}
+  .promo-card p{margin:0 0 16px;color:rgba(255,255,255,0.85);max-width:560px;}
+  .promo-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px 18px;margin:0 0 20px;padding:0;list-style:none;}
+  .promo-list li{display:flex;align-items:flex-start;gap:8px;font-size:0.92rem;color:rgba(255,255,255,0.92);}
+  .promo-list li::before{content:"✓";color:var(--tv-coral);font-weight:800;flex:0 0 auto;}
+  .promo-btn{
+    background:var(--tv-coral);color:#fff;border:none;padding:13px 24px;border-radius:var(--radius-sm);
+    font-weight:800;font-size:0.98rem;cursor:pointer;box-shadow:0 6px 16px rgba(255,107,74,0.4);
+    display:inline-block;text-decoration:none;
+  }
+  .promo-btn:hover{background:var(--tv-coral-dark);}
+
+  /* ---------- Footer ---------- */
+  footer.tv-footer{
+    text-align:center;padding:26px 20px 40px;color:var(--tv-muted);font-size:0.88rem;
+  }
+  footer.tv-footer strong{color:var(--tv-green-800);}
+
+  .toast{
+    position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);
+    background:var(--tv-green-900);color:#fff;padding:12px 22px;border-radius:999px;
+    font-size:0.9rem;font-weight:600;box-shadow:var(--shadow-pop);opacity:0;pointer-events:none;
+    transition:opacity .2s ease, transform .2s ease;z-index:999;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  /* ---------- Print ---------- */
+  #printArea{display:none;}
+  @media print{
+    body *{visibility:hidden;}
+    #printArea, #printArea *{visibility:visible;}
+    #printArea{display:block;position:absolute;left:0;top:0;width:100%;padding:24px;}
+    .print-slip h2{color:#15302a;margin-bottom:2px;}
+    .print-slip .meta{color:#444;margin-bottom:18px;font-size:0.95rem;}
+    .print-field{margin-bottom:16px;}
+    .print-field .lab{font-weight:800;text-transform:uppercase;font-size:0.78rem;letter-spacing:0.5px;color:#1e4438;margin-bottom:4px;}
+    .print-field .txt{font-size:1.05rem;}
+  }
+
+  @media (max-width:600px){
+    .card{padding:20px;}
+    .tv-brand-name{font-size:1.25rem;}
+    .btn-primary{font-size:1rem;}
+  }
+</style>
+</head>
+<body>
+
+<header class="tv-header">
+  <div class="tv-header-inner">
+    <div class="tv-logo-mark">
+      <img src="data:image/jpeg;base64,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" alt="The Teacher Vault logo">
+    </div>
+    <div class="tv-brand-text">
+      <span class="tv-brand-name">The Teacher Vault</span>
+      <span class="tv-product-row">
+        <span class="tv-product-name">Feedback Fixer</span>
+        <span class="tv-badge">FREE</span>
+      </span>
+    </div>
+    <div class="tv-tagline">Marking feedback in seconds, not minutes.</div>
+    <a href="/feedback-fixer.html" style="font-size:13px;font-weight:600;color:inherit;opacity:0.75;text-decoration:none;margin-left:auto;">&larr; Back to The Teacher Vault</a>
+  </div>
+</header>
+
+<main>
+
+  <div class="card">
+    <div class="step-title"><span class="step-num">1</span><h2>Year Group</h2></div>
+    <div class="chip-group" id="yearGroup"></div>
+  </div>
+
+  <div class="card">
+    <div class="step-title"><span class="step-num">2</span><h2>Subject</h2></div>
+    <div class="chip-group" id="subjectGroup"></div>
+  </div>
+
+  <div class="card">
+    <div class="step-title"><span class="step-num">3</span><h2>Attainment</h2></div>
+    <div class="chip-group" id="attainmentGroup"></div>
+  </div>
+
+  <div class="card">
+    <div class="step-title"><span class="step-num">4</span><h2>Feedback Focus</h2></div>
+    <select id="focusSelect" class="tv-select"></select>
+    <div class="focus-hint">Options change to match the subject and year group you picked.</div>
+  </div>
+
+  <button class="btn btn-primary" id="generateBtn" disabled>✨ Generate Feedback</button>
+
+  <div class="card" id="resultsCard">
+    <div class="result-meta" id="resultMeta"></div>
+
+    <div class="result-block">
+      <div class="result-head">
+        <span class="result-label">Positive Feedback</span>
+        <button class="copy-btn" data-copy="positive">Copy</button>
+      </div>
+      <div class="result-text" id="out-positive"></div>
+    </div>
+
+    <div class="result-block improve">
+      <div class="result-head">
+        <span class="result-label">Improvement</span>
+        <button class="copy-btn" data-copy="improvement">Copy</button>
+      </div>
+      <div class="result-text" id="out-improvement"></div>
+    </div>
+
+    <div class="result-block next">
+      <div class="result-head">
+        <span class="result-label">Next Step</span>
+        <button class="copy-btn" data-copy="nextStep">Copy</button>
+      </div>
+      <div class="result-text" id="out-nextStep"></div>
+    </div>
+
+    <div class="actions-row">
+      <button class="btn btn-secondary" id="copyAllBtn">📋 Copy All</button>
+      <button class="btn btn-secondary" id="printBtn">🖨️ Print Slip</button>
+      <button class="btn btn-ghost" id="regenBtn">🔄 Generate Again</button>
+      <button class="btn btn-ghost" id="clearBtn">✕ Clear</button>
+    </div>
+  </div>
+
+  <div class="promo-card">
+    <h3>Want to mark a whole class?</h3>
+    <p>Feedback Fixer <strong>PRO</strong> turns this same trusted engine into a full class-marking workflow.</p>
+    <ul class="promo-list">
+      <li>Class lists &amp; pupil profiles</li>
+      <li>Batch feedback for ~30 pupils at once</li>
+      <li>8 more subjects (History, PE, Music &amp; more)</li>
+      <li>SEND, EAL &amp; High Attainer support</li>
+      <li>WWW/EBI, Two Stars &amp; a Wish, and more</li>
+      <li>Editable, saveable feedback history</li>
+      <li>Class print sheets for your records</li>
+      <li>All fully offline, no logins, ever</li>
+    </ul>
+    <a class="promo-btn" id="proLink" href="#" target="_blank" rel="noopener">See Feedback Fixer PRO →</a>
+  </div>
+
+</main>
+
+<footer class="tv-footer">
+  <strong>The Teacher Vault</strong> — Tools that give teachers their time back
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<div id="printArea">
+  <div class="print-slip">
+    <h2>The Teacher Vault — Feedback Slip</h2>
+    <div class="meta" id="printMeta"></div>
+    <div class="print-field"><div class="lab">Positive Feedback</div><div class="txt" id="printPositive"></div></div>
+    <div class="print-field"><div class="lab">Improvement</div><div class="txt" id="printImprovement"></div></div>
+    <div class="print-field"><div class="lab">Next Step</div><div class="txt" id="printNextStep"></div></div>
+  </div>
+</div>
+
+<script>
+const PRO_URL = "https://idamaemann.gumroad.com/l/uueuie";
+document.getElementById('proLink').href = PRO_URL;
+
+/* ============================================================
+   CONTENT BANK PLACEHOLDER
+   (This block gets replaced with the full curated content bank)
+   ============================================================ */
+const CONTENT_ENGLISH_WRITING = {
+  "Sentence structure": {
+    positive: {
+      WT: [
+        "You have written some full sentences that make sense when I read them back.",
+        "You can join two short sentences together using the word and.",
+        "You are beginning to put a capital letter and a full stop around some of your sentences."
+      ],
+      EXP: [
+        "You use a good mix of simple and compound sentences to keep your writing flowing.",
+        "You can join clauses correctly using conjunctions such as because, so and although.",
+        "You write sentences that consistently make sense and are easy for a reader to follow."
+      ],
+      GD: [
+        "You have crafted a range of complex and compound sentences that control the pace of your writing for effect.",
+        "You can vary your sentence length deliberately, using short sentences for impact and longer ones to build detail.",
+        "You demonstrate confident control of subordinate clauses, which adds sophistication to your writing style."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have written a few sentences without a verb, so they do not quite make sense yet.",
+        "You can run two ideas together without a break, which makes the sentence confusing to read.",
+        "You have several sentences that start with the same word, so your writing sounds repetitive."
+      ],
+      EXP: [
+        "You have a few sentences that are too long and lose their meaning by the end.",
+        "You can overuse the word and to join ideas instead of trying other conjunctions.",
+        "You include some sentences with a missing subject, so the meaning is not fully clear."
+      ],
+      GD: [
+        "You have a tendency to open several sentences the same way, which slightly reduces the impact of your variety.",
+        "You can lose control of a very long sentence occasionally, so the final clause does not quite agree with the first.",
+        "You use complex sentences well but sometimes miss a chance to use a short sentence for dramatic effect."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise reading one sentence aloud and checking it makes sense before you write the next one.",
+        "Try starting three sentences in your next piece of writing with a different word each time.",
+        "Underline the verb in five sentences to check that every sentence has one."
+      ],
+      EXP: [
+        "Try rewriting one long sentence as two shorter sentences to keep the meaning clear.",
+        "Circle every and in your writing and replace two of them with a different conjunction.",
+        "Check each sentence has a clear subject by asking who or what it is about."
+      ],
+      GD: [
+        "Investigate how a published author uses one-word or two-word sentences for impact and try the technique yourself.",
+        "Compare two of your paragraphs and rewrite one so the sentence openers are more varied.",
+        "Read your longest sentence aloud and check the ending still agrees with how the sentence began."
+      ]
+    }
+  },
+  "Capital letters": {
+    positive: {
+      WT: [
+        "You have used a capital letter at the start of your name in several places.",
+        "You can remember a capital letter at the start of a sentence sometimes.",
+        "You show that you know the days of the week need a capital letter."
+      ],
+      EXP: [
+        "You use capital letters correctly for the start of every sentence.",
+        "You can apply capital letters accurately to names of people and places.",
+        "You demonstrate consistent use of capital letters for the pronoun I."
+      ],
+      GD: [
+        "You demonstrate secure and consistent control of capital letters across every sentence, title and proper noun.",
+        "You can apply capital letters accurately even within complex sentences containing embedded titles or names.",
+        "You show a thorough understanding of when capital letters are and are not required in your writing."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have some capital letters appearing in the middle of words by accident.",
+        "You can forget a capital letter at the start of a new sentence.",
+        "You include lower case letters for your own name in a few places."
+      ],
+      EXP: [
+        "You have a few capital letters missing for proper nouns such as days or months.",
+        "You can miss a capital letter after a question mark when a new sentence follows.",
+        "You include an occasional capital letter used for emphasis where it is not needed."
+      ],
+      GD: [
+        "You have almost flawless capital letter accuracy, though a rare typo appears in a long piece of writing.",
+        "You can occasionally forget a capital letter for a title such as Doctor or Captain before a name.",
+        "You use capital letters correctly but sometimes miss the chance to check a whole piece in one final read."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise writing your full name with a capital letter every single time.",
+        "Check the first word of every sentence for a capital letter.",
+        "Circle any capital letters that appear in the wrong place in one paragraph."
+      ],
+      EXP: [
+        "Underline every proper noun in your writing and check it has a capital letter.",
+        "Read your writing again and check a capital letter follows every question mark.",
+        "Find one sentence where you used a capital letter for emphasis and correct it."
+      ],
+      GD: [
+        "Proofread your longest piece of writing specifically checking titles such as Doctor or Captain for capital letters.",
+        "Ask a partner to check your work for any missed capital letters after a colon or in a list.",
+        "List five proper nouns from your topic and check each one has a capital letter in your writing."
+      ]
+    }
+  },
+  "Punctuation": {
+    positive: {
+      WT: [
+        "You have used a full stop at the end of some of your sentences.",
+        "You can remember a question mark when you write a question.",
+        "You show that you know a sentence needs an end punctuation mark."
+      ],
+      EXP: [
+        "You use full stops, question marks and exclamation marks accurately across your writing.",
+        "You can use commas correctly to separate items in a list.",
+        "You include apostrophes correctly to show that something belongs to someone."
+      ],
+      GD: [
+        "You demonstrate sophisticated use of colons, semi-colons and dashes to add precision to your sentences.",
+        "You can punctuate direct speech accurately, including new lines for each new speaker.",
+        "You use a wide range of punctuation, including brackets and ellipses, to create deliberate effects for the reader."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have some sentences that are missing a full stop at the end.",
+        "You can forget to use a capital letter after a full stop.",
+        "You include commas in places where a full stop should be used instead."
+      ],
+      EXP: [
+        "You have a few commas missing before conjunctions such as but in a compound sentence.",
+        "You can confuse the apostrophe for possession with the apostrophe for a contraction.",
+        "You use speech marks but sometimes forget the comma that should come before them."
+      ],
+      GD: [
+        "You have strong control of advanced punctuation but occasionally overuse the exclamation mark for effect.",
+        "You can use a semi-colon correctly in most cases but sometimes choose one where a comma would flow better.",
+        "You use ellipses well to build tension but do not always vary this with other techniques."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise reading your writing aloud and adding a full stop where you pause.",
+        "Check the end of every sentence for a full stop, question mark or exclamation mark.",
+        "Circle three sentences and check each one ends with the correct punctuation mark."
+      ],
+      EXP: [
+        "Find one compound sentence and check a comma is used correctly before the conjunction.",
+        "Rewrite three sentences with apostrophes, checking each one shows possession or contraction correctly.",
+        "Underline your speech marks and check a comma appears just before the opening mark."
+      ],
+      GD: [
+        "Investigate how semi-colons and colons are used differently in a text you are reading and try both.",
+        "Find every exclamation mark in a piece of writing and remove any that do not add real impact.",
+        "Compare your use of ellipses with another punctuation technique and try swapping one for variety."
+      ]
+    }
+  },
+  "Spelling": {
+    positive: {
+      WT: [
+        "You have spelled several common exception words correctly, such as said and was.",
+        "You can spell most of your Year group's key words accurately.",
+        "You show a growing understanding of the sounds that different letters make."
+      ],
+      EXP: [
+        "You use correct spelling for the majority of common exception words in your writing.",
+        "You can apply spelling rules for adding suffixes such as ing and ed accurately.",
+        "You demonstrate good use of a dictionary to check uncertain spellings independently."
+      ],
+      GD: [
+        "You demonstrate excellent spelling accuracy across a wide range of complex and less common vocabulary.",
+        "You can apply a variety of spelling strategies, including morphology and etymology, to spell unfamiliar words.",
+        "You use ambitious vocabulary and spell almost all of it correctly, including subject specific terms."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have a few high frequency words spelled incorrectly, such as thay for they.",
+        "You can muddle the letters b and d when you are writing quickly.",
+        "You include some words where a sound is missing, such as jupmed for jumped."
+      ],
+      EXP: [
+        "You have a few homophones muddled, such as their and there, in your writing.",
+        "You can misspell some longer words with unusual letter patterns, such as because or beautiful.",
+        "You include double letters incorrectly in some words, such as runing instead of running."
+      ],
+      GD: [
+        "You have near perfect spelling but occasionally slip on a rare homophone under time pressure.",
+        "You can spell ambitious vocabulary correctly but sometimes choose a simpler word to avoid the risk.",
+        "You use complex words accurately but a silent letter pattern occasionally catches you out."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise writing the word they five times, checking the letter order carefully.",
+        "Look at the letters b and d on a poster and practise forming each one correctly.",
+        "Say the word jumped slowly and write down every sound you can hear."
+      ],
+      EXP: [
+        "Find three homophones in your writing and check each one is the correct word for its meaning.",
+        "Practise writing beautiful and because three times each, checking the tricky part of each word.",
+        "Circle any words ending in a short vowel and check if you need to double the final letter."
+      ],
+      GD: [
+        "Investigate the word origin of one tricky word you used to help you remember its spelling.",
+        "Choose one ambitious word you avoided and add it correctly into your next piece of writing.",
+        "List any words with silent letters from your writing and practise each one three times."
+      ]
+    }
+  },
+  "Handwriting/presentation": {
+    positive: {
+      WT: [
+        "You have formed most of your letters the correct way round this week.",
+        "You can sit some of your letters on the line more accurately than before.",
+        "You show care when you write your name at the top of your page."
+      ],
+      EXP: [
+        "You use a consistent and legible handwriting style across most of your writing.",
+        "You can join your letters accurately in most words without losing legibility.",
+        "You demonstrate neat presentation, with a clear title and tidy margins on your page."
+      ],
+      GD: [
+        "You demonstrate a fluent, consistently joined handwriting style that remains neat even in longer pieces.",
+        "You can present your work with a confident, legible style that reflects real pride in your writing.",
+        "You use consistently sized and spaced letters, which makes your work a pleasure to read."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have some letters that are still the wrong way round, such as a backwards s.",
+        "You can write letters of very different sizes within the same word.",
+        "You include some crossings out that make your page harder to read."
+      ],
+      EXP: [
+        "You have a few letters that sit above or below the line inconsistently.",
+        "You can lose neatness towards the end of a longer piece of writing.",
+        "You include some smudges or crossings out that could be avoided with more care."
+      ],
+      GD: [
+        "You have excellent handwriting but occasionally rush the final sentence of a piece.",
+        "You can maintain a fluent joined style but sometimes let letter size vary under time pressure.",
+        "You show consistently beautiful presentation, though speed occasionally affects your neatness near the end of a task."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise writing the letter s correctly five times using the handwriting sheet.",
+        "Trace over five letters that are the correct size before writing your own.",
+        "Use a single neat line to cross out any mistakes instead of scribbling."
+      ],
+      EXP: [
+        "Practise five joined letter pairs that you find tricky using a handwriting sheet.",
+        "Check the last paragraph of your writing and rewrite one line more neatly.",
+        "Use a ruler to cross out any mistakes so your page stays tidy."
+      ],
+      GD: [
+        "Practise writing your final sentence at the same careful pace as your opening sentence.",
+        "Time yourself writing one paragraph and check the letter size stays consistent throughout.",
+        "Investigate a handwriting style you admire and try applying one feature of it to your own."
+      ]
+    }
+  },
+  "Vocabulary": {
+    positive: {
+      WT: [
+        "You have chosen some interesting words, such as huge or sparkly, instead of simple ones.",
+        "You can use a word bank to find a more exciting word for your writing.",
+        "You show growing confidence in choosing words that match the topic you are writing about."
+      ],
+      EXP: [
+        "You use a varied vocabulary that suits the purpose and audience of your writing.",
+        "You can choose precise verbs, such as dashed or whispered, instead of simple ones.",
+        "You include ambitious adjectives that add detail without overloading your sentences."
+      ],
+      GD: [
+        "You demonstrate a sophisticated vocabulary, selecting precise words that create a distinct impact on the reader.",
+        "You can choose vocabulary deliberately for connotation, such as selecting a word that suggests menace or calm.",
+        "You use figurative language and ambitious vocabulary confidently to shape the tone of your writing."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have used the word nice several times where a more exact word could be chosen.",
+        "You can rely on the same describing words, such as big and good, quite often.",
+        "You include some words that do not quite match the meaning you wanted to express."
+      ],
+      EXP: [
+        "You have a few repeated words in close sentences that could be varied for effect.",
+        "You can choose vocabulary that is accurate but sometimes a little too simple for the context.",
+        "You include some words that are ambitious but not always used with their correct meaning."
+      ],
+      GD: [
+        "You have excellent vocabulary choices but occasionally choose a word for effect that slightly disrupts the sentence flow.",
+        "You can select sophisticated words well but sometimes miss an opportunity to build a semantic field.",
+        "You use ambitious vocabulary confidently, though a simpler synonym would occasionally read more naturally."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Choose three words from a word bank to replace nice in your next piece.",
+        "Try finding a different word for good every time you want to use it.",
+        "Circle the word big twice in your writing and swap it for a stronger word."
+      ],
+      EXP: [
+        "Find one repeated word in a paragraph and replace it with a synonym.",
+        "Look at a thesaurus entry for one simple word and choose a more precise alternative.",
+        "Check the meaning of one ambitious word you used and confirm it fits the sentence."
+      ],
+      GD: [
+        "Investigate the connotations of two similar words and choose the one that best matches your intended tone.",
+        "List three words connected to one theme and build a semantic field into your next paragraph.",
+        "Read one ambitious sentence aloud and check the word choice still sounds natural to a reader."
+      ]
+    }
+  },
+  "Paragraphing": {
+    positive: {
+      WT: [
+        "You have started a new line when you began writing about something different.",
+        "You can begin to group a few related sentences together on the page.",
+        "You show an early understanding that a new idea can start a new part of your writing."
+      ],
+      EXP: [
+        "You use paragraphs to organise your writing into clear, related sections.",
+        "You can start a new paragraph when the time, place or topic changes.",
+        "You demonstrate a logical structure by grouping similar ideas within each paragraph."
+      ],
+      GD: [
+        "You demonstrate skilful control of paragraphing, using length and structure deliberately to shape the reader's experience.",
+        "You can use a single sentence paragraph for dramatic effect at a key moment in your writing.",
+        "You write sophisticated topic sentences that organise each paragraph and guide the reader through your ideas."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have written your whole piece as one block without starting any new paragraphs.",
+        "You can mix two different ideas together in the same section of writing.",
+        "You include a new paragraph in the wrong place, splitting one idea into two."
+      ],
+      EXP: [
+        "You have a couple of paragraphs that contain two different ideas instead of one.",
+        "You can forget to indent or skip a line clearly enough to show a new paragraph.",
+        "You include a paragraph that is much shorter than the others, which breaks the flow."
+      ],
+      GD: [
+        "You have strong paragraph control but occasionally a topic sentence does not quite match the rest of the paragraph.",
+        "You can structure paragraphs well but sometimes miss a chance to use paragraph length for effect.",
+        "You use varied paragraphs confidently, though the final paragraph occasionally feels rushed compared to the rest."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise starting a new line each time you write about a different event.",
+        "Try grouping three sentences about the same idea together on one line.",
+        "Look at where one idea ends and mark where a new paragraph should begin."
+      ],
+      EXP: [
+        "Find one paragraph with two ideas and split it into two separate paragraphs.",
+        "Check each new paragraph is clearly shown with an indent or skipped line.",
+        "Read your shortest paragraph and add one more detail so it matches the others."
+      ],
+      GD: [
+        "Investigate how a one sentence paragraph is used in a text you are reading and try the technique.",
+        "Compare your topic sentences across two paragraphs and rewrite one so it matches the content more closely.",
+        "Rewrite your final paragraph with the same care and detail as your opening paragraph."
+      ]
+    }
+  },
+  "Description": {
+    positive: {
+      WT: [
+        "You have used a simple adjective to describe how a character looks.",
+        "You can describe a setting using at least one colour or size word.",
+        "You show an early attempt to describe how a character is feeling."
+      ],
+      EXP: [
+        "You use a range of adjectives and adverbs to build a clear picture for the reader.",
+        "You can describe a setting using more than one of the five senses.",
+        "You include description of a character's feelings that helps the reader understand them."
+      ],
+      GD: [
+        "You demonstrate skilful use of figurative language, such as metaphor and personification, to bring your setting to life.",
+        "You can build an atmosphere through carefully chosen description that affects how the reader feels.",
+        "You use show not tell techniques consistently, allowing the reader to infer a character's emotions."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have described a setting using only one short sentence with little detail.",
+        "You can repeat the same adjective, such as big, to describe several different things.",
+        "You include very little detail about how a character looks or feels."
+      ],
+      EXP: [
+        "You have some description that tells the reader a feeling instead of showing it.",
+        "You can describe what a character looks like but rarely how they feel inside.",
+        "You include some setting description that is accurate but not very vivid."
+      ],
+      GD: [
+        "You have strong figurative description but occasionally use a simile that feels slightly overused, such as as brave as a lion.",
+        "You can build atmosphere well but sometimes describe too many details at once, slowing the pace unnecessarily.",
+        "You use show not tell effectively, though one section would benefit from a shorter, more powerful image."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Add one more adjective to describe the setting in your next piece.",
+        "Try describing a character's face using a colour or size word.",
+        "Choose a feeling word to describe how your character feels in one scene."
+      ],
+      EXP: [
+        "Rewrite one sentence so it shows a character's feeling through their actions instead of telling it.",
+        "Add one sentence describing how your character feels during the main event.",
+        "Choose one setting sentence and add a smell or sound to make it more vivid."
+      ],
+      GD: [
+        "Investigate a fresh simile to replace one that feels overused, such as as brave as a lion.",
+        "Read your most detailed paragraph and remove one description that slows the pace down.",
+        "Try condensing one description into a single powerful image instead of several smaller details."
+      ]
+    }
+  },
+  "Grammar": {
+    positive: {
+      WT: [
+        "You have used the correct tense in most of your sentences this week.",
+        "You can match a singular subject to a singular verb in simple sentences.",
+        "You show growing understanding of when to use a or an correctly."
+      ],
+      EXP: [
+        "You use consistent tense throughout most of your writing.",
+        "You can apply subject verb agreement accurately in both simple and compound sentences.",
+        "You demonstrate secure use of pronouns so the reader always knows who is being discussed."
+      ],
+      GD: [
+        "You demonstrate sophisticated control of grammar, including the confident use of the passive voice for effect.",
+        "You can manipulate tense deliberately, such as using the past perfect to show one event happened before another.",
+        "You use modal verbs precisely to show degrees of possibility, such as might, could and must."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have mixed past and present tense within the same piece of writing.",
+        "You can write we was instead of we were in some sentences.",
+        "You include a or an incorrectly before some words."
+      ],
+      EXP: [
+        "You have an occasional tense slip when writing a longer piece.",
+        "You can use a pronoun without making it clear who it refers to.",
+        "You include a double negative in a small number of sentences, such as I don't want no dinner."
+      ],
+      GD: [
+        "You have excellent grammatical control but occasionally use the passive voice where the active voice would be more powerful.",
+        "You can use the past perfect accurately but do not always use it when it would clarify the order of events.",
+        "You use modal verbs well, though one or two choices could be more precise for the intended meaning."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise rewriting one paragraph so every verb stays in the past tense.",
+        "Say we were aloud three times and use it in a sentence of your own.",
+        "Sort five words into a and an groups depending on their first sound."
+      ],
+      EXP: [
+        "Read your longest piece and check the tense stays the same from start to finish.",
+        "Find one pronoun in your writing and check it is clear who it refers to.",
+        "Rewrite one sentence with a double negative so it only has one negative word."
+      ],
+      GD: [
+        "Find one passive sentence and rewrite it in the active voice to compare the effect.",
+        "Investigate a moment in your writing where the past perfect would clarify the order of two events.",
+        "Compare two modal verbs, such as might and must, and choose the one that best fits your sentence."
+      ]
+    }
+  },
+  "Organisation": {
+    positive: {
+      WT: [
+        "You have written your ideas in the order that they happened.",
+        "You can use a word such as first to begin your writing.",
+        "You show an early understanding of a beginning, middle and end."
+      ],
+      EXP: [
+        "You use time connectives to organise events clearly for the reader.",
+        "You can structure your writing with a clear beginning, middle and end.",
+        "You demonstrate good organisation by keeping related information together."
+      ],
+      GD: [
+        "You demonstrate sophisticated organisation, using structural devices such as flashback or foreshadowing to shape the reader's experience.",
+        "You can organise information logically across a whole text, guiding the reader with clear signposting.",
+        "You use a range of cohesive devices, such as pronouns and adverbials, to link ideas across paragraphs."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have written some ideas in the wrong order, which confuses the reader.",
+        "You can miss a clear ending to your piece of writing.",
+        "You include an idea that does not belong with the rest of your writing."
+      ],
+      EXP: [
+        "You have a few connectives repeated too often, such as then, then, then.",
+        "You can lose some structure in the middle section of a longer piece.",
+        "You include information in the wrong section, such as a fact appearing after the ending."
+      ],
+      GD: [
+        "You have strong overall structure but occasionally a structural device, such as flashback, is not clearly signposted.",
+        "You can organise your writing logically but sometimes miss a chance to link the ending back to the opening.",
+        "You use cohesive devices well, though one transition between sections feels a little abrupt."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise ordering three events using the words first, next and then.",
+        "Add one sentence at the end that clearly finishes your writing.",
+        "Find one idea that does not fit and remove it from your writing."
+      ],
+      EXP: [
+        "Replace two examples of then with a different time connective, such as after that.",
+        "Plan the middle section of your next piece using three bullet points before writing.",
+        "Move any information that is in the wrong place to a more suitable section."
+      ],
+      GD: [
+        "Investigate how a flashback is signposted clearly in a text you are reading and try the technique.",
+        "Compare your opening and ending paragraphs and add one link between them.",
+        "Rewrite one transition between sections so the change feels smoother for the reader."
+      ]
+    }
+  },
+  "Editing": {
+    positive: {
+      WT: [
+        "You have checked your writing and corrected one spelling mistake by yourself.",
+        "You can find a missing full stop when you read your work back.",
+        "You show a growing habit of reading your sentence again after writing it."
+      ],
+      EXP: [
+        "You use editing time well to correct spelling and punctuation errors independently.",
+        "You can identify where a sentence does not make sense and improve it.",
+        "You demonstrate the habit of reading your writing back critically before finishing."
+      ],
+      GD: [
+        "You demonstrate a sophisticated editing process, evaluating your own writing for both accuracy and effect.",
+        "You can identify where a sentence could be strengthened and make a purposeful, effective change.",
+        "You use editing to refine vocabulary and sentence structure, not just to correct surface errors."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have not yet checked your writing back before saying it is finished.",
+        "You can miss simple mistakes, such as a missing capital letter, when editing.",
+        "You include the same error in more than one sentence without noticing it."
+      ],
+      EXP: [
+        "You have a few errors that remain uncorrected after your editing time.",
+        "You can correct small mistakes but sometimes miss a chance to improve word choice.",
+        "You include edits that fix punctuation but leave the meaning of a sentence unclear."
+      ],
+      GD: [
+        "You have an excellent editing habit but occasionally focus only on accuracy rather than improving effect.",
+        "You can identify weaker sentences well but sometimes settle for the first improvement instead of the best one.",
+        "You show thoughtful editing throughout, though a final read for overall impact would strengthen your work further."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise reading one sentence aloud and fixing any mistake you hear.",
+        "Check your first paragraph for one missing capital letter or full stop.",
+        "Find one repeated mistake and correct every place it appears."
+      ],
+      EXP: [
+        "Read your writing once more and check the meaning of your least clear sentence.",
+        "Choose one word in your writing to upgrade to a more precise alternative.",
+        "Find one sentence with an edit and check it now makes complete sense."
+      ],
+      GD: [
+        "Investigate one sentence you edited for accuracy and see if it could also be improved for effect.",
+        "Compare two possible improvements to one sentence and choose the version with the greater impact.",
+        "Read your whole piece one final time, checking specifically for overall impact rather than errors."
+      ]
+    }
+  },
+  "Overall effort": {
+    positive: {
+      WT: [
+        "You have tried hard to finish your writing within the lesson time.",
+        "You can stay focused on your work for longer than you did last week.",
+        "You show pride in your work by writing your name and title neatly."
+      ],
+      EXP: [
+        "You use your full lesson time productively to complete a piece of writing.",
+        "You can persevere with a challenging task instead of giving up.",
+        "You demonstrate consistent effort across every piece of writing this term."
+      ],
+      GD: [
+        "You demonstrate exceptional commitment, consistently producing your best possible work in every lesson.",
+        "You can challenge yourself with ambitious tasks rather than choosing the easiest option available.",
+        "You show real independence and resilience, redrafting your work without being asked to."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have stopped writing before the end of the lesson on a few occasions.",
+        "You can lose focus partway through a task and need reminders to continue.",
+        "You include less detail than usual when a task feels difficult."
+      ],
+      EXP: [
+        "You have a few pieces of writing that are shorter than your usual standard.",
+        "You can rush the ending of a piece when time starts to run out.",
+        "You include less care in your presentation when you are tired or rushed."
+      ],
+      GD: [
+        "You have outstanding effort overall but occasionally choose a safe option rather than a more ambitious challenge.",
+        "You can sustain excellent focus for most lessons, though energy dips slightly during longer writing tasks.",
+        "You demonstrate strong independence, though sharing your redrafting process with others would benefit the class too."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise writing for five extra minutes before checking the clock next time.",
+        "Try setting yourself a small goal, such as three sentences, before you have a break.",
+        "Ask for help as soon as a task feels difficult instead of stopping."
+      ],
+      EXP: [
+        "Plan your time so the ending of your writing gets the same care as the opening.",
+        "Check the length of your next piece against your best previous work.",
+        "Take a short pause and reset your pace whenever you notice yourself rushing."
+      ],
+      GD: [
+        "Choose one ambitious challenge task instead of your usual option in the next lesson.",
+        "Investigate a strategy to maintain focus and energy during a longer writing task.",
+        "Explain your redrafting process to a partner so they can learn from your approach."
+      ]
+    }
+  }
+};
+
+const CONTENT_READING = {
+  "Retrieval": {
+    positive: {
+      WT: [
+        "You have found a simple fact directly stated in the text, such as the character's name.",
+        "You can point to the sentence in the text that answers a straightforward question.",
+        "You show growing confidence in finding an answer when it is written in one place."
+      ],
+      EXP: [
+        "You use skimming and scanning to locate specific information quickly and accurately.",
+        "You can find and record more than one piece of information from the same text.",
+        "You demonstrate accuracy when retrieving facts, dates and names from a passage."
+      ],
+      GD: [
+        "You demonstrate rapid and precise retrieval skills, locating specific details across long or complex texts.",
+        "You can cross reference information from different parts of a text to build a complete answer.",
+        "You use retrieval skills efficiently, selecting only the most relevant detail to answer a precise question."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have given an answer that is not actually stated anywhere in the text.",
+        "You can struggle to find information when it is not on the first page.",
+        "You include a retrieval answer that is close but not exactly what the question asked."
+      ],
+      EXP: [
+        "You have a few answers that mix up details from two different parts of the text.",
+        "You can find the right paragraph but sometimes copy the wrong sentence within it.",
+        "You include an answer that is only partly correct because you stopped reading too soon."
+      ],
+      GD: [
+        "You have excellent retrieval accuracy but occasionally include an extra detail that was not asked for.",
+        "You can cross reference information well, though one connection between two sections was slightly overlooked.",
+        "You use retrieval skills confidently, though double checking a precise detail would remove a small error."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise underlining the exact sentence that answers a simple question in the text.",
+        "Look through the whole page, not just the first paragraph, before answering.",
+        "Check your answer against the question to see if it matches exactly."
+      ],
+      EXP: [
+        "Find two separate facts about the same character and record them accurately.",
+        "Reread the paragraph you found and check you have copied the correct sentence.",
+        "Read to the end of the paragraph before deciding your final answer."
+      ],
+      GD: [
+        "Practise answering a question using only the exact detail needed, removing anything extra.",
+        "Investigate a question that requires linking two separate sections of a longer text.",
+        "Compare your answer with the text one more time to check every precise detail matches."
+      ]
+    }
+  },
+  "Inference": {
+    positive: {
+      WT: [
+        "You have made a simple guess about a character's feeling using a picture clue.",
+        "You can suggest how a character might be feeling based on what they say.",
+        "You show an early understanding that some answers are not written directly in the text."
+      ],
+      EXP: [
+        "You use evidence from the text to support your inferences about character feelings.",
+        "You can infer a character's motive by looking closely at their actions and words.",
+        "You demonstrate secure understanding that inference requires evidence plus your own thinking."
+      ],
+      GD: [
+        "You demonstrate sophisticated inference skills, drawing subtle conclusions from tone, word choice and structure.",
+        "You can infer a character's hidden feelings even when the text deliberately withholds direct description.",
+        "You use multiple pieces of evidence together to build a nuanced and well supported inference."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have given an inference that does not match any clue in the text.",
+        "You can find it hard to explain why you think a character feels a certain way.",
+        "You include an answer that only repeats what the text says instead of inferring."
+      ],
+      EXP: [
+        "You have a few inferences that are reasonable but not fully supported by the text.",
+        "You can infer a feeling accurately but sometimes struggle to explain the reasoning behind it.",
+        "You include an inference based on only one clue when the text offers more than one."
+      ],
+      GD: [
+        "You have excellent inference skills but occasionally settle for an obvious conclusion rather than a subtler one.",
+        "You can infer meaning from word choice well, though tone is sometimes an underused source of evidence.",
+        "You use strong evidence to build your inferences, though comparing them against an alternative interpretation would deepen your answer."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise saying how a character feels and pointing to the clue that shows it.",
+        "Look at one picture clue and describe what it tells you about the character.",
+        "Try answering the question with a guess, then explain the clue behind it."
+      ],
+      EXP: [
+        "Find a second clue in the text to support the inference you have already made.",
+        "Practise explaining your reasoning using the word because after every inference.",
+        "Reread the paragraph and check for any extra clues you may have missed."
+      ],
+      GD: [
+        "Investigate the writer's tone in one paragraph and use it as evidence for a deeper inference.",
+        "Explain two possible interpretations of a character's motive and justify which one is stronger.",
+        "Compare an obvious inference with a subtler one and explain why the subtler one is better supported."
+      ]
+    }
+  },
+  "Prediction": {
+    positive: {
+      WT: [
+        "You have made a sensible guess about what might happen next in the story.",
+        "You can use the front cover to predict what the book might be about.",
+        "You show growing confidence in predicting an ending based on the pictures."
+      ],
+      EXP: [
+        "You use clues from the text to make sensible and well reasoned predictions.",
+        "You can adjust your prediction when new information appears later in the text.",
+        "You demonstrate an understanding that predictions should be based on evidence, not just imagination."
+      ],
+      GD: [
+        "You demonstrate sophisticated prediction skills, using subtle clues such as foreshadowing to anticipate plot developments.",
+        "You can justify a prediction with multiple pieces of evidence drawn from across the text.",
+        "You use your prediction skills to evaluate how effectively a writer builds tension or suspense."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have made a prediction that does not connect to anything in the story so far.",
+        "You can find it hard to explain why you think something will happen next.",
+        "You include a prediction that repeats an event that has already happened."
+      ],
+      EXP: [
+        "You have a few predictions that are plausible but not clearly linked to textual evidence.",
+        "You can make a strong initial prediction but sometimes forget to revisit it as the text develops.",
+        "You include a prediction without explaining which part of the text influenced your thinking."
+      ],
+      GD: [
+        "You have excellent predictive reasoning but occasionally overlook a subtler clue in favour of an obvious one.",
+        "You can justify predictions with strong evidence, though considering an alternative outcome would add depth.",
+        "You use foreshadowing well as evidence, though explaining its effect on the reader would strengthen your answer further."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise making one prediction and pointing to the clue that gave you the idea.",
+        "Look at the front cover and predict one thing about the story before reading.",
+        "Try predicting what happens on the next page using the last sentence as a clue."
+      ],
+      EXP: [
+        "Find the specific sentence that led to your prediction and note it down.",
+        "Revisit your earlier prediction after reading further and check if it still makes sense.",
+        "Explain your prediction using the phrase I think this because to justify your idea."
+      ],
+      GD: [
+        "Investigate one subtle clue you may have overlooked and explain how it changes your prediction.",
+        "Compare your prediction with a plausible alternative and explain which is better supported by the text.",
+        "Explain how a moment of foreshadowing affects the reader's feeling of tension or suspense."
+      ]
+    }
+  },
+  "Vocabulary": {
+    positive: {
+      WT: [
+        "You have found the meaning of a simple word by looking at the picture next to it.",
+        "You can use a sentence clue to work out what an unfamiliar word might mean.",
+        "You show growing confidence in asking what a tricky word means when reading."
+      ],
+      EXP: [
+        "You use context clues effectively to work out the meaning of unfamiliar words.",
+        "You can explain the meaning of a word using your own words rather than copying the text.",
+        "You demonstrate a growing bank of vocabulary that helps you understand a wider range of texts."
+      ],
+      GD: [
+        "You demonstrate a sophisticated understanding of how word choice affects tone, mood and meaning.",
+        "You can explain the connotations of a word and why the writer chose it over a simpler alternative.",
+        "You use your wide vocabulary knowledge to infer the meaning of unfamiliar and ambitious words confidently."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have skipped over an unfamiliar word instead of trying to work out its meaning.",
+        "You can guess a word's meaning without checking it against the rest of the sentence.",
+        "You include an answer that shows the word was not fully understood."
+      ],
+      EXP: [
+        "You have a few word meanings that are close but not quite precise enough.",
+        "You can find a synonym for a word but sometimes choose one that does not fully match.",
+        "You include a definition that is accurate but relies too heavily on copying the text."
+      ],
+      GD: [
+        "You have excellent vocabulary understanding but occasionally explain a word's meaning without discussing its effect.",
+        "You can identify connotation well, though comparing it with a simpler synonym would deepen your explanation.",
+        "You use context clues skilfully, though explaining the writer's precise intention would add further depth."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise finding one tricky word and using the picture to help work out its meaning.",
+        "Look at the words around a tricky word and guess its meaning from the sentence.",
+        "Ask what one new word means and write down a simple definition."
+      ],
+      EXP: [
+        "Explain the meaning of one word entirely in your own words without copying the text.",
+        "Check a synonym you have chosen against a dictionary to see if it fully matches.",
+        "Find a second context clue in the text to check your understanding of one word."
+      ],
+      GD: [
+        "Investigate why the writer chose one ambitious word instead of a simpler alternative.",
+        "Compare the connotations of two similar words and explain which fits the mood of the text.",
+        "Explain the effect of one word choice on the reader's feelings about a character or setting."
+      ]
+    }
+  },
+  "Explanation": {
+    positive: {
+      WT: [
+        "You have given a simple reason for your answer using the word because.",
+        "You can explain in one sentence why you chose a particular answer.",
+        "You show an early attempt to link your answer back to the question."
+      ],
+      EXP: [
+        "You use clear reasoning to explain your answers, referring back to the text.",
+        "You can explain your thinking in more than one sentence when a question requires it.",
+        "You demonstrate the ability to link your explanation directly to specific evidence."
+      ],
+      GD: [
+        "You demonstrate sophisticated reasoning, building a chain of explanation that fully justifies your interpretation.",
+        "You can explain complex ideas clearly, linking evidence, inference and effect together in one coherent answer.",
+        "You use precise academic language to explain your thinking in a way that is easy to follow."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have given an answer without any explanation of your thinking.",
+        "You can struggle to put your explanation into a full sentence.",
+        "You include an explanation that does not clearly connect to your answer."
+      ],
+      EXP: [
+        "You have a few explanations that are a little vague and could be more specific.",
+        "You can explain your answer but sometimes forget to mention the evidence behind it.",
+        "You include an explanation that restates the question rather than adding new reasoning."
+      ],
+      GD: [
+        "You have excellent explanatory skill but occasionally a chain of reasoning could be linked even more tightly.",
+        "You can explain complex ideas well, though a counter argument would strengthen your explanation further.",
+        "You use precise language confidently, though one explanation would benefit from a clearer concluding sentence."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise finishing the sentence I think this because after every answer.",
+        "Try explaining your answer to a partner using one full sentence.",
+        "Check your explanation actually matches the answer you gave."
+      ],
+      EXP: [
+        "Add one specific detail from the text to make your explanation more precise.",
+        "Check your explanation includes a piece of evidence, not just an opinion.",
+        "Rewrite one explanation so it adds new reasoning instead of repeating the question."
+      ],
+      GD: [
+        "Investigate a counter argument to your explanation and address it in your answer.",
+        "Compare two pieces of evidence and explain which one gives the stronger support for your point.",
+        "Write a concluding sentence that sums up your explanation clearly for the reader."
+      ]
+    }
+  },
+  "Evidence from text": {
+    positive: {
+      WT: [
+        "You have found one sentence in the text that supports your answer.",
+        "You can copy a short phrase from the text to back up your idea.",
+        "You show an early understanding that answers should be supported by the text."
+      ],
+      EXP: [
+        "You use quotations accurately to support the points you make about a text.",
+        "You can select the most relevant piece of evidence rather than the first one you find.",
+        "You demonstrate the habit of linking every point you make to evidence from the text."
+      ],
+      GD: [
+        "You demonstrate skilful selection of evidence, choosing precise quotations that best support a sophisticated point.",
+        "You can weave short embedded quotations smoothly into your own sentences to support an argument.",
+        "You use multiple pieces of evidence together, comparing them to build a well rounded and convincing answer."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have given an answer without finding any evidence to support it.",
+        "You can copy the wrong sentence when trying to find supporting evidence.",
+        "You include evidence that does not actually match the point you are making."
+      ],
+      EXP: [
+        "You have a few quotations that are only loosely connected to the point being made.",
+        "You can find relevant evidence but sometimes forget to explain how it supports your point.",
+        "You include a quotation without punctuating it correctly using speech marks."
+      ],
+      GD: [
+        "You have excellent evidence selection but occasionally a quotation is slightly longer than it needs to be.",
+        "You can embed quotations well, though one point would benefit from a second supporting quotation.",
+        "You show effective comparison of evidence, though explaining why one piece is stronger than another would add further depth."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise finding one sentence in the text that matches your answer.",
+        "Underline the exact phrase in the text that supports your idea.",
+        "Check the evidence you found actually matches the point you made."
+      ],
+      EXP: [
+        "Choose the strongest piece of evidence from two options and explain your choice.",
+        "Add one sentence explaining how your quotation supports the point you made.",
+        "Check your quotation is punctuated correctly with speech marks around it."
+      ],
+      GD: [
+        "Practise shortening one quotation so it includes only the most essential words.",
+        "Find a second piece of evidence to support a point that currently only has one.",
+        "Explain why one piece of evidence is more convincing than another you have used."
+      ]
+    }
+  },
+  "Summarising": {
+    positive: {
+      WT: [
+        "You have retold the main event of the story in your own words.",
+        "You can put the events of a story in the order they happened.",
+        "You show an early ability to say what a short text was mainly about."
+      ],
+      EXP: [
+        "You use your own words to summarise a text concisely and accurately.",
+        "You can identify the main points of a text without including unnecessary detail.",
+        "You demonstrate a clear understanding of the difference between key events and minor detail."
+      ],
+      GD: [
+        "You demonstrate sophisticated summarising skills, condensing a complex text into a concise and accurate overview.",
+        "You can identify the central theme of a text, not just the sequence of events.",
+        "You use precise language to summarise, capturing key ideas without losing important nuance."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have included too many small details instead of the main events.",
+        "You can miss out an important event when retelling the story.",
+        "You include events in the wrong order when summarising a story."
+      ],
+      EXP: [
+        "You have a few summaries that are a little too long and include unnecessary detail.",
+        "You can identify most key points but occasionally miss one important event.",
+        "You include some copied sentences instead of using your own words to summarise."
+      ],
+      GD: [
+        "You have excellent summarising skills but occasionally a summary could be condensed even further.",
+        "You can identify the central theme well, though linking it to a specific piece of evidence would strengthen it.",
+        "You show precise summarising skills, though one summary would benefit from mentioning the writer's overall purpose."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise choosing the three most important events from a story.",
+        "Try retelling a story using only the beginning, middle and end.",
+        "Check the order of your summary matches the order of the story."
+      ],
+      EXP: [
+        "Reduce your summary by one sentence, removing the least important detail.",
+        "Check your summary against the text to see if any key event is missing.",
+        "Rewrite one copied sentence in your summary using your own words."
+      ],
+      GD: [
+        "Practise condensing your summary into two sentences instead of three.",
+        "Link the central theme you identified to one specific piece of evidence from the text.",
+        "Explain the writer's overall purpose in one additional sentence at the end of your summary."
+      ]
+    }
+  },
+  "Fluency": {
+    positive: {
+      WT: [
+        "You have read a short sentence aloud without needing much help.",
+        "You can sound out an unfamiliar word using the letter sounds you know.",
+        "You show growing confidence when reading familiar words aloud."
+      ],
+      EXP: [
+        "You use appropriate expression when reading aloud, matching your voice to the punctuation.",
+        "You can read at a steady pace, pausing accurately at commas and full stops.",
+        "You demonstrate secure decoding skills, reading most unfamiliar words correctly using phonics."
+      ],
+      GD: [
+        "You demonstrate excellent fluency, reading with expression that brings out the meaning and mood of the text.",
+        "You can adjust your pace and tone skilfully to reflect changes in atmosphere within a text.",
+        "You use fluent, expressive reading to help a listener fully understand character and emotion."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have paused for a long time on several words during reading aloud.",
+        "You can lose your place in the text when reading aloud for a while.",
+        "You include some words that are read incorrectly without noticing the mistake."
+      ],
+      EXP: [
+        "You have a tendency to read a little too quickly, which occasionally affects your accuracy.",
+        "You can read fluently but sometimes miss the expression suggested by an exclamation mark.",
+        "You include a small number of self corrections that interrupt the flow of your reading."
+      ],
+      GD: [
+        "You have excellent fluency overall but occasionally a change in mood is not fully reflected in your tone.",
+        "You can adjust pace well, though a dramatic moment would benefit from an even greater change in expression.",
+        "You show strong expression when reading, though pausing slightly longer at a key moment would increase the impact."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise reading one page aloud every day this week to build confidence.",
+        "Use your finger to help keep your place while reading aloud.",
+        "Reread a sentence that did not make sense to check the words are correct."
+      ],
+      EXP: [
+        "Practise reading one paragraph slightly slower to improve your accuracy.",
+        "Find one exclamation mark in the text and practise reading that sentence with expression.",
+        "Reread a tricky sentence silently first, then read it aloud smoothly."
+      ],
+      GD: [
+        "Practise reading a dramatic moment aloud with an even greater change in pace and tone.",
+        "Find one change in mood within a text and adjust your expression to match it.",
+        "Try pausing slightly longer before a key moment to build tension for the listener."
+      ]
+    }
+  }
+};
+
+const CONTENT_MATHS = {
+  "Accuracy": {
+    positive: {
+      WT: [
+        "You have got most of the single-digit addition sums correct on this page.",
+        "You can add two-digit numbers accurately when there is no regrouping needed.",
+        "You are getting more of your subtraction answers right when you use the number line."
+      ],
+      EXP: [
+        "You have worked out almost every calculation on this page correctly.",
+        "You can add and subtract three-digit numbers accurately, including when regrouping is needed.",
+        "You are consistently checking your answers, which is helping you spot mistakes before you finish."
+      ],
+      GD: [
+        "You have completed every calculation on this page with complete accuracy, including the trickier decimal questions.",
+        "You can solve multi-step calculations precisely, keeping track of place value throughout.",
+        "You demonstrate a high level of accuracy even when working with larger numbers and mixed operations."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have made small mistakes when carrying numbers over in your column addition.",
+        "You can find the right answer sometimes, but a few of your subtraction sums have the wrong digit.",
+        "You are still swapping some numbers around, such as writing 51 instead of 15."
+      ],
+      EXP: [
+        "You have made a small error in question 6, where you subtracted the wrong digit in the tens column.",
+        "You can complete most calculations correctly, but two of your multiplication answers need rechecking.",
+        "You are close with question 9, but the final answer does not match your written method."
+      ],
+      GD: [
+        "You have made one small slip in question 12, rounding a decimal incorrectly in the final step.",
+        "You can work accurately most of the time, though your answer to the fraction question needs a second check.",
+        "You are usually precise, but a copying error changed your final digit in question 8."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise five column addition sums, checking each digit before moving to the next column.",
+        "Try circling the tens and units in each number before you start subtracting.",
+        "Use a hundred square to check that your answers to the addition questions are correct."
+      ],
+      EXP: [
+        "Check your answer to question 6 by adding the two numbers back together.",
+        "Try redoing questions 4 and 9 using the inverse operation to see if you get the same numbers.",
+        "Use estimation before you calculate so you can spot an answer that looks wrong."
+      ],
+      GD: [
+        "Check question 12 again, paying close attention to the decimal point when you round.",
+        "Try using a different method to solve question 8 and compare the two answers.",
+        "Explain to a partner how you checked your accuracy on the fraction question."
+      ]
+    }
+  },
+  "Calculation": {
+    positive: {
+      WT: [
+        "You have used counting on to work out simple addition calculations.",
+        "You can complete addition calculations up to 20 using a number line.",
+        "You are starting to use known number bonds to help with your calculations."
+      ],
+      EXP: [
+        "You have used column addition and subtraction accurately across this page.",
+        "You can calculate confidently with two-digit and three-digit numbers using formal methods.",
+        "You are applying the correct method for each calculation, including regrouping where needed."
+      ],
+      GD: [
+        "You have calculated efficiently with large numbers, choosing methods that suit each problem.",
+        "You can carry out multi-step calculations involving all four operations with confidence.",
+        "You demonstrate flexible calculation strategies, such as partitioning numbers to make mental maths quicker."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have miscounted on the number line, which has led to a few wrong answers.",
+        "You can add small numbers but you are still unsure how to subtract when the first number is smaller.",
+        "You are leaving out a step in your calculation, so the final answer does not match your working."
+      ],
+      EXP: [
+        "You have used the correct method but rushed the regrouping step in question 5.",
+        "You can calculate most sums correctly, though your short multiplication needs another look.",
+        "You are close in question 7, but the order of operations has been mixed up, making the answer incorrect."
+      ],
+      GD: [
+        "You have chosen an efficient method for most calculations, but long division in question 10 needs refining.",
+        "You can calculate accurately, though you sometimes skip explaining why you chose that method.",
+        "You are accurate in your calculations but could simplify your method for question 10 to save time."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise counting on from the larger number when adding two amounts together.",
+        "Try using cubes to show each step of your subtraction calculation.",
+        "Look at each calculation again and check you have used the correct operation."
+      ],
+      EXP: [
+        "Check the regrouping in question 5 by working through it one column at a time.",
+        "Try question 7 again, working out the multiplication before the addition.",
+        "Use squared paper to keep your columns lined up for the short multiplication questions."
+      ],
+      GD: [
+        "Practise long division using the standard method for question 10 and check your remainder.",
+        "Explain why you chose a particular method for one of today's trickier calculations.",
+        "Try solving question 3 using a quicker mental method and compare it with your written one."
+      ]
+    }
+  },
+  "Number facts": {
+    positive: {
+      WT: [
+        "You have recalled some number bonds to 10 correctly during today's lesson.",
+        "You can remember doubles up to double 5 without needing to count.",
+        "You are beginning to know your number bonds to 5 confidently."
+      ],
+      EXP: [
+        "You have recalled number bonds to 100 quickly during today's mental maths starter.",
+        "You can use known facts, such as doubles and halves, to solve related problems.",
+        "You are confidently applying place value facts, like knowing 10 tens make 100."
+      ],
+      GD: [
+        "You have used derived facts confidently, working out 47 + 39 from known bonds to 10 and 100.",
+        "You can apply number facts flexibly to solve unfamiliar problems, such as finding missing addends.",
+        "You demonstrate a secure understanding of place value facts, using them to simplify large calculations."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have mixed up a few number bonds to 10, such as saying 6 and 3 instead of 6 and 4.",
+        "You can recall some facts but you are still counting on your fingers for doubles above 5.",
+        "You are unsure of one pair of number bonds to 20, writing the wrong pair in your answer."
+      ],
+      EXP: [
+        "You have recalled most facts quickly but paused on the bonds to 100 that involve multiples of 10.",
+        "You can use doubling facts well, though halving odd numbers is still catching you out.",
+        "You are secure with a known fact but forgot to apply it to the related division question."
+      ],
+      GD: [
+        "You have used derived facts well but did not explain your reasoning for question 14.",
+        "You can apply known facts to new problems, though your explanation for the decimal question was unclear.",
+        "You are able to solve the problem using a known fact, but a quicker related fact was available."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise number bonds to 10 using a tens frame until you know them by heart.",
+        "Try saying the doubles facts up to double 10 out loud every morning this week.",
+        "Use counters to check your number bonds to 20 before writing the answer."
+      ],
+      EXP: [
+        "Practise halving odd numbers, such as 17 and 23, using a part-whole model.",
+        "Try linking your doubling facts to the matching halving facts on the next page.",
+        "Use your number bonds to 100 to solve the missing number problems more quickly."
+      ],
+      GD: [
+        "Explain your reasoning for question 14 to a partner, using the known fact you started from.",
+        "Try applying your number bonds to 1 to solve a decimal addition problem.",
+        "Find a quicker related fact you could have used to solve today's harder challenge."
+      ]
+    }
+  },
+  "Times tables": {
+    positive: {
+      WT: [
+        "You have started to recall some of the 2 times table facts correctly.",
+        "You can count in 10s confidently, which is helping you with the 10 times table.",
+        "You are beginning to use a number line to help you work out multiplication facts."
+      ],
+      EXP: [
+        "You have recalled the 3, 4 and 8 times tables quickly during today's quiz.",
+        "You can use the 6 times table to work out related division facts confidently.",
+        "You are applying your times table knowledge to solve two-step word problems."
+      ],
+      GD: [
+        "You have recalled times table facts up to 12 x 12 rapidly and used them to solve related division facts.",
+        "You can explain the relationship between multiplication and division confidently, using this to check your answers.",
+        "You demonstrate an ability to use known times table facts to work out more complex calculations, such as 24 x 6."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have mixed up some 2 and 5 times table facts, so a few answers are incorrect.",
+        "You can recall the easier facts but you are still counting on your fingers for the harder ones.",
+        "You are still writing some multiplication facts the wrong way round, such as 3 x 4 instead of 4 x 3."
+      ],
+      EXP: [
+        "You have recalled most facts quickly but the 7 times table is still slowing you down.",
+        "You can use known facts well, though a few of your 9 times table answers were incorrect.",
+        "You are muddling the 6 and 8 times tables in a couple of places on this page."
+      ],
+      GD: [
+        "You have used your times table knowledge well but did not explain how you worked out question 15.",
+        "You can recall facts rapidly, though you sometimes skip checking answers with the inverse operation.",
+        "You are accurate in the multiplication problem but could use a more efficient known fact next time."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise counting in 2s, 5s and 10s every day until you can do it without stopping.",
+        "Try answering ten mixed 2 and 10 times table questions using a number line to help.",
+        "Use objects or pictures to show what 3 x 4 looks like before writing the answer."
+      ],
+      EXP: [
+        "Practise the 7 times table facts in a different order each day this week.",
+        "Try using the 10 times table to help you check your 9 times table answers.",
+        "Use a times table grid to spot the difference between the 6 and 8 times tables."
+      ],
+      GD: [
+        "Explain how you worked out question 15 using your times table knowledge.",
+        "Check one of today's answers using the inverse division fact.",
+        "Find a more efficient known fact you could use to solve 36 x 4 mentally."
+      ]
+    }
+  },
+  "Mathematical reasoning": {
+    positive: {
+      WT: [
+        "You have started to explain why an answer is correct using simple sentences.",
+        "You can spot when a shape does not belong in a group and give a reason.",
+        "You are beginning to say what you notice about a pattern of numbers."
+      ],
+      EXP: [
+        "You have explained your reasoning clearly, showing why one calculation is greater than another.",
+        "You can justify your answers using mathematical vocabulary such as because and so.",
+        "You are reasoning logically when comparing and ordering numbers in different problems."
+      ],
+      GD: [
+        "You have constructed a logical argument, proving why a statement is always true using an example.",
+        "You can identify and explain exceptions to a mathematical rule, such as when a rule does not work for zero.",
+        "You demonstrate sophisticated reasoning by comparing two different methods and explaining which is more efficient."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have given an answer but your reason does not yet explain why it is true.",
+        "You can spot a pattern sometimes, but you are not always explaining what you notice.",
+        "You are quick to say your answer is correct without checking whether it makes sense."
+      ],
+      EXP: [
+        "You have explained your thinking but your reasoning for question 8 is not fully clear.",
+        "You can reason well most of the time, though you sometimes stop before giving a full explanation.",
+        "You are reaching the correct answer but have not shown the reasoning behind your choice."
+      ],
+      GD: [
+        "You have reasoned well but have not yet tested your idea against a counter-example.",
+        "You can explain your thinking clearly, though your proof for question 20 could be more precise.",
+        "You are convincing in your justification but could extend your reasoning to a general rule."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise finishing the sentence because to explain why your answer is correct.",
+        "Try telling a partner what you notice about the pattern before writing it down.",
+        "Look at your answer again and ask yourself if it makes sense."
+      ],
+      EXP: [
+        "Rewrite your explanation for question 8 so someone else could follow your reasoning.",
+        "Try adding one more sentence to explain why your answer must be correct.",
+        "Explain your reasoning out loud to a partner before writing it down."
+      ],
+      GD: [
+        "Test your idea from today against a number that might prove it wrong.",
+        "Rewrite your proof for question 20 using more precise mathematical language.",
+        "Explain whether your reasoning today would still work for a different set of numbers."
+      ]
+    }
+  },
+  "Problem solving": {
+    positive: {
+      WT: [
+        "You have used objects to help you solve a simple word problem.",
+        "You can pick out the important numbers from a short word problem.",
+        "You are beginning to choose the correct operation to solve a one-step problem."
+      ],
+      EXP: [
+        "You have solved two-step word problems by choosing the correct operations in order.",
+        "You can identify the relevant information in a problem and ignore unnecessary details.",
+        "You are using a clear strategy, such as bar models, to solve problems involving money."
+      ],
+      GD: [
+        "You have solved a multi-step problem independently, choosing an efficient strategy at each stage.",
+        "You can identify more than one way to solve a problem and explain which method is most efficient.",
+        "You demonstrate strong problem-solving skills by adapting your strategy when the first approach did not work."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have chosen the wrong operation for one of the word problems on this page.",
+        "You can find some of the information in the problem but miss a key detail.",
+        "You are missing part of the question, so your solution does not fully answer what was asked."
+      ],
+      EXP: [
+        "You have solved the first step of the problem correctly but made an error in the second step.",
+        "You can choose a sensible strategy, though your bar model for question 6 is not quite accurate.",
+        "You are close with your answer, but it does not match what the question was actually asking."
+      ],
+      GD: [
+        "You have solved the problem correctly but have not compared your method with an alternative approach.",
+        "You can tackle complex problems well, though your explanation of your strategy could be more detailed.",
+        "You are finding valid solutions but have not checked whether they are the most efficient one."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise underlining the important numbers in a word problem before starting.",
+        "Try drawing a picture to help you understand what the word problem is asking.",
+        "Read the question again slowly and check what it is really asking you to find."
+      ],
+      EXP: [
+        "Check your answer to the second step of the problem by rereading the question.",
+        "Redraw your bar model for question 6, making sure each part matches the numbers given.",
+        "Reread the question and check that your final answer actually answers what was asked."
+      ],
+      GD: [
+        "Compare your method for today's problem with a different strategy and decide which is quicker.",
+        "Explain your strategy in more detail, including why you chose it over another method.",
+        "Investigate whether a more efficient method exists for solving today's challenge problem."
+      ]
+    }
+  },
+  "Showing working": {
+    positive: {
+      WT: [
+        "You have started to draw pictures to show how you worked out your answer.",
+        "You can write a number sentence to match a simple calculation.",
+        "You are beginning to show one step of your method on paper."
+      ],
+      EXP: [
+        "You have shown clear, step-by-step working for each calculation on this page.",
+        "You can set out your written method neatly, making it easy to follow.",
+        "You are recording each stage of your method, including any regrouping."
+      ],
+      GD: [
+        "You have shown efficient working that reveals a clear understanding of each step in the method.",
+        "You can present your working in a way that would let another pupil follow your thinking exactly.",
+        "You demonstrate strong practice by recording alternative methods alongside your main working."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have written the answer but not shown how you worked it out.",
+        "You can show some of your working, but a few steps are missing.",
+        "You are drawing pictures to help, but this one does not match the numbers in the question."
+      ],
+      EXP: [
+        "You have shown most of your working but missed a step in question 4.",
+        "You can set out your method clearly, though your working for the division question is hard to follow.",
+        "You are showing your working consistently, but the final answer is not circled or labelled clearly."
+      ],
+      GD: [
+        "You have shown clear working but have not labelled which method you used.",
+        "You can record your steps well, though your working for the algebra challenge jumps too quickly.",
+        "You are recording each step, but the working could be annotated to explain your reasoning further."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise writing a number sentence for every calculation you complete.",
+        "Try showing each step of your working using cubes or drawings.",
+        "Check that your picture matches the numbers in the question before moving on."
+      ],
+      EXP: [
+        "Add the missing step to your working for question 4.",
+        "Rewrite your working for the division question, setting it out more clearly.",
+        "Circle or label your final answer at the end of each calculation."
+      ],
+      GD: [
+        "Label the method you used at the top of your working for today's challenge.",
+        "Slow down your working for the algebra challenge, showing every step in between.",
+        "Annotate one piece of working today to explain your reasoning at each step."
+      ]
+    }
+  },
+  "Checking answers": {
+    positive: {
+      WT: [
+        "You have started to count back to check your subtraction answers.",
+        "You can use your fingers to check a simple addition answer is correct.",
+        "You are beginning to look back at your work before putting your pencil down."
+      ],
+      EXP: [
+        "You have checked your answers using the inverse operation for most questions.",
+        "You can use estimation to check whether your answer to a calculation is sensible.",
+        "You are consistently checking your work and correcting mistakes before moving on."
+      ],
+      GD: [
+        "You have checked your answers using more than one method, such as estimation and the inverse operation.",
+        "You can identify your own mistakes independently and correct them without being asked.",
+        "You demonstrate a thorough approach to checking, testing whether answers make sense in the context of the problem."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have finished the page but not checked any of your answers.",
+        "You can check some answers using counting, but you often forget for the last few questions.",
+        "You are not always noticing when an answer does not match the picture given."
+      ],
+      EXP: [
+        "You have checked some answers but skipped checking the word problems on this page.",
+        "You can estimate well, though you did not use it to spot the incorrect answer in question 9.",
+        "You are writing checking calculations, but this one does not match the original question."
+      ],
+      GD: [
+        "You have checked your work carefully but have not explained why an answer did not make sense.",
+        "You can spot your own errors, though you sometimes correct them without recording your new method.",
+        "You are checking your answers against the context well but missed checking the units in your final answer."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise checking your last answer by counting back through it slowly.",
+        "Try checking every answer on the page before you say you have finished.",
+        "Look at your picture and your answer together to see if they match."
+      ],
+      EXP: [
+        "Go back and check your answers to the word problems using the inverse operation.",
+        "Use your estimate from question 9 to work out which of your answers looks wrong.",
+        "Rewrite your checking calculation so it matches the original question exactly."
+      ],
+      GD: [
+        "Explain why your first answer to question 11 did not make sense in the context of the problem.",
+        "Record your new method next to any correction you make in your work.",
+        "Check the units in your final answer match what the question was asking for."
+      ]
+    }
+  },
+  "Mathematical vocabulary": {
+    positive: {
+      WT: [
+        "You have used the words add and take away correctly when explaining your work.",
+        "You can name simple 2D shapes, such as square, circle and triangle, correctly.",
+        "You are beginning to use the word more and fewer when comparing amounts."
+      ],
+      EXP: [
+        "You have used vocabulary such as product, quotient and remainder accurately in your explanations.",
+        "You can name and describe properties of 2D and 3D shapes using the correct terms.",
+        "You are using comparative language, such as greater than and less than, correctly in your reasoning."
+      ],
+      GD: [
+        "You have used precise mathematical vocabulary, such as coefficient and inverse, confidently and accurately.",
+        "You can explain mathematical ideas using formal terms like factor, multiple and prime with real understanding.",
+        "You demonstrate a sophisticated grasp of vocabulary, choosing the most precise term for each situation."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have used the word difference but were not sure what it meant in the question.",
+        "You can name some shapes correctly but mixed up pentagon and hexagon.",
+        "You are giving correct answers but not yet using any mathematical words to explain them."
+      ],
+      EXP: [
+        "You have used most vocabulary correctly, but you confused numerator and denominator in question 5.",
+        "You can describe shapes well, though you used the word edge when you meant vertex.",
+        "You are writing good explanations but missed the chance to use the word equivalent in this one."
+      ],
+      GD: [
+        "You have used advanced vocabulary well but mixed up factor and multiple in your explanation.",
+        "You can use precise terms most of the time, though your definition of prime number was slightly incomplete.",
+        "You are writing strong explanations but could use the term ratio instead of a longer description."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise saying the word difference in a sentence about a subtraction problem.",
+        "Try sorting shape cards into pentagons and hexagons to learn the difference.",
+        "Use one mathematical word, such as total or sum, to explain your answer."
+      ],
+      EXP: [
+        "Practise using the words numerator and denominator correctly with a fraction wall.",
+        "Look at the difference between an edge and a vertex on a 3D shape.",
+        "Rewrite your explanation for question 5, including the word equivalent where it fits."
+      ],
+      GD: [
+        "Sort a list of numbers into factors and multiples of 12 to secure the difference between them.",
+        "Write a full definition of a prime number, including why 1 does not count as one.",
+        "Rewrite one sentence from today's work using the term ratio instead of your longer description."
+      ]
+    }
+  },
+  "Presentation": {
+    positive: {
+      WT: [
+        "You have written your numbers clearly enough for others to read them.",
+        "You can line up some of your digits under each other in a column sum.",
+        "You are beginning to leave a space between each calculation on the page."
+      ],
+      EXP: [
+        "You have set out your work neatly, with each calculation clearly separated.",
+        "You can line up place value columns accurately across the whole page.",
+        "You are using a ruler to underline your answers, which makes your work easy to follow."
+      ],
+      GD: [
+        "You have presented your work with excellent organisation, making complex multi-step solutions easy to follow.",
+        "You can lay out long calculations logically, guiding the reader through each stage clearly.",
+        "You demonstrate consistently high presentation standards, even in your rough working for tricky problems."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have written some numbers so small they are hard to read.",
+        "You can line up your digits sometimes, but a few columns have drifted out of place.",
+        "You are squeezing several calculations together without leaving any space between them."
+      ],
+      EXP: [
+        "You have set your work out well, but question 8 has drifted away from the margin.",
+        "You can present your work neatly, though a few answers are not underlined.",
+        "You are writing clearly but crossing out several answers messily instead of using one neat line."
+      ],
+      GD: [
+        "You have presented most of your work beautifully, though your rough working for question 15 is difficult to follow.",
+        "You can organise your work well, though you could label your diagrams more clearly in the reasoning section.",
+        "You are setting your work out logically but left out a heading to show which method you used."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise writing your numbers bigger so they are easy for you to read back.",
+        "Try using squared paper to help keep your digits lined up in columns.",
+        "Leave a finger space between each calculation before starting the next one."
+      ],
+      EXP: [
+        "Rewrite question 8 closer to the margin so your columns line up correctly.",
+        "Underline your final answer for each question using a ruler.",
+        "Use a single neat line to cross out mistakes instead of scribbling over them."
+      ],
+      GD: [
+        "Rewrite your rough working for question 15 with the same care as the rest of your page.",
+        "Label the diagrams in your reasoning section so each part is clear.",
+        "Add a heading above your working to show which method you have used."
+      ]
+    }
+  }
+};
+
+const CONTENT_SCIENCE = {
+  "Scientific knowledge": {
+    positive: {
+      WT: [
+        "You have remembered that plants need water and light to grow.",
+        "You can name the main parts of a plant, such as roots, stem and leaves.",
+        "You are beginning to recall that materials can be hard, soft, rough or smooth."
+      ],
+      EXP: [
+        "You have explained the life cycle of a plant, including germination and pollination, accurately.",
+        "You can describe the water cycle using the correct stages, such as evaporation and condensation.",
+        "You are recalling facts about the solar system, including the order of the planets, confidently."
+      ],
+      GD: [
+        "You have applied your knowledge of forces to explain why a heavier object is not always faster.",
+        "You can link ideas across topics, such as connecting the water cycle to changes of state.",
+        "You demonstrate a deep understanding of evolution, explaining how adaptation helps a species survive."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have mixed up which materials are magnetic during today's sorting activity.",
+        "You can name some parts of a plant, but you forgot what the roots do.",
+        "You are saying that all living things move, which is not true for plants."
+      ],
+      EXP: [
+        "You have explained most of the water cycle correctly, but you missed out the stage of precipitation.",
+        "You can describe the human digestive system, though you mixed up the small and large intestine.",
+        "You are recalling several facts about forces but confused friction with gravity in your explanation."
+      ],
+      GD: [
+        "You have applied your knowledge well but have not yet linked it to a real-world example.",
+        "You can explain complex ideas clearly, though your explanation of natural selection needs one more detail.",
+        "You are showing strong knowledge but could compare it with an alternative scientific explanation."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise sorting five objects into magnetic and non-magnetic using a magnet.",
+        "Try explaining what the roots of a plant are for using a simple picture.",
+        "Look at a plant and a rock and say which is living and which is not."
+      ],
+      EXP: [
+        "Add the missing stage of precipitation to your diagram of the water cycle.",
+        "Look again at a diagram of the digestive system to check the order of the small and large intestine.",
+        "Explain the difference between friction and gravity using an everyday example."
+      ],
+      GD: [
+        "Find a real-world example that shows the scientific idea you explained today in action.",
+        "Add one more detail to your explanation of natural selection, such as an example species.",
+        "Research an alternative explanation for today's topic and compare it with your own."
+      ]
+    }
+  },
+  "Vocabulary": {
+    positive: {
+      WT: [
+        "You have used the word habitat correctly when talking about where animals live.",
+        "You can name materials, such as wood, plastic and metal, using the correct words.",
+        "You are beginning to use the word push and pull when describing forces."
+      ],
+      EXP: [
+        "You have used vocabulary such as predator, prey and food chain accurately in your explanations.",
+        "You can use terms like solid, liquid and gas correctly when describing changes of state.",
+        "You are using scientific vocabulary, such as variable and reliable, when describing your experiment."
+      ],
+      GD: [
+        "You have used precise vocabulary, such as photosynthesis and chlorophyll, confidently and accurately.",
+        "You can explain scientific ideas using formal terms like classification and vertebrate with real understanding.",
+        "You demonstrate a sophisticated grasp of vocabulary, choosing the most precise scientific term for each idea."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have used the word evaporate but were not sure what it meant.",
+        "You can name some materials correctly but mixed up transparent and opaque.",
+        "You are writing your observations without using any scientific words yet."
+      ],
+      EXP: [
+        "You have used most vocabulary correctly, but you confused reversible and irreversible in question 3.",
+        "You can describe changes well, though you used the word melt when you meant dissolve.",
+        "You are writing good explanations but missed the chance to use the word insulator in this one."
+      ],
+      GD: [
+        "You have used advanced vocabulary well but mixed up vertebrate and invertebrate in your explanation.",
+        "You can use precise terms most of the time, though your definition of a variable was slightly incomplete.",
+        "You are writing strong explanations but could use the term hypothesis instead of a longer description."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise using the word evaporate in a sentence about a puddle drying up.",
+        "Try sorting objects into transparent and opaque to learn the difference.",
+        "Use one scientific word, such as material or force, in your next observation."
+      ],
+      EXP: [
+        "Practise using the words reversible and irreversible with two different examples.",
+        "Look at the difference between melting and dissolving using two simple experiments.",
+        "Rewrite your explanation, including the word insulator where it fits."
+      ],
+      GD: [
+        "Sort a list of animals into vertebrates and invertebrates to secure the difference between them.",
+        "Write a full definition of a variable, including an example from today's experiment.",
+        "Rewrite one sentence from today's work using the term hypothesis instead of your longer description."
+      ]
+    }
+  },
+  "Predictions": {
+    positive: {
+      WT: [
+        "You have made a simple prediction about what might happen before starting the test.",
+        "You can guess whether an object will float or sink before you try it.",
+        "You are beginning to say what you think will happen using the words I think."
+      ],
+      EXP: [
+        "You have made a sensible prediction based on what you already know about the topic.",
+        "You can explain your prediction using your understanding of materials or forces.",
+        "You are linking your predictions to previous learning, such as knowing metal conducts heat."
+      ],
+      GD: [
+        "You have made a prediction based on a clear scientific rule and explained your reasoning in detail.",
+        "You can use previous results to make an increasingly accurate prediction for a new test.",
+        "You demonstrate strong scientific thinking by predicting an anomaly before it appears in the results."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have made a prediction but it does not match what the test is actually about.",
+        "You can predict sometimes, but you often forget to make one before you start.",
+        "You are writing predictions without yet saying why you think they will happen."
+      ],
+      EXP: [
+        "You have made a reasonable prediction but did not explain the scientific reason behind it.",
+        "You can predict well, though your reasoning for question 4 does not match your prediction.",
+        "You are writing predictions but have not yet compared them with your actual results."
+      ],
+      GD: [
+        "You have made a well-reasoned prediction but have not considered an alternative outcome.",
+        "You can predict accurately, though you could explain what would need to change for the opposite result.",
+        "You are justifying your predictions well but did not use data from a previous experiment to support this one."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise saying I think will happen because before you start each test.",
+        "Try making a prediction every time before you test a new object.",
+        "Look at the equipment first and think about what might happen before you begin."
+      ],
+      EXP: [
+        "Add a scientific reason to explain why you made that prediction.",
+        "Check that your reasoning for question 4 matches the prediction you wrote.",
+        "Compare your prediction with your results and explain any differences."
+      ],
+      GD: [
+        "Consider an alternative outcome to your prediction and explain why it is less likely.",
+        "Explain what would need to change for the opposite result to happen.",
+        "Use data from a previous experiment to support your next prediction."
+      ]
+    }
+  },
+  "Observations": {
+    positive: {
+      WT: [
+        "You have looked closely and noticed that the ice cube changed as it melted.",
+        "You can point out one difference between the two leaves you compared.",
+        "You are beginning to use your senses to describe what you notice during a test."
+      ],
+      EXP: [
+        "You have made detailed observations, noting changes in colour, texture and smell.",
+        "You can use equipment, such as a magnifying glass, to observe small details accurately.",
+        "You are recording your observations at regular intervals during the experiment."
+      ],
+      GD: [
+        "You have made precise, quantitative observations, measuring changes rather than just describing them.",
+        "You can spot subtle patterns in your observations that other pupils may have missed.",
+        "You demonstrate excellent observational skills, noticing and questioning an unexpected result during the test."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have noticed a change but did not describe it in enough detail.",
+        "You can observe simple changes, but you missed what happened at the start of the test.",
+        "You are writing down what you expected to see instead of what actually happened."
+      ],
+      EXP: [
+        "You have made good observations but missed noting the change that happened partway through.",
+        "You can observe carefully, though your description of the texture change is a little vague.",
+        "You are recording your first observation well but forgot to observe the final result too."
+      ],
+      GD: [
+        "You have observed carefully but have not yet explained why the unexpected result might have happened.",
+        "You can spot patterns well, though you could compare your observations with a different group's results.",
+        "You are recording precise observations but could link them more clearly to the scientific idea being tested."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise describing a change using at least one describing word, such as colour or size.",
+        "Try watching the whole test from start to finish before writing what you noticed.",
+        "Look again and write down exactly what happened, even if it is different from your prediction."
+      ],
+      EXP: [
+        "Go back and note the change that happened partway through the experiment.",
+        "Rewrite your description of the texture, using a more precise word than nice or weird.",
+        "Record your final observation so you can compare it with your first one."
+      ],
+      GD: [
+        "Explain why the unexpected result might have happened, using your scientific knowledge.",
+        "Compare your observations with a different group's results and note any similarities.",
+        "Link one of today's observations directly to the scientific idea you were testing."
+      ]
+    }
+  },
+  "Recording results": {
+    positive: {
+      WT: [
+        "You have started to record your results in a simple table.",
+        "You can draw a tally chart to count how many objects float and sink.",
+        "You are beginning to write your results next to the correct object or test."
+      ],
+      EXP: [
+        "You have recorded your results clearly in a table with labelled columns and rows.",
+        "You can present your data using a bar chart with a title and labelled axes.",
+        "You are choosing an appropriate way to record results, such as a table for numerical data."
+      ],
+      GD: [
+        "You have chosen the most appropriate way to present your data, such as a line graph for continuous results.",
+        "You can record complex data accurately, including repeated readings and averages.",
+        "You demonstrate strong data-recording skills by identifying and noting an anomalous result in your table."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have recorded some results but left a few boxes in the table empty.",
+        "You can use a table, but your headings do not match what you tested.",
+        "You are writing your results in the wrong row of the table sometimes."
+      ],
+      EXP: [
+        "You have recorded your results well, but your bar chart is missing a label on the y-axis.",
+        "You can use a table clearly, though the units, such as cm or seconds, are missing from the headings.",
+        "You are drawing bar charts confidently, but the bars are not always the correct height for the data."
+      ],
+      GD: [
+        "You have recorded your data well but have not calculated the average of your repeated readings.",
+        "You can present data clearly, though your line graph could use a more precise scale.",
+        "You are identifying anomalies correctly but have not explained why you excluded this one from your average."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise filling in every box of your table, even if the result is zero.",
+        "Try writing a heading for each column before you start recording.",
+        "Check that each result is written in the correct row of the table."
+      ],
+      EXP: [
+        "Add a label to the y-axis of your bar chart so it is clear what it shows.",
+        "Rewrite your table headings, including the units for each set of results.",
+        "Check the height of each bar against your table of results and correct any errors."
+      ],
+      GD: [
+        "Calculate the average of your repeated readings using the results in your table.",
+        "Redraw the scale on your line graph so each interval is equal and precise.",
+        "Explain why you excluded the anomalous result when working out your average."
+      ]
+    }
+  },
+  "Conclusions": {
+    positive: {
+      WT: [
+        "You have said what happened at the end of the test in a simple sentence.",
+        "You can tell me which object was the heaviest after weighing them.",
+        "You are beginning to compare your results and say which one was biggest."
+      ],
+      EXP: [
+        "You have written a conclusion that clearly answers the original question being tested.",
+        "You can compare your results and explain which material was the best conductor.",
+        "You are linking your conclusion back to your prediction and explaining any differences."
+      ],
+      GD: [
+        "You have written a conclusion that uses precise data as evidence to support your scientific explanation.",
+        "You can evaluate whether your results support or challenge your original prediction with clear reasoning.",
+        "You demonstrate excellent conclusions by suggesting how the investigation could be improved next time."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have written a conclusion, but it does not match the results in your table.",
+        "You can say what happened, but you have not linked it back to your prediction.",
+        "You are copying your result instead of explaining what it shows."
+      ],
+      EXP: [
+        "You have written a conclusion, but it does not fully answer the original question.",
+        "You can compare your results well, though you have not explained why one material performed best.",
+        "You are linking your conclusion to your prediction well but have not used any results as evidence."
+      ],
+      GD: [
+        "You have written a strong conclusion but have not considered how reliable your results actually were.",
+        "You can evaluate your results well, though you could compare them with established scientific knowledge.",
+        "You are suggesting sensible improvements but have not explained how they would make the results more reliable."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise checking your conclusion matches the results you actually recorded.",
+        "Try saying whether your prediction was right or wrong at the end of your conclusion.",
+        "Explain in your own words what your result shows, instead of just repeating it."
+      ],
+      EXP: [
+        "Rewrite your conclusion so it directly answers the question you were testing.",
+        "Add a scientific reason to explain why one material performed best.",
+        "Use a number from your results table as evidence to support your conclusion."
+      ],
+      GD: [
+        "Explain how reliable you think your results were and why.",
+        "Compare your conclusion with what you already know from scientific knowledge on this topic.",
+        "Say how your suggested improvement would make the results more reliable."
+      ]
+    }
+  },
+  "Fair testing": {
+    positive: {
+      WT: [
+        "You have kept the amount of water the same in each cup during the test.",
+        "You can say that you only changed one thing, such as the size of the ramp.",
+        "You are beginning to notice when a test is not fair."
+      ],
+      EXP: [
+        "You have identified the variable you changed and the variables you kept the same.",
+        "You can explain why keeping the surface the same makes the test about the ramp height fair.",
+        "You are using consistent equipment and measurements to make sure the test is fair."
+      ],
+      GD: [
+        "You have identified all the variables in a complex test and explained why controlling them matters.",
+        "You can design a fair test independently, choosing sensible equipment to control each variable precisely.",
+        "You demonstrate a strong understanding of fair testing by explaining how an uncontrolled variable could affect the results."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have changed two things at once, such as the height and the surface of the ramp.",
+        "You can name the thing you changed, but you are not sure what should stay the same.",
+        "You are using different amounts of water in each cup without noticing."
+      ],
+      EXP: [
+        "You have identified the variable you changed, but you missed one variable that should have been kept the same.",
+        "You can explain fair testing, though your method did not keep the starting temperature the same each time.",
+        "You are keeping most things the same but used a different timer for one of your tests."
+      ],
+      GD: [
+        "You have controlled most variables well but have not explained the impact of the one you missed.",
+        "You can design a fair test, though you could justify why you chose to repeat it three times.",
+        "You are identifying the variables clearly but have not considered how to measure them more precisely."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise naming one thing you will change and one thing that must stay the same.",
+        "Try checking that each cup has exactly the same amount of water before starting.",
+        "Look at your test again and find the part that was not kept fair."
+      ],
+      EXP: [
+        "List every variable that needs to stay the same in your next test, including ones you missed today.",
+        "Check that the starting temperature is the same before each repeat of your test.",
+        "Use the same timer for every repeat of your test to keep it fair."
+      ],
+      GD: [
+        "Explain how the variable you missed today could have affected your results.",
+        "Justify why repeating your test three times makes the results more reliable.",
+        "Suggest a more precise way to measure one of the variables in your test."
+      ]
+    }
+  },
+  "Explaining results": {
+    positive: {
+      WT: [
+        "You have said one reason why the ice melted using simple words.",
+        "You can tell me what happened when you mixed the two colours together.",
+        "You are beginning to use because when explaining what you found out."
+      ],
+      EXP: [
+        "You have explained your results using scientific reasons, such as friction slowing the toy car down.",
+        "You can link your results to a cause, explaining why the metal spoon got hot faster.",
+        "You are using evidence from your results table to support your explanation."
+      ],
+      GD: [
+        "You have explained your results by linking them to a wider scientific concept, such as particle theory.",
+        "You can explain unexpected results by considering more than one possible scientific cause.",
+        "You demonstrate excellent explanations by using evidence to rule out an alternative explanation for your results."
+      ]
+    },
+    improvement: {
+      WT: [
+        "You have described what happened but not explained why it happened.",
+        "You can explain some results, but you are muddled about which material worked best.",
+        "You are giving a reason that does not match what actually happened in the test."
+      ],
+      EXP: [
+        "You have explained your results, but your reasoning for question 7 is a little unclear.",
+        "You can link cause and effect well, though you have not used any numbers from your results as evidence.",
+        "You are giving scientific reasons, but this one does not fully match the pattern in your results."
+      ],
+      GD: [
+        "You have explained your results well but have not considered whether another factor could explain the pattern.",
+        "You can link your results to scientific theory, though your explanation of the anomaly needs more detail.",
+        "You are ruling out explanations convincingly but have not fully justified your final scientific conclusion."
+      ]
+    },
+    nextStep: {
+      WT: [
+        "Practise finishing the sentence it happened because to explain your result.",
+        "Try telling a partner why you think the material worked best before writing it down.",
+        "Check that the reason you give matches what actually happened in your test."
+      ],
+      EXP: [
+        "Rewrite your explanation for question 7 so the reasoning is easier to follow.",
+        "Add a number from your results table to support your explanation.",
+        "Check your explanation matches the pattern you can see in your results."
+      ],
+      GD: [
+        "Consider whether another factor could explain the pattern in your results.",
+        "Add more detail to your explanation of the anomaly in your results.",
+        "Justify your final scientific conclusion using at least two pieces of evidence."
+      ]
+    }
+  }
+};
+
+const SUBJECTS = {
+  "English Writing": CONTENT_ENGLISH_WRITING,
+  "Reading": CONTENT_READING,
+  "Maths": CONTENT_MATHS,
+  "Science": CONTENT_SCIENCE
+};
+
+const FOCUS_EXCLUDE = {
+  "English Writing": { KS1:["Paragraphing","Grammar","Organisation","Editing"], LKS2:["Capital letters"], UKS2:["Capital letters","Handwriting/presentation"] },
+  "Reading": { KS1:["Evidence from text","Summarising"], LKS2:[], UKS2:[] },
+  "Maths": { KS1:["Showing working","Mathematical reasoning"], LKS2:[], UKS2:[] },
+  "Science": { KS1:["Fair testing","Explaining results","Conclusions"], LKS2:["Explaining results"], UKS2:[] }
+};
+
+function yearBand(y){ return y<=2 ? 'KS1' : (y<=4 ? 'LKS2' : 'UKS2'); }
+
+function focusesFor(subject, year){
+  const bank = SUBJECTS[subject];
+  if(!bank) return [];
+  const band = yearBand(year);
+  const excl = (FOCUS_EXCLUDE[subject] && FOCUS_EXCLUDE[subject][band]) || [];
+  return Object.keys(bank).filter(f => !excl.includes(f));
+}
+
+/* ---------- State ---------- */
+let state = { year:null, subject:null, attainment:null, focus:null };
+let lastPick = {}; // avoid immediate repeats, keyed by subject|focus|attainment|type
+let currentResult = null;
+
+const YEARS = [1,2,3,4,5,6];
+const SUBJECT_LIST = Object.keys(SUBJECTS);
+const ATTAINMENTS = [ {key:'WT', label:'Working Towards'}, {key:'EXP', label:'Expected Standard'}, {key:'GD', label:'Greater Depth'} ];
+
+/* ---------- Build chip groups ---------- */
+function buildChips(container, items, getKey, getLabel, onPick, dataAttr){
+  container.innerHTML = '';
+  items.forEach(item=>{
+    const key = getKey(item);
+    const btn = document.createElement('button');
+    btn.className = 'chip';
+    btn.type = 'button';
+    btn.textContent = getLabel(item);
+    if(dataAttr) btn.setAttribute(dataAttr.name, dataAttr.value(item));
+    btn.addEventListener('click', ()=>{
+      [...container.children].forEach(c=>c.classList.remove('active'));
+      btn.classList.add('active');
+      onPick(key);
+    });
+    container.appendChild(btn);
+  });
+}
+
+buildChips(document.getElementById('yearGroup'), YEARS, y=>y, y=>'Year '+y, y=>{ state.year=y; onStepChange(); });
+buildChips(document.getElementById('subjectGroup'), SUBJECT_LIST, s=>s, s=>s, s=>{ state.subject=s; onStepChange(); });
+buildChips(document.getElementById('attainmentGroup'), ATTAINMENTS, a=>a.key, a=>a.label, k=>{ state.attainment=k; onStepChange(); }, {name:'data-attainment', value:a=>a.key});
+
+const focusSelect = document.getElementById('focusSelect');
+focusSelect.addEventListener('change', ()=>{ state.focus = focusSelect.value || null; updateGenerateEnabled(); saveLastSelection(); });
+
+function refreshFocusOptions(){
+  focusSelect.innerHTML = '';
+  if(!state.subject || !state.year){
+    focusSelect.innerHTML = '<option value="">Choose year group & subject first</option>';
+    state.focus = null;
+    return;
+  }
+  const opts = focusesFor(state.subject, state.year);
+  const placeholder = document.createElement('option');
+  placeholder.value=''; placeholder.textContent='Choose a focus…';
+  focusSelect.appendChild(placeholder);
+  opts.forEach(f=>{
+    const o = document.createElement('option');
+    o.value=f; o.textContent=f;
+    focusSelect.appendChild(o);
+  });
+  if(opts.includes(state.focus)){
+    focusSelect.value = state.focus;
+  } else {
+    state.focus = null;
+  }
+}
+
+function onStepChange(){
+  refreshFocusOptions();
+  updateGenerateEnabled();
+  saveLastSelection();
+}
+
+function updateGenerateEnabled(){
+  const ok = state.year && state.subject && state.attainment && state.focus;
+  document.getElementById('generateBtn').disabled = !ok;
+}
+
+/* ---------- Generation engine ---------- */
+function pickVariant(subject, focus, attainment, type){
+  const arr = SUBJECTS[subject][focus][type][attainment];
+  const key = [subject,focus,attainment,type].join('|');
+  let pool = arr;
+  if(arr.length > 1 && lastPick[key] !== undefined){
+    pool = arr.filter((_,i)=> i!==lastPick[key]);
+  }
+  const idx = Math.floor(Math.random()*pool.length);
+  const chosen = pool[idx];
+  lastPick[key] = arr.indexOf(chosen);
+  return chosen;
+}
+
+function generateFeedback(){
+  const { subject, focus, attainment, year } = state;
+  if(!subject || !focus || !attainment || !year) return;
+  const positive = pickVariant(subject, focus, attainment, 'positive');
+  const improvement = pickVariant(subject, focus, attainment, 'improvement');
+  const nextStep = pickVariant(subject, focus, attainment, 'nextStep');
+  currentResult = { positive, improvement, nextStep };
+  renderResult();
+}
+
+const ATTAINMENT_LABEL = {WT:'Working Towards', EXP:'Expected Standard', GD:'Greater Depth'};
+
+function renderResult(){
+  document.getElementById('resultsCard').style.display = 'block';
+  document.getElementById('out-positive').textContent = currentResult.positive;
+  document.getElementById('out-improvement').textContent = currentResult.improvement;
+  document.getElementById('out-nextStep').textContent = currentResult.nextStep;
+  document.getElementById('resultMeta').textContent =
+    `Year ${state.year} · ${state.subject} · ${ATTAINMENT_LABEL[state.attainment]} · ${state.focus}`;
+  document.getElementById('resultsCard').scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+document.getElementById('generateBtn').addEventListener('click', generateFeedback);
+document.getElementById('regenBtn').addEventListener('click', generateFeedback);
+
+document.getElementById('clearBtn').addEventListener('click', ()=>{
+  currentResult = null;
+  document.getElementById('resultsCard').style.display = 'none';
+});
+
+/* ---------- Copy ---------- */
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(()=>t.classList.remove('show'), 1800);
+}
+
+function copyText(text){
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(text).catch(()=>fallbackCopy(text));
+  } else {
+    fallbackCopy(text);
+  }
+}
+function fallbackCopy(text){
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  try{ document.execCommand('copy'); }catch(e){}
+  document.body.removeChild(ta);
+}
+
+document.querySelectorAll('.copy-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    if(!currentResult) return;
+    const field = btn.getAttribute('data-copy');
+    copyText(currentResult[field]);
+    showToast('Copied to clipboard');
+    btn.classList.add('copied'); btn.textContent='Copied ✓';
+    setTimeout(()=>{ btn.classList.remove('copied'); btn.textContent='Copy'; }, 1400);
+  });
+});
+
+document.getElementById('copyAllBtn').addEventListener('click', ()=>{
+  if(!currentResult) return;
+  const all = `Positive Feedback: ${currentResult.positive}\n\nImprovement: ${currentResult.improvement}\n\nNext Step: ${currentResult.nextStep}`;
+  copyText(all);
+  showToast('Full feedback copied');
+});
+
+/* ---------- Print ---------- */
+document.getElementById('printBtn').addEventListener('click', ()=>{
+  if(!currentResult) return;
+  document.getElementById('printMeta').textContent =
+    `Year ${state.year} · ${state.subject} · ${ATTAINMENT_LABEL[state.attainment]} · ${state.focus}`;
+  document.getElementById('printPositive').textContent = currentResult.positive;
+  document.getElementById('printImprovement').textContent = currentResult.improvement;
+  document.getElementById('printNextStep').textContent = currentResult.nextStep;
+  window.print();
+});
+
+/* ---------- localStorage: remember last selection ---------- */
+function saveLastSelection(){
+  try{
+    localStorage.setItem('tv_lite_last_selection', JSON.stringify(state));
+  }catch(e){}
+}
+function restoreLastSelection(){
+  try{
+    const raw = localStorage.getItem('tv_lite_last_selection');
+    if(!raw) return;
+    const saved = JSON.parse(raw);
+    if(saved.year){
+      const yb = [...document.getElementById('yearGroup').children][saved.year-1];
+      if(yb){ yb.click(); }
+    }
+    if(saved.subject){
+      const idx = SUBJECT_LIST.indexOf(saved.subject);
+      const sb = [...document.getElementById('subjectGroup').children][idx];
+      if(sb){ sb.click(); }
+    }
+    if(saved.attainment){
+      const idx = ATTAINMENTS.findIndex(a=>a.key===saved.attainment);
+      const ab = [...document.getElementById('attainmentGroup').children][idx];
+      if(ab){ ab.click(); }
+    }
+    if(saved.focus){
+      refreshFocusOptions();
+      if([...focusSelect.options].some(o=>o.value===saved.focus)){
+        focusSelect.value = saved.focus;
+        state.focus = saved.focus;
+      }
+    }
+    updateGenerateEnabled();
+  }catch(e){}
+}
+restoreLastSelection();
+</script>
+</body>
+</html>

@@ -65,7 +65,7 @@
             <div class="filter-group__options">
               <button type="button" class="chip" data-value="all" aria-pressed="true">All</button>
               <button type="button" class="chip" data-value="free" aria-pressed="false">Free</button>
-              <button type="button" class="chip" data-value="lite" aria-pressed="false">Lite</button>
+              <button type="button" class="chip" data-value="lite" aria-pressed="false">Free Tools</button>
               <button type="button" class="chip" data-value="pro" aria-pressed="false">Pro</button>
             </div>
           </div>
@@ -111,9 +111,9 @@
   /* If the page was reached via a specific tier link (Pro Apps, Free Apps),
      show a heading for that tier instead of the generic "Browse All" one. */
   var TIER_PAGE_INFO = {
-    pro: { title: "Pro Apps", eyebrow: "Premium tools", lede: "Every Pro upgrade in The Teacher Vault — purchased individually through Gumroad, never bundled with the Lite version." },
-    free: { title: "Free Apps", eyebrow: "No cost, no catch", lede: "Every free app in The Teacher Vault — Lite teacher tools, student apps and Quick Notes guides, all £0." },
-    lite: { title: "Lite Apps", eyebrow: "Free, no catch", lede: "Every free Lite teacher tool in The Teacher Vault, downloaded through Gumroad." }
+    pro: { title: "Pro Apps", eyebrow: "Premium tools", lede: "Every Pro upgrade in The Teacher Vault — purchased individually through Gumroad, never bundled with the free version." },
+    free: { title: "Free Apps", eyebrow: "No cost, no catch", lede: "Every free app in The Teacher Vault — free teacher tools, student apps and Quick Notes guides, all £0." },
+    lite: { title: "Free Tools", eyebrow: "Free, no catch", lede: "Every free teacher tool in The Teacher Vault — no download, no Gumroad step, opens straight in your browser." }
   };
   var tierInfo = params.get("tier") && !params.get("category") && !params.get("subject") && !params.get("q") ? TIER_PAGE_INFO[params.get("tier")] : null;
   if (tierInfo) {
