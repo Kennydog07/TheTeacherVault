@@ -1446,6 +1446,49 @@ table.compare td:first-child, table.compare th:first-child { border-right: 1px s
 }
 
 /* --------------------------------------------------------------------------
+   Parent-guide FAQ (accessible native <details>/<summary>)
+   -------------------------------------------------------------------------- */
+
+.faq-item {
+  border: 1px solid rgba(245,242,232,0.14);
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
+  background: rgba(247,242,226,0.04);
+  overflow: hidden;
+}
+.faq-item summary {
+  cursor: pointer;
+  padding: 16px 20px;
+  font-weight: 700;
+  color: var(--chalk-white);
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "+";
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--gold-light);
+  flex-shrink: 0;
+}
+.faq-item[open] summary::after { content: "\2212"; }
+.faq-item summary:focus-visible { outline: 3px solid var(--gold-light); outline-offset: 2px; }
+.faq-item__content { padding: 0 20px 18px; color: var(--chalk-dim); margin: 0; }
+
+/* Parent-guide mascot: small, static, no floaty animation — subtler than the
+   Early Years/KS1 activity pages. */
+.guide-mascot {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
    Footer
    -------------------------------------------------------------------------- */
 
