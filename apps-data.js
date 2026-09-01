@@ -148,6 +148,8 @@ const APPS = [
     tier: "lite",
     price: "Free",
     gumroadUrl: "https://idamaemann.gumroad.com/l/wlndh",
+    fileUrl: "/teacher-apps/lesson-planner-lite.html",
+    fileType: "app",
     image: "/images/lesson-planner-lite.jpg",
     featured: true,
     isNew: false,

@@ -171,6 +171,125 @@
     { key: 'differentiation', label: '♿ Differentiation Tips' },
   ];
 
+  /* ------------------------------------------------------------------
+     Local lesson-plan generator. Runs entirely in the browser -- no
+     server call. Template banks give real variety between generations
+     rather than the same fixed wording every time; duration and
+     learning style genuinely change the suggested activity.
+     ------------------------------------------------------------------ */
+  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  function escapeHtml(str) {
+    const d = document.createElement('div');
+    d.textContent = str;
+    return d.innerHTML;
+  }
+
+  const OBJECTIVE_VERBS = ['identify', 'explain', 'describe', 'recognise', 'outline', 'understand'];
+  const STRETCH_VERBS = ['analyse', 'apply', 'evaluate', 'justify', 'compare', 'explain in depth'];
+
+  const MATERIALS_BY_STYLE = {
+    mixed: ['Whiteboard and pens', 'Pupil exercise books', 'Printed task sheet', 'Visual prompt or slide related to the topic'],
+    visual: ['Whiteboard or projector for diagrams', 'Coloured pens for annotating', 'Visual prompt or diagram of the topic', 'Pupil exercise books'],
+    'hands-on': ['Practical resources or manipulatives for the topic', 'Task cards', 'Pupil exercise books', 'Timer for activity rounds'],
+    discussion: ['Discussion prompt cards', 'Talk-partner seating (no extra resources needed)', 'Whiteboard for capturing ideas', 'Pupil exercise books'],
+    independent: ['Independent task sheet', 'Pupil exercise books', 'Success criteria displayed on the board']
+  };
+
+  const HOOK_TEMPLATES = [
+    c => `Show pupils a picture, object or short clip connected to ${c.topic} and ask: what do you notice? What questions come to mind?`,
+    c => `Quick-fire recall: ask three rapid questions linking back to what pupils already know before starting ${c.topic}.`,
+    c => `Pose a big question about ${c.topic} and give pupils sixty seconds to jot down their first thoughts.`,
+    c => `Show two contrasting examples related to ${c.topic} and ask pupils to spot the difference.`,
+    c => `Start with a quick true-or-false round using three statements about ${c.topic}.`
+  ];
+
+  const MAIN_TEMPLATES = {
+    mixed: [
+      c => `Introduce ${c.topic} with a short explanation, then move into guided practice where pupils work through examples together before trying one independently.`,
+      c => `Alternate between brief teacher input on ${c.topic} and short paired tasks, checking understanding at each step.`
+    ],
+    visual: [
+      c => `Use a diagram or visual model to break down ${c.topic}, then ask pupils to sketch or annotate their own version.`,
+      c => `Present ${c.topic} through a labelled diagram, building it up step by step with pupil input.`
+    ],
+    'hands-on': [
+      c => `Pupils work through a hands-on task exploring ${c.topic}, using materials or resources directly rather than just being told about it.`,
+      c => `Set up a practical activity where pupils investigate ${c.topic} and record what they find.`
+    ],
+    discussion: [
+      c => `Pupils discuss ${c.topic} in pairs or small groups, working through a set of guided questions before feeding back to the class.`,
+      c => `Run a structured discussion or debate on ${c.topic}, with pupils building an argument using evidence.`
+    ],
+    independent: [
+      c => `Pupils work independently through a task on ${c.topic}, using success criteria to self-check their progress.`,
+      c => `Set pupils an independent challenge on ${c.topic}, circulating to support pupils who need it.`
+    ]
+  };
+
+  const ASSESSMENT_TEMPLATES = [
+    c => `Mini whiteboards: pupils show their answer to a quick question on ${c.topic} on the count of three.`,
+    c => `Thumbs up/down check: pupils rate their own confidence with ${c.topic} so far.`,
+    c => `Exit ticket: pupils write one thing they've learned about ${c.topic} and one question they still have.`,
+    c => `Cold-call two or three pupils to explain a key point about ${c.topic} in their own words.`
+  ];
+
+  const CLOSURE_TEMPLATES = [
+    c => `Ask two or three pupils to summarise one key point about ${c.topic} in their own words.`,
+    c => `Quick round-up: what's one thing you'll remember about ${c.topic} tomorrow?`,
+    c => `Link back to today's objective and ask pupils to rate how confident they now feel.`,
+    c => `End with a one-sentence summary written on mini whiteboards and held up together.`
+  ];
+
+  const HOMEWORK_TEMPLATES = [
+    c => `Find one real-world example connected to ${c.topic} and be ready to share it next lesson.`,
+    c => `Complete a short follow-up task consolidating ${c.topic}, to be checked at the start of next lesson.`,
+    c => `Extension: research one further question about ${c.topic} you'd like answered.`
+  ];
+
+  const SUPPORT_TEMPLATES = [
+    c => `Provide sentence starters or a writing frame for pupils who need extra support with ${c.topic}.`,
+    c => `Pair less confident pupils with a supportive partner for the main task.`,
+    c => `Break the task on ${c.topic} into smaller, clearly sequenced steps.`
+  ];
+
+  const STRETCH_TEMPLATES = [
+    c => `Challenge confident pupils to explain ${c.topic} to someone else in their own words.`,
+    c => `Offer an extension question that asks pupils to apply ${c.topic} to a new, unfamiliar example.`,
+    c => `Ask confident pupils to justify their reasoning rather than just giving an answer.`
+  ];
+
+  function buildLessonPlan(input) {
+    const c = { subject: input.subject, topic: escapeHtml(input.topic), grade: input.grade, duration: input.duration, style: input.style, notes: input.notes };
+    const style = MATERIALS_BY_STYLE[c.style] ? c.style : 'mixed';
+    const mainBank = MAIN_TEMPLATES[style] || MAIN_TEMPLATES.mixed;
+
+    const objectives = `<ul><li>Pupils will be able to ${pick(OBJECTIVE_VERBS)} ${c.topic}.</li>` +
+      `<li>More confident pupils will be able to ${pick(STRETCH_VERBS)} their understanding of ${c.topic}.</li></ul>`;
+
+    const materials = `<ul>${MATERIALS_BY_STYLE[style].map(m => `<li>${m}</li>`).join('')}</ul>`;
+
+    const hook = `<p>${pick(HOOK_TEMPLATES)(c)}</p>`;
+
+    let mainText = pick(mainBank)(c);
+    if (c.duration === '90 minutes') {
+      mainText += ' With the extra time, split this into two linked tasks with a short break or check-in between them.';
+    } else if (c.duration === '30 minutes') {
+      mainText += ' Keep this focused and move on promptly — there is limited time in this session.';
+    }
+    const main = `<p>${mainText}</p>`;
+
+    const assessment = `<p>${pick(ASSESSMENT_TEMPLATES)(c)}</p>`;
+    const closure = `<p>${pick(CLOSURE_TEMPLATES)(c)}</p>`;
+    const homework = `<p>${pick(HOMEWORK_TEMPLATES)(c)}</p>`;
+
+    let differentiation = `<ul><li>${pick(SUPPORT_TEMPLATES)(c)}</li><li>${pick(STRETCH_TEMPLATES)(c)}</li></ul>`;
+    if (c.notes) {
+      differentiation += `<p><strong>Extra context noted:</strong> ${escapeHtml(c.notes)}</p>`;
+    }
+
+    return { objectives, materials, hook, main, assessment, closure, homework, differentiation };
+  }
+
   async function generate() {
     const subject  = document.getElementById('subject').value.trim();
     const topic    = document.getElementById('topic').value.trim();
@@ -190,19 +309,13 @@
     document.getElementById('output').style.display = 'none';
 
     try {
-      const res = await fetch('/.netlify/functions/generate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ subject, topic, grade, duration, style: getSelectedStyle(), notes })
-      });
-      if (!res.ok) throw new Error('Server error: ' + res.status);
-      const plan = await res.json();
-      if (plan.error) throw new Error(plan.error);
+      await new Promise(r => setTimeout(r, 350));
+      const plan = buildLessonPlan({ subject, topic, grade, duration, style: getSelectedStyle(), notes });
 
       document.getElementById('metaBadges').innerHTML =
-        `<span class="badge badge-green">${subject}</span>
-         <span class="badge badge-green">${topic}</span>
-         <span class="badge badge-teal">${grade}</span>
+        `<span class="badge badge-green">${escapeHtml(subject)}</span>
+         <span class="badge badge-green">${escapeHtml(topic)}</span>
+         <span class="badge badge-teal">${escapeHtml(grade)}</span>
          <span class="badge badge-teal">${duration}</span>
          <span class="badge badge-teal">${getSelectedStyle()}</span>`;
 
