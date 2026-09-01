@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number Bonds to 10 &amp; 20 | Free KS1 Maths Game | The Teacher Vault</title>
+<meta name="description" content="Practise number bonds to 10 and 20 with a free interactive KS1 maths game for Year 1 and Year 2 children.">
+<link rel="canonical" href="https://theteachervault.com/ks1/number-bonds.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Number Bonds to 10 & 20 | Free KS1 Maths Game | The Teacher Vault">
+<meta property="og:description" content="Practise number bonds to 10 and 20 with a free interactive KS1 maths game for Year 1 and Year 2 children.">
+<meta property="og:url" content="https://theteachervault.com/ks1/number-bonds.html">
+<meta property="og:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Number Bonds to 10 & 20 | Free KS1 Maths Game | The Teacher Vault">
+<meta name="twitter:description" content="Practise number bonds to 10 and 20 with a free interactive KS1 maths game for Year 1 and Year 2 children.">
+<meta name="twitter:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="ks1.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalApplication",
+  "name": "Number Bonds Challenge",
+  "description": "Practise number bonds to 10 and 20 with a free interactive KS1 maths game for Year 1 and Year 2 children.",
+  "url": "https://theteachervault.com/ks1/number-bonds.html",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "isAccessibleForFree": true,
+  "educationalLevel": "KS1 / Years 1-2",
+  "publisher": { "@type": "Organization", "name": "The Teacher Vault" }
+}
+</script>
+<style>
+.nb-equation { font-family:'Permanent Marker',cursive; font-size:clamp(2rem,6vw,2.8rem); color:var(--k1-orange-dark); text-align:center; margin:12px 0; }
+.nb-frames { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin:14px 0; }
+.nb-frame { display:grid; grid-template-columns:repeat(5,1fr); grid-template-rows:repeat(2,1fr); gap:4px; background:var(--k1-bg-soft); padding:6px; border-radius:8px; }
+.nb-cell { width:26px; height:26px; border-radius:50%; border:2px solid var(--k1-blue-light); background:#fff; }
+.nb-cell.is-filled { background:var(--k1-orange); border-color:var(--k1-orange-dark); }
+.nb-stat-row { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:10px; }
+</style>
+</head>
+<body data-page="ks1-number-bonds" class="k1-page-body">
+<div class="chalk-texture" aria-hidden="true"></div>
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="k1-section" style="padding-bottom:10px;">
+    <div class="k1-container">
+      <p class="k1-breadcrumb"><a href="../index.html">Home</a> / <a href="../ks1.html">KS1</a> / Number Bonds Challenge</p>
+      <span class="k1-badge">Years 1&ndash;2</span>
+      <h1 class="k1-h1">Number Bonds Challenge</h1>
+      <p class="k1-sub">What makes the number?</p>
+      <p class="k1-lede">Find the missing number to complete each number bond &mdash; ten frames show the numbers to 10, and there's a more independent mode with no pictures too.</p>
+    </div>
+  </section>
+
+  <section class="k1-section" style="padding-top:10px;">
+    <div class="k1-container">
+
+      <div class="k1-mascot-row k1-center" style="justify-content:center;margin-bottom:16px;">
+        <div id="mascotWrap"></div>
+      </div>
+
+      <p class="k1-sub" style="font-size:0.95rem;">Choose bonds</p>
+      <div class="k1-choice-grid" id="bondGrid" style="max-width:640px;margin:0 auto 16px;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));"></div>
+
+      <p class="k1-sub" style="font-size:0.95rem;">Choose how to play</p>
+      <div class="k1-choice-grid" id="playGrid" style="max-width:640px;margin:0 auto 16px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));"></div>
+
+      <div class="k1-activity-panel" id="activityPanel" style="margin-top:20px;"></div>
+
+    </div>
+  </section>
+
+  <details class="k1-grownups">
+    <summary>For Grown-Ups</summary>
+    <div class="k1-body">
+      <p><strong>What this practises:</strong> number bonds to 10 and 20 &mdash; knowing pairs of numbers that add up to a target, a key building block for mental addition and subtraction.</p>
+      <p><strong>Suggested year group:</strong> Bonds to 10 suits Year 1; Bonds to 20 and the no-picture Missing Number mode suit Year 2.</p>
+      <p><strong>How to help:</strong> encourage your child to work it out rather than guess &mdash; the ten frame picture shows the "known" part filled in, so they can count the empty spaces. Accuracy matters more than speed, so there's no pressure timer during play.</p>
+      <p><strong>What to try next:</strong> <a href="maths-challenge.html">KS1 Maths Challenge</a> covers a wider range of number and calculation skills.</p>
+    </div>
+  </details>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="../early-years/early-years.js"></script>
+<script>
+(function(){
+  "use strict";
+  var STORAGE_STREAK = "tv_ks1_bonds_best_streak";
+  var STORAGE_TIME10 = "tv_ks1_bonds_best_time_10";
+  var state = { bondMode: "10", playMode: "practice", index: 0, total: 0, correctCount: 0, streak: 0, startTime: 0 };
+
+  function $(id){ return document.getElementById(id); }
+  function randInt(min, max){ return min + Math.floor(Math.random() * (max - min + 1)); }
+
+  $("mascotWrap").innerHTML = EY.mascot("neutral", "The Teacher Vault mascot smiling", { size: 100, animate: "float" }) +
+    '<div style="margin-top:8px;">' + EY.speech("What makes 10?") + '</div>';
+
+  function getBestStreak(){ try { return parseInt(localStorage.getItem(STORAGE_STREAK) || "0", 10); } catch(e) { return 0; } }
+  function setBestStreak(v){ try { if (v > getBestStreak()) localStorage.setItem(STORAGE_STREAK, String(v)); } catch(e) {} }
+  function getBestTime(){ try { return parseFloat(localStorage.getItem(STORAGE_TIME10) || "0"); } catch(e) { return 0; } }
+  function setBestTime(v){ try { var cur = getBestTime(); if (!cur || v < cur) localStorage.setItem(STORAGE_TIME10, String(v)); } catch(e) {} }
+
+  var BOND_MODES = [
+    { id: "10", label: "Bonds to 10" },
+    { id: "20", label: "Bonds to 20" },
+    { id: "mixed", label: "Mixed" },
+    { id: "abstract", label: "Missing Number" }
+  ];
+  var bondGrid = $("bondGrid");
+  BOND_MODES.forEach(function(m){
+    var btn = EY.el('<button type="button" class="k1-choice" style="font-size:0.92rem;">' + m.label + '</button>');
+    if (m.id === "10") btn.classList.add("k1-choice--active");
+    btn.addEventListener("click", function(){
+      Array.prototype.forEach.call(bondGrid.children, function(b){ b.classList.remove("k1-choice--active"); });
+      btn.classList.add("k1-choice--active");
+      state.bondMode = m.id;
+    });
+    bondGrid.appendChild(btn);
+  });
+
+  var PLAY_MODES = [
+    { id: "practice", label: "Practice" },
+    { id: "ten", label: "10 Questions" },
+    { id: "twenty", label: "20 Questions" },
+    { id: "best", label: "Beat Your Best" }
+  ];
+  var playGrid = $("playGrid");
+  PLAY_MODES.forEach(function(m){
+    var btn = EY.el('<button type="button" class="k1-choice" style="font-size:0.92rem;">' + m.label + '</button>');
+    if (m.id === "practice") btn.classList.add("k1-choice--active");
+    btn.addEventListener("click", function(){
+      Array.prototype.forEach.call(playGrid.children, function(b){ b.classList.remove("k1-choice--active"); });
+      btn.classList.add("k1-choice--active");
+      state.playMode = m.id;
+      startRound();
+    });
+    playGrid.appendChild(btn);
+  });
+
+  var panel = $("activityPanel");
+
+  function pickTarget(){
+    if (state.bondMode === "10") return 10;
+    if (state.bondMode === "20") return 20;
+    return Math.random() < 0.5 ? 10 : 20; // mixed and abstract both vary
+  }
+
+  function tenFrame(filled, total){
+    var html = '<div class="nb-frame">';
+    for (var i = 0; i < total; i++) html += '<div class="nb-cell' + (i < filled ? " is-filled" : "") + '"></div>';
+    html += '</div>';
+    return html;
+  }
+  function bondVisual(known, target){
+    if (target === 10) return '<div class="nb-frames">' + tenFrame(known, 10) + '</div>';
+    // 20: two ten-frames, first fully represents up to 10, second the remainder
+    var firstFrame = Math.min(known, 10);
+    var secondFrame = Math.max(0, known - 10);
+    return '<div class="nb-frames">' + tenFrame(firstFrame, 10) + tenFrame(secondFrame, 10) + '</div>';
+  }
+
+  function startRound(){
+    state.index = 0; state.correctCount = 0; state.streak = 0;
+    state.total = state.playMode === "ten" ? 10 : state.playMode === "twenty" ? 20 : state.playMode === "best" ? 10 : Infinity;
+    state.startTime = Date.now();
+    renderQuestion();
+  }
+
+  function statsInnerHtml(){
+    var row = '<span class="k1-streak">🔥 Streak: ' + state.streak + '</span>' +
+      '<span class="k1-streak">✅ Correct: ' + state.correctCount + '</span>';
+    if (getBestStreak() > 0) row += '<span class="k1-streak">🏆 Best streak: ' + getBestStreak() + '</span>';
+    return row;
+  }
+  function renderStats(){
+    return '<div class="nb-stat-row" id="statsRow">' + statsInnerHtml() + '</div>';
+  }
+
+  function renderProgress(){
+    if (!isFinite(state.total)) return "";
+    var dots = '<div class="k1-progress">';
+    for (var i = 0; i < state.total; i++) dots += '<span class="k1-progress-dot' + (i < state.index ? " is-done" : "") + '"></span>';
+    dots += '</div>';
+    return dots;
+  }
+
+  function renderQuestion(){
+    var target = pickTarget();
+    var known = randInt(1, target - 1);
+    var missing = target - known;
+    var missingIsFirst = Math.random() < 0.5;
+    var eqText = missingIsFirst
+      ? "? + " + known + " = " + target
+      : known + " + ? = " + target;
+    var showVisual = state.bondMode !== "abstract";
+
+    var distractors = [];
+    var pool = [];
+    for (var i = 0; i <= target; i++) if (i !== missing) pool.push(i);
+    distractors = EY.pickN(pool, 2);
+    var options = EY.shuffle([missing].concat(distractors));
+
+    panel.innerHTML =
+      renderStats() +
+      renderProgress() +
+      '<div class="k1-mascot-row" style="justify-content:center;margin-bottom:6px;">' +
+        EY.mascot("point-up", "The Teacher Vault mascot pointing up at the number bond", { size: 54 }) +
+        EY.speech(state.bondMode === "abstract" ? "Can you find the missing number?" : "What makes " + target + "?") +
+      '</div>' +
+      '<p class="nb-equation">' + eqText + "</p>" +
+      (showVisual ? bondVisual(known, target) : "") +
+      '<div class="k1-choice-grid" id="bondsGrid" style="max-width:420px;margin:0 auto;grid-template-columns:repeat(3,1fr);"></div>' +
+      '<div id="bondsFeedback" class="k1-center" style="margin-top:10px;"></div>';
+
+    var grid = $("bondsGrid");
+    options.forEach(function(opt){
+      var b = EY.el('<button type="button" class="k1-choice">' + opt + '</button>');
+      b.addEventListener("click", function(){
+        if (grid.dataset.answered) return;
+        grid.dataset.answered = "1";
+        var correct = opt === missing;
+        Array.prototype.forEach.call(grid.children, function(x){
+          x.disabled = true;
+          if (parseInt(x.textContent, 10) === missing) x.classList.add("is-correct");
+          else if (x === b) x.classList.add("is-incorrect");
+        });
+        var fb = $("bondsFeedback");
+        if (correct) {
+          state.correctCount++; state.streak++;
+          setBestStreak(state.streak);
+          fb.innerHTML = '<p style="color:var(--k1-green);font-weight:800;">Great work! ' + known + " + " + missing + " = " + target + ".</p>";
+        } else {
+          state.streak = 0;
+          fb.innerHTML = '<p style="color:var(--k1-orange-dark);font-weight:800;">Nearly! ' + known + " + " + missing + " = " + target + ".</p>";
+        }
+        var statsRow = $("statsRow");
+        if (statsRow) statsRow.innerHTML = statsInnerHtml();
+        state.index++;
+        var isDone = state.index >= state.total;
+        fb.appendChild(EY.el('<div style="margin-top:12px;"><button type="button" class="k1-btn k1-btn--primary" id="nextBondBtn">' + (isDone ? "See Results" : "Next") + '</button></div>'));
+        $("nextBondBtn").addEventListener("click", function(){
+          if (isDone) { renderDone(); return; }
+          renderQuestion();
+        });
+      });
+      grid.appendChild(b);
+    });
+  }
+
+  function renderDone(){
+    var elapsedSeconds = ((Date.now() - state.startTime) / 1000).toFixed(1);
+    var starsOutOf5 = Math.max(1, Math.round((state.correctCount / state.total) * 5));
+    var timeBlock = "";
+    if (state.playMode === "best") {
+      var best = getBestTime();
+      var isNewBest = !best || parseFloat(elapsedSeconds) < best;
+      if (isNewBest) setBestTime(parseFloat(elapsedSeconds));
+      timeBlock = '<p style="margin-top:6px;">Time: ' + elapsedSeconds + 's' +
+        (isNewBest ? ' &mdash; new best!' : best ? ' (best: ' + best.toFixed(1) + 's)' : '') + '</p>';
+    }
+    panel.innerHTML =
+      '<div class="k1-center">' +
+        EY.mascot("cheer", "The Teacher Vault mascot celebrating", { size: 110, animate: "bounce" }) +
+        '<h2 class="k1-h1" style="font-size:1.6rem;margin-top:10px;">You did it!</h2>' +
+        '<p class="k1-lede" style="margin:0 auto 10px;">You got ' + state.correctCount + ' out of ' + state.total + ' correct.</p>' +
+        EY.stars(5, starsOutOf5) +
+        timeBlock +
+        '<div style="margin-top:16px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">' +
+          '<button type="button" class="k1-btn k1-btn--primary" id="againBtn">Play Again</button>' +
+        '</div>' +
+      '</div>';
+    $("againBtn").addEventListener("click", startRound);
+  }
+
+  // start on Practice mode by default
+  startRound();
+})();
+</script>
+</body>
+</html>
