@@ -681,68 +681,61 @@ body.nav-open .mobile-nav { display: flex; }
   gap: 8px;
 }
 
-/* ---------------------------- Hero card stack ----------------------------
-   Mobile: plain vertical stack, no rotation/overlap.
-   Desktop (>=960px): small overlapping stack with tiny rotations. */
-.hero-card-stack {
+/* ---------------------------- Hero stat panel -----------------------------
+   Rotating, typewriter-style trust stats — replaces the old hero card stack. */
+.hero-stat-panel {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
   width: 100%;
   max-width: 360px;
   margin: 0 auto;
+  min-height: 200px;
+  background: linear-gradient(160deg, var(--board-green-light), var(--board-green-dark));
+  border: 1px solid var(--gold-dark);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 28px 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 14px;
 }
 @media (min-width: 960px) {
-  .hero-card-stack { display: block; height: 430px; max-width: 480px; margin: 0 0 0 auto; }
+  .hero-stat-panel { max-width: 420px; min-height: 260px; margin: 0 0 0 auto; }
 }
-
-.hero-mini-card {
-  position: relative;
-  width: 100%;
-  background: var(--paper);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-card);
-  overflow: hidden;
-  border: 1px solid rgba(20,36,29,0.08);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+.hero-stat-panel__label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold-light);
 }
-.hero-mini-card:hover, .hero-mini-card:focus-visible {
-  box-shadow: var(--shadow-card-hover);
-  z-index: 9 !important;
-}
-.hero-mini-card__thumb { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
-.hero-mini-card__thumb--board {
-  background: linear-gradient(160deg, var(--board-green-light), var(--board-green-dark));
+.hero-stat-panel__text {
+  margin: 0;
+  min-height: 3.6em;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 700;
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  line-height: 1.4;
   color: var(--chalk-white);
 }
-.hero-mini-card__thumb--board svg { width: 34px; height: 34px; opacity: 1; }
-.hero-mini-card__label {
-  padding: 10px 12px 12px;
-  font-size: 0.78rem;
-  font-weight: 800;
-  color: var(--ink);
-  line-height: 1.3;
+.hero-stat-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  color: var(--gold-light);
+  animation: heroStatBlink 1s step-end infinite;
 }
-.hero-mini-card__kicker {
-  display: block;
-  font-size: 0.62rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--gold-dark);
-  margin-bottom: 2px;
+@media (prefers-reduced-motion: reduce) {
+  .hero-stat-cursor { animation: none; opacity: 1; }
 }
-
-@media (min-width: 960px) {
-  .hero-mini-card { position: absolute; width: 230px; }
-  .hero-mini-card--1 { top: 0;    left: 55px;  width: 250px; transform: rotate(-5deg); z-index: 4; }
-  .hero-mini-card--2 { top: 20px; left: 260px; width: 220px; transform: rotate(6deg);  z-index: 2; }
-  .hero-mini-card--3 { top: 225px; left: 0;    width: 240px; transform: rotate(4deg);  z-index: 3; }
-  .hero-mini-card--4 { top: 245px; left: 235px; width: 210px; transform: rotate(-3deg); z-index: 1; }
+@keyframes heroStatBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .trust-strip {

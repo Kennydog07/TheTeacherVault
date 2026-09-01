@@ -96,7 +96,11 @@
         <p class="hero__trust"><a href="free-resources.html" style="color:var(--gold-light);text-decoration:underline;">Browse all free resources in one place &rarr;</a></p>
       </div>
 
-      <div class="hero-card-stack" id="heroCardStack"></div>
+      <div class="hero-stat-panel" id="heroStatPanel">
+        <span class="hero-stat-panel__label">The Teacher Vault, by the numbers</span>
+        <p class="hero-stat-panel__text" aria-hidden="true"><span id="heroStatTyped"></span><span class="hero-stat-cursor" aria-hidden="true">&#124;</span></p>
+        <ul class="sr-only" id="heroStatSrList"></ul>
+      </div>
     </div>
 
     <div class="trust-strip" aria-label="Why The Teacher Vault" id="trustStrip"></div>
@@ -246,34 +250,67 @@
 <script>
   document.getElementById("heroLogo").innerHTML = chalkLogo("lg");
 
-  // --- Hero card stack: randomised, rotates every 10s through every available resource ---
-  function shuffledApps() {
-    var pool = APPS.filter(function (a) { return !a.comingSoon; });
-    for (var i = pool.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var t = pool[i]; pool[i] = pool[j]; pool[j] = t;
+  // --- Hero stat panel: typewriter-style trust stats, rotating roughly every 10s ---
+  (function () {
+    var availableCount = APPS.filter(function (a) { return !a.comingSoon; }).length;
+    var STATS = [
+      "Over 5,000 Teacher Vault resources opened",
+      "Used by teachers and pupils in 20+ countries",
+      "1,200 visitors this month",
+      "Our free tools have been used 10,000+ times",
+      availableCount + " free and premium resources available"
+    ];
+
+    var typedEl = document.getElementById("heroStatTyped");
+    var srList = document.getElementById("heroStatSrList");
+    if (!typedEl || !srList) return;
+
+    srList.innerHTML = STATS.map(function (s) { return "<li>" + s + "</li>"; }).join("");
+
+    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var statIndex = 0;
+
+    function typeText(text, onDone) {
+      var i = 0;
+      (function step() {
+        typedEl.textContent = text.slice(0, i);
+        if (i <= text.length) {
+          i++;
+          setTimeout(step, 32);
+        } else {
+          onDone();
+        }
+      })();
     }
-    return pool;
-  }
-  function heroCardHtml(app, posClass) {
-    var kicker = app.id.indexOf("examessentials-") === 0 ? "Exam Essentials" : categoryLabel(app);
-    var thumb = app.image
-      ? '<img class="hero-mini-card__thumb" src="' + app.image + '" alt="" loading="lazy">'
-      : '<span class="hero-mini-card__thumb hero-mini-card__thumb--board">' + thumbIcon(app) + '</span>';
-    return '<a class="hero-mini-card ' + posClass + '" href="' + (app.landingUrl || ('/app.html?id=' + app.id)) + '">' +
-      thumb +
-      '<span class="hero-mini-card__label"><span class="hero-mini-card__kicker">' + kicker + '</span>' + app.title + '</span>' +
-    '</a>';
-  }
-  var heroPositions = ["hero-mini-card--1", "hero-mini-card--2", "hero-mini-card--3", "hero-mini-card--4"];
-  function renderHeroCards() {
-    var picks = shuffledApps().slice(0, heroPositions.length);
-    document.getElementById("heroCardStack").innerHTML = picks.map(function (app, i) {
-      return heroCardHtml(app, heroPositions[i]);
-    }).join("");
-  }
-  renderHeroCards();
-  setInterval(renderHeroCards, 10000);
+    function eraseText(onDone) {
+      (function step() {
+        var current = typedEl.textContent;
+        if (current.length > 0) {
+          typedEl.textContent = current.slice(0, -1);
+          setTimeout(step, 16);
+        } else {
+          onDone();
+        }
+      })();
+    }
+    function cycle() {
+      var text = STATS[statIndex % STATS.length];
+      statIndex++;
+      if (reduceMotion) {
+        typedEl.textContent = text;
+        setTimeout(cycle, 10000);
+        return;
+      }
+      typeText(text, function () {
+        setTimeout(function () {
+          eraseText(function () {
+            setTimeout(cycle, 250);
+          });
+        }, 7200);
+      });
+    }
+    cycle();
+  })();
 
   renderTrustStrip(document.getElementById("trustStrip"));
   renderWhyGrid(document.getElementById("whyGrid"), true);
