@@ -759,6 +759,46 @@ body.nav-open .mobile-nav { display: flex; }
 
 .trust-strip__item svg { width: 16px; height: 16px; color: var(--gold-light); flex-shrink: 0; }
 
+/* ---------------------------- Testimonial panels ---------------------------
+   Same chalkboard treatment as the hero stat panel, for teacher/parent quotes. */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.testimonial-panel {
+  background: linear-gradient(160deg, var(--board-green-light), var(--board-green-dark));
+  border: 1px solid var(--gold-dark);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 28px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.testimonial-panel__quote {
+  margin: 0;
+  font-family: var(--font-chalk);
+  font-weight: 400;
+  font-size: clamp(1rem, 2.1vw, 1.2rem);
+  line-height: 1.5;
+  color: var(--chalk-white);
+}
+
+.testimonial-panel__quote::before { content: "\201C"; }
+.testimonial-panel__quote::after { content: "\201D"; }
+
+.testimonial-panel__author {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold-light);
+}
+
 /* --------------------------------------------------------------------------
    Cards (paper panels on the chalkboard)
    -------------------------------------------------------------------------- */
