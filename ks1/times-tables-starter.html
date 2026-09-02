@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KS1 Times Tables Practice | 2, 5 &amp; 10 Times Tables | The Teacher Vault</title>
+<meta name="description" content="Free KS1 times tables practice for the 2, 5 and 10 times tables with visual grouping, multiplication and division activities.">
+<link rel="canonical" href="https://theteachervault.com/ks1/times-tables-starter.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KS1 Times Tables Practice | 2, 5 & 10 Times Tables | The Teacher Vault">
+<meta property="og:description" content="Free KS1 times tables practice for the 2, 5 and 10 times tables with visual grouping, multiplication and division activities.">
+<meta property="og:url" content="https://theteachervault.com/ks1/times-tables-starter.html">
+<meta property="og:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KS1 Times Tables Practice | 2, 5 & 10 Times Tables | The Teacher Vault">
+<meta name="twitter:description" content="Free KS1 times tables practice for the 2, 5 and 10 times tables with visual grouping, multiplication and division activities.">
+<meta name="twitter:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="ks1.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalApplication",
+  "name": "Times Tables Starter",
+  "description": "Free KS1 times tables practice for the 2, 5 and 10 times tables with visual grouping, multiplication and division activities.",
+  "url": "https://theteachervault.com/ks1/times-tables-starter.html",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "isAccessibleForFree": true,
+  "educationalLevel": "KS1 / Years 1-2",
+  "publisher": { "@type": "Organization", "name": "The Teacher Vault" }
+}
+</script>
+<style>
+.tt-sub { font-size:1.15rem; font-weight:700; color:var(--k1-ink); text-align:center; margin-bottom:10px; }
+.tt-sum { font-family:'Permanent Marker',cursive; font-size:clamp(1.8rem,5vw,2.6rem); color:var(--k1-orange-dark); text-align:center; margin:14px 0; }
+.tt-seq { font-family:'Permanent Marker',cursive; font-size:clamp(1.5rem,4.2vw,2.1rem); color:var(--k1-ink); text-align:center; margin:10px 0; letter-spacing:0.02em; }
+.tt-group-row { display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin:14px 0; }
+.tt-group { background:var(--k1-bg-soft); border-radius:12px; padding:8px 10px; }
+.tt-dot-row { display:flex; gap:6px; font-size:1.6rem; }
+.tt-topic-tag { display:inline-block; background:var(--k1-bg-soft); color:var(--k1-ink-soft); font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; padding:3px 10px; border-radius:999px; margin-bottom:8px; }
+.tt-timer-row { display:flex; align-items:center; justify-content:center; gap:8px; margin:10px 0; font-size:0.92rem; color:var(--k1-ink-soft); }
+.tt-timer-display { font-weight:800; color:var(--k1-blue-dark); }
+</style>
+</head>
+<body data-page="ks1-times-tables-starter" class="k1-page-body">
+<div class="chalk-texture" aria-hidden="true"></div>
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="k1-section" style="padding-bottom:10px;">
+    <div class="k1-container">
+      <p class="k1-breadcrumb"><a href="../index.html">Home</a> / <a href="../ks1.html">KS1</a> / Times Tables Starter</p>
+      <span class="k1-badge">Years 1&ndash;2</span>
+      <h1 class="k1-h1">Times Tables Starter</h1>
+      <p class="k1-sub">Groups. Patterns. Times tables.</p>
+      <p class="k1-lede">Before fast recall, it helps to really understand what a times table means &mdash; equal groups, repeated addition and number patterns. Choose a table and try a few different ways of looking at it.</p>
+    </div>
+  </section>
+
+  <section class="k1-section" style="padding-top:10px;">
+    <div class="k1-container">
+
+      <div class="k1-mascot-row k1-center" style="justify-content:center;margin-bottom:16px;">
+        <div id="mascotWrap"></div>
+      </div>
+
+      <p class="k1-sub" style="font-size:0.95rem;">Choose a table</p>
+      <div class="k1-choice-grid" id="tableGrid" style="max-width:560px;margin:0 auto 16px;grid-template-columns:repeat(4,1fr);"></div>
+
+      <p class="k1-sub" style="font-size:0.95rem;">Choose an activity</p>
+      <div class="k1-choice-grid" id="modeGrid" style="max-width:800px;margin:0 auto 16px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));"></div>
+
+      <div class="k1-activity-panel" id="activityPanel" style="margin-top:20px;"></div>
+
+    </div>
+  </section>
+
+  <details class="k1-grownups">
+    <summary>For Grown-Ups</summary>
+    <div class="k1-body">
+      <p><strong>What this practises:</strong> understanding of the 2, 5 and 10 times tables through equal groups, counting patterns, repeated addition and simple sharing &mdash; the groundwork for confident recall later in KS2.</p>
+      <p><strong>Suitable for:</strong> Years 1 and 2. This is deliberately not a speed test &mdash; the focus is understanding what multiplication means.</p>
+      <p><strong>How to help:</strong> ask your child to explain a group or a pattern in their own words before checking the answer. The optional timer in Times Table Challenge is off by default &mdash; there's no need to turn it on.</p>
+      <p><strong>Try next:</strong> <a href="../ks2/times-tables-challenge.html">KS2 Times Tables Challenge</a> is a good next step once recall feels quick and confident. <a href="maths-challenge.html">KS1 Maths Challenge</a> covers wider KS1 number and calculation skills.</p>
+    </div>
+  </details>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="../early-years/early-years.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  function $(id){ return document.getElementById(id); }
+  function randInt(min, max){ return min + Math.floor(Math.random() * (max - min + 1)); }
+  function uniqueDistractors(correct, min, max, count){
+    var pool = [];
+    for (var i = min; i <= max; i++) if (i !== correct) pool.push(i);
+    return EY.pickN(pool, count);
+  }
+  function effectiveTable(table){ return table === "mixed" ? EY.pick([2, 5, 10]) : table; }
+
+  var state = { table: 2, mode: null };
+
+  $("mascotWrap").innerHTML = EY.mascot("neutral", "The Teacher Vault mascot", { size: 110, animate: "float" }) +
+    '<div style="margin-top:8px;">' + EY.speech("Let's spot the pattern!") + '</div>';
+
+  var TABLES = [
+    { id: 2, label: "2 Times Table" },
+    { id: 5, label: "5 Times Table" },
+    { id: 10, label: "10 Times Table" },
+    { id: "mixed", label: "Mixed" }
+  ];
+  var tableGrid = $("tableGrid");
+  TABLES.forEach(function(t){
+    var b = EY.el('<button type="button" class="k1-choice" style="font-size:0.9rem;">' + t.label + '</button>');
+    b.addEventListener("click", function(){
+      Array.prototype.forEach.call(tableGrid.children, function(x){ x.classList.remove("k1-choice--active"); });
+      b.classList.add("k1-choice--active");
+      state.table = t.id;
+    });
+    if (t.id === state.table) b.classList.add("k1-choice--active");
+    tableGrid.appendChild(b);
+  });
+
+  var MODES = [
+    { id: "steps", label: "Count in Steps" },
+    { id: "groups", label: "Make the Groups" },
+    { id: "multiply", label: "Multiplication" },
+    { id: "match", label: "Match It" },
+    { id: "share", label: "Sharing" },
+    { id: "challenge", label: "Times Table Challenge" }
+  ];
+  var modeGrid = $("modeGrid");
+  MODES.forEach(function(m){
+    var b = EY.el('<button type="button" class="k1-choice" style="font-size:0.9rem;">' + m.label + '</button>');
+    b.addEventListener("click", function(){
+      Array.prototype.forEach.call(modeGrid.children, function(x){ x.classList.remove("k1-choice--active"); });
+      b.classList.add("k1-choice--active");
+      state.mode = m.id;
+      render();
+    });
+    modeGrid.appendChild(b);
+  });
+
+  var panel = $("activityPanel");
+
+  /* ---------------- Generators ---------------- */
+
+  function genSteps(table){
+    var t = effectiveTable(table);
+    var m = randInt(1, 6);
+    var terms = [m * t, (m + 1) * t, (m + 2) * t, (m + 3) * t, (m + 4) * t];
+    var correct = terms[3];
+    var display = [terms[0], terms[1], terms[2], "?", terms[4]];
+    var distractors = uniqueDistractors(correct, correct - t * 2, correct + t * 2, 2);
+    var options = EY.shuffle([correct].concat(distractors));
+    return {
+      table: t, html: '<p class="tt-seq">' + display.join(", ") + "</p>",
+      choices: options.map(String), correctIndex: options.indexOf(correct),
+      explanation: "Counting in " + t + "s: " + terms.join(", ") + "."
+    };
+  }
+
+  function dotGroup(t){
+    var out = '<span class="tt-dot-row">';
+    for (var i = 0; i < t; i++) out += "●";
+    return out + "</span>";
+  }
+
+  function genGroups(table){
+    var t = effectiveTable(table);
+    var groups = randInt(2, 5);
+    var correct = groups * t;
+    var distractors = uniqueDistractors(correct, 2, 100, 2);
+    var options = EY.shuffle([correct].concat(distractors));
+    var rows = "";
+    for (var g = 0; g < groups; g++) rows += '<span class="tt-group">' + dotGroup(t) + "</span>";
+    return {
+      table: t, html: '<p class="tt-sub">' + groups + " groups of " + t + ". How many altogether?</p><div class=\"tt-group-row\">" + rows + "</div>",
+      choices: options.map(String), correctIndex: options.indexOf(correct),
+      explanation: groups + " groups of " + t + " is " + groups + " × " + t + " = " + correct + "."
+    };
+  }
+
+  function genMultiply(table){
+    var t = effectiveTable(table);
+    var factor = randInt(1, 10);
+    var correct = t * factor;
+    var distractors = uniqueDistractors(correct, Math.max(0, correct - t), correct + t, 2);
+    var options = EY.shuffle([correct].concat(distractors));
+    return {
+      table: t, html: '<p class="tt-sum">' + t + " × " + factor + " = ?</p>",
+      choices: options.map(String), correctIndex: options.indexOf(correct),
+      explanation: t + " × " + factor + " = " + correct + "."
+    };
+  }
+
+  function genMatch(table){
+    var t = effectiveTable(table);
+    var groups = randInt(2, 5);
+    var repeated = new Array(groups).fill(t).join(" + ");
+    var correct = groups + " × " + t;
+    var wrongGroups = uniqueDistractors(groups, 2, 6, 1)[0];
+    var wrongTable = EY.pick([2, 5, 10].filter(function(x){ return x !== t; }));
+    var options = EY.shuffle([correct, wrongGroups + " × " + t, groups + " × " + wrongTable]);
+    return {
+      table: t, html: '<p class="tt-sub">Which multiplication matches this?</p><p class="tt-seq">' + repeated + "</p>",
+      choices: options, correctIndex: options.indexOf(correct),
+      explanation: repeated + " is " + groups + " groups of " + t + ", which is " + correct + "."
+    };
+  }
+
+  function genShare(table){
+    var t = effectiveTable(table);
+    var each = randInt(1, 10);
+    var total = t * each;
+    var distractors = uniqueDistractors(each, 1, 12, 2);
+    var options = EY.shuffle([each].concat(distractors));
+    return {
+      table: t, html: '<p class="tt-sub">' + total + " objects are shared into " + t + " equal groups. How many in each group?</p>",
+      choices: options.map(String), correctIndex: options.indexOf(each),
+      explanation: total + " shared into " + t + " equal groups is " + each + " in each group (" + t + " × " + each + " = " + total + ")."
+    };
+  }
+
+  var GENERATORS = { steps: genSteps, groups: genGroups, multiply: genMultiply, match: genMatch, share: genShare };
+
+  function render(){
+    if (state.mode === "challenge") { startChallenge(); return; }
+    var fn = GENERATORS[state.mode];
+    if (!fn) return;
+    renderSingle(fn(state.table), fn);
+  }
+
+  function renderSingle(q, regenFn){
+    panel.innerHTML =
+      '<p class="tt-topic-tag">' + (state.table === "mixed" ? "Mixed" : q.table + " times table") + '</p>' +
+      q.html +
+      '<div class="k1-choice-grid" id="qGrid" style="max-width:480px;margin:0 auto;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));"></div>' +
+      '<div id="qFeedback" class="k1-center" style="margin-top:10px;"></div>';
+
+    var grid = $("qGrid");
+    q.choices.forEach(function(choice, i){
+      var b = EY.el('<button type="button" class="k1-choice">' + choice + '</button>');
+      b.addEventListener("click", function(){
+        if (grid.dataset.answered) return;
+        grid.dataset.answered = "1";
+        var correct = i === q.correctIndex;
+        Array.prototype.forEach.call(grid.children, function(x, xi){
+          x.disabled = true;
+          if (xi === q.correctIndex) x.classList.add("is-correct");
+          else if (x === b) x.classList.add("is-incorrect");
+        });
+        var fb = $("qFeedback");
+        fb.innerHTML = correct
+          ? '<p style="color:var(--k1-green);font-weight:800;">Excellent thinking!</p>'
+          : '<p style="color:var(--k1-orange-dark);font-weight:800;">Nearly — have another go. ' + q.explanation + '</p>';
+        fb.appendChild(EY.el('<div style="margin-top:12px;"><button type="button" class="k1-btn k1-btn--primary" id="nextQBtn">Try Another</button></div>'));
+        $("nextQBtn").addEventListener("click", function(){ renderSingle(regenFn(state.table), regenFn); });
+      });
+      grid.appendChild(b);
+    });
+  }
+
+  /* ---------------- Times Table Challenge (10 questions, optional timer) ---------------- */
+  var challenge = { index: 0, total: 10, score: 0, timed: false, seconds: 0, timerId: null };
+
+  function startChallenge(){
+    challenge.index = 0; challenge.score = 0; challenge.seconds = 0;
+    if (challenge.timerId) clearInterval(challenge.timerId);
+    panel.innerHTML =
+      '<div class="tt-timer-row"><label><input type="checkbox" id="timerToggle"> Time me (optional)</label></div>' +
+      '<div class="k1-center"><button type="button" class="k1-btn k1-btn--primary" id="challengeStartBtn">Start Challenge</button></div>';
+    $("challengeStartBtn").addEventListener("click", function(){
+      challenge.timed = $("timerToggle").checked;
+      if (challenge.timed) challenge.timerId = setInterval(function(){ challenge.seconds++; updateTimerDisplay(); }, 1000);
+      nextChallengeQuestion();
+    });
+  }
+
+  function updateTimerDisplay(){
+    var el = $("timerDisplay");
+    if (el) el.textContent = challenge.seconds + "s";
+  }
+
+  function nextChallengeQuestion(){
+    if (challenge.index >= challenge.total) { finishChallenge(); return; }
+    var q = genMultiply(state.table);
+    challenge.index++;
+    var dots = "";
+    for (var i = 0; i < challenge.total; i++) dots += '<span class="k1-progress-dot' + (i < challenge.index - 1 ? " is-done" : "") + '"></span>';
+    panel.innerHTML =
+      (challenge.timed ? '<p class="k1-center"><span class="tt-timer-display" id="timerDisplay">' + challenge.seconds + 's</span></p>' : "") +
+      '<div class="k1-progress">' + dots + '</div>' +
+      '<p class="tt-topic-tag">' + (state.table === "mixed" ? "Mixed" : q.table + " times table") + '</p>' +
+      q.html +
+      '<div class="k1-choice-grid" id="qGrid" style="max-width:480px;margin:0 auto;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));"></div>' +
+      '<div id="qFeedback" class="k1-center" style="margin-top:10px;"></div>';
+
+    var grid = $("qGrid");
+    q.choices.forEach(function(choice, i){
+      var b = EY.el('<button type="button" class="k1-choice">' + choice + '</button>');
+      b.addEventListener("click", function(){
+        if (grid.dataset.answered) return;
+        grid.dataset.answered = "1";
+        var correct = i === q.correctIndex;
+        if (correct) challenge.score++;
+        Array.prototype.forEach.call(grid.children, function(x, xi){
+          x.disabled = true;
+          if (xi === q.correctIndex) x.classList.add("is-correct");
+          else if (x === b) x.classList.add("is-incorrect");
+        });
+        var fb = $("qFeedback");
+        fb.innerHTML = correct
+          ? '<p style="color:var(--k1-green);font-weight:800;">Great work!</p>'
+          : '<p style="color:var(--k1-orange-dark);font-weight:800;">Nearly! ' + q.explanation + '</p>';
+        fb.appendChild(EY.el('<div style="margin-top:12px;"><button type="button" class="k1-btn k1-btn--primary" id="nextQBtn">' + (challenge.index >= challenge.total ? "See Results" : "Next Question") + '</button></div>'));
+        $("nextQBtn").addEventListener("click", nextChallengeQuestion);
+      });
+      grid.appendChild(b);
+    });
+  }
+
+  function finishChallenge(){
+    if (challenge.timerId) { clearInterval(challenge.timerId); challenge.timerId = null; }
+    var pct = Math.round((challenge.score / challenge.total) * 100);
+    var stars = pct >= 90 ? 3 : pct >= 60 ? 2 : 1;
+    panel.innerHTML =
+      '<div class="k1-center">' +
+        EY.mascot(stars === 3 ? "cheer" : "neutral", "The Teacher Vault mascot", { size: 100, animate: stars === 3 ? "bounce" : "fade-in" }) +
+        EY.stars(3, stars) +
+        '<h2 class="k1h-section-title">You scored ' + challenge.score + ' out of ' + challenge.total + '</h2>' +
+        (challenge.timed ? '<p class="k1-lede">Time taken: ' + challenge.seconds + ' seconds</p>' : "") +
+        '<div style="margin-top:14px;"><button type="button" class="k1-btn k1-btn--primary" id="againBtn">Play Again</button></div>' +
+      '</div>';
+    $("againBtn").addEventListener("click", startChallenge);
+  }
+})();
+</script>
+</body>
+</html>

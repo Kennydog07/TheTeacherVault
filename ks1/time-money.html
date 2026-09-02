@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KS1 Time &amp; Money Practice | Free Year 1 &amp; Year 2 Maths | The Teacher Vault</title>
+<meta name="description" content="Free KS1 time and money practice for Years 1 and 2 with clocks, UK coins and simple real-life maths problems.">
+<link rel="canonical" href="https://theteachervault.com/ks1/time-money.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KS1 Time & Money Practice | Free Year 1 & Year 2 Maths | The Teacher Vault">
+<meta property="og:description" content="Free KS1 time and money practice for Years 1 and 2 with clocks, UK coins and simple real-life maths problems.">
+<meta property="og:url" content="https://theteachervault.com/ks1/time-money.html">
+<meta property="og:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KS1 Time & Money Practice | Free Year 1 & Year 2 Maths | The Teacher Vault">
+<meta name="twitter:description" content="Free KS1 time and money practice for Years 1 and 2 with clocks, UK coins and simple real-life maths problems.">
+<meta name="twitter:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="ks1.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalApplication",
+  "name": "Time & Money Practice",
+  "description": "Free KS1 time and money practice for Years 1 and 2 with clocks, UK coins and simple real-life maths problems.",
+  "url": "https://theteachervault.com/ks1/time-money.html",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "isAccessibleForFree": true,
+  "educationalLevel": "KS1 / Years 1-2",
+  "publisher": { "@type": "Organization", "name": "The Teacher Vault" }
+}
+</script>
+<style>
+.tm-sub { font-size:1.15rem; font-weight:700; color:var(--k1-ink); text-align:center; margin-bottom:10px; }
+.tm-clock { width:110px; height:110px; color:var(--k1-ink); display:block; margin:14px auto; }
+.tm-clock-choice { width:70px; height:70px; color:var(--k1-ink); display:block; margin:0 auto; }
+.tm-digital { font-family:'Permanent Marker',cursive; font-size:clamp(1.8rem,5vw,2.4rem); color:var(--k1-orange-dark); text-align:center; margin:10px 0; }
+.tm-coin-row { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:14px 0; }
+.tm-coin {
+  display:inline-flex; align-items:center; justify-content:center; border-radius:50%; font-weight:800;
+  background:linear-gradient(160deg,#ffe9b0,#e8b84b); color:#5c4300; box-shadow:0 3px 6px rgba(0,0,0,0.18);
+}
+.tm-coin.silver { background:linear-gradient(160deg,#f2f2f2,#c7c9cc); color:#33373b; }
+.tm-word-problem { font-size:1.1rem; color:var(--k1-ink); text-align:center; max-width:52ch; margin:10px auto; line-height:1.5; }
+.tm-topic-tag { display:inline-block; background:var(--k1-bg-soft); color:var(--k1-ink-soft); font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; padding:3px 10px; border-radius:999px; margin-bottom:8px; }
+</style>
+</head>
+<body data-page="ks1-time-money" class="k1-page-body">
+<div class="chalk-texture" aria-hidden="true"></div>
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="k1-section" style="padding-bottom:10px;">
+    <div class="k1-container">
+      <p class="k1-breadcrumb"><a href="../index.html">Home</a> / <a href="../ks1.html">KS1</a> / Time &amp; Money Practice</p>
+      <span class="k1-badge">Years 1&ndash;2</span>
+      <h1 class="k1-h1">Time &amp; Money Practice</h1>
+      <p class="k1-sub">Clocks, coins and everyday maths.</p>
+      <p class="k1-lede">Practise reading clocks and working with UK coins &mdash; the kind of maths that comes up every single day.</p>
+    </div>
+  </section>
+
+  <section class="k1-section" style="padding-top:10px;">
+    <div class="k1-container">
+
+      <div class="k1-mascot-row k1-center" style="justify-content:center;margin-bottom:16px;">
+        <div id="mascotWrap"></div>
+      </div>
+
+      <p class="k1-sub" style="font-size:0.95rem;">Choose a category</p>
+      <div class="k1-choice-grid" id="categoryGrid" style="max-width:480px;margin:0 auto 16px;grid-template-columns:repeat(3,1fr);"></div>
+
+      <p class="k1-sub" style="font-size:0.95rem;">Choose a year group</p>
+      <div class="k1-choice-grid" id="levelGrid" style="max-width:480px;margin:0 auto 16px;grid-template-columns:repeat(3,1fr);"></div>
+
+      <p class="k1-sub" style="font-size:0.95rem;">Choose an activity</p>
+      <div class="k1-choice-grid" id="modeGrid" style="max-width:800px;margin:0 auto 16px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));"></div>
+
+      <div class="k1-activity-panel" id="activityPanel" style="margin-top:20px;"></div>
+
+    </div>
+  </section>
+
+  <details class="k1-grownups">
+    <summary>For Grown-Ups</summary>
+    <div class="k1-body">
+      <p><strong>What this practises:</strong> reading analogue clocks (o'clock, half past, quarter past/to and five-minute intervals) and working with UK coins &mdash; counting, comparing and simple change.</p>
+      <p><strong>Suitable for:</strong> Years 1 and 2. Year 1 stays with o'clock and half past; Year 2 adds quarter past, quarter to and five-minute intervals.</p>
+      <p><strong>How to help:</strong> a real clock or real coins alongside the screen make this much more concrete &mdash; try matching what your child sees here to the clock on the wall or coins from your purse.</p>
+      <p><strong>Try next:</strong> <a href="maths-challenge.html">KS1 Maths Challenge</a> covers wider KS1 number and measurement skills. Parents may also find <a href="../guides/ks1-maths-parent-guide.html">KS1 Maths: What Parents Need to Know</a> useful.</p>
+    </div>
+  </details>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="../early-years/early-years.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  function $(id){ return document.getElementById(id); }
+  function randInt(min, max){ return min + Math.floor(Math.random() * (max - min + 1)); }
+  function uniqueDistractors(correct, min, max, count){
+    var pool = [];
+    for (var i = min; i <= max; i++) if (i !== correct) pool.push(i);
+    return EY.pickN(pool, count);
+  }
+  function money(p){ return p >= 100 ? "£" + (p / 100).toFixed(2).replace(/\.00$/, "") : p + "p"; }
+
+  var state = { category: "time", level: "year1", mode: null };
+
+  $("mascotWrap").innerHTML = EY.mascot("neutral", "The Teacher Vault mascot", { size: 110, animate: "float" }) +
+    '<div style="margin-top:8px;">' + EY.speech("Let's work it out!") + '</div>';
+
+  var CATEGORIES = [
+    { id: "time", label: "Time" },
+    { id: "money", label: "Money" },
+    { id: "mixed", label: "Mixed" }
+  ];
+  var categoryGrid = $("categoryGrid");
+  CATEGORIES.forEach(function(c){
+    var b = EY.el('<button type="button" class="k1-choice" style="font-size:0.95rem;">' + c.label + '</button>');
+    b.addEventListener("click", function(){
+      Array.prototype.forEach.call(categoryGrid.children, function(x){ x.classList.remove("k1-choice--active"); });
+      b.classList.add("k1-choice--active");
+      state.category = c.id;
+      buildModeGrid();
+    });
+    if (c.id === state.category) b.classList.add("k1-choice--active");
+    categoryGrid.appendChild(b);
+  });
+
+  var LEVELS = [
+    { id: "year1", label: "Year 1" },
+    { id: "year2", label: "Year 2" },
+    { id: "mixed", label: "Mixed KS1" }
+  ];
+  var levelGrid = $("levelGrid");
+  LEVELS.forEach(function(l){
+    var b = EY.el('<button type="button" class="k1-choice" style="font-size:0.95rem;">' + l.label + '</button>');
+    b.addEventListener("click", function(){
+      Array.prototype.forEach.call(levelGrid.children, function(x){ x.classList.remove("k1-choice--active"); });
+      b.classList.add("k1-choice--active");
+      state.level = l.id;
+    });
+    if (l.id === state.level) b.classList.add("k1-choice--active");
+    levelGrid.appendChild(b);
+  });
+
+  var TIME_MODES = [
+    { id: "whattime", label: "What Time Is It?" },
+    { id: "setclock", label: "Set the Clock" },
+    { id: "matchtime", label: "Match the Time" },
+    { id: "whatnext", label: "What Comes Next?" },
+    { id: "timeproblem", label: "Simple Time Problems" }
+  ];
+  var MONEY_MODES = [
+    { id: "countcoins", label: "Count the Coins" },
+    { id: "makeamount", label: "Make the Amount" },
+    { id: "whichmore", label: "Which Is More?" },
+    { id: "shop", label: "Simple Shop" }
+  ];
+
+  var modeGrid = $("modeGrid");
+  function buildModeGrid(){
+    var modes = state.category === "time" ? TIME_MODES : state.category === "money" ? MONEY_MODES : TIME_MODES.concat(MONEY_MODES);
+    modeGrid.innerHTML = "";
+    state.mode = null;
+    modes.forEach(function(m){
+      var b = EY.el('<button type="button" class="k1-choice" style="font-size:0.88rem;">' + m.label + '</button>');
+      b.addEventListener("click", function(){
+        Array.prototype.forEach.call(modeGrid.children, function(x){ x.classList.remove("k1-choice--active"); });
+        b.classList.add("k1-choice--active");
+        state.mode = m.id;
+        render();
+      });
+      modeGrid.appendChild(b);
+    });
+  }
+  buildModeGrid();
+
+  var panel = $("activityPanel");
+
+  /* ---------------- Clock helpers ---------------- */
+
+  function clockSvg(hour12, minute){
+    var h = hour12 % 12;
+    var hourAngle = (h + minute / 60) * 30;
+    var minAngle = minute * 6;
+    function hand(angle, len, width){
+      var rad = (angle - 90) * Math.PI / 180;
+      var x = 30 + len * Math.cos(rad);
+      var y = 30 + len * Math.sin(rad);
+      return '<line x1="30" y1="30" x2="' + x.toFixed(2) + '" y2="' + y.toFixed(2) + '" stroke="currentColor" stroke-width="' + width + '" stroke-linecap="round"/>';
+    }
+    var ticks = "";
+    for (var i = 0; i < 12; i++){
+      var a = i * 30, rad = (a - 90) * Math.PI / 180;
+      var x1 = 30 + 23 * Math.cos(rad), y1 = 30 + 23 * Math.sin(rad);
+      var x2 = 30 + 26 * Math.cos(rad), y2 = 30 + 26 * Math.sin(rad);
+      ticks += '<line x1="' + x1.toFixed(2) + '" y1="' + y1.toFixed(2) + '" x2="' + x2.toFixed(2) + '" y2="' + y2.toFixed(2) + '" stroke="currentColor" stroke-width="2"/>';
+    }
+    return '<svg class="tm-clock" viewBox="0 0 60 60" role="img" aria-label="Analogue clock">' +
+      '<circle cx="30" cy="30" r="27" fill="#fff" stroke="currentColor" stroke-width="3"/>' + ticks +
+      hand(hourAngle, 13, 4) + hand(minAngle, 20, 3) +
+      '<circle cx="30" cy="30" r="2.5" fill="currentColor"/></svg>';
+  }
+
+  function timeLabel(hour12, minute){
+    var h = hour12 === 0 ? 12 : hour12;
+    if (minute === 0) return h + " o'clock";
+    if (minute === 30) return "half past " + h;
+    if (minute === 15) return "quarter past " + h;
+    var nextHour = h === 12 ? 1 : h + 1;
+    if (minute === 45) return "quarter to " + nextHour;
+    if (minute < 30) return minute + " minutes past " + h;
+    return (60 - minute) + " minutes to " + nextHour;
+  }
+
+  function randomTime(level){
+    var hour = randInt(1, 12);
+    var minute;
+    if (level === "year1") minute = EY.pick([0, 30]);
+    else if (level === "year2") minute = EY.pick([0, 15, 30, 45, 5, 10, 20, 25, 35, 40, 50, 55]);
+    else minute = EY.pick([0, 15, 30, 45]);
+    return { hour: hour, minute: minute };
+  }
+
+  /* ---------------- TIME generators ---------------- */
+
+  function genWhatTime(level){
+    var t = randomTime(level);
+    var correctLabel = timeLabel(t.hour, t.minute);
+    var distractorTimes = [];
+    while (distractorTimes.length < 2){
+      var dt = randomTime(level);
+      var lbl = timeLabel(dt.hour, dt.minute);
+      if (lbl !== correctLabel && distractorTimes.indexOf(lbl) === -1) distractorTimes.push(lbl);
+    }
+    var options = EY.shuffle([correctLabel].concat(distractorTimes));
+    return {
+      kind: "time", html: '<p class="tm-sub">What time does the clock show?</p>' + clockSvg(t.hour, t.minute),
+      choices: options, correctIndex: options.indexOf(correctLabel),
+      explanation: "The clock shows " + correctLabel + "."
+    };
+  }
+
+  function genSetClock(level){
+    var t = randomTime(level);
+    var correctLabel = timeLabel(t.hour, t.minute);
+    var distractorClocks = [];
+    while (distractorClocks.length < 2){
+      var dt = randomTime(level);
+      if (timeLabel(dt.hour, dt.minute) !== correctLabel) distractorClocks.push(dt);
+    }
+    var clockOptions = EY.shuffle([t].concat(distractorClocks));
+    var correctIdx = clockOptions.indexOf(t);
+    return {
+      kind: "time", html: '<p class="tm-sub">Which clock shows <strong>' + correctLabel + "</strong>?</p>",
+      isVisual: true,
+      choices: clockOptions.map(function(c){ return '<svg class="tm-clock-choice" viewBox="0 0 60 60" role="img" aria-label="clock option">' + clockSvg(c.hour, c.minute).replace('<svg class="tm-clock" viewBox="0 0 60 60" role="img" aria-label="Analogue clock">', '').replace('</svg>', '') + '</svg>'; }),
+      correctIndex: correctIdx,
+      explanation: correctLabel + " is shown on the correct clock."
+    };
+  }
+
+  function genMatchTime(level){
+    var t = randomTime(level);
+    var digital = (t.hour === 12 ? 12 : t.hour) + ":" + (t.minute < 10 ? "0" + t.minute : t.minute);
+    var distractorClocks = [];
+    while (distractorClocks.length < 2){
+      var dt = randomTime(level);
+      var dtDigital = (dt.hour === 12 ? 12 : dt.hour) + ":" + (dt.minute < 10 ? "0" + dt.minute : dt.minute);
+      if (dtDigital !== digital) distractorClocks.push(dt);
+    }
+    var clockOptions = EY.shuffle([t].concat(distractorClocks));
+    return {
+      kind: "time", html: '<p class="tm-sub">Which clock matches this time?</p><p class="tm-digital">' + digital + "</p>",
+      isVisual: true,
+      choices: clockOptions.map(function(c){ return '<svg class="tm-clock-choice" viewBox="0 0 60 60" role="img" aria-label="clock option">' + clockSvg(c.hour, c.minute).replace('<svg class="tm-clock" viewBox="0 0 60 60" role="img" aria-label="Analogue clock">', '').replace('</svg>', '') + '</svg>'; }),
+      correctIndex: clockOptions.indexOf(t),
+      explanation: digital + " matches the correct clock."
+    };
+  }
+
+  var ROUTINE = [
+    { time: "7 o'clock", label: "Wake up" },
+    { time: "8 o'clock", label: "Breakfast" },
+    { time: "9 o'clock", label: "School starts" },
+    { time: "12 o'clock", label: "Lunch time" },
+    { time: "half past 3", label: "Home from school" },
+    { time: "6 o'clock", label: "Dinner time" },
+    { time: "half past 7", label: "Bedtime" }
+  ];
+  function genWhatNext(){
+    var startIndex = randInt(0, ROUTINE.length - 3);
+    var shown = ROUTINE.slice(startIndex, startIndex + 2);
+    var correct = ROUTINE[startIndex + 2];
+    var distractors = EY.pickN(ROUTINE.filter(function(r){ return r !== correct && shown.indexOf(r) === -1; }), 2);
+    var options = EY.shuffle([correct].concat(distractors));
+    var seqText = shown.map(function(s){ return s.label + " (" + s.time + ")"; }).join(", then ");
+    return {
+      kind: "time", html: '<p class="tm-word-problem">' + seqText + "&hellip; what comes next?</p>",
+      choices: options.map(function(o){ return o.label; }), correctIndex: options.indexOf(correct),
+      explanation: "After " + shown[1].label.toLowerCase() + ", next comes " + correct.label.toLowerCase() + " at " + correct.time + "."
+    };
+  }
+
+  function genTimeProblem(level){
+    var t = randomTime(level === "year2" ? "year1" : level);
+    var addHours = EY.pick([1, 2]);
+    var startLabel = timeLabel(t.hour, t.minute);
+    var newHour = ((t.hour - 1 + addHours) % 12) + 1;
+    var correctLabel = timeLabel(newHour, t.minute);
+    var distractors = [];
+    while (distractors.length < 2){
+      var dh = ((t.hour - 1 + randInt(1, 5)) % 12) + 1;
+      var lbl = timeLabel(dh, t.minute);
+      if (lbl !== correctLabel && distractors.indexOf(lbl) === -1) distractors.push(lbl);
+    }
+    var options = EY.shuffle([correctLabel].concat(distractors));
+    return {
+      kind: "time", html: '<p class="tm-word-problem">It is ' + startLabel + ". What time will it be in " + addHours + " hour" + (addHours > 1 ? "s" : "") + "?</p>",
+      choices: options, correctIndex: options.indexOf(correctLabel),
+      explanation: startLabel + " plus " + addHours + " hour" + (addHours > 1 ? "s" : "") + " is " + correctLabel + "."
+    };
+  }
+
+  /* ---------------- MONEY generators ---------------- */
+
+  var COINS_Y1 = [1, 2, 5, 10, 20, 50];
+  var COINS_Y2 = [1, 2, 5, 10, 20, 50, 100, 200];
+
+  function coinVisual(p){
+    var isSilver = p === 5 || p === 10 || p === 20 || p === 50;
+    var size = p >= 100 ? 54 : 44;
+    return '<span class="tm-coin' + (isSilver ? " silver" : "") + '" style="width:' + size + 'px;height:' + size + 'px;font-size:' + (p >= 100 ? "0.85rem" : "0.8rem") + ';">' + money(p) + '</span>';
+  }
+
+  function genCountCoins(level){
+    var coinSet = level === "year1" ? COINS_Y1.filter(function(c){ return c < 100; }) : COINS_Y2;
+    var count = level === "year1" ? 2 : 3;
+    var chosen = [];
+    for (var i = 0; i < count; i++) chosen.push(EY.pick(coinSet));
+    var total = chosen.reduce(function(a, b){ return a + b; }, 0);
+    var distractors = uniqueDistractors(total, 1, total + 40, 2);
+    var options = EY.shuffle([total].concat(distractors));
+    return {
+      kind: "money", html: '<p class="tm-sub">How much altogether?</p><div class="tm-coin-row">' + chosen.map(coinVisual).join("") + "</div>",
+      choices: options.map(money), correctIndex: options.indexOf(total),
+      explanation: chosen.map(money).join(" + ") + " = " + money(total) + "."
+    };
+  }
+
+  function genMakeAmount(level){
+    var coinSet = level === "year1" ? COINS_Y1.filter(function(c){ return c < 50; }) : COINS_Y2.filter(function(c){ return c < 200; });
+    var count = level === "year1" ? 2 : 3;
+    var chosen = [];
+    for (var i = 0; i < count; i++) chosen.push(EY.pick(coinSet));
+    var target = chosen.reduce(function(a, b){ return a + b; }, 0);
+    var wrongSetA = chosen.slice(0, -1).concat([EY.pick(coinSet.filter(function(c){ return chosen.indexOf(c) === -1 || true; }))]);
+    // ensure wrong sets do not sum to target
+    function randSet(){
+      var s = [];
+      for (var i = 0; i < count; i++) s.push(EY.pick(coinSet));
+      return s;
+    }
+    var wrongA = randSet(), wrongB = randSet();
+    var tries = 0;
+    while ((wrongA.reduce(function(a,b){return a+b;},0) === target) && tries < 20) { wrongA = randSet(); tries++; }
+    tries = 0;
+    while ((wrongB.reduce(function(a,b){return a+b;},0) === target || wrongB.reduce(function(a,b){return a+b;},0) === wrongA.reduce(function(a,b){return a+b;},0)) && tries < 20) { wrongB = randSet(); tries++; }
+    var sets = EY.shuffle([{ coins: chosen, sum: target, isCorrect: true }, { coins: wrongA, sum: wrongA.reduce(function(a,b){return a+b;},0), isCorrect: false }, { coins: wrongB, sum: wrongB.reduce(function(a,b){return a+b;},0), isCorrect: false }]);
+    return {
+      kind: "money", html: '<p class="tm-sub">Which coins make ' + money(target) + "?</p>",
+      isVisual: true,
+      choices: sets.map(function(s){ return '<div class="tm-coin-row" style="margin:0;">' + s.coins.map(coinVisual).join("") + "</div>"; }),
+      correctIndex: sets.findIndex(function(s){ return s.isCorrect; }),
+      explanation: sets.find(function(s){ return s.isCorrect; }).coins.map(money).join(" + ") + " = " + money(target) + "."
+    };
+  }
+
+  function genWhichMore(level){
+    var coinSet = level === "year1" ? COINS_Y1.filter(function(c){ return c < 50; }) : COINS_Y2.filter(function(c){ return c < 200; });
+    function randSet(n){ var s = []; for (var i = 0; i < n; i++) s.push(EY.pick(coinSet)); return s; }
+    var setA = randSet(2), setB = randSet(2);
+    var sumA = setA.reduce(function(a,b){return a+b;},0), sumB = setB.reduce(function(a,b){return a+b;},0);
+    var tries = 0;
+    while (sumA === sumB && tries < 20) { setB = randSet(2); sumB = setB.reduce(function(a,b){return a+b;},0); tries++; }
+    var askMore = Math.random() < 0.5;
+    var correctIsA = askMore ? sumA > sumB : sumA < sumB;
+    return {
+      kind: "money", html: '<p class="tm-sub">Which has ' + (askMore ? "more" : "less") + " money?</p>",
+      isVisual: true,
+      choices: [
+        '<div class="tm-coin-row" style="margin:0;">' + setA.map(coinVisual).join("") + "</div>",
+        '<div class="tm-coin-row" style="margin:0;">' + setB.map(coinVisual).join("") + "</div>"
+      ],
+      correctIndex: correctIsA ? 0 : 1,
+      explanation: money(sumA) + " and " + money(sumB) + " &mdash; " + money(correctIsA ? sumA : sumB) + " is " + (askMore ? "more" : "less") + "."
+    };
+  }
+
+  var SHOP_ITEMS = [
+    { name: "apple", price: 12 }, { name: "pencil", price: 15 }, { name: "small toy", price: 25 },
+    { name: "sticker", price: 5 }, { name: "banana", price: 10 }, { name: "bookmark", price: 8 },
+    { name: "balloon", price: 18 }, { name: "biscuit", price: 7 }
+  ];
+  function genShop(level){
+    var item = EY.pick(SHOP_ITEMS);
+    var wantsChange = level !== "year1";
+    var paidOptions = level === "year1" ? [10, 20, 50] : [20, 50, 100];
+    var paid = EY.pick(paidOptions.filter(function(p){ return p >= item.price; }));
+    if (!paid) paid = 50;
+    if (!wantsChange) {
+      var canAfford = paid >= item.price;
+      var options = ["Yes", "No"];
+      return {
+        kind: "money", html: '<p class="tm-word-problem">A ' + item.name + " costs " + money(item.price) + ". You have " + money(paid) + ". Do you have enough to buy it?</p>",
+        choices: options, correctIndex: options.indexOf(canAfford ? "Yes" : "No"),
+        explanation: money(paid) + (canAfford ? " is enough for " : " is not enough for ") + money(item.price) + "."
+      };
+    }
+    var change = paid - item.price;
+    var distractors = uniqueDistractors(change, 0, paid, 2);
+    var options2 = EY.shuffle([change].concat(distractors));
+    return {
+      kind: "money", html: '<p class="tm-word-problem">A ' + item.name + " costs " + money(item.price) + ". You pay with " + money(paid) + ". How much change do you get?</p>",
+      choices: options2.map(money), correctIndex: options2.indexOf(change),
+      explanation: money(paid) + " - " + money(item.price) + " = " + money(change) + " change."
+    };
+  }
+
+  var TIME_GEN = { whattime: genWhatTime, setclock: genSetClock, matchtime: genMatchTime, whatnext: genWhatNext, timeproblem: genTimeProblem };
+  var MONEY_GEN = { countcoins: genCountCoins, makeamount: genMakeAmount, whichmore: genWhichMore, shop: genShop };
+
+  function generate(){
+    var mode = state.mode;
+    var level = state.level === "mixed" ? EY.pick(["year1", "year2"]) : state.level;
+    if (TIME_GEN[mode]) return TIME_GEN[mode].length ? TIME_GEN[mode](level) : TIME_GEN[mode]();
+    if (MONEY_GEN[mode]) return MONEY_GEN[mode](level);
+  }
+
+  function render(){
+    if (!state.mode) return;
+    renderQuestion(generate());
+  }
+
+  function renderQuestion(q){
+    panel.innerHTML =
+      '<p class="tm-topic-tag">' + q.kind + '</p>' +
+      q.html +
+      '<div class="k1-choice-grid" id="qGrid" style="max-width:520px;margin:0 auto;grid-template-columns:repeat(auto-fit,minmax(' + (q.isVisual ? "110px" : "100px") + ',1fr));"></div>' +
+      '<div id="qFeedback" class="k1-center" style="margin-top:10px;"></div>';
+
+    var grid = $("qGrid");
+    q.choices.forEach(function(choice, i){
+      var b = EY.el('<button type="button" class="k1-choice mc-choice-visual" style="' + (q.isVisual ? "min-height:96px;" : "") + '">' + choice + '</button>');
+      b.addEventListener("click", function(){
+        if (grid.dataset.answered) return;
+        grid.dataset.answered = "1";
+        var correct = i === q.correctIndex;
+        Array.prototype.forEach.call(grid.children, function(x, xi){
+          x.disabled = true;
+          if (xi === q.correctIndex) x.classList.add("is-correct");
+          else if (x === b) x.classList.add("is-incorrect");
+        });
+        var fb = $("qFeedback");
+        fb.innerHTML = correct
+          ? '<p style="color:var(--k1-green);font-weight:800;">You found it!</p>'
+          : '<p style="color:var(--k1-orange-dark);font-weight:800;">Nearly — have another go. ' + q.explanation + '</p>';
+        fb.appendChild(EY.el('<div style="margin-top:12px;"><button type="button" class="k1-btn k1-btn--primary" id="nextQBtn">Try Another</button></div>'));
+        $("nextQBtn").addEventListener("click", render);
+      });
+      grid.appendChild(b);
+    });
+  }
+})();
+</script>
+</body>
+</html>

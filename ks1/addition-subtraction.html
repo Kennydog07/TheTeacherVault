@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KS1 Addition &amp; Subtraction Practice | Years 1 &amp; 2 | The Teacher Vault</title>
+<meta name="description" content="Free KS1 addition and subtraction practice for Years 1 and 2 with visual support, missing numbers and simple problems.">
+<link rel="canonical" href="https://theteachervault.com/ks1/addition-subtraction.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KS1 Addition & Subtraction Practice | Years 1 & 2 | The Teacher Vault">
+<meta property="og:description" content="Free KS1 addition and subtraction practice for Years 1 and 2 with visual support, missing numbers and simple problems.">
+<meta property="og:url" content="https://theteachervault.com/ks1/addition-subtraction.html">
+<meta property="og:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KS1 Addition & Subtraction Practice | Years 1 & 2 | The Teacher Vault">
+<meta name="twitter:description" content="Free KS1 addition and subtraction practice for Years 1 and 2 with visual support, missing numbers and simple problems.">
+<meta name="twitter:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="ks1.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalApplication",
+  "name": "Addition & Subtraction Trainer",
+  "description": "Free KS1 addition and subtraction practice for Years 1 and 2 with visual support, missing numbers and simple problems.",
+  "url": "https://theteachervault.com/ks1/addition-subtraction.html",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "isAccessibleForFree": true,
+  "educationalLevel": "KS1 / Years 1-2",
+  "publisher": { "@type": "Organization", "name": "The Teacher Vault" }
+}
+</script>
+<style>
+.as-sum { font-family:'Permanent Marker',cursive; font-size:clamp(1.8rem,5vw,2.6rem); color:var(--k1-orange-dark); text-align:center; margin:14px 0; }
+.as-word-problem { font-size:1.1rem; color:var(--k1-ink); text-align:center; max-width:52ch; margin:10px auto; line-height:1.5; }
+.as-topic-tag { display:inline-block; background:var(--k1-bg-soft); color:var(--k1-ink-soft); font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; padding:3px 10px; border-radius:999px; margin-bottom:8px; }
+.as-showme-btn { display:block; margin:10px auto 0; }
+.as-showme-panel { background:var(--k1-bg-soft); border-radius:var(--k1-radius-sm); padding:14px 16px; margin:14px auto; max-width:480px; text-align:center; }
+.as-countline { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:10px 0; }
+.as-countline span { background:#fff; border-radius:10px; padding:6px 12px; font-weight:800; color:var(--k1-blue-dark); box-shadow:0 2px 6px rgba(40,60,30,0.1); }
+.as-countline span.as-start, .as-countline span.as-end { background:var(--k1-orange); color:#fff; }
+.as-strong-list { list-style:none; padding:0; margin:10px 0; text-align:left; display:inline-block; }
+.as-strong-list li { padding:4px 0; }
+</style>
+</head>
+<body data-page="ks1-addition-subtraction" class="k1-page-body">
+<div class="chalk-texture" aria-hidden="true"></div>
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="k1-section" style="padding-bottom:10px;">
+    <div class="k1-container">
+      <p class="k1-breadcrumb"><a href="../index.html">Home</a> / <a href="../ks1.html">KS1</a> / Addition &amp; Subtraction Trainer</p>
+      <span class="k1-badge">Years 1&ndash;2</span>
+      <h1 class="k1-h1">Addition &amp; Subtraction Trainer</h1>
+      <p class="k1-sub">Let's work it out!</p>
+      <p class="k1-lede">Practise addition and subtraction with visual support, missing numbers and simple word problems &mdash; choose a year group and a question type.</p>
+    </div>
+  </section>
+
+  <section class="k1-section" style="padding-top:10px;">
+    <div class="k1-container">
+
+      <div class="k1-mascot-row k1-center" style="justify-content:center;margin-bottom:16px;">
+        <div id="mascotWrap"></div>
+      </div>
+
+      <p class="k1-sub" style="font-size:0.95rem;">Choose a year group</p>
+      <div class="k1-choice-grid" id="levelGrid" style="max-width:480px;margin:0 auto 16px;grid-template-columns:repeat(3,1fr);"></div>
+
+      <p class="k1-sub" style="font-size:0.95rem;">Choose a question type</p>
+      <div class="k1-choice-grid" id="typeGrid" style="max-width:760px;margin:0 auto 16px;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));"></div>
+
+      <div class="k1-center" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:6px;">
+        <button type="button" class="k1-btn k1-btn--primary" id="start10Btn">10 Questions</button>
+        <button type="button" class="k1-btn k1-btn--soft" id="start20Btn">20 Questions</button>
+      </div>
+
+      <div class="k1-activity-panel" id="activityPanel" style="margin-top:20px;"></div>
+
+    </div>
+  </section>
+
+  <details class="k1-grownups">
+    <summary>For Grown-Ups</summary>
+    <div class="k1-body">
+      <p><strong>What this practises:</strong> addition and subtraction within 10, 20 and 100 depending on year group, including missing-number problems and simple word problems.</p>
+      <p><strong>Suitable for:</strong> Years 1 and 2. Year 1 questions stay within 20; Year 2 introduces two-digit numbers within 100.</p>
+      <p><strong>How to help:</strong> encourage your child to try the question first, then use "Show Me" together if they're stuck, rather than reaching for it straight away.</p>
+      <p><strong>Try next:</strong> <a href="number-bonds.html">Number Bonds Challenge</a> gives more focused practice with the number facts that make this quicker. Parents may also find <a href="../guides/ks1-maths-parent-guide.html">KS1 Maths: What Parents Need to Know</a> useful.</p>
+    </div>
+  </details>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="../early-years/early-years.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  function $(id){ return document.getElementById(id); }
+  function randInt(min, max){ return min + Math.floor(Math.random() * (max - min + 1)); }
+  function uniqueDistractors(correct, min, max, count){
+    var pool = [];
+    for (var i = min; i <= max; i++) if (i !== correct) pool.push(i);
+    return EY.pickN(pool, count);
+  }
+
+  var state = { level: "year1", type: "mixed", total: 10, index: 0, score: 0 };
+
+  $("mascotWrap").innerHTML = EY.mascot("neutral", "The Teacher Vault mascot", { size: 110, animate: "float" }) +
+    '<div style="margin-top:8px;">' + EY.speech("Let's work it out!") + '</div>';
+
+  var LEVELS = [
+    { id: "year1", label: "Year 1" },
+    { id: "year2", label: "Year 2" },
+    { id: "mixed", label: "Mixed KS1" }
+  ];
+  var levelGrid = $("levelGrid");
+  LEVELS.forEach(function(l){
+    var b = EY.el('<button type="button" class="k1-choice" style="font-size:0.98rem;">' + l.label + '</button>');
+    b.addEventListener("click", function(){
+      Array.prototype.forEach.call(levelGrid.children, function(x){ x.classList.remove("k1-choice--active"); });
+      b.classList.add("k1-choice--active");
+      state.level = l.id;
+    });
+    if (l.id === state.level) b.classList.add("k1-choice--active");
+    levelGrid.appendChild(b);
+  });
+
+  var TYPES = [
+    { id: "addition", label: "Addition Only" },
+    { id: "subtraction", label: "Subtraction Only" },
+    { id: "missing", label: "Missing Numbers" },
+    { id: "word", label: "Word Problems" },
+    { id: "mixed", label: "Mix It Up" }
+  ];
+  var typeGrid = $("typeGrid");
+  TYPES.forEach(function(t){
+    var b = EY.el('<button type="button" class="k1-choice" style="font-size:0.92rem;">' + t.label + '</button>');
+    b.addEventListener("click", function(){
+      Array.prototype.forEach.call(typeGrid.children, function(x){ x.classList.remove("k1-choice--active"); });
+      b.classList.add("k1-choice--active");
+      state.type = t.id;
+    });
+    if (t.id === state.type) b.classList.add("k1-choice--active");
+    typeGrid.appendChild(b);
+  });
+
+  $("start10Btn").addEventListener("click", function(){ startSession(10); });
+  $("start20Btn").addEventListener("click", function(){ startSession(20); });
+
+  var panel = $("activityPanel");
+
+  /* ---------------- Generators ---------------- */
+
+  function countList(start, steps, dir){
+    var out = [];
+    var cap = Math.min(steps, 6);
+    for (var i = 1; i <= cap; i++) out.push(start + dir * i);
+    return { list: out, truncated: steps > 6 };
+  }
+
+  function genAddition(level){
+    var a, b, correct;
+    if (level === "year2") {
+      var variant = EY.pick(["one-digit", "tens", "general"]);
+      a = randInt(10, 89);
+      if (variant === "one-digit") { b = randInt(1, Math.min(9, 99 - a)); }
+      else if (variant === "tens") {
+        var tensOptions = [10, 20, 30, 40, 50, 60, 70, 80].filter(function(t){ return a + t <= 99; });
+        b = tensOptions.length ? EY.pick(tensOptions) : 10;
+      } else { b = randInt(1, Math.min(15, 99 - a)); }
+    } else {
+      var within20 = Math.random() < 0.5;
+      var max = within20 ? 20 : 10;
+      a = randInt(1, max - 1);
+      b = randInt(1, max - a);
+    }
+    correct = a + b;
+    var distractors = uniqueDistractors(correct, Math.max(0, correct - 5), correct + 5, 2);
+    var options = EY.shuffle([correct].concat(distractors));
+    var cl = countList(a, b, 1);
+    return {
+      kind: "addition", html: '<p class="as-sum">' + a + " + " + b + " = ?</p>",
+      choices: options.map(String), correctIndex: options.indexOf(correct),
+      showMe: renderCountLine(a, cl, correct, "+"),
+      explanation: a + " + " + b + " = " + correct + "."
+    };
+  }
+
+  function genSubtraction(level){
+    var a, b, correct;
+    if (level === "year2") {
+      var variant = EY.pick(["one-digit", "tens", "general"]);
+      a = randInt(20, 98);
+      if (variant === "one-digit") { b = randInt(1, 9); if (b > a) b = a; }
+      else if (variant === "tens") {
+        var tensOptions = [10, 20, 30, 40, 50, 60, 70, 80].filter(function(t){ return t < a; });
+        b = tensOptions.length ? EY.pick(tensOptions) : 10;
+      } else { b = randInt(1, Math.min(15, a - 1)); }
+    } else {
+      var within20 = Math.random() < 0.5;
+      var max = within20 ? 20 : 10;
+      a = randInt(2, max);
+      b = randInt(1, a - 1);
+    }
+    correct = a - b;
+    var distractors = uniqueDistractors(correct, 0, level === "year1" ? 20 : 99, 2);
+    var options = EY.shuffle([correct].concat(distractors));
+    var cl = countList(a, b, -1);
+    return {
+      kind: "subtraction", html: '<p class="as-sum">' + a + " - " + b + " = ?</p>",
+      choices: options.map(String), correctIndex: options.indexOf(correct),
+      showMe: renderCountLine(a, cl, correct, "-"),
+      explanation: a + " - " + b + " = " + correct + "."
+    };
+  }
+
+  function renderCountLine(start, cl, correct, op){
+    var spans = '<span class="as-start">' + start + '</span>';
+    cl.list.forEach(function(n, i){
+      var isLast = i === cl.list.length - 1;
+      spans += '<span class="' + (isLast && !cl.truncated ? "as-end" : "") + '">' + n + '</span>';
+    });
+    if (cl.truncated) spans += '<span>&hellip;</span><span class="as-end">' + correct + '</span>';
+    return '<div class="as-showme-panel"><p style="margin:0 0 6px;font-weight:700;">' + (op === "+" ? "Count on:" : "Count back:") + '</p><div class="as-countline">' + spans + '</div></div>';
+  }
+
+  function genMissing(level){
+    var max = level === "year1" ? 20 : 100;
+    var a = randInt(1, max - 1);
+    var b = randInt(1, max - a);
+    var c = a + b;
+    var template = randInt(0, 3);
+    var text, missing, explanation;
+    if (template === 0) { text = a + " + ? = " + c; missing = b; explanation = a + " + " + b + " = " + c + "."; }
+    else if (template === 1) { text = "? + " + b + " = " + c; missing = a; explanation = a + " + " + b + " = " + c + "."; }
+    else if (template === 2) { text = c + " - ? = " + a; missing = b; explanation = c + " - " + b + " = " + a + "."; }
+    else { text = "? - " + b + " = " + a; missing = c; explanation = c + " - " + b + " = " + a + "."; }
+    var distractors = uniqueDistractors(missing, 0, max, 2);
+    var options = EY.shuffle([missing].concat(distractors));
+    return {
+      kind: "missing", html: '<p class="as-sum">' + text + "</p>",
+      choices: options.map(String), correctIndex: options.indexOf(missing),
+      showMe: '<div class="as-showme-panel"><p style="margin:0;">' + explanation + '</p></div>',
+      explanation: explanation
+    };
+  }
+
+  var NAMES = ["Amir", "Lily", "Tom", "Priya", "Ben", "Zara", "Sam", "Maya", "Jack", "Noor"];
+  var OBJECTS_WP = ["stickers", "marbles", "sweets", "toy cars", "pencils", "balloons", "conkers"];
+  function pronoun(name, subject){
+    var she = ["Lily", "Priya", "Zara", "Maya", "Noor"].indexOf(name) !== -1;
+    if (subject) return she ? "She" : "He";
+    return she ? "she" : "he";
+  }
+
+  function genWordProblem(level){
+    var max = level === "year1" ? 18 : 60;
+    var isAdd = Math.random() < 0.5;
+    var name = EY.pick(NAMES), obj = EY.pick(OBJECTS_WP);
+    var a, b, correct, text;
+    if (isAdd) {
+      a = randInt(2, max - 1); b = randInt(1, max - a); correct = a + b;
+      text = name + " has " + a + " " + obj + ". " + pronoun(name, true) + " is given " + b + " more. How many " + obj + " does " + pronoun(name, false) + " have now?";
+    } else {
+      a = randInt(3, max); b = randInt(1, a - 1); correct = a - b;
+      text = name + " has " + a + " " + obj + ". " + pronoun(name, true) + " gives " + b + " to a friend. How many " + obj + " does " + pronoun(name, false) + " have left?";
+    }
+    var distractors = uniqueDistractors(correct, 0, max, 2);
+    var options = EY.shuffle([correct].concat(distractors));
+    return {
+      kind: "word", html: '<p class="as-word-problem">' + text + "</p>",
+      choices: options.map(String), correctIndex: options.indexOf(correct),
+      showMe: '<div class="as-showme-panel"><p style="margin:0;">' + (isAdd ? (a + " + " + b + " = " + correct) : (a + " - " + b + " = " + correct)) + '.</p></div>',
+      explanation: isAdd ? (a + " + " + b + " = " + correct + ".") : (a + " - " + b + " = " + correct + ".")
+    };
+  }
+
+  function generateQuestion(level, type){
+    var effectiveLevel = level === "mixed" ? EY.pick(["year1", "year2"]) : level;
+    var effectiveType = type === "mixed" ? EY.pick(["addition", "subtraction", "missing", "word"]) : type;
+    if (effectiveType === "addition") return genAddition(effectiveLevel);
+    if (effectiveType === "subtraction") return genSubtraction(effectiveLevel);
+    if (effectiveType === "missing") return genMissing(effectiveLevel);
+    return genWordProblem(effectiveLevel);
+  }
+
+  /* ---------------- Session flow ---------------- */
+
+  function startSession(total){
+    state.total = total; state.index = 0; state.score = 0;
+    nextQuestion();
+  }
+
+  function nextQuestion(){
+    if (state.index >= state.total) { renderResults(); return; }
+    var q = generateQuestion(state.level, state.type);
+    state.index++;
+    renderQuestion(q);
+  }
+
+  function renderQuestion(q){
+    var dots = "";
+    for (var i = 0; i < state.total; i++) dots += '<span class="k1-progress-dot' + (i < state.index - 1 ? " is-done" : "") + '"></span>';
+    panel.innerHTML =
+      '<div class="k1-progress">' + dots + '</div>' +
+      '<p class="as-topic-tag">' + (q.kind === "word" ? "Word Problem" : q.kind === "missing" ? "Missing Number" : q.kind) + '</p>' +
+      q.html +
+      '<div class="k1-choice-grid" id="qGrid" style="max-width:480px;margin:0 auto;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));"></div>' +
+      '<button type="button" class="k1-btn k1-btn--soft k1-btn--sm as-showme-btn" id="showMeBtn">Show Me</button>' +
+      '<div id="showMeWrap"></div>' +
+      '<div id="qFeedback" class="k1-center" style="margin-top:10px;"></div>';
+
+    var grid = $("qGrid");
+    q.choices.forEach(function(choice, i){
+      var b = EY.el('<button type="button" class="k1-choice">' + choice + '</button>');
+      b.addEventListener("click", function(){
+        if (grid.dataset.answered) return;
+        grid.dataset.answered = "1";
+        var correct = i === q.correctIndex;
+        Array.prototype.forEach.call(grid.children, function(x, xi){
+          x.disabled = true;
+          if (xi === q.correctIndex) x.classList.add("is-correct");
+          else if (x === b) x.classList.add("is-incorrect");
+        });
+        var fb = $("qFeedback");
+        if (correct) {
+          state.score++;
+          fb.innerHTML = '<p style="color:var(--k1-green);font-weight:800;">Great maths!</p>';
+        } else {
+          fb.innerHTML = '<p style="color:var(--k1-orange-dark);font-weight:800;">Good try. Let\'s work it out. ' + q.explanation + '</p>';
+        }
+        fb.appendChild(EY.el('<div style="margin-top:12px;"><button type="button" class="k1-btn k1-btn--primary" id="nextQBtn">' + (state.index >= state.total ? "See Results" : "Next Question") + '</button></div>'));
+        $("nextQBtn").addEventListener("click", nextQuestion);
+      });
+      grid.appendChild(b);
+    });
+
+    $("showMeBtn").addEventListener("click", function(){
+      $("showMeWrap").innerHTML = q.showMe;
+      $("showMeBtn").disabled = true;
+    });
+  }
+
+  function renderResults(){
+    var pct = state.total ? Math.round((state.score / state.total) * 100) : 0;
+    var stars = pct >= 90 ? 3 : pct >= 60 ? 2 : 1;
+    panel.innerHTML =
+      '<div class="k1-center">' +
+        EY.mascot(stars === 3 ? "cheer" : "neutral", "The Teacher Vault mascot", { size: 100, animate: stars === 3 ? "bounce" : "fade-in" }) +
+        EY.stars(3, stars) +
+        '<h2 class="k1h-section-title">You scored ' + state.score + ' out of ' + state.total + '</h2>' +
+        '<p class="k1-lede" style="margin:8px auto;">' + (stars === 3 ? "Excellent thinking!" : stars === 2 ? "Great work!" : "Nice try — have another go.") + '</p>' +
+        '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:14px;">' +
+          '<button type="button" class="k1-btn k1-btn--primary" id="againBtn">Play Again</button>' +
+        '</div>' +
+      '</div>';
+    $("againBtn").addEventListener("click", function(){ startSession(state.total); });
+  }
+})();
+</script>
+</body>
+</html>
