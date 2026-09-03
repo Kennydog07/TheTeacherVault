@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phonics Activity Generator | Free Teacher Tool | The Teacher Vault</title>
+<meta name="description" content="Generate quick phonics activities for Early Years and KS1, including sound spotting, blending, real and pseudo-words and word sorting.">
+<link rel="canonical" href="https://theteachervault.com/teacher-apps/phonics-activity-generator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Phonics Activity Generator | Free Teacher Tool | The Teacher Vault">
+<meta property="og:description" content="Generate quick phonics activities for Early Years and KS1, including sound spotting, blending, real and pseudo-words and word sorting.">
+<meta property="og:url" content="https://theteachervault.com/teacher-apps/phonics-activity-generator.html">
+<meta property="og:image" content="https://theteachervault.com/images/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Phonics Activity Generator | Free Teacher Tool | The Teacher Vault">
+<meta name="twitter:description" content="Generate quick phonics activities for Early Years and KS1, including sound spotting, blending, real and pseudo-words and word sorting.">
+<meta name="twitter:image" content="https://theteachervault.com/images/logo.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Phonics Activity Generator",
+  "description": "Generate quick phonics activities for Early Years and KS1, including sound spotting, blending, real and pseudo-words and word sorting.",
+  "url": "https://theteachervault.com/teacher-apps/phonics-activity-generator.html",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+  "publisher": { "@type": "Organization", "name": "The Teacher Vault", "url": "https://theteachervault.com" }
+}
+</script>
+<style>
+  :root{
+    --board-green:#1e3a30; --board-green-dark:#16291f; --board-green-light:#27473b;
+    --chalk-white:#f5f2e8; --chalk-dim:#cfd6cd;
+    --cream:#f7f2e2; --cream-dark:#efe6cc; --paper:#fbf8ef;
+    --gold:#c9a24b; --gold-dark:#a8842f; --gold-light:#e2c680;
+    --ink:#23291f; --ink-soft:#4a5248;
+    --free-bg:#dbe9d9; --free-text:#285c3a;
+    --alien-bg:#f0e6fb; --alien-text:#5b3a91;
+    --orange:#e8742a; --orange-bg:#fff8ec; --orange-bg2:#fdecd2; --orange-border:#ffb877;
+    --max-width:1100px;
+    --radius-sm:6px; --radius-md:10px; --radius-lg:16px;
+    --shadow-card:0 4px 14px rgba(10,20,15,0.35);
+    --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --font-chalk:'Permanent Marker', var(--font-body);
+  }
+  *,*::before,*::after{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{ font-family:var(--font-body); background:var(--paper); color:var(--ink); line-height:1.5; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3,h4,p,ul,ol,dl,dd{ margin:0; }
+  img{ max-width:100%; display:block; }
+  button{ font-family:inherit; }
+  a{ color:inherit; }
+  a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible,
+  textarea:focus-visible, [tabindex]:focus-visible { outline:3px solid var(--gold); outline-offset:2px; }
+  [hidden]{ display:none !important; }
+
+  .wrap{ max-width:var(--max-width); margin:0 auto; padding:0 20px 60px; }
+
+  .app-breadcrumb{ max-width:var(--max-width); margin:0 auto; padding:12px 20px 0; font-size:0.85rem; color:var(--ink-soft); }
+  .app-breadcrumb a{ color:var(--board-green); font-weight:600; text-decoration:underline; }
+  .app-breadcrumb a:hover{ color:var(--gold-dark); }
+
+  header.app-header{
+    background:linear-gradient(135deg, var(--board-green) 0%, var(--board-green-dark) 100%);
+    color:var(--chalk-white); padding:20px; margin:14px 0 26px; border-radius:var(--radius-lg);
+    max-width:var(--max-width); margin-left:auto; margin-right:auto;
+  }
+  .header-inner{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  .header-inner img.logo{ width:52px; height:52px; border-radius:12px; object-fit:cover; flex-shrink:0; }
+  .header-titles{ flex:1; min-width:200px; }
+  .header-titles .brand{ font-family:var(--font-chalk); font-size:0.95rem; color:var(--gold-light); margin-bottom:2px; line-height:1; }
+  .header-titles h1{ margin:0; font-size:1.6rem; letter-spacing:-0.01em; color:#fff; }
+  .header-titles p{ margin:4px 0 0; font-size:0.98rem; color:var(--chalk-dim); max-width:640px; }
+
+  .card{ background:#fff; border:1px solid rgba(30,58,48,0.12); border-radius:var(--radius-lg); box-shadow:var(--shadow-card); padding:24px; }
+  .card + .card{ margin-top:20px; }
+
+  .field-row{ display:flex; gap:16px; flex-wrap:wrap; }
+  .field{ flex:1; min-width:170px; }
+  .field label{ display:block; font-weight:700; font-size:0.92rem; margin-bottom:7px; color:var(--ink); }
+  select{
+    width:100%; font-family:inherit; font-size:1rem; padding:12px 14px;
+    border-radius:var(--radius-sm); border:2px solid rgba(30,58,48,0.18); background:var(--paper); color:var(--ink);
+  }
+  select:focus{ outline:none; border-color:var(--board-green); }
+
+  .check-row{ display:flex; flex-wrap:wrap; gap:18px; margin-top:18px; }
+  .check-item{ display:flex; align-items:center; gap:9px; font-weight:600; font-size:0.94rem; cursor:pointer; }
+  .check-item input{ width:20px; height:20px; accent-color:var(--board-green); cursor:pointer; }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:12px 20px; border-radius:var(--radius-sm); border:none; cursor:pointer;
+    font-size:0.96rem; font-weight:700; font-family:inherit; min-height:44px;
+    transition:transform .1s ease, box-shadow .15s ease;
+  }
+  .btn:active{ transform:scale(0.98); }
+  .btn-primary{ background:linear-gradient(135deg, var(--gold), var(--gold-dark)); color:var(--ink); box-shadow:0 6px 16px rgba(201,162,75,0.4); }
+  .btn-primary:hover{ box-shadow:0 8px 20px rgba(201,162,75,0.5); }
+  .btn-secondary{ background:var(--board-green-light); color:#fff; }
+  .btn-secondary:hover{ background:var(--board-green); }
+  .btn-ghost{ background:transparent; color:var(--board-green-dark); border:2px solid rgba(30,58,48,0.25); }
+  .btn-ghost:hover{ border-color:var(--board-green); }
+  .btn-lg{ width:100%; font-size:1.05rem; padding:16px 22px; }
+  .actions-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:8px; }
+
+  .empty-state{ text-align:center; padding:44px 24px; background:var(--orange-bg); border:2px dashed var(--orange-border); border-radius:var(--radius-md); }
+  .empty-state img.mascot{ width:84px; height:84px; margin:0 auto 14px; }
+  .empty-state h2{ margin:0 0 8px; font-size:1.35rem; color:var(--board-green-dark); }
+  .empty-state p{ margin:0 auto; color:var(--ink-soft); font-size:1rem; max-width:44ch; }
+
+  .output-head{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:16px; }
+  .output-head img.mascot{ width:48px; height:48px; flex-shrink:0; }
+  .output-title{ font-family:var(--font-chalk); font-size:1.3rem; color:var(--board-green-dark); }
+  .output-meta{ display:flex; gap:8px; flex-wrap:wrap; margin-top:4px; }
+  .badge{ display:inline-block; font-size:0.72rem; font-weight:800; letter-spacing:0.03em; padding:4px 11px; border-radius:999px; background:var(--free-bg); color:var(--free-text); text-transform:uppercase; }
+  .badge.alien{ background:var(--alien-bg); color:var(--alien-text); }
+
+  .instructions{ font-size:1.02rem; margin-bottom:16px; padding:12px 16px; background:var(--cream); border-radius:var(--radius-sm); border-left:4px solid var(--gold-dark); }
+
+  .word-grid{ display:flex; flex-wrap:wrap; gap:12px; }
+  .word-chip{ padding:10px 18px; border-radius:999px; border:2px solid rgba(30,58,48,0.2); font-size:1.1rem; font-weight:700; background:var(--paper); }
+  .answers-on .word-chip.is-target{ border-color:var(--free-text); background:var(--free-bg); color:var(--free-text); }
+  .answers-on .word-chip.is-target::after{ content:" ✓"; }
+  .alien-tag{ display:none; font-style:italic; font-weight:600; margin-left:6px; color:var(--alien-text); }
+  .answers-on .alien-tag{ display:inline; }
+
+  .sort-columns{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .sort-columns h4{ font-size:0.85rem; text-transform:uppercase; letter-spacing:0.03em; color:var(--ink-soft); margin-bottom:8px; }
+  .sort-columns .word-chip{ display:none; margin-bottom:8px; }
+  .answers-on .sort-columns .word-chip{ display:inline-block; }
+
+  ol.question-list{ list-style:none; margin:0; padding:0; counter-reset:qnum; }
+  ol.question-list li{
+    counter-increment:qnum; position:relative; padding:14px 16px 14px 46px;
+    border:1px solid rgba(30,58,48,0.14); border-radius:var(--radius-sm); margin-bottom:10px;
+    font-size:1.08rem; background:var(--paper);
+  }
+  ol.question-list li::before{
+    content:counter(qnum); position:absolute; left:12px; top:50%; transform:translateY(-50%);
+    width:26px; height:26px; border-radius:50%; background:var(--board-green); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:0.85rem; font-weight:800;
+  }
+  .q-answer{ display:none; margin-top:8px; font-weight:700; color:var(--free-text); font-size:0.95rem; }
+  .answers-on .q-answer{ display:block; }
+
+  #copyArea{ width:100%; min-height:120px; margin-top:12px; font-family:inherit; font-size:0.95rem; padding:12px; border-radius:var(--radius-sm); border:2px solid rgba(30,58,48,0.18); }
+
+  .toast{
+    position:fixed; bottom:22px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--board-green-dark); color:#fff; padding:12px 22px; border-radius:999px;
+    font-size:0.9rem; font-weight:600; box-shadow:0 12px 32px rgba(0,0,0,0.3);
+    opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease; z-index:999;
+  }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  details.how-to{ margin-top:14px; }
+  details.how-to summary{ cursor:pointer; font-weight:700; color:var(--board-green-dark); font-size:0.92rem; padding:4px 0; }
+  details.how-to p, details.how-to ul{ margin-top:8px; color:var(--ink-soft); font-size:0.92rem; }
+  details.how-to ul{ padding-left:20px; }
+
+  .related-links{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+  .related-links a{
+    display:inline-block; padding:9px 16px; border-radius:999px; text-decoration:none;
+    background:var(--cream); color:var(--board-green-dark); font-size:0.88rem; font-weight:700; border:1px solid rgba(30,58,48,0.18);
+  }
+  .related-links a:hover{ background:var(--cream-dark); }
+
+  footer.tv-footer{ background:var(--board-green-dark); color:var(--chalk-dim); margin-top:40px; padding:36px 20px 28px; border-radius:var(--radius-lg); max-width:var(--max-width); margin-left:auto; margin-right:auto; }
+  .tv-footer-inner h2{ font-family:var(--font-chalk); font-size:1.15rem; color:#fff; margin-bottom:6px; }
+  .tv-footer-inner p{ color:var(--chalk-dim); margin-bottom:12px; max-width:640px; }
+  .tv-footer-links{ display:flex; flex-wrap:wrap; gap:10px; }
+  .tv-footer-links a{
+    display:inline-block; padding:9px 16px; border-radius:999px; text-decoration:none;
+    background:rgba(255,255,255,0.08); color:#fff; font-size:0.88rem; font-weight:600; border:1px solid rgba(255,255,255,0.15);
+  }
+  .tv-footer-links a:hover{ background:rgba(255,255,255,0.16); }
+  .tv-copyright{ margin-top:22px; font-size:0.8rem; color:var(--chalk-dim); opacity:0.7; }
+
+  @media (max-width:600px){
+    .card{ padding:18px; }
+    .header-titles h1{ font-size:1.35rem; }
+    .field-row{ gap:12px; }
+    .sort-columns{ grid-template-columns:1fr; }
+  }
+
+  @media print{
+    body{ background:#fff; }
+    .app-breadcrumb, header.app-header, footer.tv-footer, .no-print{ display:none !important; }
+    .wrap{ max-width:none; padding:0; }
+    .card{ box-shadow:none; border:none; padding:0; }
+    .word-chip{ border:1px solid #999; background:#fff; }
+    .q-answer{ display:block !important; color:#000; }
+    ol.question-list li{ border:1px solid #999; background:#fff; break-inside:avoid; }
+    .empty-state{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="app-breadcrumb no-print" aria-label="Breadcrumb">
+  <a href="/index.html">Home</a> / <a href="/teacher-tools.html">Teacher Tools</a> / <span aria-current="page">Phonics Activity Generator</span>
+</nav>
+
+<header class="app-header">
+  <div class="header-inner">
+    <img class="logo" alt="The Teacher Vault" src="/images/logo.png" width="52" height="52">
+    <div class="header-titles">
+      <div class="brand">The Teacher Vault</div>
+      <h1>Phonics Activity Generator</h1>
+      <p>Create a quick phonics activity for your group.</p>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="card no-print" id="controlsCard">
+    <div class="field-row">
+      <div class="field">
+        <label for="levelSelect">Level</label>
+        <select id="levelSelect">
+          <option value="EY">Early Years</option>
+          <option value="Y1" selected>Year 1</option>
+          <option value="Y2">Year 2</option>
+          <option value="MIXED">Mixed KS1</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="soundSelect">Target sound / grapheme</label>
+        <select id="soundSelect"></select>
+      </div>
+      <div class="field">
+        <label for="activitySelect">Activity type</label>
+        <select id="activitySelect">
+          <option value="spotting">Sound Spotting</option>
+          <option value="sort">Word Sort</option>
+          <option value="realalien">Real or Alien?</option>
+          <option value="missing">Missing Sound</option>
+          <option value="build">Build the Word</option>
+          <option value="sentence">Sentence Spotter</option>
+          <option value="mix" selected>Quick Mix</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="countSelect">Number of items</label>
+        <select id="countSelect">
+          <option value="5">5</option>
+          <option value="8" selected>8</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="check-row">
+      <label class="check-item"><input type="checkbox" id="answersCheck"> Include answers</label>
+      <label class="check-item"><input type="checkbox" id="alienCheck"> Include alien words</label>
+    </div>
+
+    <div class="actions-row" style="margin-top:20px;">
+      <button type="button" class="btn btn-primary btn-lg" id="generateBtn">Generate</button>
+    </div>
+
+    <details class="how-to">
+      <summary>How to use</summary>
+      <p>Choose a level, target sound and activity type, then click <strong>Generate</strong>.</p>
+      <ul>
+        <li>"Mixed sounds" picks a different grapheme each time you generate — useful for quick review.</li>
+        <li><strong>Real or Alien?</strong> always mixes in invented words, whatever the alien words setting — that's the point of the activity.</li>
+        <li>Some graphemes (like "oo" in "moon" vs "book", or "ow" in "cow" vs "snow") can sound different depending on the word — worth a quick check with pupils before you start.</li>
+        <li>Alien words are original, pronounceable made-up words — never copied from any official phonics screening check.</li>
+      </ul>
+    </details>
+  </div>
+
+  <div class="card" id="resultsCard" style="margin-top:20px;">
+    <div class="empty-state" id="emptyState">
+      <img class="mascot" src="/images/early-years/mascot-neutral.png" alt="" role="presentation" loading="lazy">
+      <h2>Ready when you are</h2>
+      <p>Choose a target sound and activity type, then generate your phonics activity.</p>
+    </div>
+
+    <div id="outputBody" hidden>
+      <div class="output-head">
+        <img class="mascot" src="/images/early-years/mascot-point-right.png" alt="" role="presentation" loading="lazy">
+        <div>
+          <div class="output-title" id="activityTitle">Phonics Activity</div>
+          <div class="output-meta" id="outputMeta"></div>
+        </div>
+      </div>
+      <div id="activityBody"></div>
+
+      <div class="actions-row no-print" style="margin-top:20px;">
+        <button type="button" class="btn btn-secondary" id="showAnswersBtn">Show Answers</button>
+        <button type="button" class="btn btn-secondary" id="regenerateBtn">Regenerate</button>
+        <button type="button" class="btn btn-ghost" id="copyBtn">Copy</button>
+        <button type="button" class="btn btn-ghost" id="printBtn">Print</button>
+      </div>
+      <textarea id="copyArea" class="no-print" readonly hidden aria-label="Selectable phonics activity text"></textarea>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="font-family:var(--font-chalk);font-size:1.1rem;color:var(--board-green-dark);">Teaching Early Years or KS1?</h2>
+    <p style="color:var(--ink-soft);margin-top:8px;">Browse the rest of The Teacher Vault's Early Years and KS1 resources.</p>
+    <div class="related-links">
+      <a href="/early-years.html">Early Years hub</a>
+      <a href="/ks1.html">KS1 hub</a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="tv-footer">
+  <div class="tv-footer-inner">
+    <h2>More free teacher tools</h2>
+    <p>Small, focused tools that solve one teaching problem at a time — free to use, no account needed.</p>
+    <div class="tv-footer-links">
+      <a href="/lesson-planner.html">Lesson Planner</a>
+      <a href="/report-writer.html">Report Writer</a>
+      <a href="/feedback-fixer.html">Feedback Fixer</a>
+      <a href="/teacher-apps/ks1-morning-starter.html">KS1 Morning Starter Generator</a>
+      <a href="/teacher-apps/early-finisher-generator.html">Early Finisher Generator</a>
+      <a href="/teacher-tools.html">All Teacher Tools</a>
+    </div>
+    <div class="tv-copyright">The Teacher Vault — Tools that give teachers their time back.</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+"use strict";
+
+function randInt(min, max){ return Math.floor(Math.random() * (max - min + 1)) + min; }
+function pick(arr){ return arr[randInt(0, arr.length - 1)]; }
+function pickN(arr, n){
+  var a = arr.slice(), out = [];
+  while(a.length && out.length < n){ out.push(a.splice(randInt(0, a.length - 1), 1)[0]); }
+  return out;
+}
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, function(c){
+    return { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c];
+  });
+}
+
+/* ============================================================
+   WORD BANKS — hand-checked real words and original alien
+   (pseudo-)words for each grapheme. Alien words are invented,
+   pronounceable, and verified not to be real or offensive words.
+   ============================================================ */
+
+var DISTRACTORS = ["cat","sun","dog","run","top","mat","big","red","box","hop","pen","bag","cup","hat","bed","jam","van","fun"];
+
+var WORD_BANK = {
+  sh:   { real:["ship","shop","fish","shell","wish","shed","brush","dish"], alien:["shab","shup","vosh","plish"] },
+  ch:   { real:["chip","chop","chin","lunch","chest","much","bench","chimp"], alien:["chab","chun","plach","chos"] },
+  th:   { real:["thin","that","this","moth","bath","teeth","three","think"], alien:["thab","thun","glath","voth"] },
+  ng:   { real:["king","ring","song","sing","long","bang","wing","strong"], alien:["flong","brang","stang","vong"] },
+  ai:   { real:["rain","tail","snail","paint","chain","wait","train","brain"], alien:["zain","traik","spait","blaim"] },
+  ee:   { real:["tree","green","sheep","three","feet","seed","sleep","queen"], alien:["smeet","fleep","greeb","sneek"] },
+  igh:  { real:["light","night","right","high","sight","bright","fight","tight"], alien:["swigh","prigh","crigh","gligh"] },
+  oa:   { real:["boat","coat","road","soap","goat","toast","coach","float"], alien:["zoat","sproat","ploam","hoam"] },
+  oo:   { real:["moon","food","spoon","book","look","foot","zoo","room"], alien:["sproon","flook","throom","glood"] },
+  ar:   { real:["car","star","farm","park","shark","cart","dark","yard"], alien:["sparn","glark","thard","vark"] },
+  or:   { real:["for","fork","corn","sport","storm","short","horse","north"], alien:["glorn","sworp","thord","vorn"] },
+  ur:   { real:["fur","turn","burn","church","nurse","purple","curl","hurt"], alien:["blurn","thurp","glurk","snurf"] },
+  ow:   { real:["cow","owl","brown","town","down","crown","how","now"], alien:["vown","sprow","thowl","glowt"] },
+  oi:   { real:["coin","boil","soil","point","join","voice","noise","spoil"], alien:["sproin","thoil","gloit","vroin"] },
+  ear:  { real:["ear","hear","year","near","clear","dear","tear","beard"], alien:["sprear","thear","bleard","vear"] },
+  air:  { real:["hair","chair","fair","stairs","pair","hairbrush","air","repair"], alien:["sprair","thair","plair","quair"] }
+};
+
+var GRAPHEMES = ["sh","ch","th","ng","ai","ee","igh","oa","oo","ar","or","ur","ow","oi","ear","air"];
+var LEVEL_GRAPHEMES = {
+  EY: ["sh","ch","th","ng","ai","ee","oa","oo"],
+  Y1: GRAPHEMES,
+  Y2: GRAPHEMES,
+  MIXED: GRAPHEMES
+};
+
+var SENTENCE_TEMPLATES = [
+  "I can see a {word}.",
+  "We looked at the {word} today.",
+  "My friend has a {word}.",
+  "There was a {word} in the story.",
+  "Look at that {word} over there.",
+  "The {word} made everyone smile."
+];
+
+var soundSelect = document.getElementById("soundSelect");
+GRAPHEMES.forEach(function(g){
+  var opt = document.createElement("option");
+  opt.value = g; opt.textContent = "'" + g + "' (as in '" + WORD_BANK[g].real[0] + "')";
+  soundSelect.appendChild(opt);
+});
+var mixOpt = document.createElement("option");
+mixOpt.value = "mixed"; mixOpt.textContent = "Mixed sounds";
+mixOpt.selected = true;
+soundSelect.appendChild(mixOpt);
+
+function graphemeFor(level, chosen){
+  if(chosen !== "mixed") return chosen;
+  var pool = LEVEL_GRAPHEMES[level] || GRAPHEMES;
+  return pick(pool);
+}
+
+function wordFor(grapheme, includeAlien, alienChance){
+  var bank = WORD_BANK[grapheme];
+  if(includeAlien && Math.random() < (alienChance || 0.35)){
+    return { text: pick(bank.alien), isAlien: true };
+  }
+  return { text: pick(bank.real), isAlien: false };
+}
+
+/* ---------------- Activity builders ---------------- */
+
+function buildSpotting(grapheme, count, includeAlien){
+  var n = count;
+  var targetCount = Math.max(2, Math.round(n * 0.55));
+  var words = [];
+  for(var i = 0; i < targetCount; i++){ var w = wordFor(grapheme, includeAlien); words.push({ text:w.text, isAlien:w.isAlien, isTarget:true }); }
+  var distractors = pickN(DISTRACTORS, n - targetCount);
+  distractors.forEach(function(d){ words.push({ text:d, isAlien:false, isTarget:false }); });
+  words = pickN(words, words.length);
+  var html = '<div class="word-grid">' + words.map(function(w){
+    return '<span class="word-chip' + (w.isTarget ? ' is-target' : '') + (w.isAlien ? ' is-alien' : '') + '">' + escapeHtml(w.text) + '</span>';
+  }).join("") + '</div>';
+  return {
+    title: "Sound Spotting",
+    instructions: "Find the words that contain the '" + grapheme + "' sound.",
+    body: html,
+    plain: words.map(function(w){ return w.text + (w.isTarget ? " (has '" + grapheme + "')" : ""); }).join(", ")
+  };
+}
+
+function buildSort(grapheme, count, includeAlien){
+  var n = count;
+  var targetCount = Math.round(n / 2);
+  var hasWords = [];
+  for(var i = 0; i < targetCount; i++){ var w = wordFor(grapheme, includeAlien); hasWords.push(w); }
+  var noWords = pickN(DISTRACTORS, n - targetCount);
+  var html = '<div class="sort-columns">' +
+    '<div><h4>Has the \'' + grapheme + '\' sound</h4>' + hasWords.map(function(w){ return '<span class="word-chip' + (w.isAlien ? ' is-alien' : '') + '">' + escapeHtml(w.text) + '</span> '; }).join("") + '</div>' +
+    '<div><h4>Does not have it</h4>' + noWords.map(function(w){ return '<span class="word-chip">' + escapeHtml(w) + '</span> '; }).join("") + '</div>' +
+  '</div>' +
+  '<p style="margin-top:14px;color:var(--ink-soft);font-size:0.92rem;">Word list to sort: ' + escapeHtml(pickN(hasWords.map(function(w){return w.text;}).concat(noWords), hasWords.length + noWords.length).join(", ")) + '</p>';
+  return {
+    title: "Word Sort",
+    instructions: "Sort the words below into two groups: words with the '" + grapheme + "' sound, and words without it.",
+    body: html,
+    plain: "Sort: " + hasWords.map(function(w){return w.text;}).concat(noWords).join(", ")
+  };
+}
+
+function buildRealAlien(grapheme, count){
+  var n = count;
+  var realCount = Math.round(n / 2);
+  var items = [];
+  var reals = pickN(WORD_BANK[grapheme].real, Math.min(realCount, WORD_BANK[grapheme].real.length));
+  reals.forEach(function(r){ items.push({ text:r, isAlien:false }); });
+  var alienNeeded = n - items.length;
+  var alienPool = [];
+  while(alienPool.length < alienNeeded) alienPool = alienPool.concat(pickN(WORD_BANK[grapheme].alien, WORD_BANK[grapheme].alien.length));
+  alienPool.slice(0, alienNeeded).forEach(function(a){ items.push({ text:a, isAlien:true }); });
+  items = pickN(items, items.length);
+  var html = '<div class="word-grid">' + items.map(function(w){
+    return '<span class="word-chip">' + escapeHtml(w.text) + '<span class="alien-tag">(' + (w.isAlien ? "alien" : "real") + ')</span></span>';
+  }).join("") + '</div>';
+  return {
+    title: "Real or Alien?",
+    instructions: "Sort each word: is it a REAL word, or an ALIEN (made-up) word? All of them contain the '" + grapheme + "' sound.",
+    body: html,
+    plain: items.map(function(w){ return w.text + " — " + (w.isAlien ? "alien" : "real"); }).join(", ")
+  };
+}
+
+function blankGrapheme(word, grapheme){
+  var idx = word.indexOf(grapheme);
+  if(idx === -1) return null;
+  return word.slice(0, idx) + "___" + word.slice(idx + grapheme.length);
+}
+
+function buildMissing(grapheme, count, includeAlien){
+  var n = count;
+  var items = [];
+  var guard = 0;
+  while(items.length < n && guard < n * 20){
+    guard++;
+    var w = wordFor(grapheme, includeAlien, 0.3);
+    var blanked = blankGrapheme(w.text, grapheme);
+    if(!blanked) continue;
+    items.push({ text: blanked, answer: w.text, isAlien: w.isAlien });
+  }
+  var html = '<ol class="question-list">' + items.map(function(it){
+    return '<li>Complete the word: <strong>' + escapeHtml(it.text) + '</strong><div class="q-answer">Answer: ' + escapeHtml(it.answer) + '</div></li>';
+  }).join("") + '</ol>';
+  return {
+    title: "Missing Sound",
+    instructions: "Fill in the missing '" + grapheme + "' to complete each word.",
+    body: html,
+    plain: items.map(function(it, i){ return (i+1) + ". " + it.text; }).join("\n")
+  };
+}
+
+function buildWord(grapheme, count, includeAlien){
+  var n = count;
+  var items = [];
+  var guard = 0;
+  while(items.length < n && guard < n * 20){
+    guard++;
+    var w = wordFor(grapheme, includeAlien, 0.3);
+    var idx = w.text.indexOf(grapheme);
+    if(idx === -1) continue;
+    var before = w.text.slice(0, idx), after = w.text.slice(idx + grapheme.length);
+    var chunks = [before, grapheme, after].filter(function(c){ return c.length > 0; });
+    items.push({ chunks: chunks.join(" - "), answer: w.text, isAlien: w.isAlien });
+  }
+  var html = '<ol class="question-list">' + items.map(function(it){
+    return '<li>Blend the chunks: <strong>' + escapeHtml(it.chunks) + '</strong><div class="q-answer">Answer: ' + escapeHtml(it.answer) + '</div></li>';
+  }).join("") + '</ol>';
+  return {
+    title: "Build the Word",
+    instructions: "Blend each set of chunks to build the whole word.",
+    body: html,
+    plain: items.map(function(it, i){ return (i+1) + ". " + it.chunks; }).join("\n")
+  };
+}
+
+function buildSentence(grapheme, count, includeAlien){
+  var n = count;
+  var items = [];
+  for(var i = 0; i < n; i++){
+    var w = wordFor(grapheme, includeAlien, 0.25);
+    var sentence = SENTENCE_TEMPLATES[i % SENTENCE_TEMPLATES.length].replace("{word}", w.text);
+    items.push({ text: sentence, answer: w.text, isAlien: w.isAlien });
+  }
+  var html = '<ol class="question-list">' + items.map(function(it){
+    return '<li>' + escapeHtml(it.text) + '<div class="q-answer">Word with the sound: ' + escapeHtml(it.answer) + '</div></li>';
+  }).join("") + '</ol>';
+  return {
+    title: "Sentence Spotter",
+    instructions: "Find the word in each sentence that has the '" + grapheme + "' sound.",
+    body: html,
+    plain: items.map(function(it, i){ return (i+1) + ". " + it.text; }).join("\n")
+  };
+}
+
+function buildQuickMix(level, chosenSound, count, includeAlien){
+  var builders = [buildSpotting, buildMissing, buildSentence];
+  var per = Math.max(2, Math.round(count / builders.length));
+  var sections = builders.map(function(fn){
+    var g = graphemeFor(level, chosenSound);
+    return { grapheme:g, result: fn(g, per, includeAlien) };
+  });
+  var html = sections.map(function(s){
+    return '<div style="margin-bottom:22px;"><h3 style="font-family:var(--font-chalk);font-size:1.05rem;color:var(--board-green-dark);margin-bottom:8px;">' + s.result.title + ' — sound: \'' + s.grapheme + '\'</h3>' +
+      '<div class="instructions">' + s.result.instructions + '</div>' + s.result.body + '</div>';
+  }).join("");
+  return {
+    title: "Quick Mix",
+    instructions: "A combination of phonics activities.",
+    body: html,
+    plain: sections.map(function(s){ return s.result.title + " (" + s.grapheme + ")\n" + s.result.plain; }).join("\n\n")
+  };
+}
+
+var BUILDERS = {
+  spotting: function(g,n,a){ return buildSpotting(g,n,a); },
+  sort: function(g,n,a){ return buildSort(g,n,a); },
+  realalien: function(g,n){ return buildRealAlien(g,n); },
+  missing: function(g,n,a){ return buildMissing(g,n,a); },
+  build: function(g,n,a){ return buildWord(g,n,a); },
+  sentence: function(g,n,a){ return buildSentence(g,n,a); }
+};
+
+var LEVEL_LABEL = { EY:"Early Years", Y1:"Year 1", Y2:"Year 2", MIXED:"Mixed KS1" };
+var ACTIVITY_LABEL = { spotting:"Sound Spotting", sort:"Word Sort", realalien:"Real or Alien?", missing:"Missing Sound", build:"Build the Word", sentence:"Sentence Spotter", mix:"Quick Mix" };
+
+var levelSelect = document.getElementById("levelSelect");
+var activitySelect = document.getElementById("activitySelect");
+var countSelect = document.getElementById("countSelect");
+var answersCheck = document.getElementById("answersCheck");
+var alienCheck = document.getElementById("alienCheck");
+
+var emptyState = document.getElementById("emptyState");
+var outputBody = document.getElementById("outputBody");
+var outputMeta = document.getElementById("outputMeta");
+var activityTitle = document.getElementById("activityTitle");
+var activityBody = document.getElementById("activityBody");
+var copyArea = document.getElementById("copyArea");
+var toastEl = document.getElementById("toast");
+var toastTimer = null;
+var answersVisible = false;
+var lastResult = null;
+var lastGrapheme = null;
+
+function showToast(msg){
+  toastEl.textContent = msg;
+  toastEl.classList.add("show");
+  if(toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ toastEl.classList.remove("show"); }, 2200);
+}
+
+function generate(){
+  var level = levelSelect.value;
+  var chosenSound = soundSelect.value;
+  var activity = activitySelect.value;
+  var count = parseInt(countSelect.value, 10);
+  var includeAlien = alienCheck.checked;
+
+  var result;
+  if(activity === "mix"){
+    result = buildQuickMix(level, chosenSound, count, includeAlien);
+    lastGrapheme = "mixed";
+  } else if(activity === "realalien"){
+    lastGrapheme = graphemeFor(level, chosenSound);
+    result = BUILDERS[activity](lastGrapheme, count);
+  } else {
+    lastGrapheme = graphemeFor(level, chosenSound);
+    result = BUILDERS[activity](lastGrapheme, count, includeAlien);
+  }
+  lastResult = result;
+  answersVisible = answersCheck.checked;
+
+  activityTitle.textContent = result.title;
+  outputMeta.innerHTML =
+    '<span class="badge">' + LEVEL_LABEL[level] + '</span>' +
+    '<span class="badge">' + (lastGrapheme === "mixed" ? "Mixed sounds" : "'" + lastGrapheme + "'") + '</span>' +
+    (includeAlien ? '<span class="badge alien">Alien words on</span>' : '');
+  activityBody.innerHTML = '<div class="instructions">' + result.instructions + '</div>' + result.body;
+  document.getElementById("resultsCard").classList.toggle("answers-on", answersVisible);
+  document.getElementById("showAnswersBtn").textContent = answersVisible ? "Hide Answers" : "Show Answers";
+
+  emptyState.hidden = true;
+  outputBody.hidden = false;
+  copyArea.hidden = true;
+}
+
+function copyActivity(){
+  if(!lastResult){ showToast("Generate an activity first."); return; }
+  var text = lastResult.title + "\n" + lastResult.instructions + "\n\n" + lastResult.plain;
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){ showToast("Copied to clipboard"); }).catch(function(){ showSelectableText(text); });
+  } else {
+    showSelectableText(text);
+  }
+}
+function showSelectableText(text){
+  copyArea.value = text;
+  copyArea.hidden = false;
+  copyArea.focus();
+  copyArea.select();
+  showToast("Select the text below and copy manually");
+}
+
+document.getElementById("generateBtn").addEventListener("click", generate);
+document.getElementById("regenerateBtn").addEventListener("click", generate);
+document.getElementById("copyBtn").addEventListener("click", copyActivity);
+document.getElementById("printBtn").addEventListener("click", function(){ window.print(); });
+document.getElementById("showAnswersBtn").addEventListener("click", function(){
+  answersVisible = !answersVisible;
+  document.getElementById("resultsCard").classList.toggle("answers-on", answersVisible);
+  document.getElementById("showAnswersBtn").textContent = answersVisible ? "Hide Answers" : "Show Answers";
+});
+
+})();
+</script>
+</body>
+</html>

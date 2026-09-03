@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Early Finisher Activity Generator | Free KS1 Teacher Tool | The Teacher Vault</title>
+<meta name="description" content="Generate quick Early Years and KS1 early-finisher activities for English, maths and thinking skills.">
+<link rel="canonical" href="https://theteachervault.com/teacher-apps/early-finisher-generator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Early Finisher Activity Generator | Free KS1 Teacher Tool | The Teacher Vault">
+<meta property="og:description" content="Generate quick Early Years and KS1 early-finisher activities for English, maths and thinking skills.">
+<meta property="og:url" content="https://theteachervault.com/teacher-apps/early-finisher-generator.html">
+<meta property="og:image" content="https://theteachervault.com/images/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Early Finisher Activity Generator | Free KS1 Teacher Tool | The Teacher Vault">
+<meta name="twitter:description" content="Generate quick Early Years and KS1 early-finisher activities for English, maths and thinking skills.">
+<meta name="twitter:image" content="https://theteachervault.com/images/logo.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Early Finisher Generator",
+  "description": "Generate quick Early Years and KS1 early-finisher activities for English, maths and thinking skills.",
+  "url": "https://theteachervault.com/teacher-apps/early-finisher-generator.html",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+  "publisher": { "@type": "Organization", "name": "The Teacher Vault", "url": "https://theteachervault.com" }
+}
+</script>
+<style>
+  :root{
+    --board-green:#1e3a30; --board-green-dark:#16291f; --board-green-light:#27473b;
+    --chalk-white:#f5f2e8; --chalk-dim:#cfd6cd;
+    --cream:#f7f2e2; --cream-dark:#efe6cc; --paper:#fbf8ef;
+    --gold:#c9a24b; --gold-dark:#a8842f; --gold-light:#e2c680;
+    --ink:#23291f; --ink-soft:#4a5248;
+    --free-bg:#dbe9d9; --free-text:#285c3a;
+    --orange:#e8742a; --orange-bg:#fff8ec; --orange-bg2:#fdecd2; --orange-border:#ffb877;
+    --max-width:1100px;
+    --radius-sm:6px; --radius-md:10px; --radius-lg:16px;
+    --shadow-card:0 4px 14px rgba(10,20,15,0.35);
+    --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --font-chalk:'Permanent Marker', var(--font-body);
+  }
+  *,*::before,*::after{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{ font-family:var(--font-body); background:var(--paper); color:var(--ink); line-height:1.5; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3,h4,p,ul,ol,dl,dd{ margin:0; }
+  img{ max-width:100%; display:block; }
+  button{ font-family:inherit; }
+  a{ color:inherit; }
+  a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible,
+  textarea:focus-visible, [tabindex]:focus-visible { outline:3px solid var(--gold); outline-offset:2px; }
+  [hidden]{ display:none !important; }
+
+  .wrap{ max-width:var(--max-width); margin:0 auto; padding:0 20px 60px; }
+
+  .app-breadcrumb{ max-width:var(--max-width); margin:0 auto; padding:12px 20px 0; font-size:0.85rem; color:var(--ink-soft); }
+  .app-breadcrumb a{ color:var(--board-green); font-weight:600; text-decoration:underline; }
+  .app-breadcrumb a:hover{ color:var(--gold-dark); }
+
+  header.app-header{
+    background:linear-gradient(135deg, var(--board-green) 0%, var(--board-green-dark) 100%);
+    color:var(--chalk-white); padding:20px; margin:14px 0 26px; border-radius:var(--radius-lg);
+    max-width:var(--max-width); margin-left:auto; margin-right:auto;
+  }
+  .header-inner{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  .header-inner img.logo{ width:52px; height:52px; border-radius:12px; object-fit:cover; flex-shrink:0; }
+  .header-titles{ flex:1; min-width:200px; }
+  .header-titles .brand{ font-family:var(--font-chalk); font-size:0.95rem; color:var(--gold-light); margin-bottom:2px; line-height:1; }
+  .header-titles h1{ margin:0; font-size:1.6rem; letter-spacing:-0.01em; color:#fff; }
+  .header-titles p{ margin:4px 0 0; font-size:0.98rem; color:var(--chalk-dim); max-width:640px; }
+
+  .card{ background:#fff; border:1px solid rgba(30,58,48,0.12); border-radius:var(--radius-lg); box-shadow:var(--shadow-card); padding:24px; }
+  .card + .card{ margin-top:20px; }
+
+  .field-row{ display:flex; gap:16px; flex-wrap:wrap; }
+  .field{ flex:1; min-width:170px; }
+  .field label{ display:block; font-weight:700; font-size:0.92rem; margin-bottom:7px; color:var(--ink); }
+  select{
+    width:100%; font-family:inherit; font-size:1rem; padding:12px 14px;
+    border-radius:var(--radius-sm); border:2px solid rgba(30,58,48,0.18); background:var(--paper); color:var(--ink);
+  }
+  select:focus{ outline:none; border-color:var(--board-green); }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:12px 20px; border-radius:var(--radius-sm); border:none; cursor:pointer;
+    font-size:0.96rem; font-weight:700; font-family:inherit; min-height:44px;
+    transition:transform .1s ease, box-shadow .15s ease;
+  }
+  .btn:active{ transform:scale(0.98); }
+  .btn-primary{ background:linear-gradient(135deg, var(--gold), var(--gold-dark)); color:var(--ink); box-shadow:0 6px 16px rgba(201,162,75,0.4); }
+  .btn-primary:hover{ box-shadow:0 8px 20px rgba(201,162,75,0.5); }
+  .btn-secondary{ background:var(--board-green-light); color:#fff; }
+  .btn-secondary:hover{ background:var(--board-green); }
+  .btn-ghost{ background:transparent; color:var(--board-green-dark); border:2px solid rgba(30,58,48,0.25); }
+  .btn-ghost:hover{ border-color:var(--board-green); }
+  .btn-lg{ font-size:1.05rem; padding:16px 22px; }
+  .actions-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:8px; }
+
+  .empty-state{ text-align:center; padding:44px 24px; background:var(--orange-bg); border:2px dashed var(--orange-border); border-radius:var(--radius-md); }
+  .empty-state img.mascot{ width:84px; height:84px; margin:0 auto 14px; }
+  .empty-state h2{ margin:0 0 8px; font-size:1.35rem; color:var(--board-green-dark); }
+  .empty-state p{ margin:0 auto; color:var(--ink-soft); font-size:1rem; max-width:44ch; }
+
+  .activity-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:18px; }
+  .activity-card{
+    border:2px solid rgba(30,58,48,0.14); border-radius:var(--radius-md); padding:20px;
+    display:flex; flex-direction:column; gap:10px; border-top-width:6px; background:var(--paper);
+  }
+  .activity-card[data-cat="english"]{ border-top-color:#2f5fd0; }
+  .activity-card[data-cat="maths"]{ border-top-color:#c99a12; }
+  .activity-card[data-cat="thinking"]{ border-top-color:#0f9b8e; }
+  .activity-card[data-cat="creative"]{ border-top-color:#d6337c; }
+  .activity-card h3{ font-family:var(--font-chalk); font-size:1.15rem; color:var(--board-green-dark); }
+  .activity-card .cat-badge{ align-self:flex-start; font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:0.03em; padding:4px 11px; border-radius:999px; background:var(--free-bg); color:var(--free-text); }
+  .activity-card .instructions-text{ font-size:1.02rem; }
+  .activity-card .extension{ margin-top:6px; padding:10px 12px; background:var(--orange-bg2); border-radius:var(--radius-sm); font-size:0.92rem; border-left:3px solid var(--orange); }
+  .activity-card .extension strong{ color:var(--orange); }
+  .output-head{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:16px; }
+  .output-head img.mascot{ width:48px; height:48px; flex-shrink:0; }
+  .output-title{ font-family:var(--font-chalk); font-size:1.3rem; color:var(--board-green-dark); }
+  .output-meta{ display:flex; gap:8px; flex-wrap:wrap; margin-top:4px; }
+  .badge{ display:inline-block; font-size:0.72rem; font-weight:800; letter-spacing:0.03em; padding:4px 11px; border-radius:999px; background:var(--free-bg); color:var(--free-text); text-transform:uppercase; }
+
+  #copyArea{ width:100%; min-height:120px; margin-top:12px; font-family:inherit; font-size:0.95rem; padding:12px; border-radius:var(--radius-sm); border:2px solid rgba(30,58,48,0.18); }
+
+  .toast{
+    position:fixed; bottom:22px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--board-green-dark); color:#fff; padding:12px 22px; border-radius:999px;
+    font-size:0.9rem; font-weight:600; box-shadow:0 12px 32px rgba(0,0,0,0.3);
+    opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease; z-index:999;
+  }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  details.how-to{ margin-top:14px; }
+  details.how-to summary{ cursor:pointer; font-weight:700; color:var(--board-green-dark); font-size:0.92rem; padding:4px 0; }
+  details.how-to p, details.how-to ul{ margin-top:8px; color:var(--ink-soft); font-size:0.92rem; }
+  details.how-to ul{ padding-left:20px; }
+
+  .related-links{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+  .related-links a{
+    display:inline-block; padding:9px 16px; border-radius:999px; text-decoration:none;
+    background:var(--cream); color:var(--board-green-dark); font-size:0.88rem; font-weight:700; border:1px solid rgba(30,58,48,0.18);
+  }
+  .related-links a:hover{ background:var(--cream-dark); }
+
+  footer.tv-footer{ background:var(--board-green-dark); color:var(--chalk-dim); margin-top:40px; padding:36px 20px 28px; border-radius:var(--radius-lg); max-width:var(--max-width); margin-left:auto; margin-right:auto; }
+  .tv-footer-inner h2{ font-family:var(--font-chalk); font-size:1.15rem; color:#fff; margin-bottom:6px; }
+  .tv-footer-inner p{ color:var(--chalk-dim); margin-bottom:12px; max-width:640px; }
+  .tv-footer-links{ display:flex; flex-wrap:wrap; gap:10px; }
+  .tv-footer-links a{
+    display:inline-block; padding:9px 16px; border-radius:999px; text-decoration:none;
+    background:rgba(255,255,255,0.08); color:#fff; font-size:0.88rem; font-weight:600; border:1px solid rgba(255,255,255,0.15);
+  }
+  .tv-footer-links a:hover{ background:rgba(255,255,255,0.16); }
+  .tv-copyright{ margin-top:22px; font-size:0.8rem; color:var(--chalk-dim); opacity:0.7; }
+
+  @media (max-width:600px){
+    .card{ padding:18px; }
+    .header-titles h1{ font-size:1.35rem; }
+    .field-row{ gap:12px; }
+  }
+
+  @media print{
+    body{ background:#fff; }
+    .app-breadcrumb, header.app-header, footer.tv-footer, .no-print{ display:none !important; }
+    .wrap{ max-width:none; padding:0; }
+    .card{ box-shadow:none; border:none; padding:0; }
+    .activity-card{ border:1px solid #999; background:#fff; break-inside:avoid; }
+    .empty-state{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="app-breadcrumb no-print" aria-label="Breadcrumb">
+  <a href="/index.html">Home</a> / <a href="/teacher-tools.html">Teacher Tools</a> / <span aria-current="page">Early Finisher Generator</span>
+</nav>
+
+<header class="app-header">
+  <div class="header-inner">
+    <img class="logo" alt="The Teacher Vault" src="/images/logo.png" width="52" height="52">
+    <div class="header-titles">
+      <div class="brand">The Teacher Vault</div>
+      <h1>Early Finisher Generator</h1>
+      <p>Finished early? Here's what to do next.</p>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="card no-print" id="controlsCard">
+    <div class="field-row">
+      <div class="field">
+        <label for="yearSelect">Year group</label>
+        <select id="yearSelect">
+          <option value="EY">Early Years</option>
+          <option value="Y1">Year 1</option>
+          <option value="Y2">Year 2</option>
+          <option value="MIXED" selected>Mixed KS1</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="categorySelect">Category</label>
+        <select id="categorySelect">
+          <option value="english">English</option>
+          <option value="maths">Maths</option>
+          <option value="thinking">Thinking Skills</option>
+          <option value="creative">Creative</option>
+          <option value="mixed" selected>Mixed</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="durationSelect">Duration</label>
+        <select id="durationSelect">
+          <option value="5">5 minutes</option>
+          <option value="10" selected>10 minutes</option>
+          <option value="15">15 minutes</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="styleSelect">Activity style</label>
+        <select id="styleSelect">
+          <option value="mixed" selected>Mixed</option>
+          <option value="quiet">Quiet independent task</option>
+          <option value="partner">Partner task</option>
+          <option value="nowriting">No-writing task</option>
+          <option value="paper">Pencil-and-paper</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="actions-row" style="margin-top:20px;">
+      <button type="button" class="btn btn-primary btn-lg" id="generateBtn">Generate Activity</button>
+      <button type="button" class="btn btn-ghost" id="generate3Btn">Generate 3 Options</button>
+    </div>
+
+    <details class="how-to">
+      <summary>How to use</summary>
+      <p>Pick a year group, category, duration and activity style, then generate an instant early-finisher task.</p>
+      <ul>
+        <li>Use <strong>Another Activity</strong> for a fresh single task with the same settings.</li>
+        <li>Use <strong>Generate 3 Options</strong> if you'd rather let pupils choose from a short menu.</li>
+        <li>Some activities include an optional <strong>extension</strong> for pupils who finish that too.</li>
+      </ul>
+    </details>
+  </div>
+
+  <div class="card" id="resultsCard" style="margin-top:20px;">
+    <div class="empty-state" id="emptyState">
+      <img class="mascot" src="/images/early-years/mascot-neutral.png" alt="" role="presentation" loading="lazy">
+      <h2>Ready when you are</h2>
+      <p>Choose your settings above and generate an instant early-finisher activity.</p>
+    </div>
+
+    <div id="outputBody" hidden>
+      <div class="output-head">
+        <img class="mascot" src="/images/early-years/mascot-cheer.png" alt="" role="presentation" loading="lazy">
+        <div>
+          <div class="output-title" id="outputTitleText">Early Finisher</div>
+          <div class="output-meta" id="outputMeta"></div>
+        </div>
+      </div>
+      <div class="activity-grid" id="activityGrid"></div>
+
+      <div class="actions-row no-print" style="margin-top:20px;">
+        <button type="button" class="btn btn-secondary" id="anotherBtn">Another Activity</button>
+        <button type="button" class="btn btn-ghost" id="copyBtn">Copy</button>
+        <button type="button" class="btn btn-ghost" id="printBtn">Print</button>
+      </div>
+      <textarea id="copyArea" class="no-print" readonly hidden aria-label="Selectable early finisher text"></textarea>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="font-family:var(--font-chalk);font-size:1.1rem;color:var(--board-green-dark);">Teaching Early Years or KS1?</h2>
+    <p style="color:var(--ink-soft);margin-top:8px;">Browse the rest of The Teacher Vault's Early Years and KS1 resources.</p>
+    <div class="related-links">
+      <a href="/early-years.html">Early Years hub</a>
+      <a href="/ks1.html">KS1 hub</a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="tv-footer">
+  <div class="tv-footer-inner">
+    <h2>More free teacher tools</h2>
+    <p>Small, focused tools that solve one teaching problem at a time — free to use, no account needed.</p>
+    <div class="tv-footer-links">
+      <a href="/lesson-planner.html">Lesson Planner</a>
+      <a href="/report-writer.html">Report Writer</a>
+      <a href="/feedback-fixer.html">Feedback Fixer</a>
+      <a href="/teacher-apps/ks1-morning-starter.html">KS1 Morning Starter Generator</a>
+      <a href="/teacher-apps/phonics-activity-generator.html">Phonics Activity Generator</a>
+      <a href="/teacher-tools.html">All Teacher Tools</a>
+    </div>
+    <div class="tv-copyright">The Teacher Vault — Tools that give teachers their time back.</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+"use strict";
+
+function randInt(min, max){ return Math.floor(Math.random() * (max - min + 1)) + min; }
+function pick(arr){ return arr[randInt(0, arr.length - 1)]; }
+function pickN(arr, n){
+  var a = arr.slice(), out = [];
+  while(a.length && out.length < n){ out.push(a.splice(randInt(0, a.length - 1), 1)[0]); }
+  return out;
+}
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, function(c){
+    return { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c];
+  });
+}
+
+var SENTENCES = ["The dog ran.", "The girl ate lunch.", "It was raining.", "The cat sat on the mat.", "We went to the park."];
+var RHYME_WORDS = ["cat", "sun", "tree", "box", "ball", "ring", "house", "star"];
+var STORY_STARTERS = ["One sunny morning, ...", "Deep in the forest, ...", "When I opened the box, ...", "The strange noise came from ...", "At the bottom of the garden, ..."];
+var TARGET_WORDS = ["moon", "jump", "happy", "garden", "friend", "adventure", "sparkle", "brave"];
+var COMMON_WORDS_Y1 = ["the", "said", "was", "you", "they", "my", "are", "all", "come", "some", "one", "once"];
+var COMMON_WORDS_Y2 = ["because", "different", "everybody", "beautiful", "again", "half", "money", "water", "people"];
+var LETTERS = ["b","c","d","f","g","h","l","m","p","r","s","t","w"];
+var SHAPES = ["circle", "square", "triangle", "rectangle"];
+var COLOURS = ["red", "blue", "green", "yellow"];
+var CREATURES = ["a creature that lives underwater", "your dream treehouse", "a new kind of fruit", "an alien pet", "a robot helper"];
+
+function scaleByDuration(duration, low, mid, high){
+  if(duration <= 5) return low;
+  if(duration <= 10) return mid;
+  return high;
+}
+
+/* ---------------- Verified logic puzzle: build clues from a target, then confirm the target is the only number matching them all. ---------------- */
+function buildLogicPuzzle(){
+  for(var attempt = 0; attempt < 30; attempt++){
+    var target = randInt(2, 19);
+    var lower = target - randInt(1, 3);
+    var upper = target + randInt(1, 3);
+    var excluded = (Math.random() < 0.5) ? target + 1 : target - 1;
+    if(excluded <= lower || excluded >= upper) excluded = null;
+    var candidates = [];
+    for(var n = lower + 1; n < upper; n++){
+      if(excluded !== null && n === excluded) continue;
+      candidates.push(n);
+    }
+    if(candidates.length === 1 && candidates[0] === target){
+      var clueText = "I am thinking of a number. It is more than " + lower + " and less than " + upper + ".";
+      if(excluded !== null) clueText += " It is not " + excluded + ".";
+      clueText += " What number am I?";
+      return { text: clueText, answer: String(target) };
+    }
+  }
+  return { text: "I am thinking of a number. It is more than 5 and less than 8. It is not 6. What number am I?", answer: "7" };
+}
+
+function buildPatternChallenge(){
+  var step = pick([2, 5, 10]);
+  var start = step * randInt(0, 3);
+  var seq = [start, start + step, start + 2 * step, start + 3 * step];
+  return { text: "Continue the pattern: " + seq.join(", ") + ", ___", answer: String(start + 4 * step) };
+}
+
+/* ============================================================
+   Activity bank. Each item: category, styles it suits, and a
+   build(year, duration) function returning { title, text, extension }.
+   ============================================================ */
+
+var ACTIVITIES = [
+  /* -------- ENGLISH -------- */
+  { category:"english", styles:["quiet","paper"], build:function(year, duration){
+    var s = pick(SENTENCES);
+    return { title:"Improve a Sentence", text:"Make this sentence more interesting by adding an adjective, adverb or extra detail: '" + s + "'", extension:"Now try adding a second detail, or turn it into two sentences." };
+  }},
+  { category:"english", styles:["quiet","partner","paper"], build:function(year, duration){
+    var n = scaleByDuration(duration, 3, 5, 8);
+    var letter = pick(LETTERS);
+    return { title:"Word Hunt", text:"Find and write down " + n + " words that start with the letter '" + letter + "'.", extension:"Can you put any of them in alphabetical order?" };
+  }},
+  { category:"english", styles:["quiet","partner","nowriting"], build:function(year, duration){
+    var n = scaleByDuration(duration, 2, 3, 5);
+    var w = pick(RHYME_WORDS);
+    return { title:"Rhyming Challenge", text:"Think of " + n + " words that rhyme with '" + w + "'.", extension:"Try using one of your rhyming words in a silly sentence." };
+  }},
+  { category:"english", styles:["quiet","paper"], build:function(year, duration){
+    var bank = (year === "Y2" || year === "MIXED") ? COMMON_WORDS_Y2 : COMMON_WORDS_Y1;
+    return { title:"Common-Word Challenge", text:"Write as many of these words as you can from memory: " + bank.join(", ") + ".", extension:"Now use two of them in the same sentence." };
+  }},
+  { category:"english", styles:["quiet","paper"], build:function(year, duration){
+    var words = pickN(TARGET_WORDS, 3);
+    return { title:"Sentence Writing", text:"Write 3 sentences, each using one of these words: " + words.join(", ") + ".", extension:"Try joining two of your sentences together using 'and' or 'because'." };
+  }},
+  { category:"english", styles:["quiet","paper"], build:function(year, duration){
+    var starter = pick(STORY_STARTERS);
+    return { title:"Story Opening", text:"Write the opening to a story that begins: \"" + starter + "\"", extension:"Add one more sentence describing how a character is feeling." };
+  }},
+  { category:"english", styles:["quiet","partner","nowriting"], build:function(year, duration){
+    return { title:"Alphabet Challenge", text:"How many animal names can you think of in alphabetical order — starting with A, then B, then C?", extension:"Try doing the same with food names instead." };
+  }},
+
+  /* -------- MATHS -------- */
+  { category:"maths", styles:["quiet","paper"], build:function(year, duration){
+    var target = (year === "EY" || year === "Y1") ? 10 : 20;
+    return { title:"Number Bonds", text:"Write all the number bonds to " + target + " that you can find (for example, 1 + " + (target-1) + ").", extension:"Can you find a way to check you haven't missed any?" };
+  }},
+  { category:"maths", styles:["quiet","paper"], build:function(year, duration){
+    var p = buildPatternChallenge();
+    return { title:"Missing Numbers", text:"Fill in the missing number: " + p.text.replace("Continue the pattern: ", ""), extension:"Answer: " + p.answer + ". Now make up your own number pattern for a partner to solve." };
+  }},
+  { category:"maths", styles:["quiet","partner","nowriting"], build:function(year, duration){
+    var a = randInt(1,9), b = randInt(1,9), c = randInt(1,9);
+    var target = a + b + c;
+    return { title:"Maths Puzzle", text:"Can you find three numbers that add up to " + target + "?", extension:"How many different ways can you find?" };
+  }},
+  { category:"maths", styles:["quiet","paper"], build:function(year, duration){
+    var a = randInt(1,10), b = randInt(1,10);
+    var numbers = pickN([a, b, randInt(1,10), randInt(1,10)], 4);
+    if(numbers.indexOf(a) === -1) numbers[0] = a;
+    if(numbers.indexOf(b) === -1) numbers[1] = b;
+    var target = a + b;
+    return { title:"Make a Target Number", text:"Using any of these numbers and +, − or ×, can you make " + target + "? Numbers: " + numbers.join(", "), extension:"Can you find a second way to make it?" };
+  }},
+  { category:"maths", styles:["partner","nowriting"], build:function(year, duration){
+    var shape = pick(SHAPES);
+    var n = scaleByDuration(duration, 2, 3, 5);
+    return { title:"Shape Hunt", text:"Find " + n + " objects in the room that are a similar shape to a " + shape + ".", extension:"Can you find one that is a different colour to all the others?" };
+  }},
+  { category:"maths", styles:["quiet","paper"], build:function(year, duration){
+    if(year === "EY" || year === "Y1"){
+      var step = pick([2,5,10]);
+      return { title:"Times-Table Starter", text:"Count in " + step + "s from 0 up to " + (step*10) + ".", extension:"Can you count back down again?" };
+    }
+    var t = pick([2,5,10]);
+    return { title:"Times-Table Starter", text:"Write the first 10 multiples of " + t + " (" + t + ", " + (t*2) + ", " + (t*3) + " ...).", extension:"Circle any that are also multiples of 4." };
+  }},
+  { category:"maths", styles:["quiet","paper"], build:function(year, duration){
+    var amount = randInt(5, 50);
+    return { title:"Money Challenge", text:"Draw coins to make " + amount + "p, in two different ways.", extension:"Which way uses the fewest coins?" };
+  }},
+
+  /* -------- THINKING -------- */
+  { category:"thinking", styles:["quiet","partner","nowriting"], build:function(year, duration){
+    var sets = [
+      { items:["dog","cat","fish","chair"], odd:"chair", why:"the others are animals" },
+      { items:["red","blue","green","circle"], odd:"circle", why:"the others are colours" },
+      { items:["apple","banana","carrot","orange"], odd:"carrot", why:"the others are fruit" },
+      { items:["triangle","square","circle","dog"], odd:"dog", why:"the others are shapes" }
+    ];
+    var s = pick(sets);
+    return { title:"Odd One Out", text:"Which is the odd one out, and why? " + s.items.join(", "), extension:"Answer: " + s.odd + " — " + s.why + ". Can you think of your own set of four?" };
+  }},
+  { category:"thinking", styles:["quiet","partner","nowriting","paper"], build:function(year, duration){
+    var p = buildPatternChallenge();
+    return { title:"Pattern Challenge", text:p.text, extension:"Answer: " + p.answer + ". Now try making a pattern that goes down instead of up." };
+  }},
+  { category:"thinking", styles:["quiet","partner","nowriting"], build:function(year, duration){
+    var p = buildLogicPuzzle();
+    return { title:"Logic Puzzle", text:p.text, extension:"Answer: " + p.answer + ". Try making up your own number clue for a partner." };
+  }},
+  { category:"thinking", styles:["partner","nowriting"], build:function(year, duration){
+    return { title:"Classify Objects", text:"Look at six objects near you. Sort them into two groups and be ready to explain your rule.", extension:"Can you sort the same objects a different way?" };
+  }},
+  { category:"thinking", styles:["quiet","partner","nowriting"], build:function(year, duration){
+    var p = buildPatternChallenge();
+    var withoutLast = p.text.replace(", ___", "");
+    return { title:"Spot the Rule", text:"What is the rule for this sequence? " + withoutLast + ", ...", extension:"Answer: it goes up by the same amount each time — the next number is " + p.answer + "." };
+  }},
+
+  /* -------- CREATIVE -------- */
+  { category:"creative", styles:["quiet","paper"], build:function(year, duration){
+    var c = pick(CREATURES);
+    return { title:"Draw and Label", text:"Draw and label " + c + ".", extension:"Give it a name and one special feature." };
+  }},
+  { category:"creative", styles:["quiet","partner","paper"], build:function(year, duration){
+    return { title:"Invent a Character", text:"Invent a character. Give them a name, a special power and one weakness.", extension:"What is the first adventure they go on?" };
+  }},
+  { category:"creative", styles:["quiet","paper"], build:function(year, duration){
+    return { title:"Design an Object", text:"Design a new invention that would help you at school. Draw it and label its parts.", extension:"What is the trickiest part to build, and why?" };
+  }},
+  { category:"creative", styles:["quiet","paper"], build:function(year, duration){
+    var starter = pick(STORY_STARTERS);
+    return { title:"Finish the Story", text:"Finish this story in your own words: \"" + starter + "\"", extension:"Give your story an ending in the last sentence." };
+  }},
+  { category:"creative", styles:["quiet","partner","nowriting"], build:function(year, duration){
+    var colour = pick(COLOURS);
+    var mins = scaleByDuration(duration, 1, 2, 3);
+    return { title:"Mini Challenge", text:"In " + mins + " minute" + (mins > 1 ? "s" : "") + ", list as many things as you can that are the colour " + colour + ".", extension:"Which one on your list is the most unusual?" };
+  }}
+];
+
+var YEAR_LABEL = { EY:"Early Years", Y1:"Year 1", Y2:"Year 2", MIXED:"Mixed KS1" };
+var CATEGORY_LABEL = { english:"English", maths:"Maths", thinking:"Thinking Skills", creative:"Creative", mixed:"Mixed" };
+var STYLE_LABEL = { mixed:"Mixed", quiet:"Quiet independent task", partner:"Partner task", nowriting:"No-writing task", paper:"Pencil-and-paper" };
+
+var yearSelect = document.getElementById("yearSelect");
+var categorySelect = document.getElementById("categorySelect");
+var durationSelect = document.getElementById("durationSelect");
+var styleSelect = document.getElementById("styleSelect");
+
+var emptyState = document.getElementById("emptyState");
+var outputBody = document.getElementById("outputBody");
+var outputMeta = document.getElementById("outputMeta");
+var outputTitleText = document.getElementById("outputTitleText");
+var activityGrid = document.getElementById("activityGrid");
+var copyArea = document.getElementById("copyArea");
+var toastEl = document.getElementById("toast");
+var toastTimer = null;
+var lastCards = [];
+
+function showToast(msg){
+  toastEl.textContent = msg;
+  toastEl.classList.add("show");
+  if(toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ toastEl.classList.remove("show"); }, 2200);
+}
+
+function poolFor(category, style){
+  var byCategory = ACTIVITIES.filter(function(a){
+    return category === "mixed" ? true : a.category === category;
+  });
+  if(style === "mixed") return byCategory;
+  var byStyle = byCategory.filter(function(a){ return a.styles.indexOf(style) !== -1; });
+  return byStyle.length ? byStyle : byCategory;
+}
+
+function makeCard(year, category, duration, style, excludeObjs){
+  var pool = poolFor(category, style);
+  if(excludeObjs && excludeObjs.length){
+    var filtered = pool.filter(function(a){ return excludeObjs.indexOf(a) === -1; });
+    if(filtered.length) pool = filtered;
+  }
+  var chosen = pick(pool);
+  var built = chosen.build(year, duration);
+  return { _src:chosen, category:chosen.category, title:built.title, text:built.text, extension:built.extension };
+}
+
+function renderCards(cards){
+  lastCards = cards;
+  outputTitleText.textContent = cards.length > 1 ? "Early Finisher — Choose One" : "Early Finisher";
+  var year = yearSelect.value, category = categorySelect.value, duration = durationSelect.value, style = styleSelect.value;
+  outputMeta.innerHTML =
+    '<span class="badge">' + YEAR_LABEL[year] + '</span>' +
+    '<span class="badge">' + CATEGORY_LABEL[category] + '</span>' +
+    '<span class="badge">' + duration + ' minutes</span>' +
+    '<span class="badge">' + STYLE_LABEL[style] + '</span>';
+  activityGrid.innerHTML = cards.map(function(c){
+    return '<div class="activity-card" data-cat="' + c.category + '">' +
+      '<span class="cat-badge">' + CATEGORY_LABEL[c.category] + '</span>' +
+      '<h3>' + escapeHtml(c.title) + '</h3>' +
+      '<p class="instructions-text">' + escapeHtml(c.text) + '</p>' +
+      (c.extension ? '<div class="extension"><strong>Extension:</strong> ' + escapeHtml(c.extension) + '</div>' : '') +
+    '</div>';
+  }).join("");
+  emptyState.hidden = true;
+  outputBody.hidden = false;
+  copyArea.hidden = true;
+}
+
+function generate(count){
+  var year = yearSelect.value, category = categorySelect.value, duration = parseInt(durationSelect.value, 10), style = styleSelect.value;
+  var cards = [];
+  var usedObjs = [];
+  var guard = 0;
+  while(cards.length < count && guard < count * 15){
+    guard++;
+    var card = makeCard(year, category, duration, style, count > 1 ? usedObjs : null);
+    if(count > 1 && cards.some(function(c){ return c.title === card.title && c.text === card.text; })) continue;
+    cards.push(card);
+    if(count > 1) usedObjs.push(card._src);
+  }
+  renderCards(cards);
+}
+
+function copyActivity(){
+  if(!lastCards.length){ showToast("Generate an activity first."); return; }
+  var text = lastCards.map(function(c){
+    return c.title + " (" + CATEGORY_LABEL[c.category] + ")\n" + c.text + (c.extension ? "\nExtension: " + c.extension : "");
+  }).join("\n\n");
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){ showToast("Copied to clipboard"); }).catch(function(){ showSelectableText(text); });
+  } else {
+    showSelectableText(text);
+  }
+}
+function showSelectableText(text){
+  copyArea.value = text;
+  copyArea.hidden = false;
+  copyArea.focus();
+  copyArea.select();
+  showToast("Select the text below and copy manually");
+}
+
+document.getElementById("generateBtn").addEventListener("click", function(){ generate(1); });
+document.getElementById("generate3Btn").addEventListener("click", function(){ generate(3); });
+document.getElementById("anotherBtn").addEventListener("click", function(){ generate(lastCards.length || 1); });
+document.getElementById("copyBtn").addEventListener("click", copyActivity);
+document.getElementById("printBtn").addEventListener("click", function(){ window.print(); });
+
+})();
+</script>
+</body>
+</html>

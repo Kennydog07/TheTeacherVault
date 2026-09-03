@@ -1295,8 +1295,14 @@ table.compare td:first-child, table.compare th:first-child { border-right: 1px s
   gap: 24px;
 }
 
+.split-panel--3col { grid-template-columns: 1fr 1fr 1fr; }
+
+@media (max-width: 900px) {
+  .split-panel--3col { grid-template-columns: 1fr 1fr; }
+}
+
 @media (max-width: 800px) {
-  .split-panel { grid-template-columns: 1fr; }
+  .split-panel, .split-panel--3col { grid-template-columns: 1fr; }
 }
 
 .panel {

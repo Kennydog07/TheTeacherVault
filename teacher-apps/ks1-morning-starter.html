@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KS1 Morning Starter Generator | Free Teacher Tool | The Teacher Vault</title>
+<meta name="description" content="Generate quick KS1 morning starter activities for Year 1 and Year 2 English, maths or mixed practice.">
+<link rel="canonical" href="https://theteachervault.com/teacher-apps/ks1-morning-starter.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KS1 Morning Starter Generator | Free Teacher Tool | The Teacher Vault">
+<meta property="og:description" content="Generate quick KS1 morning starter activities for Year 1 and Year 2 English, maths or mixed practice.">
+<meta property="og:url" content="https://theteachervault.com/teacher-apps/ks1-morning-starter.html">
+<meta property="og:image" content="https://theteachervault.com/images/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KS1 Morning Starter Generator | Free Teacher Tool | The Teacher Vault">
+<meta name="twitter:description" content="Generate quick KS1 morning starter activities for Year 1 and Year 2 English, maths or mixed practice.">
+<meta name="twitter:image" content="https://theteachervault.com/images/logo.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "KS1 Morning Starter Generator",
+  "description": "Generate quick KS1 morning starter activities for Year 1 and Year 2 English, maths or mixed practice.",
+  "url": "https://theteachervault.com/teacher-apps/ks1-morning-starter.html",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+  "publisher": { "@type": "Organization", "name": "The Teacher Vault", "url": "https://theteachervault.com" }
+}
+</script>
+<style>
+  :root{
+    --board-green:#1e3a30; --board-green-dark:#16291f; --board-green-light:#27473b;
+    --chalk-white:#f5f2e8; --chalk-dim:#cfd6cd;
+    --cream:#f7f2e2; --cream-dark:#efe6cc; --paper:#fbf8ef;
+    --gold:#c9a24b; --gold-dark:#a8842f; --gold-light:#e2c680;
+    --ink:#23291f; --ink-soft:#4a5248;
+    --free-bg:#dbe9d9; --free-text:#285c3a;
+    --orange:#e8742a; --orange-bg:#fff8ec; --orange-bg2:#fdecd2; --orange-border:#ffb877;
+    --max-width:1100px;
+    --radius-sm:6px; --radius-md:10px; --radius-lg:16px;
+    --shadow-card:0 4px 14px rgba(10,20,15,0.35);
+    --font-body:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --font-chalk:'Permanent Marker', var(--font-body);
+  }
+  *,*::before,*::after{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family:var(--font-body); background:var(--paper); color:var(--ink);
+    line-height:1.5; -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4,p,ul,ol,dl,dd{ margin:0; }
+  img{ max-width:100%; display:block; }
+  button{ font-family:inherit; }
+  a{ color:inherit; }
+  a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible,
+  textarea:focus-visible, [tabindex]:focus-visible { outline:3px solid var(--gold); outline-offset:2px; }
+  [hidden]{ display:none !important; }
+
+  .wrap{ max-width:var(--max-width); margin:0 auto; padding:0 20px 60px; }
+
+  /* ---------------- Breadcrumb ---------------- */
+  .app-breadcrumb{
+    max-width:var(--max-width); margin:0 auto; padding:12px 20px 0;
+    font-size:0.85rem; color:var(--ink-soft);
+  }
+  .app-breadcrumb a{ color:var(--board-green); font-weight:600; text-decoration:underline; }
+  .app-breadcrumb a:hover{ color:var(--gold-dark); }
+
+  /* ---------------- Header ---------------- */
+  header.app-header{
+    background:linear-gradient(135deg, var(--board-green) 0%, var(--board-green-dark) 100%);
+    color:var(--chalk-white); padding:20px; margin:14px 0 26px; border-radius:var(--radius-lg);
+    max-width:var(--max-width); margin-left:auto; margin-right:auto;
+  }
+  .header-inner{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  .header-inner img.logo{ width:52px; height:52px; border-radius:12px; object-fit:cover; flex-shrink:0; }
+  .header-titles{ flex:1; min-width:200px; }
+  .header-titles .brand{ font-family:var(--font-chalk); font-size:0.95rem; color:var(--gold-light); margin-bottom:2px; line-height:1; }
+  .header-titles h1{ margin:0; font-size:1.6rem; letter-spacing:-0.01em; color:#fff; }
+  .header-titles p{ margin:4px 0 0; font-size:0.98rem; color:var(--chalk-dim); max-width:640px; }
+
+  /* ---------------- Cards / layout ---------------- */
+  .card{ background:#fff; border:1px solid rgba(30,58,48,0.12); border-radius:var(--radius-lg); box-shadow:var(--shadow-card); padding:24px; }
+  .card + .card{ margin-top:20px; }
+
+  .field-row{ display:flex; gap:16px; flex-wrap:wrap; }
+  .field{ flex:1; min-width:170px; }
+  .field label{ display:block; font-weight:700; font-size:0.92rem; margin-bottom:7px; color:var(--ink); }
+  select, input[type="text"]{
+    width:100%; font-family:inherit; font-size:1rem; padding:12px 14px;
+    border-radius:var(--radius-sm); border:2px solid rgba(30,58,48,0.18);
+    background:var(--paper); color:var(--ink);
+  }
+  select:focus{ outline:none; border-color:var(--board-green); }
+
+  .check-row{ display:flex; flex-wrap:wrap; gap:18px; margin-top:18px; }
+  .check-item{ display:flex; align-items:center; gap:9px; font-weight:600; font-size:0.94rem; cursor:pointer; }
+  .check-item input{ width:20px; height:20px; accent-color:var(--board-green); cursor:pointer; }
+
+  /* ---------------- Buttons ---------------- */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:12px 20px; border-radius:var(--radius-sm); border:none; cursor:pointer;
+    font-size:0.96rem; font-weight:700; font-family:inherit; min-height:44px;
+    transition:transform .1s ease, box-shadow .15s ease;
+  }
+  .btn:active{ transform:scale(0.98); }
+  .btn-primary{ background:linear-gradient(135deg, var(--gold), var(--gold-dark)); color:var(--ink); box-shadow:0 6px 16px rgba(201,162,75,0.4); }
+  .btn-primary:hover{ box-shadow:0 8px 20px rgba(201,162,75,0.5); }
+  .btn-secondary{ background:var(--board-green-light); color:#fff; }
+  .btn-secondary:hover{ background:var(--board-green); }
+  .btn-ghost{ background:transparent; color:var(--board-green-dark); border:2px solid rgba(30,58,48,0.25); }
+  .btn-ghost:hover{ border-color:var(--board-green); }
+  .btn:disabled{ opacity:0.5; cursor:not-allowed; }
+  .btn-lg{ width:100%; font-size:1.05rem; padding:16px 22px; }
+  .actions-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:8px; }
+
+  /* ---------------- Empty state ---------------- */
+  .empty-state{ text-align:center; padding:44px 24px; background:var(--orange-bg); border:2px dashed var(--orange-border); border-radius:var(--radius-md); }
+  .empty-state img.mascot{ width:84px; height:84px; margin:0 auto 14px; }
+  .empty-state h2{ margin:0 0 8px; font-size:1.35rem; color:var(--board-green-dark); }
+  .empty-state p{ margin:0 auto; color:var(--ink-soft); font-size:1rem; max-width:44ch; }
+
+  /* ---------------- Output ---------------- */
+  .output-head{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:16px; }
+  .output-head img.mascot{ width:48px; height:48px; flex-shrink:0; }
+  .output-title{ font-family:var(--font-chalk); font-size:1.3rem; color:var(--board-green-dark); }
+  .output-meta{ display:flex; gap:8px; flex-wrap:wrap; margin-top:4px; }
+  .badge{
+    display:inline-block; font-size:0.72rem; font-weight:800; letter-spacing:0.03em;
+    padding:4px 11px; border-radius:999px; background:var(--free-bg); color:var(--free-text); text-transform:uppercase;
+  }
+  .question-list{ list-style:none; margin:0; padding:0; counter-reset:qnum; }
+  .question-list li{
+    counter-increment:qnum; position:relative; padding:14px 16px 14px 46px;
+    border:1px solid rgba(30,58,48,0.14); border-radius:var(--radius-sm); margin-bottom:10px;
+    font-size:1.05rem; background:var(--paper);
+  }
+  .question-list li::before{
+    content:counter(qnum); position:absolute; left:12px; top:50%; transform:translateY(-50%);
+    width:26px; height:26px; border-radius:50%; background:var(--board-green); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:0.85rem; font-weight:800;
+  }
+  .q-answer{ display:none; margin-top:8px; font-weight:700; color:var(--free-text); font-size:0.95rem; }
+  .answers-on .q-answer{ display:block; }
+  .challenge-box{
+    margin-top:18px; padding:16px 18px; border-radius:var(--radius-md);
+    background:var(--orange-bg2); border:2px solid var(--orange-border);
+  }
+  .challenge-box .challenge-label{ font-weight:800; color:var(--orange); text-transform:uppercase; font-size:0.78rem; letter-spacing:0.04em; margin-bottom:6px; display:block; }
+  .challenge-box p{ font-size:1.05rem; }
+
+  #copyArea{ width:100%; min-height:120px; margin-top:12px; font-family:inherit; font-size:0.95rem; padding:12px; border-radius:var(--radius-sm); border:2px solid rgba(30,58,48,0.18); }
+
+  /* ---------------- Toast ---------------- */
+  .toast{
+    position:fixed; bottom:22px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--board-green-dark); color:#fff; padding:12px 22px; border-radius:999px;
+    font-size:0.9rem; font-weight:600; box-shadow:0 12px 32px rgba(0,0,0,0.3);
+    opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease; z-index:999;
+  }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  details.how-to{ margin-top:14px; }
+  details.how-to summary{ cursor:pointer; font-weight:700; color:var(--board-green-dark); font-size:0.92rem; padding:4px 0; }
+  details.how-to p, details.how-to ul{ margin-top:8px; color:var(--ink-soft); font-size:0.92rem; }
+  details.how-to ul{ padding-left:20px; }
+
+  /* ---------------- Related / footer ---------------- */
+  .related-links{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+  .related-links a{
+    display:inline-block; padding:9px 16px; border-radius:999px; text-decoration:none;
+    background:var(--cream); color:var(--board-green-dark); font-size:0.88rem; font-weight:700;
+    border:1px solid rgba(30,58,48,0.18);
+  }
+  .related-links a:hover{ background:var(--cream-dark); }
+
+  footer.tv-footer{ background:var(--board-green-dark); color:var(--chalk-dim); margin-top:40px; padding:36px 20px 28px; border-radius:var(--radius-lg); max-width:var(--max-width); margin-left:auto; margin-right:auto; }
+  .tv-footer-inner{ max-width:100%; }
+  .tv-footer-inner h2{ font-family:var(--font-chalk); font-size:1.15rem; color:#fff; margin-bottom:6px; }
+  .tv-footer-inner > div + h2{ margin-top:24px; }
+  .tv-footer-inner p{ color:var(--chalk-dim); margin-bottom:12px; max-width:640px; }
+  .tv-footer-links{ display:flex; flex-wrap:wrap; gap:10px; }
+  .tv-footer-links a{
+    display:inline-block; padding:9px 16px; border-radius:999px; text-decoration:none;
+    background:rgba(255,255,255,0.08); color:#fff; font-size:0.88rem; font-weight:600;
+    border:1px solid rgba(255,255,255,0.15);
+  }
+  .tv-footer-links a:hover{ background:rgba(255,255,255,0.16); }
+  .tv-copyright{ margin-top:22px; font-size:0.8rem; color:var(--chalk-dim); opacity:0.7; }
+
+  @media (max-width:600px){
+    .card{ padding:18px; }
+    .header-titles h1{ font-size:1.35rem; }
+    .field-row{ gap:12px; }
+  }
+
+  @media print{
+    body{ background:#fff; }
+    .app-breadcrumb, header.app-header, footer.tv-footer, .no-print{ display:none !important; }
+    .wrap{ max-width:none; padding:0; }
+    .card{ box-shadow:none; border:none; padding:0; }
+    .question-list li{ border:1px solid #999; background:#fff; break-inside:avoid; }
+    .q-answer{ display:block !important; color:#000; }
+    .challenge-box{ border:1px solid #999; background:#fff; }
+    .empty-state{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="app-breadcrumb no-print" aria-label="Breadcrumb">
+  <a href="/index.html">Home</a> / <a href="/teacher-tools.html">Teacher Tools</a> / <span aria-current="page">KS1 Morning Starter Generator</span>
+</nav>
+
+<header class="app-header">
+  <div class="header-inner">
+    <img class="logo" alt="The Teacher Vault" src="/images/logo.png" width="52" height="52">
+    <div class="header-titles">
+      <div class="brand">The Teacher Vault</div>
+      <h1>KS1 Morning Starter Generator</h1>
+      <p>A ready-to-use start-of-day activity in seconds.</p>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="card no-print" id="controlsCard">
+    <div class="field-row">
+      <div class="field">
+        <label for="yearSelect">Year group</label>
+        <select id="yearSelect">
+          <option value="Y1">Year 1</option>
+          <option value="Y2">Year 2</option>
+          <option value="MIXED" selected>Mixed KS1</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="subjectSelect">Subject</label>
+        <select id="subjectSelect">
+          <option value="english">English</option>
+          <option value="maths">Maths</option>
+          <option value="mixed" selected>Mixed</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="difficultySelect">Difficulty</label>
+        <select id="difficultySelect">
+          <option value="gentle">Gentle Start</option>
+          <option value="standard" selected>Standard</option>
+          <option value="challenge">Challenge</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="countSelect">Number of questions</label>
+        <select id="countSelect">
+          <option value="5">5</option>
+          <option value="8" selected>8</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="check-row">
+      <label class="check-item"><input type="checkbox" id="challengeCheck"> Include a challenge question</label>
+      <label class="check-item"><input type="checkbox" id="answersCheck"> Include answers</label>
+    </div>
+
+    <div class="actions-row" style="margin-top:20px;">
+      <button type="button" class="btn btn-primary btn-lg" id="generateBtn">Generate Morning Starter</button>
+    </div>
+
+    <details class="how-to">
+      <summary>How to use</summary>
+      <p>Choose a year group, subject and difficulty, then click <strong>Generate Morning Starter</strong> for an instant set of questions.</p>
+      <ul>
+        <li>"Mixed KS1" blends Year 1 and Year 2 level questions; "Mixed" subject blends English and maths.</li>
+        <li>Tick <strong>Include a challenge question</strong> for one extra stretch question at the end.</li>
+        <li>Tick <strong>Include answers</strong> to show the answer key straight away, or reveal it later with <strong>Show Answers</strong>.</li>
+        <li>Use <strong>Regenerate</strong> for a fresh set with the same settings, <strong>Copy Questions</strong> to paste into a slide, or <strong>Print</strong> for an ink-friendly worksheet.</li>
+      </ul>
+    </details>
+  </div>
+
+  <div class="card" id="resultsCard" style="margin-top:20px;">
+    <div class="empty-state" id="emptyState">
+      <img class="mascot" src="/images/early-years/mascot-neutral.png" alt="" role="presentation" loading="lazy">
+      <h2>Ready when you are</h2>
+      <p>Choose your settings above and generate a morning starter for the board, a slide or a worksheet.</p>
+    </div>
+
+    <div id="outputBody" hidden>
+      <div class="output-head">
+        <img class="mascot" src="/images/early-years/mascot-cheer.png" alt="" role="presentation" loading="lazy">
+        <div>
+          <div class="output-title">Morning Starter</div>
+          <div class="output-meta" id="outputMeta"></div>
+        </div>
+      </div>
+      <ol class="question-list" id="questionList"></ol>
+      <div class="challenge-box" id="challengeBox" hidden>
+        <span class="challenge-label">Challenge question</span>
+        <p id="challengeText"></p>
+        <div class="q-answer" id="challengeAnswer"></div>
+      </div>
+
+      <div class="actions-row no-print" style="margin-top:20px;">
+        <button type="button" class="btn btn-secondary" id="showAnswersBtn">Show Answers</button>
+        <button type="button" class="btn btn-secondary" id="regenerateBtn">Regenerate</button>
+        <button type="button" class="btn btn-ghost" id="copyBtn">Copy Questions</button>
+        <button type="button" class="btn btn-ghost" id="printBtn">Print</button>
+      </div>
+      <textarea id="copyArea" class="no-print" readonly hidden aria-label="Selectable morning starter text"></textarea>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="font-family:var(--font-chalk);font-size:1.1rem;color:var(--board-green-dark);">Teaching Early Years or KS1?</h2>
+    <p style="color:var(--ink-soft);margin-top:8px;">Browse the rest of The Teacher Vault's Early Years and KS1 resources.</p>
+    <div class="related-links">
+      <a href="/early-years.html">Early Years hub</a>
+      <a href="/ks1.html">KS1 hub</a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="tv-footer">
+  <div class="tv-footer-inner">
+    <h2>More free teacher tools</h2>
+    <p>Small, focused tools that solve one teaching problem at a time — free to use, no account needed.</p>
+    <div class="tv-footer-links">
+      <a href="/lesson-planner.html">Lesson Planner</a>
+      <a href="/report-writer.html">Report Writer</a>
+      <a href="/feedback-fixer.html">Feedback Fixer</a>
+      <a href="/teacher-apps/phonics-activity-generator.html">Phonics Activity Generator</a>
+      <a href="/teacher-apps/early-finisher-generator.html">Early Finisher Generator</a>
+      <a href="/teacher-tools.html">All Teacher Tools</a>
+    </div>
+    <div class="tv-copyright">The Teacher Vault — Tools that give teachers their time back.</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+"use strict";
+
+function randInt(min, max){ return Math.floor(Math.random() * (max - min + 1)) + min; }
+function pick(arr){ return arr[randInt(0, arr.length - 1)]; }
+function shuffle(arr){
+  var a = arr.slice();
+  for(var i = a.length - 1; i > 0; i--){
+    var j = randInt(0, i);
+    var t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, function(c){
+    return { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c];
+  });
+}
+
+/* ============================================================
+   MATHS — procedural generators, answers computed from the same
+   numbers used in the prompt so every answer is verified by
+   construction.
+   ============================================================ */
+
+var MATHS_Y1 = {
+  gentle: [
+    function(){ var a=randInt(1,6), b=randInt(1,4); return { text:a+" + "+b+" = ?", answer:String(a+b) }; },
+    function(){ var a=randInt(4,10), b=randInt(1,a-1); return { text:a+" − "+b+" = ?", answer:String(a-b) }; },
+    function(){ var n=randInt(1,9); return { text:"What is one more than "+n+"?", answer:String(n+1) }; },
+    function(){ var n=randInt(2,10); return { text:"What is one less than "+n+"?", answer:String(n-1) }; },
+    function(){ var n=randInt(1,10); var w=["one","two","three","four","five","six","seven","eight","nine","ten"][n-1]; return { text:"Write the numeral for '"+w+"'.", answer:String(n) }; },
+    function(){ var shape=pick([["triangle",3],["square",4],["circle","0 (no straight sides)"]]); return { text:"How many sides does a "+shape[0]+" have?", answer:String(shape[1]) }; }
+  ],
+  standard: [
+    function(){ var a=randInt(1,12), b=randInt(1,Math.min(12,20-a)); return { text:a+" + "+b+" = ?", answer:String(a+b) }; },
+    function(){ var a=randInt(8,20), b=randInt(1,a-1); return { text:a+" − "+b+" = ?", answer:String(a-b) }; },
+    function(){ var b=randInt(1,9); return { text:"? + "+b+" = 10. What goes in the box?", answer:String(10-b) }; },
+    function(){ var n=randInt(1,10); return { text:"Double "+n+" is?", answer:String(n*2) }; },
+    function(){ var step=pick([2,5,10]); var start=step*randInt(0,3); var seq=[start,start+step,start+2*step]; return { text:"What comes next? "+seq.join(", ")+", ?", answer:String(start+3*step) }; },
+    function(){ var a=randInt(1,9), b=randInt(1,9); var bigger = a>b?a:b; return { text:"Which is bigger: "+a+" or "+b+"?", answer:String(bigger) }; },
+    function(){ var h=randInt(1,11); var next=h+1>12?1:h+1; return { text:"It is "+h+" o'clock. What time will it be in 1 hour?", answer:next+" o'clock" }; }
+  ],
+  challenge: [
+    function(){ var a=randInt(10,20), b=randInt(10,20); return { text:a+" + "+b+" = ?", answer:String(a+b) }; },
+    function(){ var a=randInt(12,20), b=randInt(1,11); return { text:a+" − "+b+" = ?", answer:String(a-b) }; },
+    function(){ var b=randInt(1,19); return { text:"? + "+b+" = 20. What goes in the box?", answer:String(20-b) }; },
+    function(){ var n=randInt(1,20); return { text:"Double "+n+" is?", answer:String(n*2) }; },
+    function(){ var p=randInt(1,10), q=randInt(1,10), r=randInt(1,10); return { text:p+" + "+q+" + "+r+" = ?", answer:String(p+q+r) }; },
+    function(){ var coins=[1,2,5,10,20]; var a=pick(coins), b=pick(coins.filter(function(c){return c!==a;})); var bigger=a>b?a:b; return { text:"Which coin is worth more: "+a+"p or "+b+"p?", answer:bigger+"p" }; }
+  ]
+};
+
+var MATHS_Y2 = {
+  gentle: [
+    function(){ var a=randInt(10,40), b=randInt(1,9); return { text:a+" + "+b+" = ?", answer:String(a+b) }; },
+    function(){ var a=randInt(15,40), b=randInt(1,9); return { text:a+" − "+b+" = ?", answer:String(a-b) }; },
+    function(){ var n=randInt(1,10); return { text:"2 × "+n+" = ?", answer:String(2*n) }; },
+    function(){ var n=randInt(1,10); return { text:"10 × "+n+" = ?", answer:String(10*n) }; },
+    function(){ var tens=randInt(1,5), ones=randInt(0,9); return { text:"What is the value of the tens digit in "+(tens*10+ones)+"?", answer:String(tens*10) }; },
+    function(){ var n=randInt(1,10)*2; return { text:"Half of "+n+" is?", answer:String(n/2) }; }
+  ],
+  standard: [
+    function(){ var a=randInt(20,70), b=randInt(10,29); return { text:a+" + "+b+" = ?", answer:String(a+b) }; },
+    function(){ var a=randInt(40,90), b=randInt(10,a-10); return { text:a+" − "+b+" = ?", answer:String(a-b) }; },
+    function(){ var t=pick([2,5,10]); var n=randInt(1,12); return { text:t+" × "+n+" = ?", answer:String(t*n) }; },
+    function(){ var money=randInt(20,60), spend=randInt(5,money-5); return { text:"I have "+money+"p and spend "+spend+"p. How much is left?", answer:(money-spend)+"p" }; },
+    function(){ var frac=pick([2,4]); var whole=frac*randInt(2,6); return { text:"1/"+frac+" of "+whole+" = ?", answer:String(whole/frac) }; },
+    function(){ var n=randInt(10,50); return { text:"Is "+n+" an odd or even number?", answer:(n%2===0?"Even":"Odd") }; },
+    function(){ var h=randInt(1,11); return { text:"It is "+h+":00. What time is it half an hour later?", answer:h+":30" }; }
+  ],
+  challenge: [
+    function(){ var a=randInt(60,99), b=randInt(20,59); return { text:a+" + "+b+" = ?", answer:String(a+b) }; },
+    function(){ var a=randInt(70,99), b=randInt(20,69); return { text:a+" − "+b+" = ?", answer:String(a-b) }; },
+    function(){ var t=pick([2,5,10]); var n=randInt(6,12); var product=t*n; return { text:product+" ÷ "+t+" = ?", answer:String(n) }; },
+    function(){ var frac=pick([2,3,4]); var whole=frac*randInt(3,9); return { text:"1/"+frac+" of "+whole+" = ?", answer:String(whole/frac) }; },
+    function(){ var a=randInt(20,60), b=randInt(20,60); return { text:"What is "+a+" + "+b+" − 10?", answer:String(a+b-10) }; },
+    function(){ var m=randInt(1,4), cm=randInt(1,99); return { text:"How many cm in "+m+"m "+cm+"cm?", answer:(m*100+cm)+"cm" }; }
+  ]
+};
+
+/* ============================================================
+   ENGLISH — curated item banks. Every item's correct answer is
+   fixed at authoring time and hand-checked for accuracy.
+   ============================================================ */
+
+var ENGLISH_Y1 = {
+  gentle: [
+    { text:"Which word rhymes with 'cat'? (bat / dog / sun)", answer:"bat" },
+    { text:"Which word rhymes with 'pig'? (big / cup / red)", answer:"big" },
+    { text:"Which spelling is correct: 'sed' or 'said'?", answer:"said" },
+    { text:"Which spelling is correct: 'the' or 'th'?", answer:"the" },
+    { text:"Which sentence starts correctly? 'i like dogs.' or 'I like dogs.'", answer:"I like dogs." },
+    { text:"Add the missing full stop: 'The cat sat on the mat'", answer:"The cat sat on the mat." },
+    { text:"Fill in the missing word: The sun is ___. (hot / purple)", answer:"hot" },
+    { text:"Which word means the opposite of 'big'? (small / tall)", answer:"small" }
+  ],
+  standard: [
+    { text:"Which word rhymes with 'hen'? (pen / cup / big)", answer:"pen" },
+    { text:"Which word rhymes with 'fox'? (box / cat / sun)", answer:"box" },
+    { text:"Which spelling is correct: 'wos' or 'was'?", answer:"was" },
+    { text:"Which spelling is correct: 'thay' or 'they'?", answer:"they" },
+    { text:"Put these words in the right order: dog. / The / ran / fast", answer:"The dog ran fast." },
+    { text:"Put these words in the right order: is / cat / My / black", answer:"My cat is black." },
+    { text:"Add the missing full stop: 'We went to the park'", answer:"We went to the park." },
+    { text:"Fill in the missing word: I put on my coat because it was ___. (cold / funny)", answer:"cold" },
+    { text:"Which word means the opposite of 'fast'? (slow / loud)", answer:"slow" }
+  ],
+  challenge: [
+    { text:"Which word rhymes with 'tree'? (bee / dog / cup)", answer:"bee" },
+    { text:"Which spelling is correct: 'skool' or 'school'?", answer:"school" },
+    { text:"Which spelling is correct: 'frend' or 'friend'?", answer:"friend" },
+    { text:"Put these words in the right order: park / to / went / We / the", answer:"We went to the park." },
+    { text:"Fill in the missing word: The dog wagged its ___. (tail / house)", answer:"tail" },
+    { text:"Which word means the opposite of 'happy'? (sad / hot)", answer:"sad" },
+    { text:"Add capital letters where needed: 'my dog is called max.'", answer:"My dog is called Max." }
+  ]
+};
+
+var ENGLISH_Y2 = {
+  gentle: [
+    { text:"Which spelling is correct: 'becos' or 'because'?", answer:"because" },
+    { text:"Which spelling is correct: 'evrybody' or 'everybody'?", answer:"everybody" },
+    { text:"Circle the correct verb: 'She (walk / walks) to school.'", answer:"walks" },
+    { text:"Which sentence uses the exclamation mark correctly? 'What a great goal!' or 'What a great goal,'", answer:"What a great goal!" },
+    { text:"Read: Tom has a red kite. He flies it every Saturday. What colour is Tom's kite?", answer:"Red" },
+    { text:"Which word is a conjunction: 'because', 'jump', 'green'?", answer:"because" }
+  ],
+  standard: [
+    { text:"Which spelling is correct: 'diffrent' or 'different'?", answer:"different" },
+    { text:"Which spelling is correct: 'bewtiful' or 'beautiful'?", answer:"beautiful" },
+    { text:"Add the missing punctuation: 'Wow, that was amazing__'", answer:"Wow, that was amazing!" },
+    { text:"Join the sentences using 'because': 'I was tired. I went to bed.'", answer:"I went to bed because I was tired." },
+    { text:"Circle the correct verb: 'They (plays / play) outside.'", answer:"play" },
+    { text:"Read: Amy packed her bag for school. She put in her book, her pencil case and her lunch. How many items did Amy pack?", answer:"Three" },
+    { text:"Improve this sentence with an adjective: 'The dog ran.'", answer:"Example: The big dog ran." }
+  ],
+  challenge: [
+    { text:"Which spelling is correct: 'importent' or 'important'?", answer:"important" },
+    { text:"Which spelling is correct: 'cloths' or 'clothes'?", answer:"clothes" },
+    { text:"Join the sentences using 'but': 'I wanted to play outside. It was raining.'", answer:"I wanted to play outside, but it was raining." },
+    { text:"Circle the correct verb: 'He (goes / go) swimming on Fridays.'", answer:"goes" },
+    { text:"Read: Sam's football team won 3 goals to 1. How many more goals did Sam's team score?", answer:"Two" },
+    { text:"Add the missing question mark: 'What time is it__'", answer:"What time is it?" }
+  ]
+};
+
+function bankFor(subjectKind, year, difficulty){
+  var pools = [];
+  if(subjectKind === "maths"){
+    if(year === "Y1" || year === "MIXED") pools.push(MATHS_Y1[difficulty]);
+    if(year === "Y2" || year === "MIXED") pools.push(MATHS_Y2[difficulty]);
+  } else {
+    if(year === "Y1" || year === "MIXED") pools.push(ENGLISH_Y1[difficulty]);
+    if(year === "Y2" || year === "MIXED") pools.push(ENGLISH_Y2[difficulty]);
+  }
+  return pools;
+}
+
+function makeItem(subjectKind, year, difficulty){
+  var pools = bankFor(subjectKind, year, difficulty);
+  var pool = pick(pools);
+  var entry = pick(pool);
+  return (typeof entry === "function") ? entry() : { text: entry.text, answer: entry.answer };
+}
+
+function buildQuestions(opts){
+  var items = [];
+  var seenText = {};
+  var guard = 0;
+  while(items.length < opts.count && guard < opts.count * 40){
+    guard++;
+    var subjectKind = opts.subject === "mixed" ? (items.length % 2 === 0 ? "english" : "maths") : opts.subject;
+    var item = makeItem(subjectKind, opts.year, opts.difficulty);
+    if(seenText[item.text] && guard < opts.count * 30) continue;
+    seenText[item.text] = true;
+    items.push(item);
+  }
+  return items;
+}
+
+function buildChallenge(opts){
+  var subjectKind = opts.subject === "mixed" ? pick(["english","maths"]) : opts.subject;
+  return makeItem(subjectKind, opts.year, "challenge");
+}
+
+/* ============================================================
+   UI wiring
+   ============================================================ */
+
+var yearSelect = document.getElementById("yearSelect");
+var subjectSelect = document.getElementById("subjectSelect");
+var difficultySelect = document.getElementById("difficultySelect");
+var countSelect = document.getElementById("countSelect");
+var challengeCheck = document.getElementById("challengeCheck");
+var answersCheck = document.getElementById("answersCheck");
+
+var emptyState = document.getElementById("emptyState");
+var outputBody = document.getElementById("outputBody");
+var outputMeta = document.getElementById("outputMeta");
+var questionList = document.getElementById("questionList");
+var challengeBox = document.getElementById("challengeBox");
+var challengeText = document.getElementById("challengeText");
+var challengeAnswer = document.getElementById("challengeAnswer");
+var copyArea = document.getElementById("copyArea");
+var toastEl = document.getElementById("toast");
+var toastTimer = null;
+
+var YEAR_LABEL = { Y1:"Year 1", Y2:"Year 2", MIXED:"Mixed KS1" };
+var SUBJECT_LABEL = { english:"English", maths:"Maths", mixed:"Mixed" };
+var DIFFICULTY_LABEL = { gentle:"Gentle Start", standard:"Standard", challenge:"Challenge" };
+
+var lastOpts = null;
+var lastQuestions = [];
+var lastChallenge = null;
+var answersVisible = false;
+
+function showToast(msg){
+  toastEl.textContent = msg;
+  toastEl.classList.add("show");
+  if(toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ toastEl.classList.remove("show"); }, 2200);
+}
+
+function currentOpts(){
+  return {
+    year: yearSelect.value,
+    subject: subjectSelect.value,
+    difficulty: difficultySelect.value,
+    count: parseInt(countSelect.value, 10),
+    challenge: challengeCheck.checked
+  };
+}
+
+function render(){
+  outputMeta.innerHTML =
+    '<span class="badge">'+YEAR_LABEL[lastOpts.year]+'</span>' +
+    '<span class="badge">'+SUBJECT_LABEL[lastOpts.subject]+'</span>' +
+    '<span class="badge">'+DIFFICULTY_LABEL[lastOpts.difficulty]+'</span>';
+
+  questionList.innerHTML = lastQuestions.map(function(q){
+    return '<li>' + escapeHtml(q.text) + '<div class="q-answer">Answer: ' + escapeHtml(q.answer) + '</div></li>';
+  }).join("");
+
+  if(lastChallenge){
+    challengeBox.hidden = false;
+    challengeText.textContent = lastChallenge.text;
+    challengeAnswer.textContent = "Answer: " + lastChallenge.answer;
+  } else {
+    challengeBox.hidden = true;
+  }
+
+  document.getElementById("resultsCard").classList.toggle("answers-on", answersVisible);
+  document.getElementById("showAnswersBtn").textContent = answersVisible ? "Hide Answers" : "Show Answers";
+
+  emptyState.hidden = true;
+  outputBody.hidden = false;
+  copyArea.hidden = true;
+}
+
+function generate(){
+  lastOpts = currentOpts();
+  lastQuestions = buildQuestions(lastOpts);
+  lastChallenge = lastOpts.challenge ? buildChallenge(lastOpts) : null;
+  answersVisible = answersCheck.checked;
+  render();
+}
+
+function plainText(){
+  var lines = [];
+  lines.push("MORNING STARTER — " + YEAR_LABEL[lastOpts.year] + " / " + SUBJECT_LABEL[lastOpts.subject] + " / " + DIFFICULTY_LABEL[lastOpts.difficulty]);
+  lines.push("");
+  lastQuestions.forEach(function(q, i){
+    lines.push((i+1) + ". " + q.text);
+    if(answersVisible) lines.push("   Answer: " + q.answer);
+  });
+  if(lastChallenge){
+    lines.push("");
+    lines.push("Challenge: " + lastChallenge.text);
+    if(answersVisible) lines.push("Answer: " + lastChallenge.answer);
+  }
+  return lines.join("\n");
+}
+
+function copyQuestions(){
+  if(!lastQuestions.length){ showToast("Generate a morning starter first."); return; }
+  var text = plainText();
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){
+      showToast("Copied to clipboard");
+    }).catch(function(){ showSelectableText(text); });
+  } else {
+    showSelectableText(text);
+  }
+}
+
+function showSelectableText(text){
+  copyArea.value = text;
+  copyArea.hidden = false;
+  copyArea.focus();
+  copyArea.select();
+  showToast("Select the text below and copy manually");
+}
+
+document.getElementById("generateBtn").addEventListener("click", generate);
+document.getElementById("regenerateBtn").addEventListener("click", generate);
+document.getElementById("copyBtn").addEventListener("click", copyQuestions);
+document.getElementById("printBtn").addEventListener("click", function(){ window.print(); });
+document.getElementById("showAnswersBtn").addEventListener("click", function(){
+  answersVisible = !answersVisible;
+  document.getElementById("resultsCard").classList.toggle("answers-on", answersVisible);
+  document.getElementById("showAnswersBtn").textContent = answersVisible ? "Hide Answers" : "Show Answers";
+});
+
+})();
+</script>
+</body>
+</html>
