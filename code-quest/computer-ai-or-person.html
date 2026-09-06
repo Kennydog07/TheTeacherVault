@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Computer, AI or Person? | Code Quest | The Teacher Vault</title>
+<meta name="description" content="Free KS1 activity covering everyday uses of technology, the difference between a computer program, AI and a person, and simple online safety.">
+<link rel="canonical" href="https://theteachervault.com/code-quest/computer-ai-or-person.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Computer, AI or Person? | Code Quest | The Teacher Vault">
+<meta property="og:description" content="Free KS1 activity covering everyday uses of technology, the difference between a computer program, AI and a person, and simple online safety.">
+<meta property="og:url" content="https://theteachervault.com/code-quest/computer-ai-or-person.html">
+<meta property="og:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../ks1/ks1.css">
+<link rel="stylesheet" href="code-quest.css">
+</head>
+<body data-page="cq-computer-ai-or-person" class="k1-page-body">
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="k1-section" style="padding-bottom:10px;">
+    <div class="k1-container">
+      <p class="k1-breadcrumb"><a href="../index.html">Home</a> / <a href="../ks1.html">KS1</a> / <a href="../code-quest.html">Code Quest</a> / Computer, AI or Person?</p>
+      <span class="k1-badge">Core Key Stage 1 skill</span>
+      <h1 class="k1-h1">Computer, AI or Person?</h1>
+      <p class="k1-lede">Technology is everywhere -- at home, at the shops, at the hospital and beyond. Let's spot where it's used, work out what's really doing the thinking, and learn how to stay safe.</p>
+      <div id="heroMascotWrap" style="margin-top:14px;"></div>
+    </div>
+  </section>
+
+  <section class="k1-section">
+    <div class="k1-container">
+      <div class="k1-activity-panel">
+        <div id="gameRoot"></div>
+      </div>
+
+      <div id="safetyWrap"></div>
+
+      <div style="max-width:780px;margin:22px auto 0;" class="k1-card">
+        <h2 style="font-family:'Permanent Marker',cursive;color:var(--k1-orange-dark);font-size:1.2rem;margin-bottom:10px;">What you're practising</h2>
+        <ul id="practisingList" style="color:var(--k1-ink-soft);margin:0;padding-left:20px;"></ul>
+      </div>
+
+      <div id="curricWrap" style="max-width:780px;margin:0 auto;"></div>
+
+      <p class="k1-center" style="margin-top:18px;"><a href="../code-quest.html" style="color:var(--k1-blue-dark);text-decoration:underline;font-weight:800;">&larr; Back to Code Quest</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="../early-years/early-years.js"></script>
+<script src="code-quest.js"></script>
+<script>
+(function(){
+  "use strict";
+  document.getElementById("heroMascotWrap").innerHTML = EY.mascot("point-right", "The Teacher Vault mascot pointing at the technology sorting activity", { size: 90, animate: "float" });
+
+  document.getElementById("practisingList").innerHTML =
+    "<li>Spotting everyday uses of " + CQ.term("Technology") + " and " + CQ.term("Device") + "s beyond school</li>" +
+    "<li>Telling apart a " + CQ.term("Computer") + " " + CQ.term("Program") + ", AI, and a person</li>" +
+    "<li>Keeping " + CQ.term("Private information") + " private</li>" +
+    "<li>Knowing what to do when something online worries you</li>";
+
+  // ---- Round bank -------------------------------------------------------
+  var ROUNDS = [];
+
+  // 1) Everyday uses of technology beyond school.
+  [
+    { icon: "🧺", text: "A washing machine", correct: "Home", opts: ["Home", "Hospital", "Library"] },
+    { icon: "🛒", text: "A checkout scanner", correct: "A shop", opts: ["A shop", "A school", "A hospital"] },
+    { icon: "💓", text: "A heart-rate monitor", correct: "A hospital", opts: ["A hospital", "A shop", "Home"] },
+    { icon: "🚦", text: "Traffic lights", correct: "On the road", opts: ["On the road", "A library", "Home"] },
+    { icon: "💻", text: "A class tablet", correct: "School", opts: ["School", "A hospital", "A shop"] },
+    { icon: "📚", text: "A book scanner", correct: "A library", opts: ["A library", "Home", "A car"] },
+    { icon: "📞", text: "A video call", correct: "Talking to someone far away", opts: ["Talking to someone far away", "Cooking dinner", "Watering plants"] },
+    { icon: "🎮", text: "A games console", correct: "Having fun", opts: ["Having fun", "Doing the shopping", "Going to the doctor"] }
+  ].forEach(function (r) {
+    ROUNDS.push({ type: "choice", category: "Uses of technology", icon: r.icon, prompt: "Where would you most likely find " + r.text.toLowerCase() + "?", options: r.opts, correct: r.correct });
+  });
+
+  // 2) Computer program vs AI vs person.
+  [
+    { icon: "🧮", text: "A till adding up your shopping total exactly the same way every time", correct: "A computer program", why: "It follows the same fixed instructions every time." },
+    { icon: "🐱", text: "A photo app guessing which photos have a cat in them (and sometimes getting it wrong)", correct: "AI", why: "AI looks for patterns and can make mistakes." },
+    { icon: "🧑‍🏫", text: "A teacher deciding how to help a pupil who is stuck", correct: "A person", why: "People stay responsible for decisions like this." },
+    { icon: "🚦", text: "Traffic lights changing colour on a timer", correct: "A computer program", why: "It just follows fixed instructions." },
+    { icon: "🔊", text: "A voice assistant guessing which song you mean (and sometimes playing the wrong one)", correct: "AI", why: "AI makes a best guess and can be wrong." },
+    { icon: "🩺", text: "A doctor deciding on the best treatment for a patient", correct: "A person", why: "A person stays responsible for decisions like this." }
+  ].forEach(function (r) {
+    ROUNDS.push({ type: "choice", category: "Computer, AI or person?", icon: r.icon, prompt: r.text + ". Who or what is doing this?", options: ["A computer program", "AI", "A person"], correct: r.correct, why: r.why });
+  });
+
+  // 3) Private information.
+  [
+    { text: "Your full name and address", correct: "Private -- keep it safe" },
+    { text: "Your password", correct: "Private -- keep it safe" },
+    { text: "Which school you go to", correct: "Private -- keep it safe" },
+    { text: "Your favourite colour", correct: "OK to share" },
+    { text: "Your favourite animal", correct: "OK to share" },
+    { text: "Your favourite game", correct: "OK to share" }
+  ].forEach(function (r) {
+    ROUNDS.push({ type: "choice", category: "Private information", icon: "🔒", prompt: r.text + " -- is this private, or OK to share?", options: ["Private -- keep it safe", "OK to share"], correct: r.correct });
+  });
+
+  // 4) Trusted adults.
+  [
+    { text: "Your mum, dad or carer", correct: "A trusted adult" },
+    { text: "Your teacher", correct: "A trusted adult" },
+    { text: "Another grown-up who looks after you, like a grandparent", correct: "A trusted adult" },
+    { text: "Someone you've never met, who messages you online", correct: "Not a trusted adult" }
+  ].forEach(function (r) {
+    ROUNDS.push({ type: "choice", category: "Trusted adults", icon: "🧑‍🤝‍🧑", prompt: r.text + " -- is this a trusted adult?", options: ["A trusted adult", "Not a trusted adult"], correct: r.correct });
+  });
+
+  // 5) What to do scenarios.
+  ROUNDS.push({ type: "choice", category: "Online safety", icon: "😟", prompt: "Something you see online is confusing or worrying you. What should you do?", options: ["Keep watching to find out more", "Stop and tell a trusted adult straight away", "Message the person back"], correct: "Stop and tell a trusted adult straight away" });
+  ROUNDS.push({ type: "choice", category: "Kindness online", icon: "💬", prompt: "Someone sends an unkind message in a game chat. What's the best thing to do?", options: ["Say something unkind back", "Stop, be kind, and tell a trusted adult", "Ignore it and never tell anyone"], correct: "Stop, be kind, and tell a trusted adult" });
+  ROUNDS.push({ type: "choice", category: "Passwords", icon: "🔑", prompt: "A friend at school asks for your password so they can play too. What should you do?", options: ["Give it to them, they're a friend", "Keep it private, even from friends", "Write it down for them"], correct: "Keep it private, even from friends" });
+
+  // ---- Engine -------------------------------------------------------------
+  var root = document.getElementById("gameRoot");
+  var idx = 0;
+
+  function render() {
+    if (idx >= ROUNDS.length) {
+      CQ.markComplete("computer-ai-or-person");
+      root.innerHTML = '<div class="k1-center"><p style="font-size:3rem;">🎉</p><p class="k1-sub">You finished every round!</p></div>';
+      return;
+    }
+    var r = ROUNDS[idx];
+    root.innerHTML =
+      '<p class="cq-pill" style="display:block;width:fit-content;margin:0 auto 10px;">' + r.category + '</p>' +
+      '<div class="cq-sort-card"><div class="cq-sort-card__icon" aria-hidden="true">' + (r.icon || "🤔") + '</div><p class="cq-sort-card__text">' + r.prompt + '</p></div>' +
+      '<div class="cq-sort-options" id="roundOptions">' +
+        r.options.map(function (o, i) { return '<button type="button" class="k1-choice" data-idx="' + i + '">' + o + '</button>'; }).join("") +
+      '</div>' +
+      '<div class="cq-result" id="roundResult" style="margin-top:14px;"></div>' +
+      '<p style="text-align:center;font-weight:800;color:var(--k1-ink-soft);margin-top:10px;">Round ' + (idx + 1) + ' of ' + ROUNDS.length + '</p>';
+
+    root.querySelectorAll("#roundOptions .k1-choice").forEach(function (btn, i) {
+      btn.addEventListener("click", function () {
+        var correct = r.options[i] === r.correct;
+        var resultEl = document.getElementById("roundResult");
+        root.querySelectorAll("#roundOptions .k1-choice").forEach(function (b) { b.disabled = true; });
+        if (correct) {
+          btn.classList.add("is-correct");
+          resultEl.className = "cq-result is-visible cq-result--good";
+          resultEl.innerHTML = "<p>&#9989; That's right!" + (r.why ? " " + r.why : "") + "</p>";
+          setTimeout(function () { idx++; render(); }, 1200);
+        } else {
+          btn.classList.add("is-incorrect");
+          resultEl.className = "cq-result is-visible cq-result--bad";
+          resultEl.innerHTML = "<p>&#10060; Not quite -- have another think.</p>";
+          setTimeout(function () {
+            root.querySelectorAll("#roundOptions .k1-choice").forEach(function (b) { b.disabled = false; b.classList.remove("is-incorrect"); });
+            resultEl.className = "cq-result";
+          }, 1300);
+        }
+      });
+    });
+  }
+
+  render();
+
+  document.getElementById("safetyWrap").innerHTML = CQ.safetyCard();
+
+  document.getElementById("curricWrap").innerHTML = CQ.curriculumConnection({
+    statements: [
+      "Recognise common uses of information technology beyond school",
+      "Use technology safely and respectfully, keep personal information private, identify where to go for help and support when they have concerns about content or contact on the internet or other online technologies"
+    ],
+    skills: ["Recognising technology in homes, shops, hospitals, transport, school and libraries", "Telling apart a computer program, AI and a person, and knowing AI can be wrong", "Recognising private information", "Naming a trusted adult and knowing to tell them about worrying content or contact", "Being kind and respectful online"],
+    year: "Year 1 or Year 2",
+    time: "15-25 minutes (can be split across sessions)",
+    level: "core",
+    success: [
+      "Correctly matches most everyday technology examples to where they are used",
+      "Can explain, in their own words, that AI can sometimes be wrong and a person stays responsible",
+      "Correctly identifies private information and names a trusted adult they could tell about a worry"
+    ],
+    discuss: "Can you think of a time technology helped you, and a time a person had to make the final decision instead?",
+    followUp: "Go on a short 'technology hunt' at home or on an outing and spot as many everyday uses of technology as you can."
+  });
+
+  // Note: this activity deliberately does NOT claim every computer, robot or
+  // device uses AI -- most everyday devices (tills, traffic lights, washing
+  // machines) simply follow fixed program instructions. AI is presented only
+  // as one category among three, always alongside its key limitation (it can
+  // be wrong) and the fact that people remain responsible for decisions.
+})();
+</script>
+</body>
+</html>

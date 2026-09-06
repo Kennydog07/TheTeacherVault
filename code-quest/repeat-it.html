@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repeat It | Code Quest | The Teacher Vault</title>
+<meta name="description" content="A KS1 coding extension activity that introduces repeated instructions, moving from typing the same command several times to using a single Repeat block.">
+<link rel="canonical" href="https://theteachervault.com/code-quest/repeat-it.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Repeat It | Code Quest | The Teacher Vault">
+<meta property="og:description" content="A KS1 coding extension activity that introduces repeated instructions, moving from typing the same command several times to using a single Repeat block.">
+<meta property="og:url" content="https://theteachervault.com/code-quest/repeat-it.html">
+<meta property="og:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../ks1/ks1.css">
+<link rel="stylesheet" href="code-quest.css">
+</head>
+<body data-page="cq-repeat-it" class="k1-page-body">
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="k1-section" style="padding-bottom:10px;">
+    <div class="k1-container">
+      <p class="k1-breadcrumb"><a href="../index.html">Home</a> / <a href="../ks1.html">KS1</a> / <a href="../code-quest.html">Code Quest</a> / Repeat It</p>
+      <span class="k1-badge" style="background:var(--cq-purple);">KS1 coding extension</span>
+      <h1 class="k1-h1">Repeat It</h1>
+      <p class="k1-lede">Some jobs use the very same instruction again and again. Discover a quicker way to write that down.</p>
+      <div id="heroMascotWrap" style="margin-top:14px;"></div>
+    </div>
+  </section>
+
+  <section class="k1-section">
+    <div class="k1-container">
+      <div class="k1-activity-panel">
+        <div id="gameRoot"></div>
+      </div>
+
+      <div style="max-width:780px;margin:22px auto 0;" class="k1-card">
+        <h2 style="font-family:'Permanent Marker',cursive;color:var(--k1-orange-dark);font-size:1.2rem;margin-bottom:10px;">What you're practising</h2>
+        <ul id="practisingList" style="color:var(--k1-ink-soft);margin:0;padding-left:20px;"></ul>
+        <p style="color:var(--k1-ink-soft);font-size:0.92rem;margin-top:12px;font-style:italic;">This activity provides an early introduction to repetition, which is developed further in the KS2 Computing curriculum.</p>
+      </div>
+
+      <div id="curricWrap" style="max-width:780px;margin:0 auto;"></div>
+
+      <p class="k1-center" style="margin-top:18px;"><a href="../code-quest.html" style="color:var(--k1-blue-dark);text-decoration:underline;font-weight:800;">&larr; Back to Code Quest</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="../early-years/early-years.js"></script>
+<script src="code-quest.js"></script>
+<script src="levels-data.js"></script>
+<script src="robot-engine.js"></script>
+<script>
+(function(){
+  "use strict";
+  document.getElementById("heroMascotWrap").innerHTML = EY.mascot("point-right", "The Teacher Vault mascot pointing at the repeat activity", { size: 90, animate: "float" });
+
+  CQRobot.mount(document.getElementById("gameRoot"), {
+    levels: CQ_LEVELS.repeat,
+    commands: ["F", "L", "R"],
+    requirePredict: true,
+    onAllComplete: function () { CQ.markComplete("repeat-it"); }
+  });
+
+  document.getElementById("practisingList").innerHTML =
+    "<li>Noticing when the same command repeats over and over</li>" +
+    "<li>Using a single Repeat block instead of writing the same command many times</li>" +
+    "<li>" + CQ.term("Predict") + "ing what a repeated instruction will do</li>";
+
+  document.getElementById("curricWrap").innerHTML = CQ.curriculumConnection({
+    level: "extension",
+    extensionNote: "This activity provides an early introduction to repetition, which is developed further in the KS2 Computing curriculum. It is not part of the statutory KS1 programme of study, which does not require loops, iteration or repetition as a named concept -- it is included here only to build logical reasoning and to prepare pupils gently for KS2.",
+    statements: [
+      "Use logical reasoning to predict the behaviour of simple programs (the statutory KS1 skill this activity extends)"
+    ],
+    skills: ["Spotting a repeated pattern in a sequence of instructions", "Predicting what a repeated instruction will do", "Comparing a longer written-out sequence with a shorter repeated version"],
+    year: "Year 2 (or confident Year 1 pupils, as an extension)",
+    time: "10-15 minutes",
+    success: [
+      "Notices which single command is being repeated in levels 1-2",
+      "Successfully uses the Repeat block in levels 3-4",
+      "Can predict roughly where the robot will finish before running a repeated program"
+    ],
+    discuss: "Can you think of something you do the same way, again and again, every day?",
+    followUp: "Spot repetition off-screen: clapping a rhythm four times, hopping on the spot five times, or setting the table by repeating the same action for each place."
+  });
+})();
+</script>
+</body>
+</html>

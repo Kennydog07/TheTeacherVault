@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create and Save | Code Quest | The Teacher Vault</title>
+<meta name="description" content="Free KS1 activity: make a picture with backgrounds, shapes and stickers, then save it, find it again, and make a second version -- all stored on this device only.">
+<link rel="canonical" href="https://theteachervault.com/code-quest/create-and-save.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Create and Save | Code Quest | The Teacher Vault">
+<meta property="og:description" content="Free KS1 activity: make a picture with backgrounds, shapes and stickers, then save it, find it again, and make a second version -- all stored on this device only.">
+<meta property="og:url" content="https://theteachervault.com/code-quest/create-and-save.html">
+<meta property="og:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../ks1/ks1.css">
+<link rel="stylesheet" href="code-quest.css">
+</head>
+<body data-page="cq-create-and-save" class="k1-page-body">
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="k1-section" style="padding-bottom:10px;">
+    <div class="k1-container">
+      <p class="k1-breadcrumb"><a href="../index.html">Home</a> / <a href="../ks1.html">KS1</a> / <a href="../code-quest.html">Code Quest</a> / Create and Save</p>
+      <span class="k1-badge">Core Key Stage 1 skill</span>
+      <h1 class="k1-h1">Create and Save</h1>
+      <p class="k1-sub" style="font-family:'Permanent Marker',cursive;color:var(--k1-blue-dark);">Make it. Change it. Save it. Find it again.</p>
+      <p class="k1-lede">Make a picture, then practise saving your work, opening it again, and making a second version -- just like using a real drawing program. Everything is kept only on this device.</p>
+      <div id="heroMascotWrap" style="margin-top:14px;"></div>
+    </div>
+  </section>
+
+  <section class="k1-section">
+    <div class="k1-container">
+      <div class="k1-activity-panel">
+
+        <div class="cq-canvas-wrap">
+          <label class="k1-sub" for="pictureTitle" style="margin-bottom:0;">Picture title</label>
+          <input type="text" id="pictureTitle" maxlength="30" placeholder="e.g. My Garden" style="font:inherit;font-size:1.1rem;padding:10px 14px;border-radius:12px;border:3px solid var(--k1-bg-soft);max-width:340px;width:100%;text-align:center;">
+          <p style="font-size:0.82rem;color:var(--k1-ink-soft);margin:0;">Please don't use your real name.</p>
+
+          <div class="cq-print-area">
+            <p id="printTitle" style="text-align:center;font-family:'Permanent Marker',cursive;font-size:1.4rem;color:var(--k1-orange-dark);"></p>
+            <div class="cq-canvas" id="cqCanvas"></div>
+          </div>
+
+          <div>
+            <p class="k1-sub" style="margin-bottom:6px;">Background</p>
+            <div class="cq-sticker-tray" id="bgTray"></div>
+          </div>
+
+          <div>
+            <p class="k1-sub" style="margin-bottom:6px;">Shapes</p>
+            <div class="cq-sticker-tray" id="shapeTray"></div>
+          </div>
+
+          <div>
+            <p class="k1-sub" style="margin-bottom:6px;">Stickers</p>
+            <div class="cq-sticker-tray" id="stickerTray"></div>
+          </div>
+
+          <div id="itemToolbar" class="cq-action-row" hidden></div>
+
+          <div class="cq-action-row">
+            <button type="button" class="k1-btn k1-btn--soft" id="newPictureBtn">New Picture</button>
+            <button type="button" class="k1-btn k1-btn--soft" id="printBtn">🖨 Print My Picture</button>
+          </div>
+        </div>
+
+        <div style="max-width:640px;margin:26px auto 0;">
+          <p class="k1-sub" style="text-align:center;">Save your picture</p>
+          <div class="cq-slot-row" id="slotRow"></div>
+        </div>
+
+        <div style="max-width:640px;margin:22px auto 0;" class="k1-card">
+          <h2 style="font-family:'Permanent Marker',cursive;color:var(--k1-orange-dark);font-size:1.1rem;margin-bottom:10px;">Try all of these</h2>
+          <ul id="checklist" style="margin:0;padding-left:20px;color:var(--k1-ink-soft);"></ul>
+        </div>
+      </div>
+
+      <div style="max-width:780px;margin:22px auto 0;" class="k1-card">
+        <h2 style="font-family:'Permanent Marker',cursive;color:var(--k1-orange-dark);font-size:1.2rem;margin-bottom:10px;">What you're practising</h2>
+        <ul id="practisingList" style="color:var(--k1-ink-soft);margin:0;padding-left:20px;"></ul>
+      </div>
+
+      <div id="curricWrap" style="max-width:780px;margin:0 auto;"></div>
+
+      <p class="k1-center" style="margin-top:18px;"><a href="../code-quest.html" style="color:var(--k1-blue-dark);text-decoration:underline;font-weight:800;">&larr; Back to Code Quest</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="../early-years/early-years.js"></script>
+<script src="code-quest.js"></script>
+<script>
+(function(){
+  "use strict";
+  document.getElementById("heroMascotWrap").innerHTML = EY.mascot("point-right", "The Teacher Vault mascot pointing at the create and save activity", { size: 90, animate: "float" });
+
+  var GALLERY_KEY = "tv_cq_gallery_v1";
+  var BACKGROUNDS = [
+    { name: "Sky", color: "#bfe3fb" }, { name: "Grass", color: "#cdeecb" },
+    { name: "Sunset", color: "#ffd9b0" }, { name: "Night", color: "#31355a" },
+    { name: "Sand", color: "#f4e6c2" }, { name: "Snow", color: "#f5f7fa" }
+  ];
+  var SHAPES = ["circle", "square", "triangle"];
+  var SHAPE_COLORS = ["#e8742a", "#2f6fb0", "#3f8a52", "#7a4fb5", "#f0b429", "#d9694a"];
+  var STICKERS = ["☀️", "☁️", "🌳", "🏠", "🌸", "🐱", "🐶", "🚗", "⛵", "🎈", "🌈", "❤️", "😀", "⭐"];
+
+  var picture = { bg: BACKGROUNDS[0].color, title: "", items: [] };
+  var nextId = 1;
+  var selectedId = null;
+  var flags = { created: false, saved: false, retrieved: false, secondVersion: false };
+  var savedSlotIds = {};
+
+  function loadGallery() {
+    try { return JSON.parse(localStorage.getItem(GALLERY_KEY)) || {}; } catch (e) { return {}; }
+  }
+  function saveGallery(g) {
+    try { localStorage.setItem(GALLERY_KEY, JSON.stringify(g)); } catch (e) { /* storage unavailable */ }
+  }
+
+  function checkAllDone() {
+    if (flags.created && flags.saved && flags.retrieved && flags.secondVersion) {
+      CQ.markComplete("create-and-save");
+    }
+    renderChecklist();
+  }
+
+  function renderChecklist() {
+    var items = [
+      { done: flags.created, text: "Add a background, a shape or a sticker to your picture" },
+      { done: flags.saved, text: "Save your picture into a slot" },
+      { done: flags.retrieved, text: "Open a saved picture again" },
+      { done: flags.secondVersion, text: "Make and save a second, different picture" }
+    ];
+    document.getElementById("checklist").innerHTML = items.map(function (it) {
+      return "<li>" + (it.done ? "✅" : "⬜") + " " + it.text + "</li>";
+    }).join("");
+  }
+
+  function renderCanvas() {
+    var canvas = document.getElementById("cqCanvas");
+    canvas.style.background = picture.bg;
+    canvas.innerHTML = "";
+    picture.items.forEach(function (item) {
+      var el = document.createElement("div");
+      el.className = "cq-canvas-item" + (item.id === selectedId ? " is-selected" : "");
+      el.style.left = item.x + "%";
+      el.style.top = item.y + "%";
+      el.style.transform = "translate(-50%,-50%)";
+      if (item.kind === "sticker") {
+        el.style.fontSize = item.size + "px";
+        el.textContent = item.content;
+      } else {
+        el.style.width = item.size + "px";
+        el.style.height = item.size + "px";
+        el.style.background = item.color;
+        if (item.content === "circle") el.style.borderRadius = "50%";
+        else if (item.content === "square") el.style.borderRadius = "6px";
+        else if (item.content === "triangle") { el.style.background = "transparent"; el.style.borderLeft = (item.size / 2) + "px solid transparent"; el.style.borderRight = (item.size / 2) + "px solid transparent"; el.style.borderBottom = item.size + "px solid " + item.color; }
+      }
+      el.addEventListener("pointerdown", function (e) {
+        e.preventDefault();
+        select(item.id);
+        var rect = canvas.getBoundingClientRect();
+        function onMove(ev) {
+          var x = Math.max(2, Math.min(98, (ev.clientX - rect.left) / rect.width * 100));
+          var y = Math.max(2, Math.min(98, (ev.clientY - rect.top) / rect.height * 100));
+          item.x = x; item.y = y;
+          el.style.left = x + "%"; el.style.top = y + "%";
+        }
+        function onUp() { document.removeEventListener("pointermove", onMove); document.removeEventListener("pointerup", onUp); }
+        document.addEventListener("pointermove", onMove);
+        document.addEventListener("pointerup", onUp);
+      });
+      canvas.appendChild(el);
+    });
+    renderToolbar();
+  }
+
+  function select(id) { selectedId = id; renderCanvas(); }
+
+  function addItem(kind, content, color) {
+    picture.items.push({ id: nextId++, kind: kind, content: content, color: color || null, x: 45 + Math.random() * 10, y: 45 + Math.random() * 10, size: kind === "sticker" ? 44 : 60 });
+    flags.created = true;
+    select(picture.items[picture.items.length - 1].id);
+    checkAllDone();
+  }
+
+  function renderToolbar() {
+    var toolbar = document.getElementById("itemToolbar");
+    var item = picture.items.filter(function (i) { return i.id === selectedId; })[0];
+    if (!item) { toolbar.hidden = true; toolbar.innerHTML = ""; return; }
+    toolbar.hidden = false;
+    var html = '<button type="button" class="k1-btn k1-btn--sm k1-btn--soft" data-tb="bigger">🔍 Bigger</button>' +
+      '<button type="button" class="k1-btn k1-btn--sm k1-btn--soft" data-tb="smaller">🔎 Smaller</button>' +
+      '<button type="button" class="k1-btn k1-btn--sm k1-btn--soft" data-tb="left">⬅</button>' +
+      '<button type="button" class="k1-btn k1-btn--sm k1-btn--soft" data-tb="right">➡</button>' +
+      '<button type="button" class="k1-btn k1-btn--sm k1-btn--soft" data-tb="up">⬆</button>' +
+      '<button type="button" class="k1-btn k1-btn--sm k1-btn--soft" data-tb="down">⬇</button>';
+    if (item.kind === "shape") {
+      html += SHAPE_COLORS.map(function (c) { return '<button type="button" class="cq-bg-swatch" style="background:' + c + ';" data-tb="color" data-color="' + c + '" aria-label="Colour"></button>'; }).join("");
+    }
+    html += '<button type="button" class="k1-btn k1-btn--sm k1-btn--soft" data-tb="remove">🗑 Remove</button>';
+    toolbar.innerHTML = html;
+    toolbar.querySelectorAll("[data-tb]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var action = btn.getAttribute("data-tb");
+        if (action === "bigger") item.size = Math.min(140, item.size + 12);
+        else if (action === "smaller") item.size = Math.max(20, item.size - 12);
+        else if (action === "left") item.x = Math.max(2, item.x - 6);
+        else if (action === "right") item.x = Math.min(98, item.x + 6);
+        else if (action === "up") item.y = Math.max(2, item.y - 6);
+        else if (action === "down") item.y = Math.min(98, item.y + 6);
+        else if (action === "color") item.color = btn.getAttribute("data-color");
+        else if (action === "remove") { picture.items = picture.items.filter(function (i) { return i.id !== item.id; }); selectedId = null; }
+        renderCanvas();
+      });
+    });
+  }
+
+  document.getElementById("bgTray").innerHTML = BACKGROUNDS.map(function (b) {
+    return '<button type="button" class="cq-bg-swatch" style="background:' + b.color + ';" data-bg="' + b.color + '" aria-label="' + b.name + ' background" title="' + b.name + '"></button>';
+  }).join("");
+  document.getElementById("bgTray").addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-bg]");
+    if (!btn) return;
+    picture.bg = btn.getAttribute("data-bg");
+    flags.created = true;
+    renderCanvas();
+    checkAllDone();
+  });
+
+  document.getElementById("shapeTray").innerHTML = SHAPES.map(function (s) {
+    var iconMap = { circle: "⚪", square: "⬜", triangle: "🔺" };
+    return '<button type="button" class="cq-sticker-btn" data-shape="' + s + '" aria-label="Add a ' + s + '">' + iconMap[s] + '</button>';
+  }).join("");
+  document.getElementById("shapeTray").addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-shape]");
+    if (!btn) return;
+    addItem("shape", btn.getAttribute("data-shape"), SHAPE_COLORS[Math.floor(Math.random() * SHAPE_COLORS.length)]);
+  });
+
+  document.getElementById("stickerTray").innerHTML = STICKERS.map(function (s) {
+    return '<button type="button" class="cq-sticker-btn" data-sticker="' + s + '" aria-label="Add sticker">' + s + '</button>';
+  }).join("");
+  document.getElementById("stickerTray").addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-sticker]");
+    if (!btn) return;
+    addItem("sticker", btn.getAttribute("data-sticker"));
+  });
+
+  document.getElementById("pictureTitle").addEventListener("input", function () {
+    picture.title = this.value;
+    document.getElementById("printTitle").textContent = picture.title;
+  });
+
+  document.getElementById("newPictureBtn").addEventListener("click", function () {
+    if (picture.items.length && !confirm("Start a new picture? Anything not saved will be lost.")) return;
+    picture = { bg: BACKGROUNDS[0].color, title: "", items: [] };
+    selectedId = null;
+    document.getElementById("pictureTitle").value = "";
+    document.getElementById("printTitle").textContent = "";
+    renderCanvas();
+  });
+
+  document.getElementById("printBtn").addEventListener("click", function () { window.print(); });
+
+  function renderSlots() {
+    var gallery = loadGallery();
+    var html = "";
+    [1, 2, 3].forEach(function (n) {
+      var key = "slot" + n;
+      var saved = gallery[key];
+      html += '<div class="cq-slot-card' + (saved ? " has-save" : "") + '">' +
+        '<div style="font-size:1.6rem;">' + (saved ? "🖼️" : "📁") + '</div>' +
+        '<div class="cq-slot-card__title">Slot ' + n + '</div>' +
+        '<p style="font-size:0.78rem;color:var(--k1-ink-soft);margin:0 0 8px;">' + (saved ? (saved.title || "Untitled") : "Empty") + '</p>' +
+        '<button type="button" class="k1-btn k1-btn--sm k1-btn--primary" data-save-slot="' + key + '" style="width:100%;margin-bottom:6px;">Save Here</button>' +
+        '<button type="button" class="k1-btn k1-btn--sm k1-btn--soft" data-open-slot="' + key + '" style="width:100%;"' + (saved ? "" : " disabled") + '>Open</button>' +
+      '</div>';
+    });
+    document.getElementById("slotRow").innerHTML = html;
+
+    document.getElementById("slotRow").querySelectorAll("[data-save-slot]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var key = btn.getAttribute("data-save-slot");
+        var g = loadGallery();
+        g[key] = { title: picture.title, bg: picture.bg, items: picture.items, savedAt: new Date().toISOString() };
+        saveGallery(g);
+        flags.saved = true;
+        savedSlotIds[key] = true;
+        if (Object.keys(savedSlotIds).length >= 2) flags.secondVersion = true;
+        checkAllDone();
+        renderSlots();
+      });
+    });
+    document.getElementById("slotRow").querySelectorAll("[data-open-slot]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var key = btn.getAttribute("data-open-slot");
+        var g = loadGallery();
+        var saved = g[key];
+        if (!saved) return;
+        picture = { bg: saved.bg, title: saved.title || "", items: saved.items || [] };
+        nextId = Math.max(1, picture.items.reduce(function (m, i) { return Math.max(m, i.id + 1); }, 1));
+        selectedId = null;
+        document.getElementById("pictureTitle").value = picture.title;
+        document.getElementById("printTitle").textContent = picture.title;
+        renderCanvas();
+        flags.retrieved = true;
+        checkAllDone();
+      });
+    });
+  }
+
+  renderCanvas();
+  renderSlots();
+  renderChecklist();
+
+  document.getElementById("practisingList").innerHTML =
+    "<li>" + CQ.term("Create") + "ing digital content: backgrounds, shapes and stickers</li>" +
+    "<li>Manipulating what you made: moving it, resizing it, changing its colour</li>" +
+    "<li>" + CQ.term("Store") + "ing your picture so you can use it later</li>" +
+    "<li>" + CQ.term("Organise") + "ing your work using named save slots</li>" +
+    "<li>" + CQ.term("Retrieve") + "ing a picture you saved before</li>";
+
+  document.getElementById("curricWrap").innerHTML = CQ.curriculumConnection({
+    statements: [
+      "Use technology purposefully to create, organise, store, manipulate and retrieve digital content"
+    ],
+    skills: ["Creating digital content using backgrounds, shapes and stickers", "Manipulating digital content: moving, resizing and recolouring", "Storing work so it can be used again", "Organising work using named save slots", "Retrieving previously saved work"],
+    year: "Year 1 or Year 2",
+    time: "20-30 minutes",
+    level: "core",
+    success: [
+      "Creates a picture using at least two different tools (background, shape, sticker)",
+      "Successfully saves a picture and then retrieves it again in a later attempt",
+      "Creates and saves a second, different picture into another slot"
+    ],
+    discuss: "Why might it be useful to save your work in more than one place?",
+    followUp: "Compare this with how you save work at school or at home -- in a folder, an exercise book, or a family photo album -- and talk about how you'd find something again later."
+  });
+})();
+</script>
+</body>
+</html>

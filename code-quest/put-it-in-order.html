@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Put It in Order | Code Quest | The Teacher Vault</title>
+<meta name="description" content="Free KS1 sequencing activity: put the steps of everyday digital tasks into the right order, then spot which instructions are too unclear to follow.">
+<link rel="canonical" href="https://theteachervault.com/code-quest/put-it-in-order.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Put It in Order | Code Quest | The Teacher Vault">
+<meta property="og:description" content="Free KS1 sequencing activity: put the steps of everyday digital tasks into the right order, then spot which instructions are too unclear to follow.">
+<meta property="og:url" content="https://theteachervault.com/code-quest/put-it-in-order.html">
+<meta property="og:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../ks1/ks1.css">
+<link rel="stylesheet" href="code-quest.css">
+</head>
+<body data-page="cq-put-it-in-order" class="k1-page-body">
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="k1-section" style="padding-bottom:10px;">
+    <div class="k1-container">
+      <p class="k1-breadcrumb"><a href="../index.html">Home</a> / <a href="../ks1.html">KS1</a> / <a href="../code-quest.html">Code Quest</a> / Put It in Order</p>
+      <span class="k1-badge">Core Key Stage 1 skill</span>
+      <h1 class="k1-h1">Put It in Order</h1>
+      <p class="k1-lede">Some digital jobs only work if you do the steps in the right order. Use the arrows to put each set of steps in order, then try spotting instructions that are too unclear to follow.</p>
+      <div id="heroMascotWrap" style="margin-top:14px;"></div>
+    </div>
+  </section>
+
+  <section class="k1-section">
+    <div class="k1-container">
+      <div class="k1-activity-panel">
+        <div id="gameRoot"></div>
+      </div>
+
+      <div style="max-width:780px;margin:22px auto 0;" class="k1-card">
+        <h2 style="font-family:'Permanent Marker',cursive;color:var(--k1-orange-dark);font-size:1.2rem;margin-bottom:10px;">What you're practising</h2>
+        <ul id="practisingList" style="color:var(--k1-ink-soft);margin:0;padding-left:20px;"></ul>
+      </div>
+
+      <div id="curricWrap" style="max-width:780px;margin:0 auto;"></div>
+
+      <p class="k1-center" style="margin-top:18px;"><a href="../code-quest.html" style="color:var(--k1-blue-dark);text-decoration:underline;font-weight:800;">&larr; Back to Code Quest</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="../early-years/early-years.js"></script>
+<script src="code-quest.js"></script>
+<script>
+(function(){
+  "use strict";
+  document.getElementById("heroMascotWrap").innerHTML = EY.mascot("point-right", "The Teacher Vault mascot pointing at the ordering activity", { size: 90, animate: "float" });
+
+  document.getElementById("practisingList").innerHTML =
+    "<li>Putting steps of a digital task into the right " + CQ.term("Order") + " (a " + CQ.term("Sequence") + ")</li>" +
+    "<li>Understanding that an " + CQ.term("Algorithm") + " only works if the steps are in the right order</li>" +
+    "<li>Spotting an " + CQ.term("Instruction") + " that is too unclear to follow</li>";
+
+  var SCENARIOS = [
+    {
+      title: "Making a picture on a drawing program",
+      steps: [
+        { id: "a", text: "Open the drawing program" },
+        { id: "b", text: "Choose a colour" },
+        { id: "c", text: "Draw your picture" },
+        { id: "d", text: "Save your picture" }
+      ],
+      correct: ["a", "b", "c", "d"]
+    },
+    {
+      title: "Finding a picture you saved before",
+      steps: [
+        { id: "a", text: "Open the drawing program" },
+        { id: "b", text: "Find the \"Open\" or \"My Pictures\" button" },
+        { id: "c", text: "Look through your saved pictures" },
+        { id: "d", text: "Click the picture you want to open" }
+      ],
+      correct: ["a", "b", "c", "d"]
+    },
+    {
+      title: "Giving a robot instructions to reach a flag",
+      steps: [
+        { id: "a", text: "Look at where the robot needs to go" },
+        { id: "b", text: "Choose the commands you need, in order" },
+        { id: "c", text: "Predict where the robot will finish" },
+        { id: "d", text: "Press Run and check what happens" }
+      ],
+      correct: ["a", "b", "c", "d"]
+    },
+    {
+      title: "Taking and keeping a digital photo",
+      steps: [
+        { id: "a", text: "Open the camera" },
+        { id: "b", text: "Point it and take the photo" },
+        { id: "c", text: "The photo is stored in the gallery" },
+        { id: "d", text: "Open the gallery to find your photo again" }
+      ],
+      correct: ["a", "b", "c", "d"]
+    }
+  ];
+
+  var AMBIGUOUS = [
+    {
+      prompt: "Which instruction tells the robot exactly what to do?",
+      options: [
+        { text: "Move it a bit", precise: false },
+        { text: "Move forward 3 steps", precise: true }
+      ]
+    },
+    {
+      prompt: "Which instruction is clear and precise?",
+      options: [
+        { text: "Turn until you feel like stopping", precise: false },
+        { text: "Turn right once", precise: true }
+      ]
+    },
+    {
+      prompt: "Which instruction would actually help you find your picture again?",
+      options: [
+        { text: "Save it somewhere", precise: false },
+        { text: "Save it in \"My Pictures\"", precise: true }
+      ]
+    }
+  ];
+
+  var root = document.getElementById("gameRoot");
+  var stage = 0; // 0..3 = ordering scenarios, 4..6 = ambiguous rounds
+  var order = []; // current shuffled working order (array of step ids)
+
+  function shuffledIds(steps) {
+    var ids = steps.map(function (s) { return s.id; });
+    for (var i = ids.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = ids[i]; ids[i] = ids[j]; ids[j] = t;
+    }
+    // avoid accidentally starting already-correct
+    if (ids.join() === steps.map(function (s) { return s.id; }).join()) { ids.reverse(); }
+    return ids;
+  }
+
+  function stepById(steps, id) { return steps.filter(function (s) { return s.id === id; })[0]; }
+
+  function renderOrderStage(scenarioIndex) {
+    var sc = SCENARIOS[scenarioIndex];
+    order = shuffledIds(sc.steps);
+    draw();
+
+    function draw() {
+      var html = '<p class="k1-sub" style="text-align:center;">' + sc.title + '</p>' +
+        '<p class="k1-lede" style="text-align:center;max-width:60ch;margin:0 auto 14px;">Use the arrows to put these steps in the right order.</p>' +
+        '<ol class="cq-order-list">' + order.map(function (id, i) {
+          var step = stepById(sc.steps, id);
+          return '<li class="cq-order-item" data-idx="' + i + '">' +
+            '<span class="cq-order-item__num">' + (i + 1) + '</span>' +
+            '<span class="cq-order-item__text">' + step.text + '</span>' +
+            '<span class="cq-order-item__moves">' +
+              '<button type="button" class="cq-order-move-btn" data-move="up" data-idx="' + i + '"' + (i === 0 ? " disabled" : "") + ' aria-label="Move up">&uarr;</button>' +
+              '<button type="button" class="cq-order-move-btn" data-move="down" data-idx="' + i + '"' + (i === order.length - 1 ? " disabled" : "") + ' aria-label="Move down">&darr;</button>' +
+            '</span></li>';
+        }).join("") + '</ol>' +
+        '<div class="cq-action-row" style="margin-top:16px;"><button type="button" class="k1-btn k1-btn--primary" id="checkOrderBtn">Check My Order</button></div>' +
+        '<div class="cq-result" id="orderResult"></div>' +
+        '<p style="text-align:center;font-weight:800;color:var(--k1-ink-soft);">Step ' + (scenarioIndex + 1) + ' of ' + (SCENARIOS.length + AMBIGUOUS.length) + '</p>';
+      root.innerHTML = html;
+      wire();
+    }
+
+    function wire() {
+      root.querySelectorAll("[data-move]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var i = +btn.getAttribute("data-idx");
+          var dir = btn.getAttribute("data-move") === "up" ? -1 : 1;
+          var j = i + dir;
+          var t = order[i]; order[i] = order[j]; order[j] = t;
+          draw();
+        });
+      });
+      document.getElementById("checkOrderBtn").addEventListener("click", function () {
+        var allCorrect = order.join() === sc.correct.join();
+        var items = root.querySelectorAll(".cq-order-item");
+        order.forEach(function (id, i) {
+          items[i].classList.remove("is-correct", "is-incorrect");
+          items[i].classList.add(id === sc.correct[i] ? "is-correct" : "is-incorrect");
+        });
+        var resultEl = document.getElementById("orderResult");
+        if (allCorrect) {
+          resultEl.className = "cq-result is-visible cq-result--good";
+          resultEl.innerHTML = "<p>&#9989; Perfect order! On to the next one.</p>";
+          setTimeout(function () { stage++; goToStage(); }, 1100);
+        } else {
+          resultEl.className = "cq-result is-visible cq-result--bad";
+          resultEl.innerHTML = "<p>&#10060; Not quite in order yet -- the green steps are correct. Keep adjusting the red ones.</p>";
+        }
+      });
+    }
+  }
+
+  function renderAmbiguousStage(ambIndex) {
+    var q = AMBIGUOUS[ambIndex];
+    root.innerHTML =
+      '<p class="k1-sub" style="text-align:center;">' + q.prompt + '</p>' +
+      '<div class="k1-choice-grid" id="ambChoices" style="max-width:560px;margin:0 auto;">' +
+        q.options.map(function (o, i) {
+          return '<button type="button" class="k1-choice" data-precise="' + o.precise + '" data-idx="' + i + '">' + o.text + '</button>';
+        }).join("") +
+      '</div>' +
+      '<div class="cq-result" id="ambResult" style="margin-top:14px;"></div>' +
+      '<p style="text-align:center;font-weight:800;color:var(--k1-ink-soft);margin-top:10px;">Step ' + (SCENARIOS.length + ambIndex + 1) + ' of ' + (SCENARIOS.length + AMBIGUOUS.length) + '</p>';
+
+    root.querySelectorAll("#ambChoices .k1-choice").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var correct = btn.getAttribute("data-precise") === "true";
+        var resultEl = document.getElementById("ambResult");
+        root.querySelectorAll("#ambChoices .k1-choice").forEach(function (b) { b.disabled = true; });
+        if (correct) {
+          btn.classList.add("is-correct");
+          resultEl.className = "cq-result is-visible cq-result--good";
+          resultEl.innerHTML = "<p>&#9989; Yes -- that instruction is exact, so it's easy to follow.</p>";
+          setTimeout(function () { stage++; goToStage(); }, 1200);
+        } else {
+          btn.classList.add("is-incorrect");
+          resultEl.className = "cq-result is-visible cq-result--bad";
+          resultEl.innerHTML = "<p>&#10060; That one is too unclear -- it doesn't say exactly what to do. Try again.</p>";
+          setTimeout(function () {
+            root.querySelectorAll("#ambChoices .k1-choice").forEach(function (b) { b.disabled = false; b.classList.remove("is-incorrect"); });
+            resultEl.className = "cq-result";
+          }, 1400);
+        }
+      });
+    });
+  }
+
+  function goToStage() {
+    if (stage < SCENARIOS.length) {
+      renderOrderStage(stage);
+    } else if (stage < SCENARIOS.length + AMBIGUOUS.length) {
+      renderAmbiguousStage(stage - SCENARIOS.length);
+    } else {
+      CQ.markComplete("put-it-in-order");
+      root.innerHTML = '<div class="k1-center"><p style="font-size:3rem;">🎉</p><p class="k1-sub">You finished every step in Put It in Order!</p></div>';
+    }
+  }
+
+  goToStage();
+
+  document.getElementById("curricWrap").innerHTML = CQ.curriculumConnection({
+    statements: [
+      "Understand what algorithms are; how they are implemented as programs on digital devices; and that programs execute by following precise and unambiguous instructions",
+      "Use logical reasoning to predict the behaviour of simple programs"
+    ],
+    skills: ["Sequencing the steps of a digital task correctly", "Recognising that order matters for an algorithm to work", "Telling a precise instruction apart from a vague one"],
+    year: "Year 1 or Year 2",
+    time: "15-20 minutes",
+    level: "core",
+    success: [
+      "Correctly orders at least 3 of the 4 digital-task sequences",
+      "Uses the up/down arrows purposefully rather than randomly",
+      "Correctly identifies the precise instruction in each ambiguous-instruction round"
+    ],
+    discuss: "What went wrong when the steps for the drawing program were in the wrong order?",
+    followUp: "Pick a short digital task you do together (e.g. taking a photo on a tablet) and say the steps out loud in order -- then swap two steps on purpose and talk about what would go wrong."
+  });
+})();
+</script>
+</body>
+</html>

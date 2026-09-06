@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code Quest | Free KS1 Computing Activities | The Teacher Vault</title>
+<meta name="description" content="Free Key Stage 1 computing activities for ages 5-7, mapped to the National Curriculum in England: algorithms, debugging, sequencing, technology uses, online safety and creating digital content.">
+<link rel="canonical" href="https://theteachervault.com/code-quest.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Code Quest | Free KS1 Computing Activities | The Teacher Vault">
+<meta property="og:description" content="Free Key Stage 1 computing activities for ages 5-7, mapped to the National Curriculum in England.">
+<meta property="og:url" content="https://theteachervault.com/code-quest.html">
+<meta property="og:image" content="https://theteachervault.com/images/early-years/mascot-cheer.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="ks1/ks1.css">
+<link rel="stylesheet" href="code-quest/code-quest.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Code Quest",
+  "description": "Free Key Stage 1 computing activities for ages 5-7, mapped to the National Curriculum in England.",
+  "url": "https://theteachervault.com/code-quest.html",
+  "isPartOf": { "@type": "WebSite", "@id": "https://theteachervault.com/#website" }
+}
+</script>
+</head>
+<body data-page="code-quest" class="k1-page-body">
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="k1-section" style="padding-bottom:10px;">
+    <div class="k1-container cq-hero">
+      <div id="heroMascotWrap"></div>
+      <div class="k1-center" style="flex:1 1 320px;">
+        <p class="k1-breadcrumb" style="justify-content:center;display:flex;"><a href="index.html">Home</a> / <a href="ks1.html">KS1</a> / Code Quest</p>
+        <span class="cq-tag">New</span>
+        <h1 class="k1-h1">Code Quest</h1>
+        <p class="k1-sub">Think it. Try it. Fix it. Create it.</p>
+        <p class="k1-lede" style="margin:0 auto;">Free Key Stage 1 computing activities for ages 5&ndash;7, covering algorithms, programs, debugging, technology in everyday life, online safety and creating digital content &mdash; mapped to the National Curriculum in England.</p>
+        <div class="k1h-hero-badges" style="margin-top:14px;">
+          <span class="k1h-hero-badge">No sign-up</span>
+          <span class="k1h-hero-badge">No account needed</span>
+          <span class="k1h-hero-badge">Ages 5&ndash;7</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== PROGRESS PATH ============================== -->
+  <section class="k1-section k1-section--soft">
+    <div class="k1-container">
+      <h2 class="k1h-section-title k1-center" style="margin-bottom:18px;">Your Quest Path</h2>
+      <div class="cq-path" id="hubPath" role="list" aria-label="Your progress through Code Quest"></div>
+    </div>
+  </section>
+
+  <!-- ============================== ACTIVITY CARDS ============================== -->
+  <section class="k1-section">
+    <div class="k1-container">
+      <h2 class="k1h-section-title k1-center" style="margin-bottom:8px;">Pick an Activity</h2>
+      <p class="k1-lede k1-center" style="margin:0 auto 22px;">The first three are core Key Stage 1 computing skills. Two more are gentle extensions that build towards Key Stage 2. The last two cover technology in everyday life, online safety and creating digital content.</p>
+      <div class="cq-grid" id="activityGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============================== CERTIFICATE ============================== -->
+  <section class="k1-section k1-section--soft" id="certificateSection" hidden>
+    <div class="k1-container" style="max-width:520px;">
+      <div class="k1-card k1-center">
+        <p style="font-size:3rem;margin:0 0 10px;">🏆</p>
+        <h2 class="k1h-section-title">All Seven Complete!</h2>
+        <p class="k1-lede" style="margin:0 auto 16px;">You've unlocked your printable Code Quest certificate.</p>
+        <a href="code-quest/certificate.html" class="k1-btn k1-btn--primary">View My Certificate</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== BADGES ============================== -->
+  <section class="k1-section">
+    <div class="k1-container">
+      <h2 class="k1h-section-title k1-center" style="margin-bottom:18px;">Your Badges</h2>
+      <div class="cq-badge-grid" id="badgeGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============================== FOR GROWN-UPS ============================== -->
+  <section class="k1-section k1-section--soft">
+    <div class="k1-container">
+      <div id="grownupsWrap"></div>
+
+      <div class="k1-card" style="max-width:900px;margin:22px auto 0;">
+        <h2 style="font-family:'Permanent Marker',cursive;color:var(--k1-orange-dark);margin-bottom:6px;">Curriculum coverage at a glance</h2>
+        <p style="color:var(--k1-ink-soft);font-size:0.92rem;margin-bottom:14px;">National Curriculum in England: Computing programme of study, Key Stage 1. A tick means that requirement is genuinely and meaningfully practised in that activity.</p>
+        <div class="cq-table-wrap">
+          <table class="cq-table" id="coverageTable"></table>
+        </div>
+        <p style="color:var(--k1-ink-soft);font-size:0.85rem;margin-top:12px;">🟣 marks the two extension activities (Repeat It, Choose a Route), which prepare pupils for Key Stage 2 but are not themselves statutory Key Stage 1 requirements.</p>
+      </div>
+
+      <p class="k1-center" style="margin-top:18px;">
+        <a href="code-quest/teacher-overview.html" class="k1-btn k1-btn--soft">📋 Printable Teacher Overview</a>
+      </p>
+
+      <p style="text-align:center;margin-top:18px;"><button type="button" class="k1-btn k1-btn--sm k1-btn--soft" id="resetProgressBtn">Reset my progress</button></p>
+    </div>
+  </section>
+
+  <section class="k1-section" style="text-align:center;padding-top:0;">
+    <div class="k1-container">
+      <p class="k1-lede" style="margin:0 auto;"><a href="ks1.html" style="color:var(--k1-blue-dark);text-decoration:underline;font-weight:800;">&larr; Back to the KS1 Hub</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="apps-data.js"></script>
+<script src="script.js"></script>
+<script src="early-years/early-years.js"></script>
+<script src="code-quest/code-quest.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  document.getElementById("heroMascotWrap").innerHTML = EY.mascot("cheer", "The Teacher Vault mascot, ready to start Code Quest", { size: 130, animate: "float" });
+
+  var CARDS = [
+    { id: "guide-the-robot", href: "code-quest/guide-the-robot.html", icon: "🤖", title: "Guide the Robot", desc: "Give exact instructions, predict, then run your program.", time: "15-20 min", level: "core" },
+    { id: "put-it-in-order", href: "code-quest/put-it-in-order.html", icon: "🔢", title: "Put It in Order", desc: "Sequence the steps of digital tasks correctly.", time: "15-20 min", level: "core" },
+    { id: "find-the-bug", href: "code-quest/find-the-bug.html", icon: "🐞", title: "Find the Bug", desc: "Predict, test, spot the mistake, then fix it.", time: "15-20 min", level: "core" },
+    { id: "repeat-it", href: "code-quest/repeat-it.html", icon: "🔁", title: "Repeat It", desc: "Discover a quicker way to write repeated instructions.", time: "10-15 min", level: "extension" },
+    { id: "choose-a-route", href: "code-quest/choose-a-route.html", icon: "🧭", title: "Choose a Route", desc: "Try a simple if-this-then-that rule.", time: "10-15 min", level: "extension" },
+    { id: "computer-ai-or-person", href: "code-quest/computer-ai-or-person.html", icon: "🛡️", title: "Computer, AI or Person?", desc: "Spot technology in everyday life and learn to stay safe.", time: "15-25 min", level: "core" },
+    { id: "create-and-save", href: "code-quest/create-and-save.html", icon: "🎨", title: "Create and Save", desc: "Make a picture, then save it, find it, and make another.", time: "20-30 min", level: "core" }
+  ];
+
+  document.getElementById("activityGrid").innerHTML = CARDS.map(function (c) {
+    var done = CQ.isComplete(c.id);
+    return '<a class="cq-activity-card" href="' + c.href + '">' +
+      '<div class="cq-activity-card__icon" aria-hidden="true">' + c.icon + '</div>' +
+      '<h3 class="cq-activity-card__title">' + c.title + '</h3>' +
+      '<p class="cq-activity-card__desc">' + c.desc + '</p>' +
+      '<div class="cq-activity-card__meta">' +
+        '<span class="cq-pill' + (c.level === "extension" ? " cq-pill--extension" : "") + '">' + (c.level === "extension" ? "KS1 extension" : "Core KS1") + '</span>' +
+        '<span>' + c.time + '</span>' +
+        (done ? '<span class="cq-pill cq-pill--done">Done</span>' : "") +
+      '</div>' +
+      '<span class="cq-activity-card__cta">' + (done ? "Play Again" : "Start") + '</span>' +
+    '</a>';
+  }).join("");
+
+  CQ.renderPath(document.getElementById("hubPath"));
+  CQ.badgeGrid(document.getElementById("badgeGrid"));
+
+  if (CQ.allComplete()) {
+    document.getElementById("certificateSection").hidden = false;
+  }
+
+  document.getElementById("grownupsWrap").innerHTML = '<div class="k1-card" style="max-width:900px;margin:0 auto;"><h2 style="font-family:\'Permanent Marker\',cursive;color:var(--k1-orange-dark);margin-bottom:14px;">For grown-ups</h2><ul class="k1h-grownups-list"><li>Completely free -- no payment, ever</li><li>No child account, login or personal information required anywhere in Code Quest</li><li>Progress and any saved pictures are stored only in this browser, on this device</li><li>Every activity is mapped to the National Curriculum in England: Computing programme of study for Key Stage 1</li><li>Two activities (Repeat It, Choose a Route) are clearly labelled extensions that prepare pupils for Key Stage 2 -- they are not statutory Key Stage 1 requirements</li><li>This programme of study applies in England. Scotland, Wales and Northern Ireland each have their own curricula</li></ul></div>';
+
+  var COVERAGE_ROWS = [
+    { name: "Guide the Robot", alg: "✅", prog: "✅", debug: "", pred: "✅", digital: "", uses: "", safety: "" },
+    { name: "Put It in Order", alg: "✅", prog: "", debug: "", pred: "✅", digital: "", uses: "", safety: "" },
+    { name: "Find the Bug", alg: "✅", prog: "✅", debug: "✅", pred: "✅", digital: "", uses: "", safety: "" },
+    { name: "Repeat It 🟣", alg: "", prog: "", debug: "", pred: "✅", digital: "", uses: "", safety: "" },
+    { name: "Choose a Route 🟣", alg: "", prog: "", debug: "", pred: "✅", digital: "", uses: "", safety: "" },
+    { name: "Computer, AI or Person?", alg: "", prog: "", debug: "", pred: "", digital: "", uses: "✅", safety: "✅" },
+    { name: "Create and Save", alg: "", prog: "", debug: "", pred: "", digital: "✅", uses: "", safety: "" }
+  ];
+  var table = document.getElementById("coverageTable");
+  table.innerHTML = "<thead><tr><th>Activity</th><th>Algorithms</th><th>Programming</th><th>Debugging</th><th>Prediction</th><th>Digital content</th><th>Technology uses</th><th>Online safety</th></tr></thead><tbody>" +
+    COVERAGE_ROWS.map(function (r) {
+      return "<tr><td>" + r.name + "</td><td class=\"cq-tick\">" + r.alg + "</td><td class=\"cq-tick\">" + r.prog + "</td><td class=\"cq-tick\">" + r.debug + "</td><td class=\"cq-tick\">" + r.pred + "</td><td class=\"cq-tick\">" + r.digital + "</td><td class=\"cq-tick\">" + r.uses + "</td><td class=\"cq-tick\">" + r.safety + "</td></tr>";
+    }).join("") + "</tbody>";
+
+  document.getElementById("resetProgressBtn").addEventListener("click", function () {
+    if (confirm("Reset your Code Quest progress? This clears which activities are marked complete on this device.")) {
+      CQ.resetProgress();
+      location.reload();
+    }
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide the Robot | Code Quest | The Teacher Vault</title>
+<meta name="description" content="Free KS1 coding activity: give a robot precise step-by-step instructions, predict what will happen, then run your program to see if you were right.">
+<link rel="canonical" href="https://theteachervault.com/code-quest/guide-the-robot.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Guide the Robot | Code Quest | The Teacher Vault">
+<meta property="og:description" content="Free KS1 coding activity: give a robot precise step-by-step instructions, predict what will happen, then run your program to see if you were right.">
+<meta property="og:url" content="https://theteachervault.com/code-quest/guide-the-robot.html">
+<meta property="og:image" content="https://theteachervault.com/images/early-years/mascot-neutral.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../ks1/ks1.css">
+<link rel="stylesheet" href="code-quest.css">
+</head>
+<body data-page="cq-guide-the-robot" class="k1-page-body">
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="k1-section" style="padding-bottom:10px;">
+    <div class="k1-container">
+      <p class="k1-breadcrumb"><a href="../index.html">Home</a> / <a href="../ks1.html">KS1</a> / <a href="../code-quest.html">Code Quest</a> / Guide the Robot</p>
+      <span class="k1-badge">Core Key Stage 1 skill</span>
+      <h1 class="k1-h1">Guide the Robot</h1>
+      <p class="k1-lede">Give the robot clear, exact instructions to reach the flag. Predict where it will finish before you press Run &mdash; then see if you were right!</p>
+      <div id="heroMascotWrap" style="margin-top:14px;"></div>
+    </div>
+  </section>
+
+  <section class="k1-section">
+    <div class="k1-container">
+      <div class="k1-activity-panel">
+        <div id="gameRoot"></div>
+      </div>
+
+      <div style="max-width:780px;margin:22px auto 0;" class="k1-card">
+        <h2 style="font-family:'Permanent Marker',cursive;color:var(--k1-orange-dark);font-size:1.2rem;margin-bottom:10px;">What you're practising</h2>
+        <ul id="practisingList" style="color:var(--k1-ink-soft);margin:0;padding-left:20px;"></ul>
+      </div>
+
+      <div id="curricWrap" style="max-width:780px;margin:0 auto;"></div>
+
+      <p class="k1-center" style="margin-top:18px;"><a href="../code-quest.html" style="color:var(--k1-blue-dark);text-decoration:underline;font-weight:800;">&larr; Back to Code Quest</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="../early-years/early-years.js"></script>
+<script src="code-quest.js"></script>
+<script src="levels-data.js"></script>
+<script src="robot-engine.js"></script>
+<script>
+(function(){
+  "use strict";
+  document.getElementById("heroMascotWrap").innerHTML = EY.mascot("point-right", "The Teacher Vault mascot pointing at the robot activity", { size: 90, animate: "float" });
+
+  CQRobot.mount(document.getElementById("gameRoot"), {
+    levels: CQ_LEVELS.guide,
+    commands: ["F", "L", "R"],
+    requirePredict: true,
+    onAllComplete: function () { CQ.markComplete("guide-the-robot"); }
+  });
+
+  document.getElementById("practisingList").innerHTML =
+    "<li>Giving the robot exact, step-by-step " + CQ.term("Instruction") + "s</li>" +
+    "<li>Putting " + CQ.term("Command") + "s in the right order</li>" +
+    "<li>" + CQ.term("Predict") + "ing what will happen before you run your program</li>" +
+    "<li>Changing your program when it doesn't do what you expected</li>";
+
+  document.getElementById("curricWrap").innerHTML = CQ.curriculumConnection({
+    statements: [
+      "Understand what algorithms are; how they are implemented as programs on digital devices; and that programs execute by following precise and unambiguous instructions",
+      "Create and debug simple programs",
+      "Use logical reasoning to predict the behaviour of simple programs"
+    ],
+    skills: ["Sequencing instructions", "Predicting outcomes before testing", "Comparing a prediction with a real result", "Amending a program that does not work as intended"],
+    year: "Year 1 or Year 2",
+    time: "15-20 minutes",
+    level: "core",
+    success: [
+      "Predicts an end position before pressing Run, on more than one level",
+      "Builds a short, correctly-ordered sequence of Forward/Turn commands that reaches the flag",
+      "Changes their program (rather than giving up) when the robot does not reach the flag"
+    ],
+    discuss: "What happened when your guess was wrong? What did that tell you?",
+    followUp: "Away from the screen, take turns giving a grown-up or another child exact walking directions (e.g. \"three steps forward, turn right\") around the room, and see if precise instructions get them to the right spot."
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Code Quest Certificate | The Teacher Vault</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="../images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../ks1/ks1.css">
+<link rel="stylesheet" href="code-quest.css">
+<style>
+.cq-cert {
+  background: #fffdf6; border: 10px solid var(--k1-orange); border-radius: 20px; padding: 40px 32px;
+  max-width: 700px; margin: 0 auto; text-align: center; box-shadow: 0 10px 30px rgba(40,60,30,0.15);
+}
+.cq-cert__name { font-family: 'Permanent Marker', cursive; font-size: 2.2rem; color: var(--k1-blue-dark); margin: 14px 0; }
+.cq-cert__list { text-align: left; max-width: 480px; margin: 18px auto; color: var(--k1-ink-soft); }
+</style>
+</head>
+<body data-page="cq-certificate" class="k1-page-body">
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+  <section class="k1-section">
+    <div class="k1-container">
+      <p class="k1-breadcrumb"><a href="../index.html">Home</a> / <a href="../ks1.html">KS1</a> / <a href="../code-quest.html">Code Quest</a> / Certificate</p>
+
+      <div id="lockedNotice" hidden class="k1-card k1-center" style="max-width:600px;margin:0 auto;">
+        <p style="font-size:2.5rem;">🔒</p>
+        <p class="k1-sub">Complete all seven Code Quest activities to unlock your certificate.</p>
+        <a href="../code-quest.html" class="k1-btn k1-btn--primary" style="margin-top:10px;">Back to Code Quest</a>
+      </div>
+
+      <div id="certWrap" hidden>
+        <div class="cq-print-area">
+          <div class="cq-cert">
+            <p style="font-weight:800;color:var(--k1-orange-dark);text-transform:uppercase;letter-spacing:0.05em;">Code Quest Certificate</p>
+            <p class="k1-sub">This certificate is awarded to</p>
+            <p class="cq-cert__name" id="certName">Explorer</p>
+            <p style="color:var(--k1-ink-soft);">for completing every Code Quest activity and practising:</p>
+            <ul class="cq-cert__list">
+              <li>Algorithms and precise, step-by-step instructions</li>
+              <li>Creating simple programs</li>
+              <li>Debugging: finding and fixing mistakes</li>
+              <li>Predicting how a program will behave</li>
+              <li>Creating and managing digital content</li>
+              <li>Recognising everyday uses of technology</li>
+              <li>Online safety and keeping information private</li>
+            </ul>
+            <p style="font-size:0.85rem;color:var(--k1-ink-soft);">theteachervault.com &middot; Code Quest</p>
+          </div>
+        </div>
+
+        <div class="k1-center" style="margin-top:22px;">
+          <label class="k1-sub" for="certNameInput">Type your name to add it to the certificate</label><br>
+          <input type="text" id="certNameInput" maxlength="40" placeholder="Type your first name" style="font:inherit;font-size:1.1rem;padding:10px 14px;border-radius:12px;border:3px solid var(--k1-bg-soft);max-width:300px;width:100%;text-align:center;margin:10px 0;">
+          <p style="font-size:0.8rem;color:var(--k1-ink-soft);max-width:420px;margin:0 auto 14px;">Your name is only shown on this screen and printout &mdash; it is never saved, stored or sent anywhere.</p>
+          <div class="cq-action-row">
+            <button type="button" class="k1-btn k1-btn--primary" id="printCertBtn">🖨 Print My Certificate</button>
+            <a href="../code-quest.html" class="k1-btn k1-btn--soft">Back to Code Quest</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="../early-years/early-years.js"></script>
+<script src="code-quest.js"></script>
+<script>
+(function(){
+  "use strict";
+  if (CQ.allComplete()) {
+    document.getElementById("certWrap").hidden = false;
+  } else {
+    document.getElementById("lockedNotice").hidden = false;
+  }
+  document.getElementById("certNameInput").addEventListener("input", function () {
+    var name = this.value.trim();
+    document.getElementById("certName").textContent = name || "Explorer";
+  });
+  document.getElementById("printCertBtn").addEventListener("click", function () { window.print(); });
+})();
+</script>
+</body>
+</html>
