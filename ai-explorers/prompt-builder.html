@@ -258,7 +258,7 @@ PB_SCENARIOS.forEach(function(s){
     '<div data-role="options" style="display:flex;flex-direction:column;gap:8px;"></div><div class="aie-quizcard__result" hidden></div>';
   challengeGrid.appendChild(card);
   var optWrap = card.querySelector('[data-role="options"]');
-  optWrap.innerHTML = options.map(function(o, i){ return '<button type="button" class="aie-optbtn" style="text-align:left;white-space:normal;" data-idx="' + i + '">' + AIE.escapeHtml(o.text) + '</button>'; }).join("");
+  optWrap.innerHTML = options.map(function(o, i){ return '<button type="button" class="aie-optbtn" style="text-align:left;white-space:normal;border-radius:var(--aie-radius-sm);line-height:1.4;" data-idx="' + i + '">' + AIE.escapeHtml(o.text) + '</button>'; }).join("");
   Array.prototype.forEach.call(optWrap.querySelectorAll(".aie-optbtn"), function(btn, i){
     btn.addEventListener("click", function(){
       Array.prototype.forEach.call(optWrap.children, function(b, j){

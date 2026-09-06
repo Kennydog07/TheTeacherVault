@@ -36,7 +36,7 @@
 .aie-icon-box svg { width: 100%; height: 100%; display: block; }
 
 .aie-root a { color: inherit; }
-.aie-root h1, .aie-root h2, .aie-root h3, .aie-root h4 { font-family: var(--aie-font); font-weight: 900; letter-spacing: -0.01em; }
+.aie-root h1, .aie-root h2, .aie-root h3, .aie-root h4 { font-family: var(--font-chalk); font-weight: 400; letter-spacing: normal; }
 .aie-root p { line-height: 1.5; }
 .aie-root button { font-family: inherit; color: inherit; }
 .aie-root [hidden] { display: none !important; }
