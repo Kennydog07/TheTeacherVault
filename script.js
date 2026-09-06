@@ -157,6 +157,14 @@ const NAV_LINKS = [
           { href: "/ai-explorers/train-the-robot.html", label: "Train The Robot" },
           { href: "/ai-explorers/first-web-page.html", label: "Build Your First Web Page" }
         ]
+      },
+      {
+        heading: "Code Quest (Ages 5-7)",
+        items: [
+          { href: "/code-quest.html", label: "Code Quest Hub" },
+          { href: "/code-quest/guide-the-robot.html", label: "Guide the Robot" },
+          { href: "/code-quest/create-and-save.html", label: "Create and Save" }
+        ]
       }
     ]
   },
