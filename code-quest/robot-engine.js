@@ -8,7 +8,7 @@
 // Success is judged ONLY once the full expanded program has finished running --
 // never mid-run -- so a robot that passes the goal cell with steps still queued
 // correctly does NOT count as success (this exact bug was caught and fixed in
-// the AI Explorers Train the Robot engine; the same discipline is used here).
+// the AI Code Crew Train the Robot engine; the same discipline is used here).
 (function (global) {
   "use strict";
 

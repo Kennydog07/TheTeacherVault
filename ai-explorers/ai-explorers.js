@@ -1,4 +1,4 @@
-// The Teacher Vault -- AI Explorers shared helpers (mascot scenes, icons,
+// The Teacher Vault -- AI Code Crew shared helpers (mascot scenes, icons,
 // local progress/badges, safety cards, small utilities). Loaded on every
 // /ai-explorers/ page after ../script.js. No network calls, no external
 // dependencies, no child data ever leaves localStorage on this device.
@@ -156,7 +156,7 @@
     if (!container) return;
     var nodes = [{ id: "start", label: "Start" }].concat(
       RESOURCES.map(function (r) { return { id: r, label: BADGE_NAMES[r] }; })
-    ).concat([{ id: "all", label: "AI Explorer" }]);
+    ).concat([{ id: "all", label: "AI Code Crew" }]);
     var html = "";
     nodes.forEach(function (n, i) {
       var done = n.id === "start" ? true : (n.id === "all" ? allComplete() : isComplete(n.id));
@@ -216,10 +216,10 @@
   var GROWNUPS_FACTS = [
     "Completely free -- no payment, ever",
     "No child account or login required",
-    "No personal information should be entered anywhere in AI Explorers",
+    "No personal information should be entered anywhere in AI Code Crew",
     "Progress is stored only in this browser, on this device",
     "Activities encourage children to question and check AI answers, not just accept them",
-    "AI Explorers does not replace a teacher or parent",
+    "AI Code Crew does not replace a teacher or parent",
     "The coding activities introduce sequencing, algorithms, loops, debugging, conditions and basic HTML",
     "Children can complete the activities independently, but adult discussion is encouraged"
   ];

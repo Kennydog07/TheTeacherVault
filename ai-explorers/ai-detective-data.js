@@ -1,4 +1,4 @@
-// The Teacher Vault -- AI Explorers: "AI Detective" case file data.
+// The Teacher Vault -- AI Code Crew: "AI Detective" case file data.
 // Every scenario below is a hand-written, fact-checked example of a
 // simulated AI answer -- there is no live AI connection anywhere in this
 // file or the page that loads it. verdict: "right" | "check" | "wrong".

@@ -1,4 +1,4 @@
-// The Teacher Vault -- AI Explorers: "Train The Robot" level data.
+// The Teacher Vault -- AI Code Crew: "Train The Robot" level data.
 // Grid is always 6 wide (x: 0-5) x 5 tall (y: 0-4). Directions: 0=North,
 // 1=East, 2=South, 3=West. Every level's `hint` field is a verified
 // working solution (checked with tools/verify-robot-levels.js before

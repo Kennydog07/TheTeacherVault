@@ -1,4 +1,4 @@
-// The Teacher Vault -- AI Explorers: "Build Your First Web Page" content data.
+// The Teacher Vault -- AI Code Crew: "Build Your First Web Page" content data.
 
 var FWP_THEMES = [
   { id: "space", name: "Space Explorer", heading: "My Space Club", para: "Welcome to my website!", button: "Explore!" },

@@ -1169,7 +1169,7 @@ const APPS = [
     noAccount: true
   },
 
-  /* ------------------------------ AI & CODING (AI EXPLORERS) ----------------------------- */
+  /* ------------------------------ AI & CODING (AI CODE CREW) ----------------------------- */
 
   {
     id: "ai-explorers-what-is-ai",

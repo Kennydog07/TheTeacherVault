@@ -141,7 +141,7 @@ const NAV_LINKS = [
   { href: "/student-apps.html", label: "Student Apps" },
   {
     label: "AI & Coding",
-    hub: { href: "/ai-explorers.html", label: "AI Explorers Hub" },
+    hub: { href: "/ai-explorers.html", label: "AI Code Crew Hub" },
     groups: [
       {
         heading: "Learn About AI",

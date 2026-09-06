@@ -1,4 +1,4 @@
-// The Teacher Vault -- AI Explorers: "Prompt Builder" content data.
+// The Teacher Vault -- AI Code Crew: "Prompt Builder" content data.
 // All scenarios and simulated responses are hand-written and curated.
 // No live AI is used anywhere in this file or the page that loads it.
 

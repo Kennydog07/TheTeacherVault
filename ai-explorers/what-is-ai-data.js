@@ -1,4 +1,4 @@
-// The Teacher Vault -- AI Explorers: "What Is AI?" content data.
+// The Teacher Vault -- AI Code Crew: "What Is AI?" content data.
 // All items hand-written and fact-checked; no external data source.
 
 var WIA_AI_OR_NOT = [
