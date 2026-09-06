@@ -413,6 +413,23 @@
 .aie-robot-icon-wrap.is-crashed { color: var(--aie-red); }
 @media (prefers-reduced-motion: reduce) { .aie-robot-icon-wrap { transition: none; } }
 
+/* ---------------- Mission-complete flash (Train The Robot) ---------------- */
+.aie-robot-success {
+  position: absolute; inset: 0; z-index: 5; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(182, 242, 61, 0.3);
+  animation: aieFlashIn 0.6s ease;
+}
+.aie-robot-success__icon {
+  width: 64px; height: 64px; border-radius: 50%; color: #0b1024;
+  background: var(--aie-lime); box-shadow: 0 0 0 10px rgba(182, 242, 61, 0.3);
+  display: flex; align-items: center; justify-content: center;
+  animation: aiePop 0.4s ease;
+}
+.aie-robot-success__icon svg { width: 36px; height: 36px; }
+@keyframes aieFlashIn { 0% { opacity: 0; } 25% { opacity: 1; } 100% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .aie-robot-success, .aie-robot-success__icon { animation: none; } }
+
 .aie-cmd-tray { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 14px; }
 .aie-cmd-btn {
   padding: 12px 16px; border-radius: 10px; border: 2px solid var(--aie-border); background: var(--aie-panel-light);

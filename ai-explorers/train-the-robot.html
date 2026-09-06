@@ -73,7 +73,11 @@
   <section class="aie-section aie-section--soft" id="gameSection" hidden>
     <div class="aie-container" style="max-width:640px;">
       <div class="aie-card">
-        <p style="text-align:center;"><button type="button" class="aie-btn aie-btn--ghost aie-btn--sm" id="backToMapBtn">&larr; Level Map</button></p>
+        <div class="aie-btn-row" style="margin-bottom:6px;">
+          <button type="button" class="aie-btn aie-btn--ghost aie-btn--sm" id="prevMissionBtn">&larr; Previous</button>
+          <button type="button" class="aie-btn aie-btn--ghost aie-btn--sm" id="backToMapBtn">Level Map</button>
+          <button type="button" class="aie-btn aie-btn--ghost aie-btn--sm" id="nextMissionBtn">Next &rarr;</button>
+        </div>
         <p class="aie-tag" id="tierLabel" style="display:block;text-align:center;width:fit-content;margin:0 auto 6px;"></p>
         <h3 id="levelTitle" style="text-align:center;margin-bottom:14px;"></h3>
 
@@ -99,7 +103,6 @@
           <button type="button" class="aie-btn aie-btn--ghost" id="resetBtn">Reset</button>
         </div>
         <p style="text-align:center;margin-top:10px;">
-          <button type="button" class="aie-reset" id="clearBtn">Clear blocks</button> &middot;
           <button type="button" class="aie-reset" id="hintBtn">Need a hint?</button>
         </p>
         <div id="hintBox"></div>
@@ -225,6 +228,9 @@ var level = null, wallSet = {}, robot = {}, flatProgram = [], stepPtr = 0, progr
 var gameSection = document.getElementById("gameSection");
 var levelSelectSection = document.getElementById("levelSelectSection");
 
+function currentIndex(){ return ROBOT_LEVELS.findIndex(function(l){ return l.id === level.id; }); }
+function levelAt(idx){ return ROBOT_LEVELS[idx]; }
+
 function openLevel(id){
   level = ROBOT_LEVELS.filter(function(l){ return l.id === id; })[0];
   wallSet = {};
@@ -246,6 +252,10 @@ function openLevel(id){
   renderGrid();
   renderCmdTray();
   renderProgram();
+
+  var idx = currentIndex();
+  document.getElementById("prevMissionBtn").disabled = idx <= 0;
+  document.getElementById("nextMissionBtn").disabled = idx >= ROBOT_LEVELS.length - 1;
 
   levelSelectSection.hidden = true;
   gameSection.hidden = false;
@@ -269,7 +279,25 @@ function renderGrid(){
   marker.id = "robotMarker";
   marker.innerHTML = '<div class="rt-arrow"></div>';
   grid.appendChild(marker);
+  var success = document.createElement("div");
+  success.className = "aie-robot-success";
+  success.id = "robotSuccess";
+  success.hidden = true;
+  success.setAttribute("aria-hidden", "true");
+  success.innerHTML = '<div class="aie-robot-success__icon">' + AIE.icon("check") + '</div>';
+  grid.appendChild(success);
   positionRobot();
+}
+
+function flashSuccess(){
+  var el = document.getElementById("robotSuccess");
+  el.hidden = false;
+  /* Restart the CSS animation even if it's shown again on the same grid. */
+  el.style.animation = "none";
+  void el.offsetWidth;
+  el.style.animation = "";
+  clearTimeout(flashSuccess._t);
+  flashSuccess._t = setTimeout(function(){ el.hidden = true; }, 1300);
 }
 function positionRobot(){
   var marker = document.getElementById("robotMarker");
@@ -356,6 +384,12 @@ function resetRobot(){
   if (runTimer) { clearInterval(runTimer); runTimer = null; }
   document.getElementById("runStatus").textContent = "";
   positionRobot();
+  /* A full reset also clears any blocks the child has added -- back to a
+     blank program (or the original broken program, for debugging levels). */
+  program = level.broken ? level.broken.slice() : [];
+  inRepeat = false;
+  renderProgram();
+  renderCmdTray();
 }
 
 function ensureFlat(){
@@ -388,8 +422,15 @@ function doOneStep(){
   if (!ok) { document.getElementById("runStatus").textContent = "Bump! The robot hit something. Try Reset."; stopRun(); return false; }
   if (stepPtr >= flatProgram.length) {
     if (robot.x === level.goal.x && robot.y === level.goal.y) {
-      document.getElementById("runStatus").textContent = "Mission complete!";
+      flashSuccess();
       markLevelDone(level.id);
+      var nextLevel = levelAt(currentIndex() + 1);
+      document.getElementById("runStatus").textContent = nextLevel ? "Mission complete! Moving on to the next mission..." : "Mission complete! That was the final mission.";
+      if (nextLevel) {
+        stopRun();
+        setTimeout(function(){ openLevel(nextLevel.id); }, AIE.reducedMotion() ? 300 : 1600);
+        return false;
+      }
     } else {
       document.getElementById("runStatus").textContent = "End of program -- not on the goal yet. Try again!";
     }
@@ -410,8 +451,17 @@ document.getElementById("runBtn").addEventListener("click", function(){
 document.getElementById("stepBtn").addEventListener("click", function(){ stopRun(); doOneStep(); });
 document.getElementById("pauseBtn").addEventListener("click", stopRun);
 document.getElementById("resetBtn").addEventListener("click", resetRobot);
-document.getElementById("clearBtn").addEventListener("click", function(){ program = []; inRepeat = false; resetRobot(); renderProgram(); renderCmdTray(); });
 document.getElementById("backToMapBtn").addEventListener("click", function(){ stopRun(); gameSection.hidden = true; levelSelectSection.hidden = false; renderLevelMap(); });
+document.getElementById("prevMissionBtn").addEventListener("click", function(){
+  stopRun();
+  var prev = levelAt(currentIndex() - 1);
+  if (prev) openLevel(prev.id);
+});
+document.getElementById("nextMissionBtn").addEventListener("click", function(){
+  stopRun();
+  var next = levelAt(currentIndex() + 1);
+  if (next) openLevel(next.id);
+});
 
 document.getElementById("hintBtn").addEventListener("click", function(){
   var labels = level.hint.map(function(t){ return /^REPEAT(\d+)$/.test(t) ? ("Repeat ×" + t.replace("REPEAT", "")) : (t === "ENDREPEAT" ? "(end repeat)" : (CMD_LABELS[t] || t)); });
