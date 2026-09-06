@@ -139,6 +139,7 @@ const NAV_LINKS = [
   { href: "/index.html", label: "Home" },
   { href: "/teacher-tools.html", label: "Teacher Tools" },
   { href: "/student-apps.html", label: "Student Apps" },
+  { href: "/ai-explorers.html", label: "AI & Coding" },
   {
     label: "Key Stages",
     children: [

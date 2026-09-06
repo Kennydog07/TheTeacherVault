@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Train The Robot | Learn Coding &amp; Algorithms for Kids | The Teacher Vault</title>
+<meta name="description" content="An interactive AI Explorers coding game for ages 9-11: build command sequences to guide a robot across 30 grid levels covering sequences, loops, debugging and conditions.">
+<link rel="canonical" href="https://theteachervault.com/ai-explorers/train-the-robot.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Train The Robot | Learn Coding & Algorithms for Kids | The Teacher Vault">
+<meta property="og:description" content="An interactive AI Explorers coding game for ages 9-11: build command sequences to guide a robot across 30 grid levels covering sequences, loops, debugging and conditions.">
+<meta property="og:url" content="https://theteachervault.com/ai-explorers/train-the-robot.html">
+<meta property="og:image" content="https://theteachervault.com/images/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Train The Robot | Learn Coding & Algorithms for Kids | The Teacher Vault">
+<meta name="twitter:description" content="An interactive AI Explorers coding game for ages 9-11: build command sequences to guide a robot across 30 grid levels covering sequences, loops, debugging and conditions.">
+<meta name="twitter:image" content="https://theteachervault.com/images/logo.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="ai-explorers.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalApplication",
+  "name": "Train The Robot",
+  "description": "An interactive AI Explorers coding game for ages 9-11: build command sequences to guide a robot across 30 grid levels covering sequences, loops, debugging and conditions.",
+  "url": "https://theteachervault.com/ai-explorers/train-the-robot.html",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "isAccessibleForFree": true,
+  "educationalLevel": "KS2",
+  "publisher": { "@type": "Organization", "name": "The Teacher Vault" }
+}
+</script>
+<style>
+  .rt-cell-icon { position: absolute; width: 26px; height: 26px; }
+  .rt-arrow { width: 100%; height: 100%; clip-path: polygon(50% 0%, 90% 90%, 50% 68%, 10% 90%); background: var(--aie-cyan); transition: transform 0.35s ease; }
+  .rt-arrow.is-crashed { background: var(--aie-red); }
+  @media (prefers-reduced-motion: reduce) { .rt-arrow { transition: none; } }
+</style>
+</head>
+<body data-page="ai-explorers-train-the-robot" class="aie-root">
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="aie-section aie-section--dots">
+    <div class="aie-container aie-hero">
+      <p class="aie-breadcrumb"><a href="../ai-explorers.html">AI Explorers</a> / Train The Robot</p>
+      <h1 style="font-size:clamp(2rem,5.6vw,3rem);text-transform:uppercase;background:linear-gradient(90deg,var(--aie-lime),var(--aie-cyan));-webkit-background-clip:text;background-clip:text;color:transparent;margin:0 0 8px;">Train The Robot</h1>
+      <p class="aie-hero__sub">Give the instructions. Watch what happens.</p>
+      <div id="robotMascot" style="margin-top:10px;"></div>
+    </div>
+  </section>
+
+  <!-- ============================== LEVEL SELECT ============================== -->
+  <section class="aie-section" id="levelSelectSection">
+    <div class="aie-container" style="max-width:640px;">
+      <div class="aie-section-head aie-center">
+        <h2 class="aie-h2 aie-h2--lime">Choose A Mission</h2>
+        <p class="aie-lede" id="levelProgressLine"></p>
+      </div>
+      <div id="tierGroups"></div>
+    </div>
+  </section>
+
+  <!-- ============================== GAME ============================== -->
+  <section class="aie-section aie-section--soft" id="gameSection" hidden>
+    <div class="aie-container" style="max-width:640px;">
+      <div class="aie-card">
+        <p style="text-align:center;"><button type="button" class="aie-btn aie-btn--ghost aie-btn--sm" id="backToMapBtn">&larr; Level Map</button></p>
+        <p class="aie-tag" id="tierLabel" style="display:block;text-align:center;width:fit-content;margin:0 auto 6px;"></p>
+        <h3 id="levelTitle" style="text-align:center;margin-bottom:14px;"></h3>
+
+        <div id="conceptCard"></div>
+        <div id="bugCard"></div>
+
+        <div style="display:flex;justify-content:center;margin-bottom:16px;position:relative;">
+          <div class="aie-robot-grid" id="robotGrid" style="position:relative;"></div>
+        </div>
+
+        <p id="runStatus" style="text-align:center;font-weight:700;color:var(--aie-ink-dim);min-height:1.4em;"></p>
+
+        <h4 style="text-align:center;font-size:0.85rem;text-transform:uppercase;color:var(--aie-ink-dim);margin-bottom:8px;">Your Program</h4>
+        <div class="aie-program-track" id="programTrack"></div>
+
+        <h4 style="text-align:center;font-size:0.85rem;text-transform:uppercase;color:var(--aie-ink-dim);margin-bottom:8px;">Command Blocks</h4>
+        <div class="aie-cmd-tray" id="cmdTray"></div>
+
+        <div class="aie-btn-row">
+          <button type="button" class="aie-btn aie-btn--primary" id="runBtn">Run</button>
+          <button type="button" class="aie-btn aie-btn--ghost" id="stepBtn">Step</button>
+          <button type="button" class="aie-btn aie-btn--ghost" id="pauseBtn">Pause</button>
+          <button type="button" class="aie-btn aie-btn--ghost" id="resetBtn">Reset</button>
+        </div>
+        <p style="text-align:center;margin-top:10px;">
+          <button type="button" class="aie-reset" id="clearBtn">Clear blocks</button> &middot;
+          <button type="button" class="aie-reset" id="hintBtn">Need a hint?</button>
+        </p>
+        <div id="hintBox"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== BADGE ============================== -->
+  <section class="aie-section" id="badgeSection" hidden>
+    <div class="aie-container" style="max-width:420px;">
+      <div class="aie-card aie-badge-reveal">
+        <div class="aie-badge-reveal__medal"></div>
+        <h2>Robot Coder</h2>
+        <p class="aie-lede" style="margin:0 auto 16px;">All 30 missions complete -- you're a real robot coder!</p>
+        <a href="../ai-explorers.html" class="aie-btn aie-btn--primary">Back To AI Explorers</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== SAFETY REMINDER ============================== -->
+  <section class="aie-section aie-section--soft">
+    <div class="aie-container" style="max-width:640px;">
+      <div id="safetyReminder"></div>
+    </div>
+  </section>
+
+  <!-- ============================== FOR GROWN-UPS ============================== -->
+  <section class="aie-section">
+    <div class="aie-container">
+      <div id="grownupsWrap"></div>
+    </div>
+  </section>
+
+  <!-- ============================== RELATED ============================== -->
+  <section class="aie-section aie-section--soft">
+    <div class="aie-container">
+      <div class="aie-section-head">
+        <h2 class="aie-h2" style="color:var(--aie-ink);">More AI Explorers</h2>
+      </div>
+      <div class="aie-related-links">
+        <a href="what-is-ai.html">What Is AI?</a>
+        <a href="prompt-builder.html">Prompt Builder</a>
+        <a href="ai-detective.html">AI Detective</a>
+        <a href="first-web-page.html">Build Your First Web Page</a>
+        <a href="../ai-explorers.html">AI Explorers Hub</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="ai-explorers.js"></script>
+<script src="train-the-robot-data.js"></script>
+<script>
+(function(){
+"use strict";
+
+document.getElementById("robotMascot").innerHTML = AIE.scene("cheer", AIE.icon("robot"), { size: 96, propPosition: "right", alt: "" });
+document.getElementById("badgeSection").querySelector(".aie-badge-reveal__medal").innerHTML = AIE.icon("medal");
+
+var TIER_ORDER = ["sequence", "route", "loop", "debug", "condition", "mixed"];
+var CELL = 44, GAP = 3;
+
+/* ---------------- Level completion (per-level, separate from resource completion) ---------------- */
+var LVL_KEY = "tv_aie_robot_levels_v1";
+function loadDone(){ try { return JSON.parse(localStorage.getItem(LVL_KEY)) || {}; } catch(e){ return {}; } }
+function saveDone(d){ try { localStorage.setItem(LVL_KEY, JSON.stringify(d)); } catch(e){} }
+function markLevelDone(id){ var d = loadDone(); d[id] = true; saveDone(d); checkBadge(); renderLevelMap(); }
+function doneCount(){ var d = loadDone(); return ROBOT_LEVELS.filter(function(l){ return d[l.id]; }).length; }
+function checkBadge(){
+  if (doneCount() >= ROBOT_LEVELS.length) {
+    AIE.markComplete("train-the-robot");
+    document.getElementById("badgeSection").hidden = false;
+  }
+}
+
+/* ---------------- Level map ---------------- */
+function renderLevelMap(){
+  var done = loadDone();
+  document.getElementById("levelProgressLine").textContent = doneCount() + " / " + ROBOT_LEVELS.length + " missions complete";
+  var html = "";
+  TIER_ORDER.forEach(function(tier){
+    var levels = ROBOT_LEVELS.filter(function(l){ return l.tier === tier; });
+    html += '<div style="margin-bottom:20px;"><h4 style="font-size:0.8rem;text-transform:uppercase;color:var(--aie-ink-dim);margin-bottom:8px;">' + ROBOT_TIER_LABELS[tier] + '</h4>' +
+      '<div class="aie-level-grid">' + levels.map(function(l){
+        return '<button type="button" class="aie-level-btn' + (done[l.id] ? " is-done" : "") + '" data-level="' + l.id + '">' + (done[l.id] ? AIE.icon("check") : l.id) + '</button>';
+      }).join("") + '</div></div>';
+  });
+  document.getElementById("tierGroups").innerHTML = html;
+  Array.prototype.forEach.call(document.querySelectorAll("#tierGroups [data-level]"), function(btn){
+    btn.addEventListener("click", function(){ openLevel(parseInt(btn.getAttribute("data-level"), 10)); });
+  });
+}
+renderLevelMap();
+checkBadge();
+
+/* ---------------- Engine: expand + simulate (matches verified tools/verify-robot-levels.js) ---------------- */
+var DIR_DELTA = [{ dx: 0, dy: -1 }, { dx: 1, dy: 0 }, { dx: 0, dy: 1 }, { dx: -1, dy: 0 }];
+function expandProgram(program){
+  var out = [], i = 0;
+  while (i < program.length) {
+    var tok = program[i];
+    var m = /^REPEAT(\d+)$/.exec(tok);
+    if (m) {
+      var n = parseInt(m[1], 10), body = [];
+      i++;
+      while (program[i] !== "ENDREPEAT") { body.push(program[i]); i++; }
+      i++;
+      for (var r = 0; r < n; r++) out = out.concat(body);
+    } else { out.push(tok); i++; }
+  }
+  return out;
+}
+function inBounds(x, y){ return x >= 0 && x < ROBOT_GRID.w && y >= 0 && y < ROBOT_GRID.h; }
+
+/* ---------------- Game state ---------------- */
+var level = null, wallSet = {}, robot = {}, flatProgram = [], stepPtr = 0, program = [], inRepeat = false, runTimer = null;
+
+var gameSection = document.getElementById("gameSection");
+var levelSelectSection = document.getElementById("levelSelectSection");
+
+function openLevel(id){
+  level = ROBOT_LEVELS.filter(function(l){ return l.id === id; })[0];
+  wallSet = {};
+  level.walls.forEach(function(w){ wallSet[w.x + "," + w.y] = true; });
+  robot = { x: level.start.x, y: level.start.y, dir: level.start.dir, crashed: false };
+  program = level.broken ? level.broken.slice() : [];
+  inRepeat = false;
+  flatProgram = []; stepPtr = 0;
+  document.getElementById("hintBox").innerHTML = "";
+  document.getElementById("runStatus").textContent = "";
+
+  document.getElementById("tierLabel").textContent = ROBOT_TIER_LABELS[level.tier] + " — Mission " + level.id;
+  document.getElementById("levelTitle").textContent = level.title;
+  document.getElementById("conceptCard").innerHTML = level.concept ?
+    ('<div class="aie-concept-card"><strong>' + level.concept.name + '</strong>' + level.concept.text + '</div>') : "";
+  document.getElementById("bugCard").innerHTML = level.bug ?
+    ('<div class="aie-concept-card" style="border-color:var(--aie-orange);background:rgba(255,138,61,0.12);"><strong style="color:var(--aie-orange);">What Needs Fixing?</strong>' + AIE.escapeHtml(level.bug) + '</div>') : "";
+
+  renderGrid();
+  renderCmdTray();
+  renderProgram();
+
+  levelSelectSection.hidden = true;
+  gameSection.hidden = false;
+  window.scrollTo({ top: gameSection.offsetTop - 80, behavior: AIE.reducedMotion() ? "auto" : "smooth" });
+}
+
+function renderGrid(){
+  var grid = document.getElementById("robotGrid");
+  grid.style.gridTemplateColumns = "repeat(" + ROBOT_GRID.w + ", " + CELL + "px)";
+  var cellsHtml = "";
+  for (var y = 0; y < ROBOT_GRID.h; y++) {
+    for (var x = 0; x < ROBOT_GRID.w; x++) {
+      var isWall = !!wallSet[x + "," + y];
+      var isGoal = level.goal.x === x && level.goal.y === y;
+      cellsHtml += '<div class="aie-robot-cell' + (isWall ? " is-wall" : "") + (isGoal ? " is-goal" : "") + '"></div>';
+    }
+  }
+  grid.innerHTML = cellsHtml;
+  var marker = document.createElement("div");
+  marker.className = "rt-cell-icon";
+  marker.id = "robotMarker";
+  marker.innerHTML = '<div class="rt-arrow"></div>';
+  grid.appendChild(marker);
+  positionRobot();
+}
+function positionRobot(){
+  var marker = document.getElementById("robotMarker");
+  var left = 3 + robot.x * (CELL + GAP) + (CELL - 26) / 2;
+  var top = 3 + robot.y * (CELL + GAP) + (CELL - 26) / 2;
+  marker.style.position = "absolute";
+  marker.style.left = left + "px";
+  marker.style.top = top + "px";
+  var arrow = marker.querySelector(".rt-arrow");
+  arrow.style.transform = "rotate(" + (robot.dir * 90) + "deg)";
+  arrow.classList.toggle("is-crashed", robot.crashed);
+}
+
+var CMD_LABELS = { F: "Forward", B: "Back", L: "Turn Left", R: "Turn Right", IFWALL: "If Wall Ahead" };
+function tierIndex(t){ return TIER_ORDER.indexOf(t); }
+function renderCmdTray(){
+  var tray = document.getElementById("cmdTray");
+  var canLoop = tierIndex(level.tier) >= tierIndex("loop");
+  var canCond = tierIndex(level.tier) >= tierIndex("condition") || level.tier === "mixed";
+  var html = ["F", "L", "R", "B"].map(function(c){
+    return '<button type="button" class="aie-cmd-btn" data-cmd="' + c + '">' + CMD_LABELS[c] + '</button>';
+  }).join("");
+  if (canLoop) {
+    [2, 3, 4, 5].forEach(function(n){
+      html += '<button type="button" class="aie-cmd-btn" data-cmd="REPEAT' + n + '"' + (inRepeat ? " disabled" : "") + '>Repeat &times;' + n + '</button>';
+    });
+    html += '<button type="button" class="aie-cmd-btn" data-cmd="ENDREPEAT"' + (inRepeat ? "" : " disabled") + '>End Repeat</button>';
+  }
+  if (canCond) {
+    html += '<button type="button" class="aie-cmd-btn" data-cmd="IFWALL">If Wall Ahead</button>';
+  }
+  tray.innerHTML = html;
+  Array.prototype.forEach.call(tray.querySelectorAll("[data-cmd]"), function(btn){
+    btn.addEventListener("click", function(){ addCommand(btn.getAttribute("data-cmd")); });
+  });
+}
+
+function addCommand(cmd){
+  if (/^REPEAT/.test(cmd)) inRepeat = true;
+  if (cmd === "ENDREPEAT") inRepeat = false;
+  program.push(cmd);
+  renderProgram();
+  renderCmdTray();
+}
+
+function removeToken(idx){
+  var tok = program[idx];
+  if (/^REPEAT/.test(tok)) {
+    var end = -1;
+    for (var i = idx + 1; i < program.length; i++) { if (program[i] === "ENDREPEAT") { end = i; break; } }
+    if (end > -1) program.splice(end, 1);
+    program.splice(idx, 1);
+  } else if (tok === "ENDREPEAT") {
+    var start = -1;
+    for (var j = idx - 1; j >= 0; j--) { if (/^REPEAT/.test(program[j])) { start = j; break; } }
+    program.splice(idx, 1);
+    if (start > -1) program.splice(start, 1);
+  } else {
+    program.splice(idx, 1);
+  }
+  inRepeat = false;
+  for (var k = 0; k < program.length; k++) { if (/^REPEAT/.test(program[k])) inRepeat = true; if (program[k] === "ENDREPEAT") inRepeat = false; }
+  renderProgram();
+  renderCmdTray();
+}
+
+function renderProgram(){
+  var track = document.getElementById("programTrack");
+  if (!program.length) { track.innerHTML = '<span class="aie-program-empty">Click command blocks below to build your program.</span>'; return; }
+  track.innerHTML = program.map(function(tok, i){
+    var cls = /^REPEAT/.test(tok) || tok === "ENDREPEAT" ? "is-repeat" : (tok === "IFWALL" ? "is-cond" : "");
+    var label = /^REPEAT(\d+)$/.test(tok) ? ("Repeat ×" + tok.replace("REPEAT", "") + " {") : (tok === "ENDREPEAT" ? "}" : (CMD_LABELS[tok] || tok));
+    return '<span class="aie-program-chip ' + cls + '" data-idx="' + i + '">' + label + '<span class="rm">&times;</span></span>';
+  }).join("");
+  Array.prototype.forEach.call(track.querySelectorAll(".aie-program-chip"), function(chip){
+    chip.addEventListener("click", function(){ removeToken(parseInt(chip.getAttribute("data-idx"), 10)); });
+  });
+}
+
+/* ---------------- Run / Step / Pause / Reset ---------------- */
+function resetRobot(){
+  robot = { x: level.start.x, y: level.start.y, dir: level.start.dir, crashed: false };
+  flatProgram = []; stepPtr = 0;
+  if (runTimer) { clearInterval(runTimer); runTimer = null; }
+  document.getElementById("runStatus").textContent = "";
+  positionRobot();
+}
+
+function ensureFlat(){
+  if (!flatProgram.length && stepPtr === 0) flatProgram = expandProgram(program);
+}
+
+function applyCommand(cmd){
+  if (cmd === "F" || cmd === "B") {
+    var d = DIR_DELTA[robot.dir], sign = cmd === "F" ? 1 : -1;
+    var nx = robot.x + d.dx * sign, ny = robot.y + d.dy * sign;
+    if (!inBounds(nx, ny) || wallSet[nx + "," + ny]) { robot.crashed = true; return false; }
+    robot.x = nx; robot.y = ny;
+  } else if (cmd === "L") { robot.dir = (robot.dir + 3) % 4; }
+  else if (cmd === "R") { robot.dir = (robot.dir + 1) % 4; }
+  else if (cmd === "IFWALL") {
+    var d2 = DIR_DELTA[robot.dir], ax = robot.x + d2.dx, ay = robot.y + d2.dy;
+    if (!inBounds(ax, ay) || wallSet[ax + "," + ay]) robot.dir = (robot.dir + 1) % 4;
+  }
+  return true;
+}
+
+function doOneStep(){
+  ensureFlat();
+  if (stepPtr >= flatProgram.length) { document.getElementById("runStatus").textContent = "End of program."; stopRun(); return false; }
+  var cmd = flatProgram[stepPtr];
+  document.getElementById("runStatus").textContent = "Step " + (stepPtr + 1) + " of " + flatProgram.length + ": " + (CMD_LABELS[cmd] || cmd);
+  var ok = applyCommand(cmd);
+  stepPtr++;
+  positionRobot();
+  if (!ok) { document.getElementById("runStatus").textContent = "Bump! The robot hit something. Try Reset."; stopRun(); return false; }
+  if (stepPtr >= flatProgram.length) {
+    if (robot.x === level.goal.x && robot.y === level.goal.y) {
+      document.getElementById("runStatus").textContent = "Mission complete!";
+      markLevelDone(level.id);
+    } else {
+      document.getElementById("runStatus").textContent = "End of program -- not on the goal yet. Try again!";
+    }
+    stopRun();
+    return false;
+  }
+  return true;
+}
+
+function stopRun(){ if (runTimer) { clearInterval(runTimer); runTimer = null; } }
+
+document.getElementById("runBtn").addEventListener("click", function(){
+  if (!program.length) return;
+  stopRun();
+  var delay = AIE.reducedMotion() ? 120 : 550;
+  runTimer = setInterval(function(){ if (!doOneStep()) stopRun(); }, delay);
+});
+document.getElementById("stepBtn").addEventListener("click", function(){ stopRun(); doOneStep(); });
+document.getElementById("pauseBtn").addEventListener("click", stopRun);
+document.getElementById("resetBtn").addEventListener("click", resetRobot);
+document.getElementById("clearBtn").addEventListener("click", function(){ program = []; inRepeat = false; resetRobot(); renderProgram(); renderCmdTray(); });
+document.getElementById("backToMapBtn").addEventListener("click", function(){ stopRun(); gameSection.hidden = true; levelSelectSection.hidden = false; renderLevelMap(); });
+
+document.getElementById("hintBtn").addEventListener("click", function(){
+  var labels = level.hint.map(function(t){ return /^REPEAT(\d+)$/.test(t) ? ("Repeat ×" + t.replace("REPEAT", "")) : (t === "ENDREPEAT" ? "(end repeat)" : (CMD_LABELS[t] || t)); });
+  document.getElementById("hintBox").innerHTML = '<div class="aie-feedback aie-feedback--warn" style="justify-content:center;">' + AIE.icon("magnifier") + '<p>Try: ' + labels.join(" → ") + '</p></div>';
+});
+
+/* ---------------- Safety + grown-ups ---------------- */
+document.getElementById("safetyReminder").innerHTML =
+  '<div class="aie-card" style="text-align:center;">' +
+    '<div class="aie-icon-box" style="width:44px;height:44px;margin:0 auto 10px;color:var(--aie-yellow);">' + AIE.icon("shield") + '</div>' +
+    '<h4 style="margin:0 0 6px;text-transform:uppercase;">Understand</h4>' +
+    '<p class="aie-lede" style="margin:0 auto;">The robot only does exactly what you tell it -- nothing more, nothing less.</p>' +
+  '</div>';
+
+document.getElementById("grownupsWrap").innerHTML = AIE.grownups({
+  teaches: "Core computing concepts through visual programming: sequencing, debugging, loops (iteration) and simple conditions (selection) -- all without typing any code.",
+  how: "Children build a program from click-to-add command blocks, then Run or Step through it and watch the robot move on a grid. All 30 levels are solvable; a Hint reveals a working sequence without solving it for them.",
+  use: "Best tackled a few missions at a time. Encourage children to predict what will happen before pressing Run."
+});
+
+})();
+</script>
+</body>
+</html>

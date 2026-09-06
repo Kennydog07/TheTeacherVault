@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Detective | Spot AI Mistakes | The Teacher Vault</title>
+<meta name="description" content="An interactive AI Explorers detective game for ages 9-11: read 60 curated 'AI said...' scenarios and decide if the AI got it right, needs checking, or got it wrong.">
+<link rel="canonical" href="https://theteachervault.com/ai-explorers/ai-detective.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI Detective | Spot AI Mistakes | The Teacher Vault">
+<meta property="og:description" content="An interactive AI Explorers detective game for ages 9-11: read 60 curated 'AI said...' scenarios and decide if the AI got it right, needs checking, or got it wrong.">
+<meta property="og:url" content="https://theteachervault.com/ai-explorers/ai-detective.html">
+<meta property="og:image" content="https://theteachervault.com/images/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Detective | Spot AI Mistakes | The Teacher Vault">
+<meta name="twitter:description" content="An interactive AI Explorers detective game for ages 9-11: read 60 curated 'AI said...' scenarios and decide if the AI got it right, needs checking, or got it wrong.">
+<meta name="twitter:image" content="https://theteachervault.com/images/logo.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="ai-explorers.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalApplication",
+  "name": "AI Detective",
+  "description": "An interactive AI Explorers detective game for ages 9-11: read curated 'AI said...' scenarios and decide if the AI got it right, needs checking, or got it wrong.",
+  "url": "https://theteachervault.com/ai-explorers/ai-detective.html",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "isAccessibleForFree": true,
+  "educationalLevel": "KS2",
+  "publisher": { "@type": "Organization", "name": "The Teacher Vault" }
+}
+</script>
+</head>
+<body data-page="ai-explorers-ai-detective" class="aie-root">
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="aie-section aie-section--dots">
+    <div class="aie-container aie-hero">
+      <p class="aie-breadcrumb"><a href="../ai-explorers.html">AI Explorers</a> / AI Detective</p>
+      <h1 style="font-size:clamp(2rem,5.6vw,3rem);text-transform:uppercase;background:linear-gradient(90deg,var(--aie-orange),var(--aie-yellow));-webkit-background-clip:text;background-clip:text;color:transparent;margin:0 0 8px;">AI Detective</h1>
+      <p class="aie-hero__sub">Can you spot when AI gets it wrong?</p>
+      <div id="detMascot" style="margin-top:10px;"></div>
+    </div>
+  </section>
+
+  <!-- ============================== CHECKING SKILLS STRIP ============================== -->
+  <section class="aie-section">
+    <div class="aie-container">
+      <div class="aie-section-head aie-center">
+        <h2 class="aie-h2 aie-h2--orange">A Detective's Toolkit</h2>
+      </div>
+      <div class="aie-skills-grid" id="tipsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============================== MODE SELECT ============================== -->
+  <section class="aie-section aie-section--soft" id="modeSection">
+    <div class="aie-container" style="max-width:800px;">
+      <div class="aie-section-head aie-center">
+        <h2 class="aie-h2 aie-h2--cyan">Choose Your Case</h2>
+      </div>
+      <div class="aie-resource-grid" id="modeGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============================== GAME ============================== -->
+  <section class="aie-section" id="gameSection" hidden>
+    <div class="aie-container" style="max-width:600px;">
+      <div class="aie-card">
+        <div class="aie-progressbar"><div class="aie-progressbar__fill" id="gameProgressFill" style="width:0%;"></div></div>
+        <div class="aie-stat-row">
+          <div><span class="aie-stat__num" id="gameQNum">1</span><span class="aie-stat__label">Case</span></div>
+          <div><span class="aie-stat__num" id="gameScore">0</span><span class="aie-stat__label">Solved</span></div>
+        </div>
+        <p style="text-align:center;"><span class="aie-tag" id="gameCat" style="background:var(--aie-panel-light);color:var(--aie-orange);"></span></p>
+        <p id="gameQuestion" style="text-align:center;font-weight:800;font-size:1.1rem;"></p>
+        <div class="aie-speechbubble"><strong style="display:block;font-size:0.7rem;text-transform:uppercase;color:var(--aie-ink-dim);margin-bottom:6px;">The AI Said...</strong><span id="gameSaid"></span></div>
+        <div class="aie-btn-row" id="gameOptions"></div>
+        <div id="gameReveal" style="margin-top:16px;text-align:center;"></div>
+        <div class="aie-btn-row" id="gameNextRow" hidden><button type="button" class="aie-btn aie-btn--primary" id="nextCaseBtn">Next Case</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== END SCREEN ============================== -->
+  <section class="aie-section aie-section--soft" id="endSection" hidden>
+    <div class="aie-container" style="max-width:460px;">
+      <div class="aie-card aie-badge-reveal">
+        <div class="aie-badge-reveal__medal" id="rankMedal"></div>
+        <h2 id="rankTitle"></h2>
+        <p class="aie-lede" id="rankScoreLine" style="margin:0 auto 16px;"></p>
+        <div class="aie-btn-row">
+          <button type="button" class="aie-btn aie-btn--ghost" id="newCaseBtn">Choose Another Case</button>
+          <a href="../ai-explorers.html" class="aie-btn aie-btn--primary">Back To AI Explorers</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== SAFETY REMINDER ============================== -->
+  <section class="aie-section">
+    <div class="aie-container" style="max-width:640px;">
+      <div id="safetyReminder"></div>
+    </div>
+  </section>
+
+  <!-- ============================== FOR GROWN-UPS ============================== -->
+  <section class="aie-section aie-section--soft">
+    <div class="aie-container">
+      <div id="grownupsWrap"></div>
+    </div>
+  </section>
+
+  <!-- ============================== RELATED ============================== -->
+  <section class="aie-section">
+    <div class="aie-container">
+      <div class="aie-section-head">
+        <h2 class="aie-h2" style="color:var(--aie-ink);">More AI Explorers</h2>
+      </div>
+      <div class="aie-related-links">
+        <a href="what-is-ai.html">What Is AI?</a>
+        <a href="prompt-builder.html">Prompt Builder</a>
+        <a href="train-the-robot.html">Train The Robot</a>
+        <a href="first-web-page.html">Build Your First Web Page</a>
+        <a href="../ai-explorers.html">AI Explorers Hub</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="ai-explorers.js"></script>
+<script src="ai-detective-data.js"></script>
+<script>
+(function(){
+"use strict";
+
+document.getElementById("detMascot").innerHTML = AIE.scene("point-right", AIE.icon("magnifier"), { size: 96, propPosition: "right", alt: "" });
+
+document.getElementById("tipsGrid").innerHTML = AID_CHECKING_TIPS.map(function(t, i){
+  var colors = ["ask","check","create","understand","protect"];
+  return '<div class="aie-skill aie-skill--' + colors[i % colors.length] + '"><div class="aie-skill__icon">' + AIE.icon(t.icon) + '</div><h4 style="font-size:0.82rem;">' + t.label + '</h4></div>';
+}).join("");
+
+var MODES = [
+  { id: "quick", label: "Quick Case", count: 5, color: "cyan", icon: "folder" },
+  { id: "detective", label: "Detective Round", count: 10, color: "orange", icon: "magnifier" },
+  { id: "master", label: "Master Case", count: 15, color: "purple", icon: "stamp" }
+];
+document.getElementById("modeGrid").innerHTML = MODES.map(function(m){
+  return '<button type="button" class="aie-resource-card aie-resource-card--' + m.color + '" data-mode="' + m.id + '" style="border:none;cursor:pointer;">' +
+    '<div class="aie-resource-card__icon">' + AIE.icon(m.icon) + '</div><h3>' + m.label + '</h3><p>' + m.count + ' cases to solve.</p>' +
+    '<span class="aie-resource-card__cta">Start</span></button>';
+}).join("");
+
+var modeSection = document.getElementById("modeSection");
+var gameSection = document.getElementById("gameSection");
+var endSection = document.getElementById("endSection");
+var cases = [], idx = 0, score = 0, currentCount = 5;
+
+Array.prototype.forEach.call(document.querySelectorAll("#modeGrid [data-mode]"), function(btn){
+  btn.addEventListener("click", function(){
+    var mode = MODES.filter(function(m){ return m.id === btn.getAttribute("data-mode"); })[0];
+    currentCount = mode.count;
+    cases = AIE.pickN(AID_CASES, mode.count);
+    idx = 0; score = 0;
+    modeSection.hidden = true; endSection.hidden = true; gameSection.hidden = false;
+    showCase();
+  });
+});
+
+function showCase(){
+  var c = cases[idx];
+  document.getElementById("gameQNum").textContent = (idx + 1) + " / " + cases.length;
+  document.getElementById("gameScore").textContent = score;
+  document.getElementById("gameProgressFill").style.width = Math.round((idx / cases.length) * 100) + "%";
+  document.getElementById("gameCat").textContent = c.cat;
+  document.getElementById("gameQuestion").textContent = c.q;
+  document.getElementById("gameSaid").textContent = "“" + c.said + "”";
+  document.getElementById("gameReveal").innerHTML = "";
+  document.getElementById("gameNextRow").hidden = true;
+
+  AIE.renderOptions(document.getElementById("gameOptions"), [
+    { label: "Looks Right", isCorrect: c.verdict === "right" },
+    { label: "Check It", isCorrect: c.verdict === "check" },
+    { label: "Wrong", isCorrect: c.verdict === "wrong" }
+  ], function(i, correct){
+    if (correct) score++;
+    var stampClass = c.verdict === "right" ? "right" : (c.verdict === "check" ? "check" : "wrong");
+    var stampText = c.verdict === "right" ? "Fact Checked" : (c.verdict === "check" ? "Needs Checking" : "AI Got It Wrong");
+    document.getElementById("gameReveal").innerHTML =
+      '<span class="aie-stamp aie-stamp--' + stampClass + '">' + AIE.icon(c.verdict === "right" ? "check" : (c.verdict === "check" ? "warn" : "cross")) + stampText + '</span>' +
+      '<p style="margin-top:14px;color:var(--aie-ink-dim);">' + AIE.escapeHtml(c.explain) + '</p>';
+    document.getElementById("gameScore").textContent = score;
+    document.getElementById("gameNextRow").hidden = false;
+  });
+}
+
+document.getElementById("nextCaseBtn").addEventListener("click", function(){
+  idx++;
+  if (idx < cases.length) showCase(); else finishGame();
+});
+
+function rankFor(pct){
+  if (pct >= 100) return { title: "Master AI Detective", icon: "medal" };
+  if (pct >= 80) return { title: "AI Detective", icon: "medal" };
+  if (pct >= 50) return { title: "AI Sleuth", icon: "star" };
+  return { title: "Detective In Training", icon: "magnifier" };
+}
+
+function finishGame(){
+  gameSection.hidden = true;
+  endSection.hidden = false;
+  var pct = Math.round((score / cases.length) * 100);
+  var rank = rankFor(pct);
+  document.getElementById("rankMedal").innerHTML = AIE.icon(rank.icon);
+  document.getElementById("rankTitle").textContent = rank.title;
+  document.getElementById("rankScoreLine").textContent = "You solved " + score + " out of " + cases.length + " cases (" + pct + "%).";
+  AIE.markComplete("ai-detective");
+}
+
+document.getElementById("newCaseBtn").addEventListener("click", function(){
+  endSection.hidden = true;
+  modeSection.hidden = false;
+});
+
+/* ---------------- Safety + grown-ups ---------------- */
+document.getElementById("safetyReminder").innerHTML =
+  '<div class="aie-card" style="text-align:center;">' +
+    '<div class="aie-icon-box" style="width:44px;height:44px;margin:0 auto 10px;color:var(--aie-yellow);">' + AIE.icon("shield") + '</div>' +
+    '<h4 style="margin:0 0 6px;text-transform:uppercase;">Check</h4>' +
+    '<p class="aie-lede" style="margin:0 auto;">Even a confident-sounding AI answer can be wrong -- that\'s why checking matters.</p>' +
+  '</div>';
+
+document.getElementById("grownupsWrap").innerHTML = AIE.grownups({
+  teaches: "Critical evaluation of AI-generated claims across 10 curriculum-relevant categories (science, maths, history, geography, English, animals, space, everyday facts, technology and general knowledge), using 60 fact-checked example scenarios.",
+  how: "Every 'AI said...' line is a pre-written example the site's team has fact-checked -- there is no live AI connection. Scenarios include fully correct, partly correct, misleading and wrong examples so accuracy alone isn't a reliable clue.",
+  use: "Best used after Prompt Builder. Encourage children to explain WHY they picked their answer, not just which button."
+});
+
+})();
+</script>
+</body>
+</html>

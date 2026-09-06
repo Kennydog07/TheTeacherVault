@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Prompt Builder for Kids | Learn Prompting | The Teacher Vault</title>
+<meta name="description" content="An interactive AI Explorers activity for ages 9-11: build better AI prompts block by block, try 25 prompt challenges and earn the Prompt Pro badge.">
+<link rel="canonical" href="https://theteachervault.com/ai-explorers/prompt-builder.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI Prompt Builder for Kids | Learn Prompting | The Teacher Vault">
+<meta property="og:description" content="An interactive AI Explorers activity for ages 9-11: build better AI prompts block by block, try 25 prompt challenges and earn the Prompt Pro badge.">
+<meta property="og:url" content="https://theteachervault.com/ai-explorers/prompt-builder.html">
+<meta property="og:image" content="https://theteachervault.com/images/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Prompt Builder for Kids | Learn Prompting | The Teacher Vault">
+<meta name="twitter:description" content="An interactive AI Explorers activity for ages 9-11: build better AI prompts block by block, try 25 prompt challenges and earn the Prompt Pro badge.">
+<meta name="twitter:image" content="https://theteachervault.com/images/logo.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="ai-explorers.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalApplication",
+  "name": "Prompt Builder",
+  "description": "An interactive AI Explorers activity for ages 9-11: build better AI prompts block by block, try 25 prompt challenges and earn the Prompt Pro badge.",
+  "url": "https://theteachervault.com/ai-explorers/prompt-builder.html",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any (web browser)",
+  "isAccessibleForFree": true,
+  "educationalLevel": "KS2",
+  "publisher": { "@type": "Organization", "name": "The Teacher Vault" }
+}
+</script>
+</head>
+<body data-page="ai-explorers-prompt-builder" class="aie-root">
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="aie-section aie-section--dots">
+    <div class="aie-container aie-hero">
+      <p class="aie-breadcrumb"><a href="../ai-explorers.html">AI Explorers</a> / Prompt Builder</p>
+      <h1 style="font-size:clamp(2rem,5.6vw,3rem);text-transform:uppercase;background:linear-gradient(90deg,var(--aie-purple),var(--aie-cyan));-webkit-background-clip:text;background-clip:text;color:transparent;margin:0 0 8px;">Prompt Builder</h1>
+      <p class="aie-hero__sub">Build better instructions for AI.</p>
+      <div id="pbMascot" style="margin-top:10px;"></div>
+    </div>
+  </section>
+
+  <!-- ============================== SECTION A: WEAK VS STRONG ============================== -->
+  <section class="aie-section">
+    <div class="aie-container" style="max-width:700px;">
+      <div class="aie-section-head aie-center">
+        <h2 class="aie-h2 aie-h2--purple">See The Difference</h2>
+        <p class="aie-lede">This weak prompt doesn't say much...</p>
+      </div>
+      <div class="aie-assembled aie-weak" style="max-width:420px;margin:0 auto 22px;">&ldquo;Tell me about space.&rdquo;</div>
+
+      <div class="aie-card">
+        <div id="pbBuilderA"></div>
+      </div>
+
+      <div class="aie-card" id="pbResultCard" hidden style="margin-top:18px;">
+        <h3 style="text-align:center;color:var(--aie-cyan);text-transform:uppercase;font-size:1rem;">Simulated AI Result</h3>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div class="aie-icon-box" style="width:34px;height:34px;color:var(--aie-cyan);flex-shrink:0;"></div>
+          <p id="pbResultText" style="margin:0;"></p>
+        </div>
+        <div style="text-align:center;margin-top:16px;">
+          <p style="font-weight:800;text-transform:uppercase;font-size:0.85rem;margin-bottom:10px;">Was this useful?</p>
+          <div class="aie-btn-row" id="pbUsefulOptions"></div>
+        </div>
+        <div id="pbUsefulFeedback"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== SECTION B: PROMPT CHALLENGES ============================== -->
+  <section class="aie-section aie-section--soft">
+    <div class="aie-container">
+      <div class="aie-section-head aie-center">
+        <h2 class="aie-h2 aie-h2--cyan">Prompt Challenges</h2>
+        <p class="aie-lede">For each topic, pick the prompt that will get the best answer.</p>
+      </div>
+      <div class="aie-quizcard-grid" id="challengeGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============================== SECTION C: PROMPT FIXER ============================== -->
+  <section class="aie-section">
+    <div class="aie-container" style="max-width:700px;">
+      <div class="aie-section-head aie-center">
+        <h2 class="aie-h2 aie-h2--lime">Prompt Fixer</h2>
+        <p class="aie-lede">Fix this weak prompt by adding blocks.</p>
+      </div>
+      <div class="aie-assembled aie-weak" style="max-width:420px;margin:0 auto 16px;">&ldquo;Tell me about animals.&rdquo;</div>
+      <p style="text-align:center;font-weight:800;color:var(--aie-lime);margin-bottom:14px;" id="fixerProgress">0 / 5 details added</p>
+      <div class="aie-card">
+        <div id="pbBuilderFixer"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== WARNING ============================== -->
+  <section class="aie-section aie-section--soft">
+    <div class="aie-container" style="max-width:520px;">
+      <div class="aie-warning-card">
+        <strong>Better Prompt</strong>
+        <div class="aie-warning-card__eq">&ne;</div>
+        <strong>Always Correct</strong>
+        <p style="margin-top:14px;font-weight:800;font-size:1.1rem;color:var(--aie-ink);">Check the answer.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== BADGE ============================== -->
+  <section class="aie-section">
+    <div class="aie-container" style="max-width:460px;">
+      <div class="aie-card" id="pbChecklistCard">
+        <h3 style="text-align:center;margin-bottom:14px;">Badge Checklist</h3>
+        <div id="pbChecklist" style="display:flex;flex-direction:column;gap:10px;"></div>
+      </div>
+      <div class="aie-card aie-badge-reveal" id="pbBadgeCard" hidden style="margin-top:18px;">
+        <div class="aie-badge-reveal__medal"></div>
+        <h2>Prompt Pro</h2>
+        <p class="aie-lede" style="margin:0 auto 16px;">You've learned to build clear, useful prompts!</p>
+        <a href="../ai-explorers.html" class="aie-btn aie-btn--primary">Back To AI Explorers</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== SAFETY REMINDER ============================== -->
+  <section class="aie-section aie-section--soft">
+    <div class="aie-container" style="max-width:640px;">
+      <div id="safetyReminder"></div>
+    </div>
+  </section>
+
+  <!-- ============================== FOR GROWN-UPS ============================== -->
+  <section class="aie-section">
+    <div class="aie-container">
+      <div id="grownupsWrap"></div>
+    </div>
+  </section>
+
+  <!-- ============================== RELATED ============================== -->
+  <section class="aie-section aie-section--soft">
+    <div class="aie-container">
+      <div class="aie-section-head">
+        <h2 class="aie-h2" style="color:var(--aie-ink);">More AI Explorers</h2>
+      </div>
+      <div class="aie-related-links">
+        <a href="what-is-ai.html">What Is AI?</a>
+        <a href="ai-detective.html">AI Detective</a>
+        <a href="train-the-robot.html">Train The Robot</a>
+        <a href="first-web-page.html">Build Your First Web Page</a>
+        <a href="../ai-explorers.html">AI Explorers Hub</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="ai-explorers.js"></script>
+<script src="prompt-builder-data.js"></script>
+<script>
+(function(){
+"use strict";
+
+document.getElementById("pbMascot").innerHTML = AIE.scene("neutral", AIE.icon("blocks"), { size: 96, propPosition: "right", alt: "" });
+document.getElementById("pbBadgeCard").querySelector(".aie-badge-reveal__medal").innerHTML = AIE.icon("medal");
+document.getElementById("pbResultCard").querySelector('.aie-icon-box').innerHTML = AIE.icon("speech");
+
+var progressState = { sectionA: false, fixer: false, challenges: 0 };
+
+/* ---------------- Generic block picker ---------------- */
+var PB_CONNECTORS = [" ", " for ", ", as ", ". "];
+function buildBlockPicker(rootEl, groups, onChange){
+  var selections = {};
+  rootEl.innerHTML = groups.map(function(g){
+    return '<div class="aie-block-group"><div class="aie-block-group__label aie-part-' + g.key + '">' + g.label + '</div>' +
+      '<div class="aie-block-options aie-block-options--' + g.key + '" data-key="' + g.key + '">' +
+      g.options.map(function(opt, i){ return '<button type="button" class="aie-block-chip" data-value="' + i + '">' + AIE.escapeHtml(opt) + '</button>'; }).join("") +
+      '</div></div>';
+  }).join("") + '<div class="aie-assembled" data-role="assembled"></div>';
+
+  var assembledEl = rootEl.querySelector('[data-role="assembled"]');
+  function render(){
+    var allDone = groups.every(function(g){ return selections[g.key] !== undefined; });
+    assembledEl.innerHTML = groups.map(function(g, i){
+      var connector = i === 0 ? "" : (PB_CONNECTORS[i - 1] || " ");
+      if (selections[g.key] === undefined) return connector + '<span class="aie-placeholder">[choose ' + g.label.toLowerCase() + ']</span>';
+      return connector + '<span class="aie-part-' + g.key + '">' + AIE.escapeHtml(g.options[selections[g.key]]) + '</span>';
+    }).join("");
+    if (onChange) onChange(selections, allDone);
+  }
+  groups.forEach(function(g){
+    var wrap = rootEl.querySelector('.aie-block-options[data-key="' + g.key + '"]');
+    Array.prototype.forEach.call(wrap.children, function(btn, i){
+      btn.addEventListener("click", function(){
+        selections[g.key] = i;
+        Array.prototype.forEach.call(wrap.children, function(b){ b.classList.remove("is-selected"); });
+        btn.classList.add("is-selected");
+        render();
+      });
+    });
+  });
+  render();
+}
+
+/* ---------------- Section A: worked space example ---------------- */
+var GROUPS_A = [
+  { key: "task", label: "Task", options: PB_SPACE_TASKS },
+  { key: "topic", label: "Topic", options: PB_SPACE_TOPICS },
+  { key: "audience", label: "Audience", options: PB_SPACE_AUDIENCES },
+  { key: "format", label: "Format", options: PB_SPACE_FORMATS },
+  { key: "detail", label: "Detail", options: PB_SPACE_DETAILS }
+];
+var resultCard = document.getElementById("pbResultCard");
+var resultShown = false;
+buildBlockPicker(document.getElementById("pbBuilderA"), GROUPS_A, function(sel, allDone){
+  if (allDone && !resultShown) {
+    resultShown = true;
+    document.getElementById("pbResultText").textContent = PB_SPACE_RESULT;
+    resultCard.hidden = false;
+  }
+});
+AIE.renderOptions(document.getElementById("pbUsefulOptions"), [
+  { label: "Yes", isCorrect: true }, { label: "Sort Of", isCorrect: true }, { label: "Not Really", isCorrect: true }
+], function(idx){
+  var lines = [
+    "Because you gave a clear task, topic, audience and format, the AI knew exactly what kind of answer to give.",
+    "A clearer prompt usually helps -- if it's still not quite right, try changing the detail or format block.",
+    "Even a well-built prompt won't always give you exactly what you want the first time -- try adjusting one block and asking again."
+  ];
+  document.getElementById("pbUsefulFeedback").innerHTML = AIE.feedback("good", lines[idx]);
+  progressState.sectionA = true;
+  updateChecklist();
+});
+
+/* ---------------- Section B: 25 prompt challenges ---------------- */
+var challengeGrid = document.getElementById("challengeGrid");
+PB_SCENARIOS.forEach(function(s){
+  var options = AIE.shuffle(s.weak.map(function(w){ return { text: w, strong: false }; }).concat([{ text: s.strong, strong: true }]));
+  var card = document.createElement("div");
+  card.className = "aie-card aie-quizcard";
+  card.style.textAlign = "left";
+  card.innerHTML = '<h4 style="text-align:center;text-transform:uppercase;color:var(--aie-cyan);font-size:0.85rem;">' + AIE.escapeHtml(s.subject) + '</h4>' +
+    '<div data-role="options" style="display:flex;flex-direction:column;gap:8px;"></div><div class="aie-quizcard__result" hidden></div>';
+  challengeGrid.appendChild(card);
+  var optWrap = card.querySelector('[data-role="options"]');
+  optWrap.innerHTML = options.map(function(o, i){ return '<button type="button" class="aie-optbtn" style="text-align:left;white-space:normal;" data-idx="' + i + '">' + AIE.escapeHtml(o.text) + '</button>'; }).join("");
+  Array.prototype.forEach.call(optWrap.querySelectorAll(".aie-optbtn"), function(btn, i){
+    btn.addEventListener("click", function(){
+      Array.prototype.forEach.call(optWrap.children, function(b, j){
+        b.disabled = true;
+        if (options[j].strong) b.classList.add("is-correct");
+        else if (j === i) b.classList.add("is-wrong");
+        else b.classList.add("is-dim");
+      });
+      var result = card.querySelector(".aie-quizcard__result");
+      result.hidden = false;
+      var partsHtml = '<span class="aie-part-task">' + AIE.escapeHtml(s.task) + '</span> <span class="aie-part-topic">' + AIE.escapeHtml(s.topic) + '</span> for <span class="aie-part-audience">' + AIE.escapeHtml(s.audience) + '</span>, as <span class="aie-part-format">' + AIE.escapeHtml(s.format) + '</span>. <span class="aie-part-detail">' + AIE.escapeHtml(s.detail) + '</span>';
+      result.innerHTML = '<div class="aie-assembled" style="text-align:left;font-size:0.92rem;">' + partsHtml + '</div>' +
+        AIE.feedback(options[i].strong ? "good" : "warn", options[i].strong ? "That's the strongest prompt -- it has a clear task, topic, audience, format and detail." : "The highlighted prompt is stronger -- it tells the AI exactly what to do.");
+      progressState.challenges++;
+      updateChecklist();
+    });
+  });
+});
+
+/* ---------------- Section C: prompt fixer ---------------- */
+var GROUPS_FIXER = [
+  { key: "task", label: "Task", options: PB_FIXER_TASKS },
+  { key: "topic", label: "Topic", options: PB_FIXER_TOPICS },
+  { key: "audience", label: "Audience", options: PB_FIXER_AUDIENCES },
+  { key: "format", label: "Format", options: PB_FIXER_FORMATS },
+  { key: "detail", label: "Detail", options: PB_FIXER_DETAILS }
+];
+buildBlockPicker(document.getElementById("pbBuilderFixer"), GROUPS_FIXER, function(sel, allDone){
+  var count = Object.keys(sel).length;
+  document.getElementById("fixerProgress").textContent = count + " / 5 details added" + (allDone ? " -- Fixed!" : "");
+  if (allDone) { progressState.fixer = true; updateChecklist(); }
+});
+
+/* ---------------- Badge checklist ---------------- */
+function updateChecklist(){
+  var items = [
+    { done: progressState.sectionA, label: "Build the space example prompt" },
+    { done: progressState.challenges >= 5, label: "Try at least 5 prompt challenges (" + Math.min(progressState.challenges, 5) + "/5)" },
+    { done: progressState.fixer, label: "Fix the weak animal prompt" }
+  ];
+  document.getElementById("pbChecklist").innerHTML = items.map(function(it){
+    return '<div style="display:flex;align-items:center;gap:10px;">' +
+      '<span class="aie-icon-box" style="width:22px;height:22px;color:' + (it.done ? "var(--aie-lime)" : "var(--aie-ink-dim)") + ';">' + AIE.icon(it.done ? "check" : "cross") + '</span>' +
+      '<span style="color:' + (it.done ? "var(--aie-ink)" : "var(--aie-ink-dim)") + ';font-weight:600;">' + it.label + '</span></div>';
+  }).join("");
+  if (items.every(function(it){ return it.done; })) {
+    document.getElementById("pbChecklistCard").hidden = true;
+    document.getElementById("pbBadgeCard").hidden = false;
+    AIE.markComplete("prompt-builder");
+  }
+}
+updateChecklist();
+
+/* ---------------- Safety + grown-ups ---------------- */
+document.getElementById("safetyReminder").innerHTML =
+  '<div class="aie-card" style="text-align:center;">' +
+    '<div class="aie-icon-box" style="width:44px;height:44px;margin:0 auto 10px;color:var(--aie-yellow);">' + AIE.icon("shield") + '</div>' +
+    '<h4 style="margin:0 0 6px;text-transform:uppercase;">Protect</h4>' +
+    '<p class="aie-lede" style="margin:0 auto;">Never put your real name, address or school in a prompt -- use "a 10-year-old" instead.</p>' +
+  '</div>';
+
+document.getElementById("grownupsWrap").innerHTML = AIE.grownups({
+  teaches: "How to structure a clear AI instruction using five parts (task, topic, audience, format, detail), through a worked example, 25 pick-the-best-prompt challenges, and a prompt-fixing game.",
+  how: "The 'simulated AI result' is a single pre-written example response -- there is no live AI connection. The 25 challenges compare a well-built prompt against deliberately vague alternatives.",
+  use: "Pairs well with What Is AI? beforehand and AI Detective afterwards, to close the loop from 'ask well' to 'check carefully'."
+});
+
+})();
+</script>
+</body>
+</html>

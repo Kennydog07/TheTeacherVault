@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Explorers | Free AI &amp; Coding for Kids | The Teacher Vault</title>
+<meta name="description" content="Free interactive AI and coding activities for children aged 9–11. Learn how AI works, build better prompts, spot AI mistakes and start coding.">
+<link rel="canonical" href="https://theteachervault.com/ai-explorers.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI Explorers | Free AI & Coding for Kids | The Teacher Vault">
+<meta property="og:description" content="Free interactive AI and coding activities for children aged 9–11. Learn how AI works, build better prompts, spot AI mistakes and start coding.">
+<meta property="og:url" content="https://theteachervault.com/ai-explorers.html">
+<meta property="og:image" content="https://theteachervault.com/images/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Explorers | Free AI & Coding for Kids | The Teacher Vault">
+<meta name="twitter:description" content="Free interactive AI and coding activities for children aged 9–11. Learn how AI works, build better prompts, spot AI mistakes and start coding.">
+<meta name="twitter:image" content="https://theteachervault.com/images/logo.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="ai-explorers/ai-explorers.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "AI Explorers",
+  "description": "Free interactive AI and coding activities for children aged 9-11. Learn how AI works, build better prompts, spot AI mistakes and start coding.",
+  "url": "https://theteachervault.com/ai-explorers.html",
+  "isPartOf": { "@type": "WebSite", "@id": "https://theteachervault.com/#website" }
+}
+</script>
+</head>
+<body data-page="ai-explorers" class="aie-root">
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+
+  <section class="aie-section aie-section--dots">
+    <div class="aie-container aie-hero">
+      <p class="aie-breadcrumb"><a href="index.html">Home</a> / AI Explorers</p>
+      <span class="aie-tag">New</span>
+      <h1>AI Explorers</h1>
+      <p class="aie-hero__tagline">Learn &bull; Create &bull; Code &bull; Stay Safe</p>
+      <p class="aie-hero__sub">AI can help. You still do the thinking.</p>
+      <div class="aie-hero__target"><span>Ages 9&ndash;11</span><span>Years 5&ndash;6</span></div>
+      <div id="hubMascot" style="margin-top:22px;"></div>
+      <div class="aie-btn-row" style="margin-top:8px;">
+        <a href="ai-explorers/what-is-ai.html" class="aie-btn aie-btn--primary aie-btn--lg">Start Exploring</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== SKILLS ============================== -->
+  <section class="aie-section aie-section--soft">
+    <div class="aie-container">
+      <div class="aie-section-head aie-center">
+        <h2 class="aie-h2 aie-h2--cyan">The Five AI Explorer Skills</h2>
+        <p class="aie-lede">Every activity in AI Explorers builds one of these.</p>
+      </div>
+      <div class="aie-skills-grid" id="skillsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============================== PROGRESS PATH ============================== -->
+  <section class="aie-section">
+    <div class="aie-container aie-container--wide">
+      <div class="aie-section-head aie-center">
+        <h2 class="aie-h2 aie-h2--lime">Your Explorer Path</h2>
+        <p class="aie-lede">Try them in order, or jump straight to whichever looks fun.</p>
+      </div>
+      <div class="aie-path" id="hubPath" role="list" aria-label="Your progress through AI Explorers"></div>
+    </div>
+  </section>
+
+  <!-- ============================== RESOURCE CARDS ============================== -->
+  <section class="aie-section aie-section--soft">
+    <div class="aie-container aie-container--wide">
+      <div class="aie-section-head aie-center">
+        <h2 class="aie-h2 aie-h2--purple">Pick An Activity</h2>
+      </div>
+      <div class="aie-resource-grid" id="resourceGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============================== FOR GROWN-UPS ============================== -->
+  <section class="aie-section">
+    <div class="aie-container">
+      <div id="grownupsWrap"></div>
+      <p style="text-align:center;margin-top:18px;"><button type="button" class="aie-reset" id="resetProgressBtn">Reset my progress</button></p>
+    </div>
+  </section>
+
+  <section class="aie-section aie-section--soft" style="text-align:center;padding-top:0;">
+    <div class="aie-container">
+      <p class="aie-lede" style="margin:0 auto;"><a href="ks2.html" style="color:var(--aie-cyan);text-decoration:underline;">&larr; Back to the KS2 Hub</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="apps-data.js"></script>
+<script src="script.js"></script>
+<script src="ai-explorers/ai-explorers.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  document.getElementById("hubMascot").innerHTML = AIE.scene("cheer", AIE.icon("laptop"), { size: 130, propPosition: "br", alt: "The Teacher Vault mascot, ready to explore AI and coding" });
+
+  var SKILLS = [
+    { id: "ask", icon: "speech", label: "Ask", text: "Give clear instructions." },
+    { id: "check", icon: "magnifier", label: "Check", text: "AI can be wrong." },
+    { id: "create", icon: "star", label: "Create", text: "Make something new." },
+    { id: "understand", icon: "brain", label: "Understand", text: "Know what the computer did." },
+    { id: "protect", icon: "shield", label: "Protect", text: "Keep private information private." }
+  ];
+  document.getElementById("skillsGrid").innerHTML = SKILLS.map(function(s){
+    return '<div class="aie-skill aie-skill--' + s.id + '"><div class="aie-skill__icon">' + AIE.icon(s.icon) + '</div><h4>' + s.label + '</h4><p>' + s.text + '</p></div>';
+  }).join("");
+
+  var RESOURCES = [
+    { id: "what-is-ai", href: "ai-explorers/what-is-ai.html", color: "cyan", icon: "pattern", title: "What Is AI?", text: "Discover what AI actually does.", cta: "Start Exploring" },
+    { id: "prompt-builder", href: "ai-explorers/prompt-builder.html", color: "purple", icon: "blocks", title: "Prompt Builder", text: "Build better instructions for AI.", cta: "Build A Prompt" },
+    { id: "ai-detective", href: "ai-explorers/ai-detective.html", color: "orange", icon: "magnifier", title: "AI Detective", text: "Can you spot when AI gets it wrong?", cta: "Solve A Case" },
+    { id: "train-the-robot", href: "ai-explorers/train-the-robot.html", color: "lime", icon: "robot", title: "Train The Robot", text: "Give the instructions. Watch what happens.", cta: "Start Coding" },
+    { id: "first-web-page", href: "ai-explorers/first-web-page.html", color: "yellow", icon: "web", title: "Build Your First Web Page", text: "Change the code. Watch your website change.", cta: "Build A Website" }
+  ];
+  document.getElementById("resourceGrid").innerHTML = RESOURCES.map(function(r, i){
+    var done = AIE.isComplete(r.id);
+    return '<a class="aie-resource-card aie-resource-card--' + r.color + '" href="' + r.href + '">' +
+      (done ? '<span class="aie-resource-card__done">Done</span>' : '<span class="aie-resource-card__num">' + (i+1) + ' / 5</span>') +
+      '<div class="aie-resource-card__icon">' + AIE.icon(r.icon) + '</div>' +
+      '<h3>' + r.title + '</h3>' +
+      '<p>' + r.text + '</p>' +
+      '<span class="aie-resource-card__cta">' + r.cta + '</span>' +
+    '</a>';
+  }).join("");
+
+  AIE.renderPath(document.getElementById("hubPath"), null);
+
+  document.getElementById("grownupsWrap").innerHTML = AIE.grownups({
+    age: "Ages 9-11 (Years 5-6) -- also usable with confident Year 4 pupils",
+    teaches: "The hub links to five short activities covering what AI is, how to write clear instructions (prompting), how to check AI answers critically, an introduction to visual programming (sequences, loops and conditions), and basic HTML/CSS.",
+    how: "All 'AI responses' shown across AI Explorers are pre-written and curated by the site -- there is no live AI connection, chat box, or API call anywhere in this section.",
+    use: "Works well as a carousel of five short (10-15 minute) sessions across a week, in class or at home. Children can dip in and out in any order."
+  });
+
+  document.getElementById("resetProgressBtn").addEventListener("click", function(){
+    if (confirm("Reset your AI Explorers progress? This clears which activities are marked complete on this device.")) {
+      AIE.resetProgress();
+      location.reload();
+    }
+  });
+})();
+</script>
+</body>
+</html>
