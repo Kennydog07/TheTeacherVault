@@ -4,16 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Explorers | Free AI &amp; Coding for Kids | The Teacher Vault</title>
-<meta name="description" content="Free interactive AI and coding activities for children aged 9–11. Learn how AI works, build better prompts, spot AI mistakes and start coding.">
+<meta name="description" content="Free interactive AI lessons and coding activities for primary school children aged 9–11. Learn how AI works, build better prompts, spot AI mistakes and start coding.">
 <link rel="canonical" href="https://theteachervault.com/ai-explorers.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="AI Explorers | Free AI & Coding for Kids | The Teacher Vault">
-<meta property="og:description" content="Free interactive AI and coding activities for children aged 9–11. Learn how AI works, build better prompts, spot AI mistakes and start coding.">
+<meta property="og:description" content="Free interactive AI lessons and coding activities for primary school children aged 9–11. Learn how AI works, build better prompts, spot AI mistakes and start coding.">
 <meta property="og:url" content="https://theteachervault.com/ai-explorers.html">
 <meta property="og:image" content="https://theteachervault.com/images/logo.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="AI Explorers | Free AI & Coding for Kids | The Teacher Vault">
-<meta name="twitter:description" content="Free interactive AI and coding activities for children aged 9–11. Learn how AI works, build better prompts, spot AI mistakes and start coding.">
+<meta name="twitter:description" content="Free interactive AI lessons and coding activities for primary school children aged 9–11. Learn how AI works, build better prompts, spot AI mistakes and start coding.">
 <meta name="twitter:image" content="https://theteachervault.com/images/logo.png">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="images/logo.png">
@@ -27,7 +27,7 @@
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "AI Explorers",
-  "description": "Free interactive AI and coding activities for children aged 9-11. Learn how AI works, build better prompts, spot AI mistakes and start coding.",
+  "description": "Free interactive AI lessons and coding activities for primary school children aged 9-11. Learn how AI works, build better prompts, spot AI mistakes and start coding.",
   "url": "https://theteachervault.com/ai-explorers.html",
   "isPartOf": { "@type": "WebSite", "@id": "https://theteachervault.com/#website" }
 }
@@ -87,6 +87,18 @@
     </div>
   </section>
 
+  <!-- ============================== CERTIFICATE ============================== -->
+  <section class="aie-section" id="certificateSection" hidden>
+    <div class="aie-container" style="max-width:520px;">
+      <div class="aie-card aie-badge-reveal">
+        <div class="aie-badge-reveal__medal" id="certMedal"></div>
+        <h2>All Five Complete!</h2>
+        <p class="aie-lede" style="margin:0 auto 16px;">You've unlocked your printable AI Explorer certificate.</p>
+        <a href="ai-explorers/certificate.html" class="aie-btn aie-btn--primary aie-btn--lg">View My Certificate</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================== FOR GROWN-UPS ============================== -->
   <section class="aie-section">
     <div class="aie-container">
@@ -126,24 +138,30 @@
   }).join("");
 
   var RESOURCES = [
-    { id: "what-is-ai", href: "ai-explorers/what-is-ai.html", color: "cyan", icon: "pattern", title: "What Is AI?", text: "Discover what AI actually does.", cta: "Start Exploring" },
-    { id: "prompt-builder", href: "ai-explorers/prompt-builder.html", color: "purple", icon: "blocks", title: "Prompt Builder", text: "Build better instructions for AI.", cta: "Build A Prompt" },
-    { id: "ai-detective", href: "ai-explorers/ai-detective.html", color: "orange", icon: "magnifier", title: "AI Detective", text: "Can you spot when AI gets it wrong?", cta: "Solve A Case" },
-    { id: "train-the-robot", href: "ai-explorers/train-the-robot.html", color: "lime", icon: "robot", title: "Train The Robot", text: "Give the instructions. Watch what happens.", cta: "Start Coding" },
-    { id: "first-web-page", href: "ai-explorers/first-web-page.html", color: "yellow", icon: "web", title: "Build Your First Web Page", text: "Change the code. Watch your website change.", cta: "Build A Website" }
+    { id: "what-is-ai", href: "ai-explorers/what-is-ai.html", color: "cyan", icon: "pattern", title: "What Is AI?", text: "Discover what AI actually does.", cta: "Start Exploring", time: "10-15 min" },
+    { id: "prompt-builder", href: "ai-explorers/prompt-builder.html", color: "purple", icon: "blocks", title: "Prompt Builder", text: "Build better instructions for AI.", cta: "Build A Prompt", time: "15-20 min" },
+    { id: "ai-detective", href: "ai-explorers/ai-detective.html", color: "orange", icon: "magnifier", title: "AI Detective", text: "Can you spot when AI gets it wrong?", cta: "Solve A Case", time: "5-15 min" },
+    { id: "train-the-robot", href: "ai-explorers/train-the-robot.html", color: "lime", icon: "robot", title: "Train The Robot", text: "Give the instructions. Watch what happens.", cta: "Start Coding", time: "20-30 min" },
+    { id: "first-web-page", href: "ai-explorers/first-web-page.html", color: "yellow", icon: "web", title: "Build Your First Web Page", text: "Change the code. Watch your website change.", cta: "Build A Website", time: "10-15 min" }
   ];
   document.getElementById("resourceGrid").innerHTML = RESOURCES.map(function(r, i){
     var done = AIE.isComplete(r.id);
     return '<a class="aie-resource-card aie-resource-card--' + r.color + '" href="' + r.href + '">' +
-      (done ? '<span class="aie-resource-card__done">Done</span>' : '<span class="aie-resource-card__num">' + (i+1) + ' / 5</span>') +
+      (done ? '<span class="aie-resource-card__done">Done</span>' : '<span class="aie-resource-card__num">Mission ' + (i+1) + ' of 5</span>') +
       '<div class="aie-resource-card__icon">' + AIE.icon(r.icon) + '</div>' +
       '<h3>' + r.title + '</h3>' +
       '<p>' + r.text + '</p>' +
+      '<span class="aie-resource-card__meta">' + AIE.icon("clock") + '<span>' + r.time + '</span></span>' +
       '<span class="aie-resource-card__cta">' + r.cta + '</span>' +
     '</a>';
   }).join("");
 
   AIE.renderPath(document.getElementById("hubPath"), null);
+
+  if (AIE.allComplete()) {
+    document.getElementById("certMedal").innerHTML = AIE.icon("medal");
+    document.getElementById("certificateSection").hidden = false;
+  }
 
   document.getElementById("grownupsWrap").innerHTML = AIE.grownups({
     age: "Ages 9-11 (Years 5-6) -- also usable with confident Year 4 pupils",

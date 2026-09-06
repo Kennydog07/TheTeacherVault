@@ -411,6 +411,30 @@ section[id^="ks-"] { scroll-margin-top: 90px; }
   background: rgba(245, 242, 232, 0.08);
 }
 
+/* ---- Grouped dropdown variant (e.g. "AI & Coding") ---- */
+.main-nav__dropdown-menu--groups { min-width: 250px; }
+
+.main-nav__dropdown-heading {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gold-light);
+  opacity: 0.85;
+  padding: 10px 12px 4px;
+}
+.main-nav__dropdown-heading:first-child { padding-top: 4px; }
+
+.main-nav__dropdown-hub {
+  font-weight: 700 !important;
+  color: var(--gold-light) !important;
+  border-bottom: 1px solid rgba(245, 242, 232, 0.14);
+  border-radius: 6px 6px 0 0 !important;
+  margin-bottom: 4px;
+}
+.main-nav__dropdown-hub:hover { background: rgba(226, 198, 128, 0.12) !important; }
+
 .header-cta {
   display: flex;
   align-items: center;
@@ -493,6 +517,24 @@ section[id^="ks-"] { scroll-margin-top: 90px; }
 }
 
 .mobile-nav__dropdown-menu a[aria-current="page"] { color: var(--gold-light); }
+
+/* ---- Grouped dropdown variant (e.g. "AI & Coding") ---- */
+.mobile-nav__dropdown-heading {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gold-light);
+  opacity: 0.85;
+  padding: 10px 4px 4px;
+}
+.mobile-nav__dropdown-heading:first-child { padding-top: 6px; }
+
+.mobile-nav__dropdown-hub {
+  font-weight: 700 !important;
+  color: var(--gold-light) !important;
+}
 
 body.nav-open .mobile-nav { display: flex; }
 

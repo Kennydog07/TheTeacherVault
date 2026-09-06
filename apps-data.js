@@ -1169,6 +1169,144 @@ const APPS = [
     noAccount: true
   },
 
+  /* ------------------------------ AI & CODING (AI EXPLORERS) ----------------------------- */
+
+  {
+    id: "ai-explorers-what-is-ai",
+    landingUrl: "/ai-explorers/what-is-ai.html",
+    title: "What Is AI?",
+    tagline: "Discover what AI actually does, sort AI myths from facts, and earn the AI Beginner badge.",
+    description: "An interactive artificial intelligence activity for children aged 9-11 (Years 5-6): a clickable diagram of how AI answers questions, an 'AI or Not?' sorting game, an AI myth buster, and a short recap quiz.",
+    category: "ai",
+    subject: "Computer Science",
+    audience: "Ages 9-11 (Years 5-6)",
+    tier: "lite",
+    price: "Free",
+    gumroadUrl: "",
+    fileUrl: "/ai-explorers/what-is-ai.html",
+    fileType: "app",
+    image: "",
+    featured: false,
+    isNew: true,
+    comingSoon: false,
+    features: [
+      "A clickable diagram showing how AI turns a question into an answer",
+      "An 'AI Or Not?' sorting game covering 15 everyday examples of artificial intelligence",
+      "An AI myth-buster covering common misconceptions about how AI works",
+      "No live AI connection anywhere -- every example is pre-written and fact-checked"
+    ],
+    worksOffline: true,
+    noAccount: true
+  },
+  {
+    id: "ai-explorers-prompt-builder",
+    landingUrl: "/ai-explorers/prompt-builder.html",
+    title: "Prompt Builder",
+    tagline: "Learn prompt writing for children by building AI instructions block by block.",
+    description: "An interactive prompt-writing activity for children aged 9-11: build a clear AI prompt from task, topic, audience, format and detail blocks, then try 25 pick-the-best-prompt challenges. A simulation only -- no live AI connection.",
+    category: "ai",
+    subject: "Computer Science",
+    audience: "Ages 9-11 (Years 5-6)",
+    tier: "lite",
+    price: "Free",
+    gumroadUrl: "",
+    fileUrl: "/ai-explorers/prompt-builder.html",
+    fileType: "app",
+    image: "",
+    featured: false,
+    isNew: true,
+    comingSoon: false,
+    features: [
+      "Build an AI prompt from five colour-coded blocks: task, topic, audience, format and detail",
+      "25 pick-the-best-prompt challenges comparing a strong prompt to vague alternatives",
+      "A prompt-fixer game for improving a weak starting prompt",
+      "A simulated, pre-written AI response -- never a live AI connection"
+    ],
+    worksOffline: true,
+    noAccount: true
+  },
+  {
+    id: "ai-explorers-ai-detective",
+    landingUrl: "/ai-explorers/ai-detective.html",
+    title: "AI Detective",
+    tagline: "Practise fact-checking AI answers in a detective-themed game.",
+    description: "An online safety and AI fact-checking activity for children aged 9-11: read 60 curated 'AI said...' scenarios across 10 subjects and decide whether the answer looks right, needs checking, or is wrong -- building the habit of evaluating online information.",
+    category: "ai",
+    subject: "Computer Science",
+    audience: "Ages 9-11 (Years 5-6)",
+    tier: "lite",
+    price: "Free",
+    gumroadUrl: "",
+    fileUrl: "/ai-explorers/ai-detective.html",
+    fileType: "app",
+    image: "",
+    featured: false,
+    isNew: true,
+    comingSoon: false,
+    features: [
+      "60 fact-checked 'AI said...' scenarios across science, maths, history, geography and more",
+      "Three case lengths: Quick Case (5), Detective Round (10) and Master Case (15)",
+      "A detective's toolkit of five real fact-checking habits",
+      "Builds critical evaluation of AI-generated and online information"
+    ],
+    worksOffline: true,
+    noAccount: true
+  },
+  {
+    id: "ai-explorers-train-the-robot",
+    landingUrl: "/ai-explorers/train-the-robot.html",
+    title: "Train The Robot",
+    tagline: "Coding for kids: sequences, loops, debugging and conditions on a visual grid.",
+    description: "A visual programming game for children aged 9-11: build click-to-add command blocks to guide a robot across a grid through 30 levels covering algorithms, sequencing, loops, debugging and simple conditions -- no typing, no account.",
+    category: "ai",
+    subject: "Computer Science",
+    audience: "Ages 9-11 (Years 5-6)",
+    tier: "lite",
+    price: "Free",
+    gumroadUrl: "",
+    fileUrl: "/ai-explorers/train-the-robot.html",
+    fileType: "app",
+    image: "",
+    featured: false,
+    isNew: true,
+    comingSoon: false,
+    features: [
+      "30 verified-solvable levels across sequencing, longer routes, loops, debugging and conditions",
+      "Click-to-build command blocks -- Forward, Turn Left, Turn Right, Back, Repeat and If Wall Ahead",
+      "Run, Step, Pause and Reset controls, with an optional hint for every level",
+      "Introduces core computing concepts: algorithms, iteration and debugging"
+    ],
+    worksOffline: true,
+    noAccount: true
+  },
+  {
+    id: "ai-explorers-first-web-page",
+    landingUrl: "/ai-explorers/first-web-page.html",
+    title: "Build Your First Web Page",
+    tagline: "Build your first web page with real HTML and CSS and an instant live preview.",
+    description: "A beginner coding activity for children aged 9-11: edit real HTML and CSS in five short lessons (headings, paragraphs, colour, buttons, styling) and watch a live, sandboxed preview update instantly, finishing with a themed final project.",
+    category: "ai",
+    subject: "Computer Science",
+    audience: "Ages 9-11 (Years 5-6)",
+    tier: "lite",
+    price: "Free",
+    gumroadUrl: "",
+    fileUrl: "/ai-explorers/first-web-page.html",
+    fileType: "app",
+    image: "",
+    featured: false,
+    isNew: true,
+    comingSoon: false,
+    features: [
+      "Five short lessons: headings, paragraphs, colour, buttons and styling",
+      "A real, editable HTML/CSS code panel with an instant live website preview",
+      "A sandboxed preview with no scripts, forms or external requests possible",
+      "A final project with 7 themes to build a complete first web page"
+    ],
+    worksOffline: true,
+    noAccount: true
+  },
+
   /* ------------------------------ GCSE REVISION ----------------------------- */
 
   {

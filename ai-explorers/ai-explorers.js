@@ -145,7 +145,10 @@
   }
   function allComplete() { return completedCount() === RESOURCES.length; }
   function resetProgress() {
-    try { global.localStorage.removeItem(STORE_KEY); } catch (e) {}
+    try {
+      global.localStorage.removeItem(STORE_KEY);
+      global.localStorage.removeItem("tv_aie_robot_levels_v1");
+    } catch (e) {}
   }
 
   /* ---------------------------- Progress path (hub) ---------------------------- */
@@ -210,17 +213,34 @@
   }
 
   /* ---------------------------- Grown-ups collapsible ---------------------------- */
+  var GROWNUPS_FACTS = [
+    "Completely free -- no payment, ever",
+    "No child account or login required",
+    "No personal information should be entered anywhere in AI Explorers",
+    "Progress is stored only in this browser, on this device",
+    "Activities encourage children to question and check AI answers, not just accept them",
+    "AI Explorers does not replace a teacher or parent",
+    "The coding activities introduce sequencing, algorithms, loops, debugging, conditions and basic HTML",
+    "Children can complete the activities independently, but adult discussion is encouraged"
+  ];
+  var GROWNUPS_CURRICULUM = [
+    "Computational thinking", "Algorithms and logical reasoning", "Debugging", "Digital literacy",
+    "Online safety and privacy", "Evaluating online information", "Responsible use of generative AI", "Creating digital content"
+  ];
+
   function grownups(opts) {
+    var factList = [escapeHtml(opts.age || "Designed for ages 9-11 / Years 5-6")].concat(GROWNUPS_FACTS.map(escapeHtml));
     return '<details class="aie-grownups">' +
       '<summary>For grown-ups</summary>' +
       '<div class="aie-grownups__body">' +
+        '<ul class="aie-grownups__facts">' + factList.map(function(f){ return '<li>' + icon("check") + '<span>' + f + '</span></li>'; }).join("") + '</ul>' +
         '<dl>' +
-          '<dt>Recommended age</dt><dd>' + escapeHtml(opts.age || "Ages 9-11 (Years 5-6)") + '</dd>' +
-          '<dt>What this teaches</dt><dd>' + escapeHtml(opts.teaches || "") + '</dd>' +
-          '<dt>How it works</dt><dd>' + escapeHtml(opts.how || "") + '</dd>' +
-          '<dt>Privacy</dt><dd>No accounts, no logins and no personal data is collected. Progress (which activities are complete) is stored only in this browser, using localStorage. There is no live AI connection anywhere in AI Explorers &mdash; all responses shown are pre-written and curated.</dd>' +
+          '<dt>What this activity teaches</dt><dd>' + escapeHtml(opts.teaches || "") + '</dd>' +
+          '<dt>How the simulation works</dt><dd>' + escapeHtml(opts.how || "") + '</dd>' +
           '<dt>Suggested use</dt><dd>' + escapeHtml(opts.use || "Great for a short, focused 10-15 minute session, in the classroom or at home.") + '</dd>' +
         '</dl>' +
+        '<p class="aie-grownups__curriculum-intro">Alongside subject knowledge, these activities support:</p>' +
+        '<ul class="aie-grownups__facts aie-grownups__facts--curriculum">' + GROWNUPS_CURRICULUM.map(function(c){ return '<li>' + icon("star") + '<span>' + escapeHtml(c) + '</span></li>'; }).join("") + '</ul>' +
       '</div>' +
     '</details>';
   }

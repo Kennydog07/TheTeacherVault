@@ -139,7 +139,27 @@ const NAV_LINKS = [
   { href: "/index.html", label: "Home" },
   { href: "/teacher-tools.html", label: "Teacher Tools" },
   { href: "/student-apps.html", label: "Student Apps" },
-  { href: "/ai-explorers.html", label: "AI & Coding" },
+  {
+    label: "AI & Coding",
+    hub: { href: "/ai-explorers.html", label: "AI Explorers Hub" },
+    groups: [
+      {
+        heading: "Learn About AI",
+        items: [
+          { href: "/ai-explorers/what-is-ai.html", label: "What Is AI?" },
+          { href: "/ai-explorers/prompt-builder.html", label: "Prompt Builder" },
+          { href: "/ai-explorers/ai-detective.html", label: "AI Detective" }
+        ]
+      },
+      {
+        heading: "Learn To Code",
+        items: [
+          { href: "/ai-explorers/train-the-robot.html", label: "Train The Robot" },
+          { href: "/ai-explorers/first-web-page.html", label: "Build Your First Web Page" }
+        ]
+      }
+    ]
+  },
   {
     label: "Key Stages",
     children: [
@@ -176,8 +196,47 @@ function renderHeader() {
     return href.indexOf("?") > -1 ? href === hereWithQuery : navHrefFile(href) === here;
   };
 
+  /* Groups-based dropdowns (e.g. "AI & Coding") render a prominent hub link
+     plus items clustered under small headings. Flat children-based dropdowns
+     (e.g. "Key Stages") are untouched by this and use the branch below. */
+  const groupsActive = function (l) {
+    if (l.hub && isActive(l.hub.href)) return true;
+    return l.groups.some(function (g) { return g.items.some(function (c) { return isActive(c.href); }); });
+  };
+  const desktopGroupsMenu = function (l) {
+    const hubLink = l.hub ? '<a role="menuitem" class="main-nav__dropdown-hub" href="' + l.hub.href + '"' + (isActive(l.hub.href) ? ' aria-current="page"' : '') + '>' + l.hub.label + '</a>' : "";
+    return hubLink + l.groups.map(function (g) {
+      return '<div class="main-nav__dropdown-heading" role="presentation">' + g.heading + '</div>' +
+        g.items.map(function (c) {
+          return '<a role="menuitem" href="' + c.href + '"' + (isActive(c.href) ? ' aria-current="page"' : '') + '>' + c.label + '</a>';
+        }).join("");
+    }).join("");
+  };
+  const mobileGroupsMenu = function (l) {
+    const hubLink = l.hub ? '<a class="mobile-nav__dropdown-hub" href="' + l.hub.href + '"' + (isActive(l.hub.href) ? ' aria-current="page"' : '') + '>' + l.hub.label + '</a>' : "";
+    return hubLink + l.groups.map(function (g) {
+      return '<div class="mobile-nav__dropdown-heading">' + g.heading + '</div>' +
+        g.items.map(function (c) {
+          return '<a href="' + c.href + '"' + (isActive(c.href) ? ' aria-current="page"' : '') + '>' + c.label + '</a>';
+        }).join("");
+    }).join("");
+  };
+
   const desktopLinkHtml = function () {
     return NAV_LINKS.map(function (l) {
+      if (l.groups) {
+        const childActive = groupsActive(l);
+        return (
+          '<div class="main-nav__dropdown">' +
+            '<button type="button" class="main-nav__dropdown-toggle' + (childActive ? ' is-active' : '') + '" aria-haspopup="true" aria-expanded="false">' +
+              l.label + '<span class="main-nav__dropdown-caret" aria-hidden="true">&#9662;</span>' +
+            '</button>' +
+            '<div class="main-nav__dropdown-menu main-nav__dropdown-menu--groups" role="menu">' +
+              desktopGroupsMenu(l) +
+            '</div>' +
+          '</div>'
+        );
+      }
       if (l.children) {
         const childActive = l.children.some(function (c) { return isActive(c.href); });
         return (
@@ -199,6 +258,19 @@ function renderHeader() {
 
   const mobileLinkHtml = function () {
     return NAV_LINKS.map(function (l) {
+      if (l.groups) {
+        const childActive = groupsActive(l);
+        return (
+          '<div class="mobile-nav__dropdown">' +
+            '<button type="button" class="mobile-nav__dropdown-toggle' + (childActive ? ' is-active' : '') + '" aria-expanded="false">' +
+              l.label + '<span class="mobile-nav__dropdown-caret" aria-hidden="true">&#9662;</span>' +
+            '</button>' +
+            '<div class="mobile-nav__dropdown-menu mobile-nav__dropdown-menu--groups">' +
+              mobileGroupsMenu(l) +
+            '</div>' +
+          '</div>'
+        );
+      }
       if (l.children) {
         const childActive = l.children.some(function (c) { return isActive(c.href); });
         return (
@@ -252,6 +324,7 @@ function renderFooter() {
           '<ul>' +
             '<li><a href="/teacher-tools.html">Teacher Tools</a></li>' +
             '<li><a href="/student-apps.html">Student Apps</a></li>' +
+            '<li><a href="/ai-explorers.html">AI &amp; Coding</a></li>' +
             '<li><a href="/early-years.html">Early Years</a></li>' +
             '<li><a href="/quick-notes.html">Quick Notes</a></li>' +
             '<li><a href="/apps.html?tier=free">Free Apps</a></li>' +
@@ -368,12 +441,14 @@ function tierBadge(app) {
 function categoryLabel(app) {
   if (app.category === "teacher") return "Teacher Tool";
   if (app.category === "quicknotes") return "Quick Notes";
+  if (app.category === "ai") return "AI & Coding";
   return "Student App";
 }
 
 function thumbIcon(app) {
   if (app.icon && ICONS[app.icon]) return ICONS[app.icon];
   if (app.category === "teacher") return ICONS.clipboard;
+  if (app.category === "ai") return ICONS.bolt;
   return ICONS.book;
 }
 

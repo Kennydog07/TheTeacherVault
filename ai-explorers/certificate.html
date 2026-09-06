@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Explorer Certificate | The Teacher Vault</title>
+<meta name="description" content="Print a free AI Explorer certificate after completing all five AI Explorers activities from The Teacher Vault — no account, no printing service, no personal data stored.">
+<link rel="canonical" href="https://theteachervault.com/ai-explorers/certificate.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI Explorer Certificate | The Teacher Vault">
+<meta property="og:description" content="Print a free AI Explorer certificate after completing all five AI Explorers activities from The Teacher Vault.">
+<meta property="og:url" content="https://theteachervault.com/ai-explorers/certificate.html">
+<meta property="og:image" content="https://theteachervault.com/images/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Explorer Certificate | The Teacher Vault">
+<meta name="twitter:description" content="Print a free AI Explorer certificate after completing all five AI Explorers activities from The Teacher Vault.">
+<meta name="twitter:image" content="https://theteachervault.com/images/logo.png">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="ai-explorers.css">
+<style>
+  .cert-wrap { max-width: 780px; margin: 0 auto; }
+  .cert-locked { text-align: center; }
+  .cert-locked__list { display: inline-flex; flex-direction: column; gap: 8px; text-align: left; margin: 18px 0; }
+  .cert-locked__list li { display: flex; align-items: center; gap: 10px; }
+  .cert-locked__list svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .cert-locked__list .is-done svg { color: var(--aie-lime); }
+  .cert-locked__list .is-todo svg { color: var(--aie-ink-dim); }
+  .cert-locked__list .is-todo { color: var(--aie-ink-dim); }
+
+  .cert-name-field { max-width: 360px; margin: 0 auto 8px; }
+  .cert-name-field input {
+    width: 100%; font-size: 1.1rem; padding: 12px 16px; border-radius: 10px;
+    border: 2px solid var(--aie-border); background: var(--aie-panel-light); color: var(--aie-ink); font-family: inherit;
+  }
+  .cert-name-warning {
+    display: flex; gap: 10px; align-items: flex-start; max-width: 480px; margin: 14px auto 26px;
+    background: rgba(255, 210, 61, 0.1); border: 1px solid var(--aie-yellow); border-radius: var(--aie-radius-sm);
+    padding: 12px 16px; text-align: left; font-size: 0.85rem; color: var(--aie-ink);
+  }
+  .cert-name-warning svg { width: 20px; height: 20px; flex-shrink: 0; color: var(--aie-yellow); }
+
+  /* ---------------- The certificate itself: deliberately light, for a real "paper" feel and clean printing ---------------- */
+  .cert-paper {
+    background: #fdfaf1; color: #1c2536; border-radius: 18px; padding: 46px 40px;
+    border: 10px solid transparent;
+    border-image: linear-gradient(135deg, #3ee7f2, #9a6bff, #ff8a3d, #b6f23d) 1;
+    text-align: center; position: relative;
+  }
+  .cert-paper__eyebrow { font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.8rem; color: #7143e0; margin-bottom: 10px; }
+  .cert-paper__title { font-family: 'Permanent Marker', cursive; font-size: clamp(1.8rem, 4.6vw, 2.6rem); margin: 0 0 18px; background: linear-gradient(90deg, #1fb8c4, #7143e0); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .cert-paper__line { font-size: 1rem; color: #4a5568; margin: 0 0 6px; }
+  .cert-paper__name { font-family: 'Permanent Marker', cursive; font-size: clamp(1.6rem, 4vw, 2.2rem); color: #1c2536; margin: 6px 0 18px; border-bottom: 3px solid #ffd23d; display: inline-block; padding: 0 10px 4px; min-width: 220px; }
+  .cert-paper__body { max-width: 56ch; margin: 0 auto 22px; color: #334155; line-height: 1.6; }
+  .cert-paper__skills { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 22px; }
+  .cert-paper__skill { background: #eef1ff; color: #334155; font-weight: 700; font-size: 0.82rem; padding: 6px 14px; border-radius: 999px; }
+  .cert-paper__footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 30px; font-size: 0.82rem; color: #64748b; flex-wrap: wrap; gap: 12px; }
+  .cert-paper__badge { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #ffd23d, #ff8a3d); display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; }
+  .cert-paper__badge svg { width: 34px; height: 34px; color: #1c2536; }
+
+  @media print {
+    body * { visibility: hidden; }
+    .cert-paper, .cert-paper * { visibility: visible; }
+    .cert-paper { position: absolute; top: 0; left: 0; width: 100%; margin: 0; border-radius: 0; box-shadow: none; page-break-inside: avoid; }
+    @page { size: A4; margin: 18mm; }
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "AI Explorer Certificate",
+  "description": "Print a free AI Explorer certificate after completing all five AI Explorers activities from The Teacher Vault.",
+  "url": "https://theteachervault.com/ai-explorers/certificate.html"
+}
+</script>
+</head>
+<body data-page="ai-explorers-certificate" class="aie-root">
+<a class="sr-only" href="#main">Skip to main content</a>
+
+<header class="site-header no-print" id="site-header"></header>
+
+<main id="main">
+
+  <section class="aie-section aie-section--dots no-print">
+    <div class="aie-container aie-hero">
+      <p class="aie-breadcrumb"><a href="../ai-explorers.html">AI Explorers</a> / Certificate</p>
+      <h1 style="font-size:clamp(1.8rem,5.6vw,2.8rem);text-transform:uppercase;background:linear-gradient(90deg,var(--aie-yellow),var(--aie-orange));-webkit-background-clip:text;background-clip:text;color:transparent;margin:0 0 8px;">AI Explorer Certificate</h1>
+      <p class="aie-hero__sub">Finish all five activities to unlock your printable certificate.</p>
+    </div>
+  </section>
+
+  <section class="aie-section no-print" id="lockedSection" hidden>
+    <div class="aie-container cert-wrap">
+      <div class="aie-card cert-locked">
+        <div class="aie-icon-box" style="width:56px;height:56px;margin:0 auto 14px;color:var(--aie-ink-dim);"></div>
+        <h2 style="margin-bottom:6px;">Not Unlocked Yet</h2>
+        <p class="aie-lede" style="margin:0 auto;">Complete all five AI Explorers activities to unlock your certificate.</p>
+        <ul class="cert-locked__list" id="progressList"></ul>
+        <div class="aie-btn-row">
+          <a href="../ai-explorers.html" class="aie-btn aie-btn--primary">Back To AI Explorers</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="aie-section" id="unlockedSection" hidden>
+    <div class="aie-container cert-wrap">
+
+      <div class="aie-card no-print" style="margin-bottom:22px;">
+        <label class="cert-name-field" for="childName" style="display:block;font-weight:800;text-align:center;margin-bottom:8px;">First name (or nickname) for the certificate</label>
+        <div class="cert-name-field">
+          <input type="text" id="childName" maxlength="24" placeholder="e.g. Sam" autocomplete="off">
+        </div>
+        <div class="cert-name-warning">
+          <span class="aie-icon-box" id="warnIcon" style="width:20px;height:20px;flex-shrink:0;color:var(--aie-yellow);"></span>
+          <span><strong>Only type a first name or nickname.</strong> Never enter your full name, school, address or any other personal information. Nothing typed here is saved or sent anywhere -- it only appears on this screen for printing.</span>
+        </div>
+        <div class="aie-btn-row">
+          <button type="button" class="aie-btn aie-btn--primary aie-btn--lg" id="printBtn">Print Certificate</button>
+        </div>
+      </div>
+
+      <div class="cert-paper" id="certPaper">
+        <div class="cert-paper__badge" id="certBadge"></div>
+        <p class="cert-paper__eyebrow">The Teacher Vault &middot; AI Explorers</p>
+        <h2 class="cert-paper__title">AI Explorer Certificate</h2>
+        <p class="cert-paper__line">This certifies that</p>
+        <div class="cert-paper__name" id="certName">Explorer</div>
+        <p class="cert-paper__body">has completed all five AI Explorers activities, covering AI understanding, prompt writing, fact-checking AI answers, coding logic and building a first web page.</p>
+        <div class="cert-paper__skills" id="certSkills"></div>
+        <div class="cert-paper__footer">
+          <span>theteachervault.com/ai-explorers</span>
+          <span id="certDate"></span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="aie-section aie-section--soft no-print">
+    <div class="aie-container" style="max-width:640px;">
+      <div id="safetyReminder"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer no-print" id="site-footer"></footer>
+
+<script src="../apps-data.js"></script>
+<script src="../script.js"></script>
+<script src="ai-explorers.js"></script>
+<script>
+(function(){
+"use strict";
+
+document.getElementById("lockedSection").querySelector(".aie-icon-box").innerHTML = AIE.icon("lock");
+document.getElementById("certBadge").innerHTML = AIE.icon("medal");
+document.getElementById("warnIcon").innerHTML = AIE.icon("warn");
+
+var labels = { "what-is-ai": "What Is AI?", "prompt-builder": "Prompt Builder", "ai-detective": "AI Detective", "train-the-robot": "Train The Robot", "first-web-page": "Build Your First Web Page" };
+
+if (AIE.allComplete()) {
+  document.getElementById("unlockedSection").hidden = false;
+  document.getElementById("certSkills").innerHTML = ["Ask", "Check", "Create", "Understand", "Protect"].map(function(s){ return '<span class="cert-paper__skill">' + s + '</span>'; }).join("");
+  document.getElementById("certDate").textContent = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+
+  var nameInput = document.getElementById("childName");
+  var certName = document.getElementById("certName");
+  nameInput.addEventListener("input", function(){
+    var v = nameInput.value.replace(/[^a-zA-Z '-]/g, "").slice(0, 24).trim();
+    certName.textContent = v || "Explorer";
+  });
+  document.getElementById("printBtn").addEventListener("click", function(){ window.print(); });
+} else {
+  document.getElementById("lockedSection").hidden = false;
+  document.getElementById("progressList").innerHTML = AIE.RESOURCES.map(function(id){
+    var done = AIE.isComplete(id);
+    return '<li class="' + (done ? "is-done" : "is-todo") + '">' + AIE.icon(done ? "check" : "cross") + '<span>' + labels[id] + '</span></li>';
+  }).join("");
+}
+
+document.getElementById("safetyReminder").innerHTML =
+  '<div class="aie-card" style="text-align:center;">' +
+    '<div class="aie-icon-box" style="width:44px;height:44px;margin:0 auto 10px;color:var(--aie-yellow);">' + AIE.icon("shield") + '</div>' +
+    '<h4 style="margin:0 0 6px;text-transform:uppercase;">Protect</h4>' +
+    '<p class="aie-lede" style="margin:0 auto;">This certificate works entirely in your browser -- nothing you type is saved, stored or sent anywhere.</p>' +
+  '</div>';
+
+})();
+</script>
+</body>
+</html>
