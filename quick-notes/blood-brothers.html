@@ -211,6 +211,34 @@ footer.app-footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--li
   .jh-opts{grid-template-columns:1fr 1fr;}
 }
 </style>
+<style>/* chalk-print-button-standalone-css: self-contained styles for pages that don't load the sitewide styles.css */
+.chalk-print-button {
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-width: 44px; min-height: 44px; padding: 12px 22px; border: none; border-radius: 10px; cursor: pointer;
+  font-family: 'Permanent Marker', cursive, sans-serif; font-size: 1.05rem; letter-spacing: 0.04em;
+  color: #f5f2e8;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0) 35%),
+    linear-gradient(180deg, #726755 0%, #726755 22%, #5f564a 26%, #4a4238 60%, #332d26 100%);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.12) inset, 0 -3px 6px rgba(0,0,0,0.35) inset,
+    0 6px 0 #332d26, 0 10px 16px rgba(0,0,0,0.45);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+}
+.chalk-print-button::before {
+  content: ""; position: absolute; left: 10%; right: 10%; top: 4px; height: 6px; border-radius: 999px;
+  background: rgba(245,242,232,0.28); filter: blur(1px); pointer-events: none;
+}
+.chalk-print-button__icon { font-size: 1.1em; line-height: 1; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.4)); }
+.chalk-print-button__label { font-weight: 400; text-transform: uppercase; }
+.chalk-print-button:hover { transform: translateY(-2px) rotate(-1deg); box-shadow: 0 1px 0 rgba(255,255,255,0.14) inset, 0 -3px 6px rgba(0,0,0,0.35) inset, 0 8px 0 #332d26, 0 14px 20px rgba(0,0,0,0.5); }
+.chalk-print-button:active { transform: translateY(3px) rotate(0deg); box-shadow: 0 1px 0 rgba(255,255,255,0.1) inset, 0 -2px 4px rgba(0,0,0,0.35) inset, 0 2px 0 #332d26, 0 3px 6px rgba(0,0,0,0.4); }
+.chalk-print-button:focus-visible { outline: 3px solid #e2c680; outline-offset: 3px; }
+.chalk-print-button--wide { padding-left: 30px; padding-right: 30px; }
+@media (prefers-reduced-motion: reduce) { .chalk-print-button { transition: none; } .chalk-print-button:hover, .chalk-print-button:active { transform: none; } }
+@media print { .chalk-print-button { display: none !important; } }
+</style>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to content</a>
@@ -1390,7 +1418,7 @@ function buildLastMinute(){
 
   const s = el(`<section class="section" id="section-lastminute">
     <div class="section-header"><div class="eyebrow">Section 10</div><h2>Blood Brothers — Last Minute</h2><div class="desc">Exam tomorrow? Start here.</div></div>
-    <button class="btn secondary print-btn" id="printBtn" type="button">Print this page</button>
+    <button class="chalk-print-button print-btn" id="printBtn" type="button" data-print-btn aria-label="Print this resource"><span class="chalk-print-button__icon" aria-hidden="true">🖨️</span><span class="chalk-print-button__label">Print</span></button>
 
     <div class="lm-grid">
       <div class="lm-card"><h3>Plot in 12 points</h3><ol>${plot12.map(x=>`<li>${x}</li>`).join('')}</ol></div>

@@ -574,6 +574,66 @@ function initScrollReveals() {
 }
 
 /* --------------------------------------------------------------------------
+   Site-wide print support (chalk-rubber print button)
+   -------------------------------------------------------------------------- */
+
+/* Any <button data-print-btn> anywhere on the site prints the page. Safe to
+   add alongside a page's own click handler (e.g. legacy id="printBtn"
+   listeners already calling window.print() keep working unchanged --
+   this just means the button is guaranteed to work even on pages that
+   only use the shared markup with no bespoke script of their own). */
+function initPrintButtons() {
+  document.querySelectorAll("[data-print-btn]").forEach(function (btn) {
+    if (btn.dataset.printWired) return;
+    btn.dataset.printWired = "1";
+    btn.addEventListener("click", function () {
+      var targetSel = btn.getAttribute("data-print-target");
+      if (targetSel) { tvPrint(targetSel); } else { window.print(); }
+    });
+  });
+}
+
+/* Reusable helper: print just one container on a page that has several
+   independent printable resources (e.g. a "Print this activity" button
+   next to one of many cards). Temporarily hides every OTHER element
+   carrying [data-print-scope] and reveals the chosen target, prints, then
+   restores the page exactly as it was -- no page state is lost. Pages with
+   only one printable area don't need this; a plain window.print() plus the
+   page's own @media print rules is enough. */
+function tvPrint(targetSelector) {
+  var target = document.querySelector(targetSelector);
+  if (!target) { window.print(); return; }
+  var scoped = Array.prototype.slice.call(document.querySelectorAll("[data-print-scope]"));
+  var previouslyHidden = scoped.map(function (el) { return el.hasAttribute("hidden"); });
+  scoped.forEach(function (el) { if (el !== target) el.setAttribute("hidden", ""); });
+  target.removeAttribute("hidden");
+  window.print();
+  window.setTimeout(function () {
+    scoped.forEach(function (el, i) {
+      if (previouslyHidden[i]) el.setAttribute("hidden", ""); else el.removeAttribute("hidden");
+    });
+  }, 300);
+}
+window.tvPrint = tvPrint;
+
+/* Injects a small "TheTeacherVault.com" footer just before printing (see
+   .print-footer-injected in styles.css) and removes it immediately after,
+   so every page gets an attributed printout without any per-page markup. */
+function wireGlobalPrintFooter() {
+  var footer;
+  window.addEventListener("beforeprint", function () {
+    footer = document.createElement("div");
+    footer.className = "print-footer-injected";
+    footer.textContent = "TheTeacherVault.com";
+    document.body.appendChild(footer);
+  });
+  window.addEventListener("afterprint", function () {
+    if (footer && footer.parentNode) footer.parentNode.removeChild(footer);
+    footer = null;
+  });
+}
+
+/* --------------------------------------------------------------------------
    Init
    -------------------------------------------------------------------------- */
 
@@ -581,4 +641,6 @@ document.addEventListener("DOMContentLoaded", function () {
   mountLayout();
   mountBackToTop();
   initScrollReveals();
+  initPrintButtons();
+  wireGlobalPrintFooter();
 });

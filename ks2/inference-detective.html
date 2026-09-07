@@ -74,6 +74,10 @@
   .id-endscreen h2{font-family:'Permanent Marker',cursive;color:var(--gold-light);font-size:1.8rem;}
   .id-back-link{display:inline-block;margin-bottom:16px;color:var(--gold-light);text-decoration:underline;font-size:0.9rem;cursor:pointer;background:none;border:none;font-family:inherit;padding:0;}
   @media(max-width:600px){ .id-panel{padding:20px 16px;} }
+  @media print{
+    .id-grid-select,#caseList,.id-btn-row,.id-back-link,.id-clue-btn,#setupPanel{display:none!important}
+    body,main{background:#fff!important}
+  }
 </style>
 </head>
 <body data-page="ks2-inference-detective">
@@ -104,6 +108,12 @@
       </div>
 
       <div class="id-panel" id="casePanel" hidden>
+        <div style="text-align:center;margin:0 0 14px;">
+          <button type="button" class="chalk-print-button" data-print-btn aria-label="Print this activity">
+            <span class="chalk-print-button__icon" aria-hidden="true">🖨️</span>
+            <span class="chalk-print-button__label">Print</span>
+          </button>
+        </div>
         <button type="button" class="id-back-link" id="backToList">&larr; Back to case list</button>
         <div class="id-passage-box">
           <div class="id-passage-title" id="caseTitle"></div>

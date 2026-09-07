@@ -69,6 +69,10 @@
   .fc-stat__label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--gold-light);}
   .fc-endscreen{text-align:center;}
   @media(max-width:600px){ .fc-panel{padding:20px 16px;} .fc-input{width:100%;} .fc-question{font-size:1.1rem;} .fc-options{grid-template-columns:1fr;} }
+  @media print{
+    .fc-grid,.fc-checkbox-row,.fc-btn-row,#setupPanel{display:none!important}
+    body,main{background:#fff!important}
+  }
 </style>
 </head>
 <body data-page="ks2-fractions-challenge">
@@ -108,6 +112,12 @@
       </div>
 
       <div class="fc-panel" id="gamePanel" hidden>
+        <div style="text-align:center;margin:0 0 14px;">
+          <button type="button" class="chalk-print-button" data-print-btn aria-label="Print this activity">
+            <span class="chalk-print-button__icon" aria-hidden="true">🖨️</span>
+            <span class="chalk-print-button__label">Print</span>
+          </button>
+        </div>
         <div class="fc-meta"><span id="questionCounter"></span><span id="scoreDisplay"></span></div>
         <div class="fc-progress-track"><div class="fc-progress-bar" id="progressBar"></div></div>
         <div id="visualArea"></div>

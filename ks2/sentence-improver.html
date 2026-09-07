@@ -63,6 +63,10 @@
   .si-checklist li:last-child{border-bottom:none;}
   .si-checklist input{width:20px;height:20px;margin-top:2px;flex-shrink:0;}
   @media(max-width:600px){ .si-panel{padding:20px 16px;} .si-live{font-size:1.1rem;} }
+  @media print{
+    .si-grid,.si-btn-row,.si-choice-grid,#setupPanel{display:none!important}
+    body,main{background:#fff!important}
+  }
 </style>
 </head>
 <body data-page="ks2-sentence-improver">
@@ -105,6 +109,12 @@
       </div>
 
       <div class="si-panel" id="guidedPanel" hidden>
+        <div style="text-align:center;margin:0 0 14px;">
+          <button type="button" class="chalk-print-button" data-print-btn aria-label="Print this activity">
+            <span class="chalk-print-button__icon" aria-hidden="true">🖨️</span>
+            <span class="chalk-print-button__label">Print</span>
+          </button>
+        </div>
         <div class="si-original">Original: <strong id="originalText"></strong></div>
         <div class="si-live" id="livePreview"></div>
         <div id="stepArea"></div>
@@ -115,6 +125,12 @@
       </div>
 
       <div class="si-panel" id="freeWritePanel" hidden>
+        <div style="text-align:center;margin:0 0 14px;">
+          <button type="button" class="chalk-print-button" data-print-btn aria-label="Print this activity">
+            <span class="chalk-print-button__icon" aria-hidden="true">🖨️</span>
+            <span class="chalk-print-button__label">Print</span>
+          </button>
+        </div>
         <div class="si-original">Improve this sentence: <strong id="fwOriginalText"></strong></div>
         <label class="sr-only" for="fwTextarea">Your improved version</label>
         <textarea id="fwTextarea" class="si-textarea" placeholder="Write your improved version here..."></textarea>

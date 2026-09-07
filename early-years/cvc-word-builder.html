@@ -81,6 +81,11 @@
   .cvc-tile { width: 48px; height: 48px; font-size: 1.3rem; }
   .cvc-picture-card { padding: 16px 24px; font-size: 3rem; }
 }
+
+@media print{
+  .ey-mascot, .ey-mascot-row, .ey-badge, .ey-breadcrumb, .ey-progress, .ey-btn { display:none!important; }
+  body, .ey-page-body, .ey-section, main { background:#fff!important; }
+}
 </style>
 </head>
 <body data-page="ey-cvc-word-builder" class="ey-page-body">
@@ -97,6 +102,12 @@
       <span class="ey-badge">Ages 3&ndash;5</span>
       <h1 class="ey-h1">CVC Word Builder</h1>
       <p class="ey-lede">Build a word!</p>
+      <div style="text-align:center;margin:14px 0;">
+        <button type="button" class="chalk-print-button" data-print-btn aria-label="Print this activity">
+          <span class="chalk-print-button__icon" aria-hidden="true">🖨️</span>
+          <span class="chalk-print-button__label">Print</span>
+        </button>
+      </div>
     </div>
   </section>
 

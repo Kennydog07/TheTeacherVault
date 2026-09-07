@@ -77,6 +77,10 @@
   .rc-summary-stat__label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--gold-light);}
   .rc-back-link{display:inline-block;margin-bottom:16px;color:var(--gold-light);text-decoration:underline;font-size:0.9rem;cursor:pointer;background:none;border:none;font-family:inherit;padding:0;}
   @media(max-width:600px){ .rc-panel{padding:20px 16px;} }
+  @media print{
+    .rc-grid,#passageList,.rc-btn-row,.rc-back-link,.rc-clue-btn,#setupPanel{display:none!important}
+    body,main{background:#fff!important}
+  }
 </style>
 </head>
 <body data-page="ks2-reading-comprehension">
@@ -107,6 +111,12 @@
       </div>
 
       <div class="rc-panel" id="readingPanel" hidden>
+        <div style="text-align:center;margin:0 0 14px;">
+          <button type="button" class="chalk-print-button" data-print-btn aria-label="Print this activity">
+            <span class="chalk-print-button__icon" aria-hidden="true">🖨️</span>
+            <span class="chalk-print-button__label">Print</span>
+          </button>
+        </div>
         <button type="button" class="rc-back-link" id="backToList">&larr; Back to text list</button>
         <div class="rc-passage-box">
           <div class="rc-passage-title" id="passageTitle"></div>

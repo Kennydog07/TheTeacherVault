@@ -72,6 +72,10 @@
   .sc-pattern-word{padding:6px 14px;border-radius:999px;border:1px solid rgba(245,242,232,0.25);font-size:0.9rem;color:var(--chalk-dim);}
   .sc-checkbox-inline{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;font-size:0.85rem;color:var(--chalk-dim);}
   @media(max-width:600px){ .sc-panel{padding:20px 16px;} .sc-text-input{width:100%;} .sc-word-display{font-size:1.5rem;} }
+  @media print{
+    .sc-grid,.sc-btn-row,.sc-checkbox-inline,#setupPanel{display:none!important}
+    body,main{background:#fff!important}
+  }
 </style>
 </head>
 <body data-page="ks2-spelling-challenge">
@@ -105,6 +109,12 @@
       </div>
 
       <div class="sc-panel" id="gamePanel" hidden>
+        <div style="text-align:center;margin:0 0 14px;">
+          <button type="button" class="chalk-print-button" data-print-btn aria-label="Print this activity">
+            <span class="chalk-print-button__icon" aria-hidden="true">🖨️</span>
+            <span class="chalk-print-button__label">Print</span>
+          </button>
+        </div>
         <div class="sc-stats-row">
           <div class="sc-stat"><span class="sc-stat__num" id="progressDisplay">0/0</span><span class="sc-stat__label">Progress</span></div>
           <div class="sc-stat"><span class="sc-stat__num" id="streakDisplay">0</span><span class="sc-stat__label">Streak</span></div>

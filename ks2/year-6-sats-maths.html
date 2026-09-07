@@ -77,6 +77,10 @@
   .ks2-topic-list li.weak{background:rgba(166,43,43,0.18);border:1px solid rgba(166,43,43,0.4);color:var(--chalk-white);}
   .ks2-count-row{display:flex;justify-content:center;gap:10px;margin:14px 0 20px;flex-wrap:wrap;}
   @media(max-width:600px){ .ks2-panel{padding:20px 16px;} .ks2-input{width:100%;} .ks2-options{grid-template-columns:1fr;} .ks2-question{font-size:1.15rem;} }
+  @media print{
+    .ks2-mode-grid,.ks2-count-row,.ks2-toggle-row,.ks2-btn-row,#setupPanel{display:none!important}
+    body,main{background:#fff!important}
+  }
 </style>
 </head>
 <body data-page="ks2-sats-maths">
@@ -116,6 +120,12 @@
       </div>
 
       <div class="ks2-panel" id="gamePanel" hidden>
+        <div style="text-align:center;margin:0 0 14px;">
+          <button type="button" class="chalk-print-button" data-print-btn aria-label="Print this activity">
+            <span class="chalk-print-button__icon" aria-hidden="true">🖨️</span>
+            <span class="chalk-print-button__label">Print</span>
+          </button>
+        </div>
         <div class="ks2-meta"><span id="questionCounter"></span><span id="scoreDisplay"></span></div>
         <div class="ks2-progress-track"><div class="ks2-progress-bar" id="progressBar"></div></div>
         <div class="ks2-question" id="questionText" aria-live="polite"></div>

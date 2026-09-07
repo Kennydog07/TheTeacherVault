@@ -57,6 +57,11 @@
   font-size:1.4rem; padding:6px 18px; border-radius:12px; margin:0 4px;
 }
 .pp-word-icon { font-size:3.4rem; }
+
+@media print{
+  .ey-mascot, .k1-mascot-row, .k1-badge, .k1-breadcrumb, .k1-progress, .k1-btn { display:none!important; }
+  body, .k1-page-body, .k1-section, main { background:#fff!important; }
+}
 </style>
 </head>
 <body data-page="ks1-phonics-practice" class="k1-page-body">
@@ -74,6 +79,12 @@
       <h1 class="k1-h1">KS1 Phonics Practice</h1>
       <p class="k1-sub">Sounds. Words. Reading.</p>
       <p class="k1-lede">Practise spotting, blending and building words with common digraphs and trigraphs like sh, ch, ai and igh.</p>
+      <div style="text-align:center;margin:14px 0;">
+        <button type="button" class="chalk-print-button" data-print-btn aria-label="Print this activity">
+          <span class="chalk-print-button__icon" aria-hidden="true">🖨️</span>
+          <span class="chalk-print-button__label">Print</span>
+        </button>
+      </div>
     </div>
   </section>
 

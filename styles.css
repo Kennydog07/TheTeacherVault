@@ -1722,3 +1722,177 @@ table.compare td:first-child, table.compare th:first-child { border-right: 1px s
 @media (max-width: 800px) {
   .two-col { grid-template-columns: 1fr; }
 }
+
+/* ==========================================================================
+   CHALK-RUBBER PRINT BUTTON — shared, site-wide.
+   A single reusable component styled to look like a chalkboard eraser,
+   used for every "print this resource" action across the site. Built with
+   CSS only (gradients + box-shadow), no image assets, so it always loads.
+   Usage:
+     <button type="button" class="chalk-print-button" data-print-btn aria-label="Print this resource">
+       <span class="chalk-print-button__icon" aria-hidden="true">...</span>
+       <span class="chalk-print-button__label">Print</span>
+     </button>
+   Any button carrying [data-print-btn] is auto-wired to window.print() by
+   script.js — see initPrintButtons(). Existing pages that already call
+   window.print() from their own inline script keep working unchanged;
+   the attribute-based auto-wiring simply adds a listener too (fine even
+   if a button already opens a click handler of its own elsewhere).
+   ========================================================================== */
+
+.chalk-print-button {
+  --rubber-body: #4a4238;
+  --rubber-body-dark: #332d26;
+  --rubber-body-light: #5f564a;
+  --rubber-felt: #726755;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: var(--font-chalk);
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  color: var(--chalk-white);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0) 35%),
+    linear-gradient(180deg, var(--rubber-felt) 0%, var(--rubber-felt) 22%, var(--rubber-body-light) 26%, var(--rubber-body) 60%, var(--rubber-body-dark) 100%);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.12) inset,
+    0 -3px 6px rgba(0,0,0,0.35) inset,
+    0 6px 0 var(--rubber-body-dark),
+    0 10px 16px rgba(0,0,0,0.45);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+}
+
+.chalk-print-button::before {
+  /* Faint chalk-dust smudge across the felt strip, purely decorative. */
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 4px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(245,242,232,0.28);
+  filter: blur(1px);
+  pointer-events: none;
+}
+
+.chalk-print-button__icon { font-size: 1.1em; line-height: 1; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.4)); }
+.chalk-print-button__label { font-weight: 400; text-transform: uppercase; }
+
+.chalk-print-button:hover {
+  transform: translateY(-2px) rotate(-1deg);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.14) inset,
+    0 -3px 6px rgba(0,0,0,0.35) inset,
+    0 8px 0 var(--rubber-body-dark),
+    0 14px 20px rgba(0,0,0,0.5);
+}
+
+.chalk-print-button:active {
+  transform: translateY(3px) rotate(0deg);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.1) inset,
+    0 -2px 4px rgba(0,0,0,0.35) inset,
+    0 2px 0 var(--rubber-body-dark),
+    0 3px 6px rgba(0,0,0,0.4);
+}
+
+.chalk-print-button:focus-visible {
+  outline: 3px solid var(--gold-light);
+  outline-offset: 3px;
+}
+
+.chalk-print-button--wide { padding-left: 30px; padding-right: 30px; }
+
+.on-paper .chalk-print-button { color: var(--chalk-white); }
+
+@media (prefers-reduced-motion: reduce) {
+  .chalk-print-button { transition: none; }
+  .chalk-print-button:hover, .chalk-print-button:active { transform: none; }
+}
+
+@media (max-width: 480px) {
+  .chalk-print-button { padding: 11px 18px; font-size: 0.95rem; }
+}
+
+/* ==========================================================================
+   SITE-WIDE PRINT BASELINE
+   Applies to every page (styles.css is loaded everywhere). Individual pages
+   may layer additional @media print rules on top of this for their own
+   generator-specific controls/setup-panels -- this baseline only handles
+   what is genuinely common to the whole site: header, footer, the print
+   button itself, and safe defaults for headings/tables/page breaks.
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 14mm;
+    /* Progressive enhancement: modern Chromium/Edge support @page margin
+       boxes with page counters. Browsers that don't support this simply
+       ignore it -- the .print-footer-injected element below (added by
+       script.js just before printing) is the reliable fallback that works
+       everywhere, so the resource name/URL is never lost either way. */
+    @bottom-center { content: "TheTeacherVault.com  \2022  Page " counter(page) " of " counter(pages); font-size: 8pt; color: #666; }
+  }
+
+  html, body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .chalk-texture { display: none !important; }
+
+  .site-header, .site-footer,
+  .chalk-print-button, .no-print, .screen-only {
+    display: none !important;
+  }
+
+  a { color: #000 !important; text-decoration: none !important; }
+  a[href]::after { content: ""; }
+
+  h1, h2, h3 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+  table, figure, img, .question, .activity-card, .answer-box {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Prevent fixed-height/overflow/scroll containers from clipping content
+     that is fully visible on screen -- a very common cause of print output
+     silently cutting off long generated results. */
+  * { max-height: none !important; overflow: visible !important; }
+  * { animation: none !important; transition: none !important; box-shadow: none !important; }
+
+  /* Injected by script.js just before printing (see wireGlobalPrintFooter). */
+  .print-footer-injected {
+    display: block !important;
+    text-align: center;
+    font-size: 9px;
+    color: #666;
+    margin-top: 18px;
+    padding-top: 8px;
+    border-top: 1px solid #ccc;
+  }
+}
+.print-footer-injected { display: none; }
+
+/* Opt-in per page: add class="print-landscape" to <body> for genuinely wide
+   tables/resources (e.g. a broad timetable or a wide comparison grid) that
+   read better sideways on paper. Named-page support (Chrome/Edge) rotates
+   the sheet; browsers without it simply keep A4 portrait with content still
+   fully visible via width:100%, so this degrades safely everywhere. */
+@media print {
+  @page landscape { size: A4 landscape; margin: 12mm; }
+  body.print-landscape { page: landscape; }
+}

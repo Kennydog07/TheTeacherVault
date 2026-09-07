@@ -49,6 +49,11 @@
 .tm-coin.silver { background:linear-gradient(160deg,#f2f2f2,#c7c9cc); color:#33373b; }
 .tm-word-problem { font-size:1.1rem; color:var(--k1-ink); text-align:center; max-width:52ch; margin:10px auto; line-height:1.5; }
 .tm-topic-tag { display:inline-block; background:var(--k1-bg-soft); color:var(--k1-ink-soft); font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; padding:3px 10px; border-radius:999px; margin-bottom:8px; }
+
+@media print{
+  .ey-mascot, .k1-mascot-row, .k1-badge, .k1-breadcrumb, .k1-progress, .k1-btn { display:none!important; }
+  body, .k1-page-body, .k1-section, main { background:#fff!important; }
+}
 </style>
 </head>
 <body data-page="ks1-time-money" class="k1-page-body">
@@ -66,6 +71,12 @@
       <h1 class="k1-h1">Time &amp; Money Practice</h1>
       <p class="k1-sub">Clocks, coins and everyday maths.</p>
       <p class="k1-lede">Practise reading clocks and working with UK coins &mdash; the kind of maths that comes up every single day.</p>
+      <div style="text-align:center;margin:14px 0;">
+        <button type="button" class="chalk-print-button" data-print-btn aria-label="Print this activity">
+          <span class="chalk-print-button__icon" aria-hidden="true">🖨️</span>
+          <span class="chalk-print-button__label">Print</span>
+        </button>
+      </div>
     </div>
   </section>
 

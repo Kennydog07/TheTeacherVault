@@ -52,6 +52,11 @@
   margin-top:14px; background:#fff; border:2px dashed var(--k1-blue-light); border-radius:var(--k1-radius-sm);
   padding:12px 16px; font-size:0.92rem; color:var(--k1-ink-soft); max-width:420px; margin-left:auto; margin-right:auto;
 }
+
+@media print{
+  .ey-mascot, .k1-mascot-row, .k1-badge, .k1-breadcrumb, .k1-progress, .k1-btn { display:none!important; }
+  body, .k1-page-body, .k1-section, main { background:#fff!important; }
+}
 </style>
 </head>
 <body data-page="ks1-year-1-phonics-check" class="k1-page-body">
@@ -70,6 +75,12 @@
       <p class="k1-sub">Friendly decoding practice for Year 1.</p>
       <div class="pc-disclaimer"><strong>Please note:</strong> This is independent practice from The Teacher Vault and is not an official Phonics Screening Check.</div>
       <p class="k1-lede" style="margin-top:14px;">Children in Year 1 in England take the phonics screening check, usually in June. It contains 40 words split into two sections of 20, with a mixture of real words and made-up "alien" words that are phonically decodable but don't mean anything &mdash; each alien word is shown with a picture of an imaginary creature so children know not to expect a real word. It's taken one-to-one with a teacher, and children who don't yet meet the expected standard retake it in Year 2. This page gives children extra, original practice at the same kind of decoding skill &mdash; it does not use or copy any official check questions.</p>
+      <div style="text-align:center;margin:14px 0;">
+        <button type="button" class="chalk-print-button" data-print-btn aria-label="Print this activity">
+          <span class="chalk-print-button__icon" aria-hidden="true">🖨️</span>
+          <span class="chalk-print-button__label">Print</span>
+        </button>
+      </div>
     </div>
   </section>
 

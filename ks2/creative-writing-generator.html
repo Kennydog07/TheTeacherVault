@@ -57,6 +57,10 @@
   .cw-timer-display{text-align:center;font-family:Georgia,serif;font-size:2rem;color:var(--gold-light);margin-bottom:12px;display:none;}
   .cw-timer-display.show{display:block;}
   @media(max-width:600px){ .cw-panel{padding:20px 16px;} .cw-element{flex-direction:column;align-items:flex-start;} .cw-lock-btn{align-self:flex-end;} }
+  @media print{
+    .cw-grid,.cw-btn-row,.cw-lock-btn,#challengeBtn,.cw-timer-row,.cw-timer-display,#timerControls{display:none!important}
+    body,main{background:#fff!important}
+  }
 </style>
 </head>
 <body data-page="ks2-creative-writing-generator">
@@ -84,6 +88,12 @@
 
         <div id="ideaArea">
           <div class="cw-elements" id="elementsWrap"></div>
+          <div style="text-align:center;margin:14px 0;">
+            <button type="button" class="chalk-print-button" data-print-btn aria-label="Print this activity">
+              <span class="chalk-print-button__icon" aria-hidden="true">🖨️</span>
+              <span class="chalk-print-button__label">Print</span>
+            </button>
+          </div>
           <div class="cw-btn-row">
             <button type="button" class="btn btn--primary" id="generateBtn">Generate Story Idea</button>
             <button type="button" class="btn btn--ghost" id="regenerateBtn" hidden>Generate Again</button>

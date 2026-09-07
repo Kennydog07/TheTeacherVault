@@ -67,6 +67,10 @@
   .ks2-weak-list li{background:rgba(166,43,43,0.18);border:1px solid rgba(166,43,43,0.4);color:var(--chalk-white);padding:4px 12px;border-radius:999px;font-size:0.85rem;}
   .ks2-hint{text-align:center;color:var(--chalk-dim);font-size:0.85rem;margin-bottom:10px;}
   @media(max-width:600px){ .ks2-panel{padding:20px 16px;} .ks2-input{width:100%;} .ks2-question{font-size:1.6rem;} }
+  @media print{
+    .ks2-year-grid,.ks2-table-grid,#tableHint,.ks2-mode-grid,.ks2-btn-row,.ks2-timer,#setupPanel{display:none!important}
+    body,main{background:#fff!important}
+  }
 </style>
 </head>
 <body data-page="ks2-times-tables">
@@ -103,6 +107,12 @@
       </div>
 
       <div class="ks2-panel" id="gamePanel" hidden>
+        <div style="text-align:center;margin:0 0 14px;">
+          <button type="button" class="chalk-print-button" data-print-btn aria-label="Print this activity">
+            <span class="chalk-print-button__icon" aria-hidden="true">🖨️</span>
+            <span class="chalk-print-button__label">Print</span>
+          </button>
+        </div>
         <div class="ks2-timer" id="timerDisplay"></div>
         <div class="ks2-stats-row">
           <div class="ks2-stat"><span class="ks2-stat__num" id="statScore">0</span><span class="ks2-stat__label">Score</span></div>

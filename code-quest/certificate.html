@@ -63,7 +63,10 @@
           <input type="text" id="certNameInput" maxlength="40" placeholder="Type your first name" style="font:inherit;font-size:1.1rem;padding:10px 14px;border-radius:12px;border:3px solid var(--k1-bg-soft);max-width:300px;width:100%;text-align:center;margin:10px 0;">
           <p style="font-size:0.8rem;color:var(--k1-ink-soft);max-width:420px;margin:0 auto 14px;">Your name is only shown on this screen and printout &mdash; it is never saved, stored or sent anywhere.</p>
           <div class="cq-action-row">
-            <button type="button" class="k1-btn k1-btn--primary" id="printCertBtn">🖨 Print My Certificate</button>
+            <button type="button" class="chalk-print-button" id="printCertBtn" data-print-btn aria-label="Print this certificate">
+              <span class="chalk-print-button__icon" aria-hidden="true">🖨️</span>
+              <span class="chalk-print-button__label">Print</span>
+            </button>
             <a href="../code-quest.html" class="k1-btn k1-btn--soft">Back to Code Quest</a>
           </div>
         </div>
