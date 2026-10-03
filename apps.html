@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Browse All — The Teacher Vault</title>
 <meta name="description" content="Search and filter every app in The Teacher Vault library — free teacher tools, Pro upgrades, free student apps and Quick Notes study guides, all in one place.">
-<link rel="canonical" href="https://theteachervault.com/apps.html">
+<link rel="canonical" href="https://theteachervault.com/apps">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Browse All — The Teacher Vault">
 <meta property="og:description" content="Search and filter every app in The Teacher Vault library.">
 <meta property="og:image" content="https://theteachervault.com/images/logo.png">
-<meta property="og:url" content="https://theteachervault.com/apps.html">
+<meta property="og:url" content="https://theteachervault.com/apps">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Browse All — The Teacher Vault">
 <meta name="twitter:description" content="Search and filter every app in The Teacher Vault library.">
@@ -32,7 +32,7 @@
 
   <section class="section" style="padding-bottom:20px;">
     <div class="container">
-      <p class="breadcrumb" id="pageBreadcrumb"><a href="index.html">Home</a> / Browse All</p>
+      <p class="breadcrumb" id="pageBreadcrumb"><a href="/">Home</a> / Browse All</p>
       <span class="eyebrow" id="pageEyebrow">The full library</span>
       <h1 id="pageHeading">Browse All</h1>
       <p class="lede" id="pageLede">Every teacher tool, student app and Quick Notes guide in The Teacher Vault, in one place. Search by name, subject or who it's for — or filter by type, tier and subject.</p>
@@ -119,7 +119,7 @@
   var tierInfo = params.get("tier") && !params.get("category") && !params.get("subject") && !params.get("q") ? TIER_PAGE_INFO[params.get("tier")] : null;
   if (tierInfo) {
     document.title = tierInfo.title + " — The Teacher Vault";
-    document.getElementById("pageBreadcrumb").innerHTML = '<a href="index.html">Home</a> / ' + tierInfo.title;
+    document.getElementById("pageBreadcrumb").innerHTML = '<a href="/">Home</a> / ' + tierInfo.title;
     document.getElementById("pageEyebrow").textContent = tierInfo.eyebrow;
     document.getElementById("pageHeading").textContent = tierInfo.title;
     document.getElementById("pageLede").textContent = tierInfo.lede;

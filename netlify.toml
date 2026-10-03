@@ -10,12 +10,12 @@
 
 [[redirects]]
   from = "/cliff-notes.html"
-  to = "/quick-notes.html"
+  to = "/quick-notes"
   status = 301
 
 [[redirects]]
   from = "/revision.html"
-  to = "/student-apps.html"
+  to = "/student-apps"
   status = 301
 
 [[redirects]]

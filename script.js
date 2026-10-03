@@ -136,34 +136,34 @@ function chalkLogo(size) {
    -------------------------------------------------------------------------- */
 
 const NAV_LINKS = [
-  { href: "/index.html", label: "Home" },
-  { href: "/teacher-tools.html", label: "Teacher Tools" },
-  { href: "/student-apps.html", label: "Student Apps" },
+  { href: "/", label: "Home" },
+  { href: "/teacher-tools", label: "Teacher Tools" },
+  { href: "/student-apps", label: "Student Apps" },
   {
     label: "AI & Coding",
-    hub: { href: "/ai-explorers.html", label: "AI Code Crew Hub" },
+    hub: { href: "/ai-explorers", label: "AI Code Crew Hub" },
     groups: [
       {
         heading: "Learn About AI",
         items: [
-          { href: "/ai-explorers/what-is-ai.html", label: "What Is AI?" },
-          { href: "/ai-explorers/prompt-builder.html", label: "Prompt Builder" },
-          { href: "/ai-explorers/ai-detective.html", label: "AI Detective" }
+          { href: "/ai-explorers/what-is-ai", label: "What Is AI?" },
+          { href: "/ai-explorers/prompt-builder", label: "Prompt Builder" },
+          { href: "/ai-explorers/ai-detective", label: "AI Detective" }
         ]
       },
       {
         heading: "Learn To Code",
         items: [
-          { href: "/ai-explorers/train-the-robot.html", label: "Train The Robot" },
-          { href: "/ai-explorers/first-web-page.html", label: "Build Your First Web Page" }
+          { href: "/ai-explorers/train-the-robot", label: "Train The Robot" },
+          { href: "/ai-explorers/first-web-page", label: "Build Your First Web Page" }
         ]
       },
       {
         heading: "Code Quest (Ages 5-7)",
         items: [
-          { href: "/code-quest.html", label: "Code Quest Hub" },
-          { href: "/code-quest/guide-the-robot.html", label: "Guide the Robot" },
-          { href: "/code-quest/create-and-save.html", label: "Create and Save" }
+          { href: "/code-quest", label: "Code Quest Hub" },
+          { href: "/code-quest/guide-the-robot", label: "Guide the Robot" },
+          { href: "/code-quest/create-and-save", label: "Create and Save" }
         ]
       }
     ]
@@ -171,30 +171,35 @@ const NAV_LINKS = [
   {
     label: "Key Stages",
     children: [
-      { href: "/early-years.html", label: "Early Years (Ages 3–5)" },
-      { href: "/ks1.html", label: "KS1 (Years 1–2)" },
-      { href: "/ks2.html", label: "KS2 (SATs)" },
-      { href: "/student-apps.html#ks-KS3", label: "KS3" },
-      { href: "/student-apps.html#ks-KS4", label: "KS4 (GCSE)" },
-      { href: "/student-apps.html#ks-KS5", label: "KS5 (A-Level)" }
+      { href: "/early-years", label: "Early Years (Ages 3–5)" },
+      { href: "/ks1", label: "KS1 (Years 1–2)" },
+      { href: "/ks2", label: "KS2 (SATs)" },
+      { href: "/student-apps#ks-KS3", label: "KS3" },
+      { href: "/student-apps#ks-KS4", label: "KS4 (GCSE)" },
+      { href: "/student-apps#ks-KS5", label: "KS5 (A-Level)" }
     ]
   },
-  { href: "/quick-notes.html", label: "Quick Notes" },
-  { href: "/apps.html?tier=pro", label: "Pro Apps" },
-  { href: "/about.html", label: "About" },
-  { href: "/faq.html", label: "FAQ" }
+  { href: "/quick-notes", label: "Quick Notes" },
+  { href: "/apps?tier=pro", label: "Pro Apps" },
+  { href: "/about", label: "About" },
+  { href: "/faq", label: "FAQ" }
 ];
 
+/* Netlify serves clean URLs (/about rather than /about.html), so both sides
+   of the "current page" comparison drop any ".html" extension; "/" and
+   "/index" both mean the home page. Otherwise this behaves exactly as
+   before: the current page is keyed by its last path segment only. */
 function currentFile() {
-  const path = window.location.pathname.split("/").pop();
-  return "/" + (path === "" ? "index.html" : path);
+  const path = window.location.pathname.split("/").pop().replace(/\.html$/, "");
+  return "/" + (path === "" ? "index" : path);
 }
 
-/* Strips any #hash from a nav href before comparing to the current file,
-   so a dropdown item like "/student-apps.html#ks-KS3" still lines up with
-   currentFile() on that page. */
+/* Strips any #hash (and ".html") from a nav href before comparing to the
+   current file, so a dropdown item like "/student-apps#ks-KS3" still lines
+   up with currentFile() on that page. */
 function navHrefFile(href) {
-  return href.split("#")[0];
+  const p = href.split("#")[0].replace(/\.html$/, "");
+  return (p === "/" || p === "") ? "/index" : p;
 }
 
 function renderHeader() {
@@ -300,19 +305,19 @@ function renderHeader() {
 
   return (
     '<div class="site-header__inner">' +
-      '<a href="/index.html" aria-label="The Teacher Vault — home">' + chalkLogo("sm") + '</a>' +
+      '<a href="/" aria-label="The Teacher Vault — home">' + chalkLogo("sm") + '</a>' +
       '<nav class="main-nav" aria-label="Primary">' +
         '<div class="main-nav__links">' + desktopLinkHtml() + '</div>' +
       '</nav>' +
       '<div class="header-cta">' +
-        '<a href="/apps.html" class="btn btn--ghost btn--sm">Browse All Apps</a>' +
+        '<a href="/apps" class="btn btn--ghost btn--sm">Browse All Apps</a>' +
         '<button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">' + ICONS.menu + '</button>' +
       '</div>' +
     '</div>' +
     '<div class="mobile-nav" id="mobileNav">' +
       mobileLinkHtml() +
-      '<a href="/contact.html"' + (here === "/contact.html" ? ' aria-current="page"' : '') + '>Contact</a>' +
-      '<a href="/apps.html" class="btn btn--primary btn--sm">Browse All Apps</a>' +
+      '<a href="/contact"' + (here === "/contact" ? ' aria-current="page"' : '') + '>Contact</a>' +
+      '<a href="/apps" class="btn btn--primary btn--sm">Browse All Apps</a>' +
     '</div>'
   );
 }
@@ -330,28 +335,28 @@ function renderFooter() {
         '<div class="footer-col">' +
           '<h4>Explore</h4>' +
           '<ul>' +
-            '<li><a href="/teacher-tools.html">Teacher Tools</a></li>' +
-            '<li><a href="/student-apps.html">Student Apps</a></li>' +
-            '<li><a href="/ai-explorers.html">AI &amp; Coding</a></li>' +
-            '<li><a href="/early-years.html">Early Years</a></li>' +
-            '<li><a href="/quick-notes.html">Quick Notes</a></li>' +
-            '<li><a href="/apps.html?tier=free">Free Apps</a></li>' +
-            '<li><a href="/apps.html?tier=pro">Pro Apps</a></li>' +
+            '<li><a href="/teacher-tools">Teacher Tools</a></li>' +
+            '<li><a href="/student-apps">Student Apps</a></li>' +
+            '<li><a href="/ai-explorers">AI &amp; Coding</a></li>' +
+            '<li><a href="/early-years">Early Years</a></li>' +
+            '<li><a href="/quick-notes">Quick Notes</a></li>' +
+            '<li><a href="/apps?tier=free">Free Apps</a></li>' +
+            '<li><a href="/apps?tier=pro">Pro Apps</a></li>' +
           '</ul>' +
         '</div>' +
         '<div class="footer-col">' +
           '<h4>Company</h4>' +
           '<ul>' +
-            '<li><a href="/about.html">About</a></li>' +
-            '<li><a href="/faq.html">FAQ</a></li>' +
-            '<li><a href="/contact.html">Contact</a></li>' +
+            '<li><a href="/about">About</a></li>' +
+            '<li><a href="/faq">FAQ</a></li>' +
+            '<li><a href="/contact">Contact</a></li>' +
           '</ul>' +
         '</div>' +
         '<div class="footer-col">' +
           '<h4>Legal</h4>' +
           '<ul>' +
-            '<li><a href="/privacy.html">Privacy</a></li>' +
-            '<li><a href="/terms.html">Terms</a></li>' +
+            '<li><a href="/privacy">Privacy</a></li>' +
+            '<li><a href="/terms">Terms</a></li>' +
           '</ul>' +
         '</div>' +
       '</div>' +
