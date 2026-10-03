@@ -180,6 +180,7 @@ const NAV_LINKS = [
     ]
   },
   { href: "/quick-notes", label: "Quick Notes" },
+  { href: "/guides", label: "Guides" },
   { href: "/apps?tier=pro", label: "Pro Apps" },
   { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" }
@@ -340,6 +341,7 @@ function renderFooter() {
             '<li><a href="/ai-explorers">AI &amp; Coding</a></li>' +
             '<li><a href="/early-years">Early Years</a></li>' +
             '<li><a href="/quick-notes">Quick Notes</a></li>' +
+            '<li><a href="/guides">Guides</a></li>' +
             '<li><a href="/apps?tier=free">Free Apps</a></li>' +
             '<li><a href="/apps?tier=pro">Pro Apps</a></li>' +
           '</ul>' +
@@ -350,6 +352,8 @@ function renderFooter() {
             '<li><a href="/about">About</a></li>' +
             '<li><a href="/faq">FAQ</a></li>' +
             '<li><a href="/contact">Contact</a></li>' +
+            '<li><a href="https://www.pinterest.com/theteachervault/" target="_blank" rel="noopener">Pinterest</a></li>' +
+            '<li><a href="https://www.facebook.com/profile.php?id=61587245637113" target="_blank" rel="noopener">Facebook</a></li>' +
           '</ul>' +
         '</div>' +
         '<div class="footer-col">' +
