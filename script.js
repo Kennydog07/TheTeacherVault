@@ -331,7 +331,7 @@ function renderFooter() {
         '<div class="footer-col">' +
           chalkLogo("footer") +
           '<p class="footer-desc">Practical tools for teachers. Free revision resources for students.</p>' +
-          '<p class="gumroad-note">Teacher tools are fulfilled through Gumroad. Student apps and Quick Notes open or download directly from this site.</p>' +
+          '<p class="gumroad-note">Free apps open or download directly from this site. Pro upgrades are fulfilled through Gumroad.</p>' +
         '</div>' +
         '<div class="footer-col">' +
           '<h4>Explore</h4>' +
