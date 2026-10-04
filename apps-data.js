@@ -1659,6 +1659,7 @@ const APPS = [
   {
     id: "ks2-ww2-britain-at-war",
     title: "World War II: Britain at War",
+    keywords: "WW2 WWII World War 2 World War Two Second World War Blitz evacuees evacuation rationing ration book Battle of Britain Home Front Dunkirk VE Day D-Day history",
     tagline: "An interactive KS2 history adventure.",
     description: "A free interactive KS2 history hub on Britain in the Second World War: an eight-event timeline, Home Front cards, an evacuee suitcase activity, a ration-book challenge, a Battle of Britain radar activity, a source detective, myth or fact, a 15-question quiz with certificate, a glossary and printable worksheets.",
     category: "revision",

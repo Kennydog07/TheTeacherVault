@@ -148,9 +148,14 @@
       if (q) {
         var haystack = (
           app.title + " " + app.tagline + " " + app.description + " " +
-          app.subject + " " + app.audience + " " + categoryLabel(app)
+          app.subject + " " + app.audience + " " + categoryLabel(app) + " " + (app.keywords || "")
         ).toLowerCase();
-        if (haystack.indexOf(q) === -1) return false;
+        /* Every word typed must appear somewhere, in any order, so
+           "ww2 history" or "year 6 maths" still find what you'd expect. */
+        var words = q.split(/\s+/).filter(Boolean);
+        for (var w = 0; w < words.length; w++) {
+          if (haystack.indexOf(words[w]) === -1) return false;
+        }
       }
       return true;
     });

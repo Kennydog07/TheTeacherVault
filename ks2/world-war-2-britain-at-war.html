@@ -1224,13 +1224,13 @@ function initSuitcase(){
   update();
   $('#scCheck').addEventListener('click',()=>{
     const packed=$$('.sc-item',cas);const out=$('#scResult');
-    if(!packed.length){out.innerHTML=infoHTML('Pack at least one item into the suitcase first, then press “Check my suitcase”.');return;}
+    if(packed.length<5){out.innerHTML=infoHTML('Pack at least 5 items into the suitcase first (you can take up to 8), then press “Check my suitcase”.');return;}
     let good=0,li='';packed.forEach(b=>{const it=itemOf(b);if(it.ok)good++;b.classList.remove('ok','no');b.classList.add(it.ok?'ok':'no');li+='<li>'+(it.ok?'✅':'❌')+' <strong>'+it.n+':</strong> '+it.why+'</li>';});
     const left=ITEMS.filter(i=>i.ok&&!packed.some(b=>b.dataset.id===i.id));
     let html='<div class="paper tape" style="margin-top:14px"><h3>Your suitcase check</h3><p><strong>You packed '+good+' suitable '+(good===1?'item':'items')+' out of '+packed.length+'.</strong></p><ul class="sc-list">'+li+'</ul>';
     if(left.length)html+='<h4>Useful things you left on the table</h4><ul class="sc-list">'+left.map(i=>'<li>'+i.e+' <strong>'+i.n+':</strong> '+i.why+'</li>').join('')+'</ul>';
     html+='<div class="note light" style="margin-bottom:0"><strong>Different evacuees, different stories.</strong> Evacuation was experienced in many different ways. Some children were happy and safe in kind homes, and enjoyed fresh air and new friends. Others felt lonely, homesick or frightened, and some were treated badly or split up from brothers and sisters. Host families differed too: some were generous, while others had little space or money. Many children went home when it seemed safe, and some were evacuated more than once. Historians use letters, diaries, school records and memories to understand all of these different experiences.</div></div>';
-    out.innerHTML=html;sfx.good();say('Suitcase checked. You packed '+good+' suitable items out of '+packed.length+'.');S.suit=true;save();setDone('suitcase',true,true);
+    const pass=good>=6;out.innerHTML=html+(pass?'':infoHTML('<strong>Have another go!</strong> To complete this activity you need at least 6 suitable items in your suitcase. Swap the ❌ items for useful things from the hall table, then check again.'));sfx[pass?'good':'bad']();say('Suitcase checked. You packed '+good+' suitable items out of '+packed.length+'.'+(pass?'':' You need at least 6 suitable items to complete this activity, so have another go.'));if(pass){S.suit=true;save();setDone('suitcase',true,true);}
   });
   $('#scReset').addEventListener('click',()=>{$$('.sc-item').forEach(b=>{b.classList.remove('ok','no');table.appendChild(b);});update();$('#scResult').innerHTML='';say('Suitcase emptied.');});
 }
@@ -1391,11 +1391,11 @@ function initQuiz(){
 
 /* ================= Glossary ================= */
 function initGlossary(){
-  const list=$('#glList'),q=$('#glQ');let used=false;
+  const list=$('#glList'),q=$('#glQ');const found=new Set();
   function render(){const t=q.value.trim().toLowerCase();const items=GLOSS.filter(g=>!t||g[0].toLowerCase().includes(t)||g[1].toLowerCase().includes(t));
     list.innerHTML=items.map(g=>'<li class="paper"><h3>'+g[0]+'</h3><p>'+g[1]+'</p></li>').join('')||'<li class="paper"><p>No words found. Try a different spelling or fewer letters.</p></li>';
     $('#glCount').textContent=items.length+' of '+GLOSS.length+' words shown';}
-  q.addEventListener('input',()=>{render();if(!used&&q.value.trim().length>=2){used=true;setDone('glossary',true,true);}});
+  q.addEventListener('input',()=>{render();const t=q.value.trim().toLowerCase();if(t.length>=4&&$$('#glList li h3').length>0){found.add(t);const words=new Set([...found].filter(x=>![...found].some(y=>y!==x&&y.startsWith(x))));if(words.size>=3)setDone('glossary',true,true);}});
   render();
 }
 
