@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World War II: Britain at War – KS2 Interactive Learning Hub | The Teacher Vault</title>
+<meta name="description" content="An interactive KS2 history adventure about Britain in the Second World War: timeline, Home Front, evacuation, rationing, the Battle of Britain, source detective, quiz, glossary and printable resources.">
+<meta name="theme-color" content="#14352b">
+<style>
+:root{
+  --board:#14352b;--board2:#0d2620;--board3:#1d4638;
+  --chalk:#f6f3e8;--chalk-dim:#d3dfd6;
+  --cream:#f7edd0;--paper:#fcf6e2;--paper2:#efe1b8;--ink:#1f1b16;--ink2:#4a4034;
+  --red:#b31b2a;--red-d:#8f1220;--blue:#1d3f8f;--blue-d:#14296a;--navy:#13244f;
+  --gold:#f0b72f;--gold-d:#c58f12;--ok:#1b6b37;--bad:#a8201a;
+  --wood:#7a5230;--wood-l:#b98a56;
+  --r:14px;--shadow:0 8px 22px rgba(0,0,0,.35);
+  --chalkfont:"Segoe Print","Bradley Hand","Chalkboard SE","Comic Sans MS","Marker Felt",cursive;
+  --body:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:92px;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--body);font-size:1.0625rem;line-height:1.6;color:var(--chalk);
+  background:
+   radial-gradient(1100px 520px at 8% -8%,rgba(255,255,255,.08),transparent 62%),
+   radial-gradient(900px 480px at 100% 18%,rgba(255,255,255,.05),transparent 62%),
+   repeating-linear-gradient(115deg,rgba(255,255,255,.014) 0 2px,transparent 2px 8px),
+   var(--board);
+  min-height:100vh}
+body.modal-open{overflow:hidden}
+img,svg{max-width:100%}
+a{color:#ffe08a}
+a:hover{color:#fff}
+h1,h2,h3,h4{line-height:1.2;margin:0 0 .5em}
+p{margin:0 0 1em}
+ul,ol{margin:0 0 1em;padding-left:1.3em}
+.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+.sr-only{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:absolute;left:12px;top:-60px;background:var(--gold);color:var(--ink);padding:10px 16px;border-radius:8px;font-weight:700;z-index:3000}
+.skip:focus{top:10px}
+:focus-visible{outline:3px solid #ffd54a;outline-offset:3px;border-radius:4px}
+.paper :focus-visible,.modal :focus-visible{outline-color:var(--blue)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:48px;min-width:48px;padding:10px 20px;border:2px solid transparent;border-radius:12px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none;line-height:1.2;text-align:center;transition:transform .15s,box-shadow .15s,background .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(1px)}
+.btn[disabled]{opacity:.5;cursor:not-allowed;transform:none}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 4px 0 var(--red-d)}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:0 4px 0 var(--blue-d)}
+.btn-gold{background:var(--gold);color:var(--ink);box-shadow:0 4px 0 var(--gold-d)}
+.btn-cream{background:var(--cream);color:var(--ink);box-shadow:0 4px 0 #b9a877}
+.btn-ghost{background:transparent;color:var(--chalk);border-color:rgba(246,243,232,.6)}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.paper .btn-ghost,.modal .btn-ghost{color:var(--ink);border-color:rgba(31,27,22,.45)}
+.paper .btn-ghost:hover,.modal .btn-ghost:hover{background:rgba(31,27,22,.07)}
+.btn-lg{font-size:1.2rem;padding:14px 28px}
+.btn-sm{min-height:44px;padding:6px 14px;font-size:.95rem}
+
+/* Paper, tape, pins, stamps */
+.paper{position:relative;color:var(--ink);background:
+   linear-gradient(135deg,rgba(255,255,255,.55),transparent 40%),
+   radial-gradient(circle at 85% 95%,rgba(150,110,40,.18),transparent 45%),
+   var(--paper);border-radius:6px;padding:24px;box-shadow:var(--shadow)}
+.paper h2,.paper h3,.paper h4{color:var(--navy)}
+.paper a{color:var(--blue)}
+.tape::before{content:"";position:absolute;top:-13px;left:50%;width:110px;height:28px;margin-left:-55px;background:rgba(237,221,150,.8);transform:rotate(-2.5deg);box-shadow:0 1px 3px rgba(0,0,0,.25);border-left:2px dotted rgba(120,90,20,.25);border-right:2px dotted rgba(120,90,20,.25)}
+.pin::after{content:"";position:absolute;top:-8px;right:18px;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff8a8a,var(--red) 55%,#5c0a14);box-shadow:0 3px 4px rgba(0,0,0,.4)}
+.stamp{display:inline-block;border:3px solid var(--red-d);color:var(--red-d);font-weight:900;letter-spacing:.12em;text-transform:uppercase;padding:2px 10px;border-radius:6px;transform:rotate(-7deg);background:rgba(255,255,255,.35);font-size:.85rem}
+.stamp.pop{animation:stampIn .5s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes stampIn{0%{transform:scale(2.4) rotate(-20deg);opacity:0}100%{transform:scale(1) rotate(-7deg);opacity:1}}
+.recreated{font-size:.8rem;border:2px dashed var(--red-d);color:var(--red-d);padding:3px 10px;border-radius:6px;display:inline-block;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:#fff7f0}
+
+/* Top bar */
+.topbar{position:sticky;top:0;z-index:900;background:rgba(10,32,26,.97);border-bottom:6px solid var(--wood);box-shadow:0 4px 14px rgba(0,0,0,.4)}
+.topbar-in{display:flex;align-items:center;gap:10px;width:min(1280px,100% - 20px);margin-inline:auto;padding:6px 0}
+.brand{display:flex;align-items:center;gap:8px;color:var(--chalk);font-weight:800;text-decoration:none;white-space:nowrap;font-size:.95rem}
+.brand svg{width:34px;height:34px}
+#nav{flex:1;min-width:0;overflow-x:auto;scrollbar-width:thin;scrollbar-color:#6f9484 transparent}
+#nav::-webkit-scrollbar{height:6px}
+#nav::-webkit-scrollbar-track{background:transparent}
+#nav::-webkit-scrollbar-thumb{background:#6f9484;border-radius:6px}
+#navList{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+#navList a{display:flex;align-items:center;gap:5px;min-height:44px;padding:6px 10px;border-radius:10px;color:var(--chalk);text-decoration:none;font-size:.88rem;font-weight:600;white-space:nowrap}
+#navList a:hover{background:rgba(255,255,255,.1)}
+#navList a[aria-current="true"]{background:var(--gold);color:var(--ink)}
+#navList a .tick{display:none;color:#8fe3a4;font-weight:900}
+#navList a.done .tick{display:inline}
+#navList a[aria-current="true"] .tick{color:var(--ok)}
+.menu-btn{display:none}
+.topbar-progress{height:5px;background:rgba(255,255,255,.12)}
+#topBar{height:100%;width:0;background:linear-gradient(90deg,var(--red),#fff,var(--blue));transition:width .5s}
+.snd-toggle{min-height:44px;padding:6px 12px;border-radius:10px;border:2px solid rgba(246,243,232,.55);background:transparent;color:var(--chalk);font:inherit;font-weight:700;font-size:.88rem;cursor:pointer;white-space:nowrap}
+.snd-toggle[aria-pressed="true"]{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;padding:56px 0 48px;border-bottom:8px solid var(--wood)}
+.hero-sky{position:absolute;inset:0;pointer-events:none;opacity:.9}
+.hero-sky svg{position:absolute;inset:0;width:100%;height:100%}
+.plane{position:absolute;font-size:2.2rem;top:14%;left:0;filter:drop-shadow(0 4px 3px rgba(0,0,0,.4));animation:fly 26s linear infinite;transform:translateX(-12vw)}
+.plane.p2{top:62%;font-size:1.5rem;animation-duration:38s;animation-delay:-14s;opacity:.8}
+@keyframes fly{from{transform:translateX(-12vw) rotate(-6deg)}50%{transform:translateX(50vw) rotate(4deg)}to{transform:translateX(112vw) rotate(-6deg)}}
+.hero-in{position:relative;display:grid;grid-template-columns:1.25fr .75fr;gap:32px;align-items:center}
+.kicker{display:inline-block;background:var(--red);color:#fff;padding:4px 14px;border-radius:999px;font-weight:800;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px}
+.hero h1{font-family:var(--chalkfont);font-size:clamp(2.1rem,6vw,3.7rem);color:#fff;text-shadow:3px 3px 0 rgba(0,0,0,.35);margin-bottom:.2em}
+.hero-sub{font-family:var(--chalkfont);font-size:clamp(1.15rem,3vw,1.7rem);color:var(--gold);margin-bottom:.6em}
+.hero-p{font-size:1.15rem;max-width:60ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}
+.hero-prog{padding:20px}
+.prog-count{font-size:1.5rem;font-weight:800;margin:0 0 6px;color:var(--navy)}
+.bar{height:16px;border-radius:999px;background:#d9ccA4;overflow:hidden;border:2px solid var(--ink2)}
+.bar>div{height:100%;width:0;background:repeating-linear-gradient(45deg,var(--red) 0 12px,#fff 12px 24px,var(--blue) 24px 36px);transition:width .6s}
+.stamps{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;padding:0;list-style:none}
+.stamps li{width:34px;height:34px;border-radius:50%;border:2px dashed rgba(31,27,22,.4);display:grid;place-items:center;font-size:.8rem;font-weight:800;color:rgba(31,27,22,.5)}
+.stamps li.done{border:3px solid var(--red-d);color:var(--red-d);background:rgba(255,255,255,.4);transform:rotate(-8deg)}
+.guide{display:flex;gap:14px;align-items:flex-end;margin:18px 0}
+.guide svg{width:84px;height:84px;flex:none;filter:drop-shadow(0 4px 4px rgba(0,0,0,.35))}
+.bubble{position:relative;background:var(--cream);color:var(--ink);padding:14px 18px;border-radius:18px;max-width:62ch;box-shadow:var(--shadow);font-size:1rem}
+.bubble::before{content:"";position:absolute;left:-12px;bottom:18px;border:10px solid transparent;border-right-color:var(--cream);border-left:0}
+.bubble strong{color:var(--red-d)}
+.bubble p:last-child{margin-bottom:0}
+
+/* Teacher box */
+.teacher-box{margin:44px auto 0;max-width:980px;border-left:10px solid var(--blue)}
+.teacher-box h2{font-size:1.25rem;margin-bottom:.4em}
+.teacher-box p:last-child{margin-bottom:0}
+
+/* Sections */
+.sec{padding:64px 0 24px;position:relative}
+.sec+.sec{border-top:2px dashed rgba(246,243,232,.2)}
+.sec-head{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:10px}
+.sec-num{flex:none;width:54px;height:54px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-weight:900;font-size:1.4rem;box-shadow:0 4px 0 var(--red-d);border:3px solid #fff}
+.sec h2{font-family:var(--chalkfont);font-size:clamp(1.6rem,4.2vw,2.5rem);color:#fff;margin:0;position:relative}
+.sec h2:focus{outline:none}
+.sec h2:focus-visible{outline:3px solid #ffd54a}
+.sec-done{margin-left:auto}
+.lead{font-size:1.15rem;max-width:72ch;color:var(--chalk-dim)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+.note{background:rgba(255,255,255,.08);border:2px dashed rgba(246,243,232,.4);border-radius:var(--r);padding:16px 20px;margin:18px 0}
+.note.light{background:var(--cream);color:var(--ink);border-color:var(--wood)}
+.note.light strong{color:var(--red-d)}
+.sec-foot{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin:34px 0 0;padding-top:20px;border-top:2px solid rgba(246,243,232,.18)}
+.sec-foot .btn-gold[aria-pressed="true"]{background:#2e8b57;color:#fff;box-shadow:0 4px 0 #1c5d3a}
+.fb{margin-top:12px;padding:12px 16px;border-radius:10px;font-weight:600;border:2px solid;display:flex;gap:10px;align-items:flex-start}
+.fb.good{background:#e3f4e6;border-color:var(--ok);color:#12461f}
+.fb.bad{background:#fde8e6;border-color:var(--bad);color:#6b130e}
+.fb.info{background:#e6eefc;border-color:var(--blue);color:#142a66}
+.fb .ic{font-size:1.2rem;flex:none}
+.choices{display:grid;gap:10px;margin:14px 0}
+.choice{display:flex;align-items:center;gap:12px;text-align:left;min-height:52px;padding:10px 16px;border-radius:12px;border:2px solid var(--ink2);background:#fff;color:var(--ink);font:inherit;font-weight:600;cursor:pointer}
+.choice:hover:not([disabled]){background:#fff3c4}
+.choice .k{flex:none;width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:.85rem;font-weight:800}
+.choice.right{background:#dff3e3;border-color:var(--ok)}
+.choice.wrong{background:#fbe0dd;border-color:var(--bad)}
+.choice[disabled]{cursor:default}
+.choice.right::after{content:"✔";margin-left:auto;font-weight:900;color:var(--ok)}
+.choice.wrong::after{content:"✘";margin-left:auto;font-weight:900;color:var(--bad)}
+
+/* Timeline */
+.tl{list-style:none;margin:36px 0;padding:0;position:relative}
+.tl::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:6px;margin-left:-3px;background:repeating-linear-gradient(180deg,var(--chalk) 0 14px,transparent 14px 24px);opacity:.6}
+.tl li{position:relative;width:50%;padding:0 38px 28px 0}
+.tl li:nth-child(even){margin-left:50%;padding:0 0 28px 38px}
+.tl li::before{content:"";position:absolute;top:22px;right:-10px;width:20px;height:20px;border-radius:50%;background:var(--gold);border:4px solid var(--board);box-shadow:0 0 0 3px var(--chalk);z-index:1}
+.tl li:nth-child(even)::before{right:auto;left:-10px}
+.tl-card{display:block;width:100%;text-align:left;font:inherit;border:0;cursor:pointer;transition:transform .2s}
+.tl-card:hover{transform:rotate(-1deg) translateY(-3px)}
+.tl-card .date{display:inline-block;background:var(--red);color:#fff;padding:2px 10px;border-radius:6px;font-weight:800;font-size:.85rem;margin-bottom:6px}
+.tl-card h3{margin:0 0 4px;font-size:1.15rem}
+.tl-card .open{font-size:.9rem;color:var(--blue);font-weight:700}
+.tl-card .seen{position:absolute;top:10px;right:12px}
+
+/* Home front */
+.hf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px;margin:26px 0}
+.hf-card{position:relative;text-align:center;font:inherit;cursor:pointer;border:0;min-height:170px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;transition:transform .2s}
+.hf-card:nth-child(odd){transform:rotate(-1.2deg)}
+.hf-card:nth-child(even){transform:rotate(1deg)}
+.hf-card:hover{transform:rotate(0) translateY(-5px) scale(1.02)}
+.hf-card .ico{font-size:3rem;line-height:1}
+.hf-card h3{margin:0;font-size:1.1rem}
+.hf-card .seen{position:absolute;top:10px;right:12px}
+.hf-card .go{font-size:.9rem;color:var(--blue);font-weight:700}
+
+/* Modal */
+.modal-back{position:fixed;inset:0;background:rgba(4,14,11,.78);display:grid;place-items:center;z-index:2000;padding:14px;animation:fade .2s}
+.modal{width:min(680px,100%);max-height:92vh;overflow:auto;padding:28px;animation:pop .28s cubic-bezier(.2,1.3,.4,1);margin-top:14px}
+.modal:focus{outline:none}
+.modal-x{position:absolute;top:8px;right:8px;width:48px;height:48px;border-radius:50%;border:2px solid var(--ink2);background:#fff;font-size:1.6rem;line-height:1;cursor:pointer;color:var(--ink)}
+.modal h3{font-size:1.5rem;padding-right:44px;margin-bottom:.3em}
+.modal-nav{display:flex;justify-content:space-between;gap:10px;margin-top:22px;flex-wrap:wrap}
+.fact{background:#fff4c9;border-left:6px solid var(--gold-d);padding:10px 14px;border-radius:6px;margin:12px 0}
+.think{background:#e6eefc;border-left:6px solid var(--blue);padding:10px 14px;border-radius:6px;margin:12px 0}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes pop{from{opacity:0;transform:scale(.88) translateY(20px)}to{opacity:1;transform:none}}
+
+/* Map */
+.map-wrap{position:relative;max-width:860px;margin:24px auto}
+.map-svg{display:block;width:100%;height:auto;border-radius:10px;background:#9cc3d9;border:6px solid var(--wood)}
+.land{fill:#ead9a3;stroke:#6b5a2a;stroke-width:2.5;transition:fill .4s}
+.show-sides .land.axis{fill:#e99a95}
+.show-sides .land.ally{fill:#8fb3ee}
+.map-pin{position:absolute;transform:translate(-50%,-50%);min-height:44px;min-width:44px;padding:6px 12px;border-radius:999px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);font:inherit;font-weight:800;font-size:.9rem;cursor:pointer;box-shadow:0 3px 6px rgba(0,0,0,.35)}
+.map-pin.vis{background:#dff3e3}
+.map-pin[aria-pressed="true"]{background:var(--gold)}
+.march{stroke-dasharray:10 8;animation:dash 1.2s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-36}}
+.legend{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin:10px 0}
+.legend span{display:inline-flex;align-items:center;gap:8px;font-weight:700}
+.legend i{width:18px;height:18px;border-radius:4px;border:2px solid var(--ink);display:inline-block}
+.axrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px 0;border-bottom:1px dashed rgba(31,27,22,.3)}
+.axrow .nm{font-weight:800;min-width:110px}
+.axrow .fbm{flex:1 1 100%;font-size:.95rem}
+
+/* Suitcase */
+.sc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.sc-zone{min-height:300px;border-radius:12px;padding:16px;display:flex;flex-wrap:wrap;gap:10px;align-content:flex-start}
+.sc-table{background:rgba(255,255,255,.1);border:3px dashed rgba(246,243,232,.5)}
+.sc-case{background:linear-gradient(180deg,#8c5a31,#6a4122);border:6px solid #3d2410;position:relative;box-shadow:inset 0 0 0 4px rgba(255,255,255,.1)}
+.sc-case::before{content:"";position:absolute;top:-22px;left:50%;width:90px;height:22px;margin-left:-45px;border:6px solid #3d2410;border-bottom:0;border-radius:14px 14px 0 0}
+.sc-zone.over{outline:4px solid var(--gold)}
+.sc-zone h3{flex:1 1 100%;margin:0;font-size:1.05rem;color:#fff}
+.sc-item{flex:1 1 150px;display:flex;align-items:center;gap:8px;min-height:52px;padding:8px 12px;border-radius:10px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);font:inherit;font-weight:600;font-size:.95rem;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;text-align:left}
+.sc-item .e{font-size:1.5rem}
+.sc-item.dragging{opacity:.35}
+.sc-item.ok{background:#dff3e3;border-color:var(--ok)}
+.sc-item.no{background:#fbe0dd;border-color:var(--bad)}
+.ghost{position:fixed;z-index:3000;pointer-events:none;transform:translate(-50%,-50%) rotate(-4deg);box-shadow:0 10px 20px rgba(0,0,0,.4)}
+.sc-count{font-weight:800;color:#fff;flex:1 1 100%}
+.sc-list{list-style:none;padding:0;margin:12px 0}
+.sc-list li{padding:8px 0;border-bottom:1px dashed rgba(31,27,22,.3)}
+
+/* Ration */
+.ration-grid{display:grid;grid-template-columns:minmax(260px,330px) 1fr;gap:22px;align-items:start}
+.rbook{background:linear-gradient(160deg,#e9c47a,#d6a652);color:var(--ink);border-radius:8px 18px 18px 8px;border-left:14px solid #8a5a1a;padding:18px;box-shadow:var(--shadow);position:relative}
+.rbook h3{margin:0 0 4px;font-size:1.1rem;color:var(--navy);text-transform:uppercase;letter-spacing:.06em}
+.rbook small{display:block;margin-bottom:10px;font-weight:600}
+.coupons{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.coupon{aspect-ratio:1;border-radius:8px;border:2px dashed #7a5a22;display:grid;place-items:center;font-weight:900;background:#fff7dc;position:relative}
+.coupon.used{background:#e7d6a5;color:rgba(31,27,22,.4)}
+.coupon.used::after{content:"✕";position:absolute;color:var(--red-d);font-size:1.8rem;transform:rotate(-12deg)}
+.left{margin:12px 0 0;font-size:1.2rem;font-weight:800}
+.foods{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:12px 0}
+.food{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-height:76px;padding:10px 12px;border-radius:12px;border:2px solid var(--ink);background:#fff;color:var(--ink);font:inherit;font-weight:700;cursor:pointer;text-align:left}
+.food .cost{font-size:.8rem;font-weight:700;color:var(--blue)}
+.food[disabled]{opacity:.45;cursor:not-allowed}
+.meals{display:grid;gap:12px;margin:12px 0}
+.meal{border:3px solid var(--ink2);border-radius:12px;padding:10px 14px;background:#fff}
+.meal[aria-current="true"]{border-color:var(--red);background:#fff3c4}
+.meal-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-weight:800;color:var(--ink)}
+.meal .btn-ghost,.hot-info .btn-ghost,.sec .paper .btn-ghost{color:var(--ink);border-color:rgba(31,27,22,.45)}
+.meal .chips span{color:var(--ink2)}
+.axrow .btn-gold{box-shadow:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;min-height:40px}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:4px 12px;border-radius:999px;border:2px solid var(--blue);background:#eaf0ff;color:var(--ink);font:inherit;font-weight:700;cursor:pointer}
+.chip:hover{background:#fdd}
+
+/* Battle / radar */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin:24px 0}
+.facts .paper h3{font-size:1.15rem}
+.radar-wrap{display:grid;grid-template-columns:minmax(280px,440px) 1fr;gap:26px;align-items:center;margin:22px 0}
+.radar{position:relative;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#0b3d1f 0%,#07260f 70%);border:10px solid #2c2c2c;box-shadow:0 0 0 4px #777,0 0 26px rgba(80,255,120,.35) inset;overflow:hidden}
+.radar .ring{position:absolute;border:1px solid rgba(110,255,150,.35);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%)}
+.radar .cross{position:absolute;background:rgba(110,255,150,.25)}
+.radar .cross.h{left:0;right:0;top:50%;height:1px}.radar .cross.v{top:0;bottom:0;left:50%;width:1px}
+.sweep{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,rgba(110,255,150,.55),rgba(110,255,150,0) 70deg,transparent 70deg);animation:spin 5s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.blip{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;border:2px solid #b6ffc8;background:rgba(150,255,180,.18);cursor:pointer;display:grid;place-items:center;color:#d8ffe3;font-weight:900;font-size:.95rem;animation:blink 1.8s ease-in-out infinite}
+.blip:hover,.blip[aria-pressed="true"]{background:rgba(255,224,110,.5);border-color:#ffe08a;color:#fff}
+.blip.done{animation:none;background:rgba(60,160,90,.55);border-color:#7be59a}
+@keyframes blink{0%,100%{box-shadow:0 0 0 0 rgba(150,255,180,.7)}50%{box-shadow:0 0 0 10px rgba(150,255,180,0)}}
+.radar-panel{background:rgba(255,255,255,.08);border-radius:var(--r);padding:18px;border:2px solid rgba(246,243,232,.3)}
+.radar-panel .choice{color:var(--ink)}
+.rscore{font-weight:800;color:var(--gold)}
+
+/* Shelter */
+.shelter-wrap{position:relative;max-width:900px;margin:22px auto}
+.shelter-svg{display:block;width:100%;height:auto;border-radius:10px;border:6px solid var(--wood);background:#10204a}
+.hot{position:absolute;transform:translate(-50%,-50%);min-width:48px;min-height:48px;border-radius:50%;border:3px solid #fff;background:var(--red);color:#fff;font:inherit;font-weight:900;cursor:pointer;box-shadow:0 0 0 0 rgba(255,255,255,.8);animation:ping 2s infinite}
+.hot.vis{background:var(--ok);animation:none}
+.hot[aria-pressed="true"]{background:var(--gold);color:var(--ink)}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(255,255,255,.8)}70%,100%{box-shadow:0 0 0 14px rgba(255,255,255,0)}}
+.hot-info{min-height:140px}
+.hot-list{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;list-style:none;padding:0}
+.siren-box{margin-top:26px}
+.warn{background:#fff0c2;border:3px solid var(--gold-d);color:var(--ink);border-radius:10px;padding:12px 16px;font-weight:600}
+.siren-btns{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;align-items:center}
+.vol{display:flex;align-items:center;gap:10px;font-weight:700}
+.vol input{width:160px;min-height:44px}
+
+/* Sources */
+.src-tabs{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.src-tab{display:flex;align-items:center;gap:8px;min-height:52px;padding:8px 16px;border-radius:12px;border:2px solid var(--chalk);background:transparent;color:var(--chalk);font:inherit;font-weight:700;cursor:pointer}
+.src-tab[aria-selected="true"]{background:var(--cream);color:var(--ink);border-color:var(--gold)}
+.src-tab.done::after{content:"✔";color:#8fe3a4;font-weight:900}
+.src-tab[aria-selected="true"].done::after{color:var(--ok)}
+.src-doc{font-family:Georgia,"Times New Roman",serif;font-size:1.1rem;background:#f4e7bd;border:2px solid #b9a56a;padding:18px 22px;border-radius:4px;margin:12px 0;line-height:1.55}
+.src-doc.poster{font-family:Impact,"Arial Black",system-ui,sans-serif;text-align:center;background:linear-gradient(180deg,#fff,#ffe9a8);border:6px solid var(--red);color:var(--navy);font-size:1.25rem;text-transform:uppercase}
+.src-doc.news{background:#f1ede1;border:1px solid #888;text-align:center}
+.src-doc.news h4{font-family:Georgia,serif;font-size:1.7rem;margin:.2em 0;color:#111;text-transform:uppercase;letter-spacing:.02em}
+.qstep{font-weight:800;color:var(--red-d);margin-bottom:6px}
+
+/* Myths */
+.myth-list{display:grid;gap:16px;margin:20px 0}
+.myth{display:grid;gap:10px}
+.myth p.s{font-size:1.1rem;font-weight:700;margin:0}
+.myth .row{display:flex;gap:10px;flex-wrap:wrap}
+.score-pill{display:inline-block;background:var(--gold);color:var(--ink);padding:4px 14px;border-radius:999px;font-weight:800}
+
+/* Quiz */
+.quiz-card{max-width:820px;margin:20px auto}
+.qbar{height:14px;border-radius:999px;background:#d9ccA4;border:2px solid var(--ink2);overflow:hidden;margin:6px 0 16px}
+.qbar>div{height:100%;background:var(--blue);width:0;transition:width .4s}
+.qmeta{display:flex;justify-content:space-between;flex-wrap:wrap;font-weight:800;color:var(--ink2)}
+.q-text{font-size:1.2rem;font-weight:800;color:var(--navy)}
+.q-src{font-family:Georgia,serif;background:#f4e7bd;border:2px solid #b9a56a;padding:12px 16px;border-radius:4px;margin:10px 0}
+.ord{list-style:none;padding:0;margin:12px 0;display:grid;gap:8px}
+.ord li{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--ink2);border-radius:10px;padding:6px 10px;min-height:52px}
+.ord li span.t{flex:1;font-weight:600}
+.ord button{min-width:44px;min-height:44px;border-radius:8px;border:2px solid var(--ink2);background:var(--cream);font-size:1.1rem;cursor:pointer;color:var(--ink)}
+.ord button[disabled]{opacity:.35;cursor:not-allowed}
+.ord li.right{background:#dff3e3;border-color:var(--ok)}
+.ord li.wrong{background:#fbe0dd;border-color:var(--bad)}
+.mrow{display:flex;gap:12px;flex-wrap:wrap;align-items:center;padding:8px 0;border-bottom:1px dashed rgba(31,27,22,.3)}
+.mrow label{flex:1 1 220px;font-weight:700}
+.mrow select{flex:1 1 220px;min-height:48px;font:inherit;padding:6px 10px;border-radius:8px;border:2px solid var(--ink2);background:#fff;color:var(--ink)}
+.mrow.right select{background:#dff3e3;border-color:var(--ok)}
+.mrow.wrong select{background:#fbe0dd;border-color:var(--bad)}
+.result{text-align:center}
+.medal{font-size:5rem;line-height:1;animation:pop .6s both}
+.big{font-size:2.4rem;font-weight:900;color:var(--navy)}
+.name-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;align-items:center;margin:14px 0}
+.name-row input{min-height:48px;font:inherit;padding:6px 14px;border-radius:10px;border:2px solid var(--ink2);min-width:220px;color:var(--ink);background:#fff}
+.certificate{margin:20px auto 0;max-width:760px;text-align:center;padding:34px 30px;border:14px double var(--red-d);background:
+ radial-gradient(circle at 50% 0%,rgba(255,255,255,.7),transparent 60%),#fff9e3;color:var(--ink);position:relative}
+.certificate h4{font-family:var(--chalkfont);font-size:2rem;color:var(--red-d);margin:0 0 6px}
+.certificate .cname{font-family:var(--chalkfont);font-size:2.2rem;color:var(--navy);border-bottom:3px solid var(--ink2);display:inline-block;min-width:260px;padding:0 14px;margin:8px 0}
+.certificate .cm{font-size:3.4rem}
+
+/* Glossary */
+.gl-search{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:18px 0}
+.gl-search input{flex:1 1 260px;min-height:52px;font:inherit;padding:8px 16px;border-radius:12px;border:3px solid var(--ink2);color:var(--ink);background:#fff}
+.gl-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:0;padding:0;list-style:none}
+.gl-list li{padding:16px 18px}
+.gl-list h3{font-size:1.1rem;margin:0 0 4px}
+.gl-list p{margin:0}
+
+/* Adults */
+.adults{background:var(--cream);color:var(--ink);border-radius:10px;border:3px solid var(--wood);padding:0}
+.adults>summary{cursor:pointer;padding:18px 22px;font-weight:800;font-size:1.2rem;color:var(--navy);list-style:none;min-height:52px;display:flex;align-items:center;gap:10px}
+.adults>summary::-webkit-details-marker{display:none}
+.adults>summary::before{content:"▶";transition:transform .2s;font-size:.9em}
+.adults[open]>summary::before{transform:rotate(90deg)}
+.adults-in{padding:0 22px 22px}
+.adults details{border:2px solid rgba(31,27,22,.25);border-radius:8px;margin:10px 0;background:#fffaf0}
+.adults details summary{cursor:pointer;padding:12px 16px;font-weight:700;color:var(--navy);min-height:48px;display:flex;align-items:center}
+.adults details>div{padding:4px 18px 16px}
+.adults h4{margin:1em 0 .3em;color:var(--red-d)}
+.key{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.key table{border-collapse:collapse;width:100%;min-width:520px;font-size:.95rem}
+.key th,.key td{border:1px solid rgba(31,27,22,.35);padding:6px 10px;text-align:left;vertical-align:top}
+.key th{background:#efe1b8}
+
+/* Print cards */
+.pr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin:22px 0}
+.pr-card{display:flex;flex-direction:column;gap:10px;justify-content:space-between}
+.pr-card h3{font-size:1.1rem;margin:0}
+.pr-card p{font-size:.95rem;margin:0}
+
+/* Footer */
+.foot{margin-top:70px;background:var(--board2);border-top:8px solid var(--wood);padding:34px 0 120px;text-align:center}
+.foot p{max-width:70ch;margin:0 auto 10px}
+.foot .tag{font-weight:800;font-size:1.1rem}
+
+/* Floating buttons */
+.fab-row{position:fixed;left:14px;right:14px;bottom:14px;display:flex;justify-content:space-between;align-items:flex-end;pointer-events:none;z-index:1100}
+.fab-row>*{pointer-events:auto}
+.rubber{position:relative;width:128px;height:62px;border:0;border-radius:10px;cursor:pointer;color:#fff;font-family:var(--chalkfont);font-size:1.35rem;letter-spacing:.08em;text-shadow:0 0 1px #fff,1px 2px 0 rgba(255,255,255,.3);
+  background:linear-gradient(180deg,var(--wood-l) 0 30%,#5a3a1d 30% 36%,#2a2a2a 36% 100%);box-shadow:0 8px 0 #1a1a1a,0 12px 18px rgba(0,0,0,.5);transition:transform .15s,box-shadow .15s;display:grid;place-items:end center;padding-bottom:8px}
+.rubber::before{content:"";position:absolute;left:12px;right:12px;bottom:10px;height:20px;background:radial-gradient(ellipse at 30% 50%,rgba(255,255,255,.18),transparent 60%),radial-gradient(ellipse at 75% 40%,rgba(255,255,255,.12),transparent 60%);pointer-events:none}
+.rubber span{position:relative}
+.rubber:hover{transform:translateY(-3px) rotate(-3deg)}
+.rubber:active{transform:translateY(5px);box-shadow:0 3px 0 #1a1a1a,0 4px 8px rgba(0,0,0,.5)}
+.rubber:focus-visible{outline:4px solid #ffd54a;outline-offset:4px}
+.top-btn{width:52px;height:52px;border-radius:50%;border:3px solid #fff;background:var(--blue);color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 4px 10px rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:opacity .25s}
+.top-btn.show{opacity:1;pointer-events:auto}
+.print-menu{position:fixed;left:14px;bottom:100px;z-index:1200;width:min(320px,100% - 28px);padding:18px}
+.print-menu[hidden]{display:none}
+.print-menu h3{font-size:1.1rem;margin-bottom:.4em}
+.print-menu ul{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:8px}
+.print-menu .btn{width:100%;justify-content:flex-start}
+
+#printRoot{display:none}
+.toast{position:fixed;top:78px;left:50%;transform:translateX(-50%);background:var(--cream);color:var(--ink);border:3px solid var(--red-d);padding:10px 22px;border-radius:999px;font-weight:800;z-index:2500;box-shadow:var(--shadow);animation:pop .3s both}
+
+/* Blackout & dig widgets */
+.bo-scene{position:relative;height:190px;border-radius:10px;overflow:hidden;background:linear-gradient(#0a1230,#1a2550);border:3px solid var(--ink2);margin:10px 0}
+.bo-house{position:absolute;left:50%;bottom:0;width:170px;height:120px;margin-left:-85px;background:#6c4a33;border-radius:4px 4px 0 0}
+.bo-house::before{content:"";position:absolute;top:-46px;left:-12px;right:-12px;height:48px;background:#3a2a22;clip-path:polygon(0 100%,50% 0,100% 100%)}
+.bo-win{position:absolute;left:50%;top:26px;width:54px;height:54px;margin-left:-27px;border:5px solid #2b1c14;background:#ffe27a;box-shadow:0 0 36px 18px rgba(255,226,122,.55);transition:all .4s}
+.bo-scene.off .bo-win{background:#16110e;box-shadow:none}
+.bo-plane{position:absolute;top:14px;left:-40px;font-size:1.8rem;animation:fly 14s linear infinite}
+.bo-moon{position:absolute;right:20px;top:14px;font-size:1.8rem}
+.dig-row{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.plot{width:72px;height:72px;border-radius:10px;border:3px solid #4a2e12;background:#7a5230;font-size:2rem;cursor:pointer}
+.plot:hover{filter:brightness(1.15)}
+
+@media (max-width:980px){
+  .menu-btn{display:inline-flex;min-height:44px;padding:6px 14px;border-radius:10px;border:2px solid rgba(246,243,232,.55);background:transparent;color:var(--chalk);font:inherit;font-weight:700;cursor:pointer;margin-left:auto}
+  #nav{position:absolute;left:0;right:0;top:100%;background:rgba(10,32,26,.99);max-height:0;overflow:hidden;border-bottom:0;transition:max-height .3s}
+  .topbar.open #nav{max-height:80vh;overflow-y:auto;border-bottom:6px solid var(--wood)}
+  #navList{flex-direction:column;padding:10px}
+  #navList a{font-size:1rem}
+  .hero-in{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  body{font-size:1rem}
+  .tl::before{left:20px}
+  .tl li,.tl li:nth-child(even){width:100%;margin-left:0;padding:0 0 24px 52px}
+  .tl li::before,.tl li:nth-child(even)::before{left:10px;right:auto}
+  .sc-wrap,.ration-grid,.radar-wrap{grid-template-columns:1fr}
+  .sec{padding-top:48px}
+  .modal{padding:22px 16px}
+  .brand span{display:none}
+  .rubber{width:112px;height:56px;font-size:1.2rem}
+  .map-pin{font-size:.78rem;padding:4px 8px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .plane{animation:none;transform:translateX(60vw)}
+  .sweep{animation:none}
+  .march{animation:none}
+}
+
+/* ============ PRINT ============ */
+@page{size:A4 portrait;margin:14mm}
+@page cert{size:A4 landscape;margin:12mm}
+@media print{
+  html,body{background:#fff!important;color:#000!important;font-size:11.5pt;line-height:1.4;font-family:Arial,Helvetica,sans-serif}
+  body>*:not(#printRoot){display:none!important}
+  #printRoot{display:block!important}
+  *{animation:none!important;transition:none!important;box-shadow:none!important;text-shadow:none!important}
+  #printRoot h1{font-size:20pt;margin:0 0 4pt;color:#000}
+  #printRoot h2{font-size:14pt;margin:12pt 0 4pt;color:#000;break-after:avoid}
+  #printRoot h3{font-size:12pt;margin:8pt 0 3pt;color:#000;break-after:avoid}
+  #printRoot p,#printRoot li{color:#000}
+  .pw-head{border-bottom:3px solid #000;margin-bottom:10pt;padding-bottom:4pt;display:flex;justify-content:space-between;align-items:flex-end;gap:10pt}
+  .pw-head small{font-size:9.5pt}
+  .pw-name{margin:6pt 0 10pt;font-size:11pt}
+  .pw-note{border:1.5px dashed #000;padding:6pt 9pt;margin:6pt 0;font-size:10.5pt;break-inside:avoid}
+  .pw-sec{break-inside:avoid;page-break-inside:avoid;margin:8pt 0}
+  .pw-q{break-inside:avoid;page-break-inside:avoid;margin:0 0 9pt}
+  .pw-table{width:100%;border-collapse:collapse;margin:6pt 0}
+  .pw-table th,.pw-table td{border:1px solid #000;padding:5pt 7pt;text-align:left;vertical-align:top;font-size:10.5pt}
+  .pw-table th{background:#e8e8e8!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .pw-table tr{break-inside:avoid;page-break-inside:avoid}
+  .pw-lines{border-bottom:1px solid #000;height:18pt;margin:0 0 2pt}
+  .pw-box{border:1.5px solid #000;min-height:70pt;margin:5pt 0}
+  .pw-tick{display:inline-block;width:12pt;height:12pt;border:1.5px solid #000;vertical-align:middle;margin-right:5pt}
+  .pw-foot{position:fixed;bottom:0;left:0;right:0;text-align:center;font-size:8.5pt;color:#444;border-top:1px solid #999;padding-top:3pt}
+  .pw-cert{page:cert;text-align:center;border:10pt double #000;padding:26pt 20pt;min-height:150mm;display:flex;flex-direction:column;justify-content:center;align-items:center}
+  .pw-cert h1{font-size:30pt}
+  .pw-cert .nm{font-size:26pt;border-bottom:2px solid #000;min-width:240pt;display:inline-block;margin:10pt 0}
+  .pw-cert .md{font-size:48pt}
+  a{color:#000;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<noscript><p style="padding:20px;background:#fff;color:#000">This learning resource needs JavaScript to be turned on to work.</p></noscript>
+<a class="skip" href="#main">Skip to main content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="fuzz" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="5"/></filter>
+    <symbol id="mascot" viewBox="0 0 100 100">
+      <ellipse cx="50" cy="94" rx="26" ry="4" fill="rgba(0,0,0,.25)"/>
+      <ellipse cx="38" cy="90" rx="8" ry="5" fill="#d9621a"/><ellipse cx="62" cy="90" rx="8" ry="5" fill="#d9621a"/>
+      <circle cx="50" cy="52" r="38" fill="#ee7b25" filter="url(#fuzz)"/>
+      <circle cx="40" cy="38" r="14" fill="rgba(255,255,255,.16)"/>
+      <path d="M18 30 Q50 6 82 30 L80 36 Q50 20 20 36Z" fill="#1d3f8f"/><rect x="38" y="14" width="24" height="8" rx="3" fill="#b31b2a"/>
+      <circle cx="38" cy="52" r="7" fill="#fff"/><circle cx="62" cy="52" r="7" fill="#fff"/>
+      <circle cx="39.5" cy="53" r="3.6" fill="#1f1b16"/><circle cx="63.5" cy="53" r="3.6" fill="#1f1b16"/>
+      <circle cx="41" cy="51.5" r="1.2" fill="#fff"/><circle cx="65" cy="51.5" r="1.2" fill="#fff"/>
+      <path d="M38 68 Q50 80 62 68" stroke="#6b2a08" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+      <path d="M30 74 L70 74 L66 84 L34 84Z" fill="#b31b2a"/><path d="M34 80 L66 80" stroke="#fff" stroke-width="3"/>
+      <ellipse cx="14" cy="60" rx="7" ry="5" fill="#d9621a" transform="rotate(-25 14 60)"/><ellipse cx="86" cy="58" rx="7" ry="5" fill="#d9621a" transform="rotate(25 86 58)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="topbar" id="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="#hero" aria-label="The Teacher Vault – World War II hub, back to the start"><svg aria-hidden="true"><use href="#mascot"/></svg><span>Britain at War</span></a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav">☰ Menu</button>
+    <nav id="nav" aria-label="Section navigation"><ul id="navList"></ul></nav>
+    <button class="snd-toggle" type="button" aria-pressed="false">🔇 Sound off</button>
+  </div>
+  <div class="topbar-progress" role="progressbar" aria-label="Overall progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="topProg"><div id="topBar"></div></div>
+</header>
+
+<main id="main">
+
+<section id="hero" class="hero" aria-labelledby="heroTitle">
+  <div class="hero-sky" aria-hidden="true">
+    <svg viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice">
+      <g stroke="rgba(246,243,232,.12)" stroke-width="1.5"><path d="M0 100H1200M0 200H1200M0 300H1200M0 400H1200M150 0V500M300 0V500M450 0V500M600 0V500M750 0V500M900 0V500M1050 0V500"/></g>
+      <path class="march" d="M40 380 C220 300 330 360 470 250 S760 140 900 210 1080 130 1170 70" fill="none" stroke="rgba(255,224,138,.65)" stroke-width="4" stroke-linecap="round"/>
+      <g fill="#ffe08a"><circle cx="40" cy="380" r="9"/><circle cx="470" cy="250" r="9"/><circle cx="900" cy="210" r="9"/><circle cx="1170" cy="70" r="9"/></g>
+      <g transform="translate(1040 380)" stroke="rgba(246,243,232,.5)" fill="none" stroke-width="2"><circle r="44"/><path d="M0 -54V54M-54 0H54"/><path d="M0 -44L8 0L0 44L-8 0Z" fill="rgba(179,27,42,.55)"/><text y="-60" text-anchor="middle" fill="rgba(246,243,232,.7)" stroke="none" font-size="18" font-weight="700">N</text></g>
+    </svg>
+    <span class="plane">✈️</span><span class="plane p2">✈️</span>
+  </div>
+  <div class="wrap hero-in">
+    <div>
+      <span class="kicker">KS2 History · Years 3–6</span>
+      <h1 id="heroTitle">World War II: Britain at War</h1>
+      <p class="hero-sub">An interactive KS2 history adventure</p>
+      <p class="hero-p">It is 1939 and the whole country is getting ready for a very different way of life. Become a history detective: open the timeline, pack an evacuee’s suitcase, plan meals with a ration book, track aircraft on a radar screen and investigate historical sources to discover how people in Britain lived through the Second World War.</p>
+      <div class="hero-cta">
+        <a class="btn btn-red btn-lg" href="#s-timeline" id="startBtn">Start the Mission</a>
+        <button class="snd-toggle btn-lg" type="button" aria-pressed="false" style="font-size:1rem">🔇 Sound off</button>
+      </div>
+      <div class="guide" style="margin-bottom:0">
+        <svg role="img" aria-label="Your friendly Teacher Vault guide, a round orange character wearing a flat cap and scarf"><use href="#mascot"/></svg>
+        <div class="bubble"><p><strong>Hello, history detective!</strong> I will be your guide. Open each card, answer the questions, and stamp every section as complete. You can stop and come back later — I will remember where you got to on this device.</p></div>
+      </div>
+    </div>
+    <div class="paper tape hero-prog" aria-live="off">
+      <h2 style="font-size:1.1rem;margin-bottom:.3em">Your mission progress</h2>
+      <p class="prog-count"><span id="heroCount">0</span> of <span id="heroTotal">11</span> sections complete</p>
+      <div class="bar" aria-hidden="true"><div id="heroBar"></div></div>
+      <ul class="stamps" id="heroStamps" aria-label="Section stamps"></ul>
+      <p style="margin:14px 0 0"><button class="btn btn-ghost btn-sm" type="button" id="resetBtn">Reset my progress</button></p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <aside class="paper tape teacher-box" id="teacherInfo" aria-labelledby="tiTitle">
+    <h2 id="tiTitle">Teacher information</h2>
+    <p>The key stage 2 history programme of study (National Curriculum in England) requires pupils to study an aspect or theme in British history that extends their chronological knowledge beyond 1066. The non-statutory guidance gives “a significant turning point in British history, for example, the Battle of Britain” as one example. This hub shows how the Second World War and the Battle of Britain can be taught within that requirement. Studying the whole of the Second World War is <strong>not</strong> compulsory, so please choose the sections that suit your planning. Designed mainly for Years 5 and 6, and accessible to confident Years 3 and 4 pupils. See the collapsible adult section near the end for curriculum links, sensitive-teaching guidance and the full answer key.</p>
+  </aside>
+</div>
+
+<!-- 1 TIMELINE -->
+<section class="sec" id="s-timeline" aria-labelledby="h-timeline"><div class="wrap">
+  <div class="sec-head"><span class="sec-num" aria-hidden="true">1</span><h2 id="h-timeline" tabindex="-1">Interactive timeline</h2></div>
+  <div class="guide"><svg aria-hidden="true"><use href="#mascot"/></svg><div class="bubble"><p><strong>Chronology matters!</strong> Historians put events in order to see how one thing led to another. Open every card on the timeline. Each one has a “Think about it” question.</p></div></div>
+  <div class="note light"><strong>Did you know?</strong> Evacuation began on <strong>1 September 1939</strong>, before Britain declared war, and was not only a 1940 event. More evacuations happened in later waves, including in 1940.</div>
+  <ol class="tl" id="tlList"></ol>
+  <p class="lead" id="tlProgress" aria-live="polite"></p>
+</div></section>
+
+<!-- 2 WHY -->
+<section class="sec" id="s-why" aria-labelledby="h-why"><div class="wrap">
+  <div class="sec-head"><span class="sec-num" aria-hidden="true">2</span><h2 id="h-why" tabindex="-1">Why did the war begin?</h2></div>
+  <div class="guide"><svg aria-hidden="true"><use href="#mascot"/></svg><div class="bubble"><p><strong>Big question, careful answer.</strong> Historians talk about many causes. Here is a simple, honest outline for your age group.</p></div></div>
+  <div class="grid2">
+    <div class="paper pin"><h3>Germany and its leader</h3><p>In 1933 <strong>Adolf Hitler</strong> became the leader of Germany. His <strong>Nazi Party</strong> turned Germany into a dictatorship, which means ordinary people could not vote freely or disagree safely. The Nazi government wanted Germany to take over land belonging to other countries and treated Jewish people, and many other groups, cruelly and unfairly. Before the war, Germany took over Austria and parts of Czechoslovakia. Other countries hoped to avoid another terrible war.</p></div>
+    <div class="paper pin"><h3>The invasion of Poland</h3><p>On <strong>1 September 1939</strong> German forces invaded <strong>Poland</strong>. Britain and France had promised to help Poland and asked Germany to withdraw. Germany did not, so on <strong>3 September 1939</strong> Britain and France declared war on Germany. Later that month Soviet forces also entered eastern Poland. This was the start of the war in Europe. The decisions to invade and begin the war were made by the Nazi government and its leaders.</p></div>
+  </div>
+  <h3 style="margin-top:34px;color:#fff">Explore the map</h3>
+  <p class="lead">This is a simplified diagram, not an accurate map, and the shapes are not to scale. Tap each country to read about its part in September 1939, then press the button to colour the sides.</p>
+  <div class="map-wrap" id="mapWrap">
+    <svg class="map-svg" viewBox="0 0 800 500" role="img" aria-label="Simplified diagram of Europe showing Britain, France, Germany, Poland and Italy">
+      <rect width="800" height="500" fill="#9cc3d9"/>
+      <path class="land" d="M60 100 L100 90 L108 130 L80 150 L56 132Z" fill="#ead9a3"/>
+      <path class="land ally" id="landBritain" d="M150 50 L200 40 L224 82 L206 130 L236 168 L206 214 L150 224 L124 190 L146 150 L116 108Z"/>
+      <path class="land ally" id="landFrance" d="M156 270 L262 238 L338 262 L346 336 L304 408 L214 416 L146 366 L158 306Z"/>
+      <path class="land axis" id="landGermany" d="M336 170 L424 148 L504 176 L514 252 L474 312 L382 322 L342 262Z"/>
+      <path class="land ally" id="landPoland" d="M516 160 L626 150 L660 212 L634 282 L524 272 L508 204Z"/>
+      <path class="land axis" id="landItaly" d="M382 352 L436 340 L458 402 L512 472 L478 484 L424 424Z"/>
+      <path class="land" d="M640 330 L760 300 L780 400 L690 440 L640 400Z" opacity=".75"/>
+      <path class="land" d="M530 40 L700 30 L740 90 L650 110 L560 90Z" opacity=".75"/>
+      <path class="march" d="M470 210 C520 200 540 205 560 215" stroke="#b31b2a" stroke-width="7" fill="none" stroke-linecap="round" marker-end="url(#arr)"/>
+      <defs><marker id="arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b31b2a"/></marker></defs>
+      <g font-family="system-ui,sans-serif" font-size="15" font-weight="800" fill="#1f1b16" text-anchor="middle"><text x="400" y="494" fill="#13244f" font-size="13">Simplified diagram – not to scale</text><text x="700" y="372" opacity=".8" font-size="13">Other lands</text><text x="634" y="70" opacity=".8" font-size="13">Other lands</text></g>
+    </svg>
+    <button class="map-pin" type="button" data-c="britain" style="left:22%;top:26%" aria-pressed="false">Britain</button>
+    <button class="map-pin" type="button" data-c="france" style="left:31%;top:66%" aria-pressed="false">France</button>
+    <button class="map-pin" type="button" data-c="germany" style="left:53%;top:48%" aria-pressed="false">Germany</button>
+    <button class="map-pin" type="button" data-c="poland" style="left:77%;top:47%" aria-pressed="false">Poland</button>
+    <button class="map-pin" type="button" data-c="italy" style="left:57%;top:78%" aria-pressed="false">Italy</button>
+  </div>
+  <div class="paper" id="mapInfo" aria-live="polite" style="min-height:96px"><p style="margin:0"><strong>Tap a country on the diagram</strong> to find out what it was doing in 1939. The red arrow shows the German invasion of Poland on 1 September 1939.</p></div>
+  <p style="text-align:center;margin:18px 0"><button class="btn btn-gold" type="button" id="sidesBtn" aria-pressed="false">Show the Axis and Allies</button></p>
+  <div class="legend" id="legend" hidden><span><i style="background:#e99a95"></i> Axis powers (Germany, Italy; Japan joined from 1940)</span><span><i style="background:#8fb3ee"></i> Allied powers (Britain, France, Poland)</span></div>
+  <div class="grid2" style="margin-top:20px">
+    <div class="paper"><h3>Axis or Allies?</h3><p>Axis and Allies were the two main sides. The <strong>Axis</strong> were led by Germany, Italy and Japan. The <strong>Allies</strong> began with Britain, France and Poland. Later the Soviet Union (from June 1941), the United States (from December 1941), China and many other countries joined them. The countries of the British Commonwealth and Empire, such as Canada, Australia, New Zealand, South Africa and India, also played huge parts. Choose a side for each country:</p><div id="axisList"></div></div>
+    <div class="paper pin"><h3>Remembering the Holocaust</h3><p>During the war, the Nazi government and its collaborators carried out the <strong>Holocaust</strong>, the systematic persecution and murder of six million Jewish people and millions of other victims. This is a very sad and important part of history. We remember the victims with respect. If you have questions or feel upset, please talk to a teacher or trusted adult.</p><p style="margin:0;font-size:.95rem">Children’s experiences in Britain also included <strong>refugees</strong>: between late 1938 and September 1939, around 10,000 mostly Jewish children from Germany, Austria and Czechoslovakia travelled to safety in Britain on the Kindertransport.</p></div>
+  </div>
+</div></section>
+
+<!-- 3 HOME FRONT -->
+<section class="sec" id="s-home" aria-labelledby="h-home"><div class="wrap">
+  <div class="sec-head"><span class="sec-num" aria-hidden="true">3</span><h2 id="h-home" tabindex="-1">Life on the Home Front</h2></div>
+  <div class="guide"><svg aria-hidden="true"><use href="#mascot"/></svg><div class="bubble"><p><strong>The Home Front</strong> means everyday life in Britain while the war was going on. Open each card, then try the question or activity inside.</p></div></div>
+  <div class="note light"><strong>Different experiences:</strong> People did not all live through the war in the same way. It depended on where they lived (city, town or countryside), their background, race, nationality, disability, gender and personal circumstances. For example, women, children, refugees, people from the Commonwealth and people with disabilities could all have very different stories.</div>
+  <div class="hf-grid" id="hfGrid"></div>
+  <p class="lead" id="hfProgress" aria-live="polite"></p>
+</div></section>
+
+<!-- 4 SUITCASE -->
+<section class="sec" id="s-suitcase" aria-labelledby="h-suitcase"><div class="wrap">
+  <div class="sec-head"><span class="sec-num" aria-hidden="true">4</span><h2 id="h-suitcase" tabindex="-1">Pack an evacuee’s suitcase</h2></div>
+  <div class="guide"><svg aria-hidden="true"><use href="#mascot"/></svg><div class="bubble"><p><strong>Your turn!</strong> An evacuee could only take what they could carry. Pack <strong>up to 8 items</strong> into the suitcase. Drag items with a mouse or finger, or select an item and press <kbd>Enter</kbd> or <kbd>Space</kbd> to move it in or out. Then press “Check my suitcase”.</p></div></div>
+  <div class="sc-wrap">
+    <div class="sc-zone sc-table" id="scTable" aria-label="Items on the hall table"><h3>On the hall table</h3></div>
+    <div class="sc-zone sc-case" id="scCase" aria-label="Your suitcase"><h3>Your suitcase</h3><p class="sc-count" id="scCount" aria-live="polite">0 of 8 packed</p></div>
+  </div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin:18px 0"><button class="btn btn-red" type="button" id="scCheck">Check my suitcase</button><button class="btn btn-ghost" type="button" id="scReset">Start again</button></div>
+  <div id="scResult" aria-live="polite"></div>
+</div></section>
+
+<!-- 5 RATION -->
+<section class="sec" id="s-rations" aria-labelledby="h-rations"><div class="wrap">
+  <div class="sec-head"><span class="sec-num" aria-hidden="true">5</span><h2 id="h-rations" tabindex="-1">Ration-book challenge</h2></div>
+  <div class="guide"><svg aria-hidden="true"><use href="#mascot"/></svg><div class="bubble"><p><strong>Can you feed a family of four?</strong> Plan three evening meals using your ration-book counters. Choose a meal, then tap foods to add them. Tap a food in a meal to take it out again.</p></div></div>
+  <div class="note light"><strong>Important:</strong> This is a simplified classroom model. The counters are <em>not</em> real wartime allowances. In real life, exact rations changed throughout the war and different foods were rationed at different times. Food rationing began in January 1940, and it did not end completely until 1954.</div>
+  <div class="ration-grid">
+    <div>
+      <div class="rbook" role="group" aria-label="Your ration book"><h3>Ration book</h3><small>Family of four · three evening meals</small><div class="coupons" id="coupons"></div><p class="left" id="leftTxt" aria-live="polite"></p></div>
+    </div>
+    <div>
+      <h3 style="color:#fff">1. Choose a meal</h3>
+      <div class="meals" id="meals"></div>
+      <h3 style="color:#fff">2. Add foods to the chosen meal</h3>
+      <div class="foods" id="foods"></div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn btn-red" type="button" id="rCheck">Check my meal plan</button><button class="btn btn-ghost" type="button" id="rReset">Start again</button></div>
+      <div id="rResult" aria-live="polite"></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 6 BATTLE -->
+<section class="sec" id="s-battle" aria-labelledby="h-battle"><div class="wrap">
+  <div class="sec-head"><span class="sec-num" aria-hidden="true">6</span><h2 id="h-battle" tabindex="-1">The Battle of Britain</h2></div>
+  <div class="guide"><svg aria-hidden="true"><use href="#mascot"/></svg><div class="bubble"><p><strong>A turning point in British history.</strong> In the summer and autumn of 1940 the fight was about who controlled the skies. You will become a radar plotter in a calm, safe operations room.</p></div></div>
+  <div class="facts">
+    <div class="paper pin"><h3>Why did the skies matter?</h3><p>Germany had taken over much of western Europe. To invade Britain across the sea, it needed to control the air first, so that its ships and troops would not be stopped. If the RAF could keep the skies from being controlled by Germany, an invasion was too risky.</p></div>
+    <div class="paper pin"><h3>RAF and Luftwaffe</h3><p>The <strong>RAF</strong> (Royal Air Force) is Britain’s air force. The <strong>Luftwaffe</strong> was the German air force. From July to October 1940 they fought over southern England and the English Channel. Ground crews, mechanics, plotters and many women in the Women’s Auxiliary Air Force (WAAF) kept the RAF working.</p></div>
+    <div class="paper pin"><h3>Radar and the Observer Corps</h3><p><strong>Radar</strong> uses radio waves to spot aircraft far away, before anyone could see or hear them. A chain of radar stations along the coast gave early warning. Radar was less good over land and at low heights, so the <strong>Observer Corps</strong>, thousands of volunteers on rooftops and in fields, watched, listened and reported by telephone.</p></div>
+    <div class="paper pin"><h3>Many nations, one effort</h3><p>The air battle was not fought by Britain alone. Pilots and crews came from Britain, Poland, Czechoslovakia, Canada, New Zealand, Australia, South Africa, Belgium, France, Ireland, the United States and other countries. Pilots became known as “The Few”, a nickname from a speech by Winston Churchill in August 1940.</p></div>
+    <div class="paper pin"><h3>Why was it significant?</h3><p>Germany did not win control of the skies, so its plan to invade Britain was put off. Britain could carry on in the war and, over time, work with allies. Historians call it an important turning point, though the war went on for almost five more years.</p></div>
+  </div>
+  <h3 style="color:#fff;margin-top:34px">Radar room training</h3>
+  <p class="lead">Select a glowing contact on the radar screen. Read the clue, then decide what a plotter should do. This is a thinking game: there is no fighting and nothing is shot at.</p>
+  <div class="radar-wrap">
+    <div class="radar" id="radar" role="group" aria-label="Radar screen with six contacts"><div class="ring" style="width:33%;height:33%"></div><div class="ring" style="width:66%;height:66%"></div><div class="ring" style="width:96%;height:96%"></div><div class="cross h"></div><div class="cross v"></div><div class="sweep" aria-hidden="true"></div></div>
+    <div class="radar-panel" id="radarPanel" aria-live="polite"><p class="rscore" id="rScore">Contacts checked: 0 of 6</p><p>Select a contact (A to F) to begin.</p></div>
+  </div>
+</div></section>
+
+<!-- 7 SHELTER -->
+<section class="sec" id="s-shelter" aria-labelledby="h-shelter"><div class="wrap">
+  <div class="sec-head"><span class="sec-num" aria-hidden="true">7</span><h2 id="h-shelter" tabindex="-1">Explore an air-raid shelter</h2></div>
+  <div class="guide"><svg aria-hidden="true"><use href="#mascot"/></svg><div class="bubble"><p><strong>Look closely!</strong> Select each numbered button in the picture to find out more. The green ones are the ones you have already explored.</p></div></div>
+  <div class="shelter-wrap" id="shelterWrap">
+    <svg class="shelter-svg" viewBox="0 0 800 460" role="img" aria-label="Cutaway night scene: a house with a Morrison shelter table inside, blackout curtains at the window, and a garden with an Anderson shelter, a siren pole and a warden">
+      <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0c1638"/><stop offset="1" stop-color="#26356b"/></linearGradient></defs>
+      <rect width="800" height="460" fill="url(#sky)"/>
+      <g fill="#fff" opacity=".85"><circle cx="90" cy="40" r="2"/><circle cx="250" cy="70" r="2"/><circle cx="420" cy="30" r="2"/><circle cx="560" cy="64" r="2"/><circle cx="700" cy="36" r="2"/><circle cx="330" cy="104" r="1.6"/></g>
+      <circle cx="720" cy="80" r="26" fill="#f6efc6"/><circle cx="730" cy="74" r="22" fill="url(#sky)"/>
+      <path d="M0 360 H800 V460 H0Z" fill="#2c4a2b"/><path d="M0 360 H800" stroke="#1d3320" stroke-width="4"/>
+      <!-- house -->
+      <rect x="40" y="150" width="330" height="210" fill="#8a5a3c"/><path d="M20 156 L205 70 L390 156Z" fill="#4b2f23"/>
+      <rect x="62" y="176" width="286" height="164" fill="#f1dfb0"/>
+      <rect x="90" y="196" width="92" height="84" fill="#10204a" stroke="#4b2f23" stroke-width="6"/><path d="M90 196 L132 196 L132 280 L90 280Z" fill="#111"/><path d="M138 196 L182 196 L182 280 L138 280Z" fill="#111"/><path d="M132 196 V280" stroke="#444" stroke-width="2"/>
+      <rect x="210" y="270" width="110" height="12" fill="#5b3b1d"/><rect x="214" y="282" width="8" height="48" fill="#3e2815"/><rect x="308" y="282" width="8" height="48" fill="#3e2815"/>
+      <rect x="214" y="298" width="102" height="32" fill="none" stroke="#333" stroke-width="3" stroke-dasharray="6 4"/><rect x="220" y="304" width="90" height="22" fill="#6b6b6b" opacity=".55"/>
+      <rect x="62" y="330" width="286" height="10" fill="#6c4a33"/>
+      <!-- Anderson shelter -->
+      <path d="M470 360 Q470 250 570 250 Q670 250 670 360Z" fill="#6b7a3e"/><path d="M490 360 Q490 270 570 270 Q650 270 650 360Z" fill="#8c9aa4" stroke="#55626b" stroke-width="3"/>
+      <path d="M490 300 L650 300 M490 330 L650 330" stroke="#55626b" stroke-width="3" opacity=".6"/>
+      <rect x="544" y="300" width="52" height="60" fill="#1c1c1c"/><rect x="520" y="316" width="34" height="8" fill="#e8c05a"/><rect x="520" y="340" width="34" height="8" fill="#e8c05a"/>
+      <rect x="610" y="342" width="26" height="18" fill="#c0392b"/><path d="M618 351 H628 M623 346 V356" stroke="#fff" stroke-width="3"/>
+      <!-- siren pole -->
+      <rect x="722" y="130" width="8" height="230" fill="#555"/><path d="M700 126 L750 126 L764 112 L764 142 L750 128 L700 128Z" fill="#c0c7cf"/><g stroke="#ffe08a" stroke-width="3" fill="none" opacity=".7"><path d="M774 118 q10 10 0 22"/><path d="M784 110 q18 20 0 38"/></g>
+      <!-- warden -->
+      <circle cx="430" cy="322" r="13" fill="#e0b48a"/><path d="M416 318 Q430 296 444 318Z" fill="#244a8a"/><rect x="418" y="335" width="24" height="34" rx="6" fill="#23306b"/><rect x="420" y="368" width="8" height="16" fill="#1a1a1a"/><rect x="432" y="368" width="8" height="16" fill="#1a1a1a"/><text x="430" y="355" text-anchor="middle" font-size="12" font-weight="900" fill="#fff" font-family="system-ui">W</text>
+    </svg>
+    <button class="hot" type="button" data-h="morrison" style="left:34%;top:70%" aria-label="Hotspot 1: Morrison shelter" aria-pressed="false">1</button>
+    <button class="hot" type="button" data-h="blackout" style="left:17%;top:51%" aria-label="Hotspot 2: Blackout curtains" aria-pressed="false">2</button>
+    <button class="hot" type="button" data-h="anderson" style="left:71%;top:68%" aria-label="Hotspot 3: Anderson shelter" aria-pressed="false">3</button>
+    <button class="hot" type="button" data-h="supplies" style="left:77%;top:80%" aria-label="Hotspot 4: Emergency supplies" aria-pressed="false">4</button>
+    <button class="hot" type="button" data-h="warden" style="left:54%;top:77%" aria-label="Hotspot 5: Air-raid warden" aria-pressed="false">5</button>
+    <button class="hot" type="button" data-h="siren" style="left:92%;top:30%" aria-label="Hotspot 6: Air-raid siren" aria-pressed="false">6</button>
+    <button class="hot" type="button" data-h="sleeping" style="left:64%;top:59%" aria-label="Hotspot 7: Sleeping arrangements" aria-pressed="false">7</button>
+  </div>
+  <div class="paper pin hot-info" id="hotInfo" aria-live="polite"><p style="margin:0"><strong>Select a numbered button</strong> to explore the scene. <span id="hotCount">0 of 7 explored.</span></p></div>
+  <div class="paper tape siren-box" id="sirenBox">
+    <h3>Siren sounds demonstration (optional)</h3>
+    <p class="warn">⚠ <strong>Volume warning:</strong> these are synthetic sounds made by your device, and they can be loud or startling. Turn your device volume down first, and tell a teacher or parent before playing. Nothing plays automatically. Some pupils may find sirens upsetting, so please feel free to skip this.</p>
+    <p><label><input type="checkbox" id="sirenOk"> I have turned my volume down and I want to hear the demonstration.</label></p>
+    <div class="siren-btns">
+      <button class="btn btn-blue" type="button" id="sirenWarn" disabled>▶ Warning signal (wailing note)</button>
+      <button class="btn btn-blue" type="button" id="sirenClear" disabled>▶ All clear (steady note)</button>
+      <button class="btn btn-red" type="button" id="sirenStop">■ Stop / mute</button>
+    </div>
+    <div class="vol"><label for="sirenVol">Volume</label><input type="range" id="sirenVol" min="0" max="100" value="25" aria-describedby="sirenVolTxt"><span id="sirenVolTxt">Quiet</span></div>
+    <p id="sirenStatus" aria-live="polite" style="margin:10px 0 0;font-weight:700"></p>
+  </div>
+</div></section>
+
+<!-- 8 SOURCES -->
+<section class="sec" id="s-sources" aria-labelledby="h-sources"><div class="wrap">
+  <div class="sec-head"><span class="sec-num" aria-hidden="true">8</span><h2 id="h-sources" tabindex="-1">Historical sources detective</h2></div>
+  <div class="guide"><svg aria-hidden="true"><use href="#mascot"/></svg><div class="bubble"><p><strong>Evidence time!</strong> Historians use sources to find out about the past. Every source below is a <strong>recreated classroom example</strong> written for this resource. None of them is a genuine primary source. Answer the five detective questions for each one.</p></div></div>
+  <div class="note light"><strong>Remember:</strong> a source can be very useful even if it is not completely fair or neutral. Always ask who made it, why, and what it leaves out.</div>
+  <div class="src-tabs" id="srcTabs" role="tablist" aria-label="Choose a source"></div>
+  <div class="paper tape" id="srcPanel" role="tabpanel" aria-live="polite"></div>
+</div></section>
+
+<!-- 9 MYTH -->
+<section class="sec" id="s-myths" aria-labelledby="h-myths"><div class="wrap">
+  <div class="sec-head"><span class="sec-num" aria-hidden="true">9</span><h2 id="h-myths" tabindex="-1">Myth or fact?</h2></div>
+  <div class="guide"><svg aria-hidden="true"><use href="#mascot"/></svg><div class="bubble"><p><strong>Spot the myth!</strong> Many people believe things about the war that are not quite right. Decide whether each statement is a myth or a fact, then read the explanation.</p></div></div>
+  <p class="lead">Score: <span class="score-pill" id="mythScore">0 of 13 answered</span></p>
+  <div class="myth-list" id="mythList"></div>
+</div></section>
+
+<!-- 10 QUIZ -->
+<section class="sec" id="s-quiz" aria-labelledby="h-quiz"><div class="wrap">
+  <div class="sec-head"><span class="sec-num" aria-hidden="true">10</span><h2 id="h-quiz" tabindex="-1">Knowledge quiz</h2></div>
+  <div class="guide"><svg aria-hidden="true"><use href="#mascot"/></svg><div class="bubble"><p><strong>15 questions, one at a time.</strong> You will get feedback after every answer. At the end you can retry any you missed. Your medal is based on your first-try score.</p></div></div>
+  <div class="paper tape quiz-card" id="quizCard" aria-live="polite"></div>
+</div></section>
+
+<!-- 11 GLOSSARY -->
+<section class="sec" id="s-glossary" aria-labelledby="h-glossary"><div class="wrap">
+  <div class="sec-head"><span class="sec-num" aria-hidden="true">11</span><h2 id="h-glossary" tabindex="-1">Glossary</h2></div>
+  <div class="guide"><svg aria-hidden="true"><use href="#mascot"/></svg><div class="bubble"><p><strong>Word wizard!</strong> Type in the box to search for a word or part of a meaning.</p></div></div>
+  <div class="gl-search"><label for="glQ" class="sr-only">Search the glossary</label><input type="search" id="glQ" placeholder="Search words, e.g. blackout" autocomplete="off"><span id="glCount" aria-live="polite" style="font-weight:700"></span></div>
+  <ul class="gl-list" id="glList"></ul>
+</div></section>
+
+<!-- 12 ADULTS -->
+<section class="sec" id="s-adults" aria-labelledby="h-adults"><div class="wrap">
+  <div class="sec-head"><span class="sec-num" aria-hidden="true">12</span><h2 id="h-adults" tabindex="-1">Teacher and parent section</h2></div>
+  <details class="adults" id="adultsBox"><summary>Open the adult section (guidance, activities and answer key)</summary><div class="adults-in" id="adultsIn"></div></details>
+</div></section>
+
+<!-- 13 PRINT -->
+<section class="sec" id="s-print" aria-labelledby="h-print"><div class="wrap">
+  <div class="sec-head"><span class="sec-num" aria-hidden="true">13</span><h2 id="h-print" tabindex="-1">Printable resources</h2></div>
+  <p class="lead">Each button prints a clean black-and-white version for A4. Pupil worksheets never include answers. The answer sheet prints separately, only when you choose it. You can also use the chalkboard-rubber PRINT button at the bottom of the screen at any time.</p>
+  <div class="pr-grid" id="prGrid"></div>
+</div></section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <svg width="64" height="64" aria-hidden="true"><use href="#mascot"/></svg>
+    <p class="tag">Created for The Teacher Vault</p>
+    <p>KS2 History Resource</p>
+    <p>For educational use in classrooms and at home. Sources and diary entries in this resource are recreated examples written for teaching, not genuine historical documents. Progress and scores stay in this browser on this device only, and no personal information is collected or sent anywhere.</p>
+    <p><a href="https://theteachervault.com">https://theteachervault.com</a></p>
+  </div>
+</footer>
+
+<div class="fab-row">
+  <div style="position:relative">
+    <button class="rubber" type="button" id="rubberBtn" aria-haspopup="true" aria-expanded="false" aria-controls="printMenu" aria-label="Print: choose a worksheet to print"><span>PRINT</span></button>
+  </div>
+  <button class="top-btn" type="button" id="topBtn" aria-label="Back to top">↑</button>
+</div>
+<div class="paper print-menu" id="printMenu" hidden role="dialog" aria-label="Choose what to print"><h3>What would you like to print?</h3><ul id="printMenuList"></ul><button class="btn btn-ghost btn-sm" type="button" id="printMenuClose">Close</button></div>
+
+<div id="modalRoot"></div>
+<div id="live" class="sr-only" aria-live="polite" role="status"></div>
+<div id="printRoot" aria-hidden="true"></div>
+
+<script>
+(function(){
+'use strict';
+
+/* ================= Helpers ================= */
+const $=(s,r)=>(r||document).querySelector(s);
+const $$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function prepQ(q){const c=q.opts[q.a];q.opts=shuffle(q.opts);q.a=q.opts.indexOf(c);return q;}
+function say(t){const l=$('#live');l.textContent='';setTimeout(()=>{l.textContent=t;},40);}
+function toast(t){const d=document.createElement('div');d.className='toast';d.setAttribute('role','status');d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),2600);}
+function plural(n,w){return n+' '+w+(n===1?'':'s');}
+
+/* ================= State ================= */
+const KEY='tv_ww2_britain_ks2_v1';
+const blank=()=>({done:{},opened:{timeline:[],home:[],shelter:[]},axis:{},suit:false,ration:false,radar:{},myth:{},src:{},quiz:{best:null,last:null,medal:null},sound:false});
+let S=blank();
+try{const raw=localStorage.getItem(KEY);if(raw){const p=JSON.parse(raw);S=Object.assign(blank(),p);S.opened=Object.assign(blank().opened,p.opened||{});}}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+
+/* ================= Sound (Web Audio, no files) ================= */
+let AC=null;
+function getCtx(){if(!AC){const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;try{AC=new C();}catch(e){return null;}}if(AC.state==='suspended'){AC.resume();}return AC;}
+function tone(f,d,type,v,w,slide){if(!S.sound)return;const a=getCtx();if(!a)return;const t=a.currentTime+(w||0);const o=a.createOscillator(),g=a.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f,t);if(slide)o.frequency.exponentialRampToValueAtTime(slide,t+d);g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(v||0.04,t+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t+d);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+d+0.05);}
+const sfx={click:()=>tone(520,.07,'triangle',.035),good:()=>{tone(660,.12,'sine',.045);tone(880,.18,'sine',.045,.1);},bad:()=>tone(220,.22,'sine',.04,0,150),stamp:()=>{tone(110,.12,'square',.04);tone(70,.2,'sine',.05,.02);},win:()=>[523,659,784,1047].forEach((f,i)=>tone(f,.22,'sine',.045,i*.12))};
+function syncSound(){$$('.snd-toggle').forEach(b=>{b.setAttribute('aria-pressed',S.sound?'true':'false');b.textContent=S.sound?'🔊 Sound on':'🔇 Sound off';});}
+
+/* ================= Modal ================= */
+let modal=null;
+function openModal(html,opt){opt=opt||{};const prev=(opt.keepPrev&&modal)?modal.prev:document.activeElement;closeModal(true);
+  const back=document.createElement('div');back.className='modal-back';
+  back.innerHTML='<div class="modal paper tape" role="dialog" aria-modal="true" aria-labelledby="mTitle" tabindex="-1"><button class="modal-x" type="button" aria-label="Close">×</button><div class="modal-body">'+html+'</div></div>';
+  $('#modalRoot').appendChild(back);const m=$('.modal',back);modal={back,prev,opt};document.body.classList.add('modal-open');
+  back.addEventListener('mousedown',e=>{if(e.target===back)closeModal();});
+  $('.modal-x',m).addEventListener('click',()=>closeModal());
+  m.focus();return m;}
+function closeModal(silent){if(!modal)return;const {back,prev,opt}=modal;back.remove();modal=null;document.body.classList.remove('modal-open');if(!silent){if(prev&&document.contains(prev)&&prev.focus)prev.focus();if(opt.onClose)opt.onClose();}}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){if(modal){closeModal();return;}if(!$('#printMenu').hidden){closePrintMenu();return;}if($('#topbar').classList.contains('open')){toggleMenu(false);$('#menuBtn').focus();}}
+  if(e.key==='Tab'&&modal){const f=$$('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])',modal.back).filter(x=>!x.disabled&&x.offsetParent!==null);if(!f.length)return;const first=f[0],last=f[f.length-1];if(e.shiftKey&&(document.activeElement===first||document.activeElement===modal.back.firstChild.firstChild)){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}
+});
+
+/* ================= Feedback + choice builder ================= */
+function fbHTML(ok,why,extra){return '<div class="fb '+(ok?'good':'bad')+'"><span class="ic" aria-hidden="true">'+(ok?'✅':'❌')+'</span><div><strong>'+(ok?'Correct!':'Not quite.')+'</strong> '+why+(extra||'')+'</div></div>';}
+function infoHTML(t){return '<div class="fb info"><span class="ic" aria-hidden="true">💡</span><div>'+t+'</div></div>';}
+function buildChoices(host,o){
+  const wrap=document.createElement('div');wrap.className='choices';wrap.setAttribute('role','group');
+  const fb=document.createElement('div');
+  o.opts.forEach((t,i)=>{const b=document.createElement('button');b.type='button';b.className='choice';b.innerHTML='<span class="k" aria-hidden="true">'+'ABCDEF'[i]+'</span><span>'+t+'</span>';
+    b.addEventListener('click',()=>{const ok=i===o.a;$$('.choice',wrap).forEach((x,j)=>{x.disabled=true;if(j===o.a)x.classList.add('right');else if(j===i)x.classList.add('wrong');});
+      fb.innerHTML=fbHTML(ok,o.why);sfx[ok?'good':'bad']();say((ok?'Correct. ':'Not quite. ')+o.why.replace(/<[^>]+>/g,''));if(o.onAnswer)o.onAnswer(ok,i,fb);});
+    wrap.appendChild(b);});
+  host.appendChild(wrap);fb.setAttribute('role','status');host.appendChild(fb);return {wrap,fb};
+}
+
+/* ================= Sections / progress / nav ================= */
+const SECS=[
+ {id:'timeline',nav:'Timeline',title:'Interactive timeline',track:true},
+ {id:'why',nav:'Why war?',title:'Why did the war begin?',track:true},
+ {id:'home',nav:'Home Front',title:'Life on the Home Front',track:true},
+ {id:'suitcase',nav:'Suitcase',title:'Pack an evacuee’s suitcase',track:true},
+ {id:'rations',nav:'Ration book',title:'Ration-book challenge',track:true},
+ {id:'battle',nav:'Battle of Britain',title:'The Battle of Britain',track:true},
+ {id:'shelter',nav:'Shelter',title:'Explore an air-raid shelter',track:true},
+ {id:'sources',nav:'Sources',title:'Historical sources detective',track:true},
+ {id:'myths',nav:'Myth or fact?',title:'Myth or fact?',track:true},
+ {id:'quiz',nav:'Quiz',title:'Knowledge quiz',track:true},
+ {id:'glossary',nav:'Glossary',title:'Glossary',track:true},
+ {id:'adults',nav:'For adults',title:'Teacher and parent section',track:false},
+ {id:'print',nav:'Print',title:'Printable resources',track:false}
+];
+const TRACK=SECS.filter(s=>s.track);
+function go(id){const el=$('#s-'+id);if(!el)return;el.scrollIntoView({behavior:reduce.matches?'auto':'smooth',block:'start'});const h=$('h2',el);if(h)setTimeout(()=>h.focus({preventScroll:true}),reduce.matches?0:450);}
+function setDone(id,val,auto){if(!!S.done[id]===val)return;S.done[id]=val;save();const s=SECS.find(x=>x.id===id);if(val){sfx.stamp();toast('Stamped: '+s.title+' complete!');say('Section complete: '+s.title+'.');}else{say('Section marked as not complete.');}renderProgress();}
+function renderProgress(){
+  const n=TRACK.filter(s=>S.done[s.id]).length,pct=Math.round(n/TRACK.length*100);
+  $('#heroCount').textContent=n;$('#heroTotal').textContent=TRACK.length;$('#heroBar').style.width=pct+'%';$('#topBar').style.width=pct+'%';$('#topProg').setAttribute('aria-valuenow',pct);
+  $$('#heroStamps li').forEach((li,i)=>li.classList.toggle('done',!!S.done[TRACK[i].id]));
+  $$('#navList a').forEach(a=>a.classList.toggle('done',!!S.done[a.dataset.id]));
+  SECS.forEach(s=>{const sec=$('#s-'+s.id);if(!sec||!s.track)return;const head=$('.sec-head',sec);let st=$('.sec-done',head);
+    if(S.done[s.id]){if(!st){st=document.createElement('span');st.className='stamp pop sec-done';st.textContent='Complete';head.appendChild(st);}}else if(st){st.remove();}
+    const b=$('[data-complete="'+s.id+'"]',sec);if(b){b.setAttribute('aria-pressed',S.done[s.id]?'true':'false');b.textContent=S.done[s.id]?'✔ Section complete (tap to undo)':'Mark this section complete';}});
+}
+function buildNav(){
+  const ul=$('#navList');ul.innerHTML=SECS.map((s,i)=>'<li><a href="#s-'+s.id+'" data-id="'+s.id+'"><span class="tick" aria-hidden="true">✔</span> '+(i+1)+'. '+s.nav+'</a></li>').join('');
+  $('#heroStamps').innerHTML=TRACK.map((s,i)=>'<li title="'+s.title+'"><span aria-hidden="true">'+(i+1)+'</span><span class="sr-only">'+s.title+'</span></li>').join('');
+  ul.addEventListener('click',e=>{const a=e.target.closest('a');if(!a)return;e.preventDefault();toggleMenu(false);go(a.dataset.id);});
+  SECS.forEach((s,i)=>{const sec=$('#s-'+s.id);const f=document.createElement('div');f.className='sec-foot';
+    f.innerHTML=(i>0?'<button class="btn btn-ghost" type="button" data-go="'+SECS[i-1].id+'">← Previous: '+SECS[i-1].nav+'</button>':'<span></span>')+(s.track?'<button class="btn btn-gold" type="button" data-complete="'+s.id+'" aria-pressed="false">Mark this section complete</button>':'')+(i<SECS.length-1?'<button class="btn btn-ghost" type="button" data-go="'+SECS[i+1].id+'">Next: '+SECS[i+1].nav+' →</button>':'<button class="btn btn-ghost" type="button" data-go="hero-top">Back to the start ↑</button>');
+    $('.wrap',sec).appendChild(f);});
+  document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g){if(g.dataset.go==='hero-top'){window.scrollTo({top:0,behavior:reduce.matches?'auto':'smooth'});}else go(g.dataset.go);return;}
+    const c=e.target.closest('[data-complete]');if(c){setDone(c.dataset.complete,!S.done[c.dataset.complete]);}});
+  $('#startBtn').addEventListener('click',e=>{e.preventDefault();go('timeline');});
+}
+function toggleMenu(open){const tb=$('#topbar');const o=typeof open==='boolean'?open:!tb.classList.contains('open');tb.classList.toggle('open',o);$('#menuBtn').setAttribute('aria-expanded',o?'true':'false');}
+function onScroll(){
+  const y=window.scrollY;$('#topBtn').classList.toggle('show',y>650);
+  let cur=null;SECS.forEach(s=>{const el=$('#s-'+s.id);if(el&&el.getBoundingClientRect().top<=140)cur=s.id;});
+  $$('#navList a').forEach(a=>{const on=a.dataset.id===cur;if(on)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current');if(on&&window.innerWidth>980){const nav=$('#nav');const l=a.offsetLeft-nav.clientWidth/2+a.clientWidth/2;nav.scrollTo({left:l,behavior:'auto'});}});
+}
+
+/* ================= Data: timeline ================= */
+const EVENTS=[
+{id:'e1',when:'1–3 September 1939',icon:'📻',title:'Britain declares war',
+ short:'Germany invaded Poland on 1 September 1939. Britain (and France) declared war on Germany on 3 September.',
+ what:'On 1 September 1939 Germany invaded Poland. Britain and France had promised to help Poland. When Germany did not withdraw, Britain declared war on 3 September 1939. Prime Minister Neville Chamberlain told the country in a radio broadcast, and France declared war on Germany the same day.',
+ why:'This was the moment Britain entered the Second World War. Families began to get ready for air raids, with gas masks, shelters and blackouts.',
+ fact:'Few homes had a television and there was no internet. Most people heard the news on the wireless (radio).',
+ think:'How would you have felt hearing the news on the radio with your family?',
+ idea:'Many people felt worried or serious because they remembered the First World War. Some felt determined. Children might have felt confused or excited without fully understanding what it meant.'},
+{id:'e2',when:'From 1 September 1939 (more waves in 1940)',icon:'🎒',title:'Evacuation',
+ short:'Evacuation began on 1 September 1939 and continued in waves, including in 1940.',
+ what:'Evacuation moved children (and some mothers with babies, teachers and helpers) from cities thought likely to be bombed to safer places in the countryside and by the sea. It began on 1 September 1939, two days before Britain declared war. More waves followed in 1940, for example after the fall of France and when the Blitz began.',
+ why:'The government wanted to protect children from bombing. Parents chose whether to send their children away. Many children stayed at home, and many who left came back when the bombs did not arrive at first.',
+ fact:'Evacuees carried a gas mask in a box and wore a label with their name on it.',
+ think:'How might leaving home have felt different for different children?',
+ idea:'Some children may have felt excited by the countryside, while others were homesick, scared or lonely. Some were welcomed kindly and some were not treated well.'},
+{id:'e3',when:'Late May to early June 1940',icon:'⛵',title:'The Dunkirk evacuation',
+ short:'More than 330,000 soldiers were rescued from the beaches of Dunkirk by navy ships and hundreds of small boats.',
+ what:'Many British, French and Belgian soldiers were trapped by German forces near Dunkirk in France. A rescue called Operation Dynamo began. Navy ships and hundreds of small boats, many crewed by civilians, carried more than 330,000 soldiers across the English Channel.',
+ why:'The army was saved so that it could fight again. It was a retreat, not a victory, but it showed what people could do by working together.',
+ fact:'Fishing boats, ferries and pleasure boats helped, and became known as the “Little Ships”.',
+ think:'Why might people not call Dunkirk a victory, even though so many soldiers were rescued?',
+ idea:'The army had to leave France and leave much equipment behind. The rescue was a great relief, but the war was far from over.'},
+{id:'e4',when:'July to October 1940',icon:'🛩️',title:'The Battle of Britain',
+ short:'The RAF defended Britain’s skies against the Luftwaffe in the summer and autumn of 1940.',
+ what:'From the summer of 1940 the German air force, the Luftwaffe, tried to defeat the RAF so that Germany could control the skies over Britain. RAF pilots, helped by radar, the Observer Corps and ground crews, defended the country.',
+ why:'Germany did not win control of the skies, so a planned invasion was put off. It is seen as an important turning point because Britain could carry on in the war.',
+ fact:'Pilots came from Britain and many other countries, including Poland, Czechoslovakia, Canada, New Zealand, Australia, South Africa, Belgium, France, Ireland and the United States.',
+ think:'Why do you think controlling the sky mattered so much?',
+ idea:'An enemy that controls the sky can see what is happening below, protect an invasion and attack without being stopped.'},
+{id:'e5',when:'September 1940 to May 1941',icon:'🌃',title:'The Blitz',
+ short:'German bombers attacked British cities, mostly at night, from September 1940 to May 1941.',
+ what:'The Blitz was a long series of German air raids on British cities, mostly at night. London was bombed on 57 nights in a row from 7 September 1940. Other cities, including Coventry, Liverpool, Glasgow, Belfast, Cardiff, Swansea and Plymouth, were attacked too.',
+ why:'Many homes and buildings were damaged and many people lost their lives. People relied on sirens, shelters, wardens and emergency services. Schools, shops and factories carried on as much as they could.',
+ fact:'Many Londoners spent nights sheltering in Underground stations.',
+ think:'What would you want to have with you if you spent a night in a shelter?',
+ idea:'Blankets, warm clothes, a torch, a book or game, a drink and a snack, and your gas mask.'},
+{id:'e6',when:'1941 (food rationing began in 1940)',icon:'📒',title:'Rationing expands',
+ short:'Food rationing began in January 1940. In 1941 more goods were rationed, including clothes.',
+ what:'Food rationing began in January 1940 with foods such as bacon, butter and sugar. During 1940 and 1941 more foods were added, and clothes rationing began in June 1941. In December 1941 a “points” system was added for some tinned and packaged foods.',
+ why:'Britain imported a lot of its food, and ships carrying it were in danger. Rationing helped to share what there was fairly.',
+ fact:'People were told to “Make Do and Mend”: to repair, alter and reuse clothes instead of buying new ones.',
+ think:'Which would you miss the most: sweets, new clothes or choice at mealtimes?',
+ idea:'There is no single right answer. The point is to imagine how daily choices changed when goods were limited.'},
+{id:'e7',when:'6 June 1944',icon:'🚢',title:'D-Day',
+ short:'Allied forces landed in Normandy, France, beginning the liberation of western Europe.',
+ what:'Allied forces crossed the English Channel and landed on beaches in Normandy, France. Troops from Britain, the United States, Canada and other Allied countries took part, supported by thousands of ships and aircraft.',
+ why:'It was the start of freeing western Europe from German control. The plans took a long time to make and were kept secret.',
+ fact:'Around 156,000 troops landed by sea or arrived by parachute and glider on the first day.',
+ think:'Why do you think D-Day had to be kept secret?',
+ idea:'If the enemy had known where and when, they could have prepared to stop it and more people would have been in danger.'},
+{id:'e8',when:'8 May 1945',icon:'🎉',title:'Victory in Europe (VE) Day',
+ short:'Germany surrendered and the war in Europe ended. The war against Japan continued until later in 1945.',
+ what:'Germany surrendered and the war in Europe ended. 8 May 1945 was named Victory in Europe Day. Crowds celebrated in the streets with flags, singing and street parties. The war against Japan continued until later in 1945.',
+ why:'It ended the fighting in Europe after almost six years. Many families still had loved ones away or lost, so people’s feelings were mixed.',
+ fact:'Princess Elizabeth and Princess Margaret joined the celebrating crowds in London without being recognised.',
+ think:'Why might some people feel both happy and sad on VE Day?',
+ idea:'Happy because the fighting in Europe had ended. Sad for people who had died or who were still far away, and the war with Japan was not yet over.'}
+];
+
+/* ================= Data: home front ================= */
+const HF=[
+{id:'ration',icon:'📒',title:'Rationing',text:'Britain imported a lot of its food, and enemy submarines attacked the ships that carried it. From January 1940 the government began rationing so everyone could buy a fair share. Each person had a ration book, and shopkeepers marked or cut out coupons. Exactly which foods were rationed, and how much you could buy, changed during the war.',q:'Why did the government introduce rationing?',opts:['To make sure limited food was shared fairly','To stop people ever eating sweets','Because there were no farms in Britain'],a:0,why:'Rationing meant that nobody could take more than their fair share when supplies were short.'},
+{id:'blitz',icon:'🌃',title:'The Blitz',text:'From September 1940 to May 1941, German aircraft raided British cities, mostly at night. Sirens warned people and families went to shelters. Wardens, firefighters, ambulance crews and volunteers helped their neighbours. Schools, shops and factories carried on whenever they could, and people found ways to support each other.',q:'What was the air-raid siren warning people to do?',opts:['Go to a shelter or a safe place','Go shopping','Start school early'],a:0,why:'A wailing siren meant an air raid was likely, so people moved to shelters or safe places.'},
+{id:'shelters',icon:'⛺',title:'Air-raid shelters',text:'Families sheltered in different ways. Many people with gardens had an Anderson shelter, made of curved steel and partly buried. The Morrison shelter was a strong steel cage used indoors, and many people used public shelters or Underground stations. Some people chose to stay in their own beds.',q:'Which shelter was often built in a garden and covered with soil?',opts:['The Anderson shelter','The Morrison shelter','A treehouse'],a:0,why:'Anderson shelters were dug into gardens and covered with earth. Morrison shelters were used inside the house.',link:'shelter'},
+{id:'blackout',icon:'🌑',title:'Blackouts',text:'To make towns and cities harder to see from the air at night, windows were covered with thick curtains or blackout paper, street lamps were switched off, and car headlights were masked. Wardens checked that no light was showing. Edges of pavements were sometimes painted white to help people see.',widget:'blackout',q:'Why did lights have to be hidden during the blackout?',opts:['So enemy aircraft crews could not easily see towns below','So people would go to bed earlier','To save paint'],a:0,why:'A lit window could help aircraft crews find a town in the dark, so lights were hidden.'},
+{id:'women',icon:'👩‍🏭',title:'Women’s wartime work',text:'Women did a huge range of jobs: making aircraft and ships in factories, farming in the Women’s Land Army, nursing, driving buses and ambulances, working as wardens and firefighters, and serving in the armed forces. Some women worked as codebreakers at Bletchley Park. From late 1941 many women were required to do war work or join the services. Women were often paid less than men for similar work.',q:'Which of these did women do in wartime Britain?',opts:['Factory work, farming, nursing and many other jobs','Only housework','Only nursing'],a:0,why:'Women worked in a very wide range of roles, which helped to change ideas about what women could do.'},
+{id:'homeguard',icon:'🧢',title:'The Home Guard',text:'The Home Guard began in May 1940 as the Local Defence Volunteers and was renamed the Home Guard that summer. Its members were volunteers who were not in the regular armed forces, often people who were too old or too young to join up, or who had jobs that were needed at home. They trained in the evenings and at weekends and kept watch in their local areas.',q:'Who joined the Home Guard?',opts:['Volunteers who were not in the regular armed forces','Only RAF pilots','Only young children'],a:0,why:'The Home Guard was made up of volunteers who still had other jobs and families.'},
+{id:'dig',icon:'🥕',title:'Dig for Victory',text:'The government urged people to grow their own food in gardens, allotments, parks and any spare ground. More home-grown vegetables meant fewer foods had to be brought in by ship. Posters, leaflets and radio programmes gave gardening advice.',widget:'dig',q:'Which of these could families grow to help feed themselves?',opts:['Potatoes, carrots and cabbages','Bananas and pineapples','Chocolate bars'],a:0,why:'Hardy vegetables grow well in British gardens and allotments. Bananas and pineapples do not.'},
+{id:'children',icon:'🎒',title:'Children’s daily lives',text:'Many children went to school as usual, carrying a gas mask in a box and practising air-raid drills. Schools could be crowded or shared with evacuated children. Children helped by collecting scrap metal, picking rose hips and growing vegetables. Toys and sweets were harder to find, and many children made their own games.',q:'What did many children carry with them every day?',opts:['A gas mask in a box','A mobile phone','A laptop'],a:0,why:'Children were given gas masks and told to carry them, although gas was never used against British homes.'},
+{id:'propaganda',icon:'📢',title:'Propaganda and posters',text:'Propaganda is information or pictures made to influence what people think or do. The government used posters, radio, newspapers and films to share messages such as saving food, keeping secrets and “Make Do and Mend”. Some messages were designed to keep spirits high. Propaganda is not always untrue, but it shows the view the creator wants you to have.',q:'A poster says “Careless talk costs lives”. What was it trying to persuade people to do?',opts:['Keep important information secret','Talk loudly in public','Buy more posters'],a:0,why:'The slogan warned people not to share details that could help the enemy.'}
+];
+HF.forEach(prepQ);
+
+/* ================= Data: suitcase ================= */
+const ITEMS=[
+{id:'clothes',e:'👕',n:'Spare vest, socks and underclothes',ok:true,why:'Children needed clean changes of clothes because they might be away from home for a long time.'},
+{id:'coat',e:'🧥',n:'Warm coat and jumper',ok:true,why:'Journeys and billets could be cold, and children had to wear or carry their warm clothes.'},
+{id:'mask',e:'😷',n:'Gas mask in its box',ok:true,why:'Everyone was given a gas mask and told to carry it, including evacuees.'},
+{id:'id',e:'🪪',n:'Identity card and name label',ok:true,why:'Children had to be easy to identify, so they wore labels and carried identity cards.'},
+{id:'food',e:'🥪',n:'Food for the journey (sandwiches and an apple)',ok:true,why:'Journeys could be long and children were asked to bring something to eat.'},
+{id:'wash',e:'🪥',n:'Toothbrush, soap and flannel',ok:true,why:'Washing things were needed in a new home away from your own bathroom.'},
+{id:'toy',e:'🧸',n:'A favourite toy or small book',ok:true,why:'Something familiar from home could comfort a child who felt homesick.'},
+{id:'card',e:'✉️',n:'Postcard and pencil to write home',ok:true,why:'Parents wanted to know their child had arrived safely, and children were encouraged to write.'},
+{id:'bike',e:'🚲',n:'Bicycle',ok:false,why:'Far too large to carry on a crowded train. Children could only take what they could carry.'},
+{id:'coal',e:'⚫',n:'Sack of coal',ok:false,why:'Very heavy and dirty, and not needed. Host families had their own fuel.'},
+{id:'tablet',e:'📱',n:'Tablet computer',ok:false,why:'Tablets had not been invented in 1939! There were no mobile phones, tablets or home computers.'},
+{id:'horse',e:'🐴',n:'Big wooden rocking horse',ok:false,why:'Much too big and heavy for a suitcase or a train carriage.'},
+{id:'china',e:'🫖',n:'Best china tea set',ok:false,why:'Fragile, heavy and not something a child would need.'},
+{id:'fish',e:'🐟',n:'Pet goldfish in a bowl',ok:false,why:'The water would spill on the journey, and the child had no way of looking after it while travelling.'}
+];
+
+/* ================= Data: rations ================= */
+const BUDGET=12;
+const FOODS=[
+{id:'potato',e:'🥔',n:'Potatoes',c:0,t:'carb'},{id:'bread',e:'🍞',n:'Bread',c:0,t:'carb'},{id:'oats',e:'🥣',n:'Porridge oats',c:0,t:'carb'},
+{id:'carrot',e:'🥕',n:'Carrots',c:0,t:'veg'},{id:'cabbage',e:'🥬',n:'Cabbage (home-grown)',c:0,t:'veg'},{id:'apple',e:'🍎',n:'Apples (home-grown)',c:0,t:'fruit'},
+{id:'egg',e:'🥚',n:'Dried egg',c:1,t:'protein'},{id:'marg',e:'🧈',n:'Margarine',c:1,t:'fat'},{id:'sugar',e:'🍬',n:'Sugar or jam',c:1,t:'sweet'},
+{id:'cheese',e:'🧀',n:'Cheese',c:2,t:'protein'},{id:'bacon',e:'🥓',n:'Bacon',c:2,t:'protein'},{id:'fish',e:'🐟',n:'Tinned fish',c:2,t:'protein'},{id:'meat',e:'🍖',n:'Small meat joint',c:3,t:'protein'}
+];
+
+/* ================= Data: radar ================= */
+const CONTACTS=[
+{id:'A',ang:40,r:78,clue:'A large group of aircraft, flying high over the sea from the direction of France. They are heading for the coast and are not on the list of expected friendly flights.',a:0,why:'This looks like an incoming raid. Plotters passed on the warning so fighter squadrons and air-raid sirens could be ready.'},
+{id:'B',ang:300,r:58,clue:'A single aircraft approaching from the west. The plotting table says an RAF aircraft is expected to return at about this time.',a:1,why:'It matches the list of expected friendly flights, so no alarm is needed. Checking the list helped avoid false alarms.'},
+{id:'C',ang:205,r:36,clue:'A faint, fuzzy patch close to the ground. It drifts slowly with the wind and keeps changing shape.',a:2,why:'Radar can pick up weather, flocks of birds and other things. Operators learned to tell them apart from aircraft.'},
+{id:'D',ang:86,r:92,clue:'Several groups of aircraft crossing the North Sea in formation towards the coast. None of them is on the friendly list.',a:0,why:'This is another possible raid, so a warning must be passed on quickly.'},
+{id:'E',ang:150,r:54,clue:'A small group leaving an RAF airfield and heading out over the sea at the planned time on today’s flight list.',a:1,why:'The planned time and place match the flight list, so these are friendly aircraft.'},
+{id:'F',ang:252,r:84,clue:'A scattered echo near a storm cloud. It appears, disappears and reappears, and does not move in a straight line.',a:2,why:'Storm clouds can create odd echoes. Aircraft usually travel in steady lines, so this is probably weather.'}
+];
+const RADAR_OPTS=['Pass on an air-raid warning','Friendly: expected RAF aircraft','Probably weather or birds: no action'];
+
+/* ================= Data: shelter ================= */
+const HOT={
+ morrison:{n:'Morrison shelter',t:'A Morrison shelter was a strong steel cage with a thick metal top and mesh sides. It was introduced in 1941 for families without a garden. In the daytime it could be used as a table, and at night people slept inside it. It is named after Herbert Morrison, a government minister.'},
+ blackout:{n:'Blackout curtains',t:'Thick, dark curtains or blackout paper covered the windows so no light shone out at night. Families made them carefully, because even a small chink of light could be seen from the sky. Wardens checked streets and told people to “put that light out”.'},
+ anderson:{n:'Anderson shelter',t:'Anderson shelters were made of curved sheets of corrugated steel bolted together, then partly buried in a garden and covered with soil. Families on lower incomes were given one free and others paid a small cost. They could be cold and damp, and sometimes flooded.'},
+ supplies:{n:'Emergency supplies',t:'Families kept a shelter kit: blankets, a torch, water or a flask of tea, snacks, a first-aid box, books and games, and gas masks. Some families kept important papers in a tin. Children often had a favourite toy to hold.'},
+ warden:{n:'Air-raid warden',t:'Air-raid wardens, also called ARP (Air Raid Precautions) wardens, patrolled their local streets. They checked the blackout, handed out advice, helped people to shelters and reported damage to the emergency services. Many were volunteers who also had other jobs.'},
+ siren:{n:'Sirens',t:'Sirens on tall poles warned people of an air raid. The warning was a wailing note that rose and fell. When the danger had passed, a steady note meant “all clear”. In the siren demonstration below you can hear a gentle synthetic version.'},
+ sleeping:{n:'Sleeping arrangements',t:'Shelters were small, and people squeezed in with mattresses, bunk beds and blankets. In some places, such as Underground stations, people slept on platforms, sometimes in bunks. Sleep could be difficult, and some families preferred to stay in their own beds unless the raid was close.'}
+};
+
+/* ================= Data: sources ================= */
+const SRC=[
+{id:'diary',icon:'📓',name:'A child’s diary',label:'Recreated diary entry',kind:'doc',
+ text:'<p><em>Saturday 2nd September 1939</em></p><p>We went to school early with our gas masks and a bag each. We had labels pinned to our coats. Nobody would say where the train was going. Mum waved but I saw she was crying. Now I am in a farmhouse. Mrs Hughes gave me bread and jam. I am trying to be brave but my tummy feels funny.</p>',
+ qs:[
+ {q:'What can this source tell us?',opts:['How one evacuated child might have felt on the first day','How every evacuee in Britain felt','How many children were evacuated'],a:0,why:'A diary shows one person’s feelings and experiences. It cannot tell us numbers or what everyone felt.'},
+ {q:'Who created it?',opts:['A child who was evacuated (a made-up example for this resource)','A government minister','A newspaper editor'],a:0,why:'It is written by a child, in the first person. Remember that this is a recreated example, not a real diary.'},
+ {q:'Why was it created?',opts:['To record private thoughts and events','To persuade people to grow vegetables','To sell newspapers'],a:0,why:'Diaries are usually private and written for the writer, not to persuade anyone.'},
+ {q:'What might it NOT tell us?',opts:['What other children, host families and parents felt','What the child felt on that day','That a train journey happened'],a:0,why:'One diary cannot show everyone’s experiences. Other sources are needed.'},
+ {q:'How reliable or useful is it?',opts:['Very useful for one child’s feelings, but it cannot speak for every evacuee','Useless, because it is only one person’s view','Completely reliable about everyone’s experience'],a:0,why:'A source can be useful even if it shows only one view. Historians compare many sources.'}],
+ verdict:'Useful for personal feelings, but it is one voice, so we need to compare it with other evidence.'},
+{id:'poster',icon:'🖼️',name:'A government-style poster',label:'Recreated poster',kind:'poster',
+ text:'<p>DIG FOR VICTORY!</p><p style="font-size:.95rem">Turn your garden, allotment or spare patch into a vegetable plot.<br>Every potato and carrot you grow means less food needed on ships.<br>Plant today. Eat well tomorrow.</p>',
+ qs:[
+ {q:'What can this source tell us?',opts:['What the government wanted people to do, and how it spoke to them','Exactly how many gardens were dug','How every family felt about gardening'],a:0,why:'Posters show the message the creator wanted to share, not necessarily what happened.'},
+ {q:'Who created it?',opts:['The government (for example a ministry) with an artist or writer','A child at school','A shopkeeper'],a:0,why:'Public information posters were usually created for the government by designers and writers.'},
+ {q:'Why was it created?',opts:['To persuade people to grow food at home','To record a private memory','To entertain people with a story'],a:0,why:'It is designed to persuade, which means to encourage people to act in a certain way.'},
+ {q:'What might it NOT tell us?',opts:['Whether people actually followed the advice, and how they felt about it','What the poster says','What the poster’s message was'],a:0,why:'A poster shows what someone wanted people to do, not whether they did it.'},
+ {q:'How reliable or useful is it?',opts:['Useful for the government’s message, but it is persuasive, not neutral','Completely neutral and fair','Useless, because it is only a poster'],a:0,why:'A useful source is not necessarily unbiased. Propaganda posters are very useful for seeing what leaders wanted people to think and do.'}],
+ verdict:'Very useful for understanding government aims, but not a neutral record of what ordinary families did.'},
+{id:'ration',icon:'📒',name:'A ration book page',label:'Recreated ration book page',kind:'doc',
+ text:'<p><strong>MINISTRY OF FOOD – RATION BOOK</strong></p><p>Name: ____________________<br>Keep this book safe. Without it you cannot buy rationed food.<br>Register with ONE shopkeeper for your butter, sugar and bacon.<br>Coupons will be marked or cut out by the shopkeeper. Do not change anything in this book.</p>',
+ qs:[
+ {q:'What can this source tell us?',opts:['Rationed foods needed a ration book, and shops marked the coupons','What every family ate for tea','How much every person could buy at all times in the war'],a:0,why:'It shows how the system worked, but not exact amounts, which changed during the war.'},
+ {q:'Who created it?',opts:['The government department in charge of food','A pupil at school','A pilot'],a:0,why:'Ration books were official documents issued by the Ministry of Food.'},
+ {q:'Why was it created?',opts:['To control and share food fairly and stop cheating','To advertise new foods','To tell a story'],a:0,why:'The book helped the government control how much each person could buy.'},
+ {q:'What might it NOT tell us?',opts:['How people felt about rationing, and how allowances changed','That coupons were used','That a book was needed to buy rationed food'],a:0,why:'An official form has rules, not opinions or personal stories.'},
+ {q:'How reliable or useful is it?',opts:['Reliable for how the system worked, but it shows little about people’s feelings','Reliable about everyone’s opinions of rationing','Not useful at all'],a:0,why:'Official documents can be very reliable about procedures, but they do not show everyday experiences.'}],
+ verdict:'Strong evidence for how rationing was organised, but silent about people’s opinions.'},
+{id:'letter',icon:'✉️',name:'A wartime letter',label:'Recreated letter',kind:'doc',
+ text:'<p><em>Dear Tom,</em></p><p>Thank you for your drawing of the cow! Dad and I are well. We spent last night in the Anderson shelter, but it was only for a short while and we were quite cosy. Dad is busy as an air-raid warden. Please be good for Mrs Price and help her with the chickens. I am saving a little jam for your next visit. Write soon.</p><p><em>All my love, Mum</em></p>',
+ qs:[
+ {q:'What can this source tell us?',opts:['Some families kept in touch by letter, and some sheltered during raids','Every parent wrote to their evacuated child every week','All parents wanted their children to stay away'],a:0,why:'A letter shows one family’s situation. It cannot show what every family did.'},
+ {q:'Who created it?',opts:['A mother writing to her evacuated son (a made-up example)','The Prime Minister','A newspaper reporter'],a:0,why:'The letter is signed by a mother and written to her son.'},
+ {q:'Why was it created?',opts:['To keep in touch and reassure her son','To warn of an invasion','To advertise shelters'],a:0,why:'Family letters often kept in touch and tried to cheer people up.'},
+ {q:'What might it NOT tell us?',opts:['How worried or frightened the mother really felt','That there had been a raid','That Tom lived away from home'],a:0,why:'She may have chosen cheerful words so her son would not worry.'},
+ {q:'How reliable or useful is it?',opts:['Useful for family life, but she may have left out worries to avoid upsetting her son','Tells us everything, because letters always tell the whole truth','Useless, because it is private'],a:0,why:'People choose what to include. A source can be useful and still be selective.'}],
+ verdict:'Useful for everyday family life, though writers may leave things out to protect others.'},
+{id:'news',icon:'📰',name:'A newspaper headline',label:'Recreated newspaper front page',kind:'news',
+ text:'<h4>Little ships help to bring the army home</h4><p style="font-size:.95rem;font-family:Georgia,serif">Hundreds of boats cross the Channel to rescue soldiers from the beaches near Dunkirk. Navy and civilian crews work day and night.</p>',
+ qs:[
+ {q:'What can this source tell us?',opts:['What the public was told about the rescue, and the tone newspapers used','The full secret plans of the army','How every soldier felt'],a:0,why:'Newspapers show what readers were told at the time, and how it was presented.'},
+ {q:'Who created it?',opts:['Newspaper journalists and editors in 1940 (a recreated example)','A government minister only','A pilot'],a:0,why:'Journalists and editors wrote and chose the headline.'},
+ {q:'Why was it created?',opts:['To inform readers and to encourage hope','To teach mathematics','To sell cinema tickets'],a:0,why:'Newspapers informed readers, and during the war they also helped to keep spirits up.'},
+ {q:'What might it NOT tell us?',opts:['Bad news and secret details, because wartime newspapers could not print everything','What the headline says','That boats were used'],a:0,why:'Wartime news was checked, and some information had to be left out to protect plans and people.'},
+ {q:'How reliable or useful is it?',opts:['Useful for what people were told, but it may be selective and aimed at keeping spirits high','It always tells the whole truth','Useless, because it is old'],a:0,why:'A newspaper can be useful evidence of public information, but historians must remember what it may have left out.'}],
+ verdict:'Good evidence of what people were told, but not the whole story of what happened.'}
+];
+SRC.forEach(s=>s.qs.forEach(prepQ));
+
+/* ================= Data: myths ================= */
+const MYTHS=[
+{s:'Everyone in Britain experienced the war in exactly the same way.',a:'myth',why:'Experiences differed a lot depending on where people lived, their age, background, work, family, race, nationality, health and many other things.'},
+{s:'All children in Britain were evacuated.',a:'myth',why:'Many children stayed at home, and many who were evacuated came back again. Parents could choose whether to send their children away.'},
+{s:'Bananas were widely available in British shops during the war.',a:'myth',why:'Shipping space was needed for essential supplies, so bananas were very scarce. Many children saw one for the first time after the war.'},
+{s:'Women did many different jobs during the war, from factory work to farming and nursing.',a:'fact',why:'Women worked in factories, on farms, in transport, as nurses, wardens and firefighters, and in the armed forces.'},
+{s:'The blackout was meant to make it harder for enemy aircraft to find towns and cities at night.',a:'fact',why:'Hiding lights made it much harder to see towns from the air.'},
+{s:'Evacuation began only after the Blitz started.',a:'myth',why:'Evacuation began on 1 September 1939. The Blitz began in September 1940, a year later, and led to further waves of evacuation.'},
+{s:'Rationing ended as soon as the war ended.',a:'myth',why:'Shortages continued after 1945. Some rationing lasted until 1954.'},
+{s:'Britain fought entirely alone for the whole war.',a:'myth',why:'Britain had many allies, including Commonwealth countries, and was later joined by the Soviet Union and the United States. Governments and forces from occupied Europe also helped.'},
+{s:'Children did not go to school at all during the war.',a:'myth',why:'Schools carried on, although some were damaged, crowded or shared, and lessons were sometimes interrupted by air raids.'},
+{s:'Air-raid sirens warned people to take cover.',a:'fact',why:'The wailing siren meant an air raid was likely, and a steady note meant all clear.'},
+{s:'Every family had an Anderson shelter in the garden.',a:'myth',why:'Many families had no garden. People also used Morrison shelters, public shelters, cellars and Underground stations, or stayed in their beds.'},
+{s:'People were encouraged to grow vegetables in gardens, allotments and parks.',a:'fact',why:'The “Dig for Victory” campaign encouraged people to grow food wherever they could.'},
+{s:'Eating carrots really gave pilots the power to see in the dark.',a:'myth',why:'Carrots are healthy, but they do not give night vision. Some historians think the story helped to hide the fact that Britain was using radar.'}
+];
+
+/* ================= Data: quiz ================= */
+const QUIZ=[
+{t:'mc',q:'On what date did Britain declare war on Germany?',opts:['3 September 1939','1 September 1939','8 May 1945','6 June 1944'],a:0,why:'Germany invaded Poland on 1 September 1939, and Britain declared war two days later, on 3 September.'},
+{t:'tf',q:'True or false: evacuation of children began in September 1939.',a:true,why:'The evacuation of children from cities began on 1 September 1939, before Britain declared war.'},
+{t:'mc',q:'What was the main purpose of the blackout?',opts:['To make it harder for enemy aircraft to see towns and cities at night','To save money on electricity bills','To help people sleep better','To make streets look nicer'],a:0,why:'If lights were hidden, aircraft crews found it much harder to see where towns and cities were.'},
+{t:'match',q:'Match each word to its meaning.',pairs:[['Rationing','Sharing out limited food and goods fairly'],['Evacuation','Moving people away from danger'],['Propaganda','Messages made to influence what people think or do'],['Radar','A system that uses radio waves to detect aircraft far away']],why:'Rationing shared limited goods fairly; evacuation moved people to safety; propaganda tried to influence people; radar detected aircraft.'},
+{t:'order',q:'Put these events in order, earliest first.',items:['Britain declares war (1939)','The Dunkirk evacuation (1940)','D-Day landings (1944)','VE Day (1945)'],why:'The order is: 1939 Britain declares war, 1940 Dunkirk, 1944 D-Day, 1945 VE Day.'},
+{t:'mc',q:'Which system helped to detect approaching aircraft during the Battle of Britain?',opts:['Radar','Television','Ration books','Gas masks'],a:0,why:'A chain of radar stations gave early warning of aircraft approaching Britain.'},
+{t:'tf',q:'True or false: Britain fought the whole war completely alone, with no help from other countries.',a:false,why:'Britain had many allies, including Commonwealth countries, and was later joined by the Soviet Union and the United States.'},
+{t:'mc',q:'What did the “Dig for Victory” campaign encourage people to do?',opts:['Grow their own food','Save old paper','Join the Navy','Walk to school'],a:0,why:'People were encouraged to grow vegetables in gardens, allotments and parks, so less food had to be shipped in.'},
+{t:'src',src:'<em>“The train was long. I held my gas mask box tight and felt a bit scared.”</em> <span class="recreated">Recreated diary line</span>',q:'What is one limit of using this diary line as evidence?',opts:['It shows one child’s view, not everyone’s','Historians can never use diaries','It is too short to read','It proves that all evacuees were frightened'],a:0,why:'A diary is useful but personal. It tells us about one person, so we need other sources too.'},
+{t:'mc',q:'What was an Anderson shelter?',opts:['A steel shelter, often partly buried in a garden','A table-like steel cage inside a house','A shop that sold ration books','A type of aircraft'],a:0,why:'Anderson shelters were curved steel shelters, usually partly buried in gardens. Morrison shelters were used indoors.'},
+{t:'mc',q:'When and where was the Battle of Britain mainly fought?',opts:['In the skies over southern England and the Channel in summer and autumn 1940','On the beaches of Normandy in 1944','In the trenches in 1916','In British cities in 1945'],a:0,why:'The Battle of Britain took place from about July to October 1940, mainly in the air.'},
+{t:'tf',q:'True or false: rationing ended on VE Day in 1945.',a:false,why:'Rationing carried on for years after the war. The last foods came off the ration in 1954.'},
+{t:'src',src:'<strong>MAKE DO AND MEND!</strong> Mend it, alter it, reuse it. <span class="recreated">Recreated poster</span>',q:'Why was a poster like this created?',opts:['To encourage people to save clothes and materials','To record a private memory','To report the result of a battle','To teach children to read'],a:0,why:'Posters like this tried to persuade people to repair and reuse things because supplies were limited.'},
+{t:'match',q:'Match each country to the side it was on.',pairs:[['Germany','Axis'],['Britain','Allies'],['Italy','Axis'],['Canada','Allies']],why:'Germany and Italy were Axis powers. Britain and Canada were among the Allies.'},
+{t:'mc',q:'Which statement about evacuees is most accurate?',opts:['Experiences varied: some were happy and safe, others were lonely or badly treated','All evacuees were very happy','All evacuees were very unhappy','No children were evacuated'],a:0,why:'Evacuees had very different experiences, depending on where they went, who they lived with and their own circumstances.'}
+];
+QUIZ.forEach(q=>{if(q.t==='mc'||q.t==='src')prepQ(q);});
+
+/* ================= Data: glossary ================= */
+const GLOSS=[
+['Air-raid warden (Warden)','A person who patrolled the streets during air raids, checked that no lights showed, helped people to shelters and gave advice. Also called an ARP (Air Raid Precautions) warden.'],
+['Allies','The countries that fought together against the Axis powers. Britain, France and Poland were early Allies. Later the Soviet Union, the United States, China and many other countries joined, and troops from the Commonwealth fought alongside Britain.'],
+['Anderson shelter','A curved steel shelter, usually partly buried in a garden and covered with soil, to protect families during air raids.'],
+['Axis','The countries that fought on the side of Germany, mainly Germany, Italy and Japan.'],
+['Blackout','Covering windows and switching off or dimming lights at night so enemy aircraft could not easily see towns and cities from the air.'],
+['Blitz','The heavy night-time bombing of British cities by the German air force from September 1940 to May 1941.'],
+['D-Day','6 June 1944, when Allied troops landed on the beaches of Normandy in France to begin freeing western Europe.'],
+['Dunkirk','A port in France from which more than 330,000 soldiers were rescued across the English Channel in late May and early June 1940.'],
+['Evacuation','Moving people, especially children, away from places likely to be bombed to safer places. A person who was evacuated is called an evacuee.'],
+['Evidence','Information that helps us find out what happened in the past and supports our ideas about it.'],
+['Gas mask','A face covering made to protect people from poison gas, carried in a cardboard box. Gas was never used against British homes, but people prepared in case.'],
+['Holocaust','The systematic persecution and murder of six million Jewish people and millions of other victims by Nazi Germany and its collaborators.'],
+['Home Front','Everyday life and work in Britain during the war, away from the fighting.'],
+['Home Guard','A force of volunteers formed in 1940 to help defend Britain, made up of people who were not serving in the regular armed forces.'],
+['Kindertransport','A rescue effort that brought around 10,000 mostly Jewish children from Germany, Austria and Czechoslovakia to safety in Britain between late 1938 and September 1939.'],
+['Luftwaffe','The German air force.'],
+['Morrison shelter','A strong steel cage used indoors as a table by day and a shelter or bed at night.'],
+['Observer Corps','Volunteers who watched and listened for enemy aircraft and reported what they saw and heard by telephone.'],
+['Primary source','Something made at the time of an event, such as a diary, poster or letter. The sources in this resource are recreated classroom examples, not genuine primary sources.'],
+['Propaganda','Information or pictures made to influence what people think or do. It is not always untrue, but it shows the view the creator wants you to have.'],
+['Radar','A system that uses radio waves to detect aircraft and ships far away, before they can be seen or heard.'],
+['RAF','The Royal Air Force, Britain’s air force.'],
+['Rationing','Limiting how much food and other goods each person can buy, so that everyone gets a fair share when supplies are short.'],
+['Refugee','A person who has to leave their home to find safety, for example because of war or danger.'],
+['Siren','A loud warning sound. A wailing, rising and falling note meant an air raid was likely. A steady note meant “all clear”.'],
+['VE Day','Victory in Europe Day, 8 May 1945, when people celebrated the end of the war in Europe.'],
+['Women’s Land Army','An organisation of women who worked on farms, growing and harvesting food while many farm workers were in the forces.']
+];
+
+/* ================= Timeline ================= */
+function markOpened(list,id){if(S.opened[list].indexOf(id)<0){S.opened[list].push(id);save();}}
+function initTimeline(){
+  const ol=$('#tlList');
+  ol.innerHTML=EVENTS.map((e,i)=>'<li><button class="tl-card paper tape" type="button" data-i="'+i+'" aria-label="'+e.title+', '+e.when+'. Open card"><span class="date">'+e.when+'</span><h3>'+e.icon+' '+e.title+'</h3><span class="open">Open the card →</span></button></li>').join('');
+  ol.addEventListener('click',e=>{const b=e.target.closest('.tl-card');if(b)openEvent(+b.dataset.i);});
+  refreshTimeline();
+}
+function refreshTimeline(){
+  $$('#tlList .tl-card').forEach((b,i)=>{const seen=S.opened.timeline.indexOf(EVENTS[i].id)>=0;let st=$('.seen',b);if(seen&&!st){st=document.createElement('span');st.className='stamp seen';st.textContent='Opened';b.appendChild(st);}});
+  const n=S.opened.timeline.length;$('#tlProgress').textContent=n+' of '+EVENTS.length+' timeline cards opened.'+(n===EVENTS.length?' Well done, you have explored the whole timeline!':'');
+  if(n===EVENTS.length)setDone('timeline',true,true);
+}
+function openEvent(i){
+  const e=EVENTS[i];sfx.click();markOpened('timeline',e.id);
+  const m=openModal('<h3 id="mTitle">'+e.icon+' '+e.title+'</h3><p><span class="stamp">'+e.when+'</span></p><p>'+e.what+'</p><p><strong>Why it mattered:</strong> '+e.why+'</p><div class="fact"><strong>Memorable fact:</strong> '+e.fact+'</div><div class="think"><strong>Think about it:</strong> '+e.think+'<p style="margin:10px 0 0"><button class="btn btn-ghost btn-sm" type="button" id="ideaBtn" aria-expanded="false">Show a thinking idea</button></p><p id="ideaTxt" hidden style="margin:10px 0 0"><strong>An idea:</strong> '+e.idea+'</p></div><div class="modal-nav"><button class="btn btn-ghost" type="button" id="evPrev"'+(i===0?' disabled':'')+'>← Earlier event</button><button class="btn btn-blue" type="button" id="evNext"'+(i===EVENTS.length-1?' disabled':'')+'>Later event →</button></div>',{keepPrev:true,onClose:refreshTimeline});
+  $('#ideaBtn',m).addEventListener('click',ev=>{const t=$('#ideaTxt',m);t.hidden=!t.hidden;ev.currentTarget.setAttribute('aria-expanded',t.hidden?'false':'true');ev.currentTarget.textContent=t.hidden?'Show a thinking idea':'Hide the thinking idea';});
+  $('#evPrev',m).addEventListener('click',()=>{refreshTimeline();openEvent(i-1);});
+  $('#evNext',m).addEventListener('click',()=>{refreshTimeline();openEvent(i+1);});
+}
+
+/* ================= Why did the war begin ================= */
+const MAPINFO={
+ britain:'<strong>Britain.</strong> Britain and France had promised to help Poland if it was attacked. Britain declared war on Germany on 3 September 1939. Britain was one of the main Allied powers.',
+ france:'<strong>France.</strong> France also had a promise to help Poland and declared war on Germany on 3 September 1939. France was an Allied power, but German forces defeated its army in 1940. Many French people carried on resisting and the Free French fought with the Allies.',
+ germany:'<strong>Germany.</strong> Under Adolf Hitler and the Nazi Party, Germany invaded Poland on 1 September 1939. Germany was the leading Axis power in Europe.',
+ poland:'<strong>Poland.</strong> Germany invaded Poland on 1 September 1939. Poland was an ally of Britain and France. Later that month Soviet forces also entered eastern Poland. Polish people, pilots and soldiers kept fighting alongside the Allies for the rest of the war.',
+ italy:'<strong>Italy.</strong> Italy was led by Benito Mussolini and joined the Axis. It did not enter the war until June 1940, when it declared war on Britain and France.'
+};
+const AX=[
+ {n:'Britain',a:'Allies',why:'Britain declared war on Germany on 3 September 1939 and was one of the main Allies.'},
+ {n:'Germany',a:'Axis',why:'Germany, led by the Nazi government, was the main Axis power in Europe.'},
+ {n:'Italy',a:'Axis',why:'Italy joined the Axis and entered the war in June 1940.'},
+ {n:'Canada',a:'Allies',why:'Canada declared war on Germany in September 1939, and Canadian forces took part in many campaigns, including D-Day.'},
+ {n:'Japan',a:'Axis',why:'Japan was part of the Axis. It signed a pact with Germany and Italy in 1940 and fought in Asia and the Pacific.'},
+ {n:'Poland',a:'Allies',why:'Poland was invaded by Germany in 1939. Polish people and forces fought with the Allies throughout the war.'}
+];
+function initWhy(){
+  const wrap=$('#mapWrap'),info=$('#mapInfo');
+  $$('.map-pin',wrap).forEach(p=>p.addEventListener('click',()=>{$$('.map-pin',wrap).forEach(x=>x.setAttribute('aria-pressed','false'));p.setAttribute('aria-pressed','true');p.classList.add('vis');info.innerHTML='<p style="margin:0">'+MAPINFO[p.dataset.c]+'</p>';sfx.click();}));
+  $('#sidesBtn').addEventListener('click',e=>{const on=!wrap.classList.contains('show-sides');wrap.classList.toggle('show-sides',on);$('#legend').hidden=!on;e.currentTarget.setAttribute('aria-pressed',on?'true':'false');e.currentTarget.textContent=on?'Hide the Axis and Allies colours':'Show the Axis and Allies';sfx.click();});
+  const list=$('#axisList');
+  AX.forEach((c,i)=>{const row=document.createElement('div');row.className='axrow';row.innerHTML='<span class="nm">'+c.n+'</span><button class="btn btn-ghost btn-sm" type="button" data-s="Axis">Axis</button><button class="btn btn-ghost btn-sm" type="button" data-s="Allies">Allies</button><span class="fbm" role="status"></span>';
+    const fb=$('.fbm',row),btns=$$('button',row);
+    function lock(){btns.forEach(b=>{b.disabled=true;if(b.dataset.s===c.a)b.classList.add('btn-gold');});fb.innerHTML='✅ <strong>'+c.a+'.</strong> '+c.why;}
+    if(S.axis[c.n]){lock();}
+    btns.forEach(b=>b.addEventListener('click',()=>{if(b.dataset.s===c.a){S.axis[c.n]=true;save();lock();sfx.good();say('Correct. '+c.n+' was on the '+c.a+' side.');if(Object.keys(S.axis).length>=AX.length)setDone('why',true,true);}else{fb.innerHTML='❌ <strong>Not quite.</strong> Think about which side '+c.n+' fought on, then try again.';sfx.bad();}}));
+    list.appendChild(row);});
+}
+
+/* ================= Home front ================= */
+function initHome(){
+  const g=$('#hfGrid');
+  g.innerHTML=HF.map((c,i)=>'<button class="hf-card paper pin" type="button" data-i="'+i+'" aria-label="'+c.title+'. Open card"><span class="ico" aria-hidden="true">'+c.icon+'</span><h3>'+c.title+'</h3><span class="go">Open the card →</span></button>').join('');
+  g.addEventListener('click',e=>{const b=e.target.closest('.hf-card');if(b)openHF(+b.dataset.i);});
+  refreshHome();
+}
+function refreshHome(){
+  $$('#hfGrid .hf-card').forEach((b,i)=>{const seen=S.opened.home.indexOf(HF[i].id)>=0;let st=$('.seen',b);if(seen&&!st){st=document.createElement('span');st.className='stamp seen';st.textContent='Opened';b.appendChild(st);}});
+  const n=S.opened.home.length;$('#hfProgress').textContent=n+' of '+HF.length+' Home Front cards opened.'+(n===HF.length?' You have explored every card!':'');
+  if(n===HF.length)setDone('home',true,true);
+}
+function openHF(i){
+  const c=HF[i];sfx.click();markOpened('home',c.id);
+  let w='';
+  if(c.widget==='blackout')w='<div class="bo-scene off" id="boScene"><span class="bo-moon" aria-hidden="true">🌙</span><span class="bo-plane" aria-hidden="true">✈️</span><div class="bo-house"><div class="bo-win"></div></div></div><p><button class="btn btn-gold btn-sm" type="button" id="boBtn" aria-pressed="false">Open the curtains and switch the light on</button></p><p id="boTxt" aria-live="polite"><strong>Try it:</strong> The curtains are closed, so no light escapes. From above, the house is hard to see.</p>';
+  if(c.widget==='dig')w='<p><strong>Try it:</strong> Tap each plot to plant, water and harvest a vegetable.</p><div class="dig-row" id="digRow">'+[0,1,2,3].map(k=>'<button class="plot" type="button" data-k="'+k+'" aria-label="Plot '+(k+1)+': bare soil. Tap to plant a seed.">🟫</button>').join('')+'</div><p id="digTxt" aria-live="polite"></p>';
+  const m=openModal('<h3 id="mTitle">'+c.icon+' '+c.title+'</h3><p>'+c.text+'</p>'+w+(c.link?'<p><button class="btn btn-ghost btn-sm" type="button" id="hfLink">Explore the shelter scene →</button></p>':'')+'<div class="think"><strong>Question:</strong> '+c.q+'</div><div id="hfQ"></div><div class="modal-nav"><button class="btn btn-ghost" type="button" id="hfPrev"'+(i===0?' disabled':'')+'>← Previous card</button><button class="btn btn-blue" type="button" id="hfNext"'+(i===HF.length-1?' disabled':'')+'>Next card →</button></div>',{keepPrev:true,onClose:refreshHome});
+  buildChoices($('#hfQ',m),{opts:c.opts,a:c.a,why:c.why});
+  if(c.widget==='blackout'){let on=false;const sc=$('#boScene',m),btn=$('#boBtn',m),tx=$('#boTxt',m);btn.addEventListener('click',()=>{on=!on;sc.classList.toggle('off',!on);btn.setAttribute('aria-pressed',on?'true':'false');btn.textContent=on?'Close the blackout curtains':'Open the curtains and switch the light on';tx.innerHTML=on?'<strong>Oh dear!</strong> A bright window could be seen from far above. This is why wardens called out “Put that light out!”':'<strong>Try it:</strong> The curtains are closed, so no light escapes. From above, the house is hard to see.';sfx.click();});}
+  if(c.widget==='dig'){const st=[0,0,0,0],em=['🟫','🌱','🌿','🥕'],lab=['bare soil. Tap to plant a seed.','a seed planted. Tap to water.','a growing plant. Tap to harvest.','a harvested carrot.'];$$('.plot',m).forEach(b=>b.addEventListener('click',()=>{const k=+b.dataset.k;if(st[k]<3)st[k]++;b.textContent=em[st[k]];b.setAttribute('aria-label','Plot '+(k+1)+': '+lab[st[k]]);sfx.click();if(st.every(x=>x===3)){$('#digTxt',m).innerHTML='🎉 <strong>Your allotment fed the family!</strong> Every plot you grew meant less food had to be brought in by ship.';sfx.good();}}));}
+  if(c.link)$('#hfLink',m).addEventListener('click',()=>{closeModal(true);refreshHome();go('shelter');});
+  $('#hfPrev',m).addEventListener('click',()=>{refreshHome();openHF(i-1);});
+  $('#hfNext',m).addEventListener('click',()=>{refreshHome();openHF(i+1);});
+}
+
+/* ================= Suitcase ================= */
+function initSuitcase(){
+  const table=$('#scTable'),cas=$('#scCase'),MAX=8;let suppress=false;
+  const itemOf=b=>ITEMS.find(x=>x.id===b.dataset.id);
+  const inCase=b=>b.parentNode===cas;
+  const count=()=>$$('.sc-item',cas).length;
+  function label(b){const it=itemOf(b);b.setAttribute('aria-label',it.n+(inCase(b)?'. In the suitcase. Press to take it out.':'. On the hall table. Press to pack it.'));}
+  function update(){$('#scCount').textContent=count()+' of '+MAX+' packed';$$('.sc-item').forEach(label);}
+  function move(b,toCase){if(toCase&&!inCase(b)){if(count()>=MAX){toast('The suitcase is full. Take something out first.');say('The suitcase is full. Take something out first.');return false;}cas.appendChild(b);say(itemOf(b).n+' packed. '+count()+' of '+MAX+'.');}else if(!toCase&&inCase(b)){table.appendChild(b);say(itemOf(b).n+' taken out. '+count()+' of '+MAX+' packed.');}update();return true;}
+  function zoneAt(x,y){const el=document.elementFromPoint(x,y);return el&&el.closest?el.closest('.sc-zone'):null;}
+  shuffle(ITEMS.map(i=>i.id)).forEach(id=>{const it=ITEMS.find(x=>x.id===id);const b=document.createElement('button');b.type='button';b.className='sc-item';b.dataset.id=id;b.innerHTML='<span class="e" aria-hidden="true">'+it.e+'</span><span>'+it.n+'</span>';table.appendChild(b);
+    b.addEventListener('click',()=>{if(suppress)return;b.classList.remove('ok','no');move(b,!inCase(b));b.focus();sfx.click();});
+    b.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse'&&e.button!==0)return;const sx=e.clientX,sy=e.clientY;let ghost=null,moved=false;
+      const mv=ev=>{if(!moved&&Math.hypot(ev.clientX-sx,ev.clientY-sy)>8){moved=true;ghost=b.cloneNode(true);ghost.classList.add('ghost');document.body.appendChild(ghost);b.classList.add('dragging');}
+        if(moved){ghost.style.left=ev.clientX+'px';ghost.style.top=ev.clientY+'px';const z=zoneAt(ev.clientX,ev.clientY);$$('.sc-zone').forEach(zz=>zz.classList.toggle('over',zz===z));}};
+      const up=ev=>{document.removeEventListener('pointermove',mv);document.removeEventListener('pointerup',up);document.removeEventListener('pointercancel',up);
+        if(ghost)ghost.remove();b.classList.remove('dragging');$$('.sc-zone').forEach(zz=>zz.classList.remove('over'));
+        if(moved){suppress=true;setTimeout(()=>{suppress=false;},80);if(ev.type==='pointerup'){const z=zoneAt(ev.clientX,ev.clientY);b.classList.remove('ok','no');if(z===cas)move(b,true);else if(z===table)move(b,false);sfx.click();}}};
+      document.addEventListener('pointermove',mv);document.addEventListener('pointerup',up);document.addEventListener('pointercancel',up);});
+  });
+  update();
+  $('#scCheck').addEventListener('click',()=>{
+    const packed=$$('.sc-item',cas);const out=$('#scResult');
+    if(!packed.length){out.innerHTML=infoHTML('Pack at least one item into the suitcase first, then press “Check my suitcase”.');return;}
+    let good=0,li='';packed.forEach(b=>{const it=itemOf(b);if(it.ok)good++;b.classList.remove('ok','no');b.classList.add(it.ok?'ok':'no');li+='<li>'+(it.ok?'✅':'❌')+' <strong>'+it.n+':</strong> '+it.why+'</li>';});
+    const left=ITEMS.filter(i=>i.ok&&!packed.some(b=>b.dataset.id===i.id));
+    let html='<div class="paper tape" style="margin-top:14px"><h3>Your suitcase check</h3><p><strong>You packed '+good+' suitable '+(good===1?'item':'items')+' out of '+packed.length+'.</strong></p><ul class="sc-list">'+li+'</ul>';
+    if(left.length)html+='<h4>Useful things you left on the table</h4><ul class="sc-list">'+left.map(i=>'<li>'+i.e+' <strong>'+i.n+':</strong> '+i.why+'</li>').join('')+'</ul>';
+    html+='<div class="note light" style="margin-bottom:0"><strong>Different evacuees, different stories.</strong> Evacuation was experienced in many different ways. Some children were happy and safe in kind homes, and enjoyed fresh air and new friends. Others felt lonely, homesick or frightened, and some were treated badly or split up from brothers and sisters. Host families differed too: some were generous, while others had little space or money. Many children went home when it seemed safe, and some were evacuated more than once. Historians use letters, diaries, school records and memories to understand all of these different experiences.</div></div>';
+    out.innerHTML=html;sfx.good();say('Suitcase checked. You packed '+good+' suitable items out of '+packed.length+'.');S.suit=true;save();setDone('suitcase',true,true);
+  });
+  $('#scReset').addEventListener('click',()=>{$$('.sc-item').forEach(b=>{b.classList.remove('ok','no');table.appendChild(b);});update();$('#scResult').innerHTML='';say('Suitcase emptied.');});
+}
+
+/* ================= Ration challenge ================= */
+function initRations(){
+  let meals=[[],[],[]],sel=0;
+  const food=id=>FOODS.find(f=>f.id===id);
+  const used=()=>meals.reduce((s,m)=>s+m.reduce((t,id)=>t+food(id).c,0),0);
+  function render(){
+    const u=used(),left=BUDGET-u;
+    $('#coupons').innerHTML=Array.from({length:BUDGET},(_,i)=>'<div class="coupon'+(i<u?' used':'')+'" aria-hidden="true">'+(i+1)+'</div>').join('');
+    $('#leftTxt').textContent=left+' of '+BUDGET+' counters left';
+    $('#meals').innerHTML=meals.map((m,i)=>'<div class="meal" role="group" aria-label="Meal '+(i+1)+'"'+(i===sel?' aria-current="true"':'')+'><div class="meal-h"><button class="btn btn-sm '+(i===sel?'btn-gold':'btn-ghost')+'" type="button" data-sel="'+i+'" aria-pressed="'+(i===sel)+'">Meal '+(i+1)+(i===sel?' (adding foods here)':' – choose')+'</button><span>'+m.reduce((t,id)=>t+food(id).c,0)+' counters</span></div><div class="chips">'+(m.length?m.map((id,k)=>'<button class="chip" type="button" data-rm="'+i+','+k+'" aria-label="Remove '+food(id).n+' from meal '+(i+1)+'">'+food(id).e+' '+food(id).n+' ✕</button>').join(''):'<span style="color:var(--ink2)">Empty – choose up to 3 foods.</span>')+'</div></div>').join('');
+    $('#foods').innerHTML=FOODS.map(f=>{const dis=f.c>left||meals[sel].length>=3;return '<button class="food" type="button" data-f="'+f.id+'"'+(dis?' disabled':'')+'><span>'+f.e+' '+f.n+'</span><span class="cost">'+(f.c===0?'0 counters':f.c+' counter'+(f.c>1?'s':''))+'</span></button>';}).join('');
+  }
+  $('#meals').addEventListener('click',e=>{const s=e.target.closest('[data-sel]');if(s){sel=+s.dataset.sel;render();const nb=$('[data-sel="'+sel+'"]');if(nb)nb.focus();return;}const r=e.target.closest('[data-rm]');if(r){const [i,k]=r.dataset.rm.split(',').map(Number);meals[i].splice(k,1);render();sfx.click();const nb=$('[data-sel="'+i+'"]');if(nb)nb.focus();}});
+  $('#foods').addEventListener('click',e=>{const b=e.target.closest('[data-f]');if(!b||b.disabled)return;const f=food(b.dataset.f);if(f.c>BUDGET-used()||meals[sel].length>=3)return;meals[sel].push(f.id);render();sfx.click();say(f.n+' added to meal '+(sel+1)+'. '+(BUDGET-used())+' counters left.');const nb=$('[data-f="'+f.id+'"]');if(nb&&!nb.disabled)nb.focus();});
+  $('#rReset').addEventListener('click',()=>{meals=[[],[],[]];sel=0;render();$('#rResult').innerHTML='';say('Meal plan cleared.');});
+  $('#rCheck').addEventListener('click',()=>{
+    const out=$('#rResult');if(meals.some(m=>m.length<2)){out.innerHTML=infoHTML('Each meal needs at least two foods before you can check your plan. Keep going!');return;}
+    let html='<div class="paper tape" style="margin-top:16px"><h3>Your meal plan</h3><p><strong>You used '+used()+' of '+BUDGET+' counters.</strong> '+(used()<BUDGET?'You saved '+(BUDGET-used())+' for another time, which is just what careful families did.':'You used every counter.')+'</p><ul class="sc-list">';
+    meals.forEach((m,i)=>{const t=m.map(id=>food(id).t);const hasC=t.includes('carb'),hasV=t.includes('veg')||t.includes('fruit'),hasP=t.includes('protein');
+      const bits=[hasC?'✅ a filling food':'⚠ no filling food such as potatoes, bread or oats',hasV?'✅ vegetables or fruit':'⚠ no vegetables or fruit',hasP?'✅ some protein':'⚠ no protein (such as egg, cheese, bacon, fish or meat)'];
+      html+='<li><strong>Meal '+(i+1)+':</strong> '+m.map(id=>food(id).e+' '+food(id).n).join(', ')+'<br>'+bits.join(' &nbsp; ')+'</li>';});
+    html+='</ul><p>A balanced wartime meal often used plenty of unrationed vegetables and bread, with small amounts of rationed protein. That is exactly why the government wanted people to <strong>grow vegetables</strong> in gardens and allotments and to <strong>avoid waste</strong>. Families saved peelings for animal feed, used leftovers in soups and pies, and re-used everything they could. Remember that this model uses simplified counters, and real allowances changed during the war.</p></div>';
+    out.innerHTML=html;sfx.good();say('Meal plan checked. You used '+used()+' of '+BUDGET+' counters.');S.ration=true;save();setDone('rations',true,true);});
+  render();
+}
+
+/* ================= Radar ================= */
+function initRadar(){
+  const radar=$('#radar'),panel=$('#radarPanel');
+  function score(){const n=Object.keys(S.radar).length;$('#rScore').textContent='Contacts checked: '+n+' of '+CONTACTS.length;return n;}
+  CONTACTS.forEach(c=>{const b=document.createElement('button');b.type='button';b.className='blip'+(S.radar[c.id]?' done':'');b.textContent=c.id;b.setAttribute('aria-label','Radar contact '+c.id+(S.radar[c.id]?' (checked)':''));b.setAttribute('aria-pressed','false');
+    const x=50+(c.r/100)*46*Math.sin(c.ang*Math.PI/180),y=50-(c.r/100)*46*Math.cos(c.ang*Math.PI/180);b.style.left=x+'%';b.style.top=y+'%';radar.appendChild(b);
+    b.addEventListener('click',()=>{$$('.blip',radar).forEach(z=>z.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');sfx.click();
+      panel.innerHTML='<p class="rscore" id="rScore">Contacts checked: '+Object.keys(S.radar).length+' of '+CONTACTS.length+'</p><h4 style="color:#fff">Contact '+c.id+'</h4><p>'+c.clue+'</p><p><strong>What should a plotter do?</strong></p><div id="rCh"></div>';
+      const host=$('#rCh',panel);const wrap=document.createElement('div');wrap.className='choices';const fb=document.createElement('div');fb.setAttribute('role','status');
+      RADAR_OPTS.forEach((t,i)=>{const o=document.createElement('button');o.type='button';o.className='choice';o.innerHTML='<span class="k" aria-hidden="true">'+'ABC'[i]+'</span><span>'+t+'</span>';
+        o.addEventListener('click',()=>{if(i===c.a){$$('.choice',wrap).forEach((x2,j)=>{x2.disabled=true;if(j===c.a)x2.classList.add('right');});fb.innerHTML=fbHTML(true,c.why);sfx.good();b.classList.add('done');b.setAttribute('aria-label','Radar contact '+c.id+' (checked)');S.radar[c.id]=true;save();const n=score();say('Correct. '+c.why);
+            if(n===CONTACTS.length){fb.innerHTML+=infoHTML('<strong>Radar room complete!</strong> Radar plotters, observers and operators worked together, using careful evidence, to give early warning. Many were women of the WAAF.');setDone('battle',true,true);}}
+          else{o.classList.add('wrong');o.disabled=true;fb.innerHTML=fbHTML(false,'Look at the clue again. Where is it coming from, is it on the friendly list, and does it move like aircraft?');sfx.bad();}});
+        wrap.appendChild(o);});
+      host.appendChild(wrap);host.appendChild(fb);});
+  });
+  score();
+}
+
+/* ================= Shelter + siren ================= */
+function initShelter(){
+  const info=$('#hotInfo'),wrap=$('#shelterWrap'),keys=Object.keys(HOT);
+  function count(){return S.opened.shelter.length;}
+  $$('.hot',wrap).forEach(b=>{if(S.opened.shelter.indexOf(b.dataset.h)>=0)b.classList.add('vis');
+    b.addEventListener('click',()=>{const k=b.dataset.h,h=HOT[k];$$('.hot',wrap).forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');b.classList.add('vis');markOpened('shelter',k);sfx.click();
+      info.innerHTML='<h3>'+h.n+'</h3><p>'+h.t+'</p><p style="margin:0"><strong>'+count()+' of '+keys.length+' explored.</strong>'+(count()===keys.length?' Brilliant, you found everything in the scene!':'')+'</p>';say(h.n+'. '+h.t);if(count()===keys.length)setDone('shelter',true,true);});});
+  $('#hotCount').textContent=count()+' of '+keys.length+' explored.';
+  /* siren */
+  const ok=$('#sirenOk'),bw=$('#sirenWarn'),bc=$('#sirenClear'),stat=$('#sirenStatus'),vol=$('#sirenVol');let node=null;
+  const vtxt=()=>{const v=+vol.value;$('#sirenVolTxt').textContent=v===0?'Muted':v<35?'Quiet':v<70?'Medium':'Louder';};vtxt();
+  ok.addEventListener('change',()=>{bw.disabled=bc.disabled=!ok.checked;if(!ok.checked)stop();});
+  function stop(msg){if(node){try{node.o.stop();}catch(e){}try{node.o.disconnect();node.m.disconnect();}catch(e){}node=null;}stat.textContent=msg||'';}
+  function play(kind){stop();const a=getCtx();if(!a){stat.textContent='Sorry, sound is not supported on this device.';return;}
+    const t=a.currentTime,m=a.createGain(),g=a.createGain(),lp=a.createBiquadFilter(),o=a.createOscillator();lp.type='lowpass';lp.frequency.value=900;m.gain.value=(+vol.value/100)*0.09;
+    o.connect(lp);lp.connect(g);g.connect(m);m.connect(a.destination);let end;
+    if(kind==='warn'){o.type='sawtooth';o.frequency.setValueAtTime(380,t);for(let k=0;k<3;k++){o.frequency.linearRampToValueAtTime(620,t+1.2*(2*k+1));o.frequency.linearRampToValueAtTime(380,t+1.2*(2*k+2));}end=t+7.2;}
+    else{o.type='triangle';o.frequency.setValueAtTime(440,t);end=t+5;}
+    g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(1,t+0.4);g.gain.setValueAtTime(1,end-0.5);g.gain.exponentialRampToValueAtTime(0.0001,end);
+    o.start(t);o.stop(end+0.05);node={o,m};o.onended=()=>{if(node&&node.o===o){node=null;stat.textContent='Finished. '+(kind==='warn'?'A wailing, rising and falling note meant an air raid was likely.':'A steady note meant “all clear”.');}};
+    stat.textContent=kind==='warn'?'Playing the warning signal: a wailing note rising and falling…':'Playing the all-clear: one steady note…';}
+  bw.addEventListener('click',()=>play('warn'));bc.addEventListener('click',()=>play('clear'));
+  $('#sirenStop').addEventListener('click',()=>{stop('Sound stopped.');vol.value=0;vtxt();say('Sound stopped and volume muted.');});
+  vol.addEventListener('input',()=>{vtxt();if(node)node.m.gain.value=(+vol.value/100)*0.09;});
+  window.addEventListener('pagehide',()=>stop());
+}
+
+/* ================= Sources detective ================= */
+function initSources(){
+  const tabs=$('#srcTabs'),panel=$('#srcPanel');let cur=0;
+  tabs.innerHTML=SRC.map((s,i)=>'<button class="src-tab'+(S.src[s.id]?' done':'')+'" type="button" role="tab" id="tab-'+s.id+'" data-i="'+i+'" aria-selected="'+(i===0)+'" aria-controls="srcPanel" tabindex="'+(i===0?0:-1)+'">'+s.icon+' '+s.name+'</button>').join('');
+  function select(i,focus){cur=i;$$('.src-tab',tabs).forEach((t,j)=>{t.setAttribute('aria-selected',j===i?'true':'false');t.tabIndex=j===i?0:-1;});if(focus)$$('.src-tab',tabs)[i].focus();panel.setAttribute('aria-labelledby','tab-'+SRC[i].id);show(i,0,0);}
+  tabs.addEventListener('click',e=>{const t=e.target.closest('.src-tab');if(t){sfx.click();select(+t.dataset.i);}});
+  tabs.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();select((cur+(e.key==='ArrowRight'?1:SRC.length-1))%SRC.length,true);}});
+  function docHTML(s){return '<p><span class="recreated">'+s.label+' – written for this resource, not a genuine source</span></p><div class="src-doc '+(s.kind==='poster'?'poster':s.kind==='news'?'news':'')+'">'+s.text+'</div>';}
+  function show(i,qi,score){
+    const s=SRC[i];
+    if(qi>=s.qs.length){
+      S.src[s.id]=true;save();$$('.src-tab',tabs)[i].classList.add('done');
+      panel.innerHTML=docHTML(s)+'<h3>Detective report: '+s.name+'</h3><p><strong>You answered '+score+' of '+s.qs.length+' questions correctly on your first try.</strong></p><div class="fb info"><span class="ic" aria-hidden="true">🔎</span><div><strong>Verdict:</strong> '+s.verdict+' Remember: a useful source is not necessarily completely unbiased.</div></div><div class="sec-foot" style="border:0;margin-top:14px;padding:0"><button class="btn btn-ghost" type="button" id="srcAgain">Try this source again</button>'+(i<SRC.length-1?'<button class="btn btn-blue" type="button" id="srcNext">Next source →</button>':'')+'</div>';
+      sfx.win();say('Source complete. '+score+' of '+s.qs.length+' correct.');
+      $('#srcAgain').addEventListener('click',()=>show(i,0,0));const nx=$('#srcNext');if(nx)nx.addEventListener('click',()=>select(i+1,true));
+      if(SRC.every(x=>S.src[x.id]))setDone('sources',true,true);return;}
+    const q=s.qs[qi];panel.innerHTML=docHTML(s)+'<p class="qstep">Detective question '+(qi+1)+' of '+s.qs.length+'</p><h3>'+q.q+'</h3><div id="srcQ"></div><div id="srcNextWrap"></div>';
+    buildChoices($('#srcQ'),{opts:q.opts,a:q.a,why:q.why,onAnswer:ok=>{const w=$('#srcNextWrap');w.innerHTML='<button class="btn btn-blue" type="button" id="srcNQ">'+(qi+1<s.qs.length?'Next question →':'See my detective report →')+'</button>';$('#srcNQ').focus();$('#srcNQ').addEventListener('click',()=>show(i,qi+1,score+(ok?1:0)));}});
+  }
+  select(0);
+}
+
+/* ================= Myth or fact ================= */
+function initMyths(){
+  const list=$('#mythList');
+  list.innerHTML=MYTHS.map((m,i)=>'<div class="paper myth" id="myth'+i+'"><p class="s"><span class="stamp" style="margin-right:8px">'+(i+1)+'</span>'+m.s+'</p><div class="row"><button class="btn btn-blue" type="button" data-a="myth" data-i="'+i+'">Myth</button><button class="btn btn-red" type="button" data-a="fact" data-i="'+i+'">Fact</button></div><div role="status" class="mfb"></div></div>').join('');
+  function score(){const n=Object.keys(S.myth).length,k=Object.values(S.myth).filter(Boolean).length;$('#mythScore').textContent=n+' of '+MYTHS.length+' answered · '+k+' correct';return n;}
+  function paint(i,ans){const m=MYTHS[i],ok=ans===m.a,box=$('#myth'+i);$$('button',box).forEach(b=>{b.disabled=true;if(b.dataset.a===m.a)b.classList.add('btn-gold');});$('.mfb',box).innerHTML=fbHTML(ok,'It is a <strong>'+m.a+'</strong>. '+m.why);}
+  Object.keys(S.myth).forEach(i=>{const m=MYTHS[+i];if(!m)return;paint(+i,S.myth[i]?m.a:(m.a==='myth'?'fact':'myth'));});
+  list.addEventListener('click',e=>{const b=e.target.closest('button[data-a]');if(!b)return;const i=+b.dataset.i,m=MYTHS[i],ok=b.dataset.a===m.a;S.myth[i]=ok;save();paint(i,b.dataset.a);sfx[ok?'good':'bad']();say((ok?'Correct. ':'Not quite. ')+m.why);if(score()===MYTHS.length)setDone('myths',true,true);});
+  score();
+}
+
+/* ================= Quiz ================= */
+const Q={queue:[],pos:0,res:[],fixed:new Set(),mode:'start',note:''};
+function medalFor(s){return s>=13?{n:'Gold',e:'🥇'}:s>=10?{n:'Silver',e:'🥈'}:{n:'Bronze',e:'🥉'};}
+function cleanName(v){return String(v||'').replace(/[^A-Za-zÀ-ɏ' -]/g,'').trim().slice(0,20);}
+function today(){return new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});}
+function certHTML(name,medal,score){return '<div class="certificate" id="certBox"><h4>Certificate of Achievement</h4><p style="margin:0 0 6px"><strong>World War II: Britain at War – KS2 History Detective</strong></p><p style="margin:10px 0 0">This certificate is awarded to</p><div class="cname">'+(name?name:'&nbsp;')+'</div><p>for completing the quiz and earning a <strong>'+medal.n+' medal</strong> ('+score+' out of '+QUIZ.length+' on the first try).</p><div class="cm" aria-hidden="true">'+medal.e+'</div><p style="margin:0;font-size:.9rem">The Teacher Vault · KS2 History · '+today()+'</p></div>';}
+function initQuiz(){
+  const host=$('#quizCard');
+  function start(){Q.queue=QUIZ.map((_,i)=>i);Q.pos=0;Q.res=new Array(QUIZ.length).fill(null);Q.fixed=new Set();Q.mode='main';show();}
+  function startScreen(){
+    const best=S.quiz.best;host.innerHTML='<div class="result"><div class="medal" aria-hidden="true">📜</div><h3>Ready for the quiz?</h3><p>15 questions: multiple choice, true or false, ordering, matching and source questions.</p>'+(best!==null?'<p><span class="score-pill">Your best score so far: '+best+' out of '+QUIZ.length+' '+medalFor(best).e+'</span></p>':'')+'<p><button class="btn btn-red btn-lg" type="button" id="qStart">Start the quiz</button></p></div>';$('#qStart').addEventListener('click',start);}
+  function show(){
+    const idx=Q.queue[Q.pos],q=QUIZ[idx],pct=Math.round(Q.pos/Q.queue.length*100),sc=Q.res.filter(x=>x===true).length;
+    host.innerHTML='<div class="qmeta"><span>'+(Q.mode==='retry'?'Retry round · ':'')+'Question '+(Q.pos+1)+' of '+Q.queue.length+'</span><span>'+(Q.mode==='main'?'Score so far: '+sc:'')+'</span></div><div class="qbar" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+pct+'"><div style="width:'+pct+'%"></div></div><p class="q-text" id="qText" tabindex="-1">'+q.q+'</p>'+(q.t==='src'?'<div class="q-src">'+q.src+'</div>':'')+'<div id="qBody"></div><div id="qNext" style="margin-top:14px"></div>';
+    $('#qText').focus({preventScroll:true});
+    const body=$('#qBody');
+    function done(ok){if(Q.mode==='main')Q.res[idx]=ok;else if(ok)Q.fixed.add(idx);
+      const last=Q.pos+1>=Q.queue.length;$('#qNext').innerHTML='<button class="btn btn-blue" type="button" id="qGo">'+(last?'See my results →':'Next question →')+'</button>';const g=$('#qGo');g.focus();g.addEventListener('click',()=>{if(last)result();else{Q.pos++;show();}});}
+    if(q.t==='mc'||q.t==='src')buildChoices(body,{opts:q.opts,a:q.a,why:q.why,onAnswer:done});
+    else if(q.t==='tf')buildChoices(body,{opts:['True','False'],a:q.a?0:1,why:q.why,onAnswer:done});
+    else if(q.t==='order'){
+      let cur;do{cur=shuffle(q.items);}while(cur.join('|')===q.items.join('|'));
+      body.innerHTML='<p>Use the arrow buttons to move events into the right order.</p><ol class="ord" id="ordList"></ol><button class="btn btn-gold" type="button" id="ordCheck">Check my order</button><div id="ordFb" role="status"></div>';
+      const ol=$('#ordList');function draw(){ol.innerHTML=cur.map((t,i)=>'<li><span class="t">'+(i+1)+'. '+t+'</span><button type="button" data-d="-1" data-i="'+i+'" aria-label="Move '+t+' up"'+(i===0?' disabled':'')+'>▲</button><button type="button" data-d="1" data-i="'+i+'" aria-label="Move '+t+' down"'+(i===cur.length-1?' disabled':'')+'>▼</button></li>').join('');}
+      draw();ol.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled)return;const i=+b.dataset.i,j=i+ +b.dataset.d;[cur[i],cur[j]]=[cur[j],cur[i]];draw();const nb=$$('button',ol).find(x=>+x.dataset.i===j&&x.dataset.d===b.dataset.d)||$$('button',ol)[0];if(nb&&!nb.disabled)nb.focus();sfx.click();});
+      $('#ordCheck').addEventListener('click',e=>{const ok=cur.every((t,i)=>t===q.items[i]);$$('li',ol).forEach((li,i)=>li.classList.add(cur[i]===q.items[i]?'right':'wrong'));$$('button',ol).forEach(b=>b.disabled=true);e.currentTarget.disabled=true;$('#ordFb').innerHTML=fbHTML(ok,q.why);sfx[ok?'good':'bad']();say((ok?'Correct. ':'Not quite. ')+q.why);done(ok);});
+    }
+    else if(q.t==='match'){
+      const rights=shuffle(q.pairs.map(p=>p[1]));
+      body.innerHTML='<div id="mRows">'+q.pairs.map((p,i)=>'<div class="mrow"><label for="m'+i+'">'+p[0]+'</label><select id="m'+i+'"><option value="">Choose…</option>'+rights.map(r=>'<option>'+r+'</option>').join('')+'</select></div>').join('')+'</div><p style="margin-top:12px"><button class="btn btn-gold" type="button" id="mCheck">Check my matches</button></p><div id="mFb" role="status"></div>';
+      $('#mCheck').addEventListener('click',e=>{const sels=q.pairs.map((_,i)=>$('#m'+i));if(sels.some(s=>!s.value)){$('#mFb').innerHTML=infoHTML('Choose an answer for every row, then check again.');return;}
+        let ok=true;sels.forEach((s,i)=>{const r=s.value===q.pairs[i][1];if(!r)ok=false;s.parentNode.classList.add(r?'right':'wrong');s.disabled=true;});e.currentTarget.disabled=true;
+        $('#mFb').innerHTML=fbHTML(ok,q.why,ok?'':'<br><strong>Correct matches:</strong> '+q.pairs.map(p=>p[0]+' → '+p[1]).join('; '));sfx[ok?'good':'bad']();say((ok?'Correct. ':'Not quite. ')+q.why);done(ok);});
+    }
+  }
+  function result(){
+    const score=Q.res.filter(x=>x===true).length,md=medalFor(score);
+    const missed=QUIZ.map((_,i)=>i).filter(i=>Q.res[i]!==true&&!Q.fixed.has(i));
+    if(Q.mode==='main'){S.quiz.last=score;if(S.quiz.best===null||score>S.quiz.best){S.quiz.best=score;S.quiz.medal=md.n;}save();setDone('quiz',true,true);sfx.win();}
+    const wasRetry=Q.mode==='retry';Q.mode='done';
+    host.innerHTML='<div class="result"><div class="medal" aria-hidden="true">'+md.e+'</div><h3>'+md.n+' medal!</h3><p class="big">'+score+' out of '+QUIZ.length+'</p><p>'+(score>=13?'Outstanding! You really know your wartime history.':score>=10?'Well done! You have a very good understanding.':'Good effort! Look back through the sections and try again to improve.')+' <br><small>Your medal is based on your first attempt at each question.</small></p>'+(wasRetry?'<p><span class="score-pill">Retry round: you fixed '+Q.fixed.size+' question'+(Q.fixed.size===1?'':'s')+'</span></p>':'')+(missed.length?'<div class="note light" style="text-align:left"><strong>Questions to look at again:</strong> '+missed.map(i=>(i+1)).join(', ')+'.</div><p><button class="btn btn-blue" type="button" id="qRetry">Retry the '+plural(missed.length,'question')+' I missed</button></p>':'<p><strong>You answered every question correctly, either first time or on retry!</strong></p>')+'<hr style="border:0;border-top:2px dashed rgba(31,27,22,.3);margin:20px 0"><h4>Your completion certificate</h4><p>Type your <strong>first name only</strong> to add it to the certificate. Your name is never saved or sent anywhere.</p><div class="name-row"><label for="qName" class="sr-only">First name</label><input id="qName" type="text" maxlength="20" autocomplete="off" placeholder="First name only"><button class="btn btn-gold" type="button" id="qCert">Show my certificate</button></div><div id="certArea"></div><p style="margin-top:18px"><button class="btn btn-ghost" type="button" id="qAgain">Play the whole quiz again</button></p></div>';
+    $('.result h3',host).setAttribute('tabindex','-1');$('.result h3',host).focus({preventScroll:true});
+    $('#qName').addEventListener('input',e=>{const c=cleanName(e.target.value);if(e.target.value!==c&&/[^A-Za-zÀ-ɏ' -]/.test(e.target.value))e.target.value=c;});
+    $('#qCert').addEventListener('click',()=>{const nm=cleanName($('#qName').value);$('#certArea').innerHTML=certHTML(nm,md,score)+'<p style="margin-top:14px"><button class="btn btn-blue" type="button" id="qPrintCert">🖨 Print my certificate</button></p>';$('#qPrintCert').addEventListener('click',()=>printDoc('cert',nm));say('Certificate ready.');});
+    $('#qAgain').addEventListener('click',start);const r=$('#qRetry');if(r)r.addEventListener('click',()=>{Q.queue=missed;Q.pos=0;Q.mode='retry';show();});
+  }
+  startScreen();
+}
+
+/* ================= Glossary ================= */
+function initGlossary(){
+  const list=$('#glList'),q=$('#glQ');let used=false;
+  function render(){const t=q.value.trim().toLowerCase();const items=GLOSS.filter(g=>!t||g[0].toLowerCase().includes(t)||g[1].toLowerCase().includes(t));
+    list.innerHTML=items.map(g=>'<li class="paper"><h3>'+g[0]+'</h3><p>'+g[1]+'</p></li>').join('')||'<li class="paper"><p>No words found. Try a different spelling or fewer letters.</p></li>';
+    $('#glCount').textContent=items.length+' of '+GLOSS.length+' words shown';}
+  q.addEventListener('input',()=>{render();if(!used&&q.value.trim().length>=2){used=true;setDone('glossary',true,true);}});
+  render();
+}
+
+/* ================= Answer key ================= */
+function tbl(head,rows){return '<table><thead><tr>'+head.map(h=>'<th>'+h+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(c=>'<td>'+c+'</td>').join('')+'</tr>').join('')+'</tbody></table>';}
+function quizAnswer(q){if(q.t==='mc'||q.t==='src')return String.fromCharCode(65+q.a)+'. '+q.opts[q.a];if(q.t==='tf')return q.a?'True':'False';if(q.t==='order')return q.items.map((t,k)=>(k+1)+'. '+t).join('<br>');return q.pairs.map(p=>p[0]+' → '+p[1]).join('<br>');}
+function answerKeyHTML(){
+  const h=(t)=>'<h4>'+t+'</h4>';
+  return h('Timeline (earliest to latest)')+'<ol>'+EVENTS.map(e=>'<li>'+e.when+': '+e.title+'</li>').join('')+'</ol>'+
+   h('Why did the war begin? Axis or Allies')+tbl(['Country','Side'],AX.map(c=>[c.n,c.a]))+
+   h('Home Front card questions')+tbl(['Card','Correct answer'],HF.map(c=>[c.title,c.opts[c.a]]))+
+   h('Evacuee suitcase')+'<p><strong>Suitable items (pack up to 8):</strong> '+ITEMS.filter(i=>i.ok).map(i=>i.n).join('; ')+'.</p><p><strong>Unsuitable items:</strong> '+ITEMS.filter(i=>!i.ok).map(i=>i.n).join('; ')+'.</p>'+
+   h('Ration-book challenge')+'<p>Many answers are possible. This is a simplified model; the counters are not real wartime allowances. Look for: each meal with a filling food (potatoes, bread, oats), vegetables or fruit, and some protein where possible; a total of no more than '+BUDGET+' counters; and an explanation that unrationed home-grown vegetables and avoiding waste helped families stretch their food. Pupils should understand that exact rations changed during the war and different foods were rationed at different times.</p>'+
+   h('Radar room')+tbl(['Contact','Correct action'],CONTACTS.map(c=>[c.id,RADAR_OPTS[c.a]]))+
+   h('Historical sources detective')+tbl(['Source','Q1 What can it tell us?','Q2 Who created it?','Q3 Why?','Q4 What might it not tell us?','Q5 How reliable or useful?'],SRC.map(s=>[s.name].concat(s.qs.map(q=>q.opts[q.a]))))+
+   h('Myth or fact?')+tbl(['#','Statement','Answer'],MYTHS.map((m,i)=>[i+1,m.s,m.a.toUpperCase()]))+
+   h('Knowledge quiz')+tbl(['Q','Correct answer'],QUIZ.map((q,i)=>[i+1,quizAnswer(q)]))+
+   '<p>Medals (first attempt): Gold 13–15, Silver 10–12, Bronze 0–9.</p>';
+}
+
+/* ================= Adult section ================= */
+function initAdults(){
+  const d=(t,b,open)=>'<details'+(open?' open':'')+'><summary>'+t+'</summary><div>'+b+'</div></details>';
+  $('#adultsIn').innerHTML=
+   '<p style="margin-top:0"><button class="btn btn-ghost btn-sm" type="button" id="adAll">Open all</button> <button class="btn btn-ghost btn-sm" type="button" id="adNone">Close all</button></p>'+
+   d('Curriculum links (National Curriculum in England, KS2 History)','<p>This hub supports the requirement to study an aspect or theme in British history that extends pupils’ chronological knowledge beyond 1066. The non-statutory guidance gives a significant turning point in British history, such as the Battle of Britain, as an example. Teaching the whole of the Second World War is not compulsory, so use only the sections that fit your planning.</p><ul><li><strong>Chronological knowledge:</strong> the timeline and ordering questions develop secure chronology and use of historical terms.</li><li><strong>Significance and change:</strong> the Battle of Britain, evacuation and the Home Front invite questions about change, cause and significance.</li><li><strong>Historical enquiry:</strong> the sources detective and myth-or-fact activities help pupils understand how knowledge of the past is constructed from a range of sources and why different people had different experiences.</li><li><strong>Cross-curricular:</strong> writing (diaries, letters, reports), geography (maps of Europe, evacuation routes), PSHE (empathy and difference), design and technology (food and shelters), and science (radar and sound).</li></ul>')+
+   d('Suggested discussion questions','<ol><li>Why did the government organise evacuation, and why did some parents decide not to send their children?</li><li>Was Dunkirk a victory? Explain your thinking.</li><li>Why might different people remember the same event in different ways?</li><li>How did people from different places and backgrounds help Britain during the war?</li><li>Why was it important that sources such as posters and newspapers are treated carefully?</li><li>Why do we say the Battle of Britain was a turning point, and what did not change straight away?</li></ol>')+
+   d('Five classroom activity ideas','<ol><li><strong>Timeline washing line:</strong> pupils order event cards and justify the order, adding “because” sentences linking cause and effect.</li><li><strong>Source carousel:</strong> compare the recreated sources here with one genuine source from a local archive or museum, asking who made it, why and what it leaves out.</li><li><strong>Voices from the past:</strong> pupils write and hot-seat in-role accounts of different people (an evacuee, a host family member, a warden, a factory worker, a Commonwealth serviceman), making clear these are imagined and based on evidence.</li><li><strong>Ration-book kitchen:</strong> plan and discuss a week of simple meals within a simplified allowance, then compare with today’s choices.</li><li><strong>Myth-busting museum:</strong> pupils choose a misconception and make a one-page fact poster or a short talk explaining the evidence.</li></ol>')+
+   d('Writing prompts','<ul><li>Write a diary entry for a fictional evacuee on the first night in a new home, clearly labelled as imaginary.</li><li>Write a letter from a parent to an evacuated child.</li><li>Write a newspaper report about the Dunkirk “Little Ships” using only information you can support.</li><li>Write an explanation text: “Why did Britain declare war on 3 September 1939?”</li><li>Design and explain a poster that persuades people to Dig for Victory, then list what it does not show.</li></ul>')+
+   d('Vocabulary suggestions','<p><strong>Chronology:</strong> before, after, during, decade, period, turning point, timeline, cause, consequence.<br><strong>Enquiry:</strong> evidence, source, reliable, useful, bias, interpretation, recreated.<br><strong>Topic words:</strong> Allies, Axis, blackout, Blitz, evacuation, Home Front, propaganda, radar, rationing, refugee, shelter, warden. See the glossary for pupil-friendly definitions.</p>')+
+   d('Sensitive-teaching guidance','<ul><li><strong>Know your class.</strong> Some pupils may have family experience of war, displacement, loss or being separated from home. Offer choices, and consider skipping the siren demonstration or the evacuee role-play for individual pupils.</li><li><strong>Holocaust.</strong> The hub acknowledges it calmly and briefly. Introduce it with care, give a gentle warning, keep to age-appropriate facts, avoid graphic images, and consider guidance from specialist organisations such as the Holocaust Educational Trust.</li><li><strong>Avoid blaming a whole people.</strong> Refer to the Nazi government, or Nazi Germany, rather than “the Germans”. Many people in Germany were persecuted, and some resisted.</li><li><strong>Avoid glorifying war.</strong> Focus on human experiences, evidence and different viewpoints. Do not turn suffering into entertainment.</li><li><strong>Avoid a “Britain alone” story.</strong> Talk about allies, the Commonwealth, governments in exile and people from many backgrounds who contributed.</li><li><strong>Differences matter.</strong> Experiences varied by place, background, race, nationality, disability, gender and personal circumstances.</li></ul>')+
+   d('Extension ideas','<ul><li>Investigate your local area: war memorials, bomb damage, street names, local evacuee stories.</li><li>Compare the Home Front in the Second World War with the First World War.</li><li>Research contributions from Commonwealth countries and from Britain’s allies.</li><li>Debate: “How far was the Battle of Britain a turning point?”</li><li>Create a class oral-history project by interviewing older relatives or community members, with permission.</li></ul>')+
+   d('Suggested offline activities','<ul><li>Make a ration book and run a play shop with a counter limit.</li><li>Create blackout art with black paper and a single lit window.</li><li>Pack a real bag with a weight limit and discuss what to leave behind.</li><li>Try “Make Do and Mend”: sew on a button or patch an old cloth.</li><li>Grow cress or herbs on a windowsill as a mini “Dig for Victory” plot.</li><li>With an adult, try a simple wartime recipe, checking for allergies first.</li></ul>')+
+   d('Evidence, interpretation and recreated material','<p>Help pupils to keep three things apart. <strong>Evidence</strong> is what survives from the past, such as genuine diaries, letters and documents. <strong>Interpretation</strong> is how historians and others explain the past using that evidence, and it can change as new evidence appears. <strong>Recreated classroom material</strong>, such as the diary extract, poster, ration book, letter and newspaper headline in this hub, is written for teaching and is clearly labelled. It should never be presented as a genuine primary source. No quotations have been invented for real historical figures.</p>')+
+   d('Answer key (activities and quiz)','<div class="key">'+answerKeyHTML()+'</div>');
+  $('#adAll').addEventListener('click',()=>{$('#adultsBox').open=true;$$('.adults details').forEach(x=>x.open=true);});
+  $('#adNone').addEventListener('click',()=>{$$('.adults details').forEach(x=>x.open=false);});
+}
+
+/* ================= Printables ================= */
+const FOOT='<div class="pw-foot">TheTeacherVault.com · World War II: Britain at War · KS2 History resource</div>';
+function pwHead(t,noName){return '<div class="pw-head"><div><h1>'+t+'</h1><small>World War II: Britain at War · KS2 History · The Teacher Vault</small></div>'+(noName?'':'<div class="pw-name">Name: ______________________<br>Date: ____________</div>')+'</div>';}
+function lines(n){let s='';for(let i=0;i<n;i++)s+='<div class="pw-lines"></div>';return s;}
+const PRINT={
+ timeline:{t:'Timeline',d:'Eight key events with space for pupil notes.',f:()=>pwHead('Timeline: Britain at War')+'<p>Read each event. Write one thing you want to remember, and answer the “Think about it” question on the back or in your book.</p><div class="pw-note"><strong>Remember:</strong> evacuation began on 1 September 1939, and further waves happened in 1940 and later.</div><table class="pw-table"><thead><tr><th style="width:17%">When</th><th style="width:20%">Event</th><th>What happened</th><th style="width:26%">My notes</th></tr></thead><tbody>'+EVENTS.map(e=>'<tr><td>'+e.when+'</td><td><strong>'+e.title+'</strong></td><td>'+e.short+'<br><em>Think about it: '+e.think+'</em></td><td></td></tr>').join('')+'</tbody></table>'},
+ suitcase:{t:'Evacuee suitcase worksheet',d:'Decide what to pack, and explain why.',f:()=>pwHead('Pack an evacuee’s suitcase')+'<p>It is September 1939. You are being evacuated and can pack <strong>up to 8 items</strong> in one small suitcase. Tick <strong>Pack</strong> or <strong>Leave</strong> for each item and give a reason.</p><table class="pw-table"><thead><tr><th style="width:42%">Item</th><th style="width:16%">Pack / Leave</th><th>Why?</th></tr></thead><tbody>'+shuffle(ITEMS).map(i=>'<tr><td>'+i.e+' '+i.n+'</td><td><span class="pw-tick"></span>Pack<br><span class="pw-tick"></span>Leave</td><td></td></tr>').join('')+'</tbody></table><div class="pw-sec"><h2>Think and write</h2><p>Experiences of evacuation varied. How might two different evacuees have felt about the same journey?</p>'+lines(5)+'</div>'},
+ rations:{t:'Rationing activity',d:'Plan three meals within a counter allowance.',f:()=>pwHead('Ration-book challenge')+'<div class="pw-note"><strong>Teaching model:</strong> the counters below are simplified for this activity and are not real wartime allowances. Real rations changed during the war, and different foods were rationed at different times. Food rationing began in January 1940 and ended in 1954.</div><p>You are feeding a family of four. You have <strong>'+BUDGET+' counters</strong> for three evening meals. Choose up to 3 foods for each meal.</p><table class="pw-table"><thead><tr><th>Food</th><th style="width:22%">Counters</th><th>Food</th><th style="width:22%">Counters</th></tr></thead><tbody>'+(function(){let r='';for(let i=0;i<FOODS.length;i+=2){const a=FOODS[i],b=FOODS[i+1];r+='<tr><td>'+a.e+' '+a.n+'</td><td>'+a.c+'</td><td>'+(b?b.e+' '+b.n:'')+'</td><td>'+(b?b.c:'')+'</td></tr>';}return r;})()+'</tbody></table>'+[1,2,3].map(n=>'<div class="pw-sec"><h3>Meal '+n+'</h3><div class="pw-box" style="min-height:48pt"></div><p>Counters used: ______</p></div>').join('')+'<div class="pw-sec"><p><strong>Total counters used: ______ of '+BUDGET+'</strong></p><h3>Why did people grow vegetables and avoid waste?</h3>'+lines(4)+'</div>'},
+ sources:{t:'Source detective worksheet',d:'Five recreated sources with the detective questions.',f:()=>pwHead('Historical sources detective')+'<div class="pw-note"><strong>Important:</strong> every source here is a <strong>recreated classroom example</strong>. None is a genuine primary source. For each source, answer the five detective questions.</div>'+SRC.map((s,n)=>'<div class="pw-sec"><h2>Source '+(n+1)+': '+s.name+' <small>(recreated)</small></h2><div style="border:1.5px solid #000;padding:6pt 10pt;margin:4pt 0">'+s.text+'</div><ol>'+['What can this source tell us?','Who created it?','Why was it created?','What might it NOT tell us?','How reliable or useful is it? Remember: a useful source is not always unbiased.'].map(q=>'<li class="pw-q">'+q+lines(2)+'</li>').join('')+'</ol></div>').join('')},
+ vocab:{t:'Vocabulary sheet',d:'Key words and meanings, with space to practise.',f:()=>pwHead('Vocabulary sheet')+'<p>Read each word and meaning. Then write your own sentence for five words you want to remember.</p><table class="pw-table"><thead><tr><th style="width:24%">Word</th><th>Meaning</th></tr></thead><tbody>'+GLOSS.map(g=>'<tr><td><strong>'+g[0]+'</strong></td><td>'+g[1]+'</td></tr>').join('')+'</tbody></table><div class="pw-sec"><h2>My sentences</h2>'+lines(6)+'</div>'},
+ quiz:{t:'Quiz',d:'All 15 questions, without answers.',f:()=>pwHead('Knowledge quiz')+'<p>Answer all 15 questions. Circle the correct letter, or follow the instructions.</p>'+QUIZ.map((q,i)=>{let b='';
+    if(q.t==='mc'||q.t==='src')b=(q.t==='src'?'<div style="border:1.5px solid #000;padding:4pt 8pt;margin:3pt 0">'+q.src.replace(/<span class="recreated">/,'<span style="font-size:9pt">(').replace(/<\/span>/,')</span>')+'</div>':'')+'<p>'+q.opts.map((o,k)=>'<span class="pw-tick"></span>'+String.fromCharCode(65+k)+'. '+o).join('<br>')+'</p>';
+    else if(q.t==='tf')b='<p><span class="pw-tick"></span>True &nbsp;&nbsp; <span class="pw-tick"></span>False</p>';
+    else if(q.t==='order'){const sh=q.items.slice().reverse();b='<p>Write the numbers 1 to 4 in the boxes (1 = earliest).</p><p>'+sh.map(t=>'<span class="pw-tick" style="width:18pt"></span> '+t).join('<br>')+'</p>';}
+    else{const rr=q.pairs.map(p=>p[1]).reverse();b='<p>Draw a line, or write the matching letter.</p><table class="pw-table"><tbody>'+q.pairs.map((p,k)=>'<tr><td style="width:30%">'+p[0]+'</td><td style="width:12%">Answer: ____</td><td>'+String.fromCharCode(65+k)+'. '+rr[k]+'</td></tr>').join('')+'</tbody></table>';}
+    return '<div class="pw-q"><p><strong>'+(i+1)+'. '+q.q+'</strong></p>'+b+'</div>';}).join('')+'<p><strong>Score: ______ out of 15</strong></p>'},
+ answers:{t:'Teacher answer sheet',d:'Answers for activities and quiz. Prints only if you choose it.',f:()=>pwHead('Teacher answer sheet',true)+'<div class="pw-note"><strong>For teachers and adults only.</strong> Do not give this page to pupils before they have completed the worksheets.</div><div class="key">'+answerKeyHTML().replace(/<table>/g,'<table class="pw-table">')+'</div>'},
+ cert:{t:'Completion certificate',d:'A certificate with your first name and medal.',f:(nm)=>{const best=S.quiz.best;const md=best!==null?medalFor(best):null;return '<div class="pw-cert"><h1>Certificate of Achievement</h1><p>World War II: Britain at War – KS2 History Detective</p><p>This certificate is awarded to</p><div class="nm">'+(nm||'&nbsp;')+'</div><p>for completing the quiz'+(md?' and earning a <strong>'+md.n+' medal</strong> ('+best+' out of '+QUIZ.length+')':'')+'.</p><div class="md">'+(md?md.e:'🏅')+'</div><p>Medal: ☐ Gold &nbsp; ☐ Silver &nbsp; ☐ Bronze &nbsp;&nbsp;&nbsp; Date: '+today()+'</p><p>The Teacher Vault · KS2 History</p></div>';}}
+};
+function printDoc(kind,name){
+  const p=PRINT[kind];if(!p)return;let nm=name;if(kind==='cert'&&nm===undefined){const i=$('#qName');nm=i?cleanName(i.value):'';}
+  $('#printRoot').innerHTML=p.f(nm)+FOOT;say('Opening the print dialogue for: '+p.t+'.');setTimeout(()=>window.print(),90);
+}
+window.addEventListener('afterprint',()=>{$('#printRoot').innerHTML='';});
+window.addEventListener('beforeprint',()=>{const r=$('#printRoot');if(!r.innerHTML.trim())r.innerHTML=PRINT.timeline.f()+FOOT;});
+function closePrintMenu(){const m=$('#printMenu');m.hidden=true;$('#rubberBtn').setAttribute('aria-expanded','false');}
+function initPrint(){
+  const keys=Object.keys(PRINT);
+  $('#prGrid').innerHTML=keys.map(k=>'<div class="paper pin pr-card"><h3>'+PRINT[k].t+'</h3><p>'+PRINT[k].d+'</p><button class="btn btn-blue" type="button" data-print="'+k+'" aria-label="Print: '+PRINT[k].t+'">🖨 Print</button></div>').join('');
+  $('#printMenuList').innerHTML=keys.map(k=>'<li><button class="btn btn-cream btn-sm" type="button" data-print="'+k+'">'+PRINT[k].t+'</button></li>').join('');
+  document.addEventListener('click',e=>{const b=e.target.closest('[data-print]');if(b){closePrintMenu();printDoc(b.dataset.print);}});
+  const rub=$('#rubberBtn');rub.addEventListener('click',()=>{const m=$('#printMenu');const open=m.hidden;m.hidden=!open;rub.setAttribute('aria-expanded',open?'true':'false');if(open){const f=$('button',m);if(f)f.focus();}sfx.click();});
+  $('#printMenuClose').addEventListener('click',()=>{closePrintMenu();rub.focus();});
+  document.addEventListener('mousedown',e=>{const m=$('#printMenu');if(!m.hidden&&!m.contains(e.target)&&!rub.contains(e.target))closePrintMenu();});
+}
+
+/* ================= Page chrome ================= */
+function confirmReset(){
+  const m=openModal('<h3 id="mTitle">Reset your progress?</h3><p>This will clear your completed sections, opened cards and quiz scores on this device. It cannot be undone.</p><div class="modal-nav"><button class="btn btn-ghost" type="button" id="rsNo">Cancel</button><button class="btn btn-red" type="button" id="rsYes">Yes, reset everything</button></div>');
+  $('#rsNo',m).addEventListener('click',()=>closeModal());
+  $('#rsYes',m).addEventListener('click',()=>{try{localStorage.removeItem(KEY);}catch(e){}S=blank();closeModal(true);location.reload();});
+  $('#rsNo',m).focus();
+}
+function initChrome(){
+  $('#menuBtn').addEventListener('click',()=>toggleMenu());
+  $('#resetBtn').addEventListener('click',confirmReset);
+  $$('.snd-toggle').forEach(b=>b.addEventListener('click',()=>{S.sound=!S.sound;save();syncSound();if(S.sound){getCtx();sfx.good();}say(S.sound?'Sound effects on.':'Sound effects off.');}));
+  $('#topBtn').addEventListener('click',()=>{window.scrollTo({top:0,behavior:reduce.matches?'auto':'smooth'});});
+  let tick=false;window.addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(()=>{onScroll();tick=false;});}},{passive:true});
+  window.addEventListener('resize',()=>{if(window.innerWidth>980)toggleMenu(false);});
+}
+
+/* ================= Init ================= */
+buildNav();initTimeline();initWhy();initHome();initSuitcase();initRations();initRadar();initShelter();initSources();initMyths();initQuiz();initGlossary();initAdults();initPrint();initChrome();syncSound();renderProgress();onScroll();
+})();
+</script>
+</body>
+</html>
