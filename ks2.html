@@ -48,12 +48,13 @@
       <p class="breadcrumb"><a href="/">Home</a> / <a href="/student-apps">Student Resources</a> / KS2</p>
       <span class="eyebrow">KS2 &middot; Years 3&ndash;6</span>
       <h1>Free KS2 Resources</h1>
-      <p class="lede">Ten free, interactive KS2 tools, organised by subject so it's easy to find what you need — SATs practice, maths, English mechanics, and reading &amp; writing. Everything here runs directly in the browser: no account, no download, no cost.</p>
+      <p class="lede">Eleven free, interactive KS2 tools, organised by subject so it's easy to find what you need — SATs practice, maths, English mechanics, reading &amp; writing, and history. Everything here runs directly in the browser: no account, no download, no cost.</p>
       <nav aria-label="Jump to section" style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
         <a href="#sats-section" class="btn btn--ghost btn--sm">SATs Practice</a>
         <a href="#maths-section" class="btn btn--ghost btn--sm">Maths</a>
         <a href="#english-section" class="btn btn--ghost btn--sm">English</a>
         <a href="#reading-writing-section" class="btn btn--ghost btn--sm">Reading &amp; Writing</a>
+        <a href="#history-section" class="btn btn--ghost btn--sm">History</a>
       </nav>
     </div>
   </section>
@@ -122,6 +123,16 @@
   </section>
 
   <!-- ============================== WHICH TOOL FOR WHAT ============================== -->
+  <section class="section paper-section" id="history-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">History</span>
+        <h2>History</h2>
+      </div>
+      <div class="card-grid" id="historyGrid"><!--prerendered--><article class="app-card" data-id="ks2-ww2-britain-at-war" data-category="revision" data-tier="free" data-subject="Primary" data-comingsoon="false"><a href="/app.html?id=ks2-ww2-britain-at-war" class="app-card__thumb" aria-hidden="true" tabindex="-1"><img src="/images/mascot-teacher-generic.png" alt="" loading="lazy" class="app-card__thumb-img"><span class="app-card__badges"><span class="badge badge--free">Free</span><span class="badge badge--new">New</span></span></a><div class="app-card__body"><span class="app-card__category"><span class="app-card__category-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>Student App</span><h3 class="app-card__title"><a href="/app.html?id=ks2-ww2-britain-at-war">World War II: Britain at War</a></h3><p class="app-card__desc">An interactive KS2 history adventure.</p><div class="app-card__meta"><span class="badge badge--subject">Primary</span></div><div class="app-card__foot"><a class="btn btn--dark btn--block" href="/ks2/world-war-2-britain-at-war" target="_blank" rel="noopener">Open App <svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a><a href="/app.html?id=ks2-ww2-britain-at-war" class="btn btn--outline-dark btn--sm btn--block">View details</a></div></div></article><!--/prerendered--></div>
+    </div>
+  </section>
+
   <section class="section paper-section">
     <div class="container">
       <div class="section-head">
@@ -153,6 +164,11 @@
           <span class="eyebrow">Improving writing</span>
           <h3 style="margin-bottom:8px;color:var(--ink);">Try Sentence Improver or the Creative Writing Generator</h3>
           <p style="margin-bottom:16px;color:var(--ink-soft);">Sentence Improver strengthens existing sentences step by step; the Creative Writing Generator sparks brand new story ideas to write from scratch.</p>
+        </div>
+        <div class="panel" style="background:#fff;border-color:rgba(20,36,29,0.08);">
+          <span class="eyebrow">Teaching or learning history</span>
+          <h3 style="margin-bottom:8px;color:var(--ink);">Try World War II: Britain at War</h3>
+          <p style="margin-bottom:16px;color:var(--ink-soft);">An interactive history hub with a timeline, evacuee and rationing activities, a Battle of Britain radar game, a source detective and a quiz. Best for Years 5 and 6, and printable for the classroom.</p>
         </div>
       </div>
     </div>
@@ -264,6 +280,10 @@
     "ks2-inference-detective",
     "ks2-sentence-improver",
     "ks2-creative-writing-generator"
+  ]);
+
+  grid("historyGrid", [
+    "ks2-ww2-britain-at-war"
   ]);
 
   var tips = [
