@@ -136,11 +136,12 @@ function chalkLogo(size) {
    -------------------------------------------------------------------------- */
 
 const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/teacher-tools", label: "Teacher Tools" },
-  { href: "/student-apps", label: "Student Apps" },
+  { href: "/", label: "Home", chalk: "white" },
+  { href: "/teacher-tools", label: "Teacher Tools", chalk: "yellow" },
+  { href: "/student-apps", label: "Student Apps", chalk: "blue" },
   {
     label: "AI & Coding",
+    chalk: "pink",
     hub: { href: "/ai-explorers", label: "AI Code Crew Hub" },
     groups: [
       {
@@ -170,29 +171,32 @@ const NAV_LINKS = [
   },
   {
     label: "Key Stages",
+    chalk: "green",
     children: [
-      { href: "/early-years", label: "Early Years (Ages 3–5)" },
-      { href: "/ks1", label: "KS1 (Years 1–2)" },
-      { href: "/ks2", label: "KS2 (SATs)" },
-      { href: "/student-apps#ks-KS3", label: "KS3" },
-      { href: "/student-apps#ks-KS4", label: "KS4 (GCSE)" },
-      { href: "/student-apps#ks-KS5", label: "KS5 (A-Level)" }
+      { href: "/early-years", label: "Early Years (Ages 3–5)", chalk: "sunshine" },
+      { href: "/ks1", label: "KS1 (Years 1–2)", chalk: "blue" },
+      { href: "/ks2", label: "KS2 (SATs)", chalk: "green" },
+      { href: "/student-apps#ks-KS3", label: "KS3", chalk: "lilac" },
+      { href: "/student-apps#ks-KS4", label: "KS4 (GCSE)", chalk: "coral" },
+      { href: "/student-apps#ks-KS5", label: "KS5 (A-Level)", chalk: "mint" }
     ]
   },
-  { href: "/quick-notes", label: "Quick Notes" },
-  { href: "/guides", label: "Guides" },
+  { href: "/quick-notes", label: "Quick Notes", chalk: "mint" },
+  { href: "/guides", label: "Guides", chalk: "peach" },
   {
     label: "Printables",
+    chalk: "orange",
     children: [
-      { href: "/printables", label: "All Printables" },
-      { href: "/printables/early-years", label: "Early Years (Ages 3–5)" },
-      { href: "/printables/ks1", label: "KS1 (Years 1–2)" },
-      { href: "/printables/ks2", label: "KS2 (Years 3–6)" }
+      { href: "/printables", label: "All Printables", chalk: "white" },
+      { href: "/printables/early-years", label: "Early Years (Ages 3–5)", chalk: "sunshine" },
+      { href: "/printables/ks1", label: "KS1 (Years 1–2)", chalk: "blue" },
+      { href: "/printables/ks2", label: "KS2 (Years 3–6)", chalk: "green" },
+      { href: "/printables/ks3", label: "KS3 (Years 7–9)", chalk: "lilac" }
     ]
   },
-  { href: "/apps?tier=pro", label: "Pro Apps" },
-  { href: "/about", label: "About" },
-  { href: "/faq", label: "FAQ" }
+  { href: "/apps?tier=pro", label: "Pro Apps", chalk: "gold" },
+  { href: "/about", label: "About", chalk: "lilac" },
+  { href: "/faq", label: "FAQ", chalk: "rose" }
 ];
 
 /* Netlify serves clean URLs (/about rather than /about.html), so both sides
@@ -212,6 +216,15 @@ function navHrefFile(href) {
   const p = href.split("#")[0].replace(/\.html$/, "");
   return (p === "/" || p === "") ? "/index" : p;
 }
+
+/* Each menu heading (and each key-stage/section link inside the dropdowns)
+   is written in its own chalk colour. The colours live in styles.css as
+   .chalk--<name>; every shade passes WCAG AA against the dark menu boards. */
+function chalkClass(l, base) {
+  const c = l.chalk ? "chalk chalk--" + l.chalk : "";
+  return (base && c) ? base + " " + c : (base || c);
+}
+function classAttr(cls) { return cls ? ' class="' + cls + '"' : ""; }
 
 function renderHeader() {
   const here = currentFile();
@@ -252,7 +265,7 @@ function renderHeader() {
         const childActive = groupsActive(l);
         return (
           '<div class="main-nav__dropdown">' +
-            '<button type="button" class="main-nav__dropdown-toggle' + (childActive ? ' is-active' : '') + '" aria-haspopup="true" aria-expanded="false">' +
+            '<button type="button" class="' + chalkClass(l, 'main-nav__dropdown-toggle' + (childActive ? ' is-active' : '')) + '" aria-haspopup="true" aria-expanded="false">' +
               l.label + '<span class="main-nav__dropdown-caret" aria-hidden="true">&#9662;</span>' +
             '</button>' +
             '<div class="main-nav__dropdown-menu main-nav__dropdown-menu--groups" role="menu">' +
@@ -265,18 +278,18 @@ function renderHeader() {
         const childActive = l.children.some(function (c) { return isActive(c.href); });
         return (
           '<div class="main-nav__dropdown">' +
-            '<button type="button" class="main-nav__dropdown-toggle' + (childActive ? ' is-active' : '') + '" aria-haspopup="true" aria-expanded="false">' +
+            '<button type="button" class="' + chalkClass(l, 'main-nav__dropdown-toggle' + (childActive ? ' is-active' : '')) + '" aria-haspopup="true" aria-expanded="false">' +
               l.label + '<span class="main-nav__dropdown-caret" aria-hidden="true">&#9662;</span>' +
             '</button>' +
             '<div class="main-nav__dropdown-menu" role="menu">' +
               l.children.map(function (c) {
-                return '<a role="menuitem" href="' + c.href + '"' + (isActive(c.href) ? ' aria-current="page"' : '') + '>' + c.label + '</a>';
+                return '<a role="menuitem"' + classAttr(chalkClass(c)) + ' href="' + c.href + '"' + (isActive(c.href) ? ' aria-current="page"' : '') + '>' + c.label + '</a>';
               }).join("") +
             '</div>' +
           '</div>'
         );
       }
-      return '<a href="' + l.href + '"' + (isActive(l.href) ? ' aria-current="page"' : '') + '>' + l.label + '</a>';
+      return '<a' + classAttr(chalkClass(l)) + ' href="' + l.href + '"' + (isActive(l.href) ? ' aria-current="page"' : '') + '>' + l.label + '</a>';
     }).join("");
   };
 
@@ -286,7 +299,7 @@ function renderHeader() {
         const childActive = groupsActive(l);
         return (
           '<div class="mobile-nav__dropdown">' +
-            '<button type="button" class="mobile-nav__dropdown-toggle' + (childActive ? ' is-active' : '') + '" aria-expanded="false">' +
+            '<button type="button" class="' + chalkClass(l, 'mobile-nav__dropdown-toggle' + (childActive ? ' is-active' : '')) + '" aria-expanded="false">' +
               l.label + '<span class="mobile-nav__dropdown-caret" aria-hidden="true">&#9662;</span>' +
             '</button>' +
             '<div class="mobile-nav__dropdown-menu mobile-nav__dropdown-menu--groups">' +
@@ -299,18 +312,18 @@ function renderHeader() {
         const childActive = l.children.some(function (c) { return isActive(c.href); });
         return (
           '<div class="mobile-nav__dropdown">' +
-            '<button type="button" class="mobile-nav__dropdown-toggle' + (childActive ? ' is-active' : '') + '" aria-expanded="false">' +
+            '<button type="button" class="' + chalkClass(l, 'mobile-nav__dropdown-toggle' + (childActive ? ' is-active' : '')) + '" aria-expanded="false">' +
               l.label + '<span class="mobile-nav__dropdown-caret" aria-hidden="true">&#9662;</span>' +
             '</button>' +
             '<div class="mobile-nav__dropdown-menu">' +
               l.children.map(function (c) {
-                return '<a href="' + c.href + '"' + (isActive(c.href) ? ' aria-current="page"' : '') + '>' + c.label + '</a>';
+                return '<a' + classAttr(chalkClass(c)) + ' href="' + c.href + '"' + (isActive(c.href) ? ' aria-current="page"' : '') + '>' + c.label + '</a>';
               }).join("") +
             '</div>' +
           '</div>'
         );
       }
-      return '<a href="' + l.href + '"' + (isActive(l.href) ? ' aria-current="page"' : '') + '>' + l.label + '</a>';
+      return '<a' + classAttr(chalkClass(l)) + ' href="' + l.href + '"' + (isActive(l.href) ? ' aria-current="page"' : '') + '>' + l.label + '</a>';
     }).join("");
   };
 
