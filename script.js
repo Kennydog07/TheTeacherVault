@@ -191,7 +191,9 @@ const NAV_LINKS = [
       { href: "/printables/early-years", label: "Early Years (Ages 3–5)", chalk: "sunshine" },
       { href: "/printables/ks1", label: "KS1 (Years 1–2)", chalk: "blue" },
       { href: "/printables/ks2", label: "KS2 (Years 3–6)", chalk: "green" },
-      { href: "/printables/ks3", label: "KS3 (Years 7–9)", chalk: "lilac" }
+      { href: "/printables/ks3", label: "KS3 (Years 7–9)", chalk: "lilac" },
+      { href: "/printables/gcse", label: "GCSE (Years 10–11)", chalk: "coral" },
+      { href: "/printables/ai-coding", label: "AI & Coding", chalk: "pink" }
     ]
   },
   { href: "/apps?tier=pro", label: "Pro Apps", chalk: "gold" },
