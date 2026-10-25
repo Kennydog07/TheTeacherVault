@@ -396,6 +396,17 @@ section[id^="ks-"] { scroll-margin-top: 90px; }
 
 .main-nav__dropdown.is-open .main-nav__dropdown-menu { display: flex; }
 
+/* Desktop pointer devices: the dropdowns also open on hover. Keyboard and
+   touch users open them with the toggle button, as before. The invisible
+   ::before strip bridges the 14px gap so the menu stays open while the
+   pointer moves down into it. */
+@media (hover: hover) and (min-width: 1121px) {
+  .main-nav__dropdown:hover .main-nav__dropdown-menu { display: flex; }
+  .main-nav__dropdown:hover .main-nav__dropdown-toggle { color: var(--chalk-white); border-bottom-color: var(--gold); }
+  .main-nav__dropdown:hover .main-nav__dropdown-caret { transform: rotate(180deg); }
+  .main-nav__dropdown-menu::before { content: ""; position: absolute; left: 0; right: 0; top: -16px; height: 16px; }
+}
+
 .main-nav__dropdown-menu a {
   font-family: var(--font-chalk);
   font-size: 1.05rem;

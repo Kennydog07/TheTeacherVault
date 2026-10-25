@@ -181,19 +181,28 @@ const NAV_LINKS = [
   },
   { href: "/quick-notes", label: "Quick Notes" },
   { href: "/guides", label: "Guides" },
-  { href: "/printables", label: "Printables" },
+  {
+    label: "Printables",
+    children: [
+      { href: "/printables", label: "All Printables" },
+      { href: "/printables/early-years", label: "Early Years (Ages 3–5)" },
+      { href: "/printables/ks1", label: "KS1 (Years 1–2)" },
+      { href: "/printables/ks2", label: "KS2 (Years 3–6)" }
+    ]
+  },
   { href: "/apps?tier=pro", label: "Pro Apps" },
   { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" }
 ];
 
 /* Netlify serves clean URLs (/about rather than /about.html), so both sides
-   of the "current page" comparison drop any ".html" extension; "/" and
-   "/index" both mean the home page. Otherwise this behaves exactly as
-   before: the current page is keyed by its last path segment only. */
+   of the "current page" comparison drop any ".html" extension (and any
+   trailing slash); "/" and "/index" both mean the home page. The full path is
+   compared, so a nested page such as /printables/ks1 highlights its own menu
+   item rather than the /ks1 hub that shares its last segment. */
 function currentFile() {
-  const path = window.location.pathname.split("/").pop().replace(/\.html$/, "");
-  return "/" + (path === "" ? "index" : path);
+  const path = window.location.pathname.replace(/\.html$/, "").replace(/\/+$/, "");
+  return (path === "" || path === "/index") ? "/index" : path;
 }
 
 /* Strips any #hash (and ".html") from a nav href before comparing to the
