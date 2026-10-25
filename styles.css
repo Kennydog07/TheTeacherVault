@@ -487,6 +487,9 @@ section[id^="ks-"] { scroll-margin-top: 90px; }
 .mobile-nav a[aria-current="page"] { color: var(--gold-light); }
 
 .mobile-nav .btn { margin-top: 12px; align-self: flex-start; }
+/* Keep the dark button text in the mobile menu (the menu link colour was
+   overriding it, giving pale text on gold). */
+.mobile-nav a.btn--primary { color: var(--ink); }
 
 /* ---- Mobile "Key Stages" accordion ---- */
 .mobile-nav__dropdown-toggle {
@@ -548,6 +551,51 @@ section[id^="ks-"] { scroll-margin-top: 90px; }
 }
 
 body.nav-open .mobile-nav { display: flex; }
+
+/* ---- Coloured chalk menu headings ----
+   Each top-level heading, and each key stage/section inside the Key Stages
+   and Printables dropdowns, is written in its own chalk colour so they are
+   easy to tell apart. Every shade is at least 5.9:1 against the menu boards
+   (header, dropdown and mobile menu backgrounds), so WCAG AA is met. Hover,
+   focus and "you are here" keep the gold chalk underline. */
+.chalk--white    { --chalk-c: #f5f2e8; }
+.chalk--yellow   { --chalk-c: #f3d36b; }
+.chalk--sunshine { --chalk-c: #f7c948; }
+.chalk--blue     { --chalk-c: #9fd0f0; }
+.chalk--pink     { --chalk-c: #f5a9c8; }
+.chalk--green    { --chalk-c: #a8e0a0; }
+.chalk--mint     { --chalk-c: #8fe0d0; }
+.chalk--peach    { --chalk-c: #f7c59f; }
+.chalk--orange   { --chalk-c: #f6a96b; }
+.chalk--gold     { --chalk-c: #e2c680; }
+.chalk--lilac    { --chalk-c: #c9b6f2; }
+.chalk--rose     { --chalk-c: #f2b5b5; }
+.chalk--coral    { --chalk-c: #f79f8f; }
+
+.site-header .chalk {
+  color: var(--chalk-c) !important;
+  /* a soft, dusty chalk edge that keeps the letters crisp */
+  text-shadow: 0.4px 0.4px 0 rgba(255, 255, 255, 0.18), -0.3px 0 0 rgba(0, 0, 0, 0.25), 0 0 7px rgba(245, 242, 232, 0.14);
+}
+.site-header .chalk:hover,
+.site-header .chalk:focus-visible,
+.site-header .chalk[aria-current="page"],
+.site-header .chalk.is-active,
+.site-header .chalk[aria-expanded="true"] { filter: brightness(1.1) saturate(1.1); }
+.site-header .chalk:focus-visible { outline: 2px dashed var(--chalk-c); outline-offset: 3px; border-radius: 4px; }
+
+/* Mobile menu: the current page and the open section are shown with a gold
+   chalk underline, because the text keeps its own chalk colour. */
+.mobile-nav a.chalk[aria-current="page"],
+.mobile-nav__dropdown-toggle.chalk.is-active {
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+.mobile-nav__dropdown-toggle.chalk .mobile-nav__dropdown-caret { display: inline-block; text-decoration: none; }
+/* Desktop dropdown items: the current page also gets a gold chalk bar. */
+.main-nav__dropdown-menu a.chalk[aria-current="page"] { box-shadow: inset 3px 0 0 var(--gold); }
 
 @media (max-width: 1120px) {
   .main-nav__links, .header-cta .btn--ghost { display: none; }
