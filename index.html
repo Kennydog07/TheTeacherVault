@@ -88,19 +88,23 @@
         <div class="hero__logo" id="heroLogo"></div>
         <span class="eyebrow">Free teacher tools &middot; Free GCSE revision</span>
         <h1>Useful tools for teachers. <span class="chalk-underline">Better revision<svg class="chalk-underline__mark" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3,13 Q50,4 100,11 T197,9"/></svg></span> for students.</h1>
-        <p class="lede">The Teacher Vault is a growing collection of practical mini apps designed to save teachers time and help students revise more effectively — no clutter, no subscriptions for free apps.</p>
-        <div class="hero__ctas">
-          <a href="/teacher-tools" class="btn btn--primary">Browse Teacher Tools</a>
-          <a href="/student-apps" class="btn btn--ghost">Explore Free Student Apps</a>
-        </div>
-        <p class="hero__trust">No subscriptions for free apps. No complicated setup. Just useful tools.</p>
+        <p class="lede">Practical mini apps that save teachers time, and free GCSE English revision notes for students. Pick where you want to start.</p>
         <p class="hero__trust"><a href="/free-resources" style="color:var(--gold-light);text-decoration:underline;">Browse all free resources in one place &rarr;</a></p>
       </div>
 
-      <div class="hero-stat-panel" id="heroStatPanel">
-        <span class="hero-stat-panel__label">The Teacher Vault, by the numbers</span>
-        <p class="hero-stat-panel__text" aria-hidden="true"><span id="heroStatTyped"></span><span class="hero-stat-cursor" aria-hidden="true">&#124;</span></p>
-        <ul class="sr-only" id="heroStatSrList"></ul>
+      <div class="hero-paths" role="list" aria-label="Choose where to start">
+        <a class="hero-path" role="listitem" href="/teacher-tools">
+          <span class="hero-path__label">For teachers</span>
+          <span class="hero-path__title">Save time with teacher tools</span>
+          <p class="hero-path__text">Reports, feedback, lesson plans, marking and rubrics. Free tools open in your browser, with Pro upgrades if you want more.</p>
+          <span class="hero-path__go">Browse teacher tools &rarr;</span>
+        </a>
+        <a class="hero-path" role="listitem" href="/quick-notes">
+          <span class="hero-path__label">For GCSE students</span>
+          <span class="hero-path__title">Revise GCSE English with Quick Notes</span>
+          <p class="hero-path__text">Free study guides for set texts such as Macbeth, An Inspector Calls and Jekyll and Hyde, plus the poetry anthologies.</p>
+          <span class="hero-path__go">Open Quick Notes &rarr;</span>
+        </a>
       </div>
     </div>
 
@@ -213,6 +217,17 @@
     </div>
   </section>
 
+  <!-- ============================== BY THE NUMBERS ============================== -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="hero-stat-panel" id="heroStatPanel" style="margin:0 auto;">
+        <span class="hero-stat-panel__label">The Teacher Vault, by the numbers</span>
+        <p class="hero-stat-panel__text" aria-hidden="true"><span id="heroStatTyped"></span><span class="hero-stat-cursor" aria-hidden="true">&#124;</span></p>
+        <ul class="sr-only" id="heroStatSrList"></ul>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================== WHY TEACHER VAULT ============================== -->
   <section class="section paper-section">
     <div class="container">
@@ -224,35 +239,16 @@
     </div>
   </section>
 
-  <!-- ============================== TESTIMONIALS ============================== -->
+  <!-- ============================== SHARE YOUR FEEDBACK ============================== -->
   <section class="section">
     <div class="container">
       <div class="section-head center">
-        <span class="eyebrow">Real feedback</span>
-        <h2>What teachers &amp; parents are saying</h2>
+        <span class="eyebrow">Your feedback</span>
+        <h2>Share your feedback</h2>
+        <p class="lede" style="margin:0 auto;">Used a Teacher Vault tool or guide? Tell us what worked and what could be better. We read every message.</p>
       </div>
-      <div class="testimonial-grid">
-        <div class="testimonial-panel">
-          <p class="testimonial-panel__quote">The Teacher Vault is great. Easy to use and I love the free tools.</p>
-          <span class="testimonial-panel__author">Danni G &mdash; KS2 Teacher</span>
-        </div>
-        <div class="testimonial-panel">
-          <p class="testimonial-panel__quote">The guides are just what I need to help me help my kids.</p>
-          <span class="testimonial-panel__author">John D &mdash; Parent</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================== COMING SOON ============================== -->
-  <section class="section">
-    <div class="container">
-      <div class="section-head center">
-        <span class="eyebrow">Growing library</span>
-        <h2>Coming to The Vault</h2>
-        <p class="lede" style="margin:0 auto;">New subjects and tools are added over time. Here's what's on the way.</p>
-      </div>
-      <div class="card-grid" id="comingSoonGrid"><!--prerendered--><div class="soon-card"><span class="badge badge--soon" style="align-self:flex-start;">Coming Soon</span><h3>Worksheet Builder</h3><p>A simple tool for building printable worksheets and classroom activities without wrestling with a word processor.</p></div><div class="soon-card"><span class="badge badge--soon" style="align-self:flex-start;">Coming Soon</span><h3>GCSE English Revision</h3><p>Interactive revision covering key GCSE English Language and Literature topics.</p></div><div class="soon-card"><span class="badge badge--soon" style="align-self:flex-start;">Coming Soon</span><h3>GCSE Religious Studies Revision</h3><p>Interactive revision covering key beliefs, practices and themes for GCSE Religious Studies.</p></div><!--/prerendered--></div>
+      <div class="text-center"><a class="btn btn--primary" href="mailto:[PLACEHOLDER: feedback email]?subject=Feedback%20on%20The%20Teacher%20Vault">Share your feedback</a>
+        <p class="hero__trust" style="margin-top:10px;">[PLACEHOLDER: feedback email]</p></div>
     </div>
   </section>
 
@@ -356,14 +352,6 @@
   renderCardGrid(document.getElementById("featuredGrid"), getFeaturedApps());
   renderCardGrid(document.getElementById("quickNotesHomeGrid"), getAppsByCategory("quicknotes").slice(0,3));
 
-  var soon = getComingSoonApps();
-  document.getElementById("comingSoonGrid").innerHTML = soon.map(function(app){
-    return '<div class="soon-card">' +
-      '<span class="badge badge--soon" style="align-self:flex-start;">Coming Soon</span>' +
-      '<h3>' + app.title + '</h3>' +
-      '<p>' + app.description + '</p>' +
-    '</div>';
-  }).join("");
 
   renderNewsletterCTA(document.getElementById("newsletterCta"));
 </script>
