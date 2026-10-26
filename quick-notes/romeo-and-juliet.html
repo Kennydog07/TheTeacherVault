@@ -237,6 +237,25 @@ footer.app-footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--li
 @media print { .chalk-print-button { display: none !important; } }
 </style>
 <script defer src="/analytics.js"></script>
+<style>/* next-step box (copied from styles.css; this page does not load it) */
+.next-step-box {
+  margin: 32px auto; max-width: 820px; padding: 20px 24px; border-radius: 14px;
+  background: #1e3a30; color: #f5f2e8; border-left: 6px solid #c9a24b;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18); font-family: inherit; line-height: 1.5;
+}
+.next-step-box h2, .next-step-box h3 {
+  margin: 0 0 6px; font-family: 'Permanent Marker', cursive; font-size: 1.25rem; color: #e2c680;
+}
+.next-step-box p { margin: 0 0 12px; color: #f5f2e8; }
+.next-step-box__links { display: flex; flex-wrap: wrap; gap: 10px; }
+.next-step-box__links a {
+  display: inline-block; padding: 9px 16px; border-radius: 999px; font-weight: 700;
+  text-decoration: none; background: #c9a24b; color: #1e3a30; font-size: 0.95rem;
+}
+.next-step-box__links a.alt { background: transparent; color: #f5f2e8; border: 2px solid rgba(245,242,232,0.5); }
+.next-step-box__links a:focus-visible { outline: 3px solid #f5f2e8; outline-offset: 2px; }
+
+</style>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to content</a>
@@ -273,7 +292,12 @@ footer.app-footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--li
 <p style="margin:10px 0 14px;padding:10px 14px;border:1px solid rgba(0,0,0,.14);border-radius:10px;background:rgba(255,255,255,.72);color:#1e3a30;font-size:0.95rem;">📄 <a href="/downloads/printables/Quick-Notes-Romeo-and-Juliet.pdf" download style="color:inherit;text-decoration:underline;font-weight:600;">Printable worksheet (PDF)</a> &middot; <a href="/printables/gcse" style="color:inherit;text-decoration:underline;">More printables</a></p>
     <div id="sectionsRoot"></div>
     <footer class="app-footer">The Teacher Vault · Romeo and Juliet QuickNotes — a free GCSE English Literature revision resource. All explanatory content is original. Shakespeare's text is public domain; quotations have been checked against the original text.</footer>
-  </main>
+  <aside class="next-step-box" aria-label="Next steps">
+  <h2>Teaching this text?</h2>
+  <p>Our Pro teacher tools help with marking, feedback and planning. Or print a free GCSE worksheet for your class.</p>
+  <div class="next-step-box__links"><a href="/pricing">See Pro tools and pricing</a><a href="/printables/gcse" class="alt">Free GCSE printables</a></div>
+</aside>
+</main>
 </div>
 
 <script>
