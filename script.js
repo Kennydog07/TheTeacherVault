@@ -389,6 +389,7 @@ function renderFooter() {
           '<ul>' +
             '<li><a href="/privacy">Privacy</a></li>' +
             '<li><a href="/terms">Terms</a></li>' +
+            '<li><a href="/refunds">Refunds</a></li>' +
           '</ul>' +
         '</div>' +
       '</div>' +
