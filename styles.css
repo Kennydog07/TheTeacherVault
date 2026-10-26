@@ -1955,3 +1955,63 @@ table.compare td:first-child, table.compare th:first-child { border-right: 1px s
   @page landscape { size: A4 landscape; margin: 12mm; }
   body.print-landscape { page: landscape; }
 }
+
+/* --------------------------------------------------------------------------
+   Pro tools list (/apps?tier=pro), Pricing page (/pricing) and the
+   small "next step" boxes on guides and Quick Notes
+   -------------------------------------------------------------------------- */
+.pro-offer-grid { align-items: stretch; }
+.pro-offer .pro-card__title { margin: 0; color: var(--chalk-white); }
+.pro-offer .pro-card__price { margin: 0; }
+.pro-card__price--ph { font-size: 1rem; }
+.pro-offer__per { font-size: 0.85rem; font-weight: 600; color: var(--chalk-dim); }
+.pro-offer__adds { margin: 0; font-size: 0.92rem; color: var(--chalk-dim); flex: 1; }
+.pro-offer__adds strong { color: var(--chalk-white); }
+.pro-offer__foot { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
+.pro-offer-cta {
+  margin-top: 32px; padding: 22px 26px; border-radius: var(--radius-lg);
+  border: 2px dashed rgba(201,162,75,0.55); background: rgba(201,162,75,0.08);
+  display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between;
+}
+.pro-offer-cta p { margin: 0; max-width: 62ch; }
+
+.plan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; }
+.plan-card { position: relative; }
+.plan-card--featured { border-color: var(--gold); box-shadow: 0 0 0 2px var(--gold), 0 10px 30px rgba(0,0,0,0.4); }
+.plan-card h3 { margin: 0; color: var(--chalk-white); }
+.plan-card .pro-card__price small { font-size: 0.9rem; font-weight: 600; color: var(--chalk-dim); }
+.plan-card p { margin: 0; color: var(--chalk-dim); font-size: 0.95rem; }
+.plan-card__foot { margin-top: auto; display: flex; flex-direction: column; gap: 8px; }
+.placeholder-note { font-size: 0.85rem; color: var(--gold-light); }
+
+.next-step-box {
+  margin: 32px auto; max-width: 820px; padding: 20px 24px; border-radius: 14px;
+  background: #1e3a30; color: #f5f2e8; border-left: 6px solid #c9a24b;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18); font-family: inherit; line-height: 1.5;
+}
+.next-step-box h2, .next-step-box h3 {
+  margin: 0 0 6px; font-family: 'Permanent Marker', cursive; font-size: 1.25rem; color: #e2c680;
+}
+.next-step-box p { margin: 0 0 12px; color: #f5f2e8; }
+.next-step-box__links { display: flex; flex-wrap: wrap; gap: 10px; }
+.next-step-box__links a {
+  display: inline-block; padding: 9px 16px; border-radius: 999px; font-weight: 700;
+  text-decoration: none; background: #c9a24b; color: #1e3a30; font-size: 0.95rem;
+}
+.next-step-box__links a.alt { background: transparent; color: #f5f2e8; border: 2px solid rgba(245,242,232,0.5); }
+.next-step-box__links a:focus-visible { outline: 3px solid #f5f2e8; outline-offset: 2px; }
+
+.hero-paths { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 22px 0 10px; }
+.hero-path {
+  display: flex; flex-direction: column; gap: 6px; padding: 18px 20px; border-radius: var(--radius-lg);
+  border: 2px solid rgba(245,242,232,0.18); background: rgba(245,242,232,0.05); text-decoration: none; color: inherit;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.hero-path:hover, .hero-path:focus-visible { border-color: var(--gold); transform: translateY(-2px); }
+.hero-path__label { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-light); }
+.hero-path__title { font-family: var(--font-chalk); font-size: 1.35rem; color: var(--chalk-white); }
+.hero-path__text { font-size: 0.95rem; color: var(--chalk-dim); margin: 0; }
+.hero-path__go { margin-top: 4px; font-weight: 800; color: var(--gold-light); }
+.paper-section .pro-offer h3, .paper-section .pro-offer .pro-offer__adds strong { color: var(--chalk-white); }
+.paper-section .pro-offer p.pro-card__price { color: var(--gold-light); }
+.paper-section .pro-offer p.pro-offer__adds, .paper-section .pro-offer .pro-offer__per { color: var(--chalk-dim); }
