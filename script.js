@@ -591,9 +591,7 @@ const PRO_TOOLS = [
   { title: "Rubric Generator Pro", details: "/rubric-generator", freeLabel: "Rubric Generator (free)", price: "£2.99", url: "https://idamaemann.gumroad.com/l/abucli",
     adds: "Up to 8 fully editable criteria, custom grade labels, weightings for each criterion, CSV export and saved rubrics you can reload next time." },
   { title: "Task Twist Pro", details: "/app.html?id=task-twist-pro", freeLabel: "Task Twist (free)", price: "£2.99", url: "https://idamaemann.gumroad.com/l/iawgx",
-    adds: "Six differentiation levels, SEND, EAL and greater depth profiles, individual pupil versions, a class differentiation planner, editable success criteria and questioning prompts, printable task cards, a classroom display mode and saved tasks." },
-  { title: "Differentiator Pro", details: "/differentiator", freeLabel: "Differentiator (free)", price: "[PLACEHOLDER: Differentiator Pro price]", url: "",
-    adds: "[PLACEHOLDER: what Pro adds]" }
+    adds: "Six differentiation levels, SEND, EAL and greater depth profiles, individual pupil versions, a class differentiation planner, editable success criteria and questioning prompts, printable task cards, a classroom display mode and saved tasks." }
 ];
 
 function proToolCard(t) {
