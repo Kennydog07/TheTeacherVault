@@ -189,7 +189,11 @@
 .k1-journey-step__label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--k1-ink-soft); margin-bottom: 6px; }
 .k1-journey-step__title { font-family: 'Permanent Marker', cursive; color: var(--k1-orange-dark); font-size: 1.2rem; margin-bottom: 8px; }
 .k1-journey-arrow { display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: var(--k1-blue); flex: 0 0 auto; }
-@media (max-width: 760px) { .k1-journey-arrow { transform: rotate(90deg); } }
+@media (max-width: 760px) {
+  .k1-journey { flex-direction: column; align-items: center; }
+  .k1-journey-step { flex: 0 0 auto; width: 100%; }
+  .k1-journey-arrow { transform: rotate(90deg); }
+}
 
 /* ---------------- Utility ---------------- */
 .k1-center { text-align: center; }

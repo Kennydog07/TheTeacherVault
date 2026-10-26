@@ -197,6 +197,7 @@ const NAV_LINKS = [
     ]
   },
   { href: "/apps?tier=pro", label: "Pro Apps", chalk: "gold" },
+  { href: "/pricing", label: "Pricing", chalk: "sunshine" },
   { href: "/about", label: "About", chalk: "lilac" },
   { href: "/faq", label: "FAQ", chalk: "rose" }
 ];
@@ -356,7 +357,7 @@ function renderFooter() {
         '<div class="footer-col">' +
           chalkLogo("footer") +
           '<p class="footer-desc">Practical tools for teachers. Free revision resources for students.</p>' +
-          '<p class="gumroad-note">Free apps open or download directly from this site. Pro upgrades are fulfilled through Gumroad.</p>' +
+          '<p class="gumroad-note">Free apps open or download directly from this site. Pro tools are sold through The Teacher Vault store on Gumroad.</p>' +
         '</div>' +
         '<div class="footer-col">' +
           '<h4>Explore</h4>' +
@@ -370,6 +371,7 @@ function renderFooter() {
             '<li><a href="/printables">Printables</a></li>' +
             '<li><a href="/apps?tier=free">Free Apps</a></li>' +
             '<li><a href="/apps?tier=pro">Pro Apps</a></li>' +
+            '<li><a href="/pricing">Pricing</a></li>' +
           '</ul>' +
         '</div>' +
         '<div class="footer-col">' +
@@ -570,6 +572,50 @@ function renderCardGrid(container, apps) {
     return;
   }
   container.innerHTML = apps.map(renderAppCard).join("");
+}
+
+/* --------------------------------------------------------------------------
+   Pro tools and plans: one source for the Pro Apps view (/apps?tier=pro)
+   and the Pricing page (/pricing). Prices must match Gumroad.
+   -------------------------------------------------------------------------- */
+const PRO_TOOLS = [
+  { title: "Report Writer Pro", details: "/report-writer", freeLabel: "Report Writer (free)", price: "£4.99", url: "https://idamaemann.gumroad.com/l/unjcn",
+    adds: "Expanded subject-specific phrase banks, saved pupil profiles you can reuse across terms, and a faster workflow for writing a full class set of reports." },
+  { title: "Lesson Planner Pro", details: "/lesson-planner", freeLabel: "Lesson Planner (free)", price: "£4.99", url: "https://idamaemann.gumroad.com/l/eghxdm?wanted=true",
+    adds: "A scheme-of-work style overview across several lessons, templates saved and organised by topic, and more detailed timing and activity controls for planning a full term." },
+  { title: "Mark My Class Pro", details: "/mark-my-class", freeLabel: "Mark My Class (free)", price: "£4.99", url: "https://idamaemann.gumroad.com/l/ftfzhu",
+    adds: "Deeper analysis of pupils' assessment marks, so you can spot class-wide misconceptions and set reteach priorities." },
+  { title: "Feedback Fixer Pro", details: "/feedback-fixer", freeLabel: "Feedback Fixer (free)", price: "£2.99", url: "https://idamaemann.gumroad.com/l/uueuie",
+    adds: "A Class Manager with saved pupil profiles, batch feedback for a whole class, 8 more subjects, SEND, EAL and high attainer support, more feedback formats and printable class sheets." },
+  { title: "Rubric Generator Pro", details: "/rubric-generator", freeLabel: "Rubric Generator (free)", price: "£2.99", url: "https://idamaemann.gumroad.com/l/abucli",
+    adds: "Up to 8 fully editable criteria, custom grade labels, weightings for each criterion, CSV export and saved rubrics you can reload next time." },
+  { title: "Task Twist Pro", details: "/app.html?id=task-twist-pro", freeLabel: "Task Twist (free)", price: "£2.99", url: "https://idamaemann.gumroad.com/l/iawgx",
+    adds: "Six differentiation levels, SEND, EAL and greater depth profiles, individual pupil versions, a class differentiation planner, editable success criteria and questioning prompts, printable task cards, a classroom display mode and saved tasks." },
+  { title: "Differentiator Pro", details: "/differentiator", freeLabel: "Differentiator (free)", price: "[PLACEHOLDER: Differentiator Pro price]", url: "",
+    adds: "[PLACEHOLDER: what Pro adds]" }
+];
+
+function proToolCard(t) {
+  const isPh = function (v) { return /\[PLACEHOLDER/.test(v); };
+  const buy = t.url
+    ? '<a class="btn btn--primary btn--block" href="' + t.url + '" target="_blank" rel="noopener">Buy on Gumroad &mdash; ' + t.price + ' ' + ICONS.external + '</a>'
+    : '<span class="btn btn--dark btn--block" aria-disabled="true">[PLACEHOLDER: Gumroad link]</span>';
+  return (
+    '<article class="pro-card pro-offer">' +
+      '<span class="badge badge--pro" style="align-self:flex-start;">Pro</span>' +
+      '<h3 class="pro-card__title">' + t.title + '</h3>' +
+      '<p class="pro-card__price' + (isPh(t.price) ? ' pro-card__price--ph' : '') + '">' + t.price + (isPh(t.price) ? '' : ' <span class="pro-offer__per">one-off</span>') + '</p>' +
+      '<p class="pro-offer__adds"><strong>What Pro adds:</strong> ' + t.adds + '</p>' +
+      '<div class="pro-offer__foot">' + buy +
+        '<a class="btn btn--ghost btn--sm btn--block" href="' + t.details + '">Try the free version first</a>' +
+      '</div>' +
+    '</article>'
+  );
+}
+
+function renderProTools(container) {
+  if (!container) return;
+  container.innerHTML = PRO_TOOLS.map(proToolCard).join("");
 }
 
 /* --------------------------------------------------------------------------
