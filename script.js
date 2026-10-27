@@ -183,6 +183,7 @@ const NAV_LINKS = [
   },
   { href: "/quick-notes", label: "Quick Notes", chalk: "mint" },
   { href: "/guides", label: "Guides", chalk: "peach" },
+  { href: "/school-plays", label: "School Plays", chalk: "coral" },
   {
     label: "Printables",
     chalk: "orange",
@@ -368,6 +369,7 @@ function renderFooter() {
             '<li><a href="/early-years">Early Years</a></li>' +
             '<li><a href="/quick-notes">Quick Notes</a></li>' +
             '<li><a href="/guides">Guides</a></li>' +
+            '<li><a href="/school-plays">School Plays</a></li>' +
             '<li><a href="/printables">Printables</a></li>' +
             '<li><a href="/apps?tier=free">Free Apps</a></li>' +
             '<li><a href="/apps?tier=pro">Pro Apps</a></li>' +
