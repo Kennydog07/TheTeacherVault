@@ -136,9 +136,45 @@ function chalkLogo(size) {
    -------------------------------------------------------------------------- */
 
 const NAV_LINKS = [
-  { href: "/", label: "Home", chalk: "white" },
-  { href: "/teacher-tools", label: "Teacher Tools", chalk: "yellow" },
-  { href: "/student-apps", label: "Student Apps", chalk: "blue" },
+  {
+    label: "Teachers",
+    chalk: "yellow",
+    children: [
+      { href: "/teacher-tools", label: "Teacher Tools", chalk: "yellow" },
+      { href: "/guides", label: "Guides", chalk: "peach" },
+      { href: "/apps?tier=pro", label: "Pro Apps", chalk: "gold" },
+      { href: "/pricing", label: "Pricing", chalk: "sunshine" }
+    ]
+  },
+  {
+    label: "Students",
+    chalk: "blue",
+    hub: { href: "/student-apps", label: "All Student Apps" },
+    groups: [
+      {
+        heading: "Primary",
+        items: [
+          { href: "/early-years", label: "Early Years (Ages 3–5)" },
+          { href: "/ks1", label: "KS1 (Years 1–2)" },
+          { href: "/ks2", label: "KS2 (SATs)" }
+        ]
+      },
+      {
+        heading: "Secondary",
+        items: [
+          { href: "/student-apps#ks-KS3", label: "KS3" },
+          { href: "/student-apps#ks-KS4", label: "KS4 (GCSE)" },
+          { href: "/student-apps#ks-KS5", label: "KS5 (A-Level)" }
+        ]
+      },
+      {
+        heading: "Revision",
+        items: [
+          { href: "/quick-notes", label: "Quick Notes" }
+        ]
+      }
+    ]
+  },
   {
     label: "AI & Coding",
     chalk: "pink",
@@ -170,21 +206,6 @@ const NAV_LINKS = [
     ]
   },
   {
-    label: "Key Stages",
-    chalk: "green",
-    children: [
-      { href: "/early-years", label: "Early Years (Ages 3–5)", chalk: "sunshine" },
-      { href: "/ks1", label: "KS1 (Years 1–2)", chalk: "blue" },
-      { href: "/ks2", label: "KS2 (SATs)", chalk: "green" },
-      { href: "/student-apps#ks-KS3", label: "KS3", chalk: "lilac" },
-      { href: "/student-apps#ks-KS4", label: "KS4 (GCSE)", chalk: "coral" },
-      { href: "/student-apps#ks-KS5", label: "KS5 (A-Level)", chalk: "mint" }
-    ]
-  },
-  { href: "/quick-notes", label: "Quick Notes", chalk: "mint" },
-  { href: "/guides", label: "Guides", chalk: "peach" },
-  { href: "/school-plays", label: "School Plays", chalk: "coral" },
-  {
     label: "Printables",
     chalk: "orange",
     children: [
@@ -197,10 +218,17 @@ const NAV_LINKS = [
       { href: "/printables/ai-coding", label: "AI & Coding", chalk: "pink" }
     ]
   },
-  { href: "/apps?tier=pro", label: "Pro Apps", chalk: "gold" },
-  { href: "/pricing", label: "Pricing", chalk: "sunshine" },
-  { href: "/about", label: "About", chalk: "lilac" },
-  { href: "/faq", label: "FAQ", chalk: "rose" }
+  { href: "/school-plays", label: "School Plays", chalk: "coral" },
+  {
+    label: "About",
+    chalk: "lilac",
+    children: [
+      { href: "/", label: "Home", chalk: "white" },
+      { href: "/about", label: "About Us", chalk: "lilac" },
+      { href: "/faq", label: "FAQ", chalk: "rose" },
+      { href: "/contact", label: "Contact", chalk: "mint" }
+    ]
+  }
 ];
 
 /* Netlify serves clean URLs (/about rather than /about.html), so both sides
@@ -344,7 +372,6 @@ function renderHeader() {
     '</div>' +
     '<div class="mobile-nav" id="mobileNav">' +
       mobileLinkHtml() +
-      '<a href="/contact"' + (here === "/contact" ? ' aria-current="page"' : '') + '>Contact</a>' +
       '<a href="/apps" class="btn btn--primary btn--sm">Browse All Apps</a>' +
     '</div>'
   );
@@ -451,8 +478,23 @@ function mountLayout() {
     if (headerEl && !headerEl.contains(e.target)) closeAllDropdowns();
   });
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") closeAllDropdowns();
+    if (e.key === "Escape") {
+      const openDd = document.querySelector(".main-nav__dropdown.is-open, .mobile-nav__dropdown.is-open");
+      closeAllDropdowns();
+      if (openDd) { const t = openDd.querySelector("button"); if (t) t.focus(); }
+    }
   });
+  // Keyboard users: close a desktop dropdown once focus tabs out of it.
+  if (headerEl) {
+    headerEl.addEventListener("focusout", function (e) {
+      const dd = e.target.closest(".main-nav__dropdown");
+      if (dd && !dd.contains(e.relatedTarget)) {
+        dd.classList.remove("is-open");
+        const t = dd.querySelector(".main-nav__dropdown-toggle");
+        if (t) t.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
 }
 
 /* --------------------------------------------------------------------------
