@@ -624,17 +624,17 @@ function renderCardGrid(container, apps) {
    and the Pricing page (/pricing). Prices must match Gumroad.
    -------------------------------------------------------------------------- */
 const PRO_TOOLS = [
-  { title: "Report Writer Pro", details: "/report-writer", freeLabel: "Report Writer (free)", price: "£4.99", url: "https://idamaemann.gumroad.com/l/unjcn",
+  { title: "Report Writer Pro", details: "/report-writer", freeLabel: "Report Writer (free)", price: "£4.99", url: "https://theteachervault.gumroad.com/l/unjcn",
     adds: "Expanded subject-specific phrase banks, saved pupil profiles you can reuse across terms, and a faster workflow for writing a full class set of reports." },
-  { title: "Lesson Planner Pro", details: "/lesson-planner", freeLabel: "Lesson Planner (free)", price: "£4.99", url: "https://idamaemann.gumroad.com/l/eghxdm?wanted=true",
+  { title: "Lesson Planner Pro", details: "/lesson-planner", freeLabel: "Lesson Planner (free)", price: "£4.99", url: "https://theteachervault.gumroad.com/l/eghxdm?wanted=true",
     adds: "A scheme-of-work style overview across several lessons, templates saved and organised by topic, and more detailed timing and activity controls for planning a full term." },
-  { title: "Mark My Class Pro", details: "/mark-my-class", freeLabel: "Mark My Class (free)", price: "£4.99", url: "https://idamaemann.gumroad.com/l/ftfzhu",
+  { title: "Mark My Class Pro", details: "/mark-my-class", freeLabel: "Mark My Class (free)", price: "£4.99", url: "https://theteachervault.gumroad.com/l/ftfzhu",
     adds: "Deeper analysis of pupils' assessment marks, so you can spot class-wide misconceptions and set reteach priorities." },
-  { title: "Feedback Fixer Pro", details: "/feedback-fixer", freeLabel: "Feedback Fixer (free)", price: "£2.99", url: "https://idamaemann.gumroad.com/l/uueuie",
+  { title: "Feedback Fixer Pro", details: "/feedback-fixer", freeLabel: "Feedback Fixer (free)", price: "£2.99", url: "https://theteachervault.gumroad.com/l/uueuie",
     adds: "A Class Manager with saved pupil profiles, batch feedback for a whole class, 8 more subjects, SEND, EAL and high attainer support, more feedback formats and printable class sheets." },
-  { title: "Rubric Generator Pro", details: "/rubric-generator", freeLabel: "Rubric Generator (free)", price: "£2.99", url: "https://idamaemann.gumroad.com/l/abucli",
+  { title: "Rubric Generator Pro", details: "/rubric-generator", freeLabel: "Rubric Generator (free)", price: "£2.99", url: "https://theteachervault.gumroad.com/l/abucli",
     adds: "Up to 8 fully editable criteria, custom grade labels, weightings for each criterion, CSV export and saved rubrics you can reload next time." },
-  { title: "Task Twist Pro", details: "/app.html?id=task-twist-pro", freeLabel: "Task Twist (free)", price: "£2.99", url: "https://idamaemann.gumroad.com/l/iawgx",
+  { title: "Task Twist Pro", details: "/app.html?id=task-twist-pro", freeLabel: "Task Twist (free)", price: "£2.99", url: "https://theteachervault.gumroad.com/l/iawgx",
     adds: "Six differentiation levels, SEND, EAL and greater depth profiles, individual pupil versions, a class differentiation planner, editable success criteria and questioning prompts, printable task cards, a classroom display mode and saved tasks." }
 ];
 
