@@ -635,7 +635,9 @@ const PRO_TOOLS = [
   { title: "Rubric Generator Pro", details: "/rubric-generator", freeLabel: "Rubric Generator (free)", price: "£2.99", url: "https://theteachervault.gumroad.com/l/abucli",
     adds: "Up to 8 fully editable criteria, custom grade labels, weightings for each criterion, CSV export and saved rubrics you can reload next time." },
   { title: "Task Twist Pro", details: "/app.html?id=task-twist-pro", freeLabel: "Task Twist (free)", price: "£2.99", url: "https://theteachervault.gumroad.com/l/iawgx",
-    adds: "Six differentiation levels, SEND, EAL and greater depth profiles, individual pupil versions, a class differentiation planner, editable success criteria and questioning prompts, printable task cards, a classroom display mode and saved tasks." }
+    adds: "Six differentiation levels, SEND, EAL and greater depth profiles, individual pupil versions, a class differentiation planner, editable success criteria and questioning prompts, printable task cards, a classroom display mode and saved tasks." },
+  { title: "KS3 Maths Gap Finder", details: "/ks3-maths-gap-finder", detailsLabel: "See what's inside", addsLabel: "What's inside:", price: "£2.99", url: "https://teachervault.gumroad.com/l/rmbpi",
+    adds: "Four printable 10–15 minute start-of-topic checks for Years 7–9 (Number, Algebra, Geometry & Measures, Statistics & Probability), answer keys showing the misconception behind common wrong answers, a class tracker and pupil self-assessment strips." }
 ];
 
 function proToolCard(t) {
@@ -648,9 +650,9 @@ function proToolCard(t) {
       '<span class="badge badge--pro" style="align-self:flex-start;">Pro</span>' +
       '<h3 class="pro-card__title">' + t.title + '</h3>' +
       '<p class="pro-card__price' + (isPh(t.price) ? ' pro-card__price--ph' : '') + '">' + t.price + (isPh(t.price) ? '' : ' <span class="pro-offer__per">one-off</span>') + '</p>' +
-      '<p class="pro-offer__adds"><strong>What Pro adds:</strong> ' + t.adds + '</p>' +
+      '<p class="pro-offer__adds"><strong>' + (t.addsLabel || 'What Pro adds:') + '</strong> ' + t.adds + '</p>' +
       '<div class="pro-offer__foot">' + buy +
-        '<a class="btn btn--ghost btn--sm btn--block" href="' + t.details + '">Try the free version first</a>' +
+        '<a class="btn btn--ghost btn--sm btn--block" href="' + t.details + '">' + (t.detailsLabel || 'Try the free version first') + '</a>' +
       '</div>' +
     '</article>'
   );
