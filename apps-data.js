@@ -1065,6 +1065,33 @@ const APPS = [
     noAccount: true
   },
   {
+    id: "ks3-maths-gap-finder",
+    landingUrl: "/ks3-maths-gap-finder",
+    title: "KS3 Maths Gap Finder",
+    tagline: "Start-of-topic maths checks that show who is ready to move on.",
+    description: "A printable pack of four 10–15 minute diagnostic checks for Years 7–9 (Number, Algebra, Geometry & Measures, Statistics & Probability), with misconception answer keys, a class tracker and pupil self-assessment strips.",
+    category: "teacher",
+    subject: "Maths",
+    audience: "KS3 maths teachers (Years 7–9)",
+    tier: "pro",
+    price: "£2.99",
+    gumroadUrl: "https://teachervault.gumroad.com/l/rmbpi",
+    image: "/images/ks3-maths-gap-finder-pro.jpg",
+    featured: false,
+    isNew: true,
+    comingSoon: false,
+    keywords: "ks3 maths diagnostic baseline assessment misconceptions year 7 year 8 year 9 printable tracker gap finder",
+    features: [
+      "Four one-page start-of-topic checks, 48 questions in total",
+      "Every question tagged with the sub-skill it diagnoses",
+      "Answer keys showing the misconception behind common wrong answers",
+      "“Ready to move on?” class tracker with RAG columns",
+      "Pupil self-assessment strips: I can / Nearly / Not yet"
+    ],
+    worksOffline: true,
+    noAccount: true
+  },
+  {
     id: "ks1-morning-starter",
     title: "KS1 Morning Starter Generator",
     tagline: "A ready-to-use start-of-day activity for Year 1 and Year 2 in seconds.",
