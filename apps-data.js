@@ -383,6 +383,33 @@ const APPS = [
     noAccount: true
   },
   {
+    id: "word-card-maker",
+    title: "Word Card Maker",
+    tagline: "Printable keyring word cards: pick an age, topic and shape and get 10 words with a matching picture.",
+    description: "Make colourful keyring word cards in seconds. Choose an age (3 to 14), a topic from over 70 word banks and a card shape, and the app picks 10 age-appropriate words and a matching picture. Edit or shuffle the words, then print A4 sheets with cut lines and hole marks, ready to laminate and thread onto a ring.",
+    category: "teacher",
+    subject: "English",
+    audience: "EYFS, primary and KS3 teachers",
+    tier: "lite",
+    price: "Free",
+    gumroadUrl: "",
+    fileUrl: "/teacher-apps/word-card-maker",
+    fileType: "app",
+    image: "/images/mascot-teacher-generic.png",
+    featured: false,
+    isNew: true,
+    comingSoon: false,
+    features: [
+      "Over 70 word banks: describing words, feelings, seasons, festivals, science, maths, phonics and statutory spellings",
+      "Words matched to age bands from 3-5 up to 11-14, with Shuffle for a fresh 10 and every word editable",
+      "8 card shapes including keyring card, circle, star, heart, hexagon, cloud, shield and luggage tag",
+      "A matching picture added automatically, with 55 built-in pictures to swap in",
+      "Prints A4 sheets with cut lines and hole marks, optional name-label backs, plus PNG download"
+    ],
+    worksOffline: true,
+    noAccount: true
+  },
+  {
     id: "traffic-lights",
     title: "Traffic Lights",
     tagline: "A big classroom status display — red, amber or green, with an optional instruction underneath.",
