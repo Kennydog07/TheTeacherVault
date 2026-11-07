@@ -215,6 +215,7 @@
     .wc-sheet-foot{ position:absolute; bottom:0; left:0; right:0; text-align:center; font-size:8pt; color:#777; }
     *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   }
+  .wc-who{ display:flex; gap:20px; flex-wrap:wrap; } .wc-who .wc-check{ margin:0; justify-content:flex-start; }
 </style>
 <script defer src="/analytics.js"></script>
 </head>
@@ -288,6 +289,33 @@
           <button type="button" class="btn btn-ghost btn-sm" id="wcAutoIcon" style="margin-top:8px">Use the matching picture</button>
         </div>
       </section>
+      <section class="card" id="wcSend">
+        <h2 class="section-title">4. Email or share the printable</h2>
+        <p class="field-hint">Get the finished A4 sheet as a PDF, exactly as it prints, with the colour, shape, copies and backs you have chosen. The PDF is made on your device; nothing is uploaded.</p>
+        <div class="field" style="max-width:320px">
+          <label for="wcShareWhat">What to send</label>
+          <select id="wcShareWhat"><option value="card">This card (A4 sheet)</option><option value="set" id="wcShareSetOpt" disabled>My print set</option></select>
+        </div>
+        <div class="field wc-who" role="radiogroup" aria-label="Who is it for?">
+          <label class="wc-check"><input type="radio" name="wcWho" id="wcEmailSelf" checked> To myself</label>
+          <label class="wc-check"><input type="radio" name="wcWho" id="wcEmailOther"> To someone else</label>
+        </div>
+        <div class="field" id="wcEmailToWrap" style="max-width:420px">
+          <label for="wcEmailTo">Your email address (optional)</label>
+          <input type="text" inputmode="email" id="wcEmailTo" placeholder="name@school.org.uk" autocomplete="email" maxlength="120">
+        </div>
+        <div class="actions-row">
+          <button type="button" class="btn btn-primary" id="wcEmail">✉ Email it</button>
+          <button type="button" class="btn btn-secondary" id="wcShare" hidden>Share PDF…</button>
+          <button type="button" class="btn btn-ghost" id="wcPdf">Download PDF</button>
+        </div>
+        <div id="wcEmailSteps" class="wc-note" hidden style="margin-top:12px">
+          <strong>Nearly done:</strong> your PDF (<span id="wcEmailFile"></span>) has downloaded and a new email should have opened. Attach the PDF from your Downloads folder, then press Send. Browsers cannot attach files to an email for you.
+          If no email opened, <a id="wcEmailOpen" href="#">open the email here</a>.
+        </div>
+        <p class="field-hint" style="margin-top:10px">On phones and tablets, <strong>Share PDF…</strong> lets you pick Mail, Gmail or Outlook with the PDF already attached. We never see or store email addresses.</p>
+      </section>
+
     </div>
 
     <div class="wc-col">
@@ -934,9 +962,8 @@ function doSearch(){
 }
 
 /* ---------- print ---------- */
-function buildSheets(cards,double){
-  var A=$('wcPrintArea');A.innerHTML='';
-  var PW=190,PH=277,GAP=5;
+function sheetLayout(cards,double){
+  var pages=[],PW=190,PH=277,GAP=5;
   var groups={};cards.forEach(function(c){(groups[c.shape]=groups[c.shape]||[]).push(c);});
   Object.keys(groups).forEach(function(shape){
     var sh=SHAPES[shape],cw=sh.W+1,ch=sh.H+1;
@@ -947,32 +974,41 @@ function buildSheets(cards,double){
       var page=list.slice(p,p+per);
       [false,true].forEach(function(back){
         if(back&&!double)return;
-        var sheet=document.createElement('div');sheet.className='wc-sheet';
-        page.forEach(function(c,i){
-          var col=i%cols,row=Math.floor(i/cols);if(back)col=cols-1-col;
-          var d=document.createElement('div');d.className='wc-cell';
-          d.style.left=(ox+col*(cw+GAP))+'mm';d.style.top=(oy+row*(ch+GAP))+'mm';
-          d.innerHTML=cardSvg(c,{cut:true,back:back});sheet.appendChild(d);
-        });
-        var f=document.createElement('div');f.className='wc-sheet-foot';
-        f.textContent=back?'Back of sheet: print on the reverse (flip on the long edge). TheTeacherVault.com':'Cut along the grey line, laminate, punch the hole and add to a keyring ring. TheTeacherVault.com';
-        sheet.appendChild(f);A.appendChild(sheet);
+        var cells=page.map(function(c,i){var col=i%cols,row=Math.floor(i/cols);if(back)col=cols-1-col;return {x:ox+col*(cw+GAP),y:oy+row*(ch+GAP),w:cw,h:ch,c:c};});
+        pages.push({back:back,cells:cells,foot:back?'Back of sheet: print on the reverse (flip on the long edge). TheTeacherVault.com':'Cut along the grey line, laminate, punch the hole and add to a keyring ring. TheTeacherVault.com'});
       });
     }
+  });
+  return pages;
+}
+function buildSheets(cards,double){
+  var A=$('wcPrintArea');A.innerHTML='';
+  sheetLayout(cards,double).forEach(function(pg){
+    var sheet=document.createElement('div');sheet.className='wc-sheet';
+    pg.cells.forEach(function(cl){
+      var d=document.createElement('div');d.className='wc-cell';
+      d.style.left=cl.x+'mm';d.style.top=cl.y+'mm';
+      d.innerHTML=cardSvg(cl.c,{cut:true,back:pg.back});sheet.appendChild(d);
+    });
+    var f=document.createElement('div');f.className='wc-sheet-foot';f.textContent=pg.foot;
+    sheet.appendChild(f);A.appendChild(sheet);
   });
   return A.children.length;
 }
 function fillCount(shape){var sh=SHAPES[shape];return Math.floor((195)/(sh.W+6))*Math.floor((282)/(sh.H+6));}
-function printNow(useSet){
+function cardsFor(useSet){
   var cards=[],copies=$('wcCopies').value;
   var src=useSet&&set.length?set:[snapshot()];
   src.forEach(function(c){var n=copies==='fill'?(useSet&&set.length?1:fillCount(c.shape)):parseInt(copies,10);for(var i=0;i<n;i++)cards.push(c);});
-  buildSheets(cards,$('wcDouble').checked);
+  return cards;
+}
+function printNow(useSet){
+  buildSheets(cardsFor(useSet),$('wcDouble').checked);
   setTimeout(function(){window.print();},60);
 }
 function renderSet(){
   var L=$('wcSetList');L.innerHTML='';
-  $('wcSetEmpty').hidden=set.length>0;$('wcPrintSet').disabled=!set.length;
+  $('wcSetEmpty').hidden=set.length>0;$('wcShareSetOpt').disabled=!set.length;if(!set.length)$('wcShareWhat').value='card';$('wcPrintSet').disabled=!set.length;
   set.forEach(function(c,i){var d=document.createElement('div');d.className='wc-set-item';d.innerHTML=cardSvg(c);
     var b=document.createElement('button');b.type='button';b.className='btn btn-danger btn-sm';b.textContent='Remove';b.onclick=function(){set.splice(i,1);renderSet();};
     d.appendChild(b);L.appendChild(d);});
@@ -985,6 +1021,84 @@ function downloadPng(){
     cv2.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=(c.title||'word-card').replace(/[^a-z0-9]+/gi,'-').toLowerCase()+'-word-card.png';document.body.appendChild(a);a.click();a.remove();toast('PNG downloaded');});};
   img.src=url;
 }
+
+/* ---------- PDF (built in the browser, no upload) ---------- */
+var PDF_DPI=200,MM=PDF_DPI/25.4;
+function pageSvg(pg){
+  // A4 page in mm with the same 10mm margin as the print stylesheet
+  var s='<svg xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm" viewBox="0 0 210 297"><rect width="210" height="297" fill="#fff"/>';
+  pg.cells.forEach(function(cl){
+    var inner=cardSvg(cl.c,{cut:true,back:pg.back}).replace(/width="[^"]*mm" height="[^"]*mm"/,'x="'+(10+cl.x).toFixed(2)+'" y="'+(10+cl.y).toFixed(2)+'" width="'+cl.w+'" height="'+cl.h+'"');
+    s+=inner;
+  });
+  s+='<text x="105" y="'+(297-6)+'" text-anchor="middle" font-family="Arial,sans-serif" font-size="2.8" fill="#777">'+esc(pg.foot)+'</text></svg>';
+  return s;
+}
+function svgToJpeg(svg){
+  return new Promise(function(res,rej){
+    var img=new Image(),url=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'}));
+    img.onload=function(){var c=document.createElement('canvas');c.width=Math.round(210*MM);c.height=Math.round(297*MM);
+      var g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height);g.drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(url);
+      c.toBlob(function(b){if(!b)return rej(new Error('canvas'));b.arrayBuffer().then(function(ab){res({w:c.width,h:c.height,data:new Uint8Array(ab)});});},'image/jpeg',0.92);};
+    img.onerror=function(){URL.revokeObjectURL(url);rej(new Error('image'));};
+    img.src=url;
+  });
+}
+function makePdf(jpgs,title){
+  // Minimal PDF 1.4: one full-page JPEG per A4 page (595.28 x 841.89 pt)
+  var enc=new TextEncoder(),parts=[],len=0,offs=[];
+  function add(x){var b=typeof x==='string'?enc.encode(x):x;parts.push(b);len+=b.length;}
+  function obj(n){offs[n]=len;add(n+' 0 obj\n');}
+  var n=jpgs.length,kids=[];for(var i=0;i<n;i++)kids.push((4+i*3)+' 0 R');
+  add('%PDF-1.4\n%\xE2\xE3\xCF\xD3\n');
+  obj(1);add('<< /Type /Catalog /Pages 2 0 R >>\nendobj\n');
+  obj(2);add('<< /Type /Pages /Count '+n+' /Kids ['+kids.join(' ')+'] >>\nendobj\n');
+  obj(3);add('<< /Title ('+String(title).replace(/[^\x20-\x7e]/g,'').replace(/[()\\]/g,'')+') /Producer (The Teacher Vault Word Card Maker) >>\nendobj\n');
+  jpgs.forEach(function(j,i){
+    var p=4+i*3,im=p+1,ct=p+2,cs='q 595.28 0 0 841.89 0 0 cm /Im0 Do Q';
+    obj(p);add('<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /XObject << /Im0 '+im+' 0 R >> >> /Contents '+ct+' 0 R >>\nendobj\n');
+    obj(im);add('<< /Type /XObject /Subtype /Image /Width '+j.w+' /Height '+j.h+' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length '+j.data.length+' >>\nstream\n');add(j.data);add('\nendstream\nendobj\n');
+    obj(ct);add('<< /Length '+cs.length+' >>\nstream\n'+cs+'\nendstream\nendobj\n');
+  });
+  var total=4+n*3,x=len,xr='xref\n0 '+total+'\n0000000000 65535 f \n';
+  for(var k=1;k<total;k++)xr+=('000000000'+offs[k]).slice(-10)+' 00000 n \n';
+  add(xr+'trailer\n<< /Size '+total+' /Root 1 0 R /Info 3 0 R >>\nstartxref\n'+x+'\n%%EOF\n');
+  return new Blob(parts,{type:'application/pdf'});
+}
+function pdfName(useSet){var c=useSet&&set.length?{title:'word-card-set'}:snapshot();return (c.title||'word-card').replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'').toLowerCase()+'-keyring-cards.pdf';}
+function buildPdf(useSet){
+  var pages=sheetLayout(cardsFor(useSet),$('wcDouble').checked);
+  return Promise.all(pages.map(function(pg){return svgToJpeg(pageSvg(pg));})).then(function(j){
+    var name=pdfName(useSet);return new File([makePdf(j,name.replace(/\.pdf$/,''))],name,{type:'application/pdf'});});
+}
+function saveFile(f){var a=document.createElement('a');a.href=URL.createObjectURL(f);a.download=f.name;document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href);},4000);}
+function useSetForShare(){return $('wcShareWhat').value==='set'&&set.length>0;}
+function emailText(f){
+  return {subject:'Printable keyring word cards: '+f.name,
+    body:'Hello,\n\nI have attached a printable A4 sheet of keyring word cards ('+f.name+') made with the free Word Card Maker from The Teacher Vault.\n\nPrint at 100% (actual size), laminate, cut out each card, punch the hole and thread onto a keyring ring.\n\nMake your own: https://theteachervault.com/teacher-apps/word-card-maker\n'};
+}
+function validEmail(v){return !v||/^[^\s@,;<>]+@[^\s@,;<>]+\.[^\s@,;<>]+$/.test(v);}
+function busy(btn,on){btn.disabled=on;btn.dataset.l=btn.dataset.l||btn.textContent;btn.textContent=on?'Making PDF…':btn.dataset.l;}
+function downloadPdf(){var b=$('wcPdf');busy(b,true);buildPdf(useSetForShare()).then(function(f){saveFile(f);toast('PDF downloaded');}).catch(function(){toast('Sorry, the PDF could not be made in this browser. Use Print and “Save as PDF”.');}).then(function(){busy(b,false);});}
+function shareNative(){
+  var b=$('wcShare');busy(b,true);
+  buildPdf(useSetForShare()).then(function(f){var t=emailText(f);
+    return navigator.share({files:[f],title:t.subject,text:t.body}).then(function(){toast('Shared');});
+  }).catch(function(e){if(e&&e.name!=='AbortError')toast('Sharing did not work here. Try “Email it”.');}).then(function(){busy(b,false);});
+}
+function emailIt(){
+  var to=$('wcEmailTo').value.trim(),b=$('wcEmail');
+  if(!validEmail(to)){toast('Please check the email address');$('wcEmailTo').focus();return;}
+  busy(b,true);
+  buildPdf(useSetForShare()).then(function(f){var t=emailText(f);
+    saveFile(f);
+    $('wcEmailSteps').hidden=false;$('wcEmailFile').textContent=f.name;
+    var href='mailto:'+encodeURIComponent(to).replace(/%40/g,'@')+'?subject='+encodeURIComponent(t.subject)+'&body='+encodeURIComponent(t.body);
+    $('wcEmailOpen').href=href;
+    setTimeout(function(){window.location.href=href;},400);
+  }).catch(function(){toast('Sorry, the PDF could not be made in this browser. Use Print and “Save as PDF”.');}).then(function(){busy(b,false);});
+}
+function canShareFiles(){try{return !!(navigator.canShare&&navigator.share&&navigator.canShare({files:[new File(['x'],'t.pdf',{type:'application/pdf'})]}));}catch(e){return false;}}
 
 function init(){
   var sel=$('wcTopicSelect');
@@ -1011,10 +1125,13 @@ function init(){
   $('wcPng').onclick=downloadPng;
   $('wcAdd').onclick=function(){set.push(snapshot());renderSet();toast('Added to your print set ('+set.length+')');};
   $('wcPrintSet').onclick=function(){printNow(true);};
+  $('wcPdf').onclick=downloadPdf;$('wcEmail').onclick=emailIt;
+  if(canShareFiles()){$('wcShare').hidden=false;$('wcShare').onclick=shareNative;}
+  $('wcEmailSelf').onchange=$('wcEmailOther').onchange=function(){var other=$('wcEmailOther').checked;$('wcEmailToWrap').querySelector('label').textContent=other?'Their email address':'Your email address (optional)';};
   window.addEventListener('afterprint',function(){$('wcPrintArea').innerHTML='';});
   setTopic('character');renderSet();
 }
-window.WCM={st:st,setTopic:setTopic,render:render,matchTopic:matchTopic,buildSheets:buildSheets,snapshot:snapshot,SHAPES:SHAPES,pickWords:pickWords};
+window.WCM={st:st,setTopic:setTopic,render:render,matchTopic:matchTopic,buildSheets:buildSheets,buildPdf:buildPdf,sheetLayout:sheetLayout,set:set,snapshot:snapshot,SHAPES:SHAPES,pickWords:pickWords};
 init();
 })();
 
