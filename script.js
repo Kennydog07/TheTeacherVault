@@ -72,7 +72,6 @@ const KEY_STAGE_LIST = [
   { value: "KS2", label: "KS2 (SATs)", blurb: "Revision for Year 6 SATs." },
   { value: "KS3", label: "KS3", blurb: "Revision and practice for Years 7 to 9." },
   { value: "KS4", label: "KS4 (GCSE)", blurb: "Revision for GCSE exams." },
-  { value: "KS5", label: "KS5 (A-Level)", blurb: "Revision for A-Level and sixth form study." },
   { value: "General", label: "General Revision", blurb: "Tools and practice that aren't tied to one specific exam stage." }
 ];
 
@@ -163,8 +162,7 @@ const NAV_LINKS = [
         heading: "Secondary",
         items: [
           { href: "/student-apps#ks-KS3", label: "KS3" },
-          { href: "/student-apps#ks-KS4", label: "KS4 (GCSE)" },
-          { href: "/student-apps#ks-KS5", label: "KS5 (A-Level)" }
+          { href: "/student-apps#ks-KS4", label: "KS4 (GCSE)" }
         ]
       },
       {
