@@ -157,7 +157,7 @@ const APPS = [
     proVersionId: "lesson-planner-pro",
     features: [
       "Simple objective, activity and timing structure",
-      "Reusable lesson templates",
+      "Ready-made sections: hook, main activity, assessment, homework and differentiation",
       "Printable and screen-friendly layout",
       "No account needed to use the tool"
     ],
@@ -1115,6 +1115,7 @@ const APPS = [
       "“Ready to move on?” class tracker with RAG columns",
       "Pupil self-assessment strips: I can / Nearly / Not yet"
     ],
+    downloadFormat: "pdf",
     worksOffline: true,
     noAccount: true
   },
@@ -1249,7 +1250,7 @@ const APPS = [
       "An AI myth-buster covering common misconceptions about how AI works",
       "No live AI connection anywhere -- every example is pre-written and fact-checked"
     ],
-    worksOffline: true,
+    worksOffline: false,
     noAccount: true
   },
   {
@@ -1276,7 +1277,7 @@ const APPS = [
       "A prompt-fixer game for improving a weak starting prompt",
       "A simulated, pre-written AI response -- never a live AI connection"
     ],
-    worksOffline: true,
+    worksOffline: false,
     noAccount: true
   },
   {
@@ -1303,7 +1304,7 @@ const APPS = [
       "A detective's toolkit of five real fact-checking habits",
       "Builds critical evaluation of AI-generated and online information"
     ],
-    worksOffline: true,
+    worksOffline: false,
     noAccount: true
   },
   {
@@ -1330,7 +1331,7 @@ const APPS = [
       "Run, Step, Pause and Reset controls, with an optional hint for every level",
       "Introduces core computing concepts: algorithms, iteration and debugging"
     ],
-    worksOffline: true,
+    worksOffline: false,
     noAccount: true
   },
   {
@@ -1357,7 +1358,7 @@ const APPS = [
       "A sandboxed preview with no scripts, forms or external requests possible",
       "A final project with 7 themes to build a complete first web page"
     ],
-    worksOffline: true,
+    worksOffline: false,
     noAccount: true
   },
 
@@ -1575,8 +1576,8 @@ const APPS = [
   {
     id: "ks2-hub",
     title: "KS2 Home",
-    tagline: "All 5 free KS2 tools in one place.",
-    description: "The KS2 hub page bringing together every free KS2 tool from The Teacher Vault — Year 6 SATs maths practice, Times Tables Challenge, Arithmetic Trainer, Inference Detective and Spelling Challenge.",
+    tagline: "All 12 free KS2 tools in one place.",
+    description: "The KS2 hub page bringing together all 12 free KS2 tools from The Teacher Vault — Year 6 SATs maths and English, times tables, arithmetic, fractions, spelling, SPaG, sentence improving, reading comprehension, inference, creative writing and World War II history.",
     category: "revision",
     keyStage: "KS2",
     subject: "Primary",
@@ -1591,8 +1592,8 @@ const APPS = [
     featured: false,
     isNew: true,
     comingSoon: false,
-    features: ["Links to all 5 free KS2 tools", "A quick guide to which tool suits which need", "Revision tips for KS2 and SATs preparation"],
-    worksOffline: true,
+    features: ["Links to all 12 free KS2 tools", "A quick guide to which tool suits which need", "Revision tips for KS2 and SATs preparation"],
+    worksOffline: false,
     noAccount: true
   },
   {
@@ -1661,7 +1662,7 @@ const APPS = [
     isNew: true,
     comingSoon: false,
     features: ["Choose any single, multiple, or mixed set of tables (2-12)", "Year 3-6 quick-select presets", "Four game modes including a 60-second challenge", "Streak tracking with best-streak and best-time saved on this device"],
-    worksOffline: true,
+    worksOffline: false,
     noAccount: true
   },
   {
@@ -1684,7 +1685,7 @@ const APPS = [
     isNew: true,
     comingSoon: false,
     features: ["Year 3/4/5/6/Mixed KS2 level selector with matching topics", "10, 20 or 30 question sessions", "Untimed or timed (elapsed time, not a countdown)", "End report shows your strongest area and what to practise next"],
-    worksOffline: true,
+    worksOffline: false,
     noAccount: true
   },
   {
@@ -1707,7 +1708,7 @@ const APPS = [
     isNew: true,
     comingSoon: false,
     features: ["40 original passages across 7 genres and all KS2 year bands", "Multiple-choice questions with worked evidence", "Written questions with a model answer to compare, not automated marking", "Detective theme with clue hints and a Case Complete screen"],
-    worksOffline: true,
+    worksOffline: false,
     noAccount: true
   },
   {
@@ -1731,7 +1732,7 @@ const APPS = [
     isNew: true,
     comingSoon: false,
     features: ["Interactive timeline from 1939 to VE Day, with Home Front cards", "Evacuee suitcase and ration-book activities", "Battle of Britain radar activity and a historical sources detective", "15-question quiz with a printable certificate, plus printable worksheets and a teacher answer key"],
-    worksOffline: true,
+    worksOffline: false,
     noAccount: true
   },
   {
@@ -1754,7 +1755,7 @@ const APPS = [
     isNew: true,
     comingSoon: false,
     features: ["Full statutory Year 3/4 and Year 5/6 National Curriculum word lists, clearly labelled", "Four modes: Choose the Correct Spelling, Missing Letters, Spell the Word, Spelling Patterns", "Streak tracking and a missed-words retry round", "Optional on-device saving of tricky words"],
-    worksOffline: true,
+    worksOffline: false,
     noAccount: true
   },
   {
@@ -1777,7 +1778,7 @@ const APPS = [
     isNew: true,
     comingSoon: false,
     features: ["9 fraction topics adapted to Year 3 through Mixed KS2", "Quick Practice, Full Challenge, Topic Practice and Mixed Challenge modes", "Occasional visual fraction bar models", "End report shows your strongest topic and one to practise next"],
-    worksOffline: true,
+    worksOffline: false,
     noAccount: true
   },
   {
@@ -1800,7 +1801,7 @@ const APPS = [
     isNew: true,
     comingSoon: false,
     features: ["Years 3&4, Years 5&6, Year 6 SATs Practice and Mixed KS2 levels", "300+ question items across 8 SPaG categories", "An explanation shown after every question, not just right or wrong", "End report splits grammar and punctuation scores separately"],
-    worksOffline: true,
+    worksOffline: false,
     noAccount: true
   },
   {
@@ -1823,7 +1824,7 @@ const APPS = [
     isNew: true,
     comingSoon: false,
     features: ["65 original starter sentences for Years 3&4 and Years 5&6", "Guided 4-step improvement process with a live sentence preview", "Free Write mode with a self-assessment checklist, never auto-graded", "Every improved example is hand-written, not AI-generated"],
-    worksOffline: true,
+    worksOffline: false,
     noAccount: true
   },
   {
@@ -1846,7 +1847,7 @@ const APPS = [
     isNew: true,
     comingSoon: false,
     features: ["30+ original passages across 8 genres and all KS2 year bands", "Covers all 7 key reading skills, labelled after each answer", "Multiple-choice auto-marked; short answers use Compare Your Answer", "Reading Skills Summary shown only where genuinely calculable"],
-    worksOffline: true,
+    worksOffline: false,
     noAccount: true
   },
   {
@@ -1869,7 +1870,7 @@ const APPS = [
     isNew: true,
     comingSoon: false,
     features: ["6 prompt categories, each with 40+ (opening lines 50+) original options", "Lock individual elements and regenerate the rest", "Optional writing challenges and 10/20-minute timers", "Never marks or grades pupils' writing"],
-    worksOffline: true,
+    worksOffline: false,
     noAccount: true
   },
 

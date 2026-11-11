@@ -375,7 +375,7 @@
     function (c) { return cap(c.name) + " is " + c.attainmentPhrase + c.subjectClause + " this term."; },
     function (c) { return c.subjectLead + cap(c.name) + "'s progress has been " + c.attainmentPhrase + "."; },
     function (c) { return "At this point in the term, " + c.pn.possessive + " work" + c.subjectClause + " is " + c.attainmentPhrase + "."; },
-    function (c) { return c.subjectLead + "progress has been " + c.attainmentPhrase + " so far this term."; },
+    function (c) { return c.subjectLead + c.pn.possessive + " progress has been " + c.attainmentPhrase + " so far this term."; },
     function (c) { return cap(c.pn.subject) + " is currently " + c.attainmentPhrase + c.subjectClause + "."; }
   ];
 
@@ -416,6 +416,79 @@
     function () { return "Keeping this consistent will help maintain momentum into next term."; },
     function () { return "Regular opportunities to reinforce this would be beneficial going forward."; },
     function () { return "This is a sensible focus for the term ahead."; }
+  ];
+
+  // Extra sentences used to reach the advertised length. Every one refers to the
+  // pupil, their attainment or effort, the subject, or the teacher's note.
+  var T_ATT_DETAIL = {
+    exceptional: [
+      function (c) { return cap(c.pn.subject) + " shows a secure and confident grasp of the key ideas covered" + c.subjectClause + ", and regularly applies them in unfamiliar contexts."; },
+      function (c) { return cap(c.name) + " is ready to be stretched with more challenging, open-ended tasks."; },
+      function (c) { return cap(c.pn.possessive) + " explanations are clear and well reasoned, and " + c.pn.subject + " often makes links between different topics."; }
+    ],
+    above: [
+      function (c) { return cap(c.pn.subject) + " shows a secure understanding of most of the key ideas covered" + c.subjectClause + " and can explain " + c.pn.possessive + " thinking clearly."; },
+      function (c) { return "The next step is for " + c.pn.object + " to apply this understanding to more demanding questions."; },
+      function (c) { return cap(c.name) + " is increasingly able to work independently and to check " + c.pn.possessive + " own answers."; }
+    ],
+    expected: [
+      function (c) { return cap(c.pn.subject) + " has a sound understanding of the core content covered" + c.subjectClause + " this term."; },
+      function (c) { return "Building greater confidence with longer or less familiar tasks would help " + c.pn.object + " to move on further."; },
+      function (c) { return cap(c.name) + " can apply the main methods and ideas accurately when tasks are clearly set out."; }
+    ],
+    working_towards: [
+      function (c) { return cap(c.pn.subject) + " is developing an understanding of the core content" + c.subjectClause + ", although some areas are not yet secure."; },
+      function (c) { return "Regular review of key ideas would help " + c.pn.object + " to close the remaining gaps."; },
+      function (c) { return cap(c.name) + " is making progress and is more confident when tasks are broken into smaller steps."; }
+    ],
+    below: [
+      function (c) { return cap(c.pn.subject) + " is finding some of the core content" + c.subjectClause + " challenging at present."; },
+      function (c) { return "Targeted support and regular practice of the basics will help " + c.pn.object + " to make steady progress."; },
+      function (c) { return cap(c.name) + " benefits from extra guidance and responds well when key steps are modelled first."; }
+    ]
+  };
+
+  var T_EFF_DETAIL = {
+    excellent: [
+      function (c) { return cap(c.pn.subject) + " is consistently focused in lessons and takes real care over " + c.pn.possessive + " work."; },
+      function (c) { return cap(c.pn.possessive) + " positive attitude to learning sets a good example to others."; }
+    ],
+    good: [
+      function (c) { return cap(c.pn.subject) + " usually settles quickly to tasks and completes work to a good standard."; },
+      function (c) { return "Asking questions when unsure would help " + c.pn.object + " get even more from lessons."; }
+    ],
+    variable: [
+      function (c) { return cap(c.pn.possessive) + " focus can vary from lesson to lesson, and " + c.pn.subject + " does best when tasks are clearly structured."; },
+      function (c) { return "More consistent effort would help " + c.name + " to make faster progress."; }
+    ],
+    needs_improvement: [
+      function (c) { return cap(c.pn.subject) + " needs to focus more consistently in lessons and complete tasks in full."; },
+      function (c) { return "Developing better study habits will make a real difference to " + c.pn.possessive + " progress."; }
+    ]
+  };
+
+  var SUBJECT_FOCUS = {
+    "General": "building on {pos} strengths and tackling any gaps with the same determination",
+    "English": "reading closely and developing {pos} written responses with well-chosen evidence",
+    "Maths": "showing {pos} working clearly and practising key methods until they are secure",
+    "Science": "explaining scientific ideas precisely and using key vocabulary in written answers",
+    "History": "using evidence to support {pos} explanations and judgements",
+    "Geography": "using case studies and geographical vocabulary to support {pos} answers",
+    "Computing": "thinking logically, planning solutions and testing {pos} work carefully",
+    "Art": "developing ideas through sketchbook work and experimenting with different techniques",
+    "PE": "applying {pos} skills consistently in practical activities and team situations",
+    "Music": "performing, listening and composing with growing confidence",
+    "Religious Education": "exploring different beliefs and giving well-reasoned viewpoints",
+    "Modern Foreign Languages": "building vocabulary and speaking with growing confidence",
+    "Other": "practising the key skills covered in lessons this term"
+  };
+  var T_SUBJECT = [
+    function (c) { return (c.subjectNamed ? "In " + c.subject : c.subject === "General" ? "Across the curriculum" : "Looking ahead") + ", a useful next step for " + c.name + " is " + c.subjectFocus + "."; },
+    function (c) { return "Over the coming term, " + c.pn.subject + " should focus on " + c.subjectFocus + "."; }
+  ];
+  var T_YEAR = [
+    function (c) { return "Keeping these points in mind will help " + c.pn.object + " make the most of the rest of " + c.yearGroup + "."; },
+    function (c) { return "These next steps will help " + c.name + " to make the most of the rest of " + c.yearGroup + "."; }
   ];
 
   var CLOSINGS = {
@@ -517,12 +590,22 @@
 
   function buildContext(data) {
     var pn = PRONOUNS[data.pronoun] || PRONOUNS.she;
-    var subjectClause = data.subject === "General" ? "" : " in " + data.subject;
-    var subjectLead = data.subject === "General" ? "" : "In " + data.subject + ", ";
+    // "General" and "Other" are not real subject names, so leave the subject out of the wording.
+    var subjectNamed = data.subject !== "General" && data.subject !== "Other";
+    var subjectClause = subjectNamed ? " in " + data.subject : "";
+    var subjectLead = subjectNamed ? "In " + data.subject + ", " : "";
+    var yearGroup = normaliseYearGroup(data.yearGroup);
+    var focus = SUBJECT_FOCUS[data.subject] || SUBJECT_FOCUS.Other;
     return {
       name: data.firstName,
       pn: pn,
-      attainmentPhrase: ATTAINMENT_PHRASES[data.attainment],
+      subject: data.subject,
+      subjectNamed: subjectNamed,
+      yearGroup: yearGroup,
+      subjectFocus: focus.replace(/\{pos\}/g, pn.possessive),
+      attainmentPhrase: ATTAINMENT_PHRASES[data.attainment] + (yearGroup ? " for " + yearGroup : ""),
+      attainment: data.attainment,
+      effort: data.effort,
       effortAdj: EFFORT_ADJ[data.effort],
       subjectClause: subjectClause,
       subjectLead: subjectLead,
@@ -530,41 +613,78 @@
     };
   }
 
-  function generateReportText(data) {
-    var ctx = buildContext(data);
-    var nameState = { count: 0 };
-    var parts = [];
+  function normaliseYearGroup(raw) {
+    var y = (raw || "").trim();
+    if (!y) return "";
+    if (/^\d{1,2}$/.test(y)) return "Year " + y;
+    var m = y.match(/^(?:year|yr|y)\s*(\d{1,2})$/i);
+    if (m) return "Year " + m[1];
+    return y.charAt(0).toUpperCase() + y.slice(1);
+  }
 
-    // Vary which sentence opens the report so reports don't all start the same way.
-    var leadWithEffort = Math.random() < 0.5;
+  function sentenceCase(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
+
+  // Builds one candidate report. Sentences are chosen so the report lands close to the
+  // advertised length for the selected option (Short ~60, Standard ~100, Detailed ~150).
+  function buildCandidate(data, ctx, target) {
+    var nameState = { count: 0 };
     var attainmentSentence = pickVaried(T_ATTAINMENT, ctx, nameState);
     var effortSentence = pickVaried(T_EFFORT, ctx, nameState);
-    if (leadWithEffort) { parts.push(effortSentence, attainmentSentence); }
-    else { parts.push(attainmentSentence, effortSentence); }
+    var closing = pickVaried(CLOSINGS[data.style] || CLOSINGS.professional, ctx, nameState);
+    var note = data.note ? pick(T_NOTE)(ctx) : "";
 
-    if (data.length === "standard" || data.length === "detailed") {
-      parts.push(pick(T_CONTEXT)(ctx));
+    // Optional sentences, each tagged with the slot it belongs to so the final report reads in a sensible order.
+    var attDetail = shuffle(T_ATT_DETAIL[data.attainment] || T_ATT_DETAIL.expected).map(function (f) { return f(ctx); });
+    var effDetail = shuffle(T_EFF_DETAIL[data.effort] || T_EFF_DETAIL.good).map(function (f) { return f(ctx); });
+    var optional = [];
+    attDetail.forEach(function (s, i) { optional.push({ slot: 1, text: s, prio: i }); });
+    effDetail.forEach(function (s, i) { optional.push({ slot: 3, text: s, prio: i + 0.5 }); });
+    optional.push({ slot: 2, text: pick(T_SUBJECT)(ctx), prio: 0.7 });
+    optional.push({ slot: 4, text: pick(T_CONTEXT)(ctx), prio: 1.5 });
+    optional.push({ slot: 6, text: pick(T_OUTLOOK)(ctx), prio: 2.5 });
+    if (ctx.yearGroup) optional.push({ slot: 7, text: pick(T_YEAR)(ctx), prio: 1.2 });
+    // Mostly keep the most relevant sentences first, with a little randomness for variety.
+    optional.forEach(function (o) { o.prio += Math.random() * 1.6; });
+    optional.sort(function (a, b) { return a.prio - b.prio; });
+
+    var chosen = [
+      { slot: 0, text: attainmentSentence },
+      { slot: 3, text: effortSentence, first: true },
+      { slot: 8, text: closing }
+    ];
+    if (note) chosen.push({ slot: 5, text: note });
+    var count = function (list) { return wordCount(list.map(function (o) { return o.text; }).join(" ")); };
+    // Short reports may drop the closing if the note is long.
+    if (data.length === "short" && count(chosen) > target + 12) {
+      chosen = chosen.filter(function (o) { return o.slot !== 8; });
     }
-
-    if (data.note) {
-      parts.push(pick(T_NOTE)(ctx));
+    for (var i = 0; i < optional.length; i++) {
+      var current = count(chosen);
+      if (current >= target - 5) break;
+      var add = wordCount(optional[i].text);
+      if (current + add <= target + 12) chosen.push(optional[i]);
     }
+    var leadWithEffort = Math.random() < 0.35;
+    chosen.sort(function (a, b) {
+      var sa = a.slot, sb = b.slot;
+      if (leadWithEffort) { if (a.first) sa = -1; if (b.first) sb = -1; }
+      if (sa !== sb) return sa - sb;
+      return a.first ? -1 : b.first ? 1 : 0;
+    });
+    return chosen.map(function (o) { return sentenceCase(o.text); }).join(" ");
+  }
 
-    if (data.length === "detailed") {
-      parts.push(pick(T_OUTLOOK)(ctx));
+  function generateReportText(data) {
+    var ctx = buildContext(data);
+    var target = LENGTH_BUDGETS[data.length] || LENGTH_BUDGETS.standard;
+    var best = null, bestDiff = Infinity;
+    for (var attempt = 0; attempt < 30; attempt++) {
+      var text = buildCandidate(data, ctx, target);
+      var diff = Math.abs(wordCount(text) - target);
+      if (diff < bestDiff) { best = text; bestDiff = diff; }
+      if (diff <= 4) break;
     }
-
-    if (data.length !== "short") {
-      parts.push(pickVaried(CLOSINGS[data.style] || CLOSINGS.professional, ctx, nameState));
-    } else {
-      // include closing only if we still have room in the short budget
-      var soFar = wordCount(parts.join(" "));
-      if (soFar < LENGTH_BUDGETS.short) {
-        parts.push(pickVaried(CLOSINGS[data.style] || CLOSINGS.professional, ctx, nameState));
-      }
-    }
-
-    return parts.join(" ");
+    return best;
   }
 
   document.addEventListener("DOMContentLoaded", function () {
