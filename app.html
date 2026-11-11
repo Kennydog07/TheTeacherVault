@@ -160,8 +160,12 @@
 
   var noteBits = [];
   if (app.noAccount) noteBits.push("No account needed");
-  if (app.worksOffline) noteBits.push("Works offline once downloaded");
-  if (!app.comingSoon) noteBits.push("Works in your browser");
+  var notAvailableYet = app.comingSoon || (!app.fileUrl && !app.gumroadUrl);
+  var opensInBrowser = !notAvailableYet && app.fileUrl && app.fileType === "app";
+  // Only Gumroad downloads, PDFs and posters are real downloadable files.
+  var isRealDownload = !notAvailableYet && (app.fileUrl ? app.fileType !== "app" : !!app.gumroadUrl);
+  if (app.worksOffline && isRealDownload) noteBits.push("Works offline once downloaded");
+  if (opensInBrowser) noteBits.push("Works in your browser");
   document.getElementById("browserNote").innerHTML = noteBits.length
     ? '<span class="browser-note">' + ICONS.check + ' ' + noteBits.join(" &middot; ") + '</span>' : "";
 
@@ -183,7 +187,7 @@
   var infoItems = [
     ["Category", categoryLabel(app)],
     ["Audience", app.audience],
-    ["Price", app.comingSoon ? "Coming soon" : app.price]
+    ["Price", (app.comingSoon || (!app.fileUrl && !app.gumroadUrl)) ? "Coming soon" : app.price]
   ];
   if (app.subject && app.subject !== "General") infoItems.push(["Subject", app.subject]);
   if (app.questionCount) infoItems.push(["Questions", app.questionCount]);
@@ -200,8 +204,8 @@
     return '<li>' + ICONS.check + ' <span>' + f + '</span></li>';
   }).join("");
 
-  if (app.comingSoon) {
-    document.getElementById("howGetHeading").textContent = "Get it from Gumroad";
+  if (notAvailableYet) {
+    document.getElementById("howGetHeading").textContent = "Coming soon";
     document.getElementById("howGumroad").textContent = "This app isn't available yet — check back as The Vault grows.";
     document.getElementById("howOpen").textContent = "In the meantime, browse what's already available in the library.";
   } else if (app.fileUrl && app.fileType === "app") {
@@ -219,7 +223,9 @@
   } else {
     document.getElementById("howGetHeading").textContent = "Get it from Gumroad";
     document.getElementById("howGumroad").textContent = app.tier === "pro" ? "Purchase " + app.title + " securely through Gumroad." : "Download " + app.title + " for free (£0) through Gumroad.";
-    document.getElementById("howOpen").textContent = "Most Teacher Vault mini apps open directly in a modern browser — no installation, no account, no API key.";
+    document.getElementById("howOpen").textContent = app.downloadFormat === "pdf"
+      ? "It downloads as a PDF. Open it in any PDF reader, on any device."
+      : "Most Pro teacher tools download as a ZIP file. Unzip it and open the HTML file in a modern browser — no installation, no account.";
   }
 
   // --- Need more? (Lite -> Pro, or Pro -> Lite) ---
