@@ -199,3 +199,9 @@
 /school-plays/jack-and-the-beanstalk.html  /school-plays/jack-and-the-beanstalk  301!
 /school-plays/the-pied-piper-of-hamelin.html  /school-plays/the-pied-piper-of-hamelin  301!
 /school-plays/a-christmas-carol.html  /school-plays/a-christmas-carol  301!
+
+# Bare app folders have no index page; send them to their hub pages instead of the 404.
+/teacher-apps   /teacher-tools  301
+/teacher-apps/  /teacher-tools  301
+/revision-apps  /student-apps   301
+/revision-apps/ /student-apps   301

@@ -2201,3 +2201,36 @@ body[data-page="home"] .back-to-top {
   body[data-page="home"] { padding-bottom: 0 !important; }
   .whats-new-ticker { display: none !important; }
 }
+
+/* ===== Guide download call to action (conversion fixes, Nov 2026) ===== */
+.guide-download { margin-top: 18px; }
+.guide-download__btn { font-size: 1.05rem; padding: 14px 22px; }
+.guide-download__note { margin: 10px 0 0; font-size: 0.92rem; opacity: 0.85; }
+
+/* ===== Homepage free-printables call to action (conversion fixes, Nov 2026) ===== */
+.hero-free-cta { margin: 0 auto 16px; max-width: 520px; }
+.hero-free-cta__title {
+  font-family: var(--font-chalk); font-size: 1.3rem; color: var(--gold-light);
+  margin: 0 0 10px;
+}
+.hero-free-cta__btns { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.hero-free-cta__btn { padding: 11px 16px; font-size: 0.98rem; }
+@media (min-width: 960px) {
+  .hero-free-cta { margin: 0 0 16px; }
+  .hero-free-cta__btns { justify-content: flex-start; }
+}
+@media (max-width: 640px) {
+  body[data-page="home"] .hero { padding-top: 28px; }
+  body[data-page="home"] .hero__logo { margin-bottom: 14px; }
+  body[data-page="home"] .hero__logo .chalk-logo__img { width: 88px; height: 88px; }
+  body[data-page="home"] .hero .lede { margin-bottom: 18px; }
+  .hero-free-cta__btns { gap: 8px; }
+  .hero-free-cta__btn { flex: 1 1 30%; padding: 10px 8px; font-size: 0.9rem; }
+}
+
+/* ===== Compact featured paid pack above the free worksheets (conversion fixes, Nov 2026) ===== */
+.featured-pack-compact { display: flex; align-items: center; gap: 16px; padding: 14px 18px; }
+.featured-pack-compact img { width: 72px; height: 72px; border-radius: 6px; flex: 0 0 auto; object-fit: cover; }
+.featured-pack-compact__body { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; min-width: 0; }
+.featured-pack-compact__body .eyebrow { flex-basis: 100%; margin: 0; }
+.featured-pack-compact__body h3 { margin: 0; font-size: 1.15rem; }
