@@ -1102,7 +1102,7 @@ const APPS = [
     audience: "KS3 maths teachers (Years 7–9)",
     tier: "pro",
     price: "£2.99",
-    gumroadUrl: "https://teachervault.gumroad.com/l/rmbpi",
+    gumroadUrl: "https://theteachervault.gumroad.com/l/rmbpi",
     image: "/images/ks3-maths-gap-finder-pro.jpg",
     featured: false,
     isNew: true,
