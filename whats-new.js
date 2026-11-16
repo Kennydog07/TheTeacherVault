@@ -22,9 +22,11 @@
   var WEEKDAY_INDEX = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
 
   var WHATS_NEW_ITEMS = [
+    { date: "2026-11-12", title: "Upper KS2 Grammar Toolkit", url: "/upper-ks2-grammar-toolkit", price: "£9.99" },
     { date: "2026-11-11", title: "Thanksgiving Kids’ Table Activity Pack", url: "/thanksgiving-kids-table-pack", price: "£5.99" },
     { date: "2026-11-11", title: "Cold Day Indoor Activity Pack", url: "/cold-day-indoor-activity-pack", price: "£4.99" },
     { date: "2026-11-11", title: "6-Week Christmas Countdown Planner 2026", url: "/christmas-countdown-planner-2026", price: "£5.99" },
+    { date: "2026-11-11", title: "KS2 Punctuation Toolkit", url: "/ks2-punctuation-toolkit", price: "£5.42" },
     { date: "2026-11-08", title: "Screen-Free Times Tables Pack (Years 3–6)", url: "/screen-free-times-tables-pack", price: "£2.99" },
     { date: "2026-11-06", title: "Word Card Maker — free keyring word cards", url: "/teacher-apps/word-card-maker", price: "Free" }
   ];
